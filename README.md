@@ -24,12 +24,12 @@ yarn docs:dev
 
 This project uses
 [Semantic Release](https://github.com/semantic-release/semantic-release) to
-automate package publishing when making changes to the `main` or `next` branch.
+automate package publishing when making changes to the `main` or `alpha` branch.
 
-It is recommended to branch off the `next` branch and follow
+It is recommended to branch off the `alpha` branch and follow
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
 when making changes. When your changes are ready for pull request, this should
-be opened against the `next` branch.
+be opened against the `alpha` branch.
 
 [Read more in-depth about Fabric Releases here](https://github.com/fabric-ds/issues/blob/779d59723993c13d62374516259602d967da56ca/rfcs/0004-releases.md).
 
