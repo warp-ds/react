@@ -39,14 +39,15 @@
     "lint": "pnpm run lint:format && pnpm run lint:eslint",
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
-    "eik:login": "npx @eik/cli login",
-    "eik:publish": "npx @eik/cli publish",
+    "eik:login": "eik login",
+    "eik:publish": "eik publish",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@chbphone55/classnames": "^2.0.0",
     "@eik/esbuild-plugin": "^1.1.0",
+    "@eik/cli": "^2.0.22",
     "@fabric-ds/icons": "0.5.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
