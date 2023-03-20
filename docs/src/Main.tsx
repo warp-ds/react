@@ -7,6 +7,7 @@ import {
   Switch as ReactSwitch,
 } from 'react-router-dom';
 import Alert from '../../packages/alert/docs/Alert.mdx';
+/*
 import Box from '../../packages/box/docs/Box.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
@@ -24,9 +25,11 @@ import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 import Attention from '../../packages/attention/docs/Attention.mdx';
+*/
 import Home from '../pages/index.jsx';
 import Code from './components/Code';
 import PropTable from './components/PropTable';
+import 'uno.css'
 
 const components = {
   code: Code,
@@ -51,6 +54,7 @@ const App = () => {
             <Alert />
           </Route>
 
+{/*
           <Route path="/modal">
             <Modal />
           </Route>
@@ -118,6 +122,7 @@ const App = () => {
           <Route path="/Card">
             <Card />
           </Route>
+*/}
         </ReactSwitch>
       </Router>
     </MDXProvider>
