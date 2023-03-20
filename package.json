@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@fabric-ds/core": "0.0.15",
+    "@warp-ds/core": "^1.0.0",
     "@fabric-ds/css": "^1.1.4",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import type { BreadcrumbsProps } from './props';
-import { interleave } from '@fabric-ds/core/breadcrumbs';
+import { interleave } from '@warp-ds/core/breadcrumbs';
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;

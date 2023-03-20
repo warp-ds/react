@@ -5,7 +5,7 @@ import {
   rotation,
   useRecompute as recompute,
   arrowLabels,
-} from '@fabric-ds/core/attention';
+} from '@warp-ds/core/attention';
 import { attention as c } from '@fabric-ds/css/component-classes';
 import { ArrowProps, AttentionProps } from './props';
 

@@ -5,7 +5,6 @@ specifiers:
   '@chbphone55/classnames': ^2.0.0
   '@eik/cli': ^2.0.22
   '@eik/esbuild-plugin': ^1.1.0
-  '@fabric-ds/core': 0.0.15
   '@fabric-ds/css': ^1.1.4
   '@fabric-ds/icons': 0.5.1
   '@mdx-js/mdx': ^1.6.22
@@ -22,6 +21,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^4.14.1
   '@typescript-eslint/parser': ^4.14.1
   '@vitejs/plugin-react-refresh': ^1.1.3
+  '@warp-ds/core': ^1.0.0
   babel-eslint: ^10.1.0
   cz-conventional-changelog: ^3.3.0
   dotenv-webpack: ^7.1.0
@@ -60,8 +60,8 @@ specifiers:
 
 dependencies:
   '@chbphone55/classnames': 2.0.0
-  '@fabric-ds/core': 0.0.15
   '@fabric-ds/css': 1.2.0
+  '@warp-ds/core': 1.0.0
   react-focus-lock: 2.9.4_tujbw3i5d6amztjwlbeq7dljyy
   resize-observer-polyfill: 1.5.1
   scroll-doctor: 1.0.1
@@ -1804,12 +1804,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@fabric-ds/core/0.0.15:
-    resolution: {integrity: sha512-PUr5/bAunIO+o5X8D3uDGiApX8+4p9yUvXCija457bfw/lh43dkPMjlPtSltC02KK74/v3eVFt0x1oJs9n0uZA==}
-    dependencies:
-      '@floating-ui/dom': 0.5.4
-    dev: false
 
   /@fabric-ds/css/1.2.0:
     resolution: {integrity: sha512-2qtju85xQRxaHmuc6nEmWaQUUYLNZGR/nQAYTvONNv7InJYHfLmKc/LTG6V0E/BPxGT3BBnBuuHBoxBghAqDVw==}
@@ -3846,6 +3840,12 @@ packages:
       - supports-color
     dev: true
 
+  /@warp-ds/core/1.0.0:
+    resolution: {integrity: sha512-HCzgWm6wHR2Wh/rvNu9I4Qe1HdUj/i3v5amjioW38ZPh/Ve/y/0imX//ZXMLjshDVK+ZKU34Xd0TC56z/Yg36g==}
+    dependencies:
+      '@floating-ui/dom': 0.5.4
+    dev: false
+
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
     dependencies:
@@ -5126,7 +5126,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -12429,17 +12429,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise.allsettled/1.0.6:
