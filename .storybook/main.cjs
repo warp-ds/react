@@ -27,7 +27,7 @@ module.exports = {
         const { presetWarp } = (await import('@warp-ds/uno'));
 
         config.plugins.push(uno.default({
-            presets: [presetWarp()]
+            presets: [presetWarp({ usePixels: true, usePreflight: true })]
         }));
         return config;
     },
