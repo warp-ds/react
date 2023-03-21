@@ -5,7 +5,6 @@ specifiers:
   '@chbphone55/classnames': ^2.0.0
   '@eik/cli': ^2.0.22
   '@eik/esbuild-plugin': ^1.1.0
-  '@fabric-ds/css': ^1.2.0
   '@fabric-ds/icons': 0.5.1
   '@mdx-js/mdx': ^1.6.22
   '@mdx-js/react': 1.6.22
@@ -64,7 +63,6 @@ specifiers:
 
 dependencies:
   '@chbphone55/classnames': 2.0.0
-  '@fabric-ds/css': 1.2.0
   '@warp-ds/component-classes': 1.0.0-alpha.2
   '@warp-ds/core': 1.0.0
   react-focus-lock: 2.9.4_tujbw3i5d6amztjwlbeq7dljyy
@@ -1827,12 +1825,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@fabric-ds/css/1.2.0:
-    resolution: {integrity: sha512-2qtju85xQRxaHmuc6nEmWaQUUYLNZGR/nQAYTvONNv7InJYHfLmKc/LTG6V0E/BPxGT3BBnBuuHBoxBghAqDVw==}
-    dependencies:
-      lit-html: 2.6.1
-    dev: false
 
   /@fabric-ds/icons/0.5.1:
     resolution: {integrity: sha512-pujVlICBa9jLlLhoUss/ICnECLXVDFdtK9tq593y9/8mqMwTYnO/OcuviTk9/kHWKuXJcOHvVRkdcYzPulV57g==}
@@ -3666,10 +3658,6 @@ packages:
     resolution: {integrity: sha512-ipixuVrh2OdNmauvtT51o3d8z12p6LtFW9in7U79der/kwejjdNchQC5UMn5u/KxNoM7VHHOs/l8KS8uHxhODQ==}
     dev: true
 
-  /@types/trusted-types/2.0.3:
-    resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
-    dev: false
-
   /@types/uglify-js/3.17.1:
     resolution: {integrity: sha512-GkewRA4i5oXacU/n4MA9+bLgt5/L3F1mKrYvFGm7r2ouLXhRKjuWwo9XHNnbx6WF3vlGW21S3fCvgqxvxXXc5g==}
     dependencies:
@@ -5393,7 +5381,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -10320,12 +10308,6 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lit-html/2.6.1:
-    resolution: {integrity: sha512-Z3iw+E+3KKFn9t2YKNjsXNEu/LRLI98mtH/C6lnFg7kvaqPIzPn124Yd4eT/43lyqrejpc5Wb6BHq3fdv4S8Rw==}
-    dependencies:
-      '@types/trusted-types': 2.0.3
-    dev: false
-
   /load-json-file/1.1.0:
     resolution: {integrity: sha512-cy7ZdNRXdablkXYNI049pthVeXFurRyb9+hA/dZzerZ0pGTx42z+y+ssxBaVV2l70t1muq5IdKhn4UtcoGUY9A==}
     engines: {node: '>=0.10.0'}
@@ -12765,17 +12747,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise.allsettled/1.0.6:
