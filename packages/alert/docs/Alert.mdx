@@ -51,19 +51,19 @@ function ExpandableAlert() {
 }
 ```
 
-### Negative
+### Critical
 
 ```jsx example
-<Alert type="negative" show>
-  This is "negative" variant of the alert element
+<Alert type="critical" show>
+  This is "critical" variant of the alert element
 </Alert>
 ```
 
-### Positive
+### Success
 
 ```jsx example
-<Alert type="positive" show>
-  This is "positive" variant of the alert element
+<Alert type="success" show>
+  This is "success" variant of the alert element
 </Alert>
 ```
 
@@ -96,7 +96,7 @@ attribute on
 ### Alert with "alert" role on a descendand element
 
 ```jsx example
-function ExpandableAlertWithOverridenRole() {
+function ExpandableAlertWithOverriddenRole() {
   const [show, setShow] = React.useState(true);
 
   return (
