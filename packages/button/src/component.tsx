@@ -23,13 +23,13 @@ export const Button = forwardRef<
   const button = {
     // Buttontypes
     button:
-      'py-10 px-14 text-blue-600 i-text-$ bg-white border-gray-300 border-2 hover:bg-blue-50 hover:border-blue-600 active:bg-blue-100 font-bold rounded-8 leading-24 max-w-max focus-ring justify-center transition-colors ease-in-out', // .button, .button--secondary, .button--default. using tailwind ease-in-out instead of fabric transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96)
+      'py-10 px-14 i-text-$color-button-secondary-text i-border-$color-button-secondary-border border-2 hover:i-bg-$color-button-secondary-background-hover hover:i-border-$color-button-secondary-border-hover active:i-bg-$color-button-secondary-background-active font-bold rounded-8 leading-24 max-w-max focus-ring justify-center transition-colors ease-in-out', // .button, .button--secondary, .button--default. using tailwind ease-in-out instead of fabric transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96)
     buttonPrimary:
-      'py-12 px-16 border-0 text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800;', // .button--primary, .button--cta
-    buttonTertiary:
-      'py-12 px-16 border-0 bg-transparent text-blue-600 hover:bg-blue-50 active:bg-blue-100;', // .button--tertiary, .button--flat
+      'py-12 px-16 border-0 i-text-$color-button-primary-text! i-bg-$color-button-primary-background hover:i-bg-$color-button-primary-background-hover! active:i-bg-$color-button-primary-background-active;', // .button--primary, .button--cta
+    buttonTertiaryButtonFlat:
+      'py-12 px-16 border-0! i-bg-$color-button-tertiary-background i-text-$color-button-tertiary-text hover:i-bg-$color-button-tertiary-background-hover active:i-bg-$color-button-tertiary-background-active;', // .button--tertiary, .button--flat
     buttonDestructive:
-      'py-12 px-16 border-0 text-white bg-red-600 hover:bg-red-700 active:bg-red-800;', // .button--destructive
+      'py-12 px-16 border-0! i-bg-$color-button-critical-background i-text-$color-button-critical-text! hover:i-bg-$color-button-critical-background-hover! active:i-bg-$color-button-critical-background-active!;', // .button--destructive
     buttonDestructiveFlat:
       'py-12 px-16 border-0 bg-transparent text-red-600 hover:bg-red-50 active:bg-red-100;', // .button--destructive-flat
     buttonOrder:
@@ -86,7 +86,7 @@ export const Button = forwardRef<
     [button.buttonPrimary]: primary,
     [button.buttonDestructive]: negative,
     // quiet
-    // [button.buttonFlat]: secondary && quiet,
+    [button.buttonTertiaryButtonFlat]: secondary && quiet,
     [button.buttonDestructiveFlat]: negative && quiet,
     [button.buttonUtilityFlat]: utility && quiet,
     // others
