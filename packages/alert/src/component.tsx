@@ -11,18 +11,21 @@ export function Alert({
   ...props
 }: PropsWithChildren<AlertProps>) {
 
+  const variantClasses = alert[type]
+  const iconVariantClasses = alert[`${type}Icon`]
+
   return (
     <ExpandTransition show={show}>
       <div
         role={role}
         className={classNames(
           props.className,
-          `flex p-16 border border-l-4 rounded-4 i-border-$color-alert-${type}-subtle-border i-bg-$color-alert-${type}-background i-text-$color-alert-${type}-text`,
+         `${alert.alert} ${variantClasses}`,
         )}
         style={{ borderLeftColor: `var(--w-color-alert-${type}-border)`, ...props.style }}
       >
         <div
-          className={`w-16 mr-8 pt-4 i-text-$color-alert-${type}-icon`}
+          className={`${alert.icon} ${iconVariantClasses}`}
           style={{ minWidth: '16px' }}
         >
           {iconMap[type]}
@@ -31,6 +34,21 @@ export function Alert({
       </div>
     </ExpandTransition>
   );
+}
+
+// TODO(@balbinak): export this from warp-ds/component-classes
+// TODO(@balbinak): add border-left-color token when fixed in warp-ds/drive
+const alert: Record<string, string> = {
+  alert: "flex p-16 border border-l-4 rounded-4",
+  icon: "w-16 mr-8 pt-4",
+  critical:  "i-border-$color-alert-critical-subtle-border i-bg-$color-alert-critical-background i-text-$color-alert-critical-text",
+  criticalIcon: "i-text-$color-alert-critical-icon",
+  success:  "i-border-$color-alert-success-subtle-border i-bg-$color-alert-success-background i-text-$color-alert-success-text",
+  successIcon: "i-text-$color-alert-success-icon",
+  warning:  "i-border-$color-alert-warning-subtle-border i-bg-$color-alert-warning-background i-text-$color-alert-warning-text",
+  warningIcon: "i-text-$color-alert-warning-icon",
+  info:  "i-border-$color-alert-info-subtle-border i-bg-$color-alert-info-background i-text-$color-alert-info-text",
+  infoIcon: "i-text-$color-alert-info-icon"
 }
 
 const iconMap: {
