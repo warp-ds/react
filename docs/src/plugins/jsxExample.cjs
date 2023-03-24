@@ -37,7 +37,7 @@ module.exports = () => (tree, file) => {
           index + 1,
           0,
           u('jsx', {
-            value: `<div className="example">${node.value}</div>`,
+            value: `<div className="example mb-16 p-24 border-2 border-t-0">${node.value}</div>`,
           }),
         );
       }

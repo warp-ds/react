@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref } from 'react';
-// import { button as c } from '@fabric-ds/css/component-classes';
+// import { button as c } from '@warp-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import type { ButtonProps } from './props';
 
@@ -31,7 +31,7 @@ export const Button = forwardRef<
     buttonDestructive:
       'py-12 px-16 border-0! i-bg-$color-button-critical-background i-text-$color-button-critical-text! hover:i-bg-$color-button-critical-background-hover! active:i-bg-$color-button-critical-background-active!;', // .button--destructive
     buttonDestructiveFlat:
-      'py-12 px-16 border-0 bg-transparent text-red-600 hover:bg-red-50 active:bg-red-100;', // .button--destructive-flat
+      'py-12 px-16 border-0 i-bg-$color-button-critical-tertiary-background! i-text-$color-button-critical-tertiary-text! hover:i-bg-$color-button-critical-tertiary-background-hover active:i-bg-$color-button-critical-tertiary-background-active;', // .button--destructive-flat
     buttonOrder:
       'py-12 px-16 border-0 text-gray-900 bg-green-400 hover:bg-green-500 active:bg-green-600;', // .button--order
     buttonUtility:
@@ -39,9 +39,9 @@ export const Button = forwardRef<
     buttonUtilityFlat:
       'padding: 12px 16px bg-transparent text-gray-800 border-0 hover:bg-gray-100 active:border-gray-500 active:bg-gray-200 rounded-4;', // .button--utility-flat
     buttonPill:
-      'border-radius: 50% min-h-[44px] min-w-[44px] border-transparent p-4 text-bluegray-600 bg-transparent inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
+      'rounded-full! min-h-[44px] min-w-[44px] border-0! p-4 text-bluegray-600 bg-transparent inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
     buttonLink:
-      'font-normal border-0 inline bg-transparent p-0 m-0 hover:active:underline hover:active:bg-transparent;', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
+      'font-normal border-0! inline i-bg-$color-button-tertiary-background p-0 m-0 hover:underline active:underline hover:i-bg-$color-button-tertiary-background! active:i-bg-$color-button-tertiary-background!;', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
     LinkButton:
       'no-underline active:hover:no-underline inline-flex active:hover:inline-flex;', //  a.button /* Overrides for links pretending to be buttons */
     // Sizestuff
@@ -90,10 +90,10 @@ export const Button = forwardRef<
     [button.buttonDestructiveFlat]: negative && quiet,
     [button.buttonUtilityFlat]: utility && quiet,
     // others
-    'button--small': small,
+    [button.buttonSmall]: small,
     'button--utility': utility && !quiet,
-    'button--link': link,
-    'button--pill': pill,
+    [button.buttonLink]: link,
+    [button.buttonPill]: pill,
     'button--in-progress': loading,
   });
 

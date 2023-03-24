@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
-  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/npm/index.js",

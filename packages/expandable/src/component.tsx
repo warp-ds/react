@@ -2,7 +2,7 @@ import { classNames } from '@chbphone55/classnames';
 import {
   box as boxClasses,
   buttonReset,
-} from '@fabric-ds/css/component-classes';
+} from '@warp-ds/component-classes';
 import React from 'react';
 import { ExpandTransition, UnstyledHeading } from '../../_helpers';
 import { ExpandableProps } from './props';
