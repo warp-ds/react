@@ -6,7 +6,7 @@ export type AlertProps = {
   /**
    * Type of alert
    */
-  type: 'critical' | 'success' | 'warning' | 'info';
+  type: 'negative' | 'positive' | 'warning' | 'info';
   /**
    * ARIA live region "role" attribute value
    */

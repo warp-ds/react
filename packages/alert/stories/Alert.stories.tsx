@@ -11,18 +11,18 @@ export const Default = () => {
   return (
     <div className="flex flex-col gap-y-16">
       <div>
-        <h3>Critical</h3>
-        <Alert type="critical" show={show}>
+        <h3>Negative</h3>
+        <Alert type="negative" show={show}>
           This is a message that you've done something really wrong.
         </Alert>
         <Button className="mt-16" small primary onClick={() => setShow(!show)}>
-          {show ? 'Hide critical alert' : 'Show critical alert'}
+          {show ? 'Hide negative alert' : 'Show negative alert'}
         </Button>
       </div>
       <div>
-        <h3>Success</h3>
-        <Alert type="success" show>
-          This is a message that gives you success feedback.
+        <h3>Positive</h3>
+        <Alert type="positive" show>
+          This is a message that gives you positive feedback.
         </Alert>
       </div>
       <div>
@@ -61,17 +61,17 @@ export const WithInteractiveContent = () => {
   return (
     <div className="flex flex-col gap-y-16">
       <div>
-        <h3>Critical</h3>
-        <Alert type="critical" show={show}>
+        <h3>Negative</h3>
+        <Alert type="negative" show={show}>
           <InteractiveContent />
         </Alert>
         <Button className="mt-16" small primary onClick={() => setShow(!show)}>
-          {show ? 'Hide critical alert' : 'Show critical alert'}
+          {show ? 'Hide negative alert' : 'Show negative alert'}
         </Button>
       </div>
       <div>
-        <h3>Success</h3>
-        <Alert type="success" show>
+        <h3>Positive</h3>
+        <Alert type="positive" show>
           <InteractiveContent />
         </Alert>
       </div>

@@ -41,10 +41,10 @@ export function Alert({
 const alert: Record<string, string> = {
   alert: "flex p-16 border border-l-4 rounded-4",
   icon: "w-16 mr-8 pt-4",
-  critical:  "i-border-$color-alert-critical-subtle-border i-bg-$color-alert-critical-background i-text-$color-alert-critical-text",
-  criticalIcon: "i-text-$color-alert-critical-icon",
-  success:  "i-border-$color-alert-success-subtle-border i-bg-$color-alert-success-background i-text-$color-alert-success-text",
-  successIcon: "i-text-$color-alert-success-icon",
+  negative:  "i-border-$color-alert-negative-subtle-border i-bg-$color-alert-negative-background i-text-$color-alert-negative-text",
+  negativeIcon: "i-text-$color-alert-negative-icon",
+  positive:  "i-border-$color-alert-positive-subtle-border i-bg-$color-alert-positive-background i-text-$color-alert-positive-text",
+  positiveIcon: "i-text-$color-alert-positive-icon",
   warning:  "i-border-$color-alert-warning-subtle-border i-bg-$color-alert-warning-background i-text-$color-alert-warning-text",
   warningIcon: "i-text-$color-alert-warning-icon",
   info:  "i-border-$color-alert-info-subtle-border i-bg-$color-alert-info-background i-text-$color-alert-info-text",
@@ -54,7 +54,7 @@ const alert: Record<string, string> = {
 const iconMap: {
   [key in AlertProps['type']]: ReactElement;
 } = {
-  critical: (
+  negative: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -74,7 +74,7 @@ const iconMap: {
       <path d="M8.8 11.8a.8.8 0 1 1-1.6 0 .8.8 0 0 1 1.6 0Z" fill="#fff" />
     </svg>
   ),
-  success: (
+  positive: (
     <svg
       width="16"
       height="16"
