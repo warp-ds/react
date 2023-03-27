@@ -23,7 +23,7 @@ specifiers:
   '@vitejs/plugin-react-refresh': ^1.1.3
   '@warp-ds/component-classes': ^1.0.0-alpha.2
   '@warp-ds/core': ^1.0.0
-  '@warp-ds/uno': ^1.0.0-alpha.2
+  '@warp-ds/uno': ^1.0.0-alpha.3
   babel-eslint: ^10.1.0
   cz-conventional-changelog: ^3.3.0
   dotenv-webpack: ^7.1.0
@@ -89,7 +89,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.33.0_ql6hdftgubrvdk7uv5ldxgxjjy
   '@unocss/webpack': 0.50.6_webpack@5.76.1
   '@vitejs/plugin-react-refresh': 1.3.6
-  '@warp-ds/uno': 1.0.0-alpha.2
+  '@warp-ds/uno': 1.0.0-alpha.3
   babel-eslint: 10.1.0_eslint@7.32.0
   cz-conventional-changelog: 3.3.0
   dotenv-webpack: 7.1.1_webpack@5.76.1
@@ -4089,8 +4089,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/uno/1.0.0-alpha.2:
-    resolution: {integrity: sha512-H/EFoyb3JZ+2/NMyJF4yrI+nSl3e7sShO7oLmTRZiVrCmJONNnB68xLY3jD/edxc76x+lmfrjTkOJCf/2IwFYg==}
+  /@warp-ds/uno/1.0.0-alpha.3:
+    resolution: {integrity: sha512-RCtV1cAR1/71e9v9lgNxGQQcYn46ZsAGVp4zFaE5gMsYMmB55QjTstAq9QsTV8ZlHzSc0km6uBLgs7dcT0VAmg==}
     dependencies:
       '@unocss/core': 0.50.6
       '@unocss/preset-mini': 0.50.6
@@ -5381,7 +5381,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -12747,6 +12747,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise.allsettled/1.0.6:
