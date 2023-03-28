@@ -79,6 +79,7 @@ export const Button = forwardRef<
     [button.buttonPill]: pill,
     [button.buttonInProgress]: loading,
     [button.buttonIsDisabled]: props.disabled,
+    ['inline-block']: !!props.href
   });
 
   return (
