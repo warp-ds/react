@@ -126,6 +126,10 @@ export const Example = () => {
         <Button className="mr-32" utility small loading>
           Small Loading
         </Button>
+        {/* @ts-ignore */}
+        <Button className="mr-32" utility quiet>
+          Quiet
+        </Button>
       </div>
       <div>
         <h3>Pill</h3>

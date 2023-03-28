@@ -37,13 +37,13 @@ export const Button = forwardRef<
     buttonOrder:
       'py-12 px-16 border-0 text-gray-900 bg-green-400 hover:bg-green-500 active:bg-green-600;', // .button--order
     buttonUtility:
-      'padding: 11px 15px i-text-$i-border-$color-button-utility-text i-bg-$color-button-utility-background i-border-$color-button-utility-border border hover:i-bg-$color-button-utility-background hover:i-border-$color-button-utility-border-hover! active:i-border-$color-button-utility-border-active! rounded-4;', // .button--utility
+      'padding: 11px 15px i-text-$color-button-utility-text i-bg-$color-button-utility-background i-border-$color-button-utility-border border hover:i-bg-$color-button-utility-background hover:i-border-$color-button-utility-border-hover! active:i-border-$color-button-utility-border-active! rounded-4;', // .button--utility
     buttonUtilityFlat:
-      'padding: 12px 16px bg-transparent text-gray-800 border-0 hover:bg-gray-100 active:border-gray-500 active:bg-gray-200 rounded-4;', // .button--utility-flat
+      'padding: 12px 16px bg-transparent border-0! i-text-$color-button-utility-text i-bg-$color-button-utility-background hover:i-bg-$color-button-utility-background-hover rounded-4;', // .button--utility-flat
     buttonPill:
-      'rounded-full! min-h-[44px] min-w-[44px] border-0! p-4 i-text-$color-button-quiet-text! i-bg-$color-button-quiet-background hover:i-bg-$color-button-quiet-background-hover! acive:i-bg-$color-button-quiet-background-active! inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
+      'rounded-full! min-h-[44px] min-w-[44px] border-0! p-4 i-text-$color-button-quiet-text! i-bg-$color-button-favorite-background hover:i-bg-$color-button-favorite-background-hover acive:i-bg-$color-button-favorite-background-active inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
     buttonLink:
-      'font-normal border-0! inline i-bg-$color-button-quiet-background p-0 m-0 hover:underline active:underline hover:i-bg-$color-button-quiet-background! active:i-bg-$color-button-quiet-background!;', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
+      'font-normal border-0! inline p-0 m-0 hover:underline active:underline;', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
     LinkButton:
       'no-underline active:hover:no-underline inline-flex active:hover:inline-flex;', //  a.button /* Overrides for links pretending to be buttons */
     // Sizestuff
