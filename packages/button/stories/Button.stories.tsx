@@ -154,15 +154,83 @@ export const Example = () => {
         </Button>
       </div>
       <div>
-        <h3>Link (href)</h3>
+        <h3>Link (href) styled as button</h3>
         {/* @ts-ignore */}
         <Button
-          link
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Simple link as button
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          primary
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Simple link as button primary
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          negative
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Simple link as button negative
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          utility
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Simple link as button utility
+        </Button>
+      </div>
+      <div>
+        <h3>Disabled button</h3>
+        {/* @ts-ignore */}
+        <Button
+          disabled
           className="mr-32"
           href="https://google.com/"
           target="_blank"
         >
           Simple
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          primary
+          disabled
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Disabled button primary
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          negative
+          disabled
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Disabled button negative
+        </Button>
+        {/* @ts-ignore */}
+        <Button
+          utility
+          disabled
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+        >
+          Disabled button utility
         </Button>
       </div>
     </div>

@@ -3,6 +3,14 @@ import React, { forwardRef, Ref } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import type { ButtonProps } from './props';
 
+const buttonTypes = [    
+  'primary',
+  'secondary',
+  'negative',
+  'utility',
+  'pill',
+  'link',
+] as const;
 export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
@@ -22,32 +30,26 @@ export const Button = forwardRef<
 
   const button = {
     // Buttontypes
-    button:
-      'py-10 px-14 border-2 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out', // .button, .button--secondary, .button--default. using tailwind ease-in-out instead of fabric transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96)
     buttonSecondary:
-      'i-text-$color-button-secondary-text i-border-$color-button-secondary-border hover:i-bg-$color-button-secondary-background-hover hover:i-border-$color-button-secondary-border-hover active:i-bg-$color-button-secondary-background-active', // .button, .button--secondary, .button--default. using tailwind ease-in-out instead of fabric transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96)
+      'py-10 px-14 border-2 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-text-$color-button-secondary-text i-border-$color-button-secondary-border i-bg-$color-button-secondary-background hover:i-bg-$color-button-secondary-background-hover hover:i-border-$color-button-secondary-border-hover active:i-bg-$color-button-secondary-background-active', // .button, .button--secondary, .button--default. using tailwind ease-in-out instead of fabric transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96)
     buttonPrimary:
-      'py-12 px-16 border-0 i-text-$color-button-primary-text i-bg-$color-button-primary-background hover:i-bg-$color-button-primary-background-hover! active:i-bg-$color-button-primary-background-active;', // .button--primary, .button--cta
+      'py-12 px-16 border-0 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-text-$color-button-primary-text i-bg-$color-button-primary-background hover:i-bg-$color-button-primary-background-hover! active:i-bg-$color-button-primary-background-active', // .button--primary, .button--cta
     buttonFlat:
-      'py-12 px-16 border-0! i-bg-$color-button-quiet-background i-text-$color-button-quiet-text hover:i-bg-$color-button-quiet-background-hover active:i-bg-$color-button-quiet-background-active;', // .button--quiet, .button--flat
+      'py-12 px-16 border-0! font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-bg-$color-button-quiet-background i-text-$color-button-quiet-text hover:i-bg-$color-button-quiet-background-hover active:i-bg-$color-button-quiet-background-active', // .button--quiet, .button--flat
     buttonDestructive:
-      'py-12 px-16 border-0! i-bg-$color-button-negative-background i-text-$color-button-negative-text hover:i-bg-$color-button-negative-background-hover! active:i-bg-$color-button-negative-background-active!;', // .button--destructive
+      'py-12 px-16 border-0 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-bg-$color-button-negative-background i-text-$color-button-negative-text hover:i-bg-$color-button-negative-background-hover! active:i-bg-$color-button-negative-background-active!', // .button--destructive
     buttonDestructiveFlat:
-      'py-12 px-16 border-0! i-bg-$color-button-negative-quiet-background! i-text-$color-button-negative-quiet-text! hover:i-bg-$color-button-negative-quiet-background-hover! active:i-bg-$color-button-negative-quiet-background-active!;', // .button--destructive-flat
-    buttonOrder:
-      'py-12 px-16 border-0 text-gray-900 bg-green-400 hover:bg-green-500 active:bg-green-600;', // .button--order
+      'py-12 px-16 border-0 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-bg-$color-button-negative-quiet-background! i-text-$color-button-negative-quiet-text! hover:i-bg-$color-button-negative-quiet-background-hover! active:i-bg-$color-button-negative-quiet-background-active!', // .button--destructive-flat
     buttonUtility:
-      'padding: 11px 15px i-text-$color-button-utility-text i-bg-$color-button-utility-background i-border-$color-button-utility-border border hover:i-bg-$color-button-utility-background hover:i-border-$color-button-utility-border-hover! active:i-border-$color-button-utility-border-active! rounded-4;', // .button--utility
+      'px-[15px] py-[11px] font-bold leading-24 max-w-max focusable justify-center transition-colors ease-in-out border rounded-4 i-text-$color-button-utility-text i-bg-$color-button-utility-background i-border-$color-button-utility-border hover:i-bg-$color-button-utility-background hover:i-border-$color-button-utility-border-hover! active:i-border-$color-button-utility-border-active!', // .button--utility
     buttonUtilityFlat:
-      'padding: 12px 16px bg-transparent border-0! i-text-$color-button-utility-text i-bg-$color-button-utility-background hover:i-bg-$color-button-utility-background-hover rounded-4;', // .button--utility-flat
+      'py-12 px-16 bg-transparent border-0 font-bold leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-text-$color-button-utility-text i-bg-$color-button-utility-background hover:i-bg-$color-button-utility-background-hover rounded-4', // .button--utility-flat
     buttonPill:
-      'rounded-full! min-h-[44px] min-w-[44px] border-0! p-4 i-text-$color-button-quiet-text! i-bg-$color-button-favorite-background hover:i-bg-$color-button-favorite-background-hover acive:i-bg-$color-button-favorite-background-active inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
+      'font-bold leading-24 max-w-max focusable justify-center transition-colors ease-in-out rounded-full! min-h-[44px] min-w-[44px] border-0! p-4 i-text-$color-button-favorite-text i-bg-$color-button-favorite-background hover:i-bg-$color-button-favorite-background-hover acive:i-bg-$color-button-favorite-background-active inline-flex items-center justify-center hover:bg-clip-padding', // .button--pill   missing:  hover:background-color: rgba(var(--f-blue-600-rgb), 0.1) , and:  hover:border-color: hsla(0, 0%, 100%, 0.4);
     buttonLink:
-      'font-normal border-0! inline p-0 m-0 hover:underline active:underline;', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
-    LinkButton:
-      'no-underline active:hover:no-underline inline-flex active:hover:inline-flex;', //  a.button /* Overrides for links pretending to be buttons */
+      'leading-24 max-w-max focusable ease-in-out inline i-text-$color-text-link hover:i-text-$color-text-link-hover hover:underline active:underline', //.button--link /* Buttons pretending to be links, (Should rather inherit the actual link setup in the future?)  */
     // Sizestuff
-    buttonSmall: 'px-16 py-6 text-12 leading-16;', // .button--small
+    buttonSmall: 'px-16 py-6 text-12 leading-16', // .button--small
     buttonSmallOverride: 'py-8', // .button--small.button--primary, .button--small.button--destructive, .button--small.button--destructive-flat, .button--small.button--order, .button--small.button--quiet
     buttonSmallSecondary: 'py-6', // .button--small.button--secondary
     buttonSmallUtility: 'py-7 px-15', // .button--small.button--secondary
@@ -55,36 +57,14 @@ export const Button = forwardRef<
     buttonSmallButtonLink: 'p-0', // .button--small.button--link
     // Disabled
     buttonIsDisabled:
-      'bg-bluegray-300 border-bluegray-300 text-white bg-none cursor-default pointer-events-none;', // .button:disabled, .button--is-disabled
+      'py-10 px-14 font-bold leading-24 max-w-max focusable justify-center transition-colors ease-in-out i-bg-$color-button-disabled-background! i-text-$color-button-disabled-text! cursor-default pointer-events-none', // .button:disabled, .button--is-disabled
     // Progress indicator
     buttonInProgress:
-      'i-text-$color-button-loading-text! pointer-events-none border-0! i-bg-$color-button-loading-background! !bg-[length:30px_30px];', // .button--in-progress, a.button--in-progress:visited {
-    //  buttonInProgress also needs support for the following (add support to warp-drive):
-    //     background-image: linear-gradient(
-    //         135deg,
-    //         rgba(0, 0, 0, 0.05) 25%,
-    //         transparent 0,
-    //         transparent 50%,
-    //         rgba(0, 0, 0, 0.05) 0,
-    //         rgba(0, 0, 0, 0.05) 75%,
-    //         transparent 0,
-    //         transparent
-    //     ) !important;
-    //     animation: animate-inprogress 3s linear infinite;
-    //
-    // @keyframes animate-inprogress {
-    //     0% {
-    //         background-position: 0 0;
-    //     }
-    //     to {
-    //         background-position: 60px 0;
-    //     }
-    // }
+      'py-10 px-14 border-0 font-bold rounded-8 leading-24 max-w-max focusable justify-center transition-colors ease-in-out animate-inprogress i-text-$color-button-loading-text! pointer-events-none i-bg-$color-button-loading-background!', // .button--in-progress, a.button--in-progress:visited
   };
 
   const classes = classNames(props.className, {
-    [button.button]: true,
-    [button.buttonSecondary]: secondary,
+    [button.buttonSecondary]: !buttonTypes.find(b => !!props[b]) || secondary,
     // primary buttons
     [button.buttonPrimary]: primary,
     [button.buttonDestructive]: negative && !quiet,
@@ -98,6 +78,7 @@ export const Button = forwardRef<
     [button.buttonLink]: link,
     [button.buttonPill]: pill,
     [button.buttonInProgress]: loading,
+    [button.buttonIsDisabled]: props.disabled,
   });
 
   return (
