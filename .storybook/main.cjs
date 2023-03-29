@@ -25,9 +25,11 @@ module.exports = {
 
         const uno = (await import('@unocss/webpack'));
         const { presetWarp } = (await import('@warp-ds/uno'));
+        const { buttonSafelist } = (await import('@warp-ds/component-classes/buttonSafelist'));
 
         config.plugins.push(uno.default({
-            presets: [presetWarp({ usePixels: true, usePreflight: true })]
+            presets: [presetWarp({ usePixels: true, usePreflight: true })],
+            safelist: buttonSafelist(),
         }));
         return config;
     },

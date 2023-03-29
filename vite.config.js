@@ -6,18 +6,21 @@ import jsxExample from './docs/src/plugins/jsxExample.cjs';
 import propTable from './docs/src/plugins/propTable.cjs';
 import { presetWarp } from '@warp-ds/uno'
 import uno from 'unocss/vite'
+import { buttonSafelist } from '@warp-ds/component-classes/buttonSafelist';
+
 
 export default function config({ mode }) {
   return {
     // base: '/',
     plugins: [
+      uno({
+        presets: [presetWarp({ usePixels: true, usePreflight: true })],
+        safelist: buttonSafelist(),
+      }),
       reactRefresh(),
       mdx.default({
         remarkPlugins: [slug, autoLinkHeadings, jsxExample, propTable],
       }),
-      uno({
-        presets: [presetWarp({ usePixels: true, usePreflight: true })]
-      })
     ],
     build: {
       outDir: 'site',
