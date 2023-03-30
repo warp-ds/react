@@ -1,46 +1,55 @@
-# Warp React
+# Warp-ds React
 
-React components exported under `@warp-ds/react`.
+Welcome to [@warp-ds/react](https://github.com/warp-ds/react),
+a collection of React components for building user interfaces based on the [Warp Design System](https://github.com/warp-ds/).
+This repository is maintained by the [Warp Core Team](https://github.com/orgs/warp-ds/teams/warp-core-team)
+and is home to the [@warp-ds/react](https://www.npmjs.com/package/@warp-ds/react) library.
 
-## Development
 
-The project uses [Storybook](https://storybook.js.org/) for component
-development. Start the storybook instance by running the following command:
+## How to contribute
 
+If you'd like to contribute to `@warp-ds/react`, start by reviewing the [contributing guidelines](https://github.com/warp-ds/react/blob/main/CONTRIBUTING.md).
+
+
+## How to use
+
+### Installation
+
+Install by using npm/pnpm or by adding a script link:
+
+#### Install using npm
 ```sh
-pnpm dev
+npm i -S @warp-ds/react
 ```
 
-## Documentation
-
-To start a local dev server for the documentation site, run the following
-command:
-
+#### Install using pnpm
 ```sh
-pnpm docs:dev
+pnpm add @warp-ds/react
 ```
 
-## Contributing
-
-We use [commitizen](https://github.com/commitizen/cz-cli) to ensure coherent commit message structure, used by [semantic release](#releases) to generate change logs and handle versioning.
-
-```
-npm install -g commitizen
+#### Using a direct link to Eik
+```html
+<script src="https://assets.finn.no/pkg/@warp-ds/react/v1"></script>
 ```
 
-When installed, you should be able to type `cz` or `git cz` in your terminal to commit your changes (replacing
-`git commit`).
+### Documentation
 
-[![Add and commit with Commitizen](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)](https://github.com/commitizen/cz-cli/raw/master/meta/screenshots/add-commit.png)
+For information on the components available in the package and how to use them,
+see the [Warp Design System documentation](https://warp-ds.github.io/tech-docs/). 
 
 
 ## Releases
 
-This project uses [Semantic Release](https://github.com/semantic-release/semantic-release) to automate package
-publishing when making changes to the `main` or `alpha` branch.
+This project is currently in alpha.
+Continuously published to [NPM](https://www.npmjs.com/package/@warp-ds/react) and [Eik](https://assets.finn.no/pkg/@warp-ds/react) using an `alpha` tag (e.g. `1.0.0-alpha.1`).
+Anyone needing to start using the package before the first major release can install the `alpha` version while waiting for the first stable version.
 
-It is recommended to branch off the `alpha` branch and follow
-[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) when making changes. When your
-changes are ready for pull request, this should be opened against the `alpha` branch.
 
-Please note that the version published will depend on your commit message structure. Make sure to use commitizen (see [Development section](#Contributing)).
+## Changelog
+
+Detailed changes for each release can be found in the [CHANGELOG](CHANGELOG.md) file.
+
+
+## License
+
+@warp-ds/react is available under the [Apache-2.0 software license](https://github.com/warp-ds/react/blob/main/LICENSE).
