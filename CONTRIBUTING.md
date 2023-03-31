@@ -55,7 +55,7 @@ pnpm dev
 ```
 
 
-### Documentation
+### Documentation site
 
 To start a local dev server for the documentation site, run the following command:
 
