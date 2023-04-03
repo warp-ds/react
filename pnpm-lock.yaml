@@ -21,7 +21,7 @@ specifiers:
   '@typescript-eslint/parser': ^4.14.1
   '@unocss/webpack': ^0.50.6
   '@vitejs/plugin-react-refresh': ^1.1.3
-  '@warp-ds/component-classes': ^1.0.0-alpha.9
+  '@warp-ds/component-classes': ^1.0.0-alpha.13
   '@warp-ds/core': ^1.0.0
   '@warp-ds/uno': ^1.0.0-alpha.5
   babel-eslint: ^10.1.0
@@ -63,7 +63,7 @@ specifiers:
 
 dependencies:
   '@chbphone55/classnames': 2.0.0
-  '@warp-ds/component-classes': 1.0.0-alpha.9
+  '@warp-ds/component-classes': 1.0.0-alpha.13
   '@warp-ds/core': 1.0.0
   react-focus-lock: 2.9.4_tujbw3i5d6amztjwlbeq7dljyy
   resize-observer-polyfill: 1.5.1
@@ -4079,8 +4079,8 @@ packages:
       - supports-color
     dev: true
 
-  /@warp-ds/component-classes/1.0.0-alpha.9:
-    resolution: {integrity: sha512-OwWLGTwdZp6u/9PEg5OhIfYtonS31zYMXnL1ResR9nmhL+cYB95MjhOecwwAnV3hrrJ2eFdjRhqArmFCxdFD+A==}
+  /@warp-ds/component-classes/1.0.0-alpha.13:
+    resolution: {integrity: sha512-p2TVRzhObUE/iTDtMx5WPfX7BXleNRbjSKwTD/kTgn6uv+/AdQkoXUV+4PxmZZaVgQdQ8TwlEnuOrzFkKmvxLg==}
     dev: false
 
   /@warp-ds/core/1.0.0:
