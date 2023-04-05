@@ -8,6 +8,9 @@ import {
 } from 'react-router-dom';
 import Alert from '../../packages/alert/docs/Alert.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
+import TextField from '../../packages/textfield/docs/TextField.mdx';
+import TextArea from '../../packages/textarea/docs/TextArea.mdx';
+
 /*
 import Box from '../../packages/box/docs/Box.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
@@ -21,8 +24,6 @@ import Slider from '../../packages/slider/docs/Slider.mdx';
 import Steps from '../../packages/steps/docs/Steps.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
 import Tabs from '../../packages/tabs/docs/Tabs.mdx';
-import TextArea from '../../packages/textarea/docs/TextArea.mdx';
-import TextField from '../../packages/textfield/docs/TextField.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 import Attention from '../../packages/attention/docs/Attention.mdx';
 */
@@ -58,6 +59,14 @@ const App = () => {
             <Button />
           </Route>
 
+          <Route path="/textfield">
+            <TextField />
+          </Route>
+
+          <Route path="/textarea">
+            <TextArea />
+          </Route>
+
           {/*
           <Route path="/modal">
             <Modal />
@@ -71,20 +80,12 @@ const App = () => {
             <Attention />
           </Route>
 
-          <Route path="/textfield">
-            <TextField />
-          </Route>
-
           <Route path="/select">
             <Select />
           </Route>
 
           <Route path="/tabs">
             <Tabs />
-          </Route>
-
-          <Route path="/textarea">
-            <TextArea />
           </Route>
 
           <Route path="/slider">

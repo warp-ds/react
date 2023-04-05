@@ -28,7 +28,7 @@ export const placeholder = () => <TextField placeholder="Sesame street" />;
 
 export const disabled = () => <TextField disabled />;
 
-export const readOnly = () => <TextField readOnly />;
+export const readOnly = () => <TextField readOnly value="puse@finn.no" />;
 
 export const autoFocus = () => <TextField autoFocus />;
 

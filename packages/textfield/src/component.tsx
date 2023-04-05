@@ -32,26 +32,31 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       (child) => React.isValidElement(child) && child.props.prefix,
     );
 
+    const input = {
+      default: 'block text-16 mb-0 leading-22 i-text-$color-input-text-filled i-bg-$color-input-background i-border-$color-input-border hover:i-border-$color-input-border-hover active:i-border-$color-input-border-active rounded-4 py-12 px-8 block border-1 w-full focusable',
+      optional: 'pl-8 font-normal text-14 i-text-$color-label-optional-text',
+      disabled: 'i-bg-$color-input-background-disabled i-border-$color-input-border-disabled i-text-$color-input-text-disabled pointer-events-none',
+      invalid: 'focusable i-border-$color-input-border-error i-text-$color-input-text-error',
+      readOnly: 'pl-0 bg-transparent border-0 pointer-events-none i-text-$color-input-text-read-only',
+      label: 'antialiased block relative text-14 font-bold pb-4 cursor-pointer',
+      labelValid: 'i-text-$color-label-text',
+      labelInvalid: 'i-text-$color-helptext-error-text',
+      helpText: 'text-12 mt-4 block',
+      helpTextValid: 'i-text-$color-helptext-text',
+      helpTextInvalid: 'i-text-$color-helptext-error-text'
+    }
+
     return (
-      <div
-        className={classNames({
-          'has-suffix': hasSuffix,
-          'has-prefix': hasPrefix,
-        })}
-      >
-        <div
-          className={classNames({
-            'input mb-0': true,
-            'input--is-invalid': isInvalid,
-            'input--is-disabled': disabled,
-            'input--is-read-only': readOnly,
-          })}
-        >
+        <div>
           {label && (
-            <label htmlFor={id}>
+            <label htmlFor={id} className={classNames({
+              [input.label]: true,
+              [input.labelValid]: !isInvalid,
+              [input.labelInvalid]: isInvalid
+            })} >
               {label}
               {optional && (
-                <span className="pl-8 font-normal text-14 text-gray-500">
+                <span className={input.optional}>
                   (valgfritt)
                 </span>
               )}
@@ -59,6 +64,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           )}
           <div className="relative">
             <input
+            className={classNames({
+              [input.default]: true,
+              [input.invalid]: isInvalid,
+              [input.disabled]: disabled,
+              [input.readOnly]: readOnly,
+              'pr-40': hasSuffix,
+              'pl-40': hasPrefix,    
+            })}
               {...rest}
               aria-describedby={helpId}
               aria-errormessage={isInvalid && helpId ? helpId : undefined}
@@ -73,12 +86,15 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           </div>
 
           {helpText && (
-            <div className="input__sub-text" id={helpId}>
+            <div className={classNames({
+              [input.helpText]: true,
+              [input.helpTextValid]: !isInvalid,
+              [input.helpTextInvalid]: isInvalid
+            })} id={helpId}>
               {helpText}
             </div>
           )}
         </div>
-      </div>
     );
   },
 );
