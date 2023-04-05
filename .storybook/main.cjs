@@ -28,7 +28,7 @@ module.exports = {
         const { classes } = (await import('@warp-ds/component-classes/classes'));
 
         config.plugins.push(uno.default({
-            presets: [presetWarp({ usePixels: true, usePreflight: true })],
+            presets: [presetWarp({ usePreflight: true })],
             safelist: classes,
         }));
         return config;
