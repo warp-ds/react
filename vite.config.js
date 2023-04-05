@@ -14,7 +14,7 @@ export default function config() {
     // base: '/',
     plugins: [
       uno({
-        presets: [presetWarp({ usePixels: true, usePreflight: true })],
+        presets: [presetWarp({ usePreflight: true })],
         safelist: classes,
       }),
       reactRefresh(),
