@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@warp-ds/component-classes": "^1.0.0-alpha.13",
+    "@warp-ds/component-classes": "^1.0.0-alpha.15",
     "@warp-ds/core": "^1.0.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",

@@ -27,11 +27,11 @@ export function Alert({
       >
         <div
           className={`${alert.icon} ${iconVariantClasses}`}
-          style={{ minWidth: '16px' }}
         >
           {iconMap[type]}
         </div>
-        <div className="last-child:mb-0 text-14">{children}</div>
+        {/* TODO: replace text-14 with a token */}
+        <div className="last:mb-0 text-14">{children}</div>
       </div>
     </ExpandTransition>
   );
