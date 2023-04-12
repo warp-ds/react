@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { input } from '@warp-ds/component-classes';
+import { input, helpText as h, label as l } from '@warp-ds/component-classes';
 import { useId } from '../../utils/src';
 import { TextAreaProps } from './props';
 import useTextAreaHeight from './useTextAreaHeight';
@@ -42,10 +42,15 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <div
+        className={className}
         style={style}
       >
         {label && (
-          <label htmlFor={id}>
+          <label htmlFor={id} className={classNames({
+            [l.label]: true,
+            [l.labelValid]: !isInvalid,
+            [l.labelInvalid]: isInvalid
+          })} >
             {label}
             {optional && (
               <span className={input.optional}>
@@ -83,9 +88,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         />
         {helpText && <div 
           className={classNames({
-            [input.helpText]: true,
-            [input.helpTextValid]: !isInvalid,
-            [input.helpTextInvalid]: isInvalid
+            [h.helpText]: true,
+            [h.helpTextValid]: !isInvalid,
+            [h.helpTextInvalid]: isInvalid
           })}
           >{helpText}</div>}
       </div>

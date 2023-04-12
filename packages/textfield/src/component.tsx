@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { input } from '@warp-ds/component-classes';
+import { input, label as l, helpText as h } from '@warp-ds/component-classes';
 import { useId } from '../../utils/src';
 import { TextFieldProps } from './props';
 
@@ -37,9 +37,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <div>
           {label && (
             <label htmlFor={id} className={classNames({
-              [input.label]: true,
-              [input.labelValid]: !isInvalid,
-              [input.labelInvalid]: isInvalid
+              [l.label]: true,
+              [l.labelValid]: !isInvalid,
+              [l.labelInvalid]: isInvalid
             })} >
               {label}
               {optional && (
@@ -74,9 +74,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
           {helpText && (
             <div className={classNames({
-              [input.helpText]: true,
-              [input.helpTextValid]: !isInvalid,
-              [input.helpTextInvalid]: isInvalid
+              [h.helpText]: true,
+              [h.helpTextValid]: !isInvalid,
+              [h.helpTextInvalid]: isInvalid
             })} id={helpId}>
               {helpText}
             </div>
