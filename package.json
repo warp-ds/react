@@ -39,8 +39,6 @@
     "lint": "pnpm run lint:format && pnpm run lint:eslint",
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
-    "eik:login": "eik login",
-    "eik:publish": "eik publish",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
