@@ -57,8 +57,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               [input.disabled]: disabled,
               [input.readOnly]: readOnly,
               [input.placeholder]: !!props.placeholder,
-              'pr-40': hasSuffix,
-              'pl-40': hasPrefix,    
+              [input.suffix]: hasSuffix,
+              [input.prefix]: hasPrefix,    
             })}
               {...rest}
               aria-describedby={helpId}
