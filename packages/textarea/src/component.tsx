@@ -53,7 +53,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           })} >
             {label}
             {optional && (
-              <span className={input.optional}>
+              <span className={l.optional}>
                 (valgfritt)
               </span>
             )}
@@ -62,6 +62,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <textarea
           className={classNames({
             [input.default]: true,
+            [input.placeholder]: !!props.placeholder,
             [input.invalid]: isInvalid,
             [input.disabled]: disabled,
             [input.readOnly]: readOnly,
@@ -89,7 +90,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {helpText && <div 
           className={classNames({
             [h.helpText]: true,
-            [h.helpTextValid]: !isInvalid,
             [h.helpTextInvalid]: isInvalid
           })}
           >{helpText}</div>}

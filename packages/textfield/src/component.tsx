@@ -43,19 +43,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             })} >
               {label}
               {optional && (
-                <span className={input.optional}>
+                <span className={l.optional}>
                   (valgfritt)
                 </span>
               )}
             </label>
           )}
-          <div className="relative">
+          <div className={input.wrapper}>
             <input
             className={classNames({
               [input.default]: true,
               [input.invalid]: isInvalid,
               [input.disabled]: disabled,
               [input.readOnly]: readOnly,
+              [input.placeholder]: !!props.placeholder,
               'pr-40': hasSuffix,
               'pl-40': hasPrefix,    
             })}
@@ -75,7 +76,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {helpText && (
             <div className={classNames({
               [h.helpText]: true,
-              [h.helpTextValid]: !isInvalid,
               [h.helpTextInvalid]: isInvalid
             })} id={helpId}>
               {helpText}
