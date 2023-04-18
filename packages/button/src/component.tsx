@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref } from 'react';
-import { button } from '@warp-ds/component-classes';
+import { button as ccButton } from '@warp-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import type { ButtonProps } from './props';
 
@@ -29,21 +29,21 @@ export const Button = forwardRef<
   } = props;
 
   const classes = classNames(props.className, {
-    [button.buttonSecondary]: secondary && !quiet || !buttonTypes.find(b => !!props[b]),
+    [ccButton.buttonSecondary]: secondary && !quiet || !buttonTypes.find(b => !!props[b]),
     // primary buttons
-    [button.buttonPrimary]: primary,
-    [button.buttonDestructive]: negative && !quiet,
+    [ccButton.buttonPrimary]: primary,
+    [ccButton.buttonDestructive]: negative && !quiet,
     // quiet
-    [button.buttonFlat]: secondary && quiet,
-    [button.buttonDestructiveFlat]: negative && quiet,
-    [button.buttonUtilityFlat]: utility && quiet,
+    [ccButton.buttonFlat]: secondary && quiet,
+    [ccButton.buttonDestructiveFlat]: negative && quiet,
+    [ccButton.buttonUtilityFlat]: utility && quiet,
     // others
-    [button.buttonSmall]: small,
-    [button.buttonUtility]: utility && !quiet,
-    [button.buttonLink]: link,
-    [button.buttonPill]: pill,
-    [button.buttonInProgress]: loading,
-    [button.buttonIsDisabled]: props.disabled,
+    [ccButton.buttonSmall]: small,
+    [ccButton.buttonUtility]: utility && !quiet,
+    [ccButton.buttonLink]: link,
+    [ccButton.buttonPill]: pill,
+    [ccButton.buttonInProgress]: loading,
+    [ccButton.buttonIsDisabled]: props.disabled,
     ['inline-block']: !!props.href
   });
 
