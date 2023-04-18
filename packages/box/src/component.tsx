@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { box } from '@warp-ds/component-classes';
+import { box as ccBox } from '@warp-ds/component-classes';
 import React from 'react';
 import { BoxProps } from './props';
 
@@ -20,15 +20,15 @@ export function Box(props: BoxProps) {
     {
       ...(rest as Omit<BoxProps, 'children'> as {}),
       className: classNames(
-        box.box,
+        ccBox.box,
         {
-          [box.bleed]: bleed,
-          [box.clickable]: clickable,
-          'bg-aqua-50': info,
-          'hover:bg-aqua-100 active:bg-aqua-200': info && clickable,
-          'bg-bluegray-100': neutral,
-          'hover:bg-bluegray-200 active:bg-bluegray-300': neutral && clickable,
-          'border-2 border-bluegray-300': bordered,
+          [ccBox.bleed]: bleed,
+          [ccBox.info]: info,
+          [ccBox.neutral]: neutral,
+          [ccBox.bordered]: bordered,
+          [ccBox.infoClickable]:clickable && info,
+          [ccBox.neutralClickable]: clickable && neutral,
+          [ccBox.borderedClickable]: clickable && bordered,
         },
         props.className,
       ),

@@ -10,9 +10,9 @@ import Alert from '../../packages/alert/docs/Alert.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';
+import Box from '../../packages/box/docs/Box.mdx';
 
 /*
-import Box from '../../packages/box/docs/Box.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Pill from '../../packages/pill/docs/Pill.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
@@ -67,6 +67,10 @@ const App = () => {
             <TextArea />
           </Route>
 
+          <Route path="/box">
+            <Box />
+          </Route>
+
           {/*
           <Route path="/modal">
             <Modal />
@@ -99,10 +103,6 @@ const App = () => {
 
           <Route path="/pill">
             <Pill />
-          </Route>
-
-          <Route path="/box">
-            <Box />
           </Route>
 
           <Route path="/expandable">
