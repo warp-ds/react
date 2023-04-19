@@ -32,6 +32,13 @@ export const invalid = () => (
   </div>
 );
 
+export const disabled = () => (
+  <div className="flex flex-col space-y-32">
+    <Select disabled />
+    <Select disabled hint="Wrong choice" />
+  </div>
+);
+
 export const noLabel = () => (
   <div className="flex flex-col space-y-32">
     <WarpSelect
