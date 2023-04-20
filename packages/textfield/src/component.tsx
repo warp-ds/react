@@ -38,7 +38,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {label && (
             <label htmlFor={id} className={classNames({
               [ccLabel.label]: true,
-              [ccLabel.labelValid]: !isInvalid,
               [ccLabel.labelInvalid]: isInvalid
             })} >
               {label}

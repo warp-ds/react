@@ -46,7 +46,7 @@ const setup = (props) => {
             }
           : null,
     },
-    classes: classNames({
+    wrapperClasses: classNames({
       [ccSelect.wrapper]: true,
       className
     }),
@@ -56,7 +56,7 @@ const setup = (props) => {
       [ccSelect.disabled]: disabled,
       [ccSelect.readOnly]: readOnly
     }),
-    selectWrapClasses: classNames({
+    selectWrapperClasses: classNames({
       [ccSelect.selectWrapper]: true,
     }),
     helpTextClasses: classNames({
@@ -65,7 +65,6 @@ const setup = (props) => {
     }),
     labelClasses: classNames({
       [ccLabel.label]: true,
-      [ccLabel.labelValid]: !invalid,
       [ccLabel.labelInvalid]: invalid
     }),
     chevronClasses: classNames({
@@ -77,11 +76,11 @@ const setup = (props) => {
 
 function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const id = useId(props.id);
-  const { attrs, classes, selectClasses, selectWrapClasses, helpTextClasses, labelClasses, chevronClasses } = setup({ ...props, id });
+  const { attrs, wrapperClasses, selectClasses, selectWrapperClasses, helpTextClasses, labelClasses, chevronClasses } = setup({ ...props, id });
   const { div, label, select, help, optional } = attrs;
 
   return (
-    <div className={classes} {...div}>
+    <div className={wrapperClasses} {...div}>
       {label.children && (
         <label htmlFor={label.htmlFor} className={labelClasses}>
           {label.children}
@@ -92,7 +91,7 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
           )}
         </label>
       )}
-      <div className={selectWrapClasses}>
+      <div className={selectWrapperClasses}>
         <select ref={ref} {...select} className={selectClasses}/>
           <div
             className={classNames(chevronClasses)}

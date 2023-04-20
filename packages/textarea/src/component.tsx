@@ -49,7 +49,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {label && (
           <label htmlFor={id} className={classNames({
             [ccLabel.label]: true,
-            [ccLabel.labelValid]: !isInvalid,
             [ccLabel.labelInvalid]: isInvalid
           })} >
             {label}
