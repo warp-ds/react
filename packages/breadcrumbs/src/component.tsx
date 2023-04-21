@@ -19,7 +19,9 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
         return styledChild;
       }
 
-      return <span className={ccBreadcrumbs.text} aria-current="page">{child}</span>;
+      const isLastEl = index === flattenedChildren.length - 1;
+
+      return <span className={ccBreadcrumbs.text} aria-current={isLastEl ? "page" : undefined}>{child}</span>;
     }
   )
 

@@ -78,7 +78,6 @@ const App = () => {
           <Route path="/modal">
             <Modal />
           </Route>
-
         
 
           <Route path="/attention">
