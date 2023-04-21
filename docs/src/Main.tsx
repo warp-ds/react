@@ -7,13 +7,13 @@ import {
   Switch as ReactSwitch,
 } from 'react-router-dom';
 import Alert from '../../packages/alert/docs/Alert.mdx';
+import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 
 /*
-import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Pill from '../../packages/pill/docs/Pill.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
 import Combobox from '../../packages/combobox/docs/Combobox.mdx';
@@ -70,15 +70,16 @@ const App = () => {
           <Route path="/box">
             <Box />
           </Route>
+          <Route path="/breadcrumbs">
+            <Breadcrumbs />
+          </Route>
 
           {/*
           <Route path="/modal">
             <Modal />
           </Route>
 
-          <Route path="/breadcrumbs">
-            <Breadcrumbs />
-          </Route>
+        
 
           <Route path="/attention">
             <Attention />
