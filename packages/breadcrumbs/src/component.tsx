@@ -31,7 +31,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
       aria-label={ariaLabel}
       {...rest}
     >
-      <h2 className="sr-only">{ariaLabel}</h2>
+      <h2 className={ccBreadcrumbs.a11y}>{ariaLabel}</h2>
       <div className={ccBreadcrumbs.wrapper}>
         {interleave(
           styledChildren,

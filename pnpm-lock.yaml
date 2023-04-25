@@ -5,8 +5,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   '@warp-ds/component-classes':
-    specifier: ^1.0.0-alpha.42
-    version: 1.0.0-alpha.42
+    specifier: ^1.0.0-alpha.44
+    version: 1.0.0-alpha.44
   '@warp-ds/core':
     specifier: ^1.0.0
     version: 1.0.0
@@ -4134,8 +4134,8 @@ packages:
       - supports-color
     dev: true
 
-  /@warp-ds/component-classes@1.0.0-alpha.42:
-    resolution: {integrity: sha512-5XyKVcvzj7SZXf++avD3EaUdINjrKIxk/pH46zEqACqf4tUYlxDaPP60pw5sgJUQcpYALliOM3PP9On7r/5n+A==}
+  /@warp-ds/component-classes@1.0.0-alpha.44:
+    resolution: {integrity: sha512-rGGJhi7VsezeDg25zrrkA7R6y/0/zKzr5iaYsPTPPFlzcVnbbEil8rnmBr5eOjVXUXp9Wz7f3eVyS68N5jiooA==}
     dev: false
 
   /@warp-ds/core@1.0.0:
@@ -8713,7 +8713,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
