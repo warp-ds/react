@@ -16,6 +16,9 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   label?: string;
   className?: string;
   labelClassName?: string;
+  inputClassName?: string;
+  labelClasses?: string;
+  multiple?: boolean,
   onChange: (data: ToggleEntry | boolean) => void;
 }
 
@@ -32,6 +35,9 @@ export function Item({
   defaultChecked,
   noVisibleLabel,
   labelClassName,
+  inputClassName,
+  labelClasses,
+  multiple,
   ...props
 }: ItemProps) {
   const id = useId();
@@ -47,7 +53,7 @@ export function Item({
     checkboxRef.current.indeterminate = indeterminate;
   }, [indeterminate, checkboxRef]);
 
-  return (
+  const Item = (
     <>
       <input
         ref={checkboxRef}
@@ -57,6 +63,7 @@ export function Item({
         aria-invalid={invalid}
         aria-errormessage={invalid ? helpId : undefined}
         value={label ? undefined : value ?? undefined}
+        className={inputClassName}
         {...props}
         onChange={(e) =>
           props.onChange(
@@ -72,10 +79,16 @@ export function Item({
       <label htmlFor={id} className={labelClassName}>
         {noVisibleLabel ? (
           <span className="sr-only">{labelContent}</span>
-        ) : (
-          labelContent
-        )}
+        ) : labelContent
+        }
       </label>
     </>
   );
+console.log({multiple  })
+  // if (multiple ) {
+    return <div className='group'>{Item}</div>
+  // }
+
+  // return Item;
+
 }
