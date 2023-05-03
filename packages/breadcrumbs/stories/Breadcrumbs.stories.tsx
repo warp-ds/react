@@ -92,3 +92,9 @@ export const ExampleWithNestedArrays = () => {
     </Breadcrumbs>
   );
 };
+
+export const ExampleWithStringArray = () => (
+  <Breadcrumbs>
+    {["Page 1", "Current Page"]}
+  </Breadcrumbs>
+);

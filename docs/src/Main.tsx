@@ -7,21 +7,21 @@ import {
   Switch as ReactSwitch,
 } from 'react-router-dom';
 import Alert from '../../packages/alert/docs/Alert.mdx';
-import Button from '../../packages/button/docs/Button.mdx';
-import TextField from '../../packages/textfield/docs/TextField.mdx';
-import TextArea from '../../packages/textarea/docs/TextArea.mdx';
+import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
+import Button from '../../packages/button/docs/Button.mdx';
+import Expandable from '../../packages/expandable/docs/Expandable.mdx';
+import Steps from '../../packages/steps/docs/Steps.mdx';
+import TextArea from '../../packages/textarea/docs/TextArea.mdx';
+import TextField from '../../packages/textfield/docs/TextField.mdx';
 
 /*
-import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Pill from '../../packages/pill/docs/Pill.mdx';
 import Card from '../../packages/card/docs/Card.mdx';
 import Combobox from '../../packages/combobox/docs/Combobox.mdx';
-import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 import Modal from '../../packages/modal/docs/Modal.mdx';
 import Select from '../../packages/select/docs/Select.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
-import Steps from '../../packages/steps/docs/Steps.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
 import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
@@ -70,15 +70,23 @@ const App = () => {
           <Route path="/box">
             <Box />
           </Route>
+          <Route path="/breadcrumbs">
+            <Breadcrumbs />
+          </Route>
+
+          <Route path="/expandable">
+            <Expandable />
+          </Route>
+
+          <Route path="/steps">
+            <Steps />
+          </Route>
 
           {/*
           <Route path="/modal">
             <Modal />
           </Route>
-
-          <Route path="/breadcrumbs">
-            <Breadcrumbs />
-          </Route>
+        
 
           <Route path="/attention">
             <Attention />
@@ -115,10 +123,6 @@ const App = () => {
 
           <Route path="/toggle">
             <Toggle />
-          </Route>
-
-          <Route path="/steps">
-            <Steps />
           </Route>
 
           <Route path="/Card">

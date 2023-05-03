@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { classNames } from '@chbphone55/classnames';
 import type { BreadcrumbsProps } from './props';
 import { interleave } from '@warp-ds/core/breadcrumbs';
+import { breadcrumbs as ccBreadcrumbs } from "@warp-ds/component-classes";
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
@@ -9,22 +9,39 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);
+  const styledChildren = flattenedChildren.map((child, index) => {
+      if (React.isValidElement(child)) {
+        const ccClasses = child.type === "a" ? ccBreadcrumbs.link : ccBreadcrumbs.text;
+        const newClasses = child.props.className ? `${child.props.className} ${ccClasses}` : ccClasses;
+
+       // To update a prop on React child element, we need to clone that Element first
+        const styledChild = React.cloneElement(child as React.ReactElement, { className: newClasses });
+        return styledChild;
+      }
+
+      const isLastEl = index === flattenedChildren.length - 1;
+
+      return <span className={ccBreadcrumbs.text} aria-current={isLastEl ? "page" : undefined}>{child}</span>;
+    }
+  )
 
   return (
     <nav
-      className={classNames('flex space-x-8 space-x-reverse', className)}
+      className={className}
       aria-label={ariaLabel}
       {...rest}
     >
-      <h2 className="sr-only">{ariaLabel}</h2>
-      {interleave(
-        flattenedChildren,
-        <span aria-hidden className="select-none">
-          /
-        </span>,
-      ).map((element, index) => (
-        <React.Fragment key={index}>{element}</React.Fragment>
-      ))}
+      <h2 className={ccBreadcrumbs.a11y}>{ariaLabel}</h2>
+      <div className={ccBreadcrumbs.wrapper}>
+        {interleave(
+          styledChildren,
+          <span aria-hidden className={ccBreadcrumbs.separator}>
+            /
+          </span>,
+        ).map((element, index) => (
+          <React.Fragment key={index}>{element}</React.Fragment>
+        ))}
+      </div>
     </nav>
   );
 };

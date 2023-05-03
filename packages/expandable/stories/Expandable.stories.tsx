@@ -17,7 +17,7 @@ export const Box = () => (
   </Expandable>
 );
 
-export const BoxWithCustomTitle = () => (
+export const BoxWithCustomIcon = () => (
   <Expandable
     title={
       <div className="flex flex-row items-center">
@@ -34,23 +34,6 @@ export const BoxWithCustomTitle = () => (
 
 export const InfoBox = () => (
   <Expandable title="This is a title" box info>
-    <h1>I am expandable</h1>
-  </Expandable>
-);
-
-export const RedBox = () => (
-  <Expandable title="This is a title" box className="bg-red-50">
-    <h1>I am expandable</h1>
-  </Expandable>
-);
-
-export const GreenButton = () => (
-  <Expandable
-    title="This is a title"
-    box
-    className="bg-green-50"
-    buttonClass="hover:text-green-700"
-  >
     <h1>I am expandable</h1>
   </Expandable>
 );

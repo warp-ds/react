@@ -1,4 +1,5 @@
 import React from 'react';
+import { toggle as ccToggle } from '@warp-ds/component-classes';
 import { useId } from '../../utils/src';
 import { ToggleEntry } from './props';
 
@@ -78,17 +79,17 @@ export function Item({
 
       <label htmlFor={id} className={labelClassName}>
         {noVisibleLabel ? (
-          <span className="sr-only">{labelContent}</span>
+          <span className={ccToggle.a11y}>{labelContent}</span>
         ) : labelContent
         }
       </label>
     </>
   );
-console.log({multiple  })
-  // if (multiple ) {
-    return <div className='group'>{Item}</div>
-  // }
 
-  // return Item;
+  if (multiple ) {
+    return <div className='group'>{Item}</div>
+  }
+
+  return Item;
 
 }

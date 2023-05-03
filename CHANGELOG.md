@@ -1,3 +1,37 @@
+# [1.0.0-alpha.18](https://github.com/warp-ds/react/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2023-05-03)
+
+
+### Bug Fixes
+
+* **stepsindicator:** update version of @warp-ds/component-classes ([09d9022](https://github.com/warp-ds/react/commit/09d902294507425d3c9b5a3041dc4a3fb0275319))
+
+
+### Features
+
+* **stepindicator:** add component classes for stepindicator ([6de4822](https://github.com/warp-ds/react/commit/6de482273382b142e18af7a536a0c7f5f9ded7bf))
+
+# [1.0.0-alpha.17](https://github.com/warp-ds/react/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2023-04-25)
+
+
+### Bug Fixes
+
+* **expandable:** bump component classes package ([f508125](https://github.com/warp-ds/react/commit/f50812566bc0d1ed1ea32fcfb044a6a5e99e9836))
+* **expandable:** change single quote to quote ([1a8816e](https://github.com/warp-ds/react/commit/1a8816eee6eeaf50dda7978d7ea798c6b5ff992a))
+* **expandable:** merge alpha with branch ([78a9236](https://github.com/warp-ds/react/commit/78a9236efe5be6518aef85fff041ebf4cd09b190))
+
+
+### Features
+
+* **expandable:** add warp component classes to expandable ([581ecdf](https://github.com/warp-ds/react/commit/581ecdf3a742b2b4e1e5e45cfb6fb7a118a9e534))
+* **expandable:** bump warp versions containing new tokens and component classes ([21c9074](https://github.com/warp-ds/react/commit/21c90740eb86d61774ad36e8583e852fcb3442c1))
+
+# [1.0.0-alpha.16](https://github.com/warp-ds/react/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2023-04-25)
+
+
+### Bug Fixes
+
+* add component classes to Breadcrumbs ([#23](https://github.com/warp-ds/react/issues/23)) ([9818cba](https://github.com/warp-ds/react/commit/9818cbaac6f692fcfc4b01144ab69c2f8357c414))
+
 # [1.0.0-alpha.15](https://github.com/warp-ds/react/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2023-04-21)
 
 

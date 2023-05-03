@@ -1,7 +1,7 @@
 import { classNames } from '@chbphone55/classnames';
 import {
-  box as boxClasses,
-  buttonReset,
+  box as ccBox,
+  expandable as ccExpandable,
 } from '@warp-ds/component-classes';
 import React from 'react';
 import { ExpandTransition, UnstyledHeading } from '../../_helpers';
@@ -40,9 +40,9 @@ export function Expandable(props: ExpandableProps) {
     <div
       {...rest}
       className={classNames(className, {
-        'bg-aqua-50': info,
-        ['py-0 px-0 ' + boxClasses.box]: box,
-        [boxClasses.bleed]: bleed,
+        [ccExpandable.expandable]: true,
+        [ccExpandable.expandableBox]: box,
+        [ccExpandable.expandableBleed]: bleed,
       })}
     >
       <UnstyledHeading level={headingLevel}>
@@ -51,9 +51,8 @@ export function Expandable(props: ExpandableProps) {
           aria-expanded={stateExpanded}
           className={classNames({
             [buttonClass || '']: true,
-            [buttonReset + ' hover:underline focus:underline']: true,
-            ['w-full text-left relative ' + boxClasses.box]: box,
-            'hover:text-aqua-700 active:text-aqua-800': info,
+            [ccExpandable.button]: true,
+            [ccExpandable.buttonBox]: box,
           })}
           onClick={() => toggleExpandable(stateExpanded)}
         >
@@ -66,10 +65,10 @@ export function Expandable(props: ExpandableProps) {
             {chevron && (
               <div
                 className={classNames({
-                  'self-center transform transition-transform': true,
-                  '-rotate-180': stateExpanded,
-                  'relative left-8': !box,
-                  'box-chevron': box,
+                  [ccExpandable.chevron]: true,
+                  [ccExpandable.chevronExpanded]: stateExpanded,
+                  [ccExpandable.chevronBox]: box,
+                  [ccExpandable.chevronNonBox]: !box,
                 })}
               >
                 <svg
@@ -96,7 +95,7 @@ export function Expandable(props: ExpandableProps) {
         <div
           className={classNames({
             [contentClass || '']: true,
-            [boxClasses.box + (title ? ' pt-0' : '')]: box,
+            [ccBox.box + (title ? ' pt-0' : '')]: box,
           })}
         >
           {children}
