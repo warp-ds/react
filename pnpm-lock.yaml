@@ -171,6 +171,15 @@ devDependencies:
   typescript:
     specifier: 4.3.2
     version: 4.3.2
+  unified:
+    specifier: ^10.1.2
+    version: 10.1.2
+  unist-builder:
+    specifier: ^3.0.1
+    version: 3.0.1
+  unist-util-visit:
+    specifier: ^4.1.2
+    version: 4.1.2
   unocss:
     specifier: ^0.50.6
     version: 0.50.6(@unocss/webpack@0.50.6)(postcss@8.4.23)(rollup@2.79.1)(vite@4.3.4)
@@ -178,8 +187,8 @@ devDependencies:
     specifier: ^4.3.4
     version: 4.3.4(@types/node@18.15.3)
   vite-plugin-mdx:
-    specifier: 3.5.10
-    version: 3.5.10(@mdx-js/mdx@1.6.22)(vite@4.3.4)
+    specifier: ^3.5.11
+    version: 3.5.11(@mdx-js/mdx@1.6.22)(vite@4.3.4)
   webpack:
     specifier: ^5.36.2
     version: 5.76.1(esbuild@0.15.5)
@@ -262,7 +271,7 @@ packages:
       '@babel/parser': 7.21.2
       '@babel/template': 7.20.7
       '@babel/traverse': 7.21.2
-      '@babel/types': 7.21.5
+      '@babel/types': 7.21.2
       convert-source-map: 1.9.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -369,7 +378,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.0
       '@babel/helper-annotate-as-pure': 7.18.6
-      '@babel/helper-environment-visitor': 7.18.9
+      '@babel/helper-environment-visitor': 7.21.5
       '@babel/helper-function-name': 7.21.0
       '@babel/helper-member-expression-to-functions': 7.21.0
       '@babel/helper-optimise-call-expression': 7.18.6
@@ -521,7 +530,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.0
       '@babel/helper-annotate-as-pure': 7.18.6
-      '@babel/helper-environment-visitor': 7.18.9
+      '@babel/helper-environment-visitor': 7.21.5
       '@babel/helper-wrap-function': 7.20.5
       '@babel/types': 7.21.5
     transitivePeerDependencies:
@@ -3505,9 +3514,9 @@ packages:
   /@storybook/csf-tools@7.0.7:
     resolution: {integrity: sha512-KbO5K2RS0oFm94eR49bAPvoyXY3Q6+ozvBek/F05RP7iAV790icQc59Xci9YDM1ONgb3afS+gSJGFBsE0h4pmg==}
     dependencies:
-      '@babel/generator': 7.21.5
-      '@babel/parser': 7.21.8
-      '@babel/traverse': 7.21.5
+      '@babel/generator': 7.21.1
+      '@babel/parser': 7.21.2
+      '@babel/traverse': 7.21.2
       '@babel/types': 7.21.5
       '@storybook/csf': 0.1.0
       '@storybook/types': 7.0.7
@@ -15360,6 +15369,12 @@ packages:
     resolution: {integrity: sha512-f98yt5pnlMWlzP539tPc4grGMsFaQQlP/vM396b00jngsiINumNmsY8rkXjfoi1c6QaM8nQ3vaGDuoKWbe/1Uw==}
     dev: true
 
+  /unist-builder@3.0.1:
+    resolution: {integrity: sha512-gnpOw7DIpCA0vpr6NqdPvTWnlPTApCTRzr+38E6hCWx3rz/cjo83SsKIlS1Z+L5ttScQ2AwutNnb8+tAvpb6qQ==}
+    dependencies:
+      '@types/unist': 2.0.6
+    dev: true
+
   /unist-util-generated@1.1.6:
     resolution: {integrity: sha512-cln2Mm1/CZzN5ttGK7vkoGw+RZ8VcUH6BtGbq98DDtRGquAAOXig1mrBQYelOwMXYS8rK+vZDyyojSjp7JX+Lg==}
     dev: true
@@ -15762,8 +15777,8 @@ packages:
       replace-ext: 0.0.1
     dev: true
 
-  /vite-plugin-mdx@3.5.10(@mdx-js/mdx@1.6.22)(vite@4.3.4):
-    resolution: {integrity: sha512-tfGNRwkO23pln9EYqhbsOLEx9Qot5+enl+727gop7+HGEoC87+88hLRWGL+FU/It1Y0a5P3OAyDbTKKHX6tEJw==}
+  /vite-plugin-mdx@3.5.11(@mdx-js/mdx@1.6.22)(vite@4.3.4):
+    resolution: {integrity: sha512-uLnbp5A0C42Dc0eMwi1UnRfQgrzPB6Aco8OlGZr9ZH70EGP7JMnrP3SP3woMTqMJ9nNPAwoyOxP+5/j65csSPw==}
     peerDependencies:
       '@mdx-js/mdx': '*'
       vite: '*'

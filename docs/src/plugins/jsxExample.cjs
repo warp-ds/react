@@ -1,5 +1,5 @@
-const visit = require('unist-util-visit');
-const u = require('unist-builder');
+import { visit } from 'unist-util-visit';
+import { u } from 'unist-builder';
 
 /**
  * Remark plugin renders JSX code fences marked `example`
