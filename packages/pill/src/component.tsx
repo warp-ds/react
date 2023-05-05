@@ -1,47 +1,35 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { PillProps } from '.';
-
-const c = {
-  pill: 'inline-flex items-center py-8 focus-ring text-12 transition-all',
-  pillSuggestion:
-    'bg-gray-200 hover:bg-gray-300 active:bg-gray-400 text-gray-700 font-bold',
-  pillFilter: 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white',
-  label: 'pl-12 rounded-l-full',
-  labelSuggestion: '',
-  labelFilter: '',
-  labelWithoutClose: 'pr-12 rounded-r-full',
-  labelWithClose: 'pr-2',
-  close: 'pr-12 pl-4 py-10 rounded-r-full',
-};
+import { pill as ccPill } from '@warp-ds/component-classes';
 
 export function Pill(props: PillProps) {
   return (
-    <div className="flex items-center">
+    <div className={ccPill.pill}>
       <button
         type="button"
         onClick={props.onClick}
         className={classNames(!props.canClose ? props.className : '', {
-          [c.pill]: true,
-          [props.suggestion ? c.pillSuggestion : c.pillFilter]: true,
-          [c.label]: true,
-          [props.canClose ? c.labelWithClose : c.labelWithoutClose]: true,
+          [ccPill.button]: true,
+          [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
+          [ccPill.label]: true,
+          [props.canClose ? ccPill.labelWithClose : ccPill.labelWithoutClose]: true,
         })}
       >
-        <span className="sr-only">{props.openSRLabel || 'Åpne filter'}</span>
+        <span className={ccPill.a11y}>{props.openSRLabel || 'Åpne filter'}</span>
         {props.icon || <span>{props.label}</span>}
       </button>
       {props.canClose && (
         <button
           type="button"
           className={classNames(props.className, {
-            [c.pill]: true,
-            [props.suggestion ? c.pillSuggestion : c.pillFilter]: true,
-            [c.close]: true,
+            [ccPill.button]: true,
+            [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
+            [ccPill.close]: true,
           })}
           onClick={props.onClose}
         >
-          <span className="sr-only">
+          <span className={ccPill.a11y}>
             {props.closeSRLabel || `Fjern filter ${props.label}`}
           </span>
           <svg

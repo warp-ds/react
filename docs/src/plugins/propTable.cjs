@@ -1,11 +1,11 @@
-const docgen = require('react-docgen-typescript');
-const visit = require('unist-util-visit');
-const u = require('unist-builder');
-const unified = require('unified');
-const path = require('path');
-const html = require('rehype-stringify');
-const remark2rehype = require('remark-rehype');
-const markdown = require('remark-parse');
+import docgen from 'react-docgen-typescript';
+import { visit } from 'unist-util-visit';
+import { u } from 'unist-builder';
+import { unified } from 'unified';
+import path from 'path';
+import html from 'rehype-stringify';
+import remark2rehype from 'remark-rehype';
+import markdown from 'remark-parse';
 
 // currently we are abusing the code fence syntax to create our proptables. This way we don't have to add support for a custom syntax
 // eg:

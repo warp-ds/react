@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "1.0.0-alpha.19",
+  "version": "1.0.0-alpha.21",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -96,9 +96,12 @@
     "semantic-release-slack-bot": "^3.5.2",
     "storybook": "future",
     "typescript": "4.2.2",
+    "unified": "^10.1.2",
+    "unist-builder": "^3.0.1",
+    "unist-util-visit": "^4.1.2",
     "unocss": "^0.50.6",
     "vite": "^4.3.4",
-    "vite-plugin-mdx": "3.5.10",
+    "vite-plugin-mdx": "^3.5.11",
     "webpack": "^5.36.2"
   },
   "dependencies": {
