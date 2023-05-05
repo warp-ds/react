@@ -1,3 +1,10 @@
+# [1.0.0-alpha.19](https://github.com/warp-ds/react/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2023-05-05)
+
+
+### Bug Fixes
+
+* upgrade storybook ([#27](https://github.com/warp-ds/react/issues/27)) ([d0ba4b1](https://github.com/warp-ds/react/commit/d0ba4b18a6d506b6e59b3a1a3b71289f9d245d65))
+
 # [1.0.0-alpha.18](https://github.com/warp-ds/react/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2023-05-03)
 
 
