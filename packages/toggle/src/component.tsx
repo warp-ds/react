@@ -40,7 +40,6 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
 
 export function Toggle(props: ToggleProps) {
   const id = useId();
-
   const helpId = props.helpText ? `${id}__hint` : undefined;
   const isInvalid = props.invalid;
   const isRadio = props.type === 'radio';
@@ -60,9 +59,8 @@ export function Toggle(props: ToggleProps) {
     [`${ccToggle.checkbox} ${ccToggle.labelCheckboxColors}  ${ccToggle.checkboxChecked}`]: isCheckbox,
     [ccToggle.icon]: isCheckbox && !props.indeterminate,
     [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
-    [ccToggle.scLabel]: isRadioButton,
-    [ccToggle.scLabelJustified]: props.equalWidth,
-    [ccToggle.scLabelSmall]: props.small,
+    [ccToggle.radioButtonsLabel]: isRadioButton,
+    [ccToggle.radioButtonsLabelSmall]: props.small,
   });
   const inputClasses = classNames({
     [ccToggle.input]: true,
@@ -70,9 +68,14 @@ export function Toggle(props: ToggleProps) {
 
   const wrapperClasses = classNames(props.className, {
     [ccToggle.wrapper]: true,
-    [`${ccToggle.segmentControl} ${ccToggle.focusableWithin}`]: isRadioButton,
-    [ccToggle.scJustified]: props.equalWidth,
+    [`${ccToggle.radioButtons} ${ccToggle.focusableWithin}`]: isRadioButton,
+    [ccToggle.radioButtonsJustified]: props.equalWidth,
   });
+
+  const groupClasses = classNames({
+    [ccToggle.radioButtonsGroup]: true,
+    [ccToggle.radioButtonsGroupJustified]: props.equalWidth,
+  })
 
   return (
     <fieldset
@@ -122,6 +125,7 @@ export function Toggle(props: ToggleProps) {
               )}
               inputClassName={inputClasses}
               labelClassName={labelClasses}  
+              groupClassName={groupClasses}  
               option={option}
               // @ts-ignore TODO: typecheck
               onChange={(e: ToggleEntry) => props.onChange(e)}

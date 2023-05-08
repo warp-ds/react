@@ -18,7 +18,7 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   className?: string;
   labelClassName?: string;
   inputClassName?: string;
-  labelClasses?: string;
+  groupClassName?: string;
   multiple?: boolean,
   onChange: (data: ToggleEntry | boolean) => void;
 }
@@ -37,7 +37,7 @@ export function Item({
   noVisibleLabel,
   labelClassName,
   inputClassName,
-  labelClasses,
+  groupClassName,
   multiple,
   ...props
 }: ItemProps) {
@@ -87,7 +87,7 @@ export function Item({
   );
 
   if (multiple ) {
-    return <div className='group'>{Item}</div>
+    return <div className={groupClassName}>{Item}</div>
   }
 
   return Item;
