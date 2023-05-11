@@ -1,6 +1,6 @@
 import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
-import { slider as c } from '@warp-ds/component-classes';
+import { slider as ccSlider } from '@warp-ds/component-classes';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { SliderProps } from './props';
 
@@ -76,7 +76,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       left: 0,
       right: 100 - thumbPosition + '%',
     }),
-    [thumbPosition],
+    [thumbPosition]
   );
 
   const transformValue = useMemo(getThumbTransform, [getThumbTransform]);
@@ -84,7 +84,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     () => ({
       transform: 'translateX(' + transformValue + 'px)',
     }),
-    [transformValue],
+    [transformValue]
   );
 
   useEffect(() => {
@@ -103,19 +103,19 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [sliderPressed]);
 
   return (
-    <div className={c.wrapper}>
+    <div className={ccSlider.wrapper}>
       <div
         ref={sliderLine}
         className={classNames({
-          [c.trackDisabled]: disabled,
-          [c.track]: true,
+          [ccSlider.track]: true,
+          [ccSlider.trackDisabled]: disabled,
         })}
         onClick={handleClick}
       />
       <div
         className={classNames({
-          [c.activeTrackDisabled]: disabled,
-          [c.activeTrack]: true,
+          [ccSlider.activeTrack]: true,
+          [ccSlider.activeTrackDisabled]: disabled,
         })}
         style={sliderActiveStyle}
         onClick={handleClick}
@@ -124,9 +124,9 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         role="slider"
         tabIndex={0}
         className={classNames({
-          [c.thumbDisabled]: disabled,
-          [c.thumbEnabled]: !disabled,
-          [c.thumb]: true,
+          [ccSlider.thumb]: true,
+          [ccSlider.thumbDisabled]: disabled,
+          [ccSlider.thumbEnabled]: !disabled,
         })}
         ref={thumbRef}
         style={thumbStyles}
