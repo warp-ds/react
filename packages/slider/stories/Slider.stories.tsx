@@ -27,7 +27,7 @@ export const Disabled = () => {
     <div>
       <output>{value}</output>
       <Slider
-        onChange={(value) => setValue(value)}
+        onChange={(val) => setValue(val)}
         value={value}
         disabled
         min={1000}
