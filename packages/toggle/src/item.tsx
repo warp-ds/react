@@ -1,4 +1,5 @@
 import React from 'react';
+import { toggle as ccToggle } from '@warp-ds/component-classes';
 import { useId } from '../../utils/src';
 import { ToggleEntry } from './props';
 
@@ -16,6 +17,9 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   label?: string;
   className?: string;
   labelClassName?: string;
+  inputClassName?: string;
+  groupClassName?: string;
+  multiple?: boolean,
   onChange: (data: ToggleEntry | boolean) => void;
 }
 
@@ -32,6 +36,9 @@ export function Item({
   defaultChecked,
   noVisibleLabel,
   labelClassName,
+  inputClassName,
+  groupClassName,
+  multiple,
   ...props
 }: ItemProps) {
   const id = useId();
@@ -47,7 +54,7 @@ export function Item({
     checkboxRef.current.indeterminate = indeterminate;
   }, [indeterminate, checkboxRef]);
 
-  return (
+  const Item = (
     <>
       <input
         ref={checkboxRef}
@@ -57,6 +64,7 @@ export function Item({
         aria-invalid={invalid}
         aria-errormessage={invalid ? helpId : undefined}
         value={label ? undefined : value ?? undefined}
+        className={inputClassName}
         {...props}
         onChange={(e) =>
           props.onChange(
@@ -71,11 +79,17 @@ export function Item({
 
       <label htmlFor={id} className={labelClassName}>
         {noVisibleLabel ? (
-          <span className="sr-only">{labelContent}</span>
-        ) : (
-          labelContent
-        )}
+          <span className={ccToggle.a11y}>{labelContent}</span>
+        ) : labelContent
+        }
       </label>
     </>
   );
+
+  if (multiple ) {
+    return <div className={groupClassName}>{Item}</div>
+  }
+
+  return Item;
+
 }
