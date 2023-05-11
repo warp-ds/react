@@ -17,6 +17,7 @@ export const Regular = () => {
         max={10_000_000}
         step={1000}
       />
+      <button onClick={() => setValue(2_500_000)}>Reset</button>
     </div>
   );
 };
