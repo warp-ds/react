@@ -1,5 +1,5 @@
 import React from 'react';
-import { card as c } from '@warp-ds/component-classes';
+import { card as ccCard } from '@warp-ds/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
 import { useLogDeprecationWarning } from '../../utils/src';
@@ -18,11 +18,11 @@ export function Card(props: CardProps) {
     {
       ...rest,
       className: classNames(props.className, {
-        [c.card]: true,
-        [c.cardShadow]: !props.flat,
-        [c.cardSelected]: props.selected,
-        [c.cardFlat]: props.flat,
-        [props.selected ? c.cardFlatSelected : c.cardFlatUnselected]:
+        [ccCard.card]: true,
+        [ccCard.cardShadow]: !props.flat,
+        [ccCard.cardSelected]: props.selected,
+        [ccCard.cardFlat]: props.flat,
+        [props.selected ? ccCard.cardFlatSelected : ccCard.cardFlatUnselected]:
           props.flat,
       }),
       // @balbinak(08.11.22): onClick support in Card is deprecated. Remove when Fabric React users are ready for this major change
@@ -55,8 +55,8 @@ export function Card(props: CardProps) {
       {!props.flat && (
         <div
           className={classNames({
-            [c.cardOutline]: true,
-            [props.selected ? c.cardOutlineSelected : c.cardOutlineUnselected]:
+            [ccCard.cardOutline]: true,
+            [props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected]:
               true,
           })}
         />
