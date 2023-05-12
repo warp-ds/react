@@ -8,6 +8,7 @@ export * from './pill/src';
 export * from './select/src';
 export * from './slider/src';
 export * from './steps/src';
+export * from './tabs/src';
 export * from './textarea/src';
 export * from './textfield/src';
 export * from './toggle/src';
@@ -17,5 +18,4 @@ export * from './card/src';
 export * from './combobox/src';
 export * from './modal/src';
 export * from './switch/src';
-export * from './tabs/src';
 */

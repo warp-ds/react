@@ -6,7 +6,7 @@ import React, {
   Children,
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
-import { tabs as c } from '@warp-ds/component-classes';
+import { tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
 
@@ -17,13 +17,13 @@ const setup = (
 ) => ({
   nav: cn({
     [className]: !!className,
-    [contained ? c.wrapperContained : c.wrapperUnderlined]: true,
+    [contained ? ccTabs.wrapperContained : ccTabs.wrapperUnderlined]: true,
   }),
   div: cn({
-    [c.tabContainer]: true,
+    [ccTabs.tabContainer]: true,
     [`grid-cols-${children.length}`]: true,
   }),
-  wunderbar: cn(c.wunderbar),
+  wunderbar: cn(ccTabs.wunderbar),
   attrs: rest,
   updateWunderbar: () => {
     if (contained) return;
