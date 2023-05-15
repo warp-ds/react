@@ -10,10 +10,23 @@ import { tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
 
+// Solution to make the columns work for now depending on number of children. Should be fixed later
+const gridCols = [
+  'grid-cols-1',
+  'grid-cols-2',
+  'grid-cols-3',
+  'grid-cols-4',
+  'grid-cols-5',
+  'grid-cols-6',
+  'grid-cols-7',
+  'grid-cols-8',
+  'grid-cols-9',
+];
+
 const setup = (
   { className, contained, children, onClick, active, ...rest }: any,
   tabsRef,
-  wunderbarRef,
+  wunderbarRef
 ) => ({
   nav: cn({
     [className]: !!className,
@@ -21,7 +34,7 @@ const setup = (
   }),
   div: cn({
     [ccTabs.tabContainer]: true,
-    [`grid-cols-${children.length}`]: true,
+    [gridCols[children.length - 1]]: true,
   }),
   wunderbar: cn(ccTabs.wunderbar),
   attrs: rest,
@@ -30,7 +43,7 @@ const setup = (
     window.requestAnimationFrame(() => {
       try {
         const activeEl = tabsRef.current.querySelector(
-          'button[role="tab"][aria-selected="true"]',
+          'button[role="tab"][aria-selected="true"]'
         );
         const { left: parentLeft } = tabsRef.current.getBoundingClientRect();
         const { left, width } = activeEl.getBoundingClientRect();
@@ -43,9 +56,9 @@ const setup = (
   },
 });
 
-export function Tabs(props: TabsProps) {
+export const Tabs = (props: TabsProps) => {
   const isBrowser = Boolean(
-    typeof document === 'object' && document?.createElement,
+    typeof document === 'object' && document?.createElement
   );
   const tabsRef = useRef(null);
   const wunderbarRef = useRef(null);
@@ -53,8 +66,17 @@ export function Tabs(props: TabsProps) {
   const { nav, div, wunderbar, attrs, updateWunderbar } = setup(
     props,
     tabsRef,
-    wunderbarRef,
+    wunderbarRef
   );
+  useEffect(() => {
+    // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
+    isBrowser && updatePanels();
+    updateWunderbar();
+    const updateDebounced = debounce(updateWunderbar, 100);
+    window.addEventListener('resize', updateDebounced);
+    return () => window.removeEventListener('resize', updateDebounced);
+  });
+
   const findActive = (): string => {
     if (props.active) {
       return String(props.active);
@@ -63,7 +85,7 @@ export function Tabs(props: TabsProps) {
       const activeChild =
         childrenArray?.find(
           // @ts-ignore: semantic error
-          (child) => child?.props?.isActive,
+          (child) => child?.props?.isActive
         ) || childrenArray[0];
       // @ts-ignore: semantic error
       return String(activeChild?.props?.name || '');
@@ -77,7 +99,7 @@ export function Tabs(props: TabsProps) {
       if (typeof child === 'object') {
         const panel = document.getElementById(
           // @ts-ignore: semantic error
-          `warp-tabpanel-${child?.props?.name}`,
+          `warp-tabpanel-${child?.props?.name}`
         );
         if (panel) {
           // @ts-ignore: semantic error
@@ -131,15 +153,6 @@ export function Tabs(props: TabsProps) {
     }
   };
 
-  useEffect(() => {
-    // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
-    isBrowser && updatePanels();
-    updateWunderbar();
-    const updateDebounced = debounce(updateWunderbar, 100);
-    window.addEventListener('resize', updateDebounced);
-    return () => window.removeEventListener('resize', updateDebounced);
-  });
-
   return (
     <div {...attrs} className={nav}>
       <div
@@ -159,4 +172,4 @@ export function Tabs(props: TabsProps) {
       </div>
     </div>
   );
-}
+};
