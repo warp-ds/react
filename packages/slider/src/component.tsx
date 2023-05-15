@@ -1,6 +1,6 @@
 import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
-import { slider as c } from '@warp-ds/component-classes';
+import { slider as ccSlider } from '@warp-ds/component-classes';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { SliderProps } from './props';
 
@@ -19,7 +19,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [sliderLine]);
 
   const [value, setValue] = useState(rest.value);
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(rest.value);
   const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
   const [sliderPressed, setSliderPressed] = useState(false);
 
@@ -76,7 +76,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       left: 0,
       right: 100 - thumbPosition + '%',
     }),
-    [thumbPosition],
+    [thumbPosition]
   );
 
   const transformValue = useMemo(getThumbTransform, [getThumbTransform]);
@@ -84,7 +84,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     () => ({
       transform: 'translateX(' + transformValue + 'px)',
     }),
-    [transformValue],
+    [transformValue]
   );
 
   useEffect(() => {
@@ -97,25 +97,25 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [position, rest.value, rest.step]);
 
   useEffect(() => {
-    if (sliderPressed || position === rest.value) return;
+    if (sliderPressed || position === rest.value || value === rest.value) return;
     setPosition(rest.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderPressed]);
+  }, [sliderPressed, rest.value]);
 
   return (
-    <div className={c.wrapper}>
+    <div className={ccSlider.wrapper}>
       <div
         ref={sliderLine}
         className={classNames({
-          [c.trackDisabled]: disabled,
-          [c.track]: true,
+          [ccSlider.track]: true,
+          [ccSlider.trackDisabled]: disabled,
         })}
         onClick={handleClick}
       />
       <div
         className={classNames({
-          [c.activeTrackDisabled]: disabled,
-          [c.activeTrack]: true,
+          [ccSlider.activeTrack]: true,
+          [ccSlider.activeTrackDisabled]: disabled,
         })}
         style={sliderActiveStyle}
         onClick={handleClick}
@@ -124,9 +124,9 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         role="slider"
         tabIndex={0}
         className={classNames({
-          [c.thumbDisabled]: disabled,
-          [c.thumbEnabled]: !disabled,
-          [c.thumb]: true,
+          [ccSlider.thumb]: true,
+          [ccSlider.thumbDisabled]: disabled,
+          [ccSlider.thumbEnabled]: !disabled,
         })}
         ref={thumbRef}
         style={thumbStyles}
