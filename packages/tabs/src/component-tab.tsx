@@ -3,30 +3,19 @@ import { classNames as cn } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/component-classes';
 import type { TabProps } from './props';
 
-const setup = ({
-  className,
-  isActive,
-  setActive,
-  contained,
-  ...rest
-}: any) => ({
-  tab: cn({
+const setup = ({ className, isActive, setActive, ...rest }: any) => ({
+  tab: cn([ccTab.tab], {
     [className]: !!className,
-    [ccTab.tab]: true,
     [ccTab.tabActive]: isActive,
-    [ccTab.tabContained]: contained,
-    [ccTab.tabContainedActive]: contained && isActive,
   }),
-  icon: cn({
-    [ccTab.icon]: true,
-    [ccTab.iconUnderlined]: !contained,
-    [isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive]: !contained,
+  icon: cn([ccTab.icon], [ccTab.iconUnderlined], {
+    [isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive]:
+      true,
   }),
-  content: cn({
-    [ccTab.contentUnderlined]: !contained,
-    [isActive ? ccTab.contentUnderlinedActive : ccTab.contentUnderlinedInactive]:
-      !contained,
-    [ccTab.contentContainedActive]: contained && isActive,
+  content: cn([ccTab.contentUnderlined], {
+    [ccTab.contentUnderlinedActive]: isActive,
+    [ccTab.contentUnderlinedInactive]: !isActive,
+    [ccTab.contentContainedActive]: isActive,
   }),
   attrs: { ...rest },
 });

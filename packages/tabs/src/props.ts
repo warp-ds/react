@@ -2,12 +2,6 @@ import React from 'react';
 
 export type TabsProps = {
   /**
-   * Whether the tabs should use the contained look and feel or not.
-   * @default false
-   */
-  contained?: boolean;
-
-  /**
    * The Tabs within the container.
    */
   children: React.ReactNode;

@@ -62,7 +62,7 @@ export const Tabs = (props: TabsProps) => {
   );
   const tabsRef = useRef(null);
   const wunderbarRef = useRef(null);
-  const { children, contained, onChange } = props;
+  const { children, onChange } = props;
   const { nav, div, wunderbar, attrs, updateWunderbar } = setup(
     props,
     tabsRef,
@@ -163,12 +163,11 @@ export const Tabs = (props: TabsProps) => {
       >
         {Children.map(children, (child: any) => {
           return cloneElement(child, {
-            contained,
             setActive: change,
             isActive: child.props.name === active,
           });
         })}
-        {!contained && <span className={wunderbar} ref={wunderbarRef} />}
+        {<span className={wunderbar} ref={wunderbarRef} />}
       </div>
     </div>
   );

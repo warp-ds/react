@@ -74,33 +74,6 @@ export const DefaultWithExternalLinks = () => {
   );
 };
 
-export const Contained = () => {
-  return (
-    <Tabs contained active="two">
-      <Tab label="Tab 1" name="one" />
-      <Tab label="Tab 2" name="two" />
-      <Tab label="Tab 3" name="three" />
-    </Tabs>
-  );
-};
-
-export const ContainedWithPanel = () => {
-  return (
-    <>
-      <Tabs contained>
-        <Tab label="Tab 1" name="one" />
-        <Tab label="Tab 2" name="two" isActive />
-        <Tab label="Tab 3" name="three" onClick={(e) => console.log(e)} />
-      </Tabs>
-      <div className="bg-aqua-50 p-24 last-child:mb-0">
-        <TabPanel name="one">Tab one selected!</TabPanel>
-        <TabPanel name="two">Tab two selected!</TabPanel>
-        <TabPanel name="three">Tab three selected!</TabPanel>
-      </div>
-    </>
-  );
-};
-
 export const Icon = () => {
   return (
     <Tabs>
@@ -157,33 +130,6 @@ export const IconWithPanel = () => {
         </Tab>
       </Tabs>
       <div className="mb-16">
-        <TabPanel name="one">Tab one selected!</TabPanel>
-        <TabPanel name="two">Tab two selected!</TabPanel>
-        <TabPanel name="three">Tab three selected!</TabPanel>
-        <TabPanel name="four">Tab four selected!</TabPanel>
-      </div>
-    </>
-  );
-};
-
-export const ContainedIconWithPanel = () => {
-  return (
-    <>
-      <Tabs contained>
-        <Tab label="Tab 1" name="one" isActive>
-          {svgicon}
-        </Tab>
-        <Tab label="Tab 2" name="two">
-          {svgicon}
-        </Tab>
-        <Tab label="Tab 3" name="three">
-          {svgicon}
-        </Tab>
-        <Tab label="Tab 4" name="four">
-          {svgicon}
-        </Tab>
-      </Tabs>
-      <div className="bg-aqua-50 p-24 last-child:mb-0">
         <TabPanel name="one">Tab one selected!</TabPanel>
         <TabPanel name="two">Tab two selected!</TabPanel>
         <TabPanel name="three">Tab three selected!</TabPanel>
