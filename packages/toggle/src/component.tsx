@@ -54,9 +54,9 @@ export function Toggle(props: ToggleProps) {
     [ccToggle.focusable]: !isRadioButton,
     [ccToggle.noContent]: !props.indeterminate,
     [ccToggle.indeterminate]: props.indeterminate,
-    [`${ccToggle.radio} ${ccToggle.labelRadioColors}`]: isRadio,
+    [`${ccToggle.radio} ${ccToggle.labelRadioBackground} ${ccToggle.labelRadioBorder} ${ccToggle.radioChecked}`]: isRadio,
     [ccToggle.radioInvalid]: isRadio && isInvalid,
-    [`${ccToggle.checkbox} ${ccToggle.labelCheckboxColors}  ${ccToggle.checkboxChecked}`]: isCheckbox,
+    [`${ccToggle.checkbox} ${ccToggle.labelCheckboxBackground} ${ccToggle.labelCheckboxBorder} ${ccToggle.checkboxChecked}`]: isCheckbox,
     [ccToggle.icon]: isCheckbox && !props.indeterminate,
     [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
     [ccToggle.radioButtonsLabel]: isRadioButton,
@@ -64,6 +64,7 @@ export function Toggle(props: ToggleProps) {
   });
   const inputClasses = classNames({
     [ccToggle.input]: true,
+    [ccToggle.a11y]: true,
   });
 
   const wrapperClasses = classNames(props.className, {

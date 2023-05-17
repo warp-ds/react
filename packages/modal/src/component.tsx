@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { modal as ccModal, button as ccButton } from '@warp-ds/component-classes';
+import { modal as ccModal } from '@warp-ds/component-classes';
 import React, { useEffect, useRef } from 'react';
 import { useId } from '../../utils/src';
 import FocusLock from 'react-focus-lock';
@@ -16,7 +16,7 @@ export const Modal = ({
 }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const id = useId(props.id);
-
+  
   useEffect(() => {
     teardown();
     if (!contentRef.current) return;
@@ -29,28 +29,12 @@ export const Modal = ({
   }, [props.open, props.initialFocusRef]);
 
   if (!props.open) return <></>;
-  const ccModal = {
-    backdrop:
-      `before:i-bg-$color-modal-backdrop-background before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:opacity-25 fixed inset-0 flex sm:place-content-center sm:place-items-center items-end z-20 `,
-    modal:
-      'f-modal w-[640px] max-h-4/5 relative transition-300 backface-hidden will-change-height rounded-8 mx-0 sm:mx-16 i-bg-$color-modal-background flex flex-col overflow-hidden outline-none space-y-16 pt-8 sm:pt-32 sm:pb-32 rounded-b-0 sm:rounded-b-8',
-    content:
-      'block overflow-y-auto overflow-x-hidden last:mb-0 flex-grow flex-shrink px-16 sm:px-32 relative',
-    footer: 'flex justify-end flex-shrink-0 px-16 sm:px-32',
-    transitionTitle: 'transition-all duration-300',
-    title:
-      '-mt-4 sm:-mt-8 h-40 sm:h-48 grid f-grid gap-8 sm:gap-16 grid-cols-[auto_1fr_auto] items-center px-16 sm:px-32 border-b sm:border-b-0 flex-shrink-0',
-    titleText: 'mb-0 h4 sm:h3',
-    titleButton: `${ccButton.buttonPill} sm:min-h-[32px] sm:min-w-[32px]`,
-    titleButtonLeft: '-ml-8 sm:-ml-12',
-    titleButtonRight: '-mr-8 sm:-mr-12',
-    titleButtonIcon: 'h-16 w-16 sm:h-24 sm:w-24',
-  };
+
   return (
     <FocusLock>
       <div
         onClick={props.onDismiss}
-        className={classNames(props.className, ccModal.backdrop)}
+        className={classNames(props.className, ccModal.backdrop, ccModal.transparentBg)}
         style={{ ...props.style }}
       >
         <div
@@ -79,19 +63,18 @@ export const Modal = ({
               <button
                 type="button"
                 aria-label="Tilbake"
-                className={classNames([
+                className={classNames(
                   ccModal.transitionTitle,
                   ccModal.titleButton,
                   ccModal.titleButtonLeft,
-                  'justify-self-start',
-                ])}
+                )}
                 onClick={props.onDismiss}
               >
                 <svg
-                  className={classNames([
+                  className={classNames(
                     ccModal.titleButtonIcon,
-                    'transform rotate-90',
-                  ])}
+                    ccModal.titleButtonIconRotated,
+                  )}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
                 >
@@ -108,11 +91,10 @@ export const Modal = ({
 
             <div
               id={`${id}__title`}
-              className={classNames({
-                [ccModal.transitionTitle]: true,
-                'justify-self-center': !!props.left,
-                'col-span-2': !!!props.left,
-              })}
+              className={classNames(
+                ccModal.transitionTitle,
+                !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan
+              )}
             >
               {typeof props.title === 'string' ? (
                 <p className={ccModal.titleText}>{props.title}</p>
@@ -126,12 +108,11 @@ export const Modal = ({
                 type="button"
                 aria-label="Lukk"
                 onClick={props.onDismiss}
-                className={classNames([
+                className={classNames(
                   ccModal.transitionTitle,
                   ccModal.titleButton,
                   ccModal.titleButtonRight,
-                  'justify-self-end',
-                ])}
+                )}
               >
                 <svg
                   className={ccModal.titleButtonIcon}

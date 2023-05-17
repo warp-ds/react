@@ -1,5 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
+import { clickable as ccClickable } from '@warp-ds/component-classes';
 import { Item as ToggleItem } from '../toggle/src/item';
 import { useId } from '../utils/src/useId';
 
@@ -54,8 +55,8 @@ export function Clickable({
 
   return radio || checkbox ? (
     <ToggleItem
-      labelClassName={props.labelClassName}
-      className="focus-ring focus-ring-inset absolute inset-0 h-full w-full appearance-none cursor-pointer"
+      labelClassName={classNames(props.labelClassName)}
+      className={`focus:focusable:focus focus-visible:focusable:focus-visible not-focus-visible:focusable:focus:not(:focus-visible) focusable-inset ${ccClickable.clickable}`} //TODO should be rewritten when fixed in drive, only `focusable` should be needed
       type={type}
       controlled={false}
       onChange={props.onClick ? props.onClick : () => undefined}
@@ -69,11 +70,11 @@ export function Clickable({
       props.href ? 'a' : 'button',
       {
         ...props,
-        className: classNames(props.className, 'focus-ring'),
+        className: classNames(props.className, 'focus:focusable:focus focus:focusable:not(:focus-visible)'),
         type: props.href ? undefined : props.type || 'button',
       },
       <>
-        <span className="inset-0 absolute" aria-hidden="true"></span>
+        <span className={ccClickable.clickableNotToggle} aria-hidden="true"></span>
         {children}
       </>,
     )
