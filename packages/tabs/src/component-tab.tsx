@@ -15,7 +15,6 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
   content: cn([ccTab.contentUnderlined], {
     [ccTab.contentUnderlinedActive]: isActive,
     [ccTab.contentUnderlinedInactive]: !isActive,
-    [ccTab.contentContainedActive]: isActive,
   }),
   attrs: { ...rest },
 });
