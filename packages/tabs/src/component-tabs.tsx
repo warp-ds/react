@@ -10,7 +10,8 @@ import { tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
 
-// Solution to make the columns work for now depending on number of children. Should be fixed later
+// Temporary solution for handling the number of grid columns. Adding classes dynamically causes issues as it prevents the CSS class to load properly from the drive
+// Todo: Handle dynamic classnames based on number of children
 const gridCols = [
   'grid-cols-1',
   'grid-cols-2',
