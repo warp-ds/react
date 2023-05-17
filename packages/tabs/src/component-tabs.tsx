@@ -6,23 +6,9 @@ import React, {
   Children,
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
-import { tabs as ccTabs } from '@warp-ds/component-classes';
+import { gridLayout, tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
-
-// Temporary solution for handling the number of grid columns. Adding classes dynamically causes issues as it prevents the CSS class to load properly from the drive
-// Todo: Handle dynamic classnames based on number of children
-const gridCols = [
-  'grid-cols-1',
-  'grid-cols-2',
-  'grid-cols-3',
-  'grid-cols-4',
-  'grid-cols-5',
-  'grid-cols-6',
-  'grid-cols-7',
-  'grid-cols-8',
-  'grid-cols-9',
-];
 
 const setup = (
   { className, contained, children, onClick, active, ...rest }: any,
@@ -35,7 +21,7 @@ const setup = (
   }),
   div: cn({
     [ccTabs.tabContainer]: true,
-    [gridCols[children.length - 1]]: true,
+    [gridLayout[`cols${children.length}`]]: true,
   }),
   wunderbar: cn(ccTabs.wunderbar),
   attrs: rest,
