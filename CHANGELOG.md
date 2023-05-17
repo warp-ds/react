@@ -1,3 +1,10 @@
+# [1.0.0-alpha.24](https://github.com/warp-ds/react/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2023-05-17)
+
+
+### Bug Fixes
+
+* **card:** apply component classes to card component ([#33](https://github.com/warp-ds/react/issues/33)) ([a0937a8](https://github.com/warp-ds/react/commit/a0937a8c0da2eb95943ff95c01e7940310ba3f41))
+
 # [1.0.0-alpha.23](https://github.com/warp-ds/react/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2023-05-10)
 
 
