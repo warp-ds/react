@@ -1,3 +1,10 @@
+# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-19)
+
+
+### Bug Fixes
+
+* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
+
 # [1.0.0-alpha.24](https://github.com/warp-ds/react/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2023-05-17)
 
 
