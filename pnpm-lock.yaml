@@ -5,8 +5,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   '@warp-ds/component-classes':
-    specifier: ^1.0.0-alpha.74
-    version: 1.0.0-alpha.74
+    specifier: ^1.0.0-alpha.80
+    version: 1.0.0-alpha.80
   '@warp-ds/core':
     specifier: ^1.0.0
     version: 1.0.0
@@ -79,8 +79,8 @@ devDependencies:
     specifier: ^1.1.3
     version: 1.3.6
   '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.23
-    version: 1.0.0-alpha.23
+    specifier: ^1.0.0-alpha.26
+    version: 1.0.0-alpha.26
   babel-eslint:
     specifier: ^10.1.0
     version: 10.1.0(eslint@7.32.0)
@@ -4424,8 +4424,8 @@ packages:
       - supports-color
     dev: true
 
-  /@warp-ds/component-classes@1.0.0-alpha.74:
-    resolution: {integrity: sha512-RJP0v+o91/HtbcTrwt3iyx4E0qyZ6rdpwHEaVyg9NutTLz6A/NFHn/erVJCzrYLHiicB5ufptF7eXSirMfTIuA==}
+  /@warp-ds/component-classes@1.0.0-alpha.80:
+    resolution: {integrity: sha512-OG3KTjTlXz3NHEGXzB+NKRA0MPemuppel0Jn4xqiCC6fwyxuCYEqQT86vAuqE0Qv8U25SGUQGahTyIhKEcuguw==}
     dev: false
 
   /@warp-ds/core@1.0.0:
@@ -4434,8 +4434,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.23:
-    resolution: {integrity: sha512-9x00PeEn8qi5XWZRgLqrZKssx7YGaODTKB36WuACWm7h6n0oA9P22YWzjZiHZRLADCbR0uenjHEcqhonhN65tg==}
+  /@warp-ds/uno@1.0.0-alpha.26:
+    resolution: {integrity: sha512-VrcGayt9OvhUyki43cnHKr7e41SxUfcu8ILkuMCJkm5mNfzap1WDX6j/Hb01qrgdcjBG4lbcAb0I3HfS9IEBQg==}
     dependencies:
       '@unocss/core': 0.50.6
       '@unocss/preset-mini': 0.50.6
