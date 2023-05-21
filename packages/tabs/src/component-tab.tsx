@@ -4,15 +4,12 @@ import { tab as ccTab } from '@warp-ds/component-classes';
 import type { TabProps } from './props';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
-  tab: cn([ccTab.tab], {
+  tab: cn(ccTab.tab, {
     [className]: !!className,
     [ccTab.tabActive]: isActive,
   }),
-  icon: cn([ccTab.icon], [ccTab.iconUnderlined], {
-    [isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive]:
-      true,
-  }),
-  content: cn([ccTab.contentUnderlined], {
+  icon: cn(ccTab.icon, ccTab.iconUnderlined, isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive),
+  content: cn(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
     [ccTab.contentUnderlinedInactive]: !isActive,
   }),

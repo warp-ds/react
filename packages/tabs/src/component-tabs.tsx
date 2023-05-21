@@ -11,22 +11,19 @@ import { debounce } from './utils';
 import type { TabsProps } from './props';
 
 const setup = (
-  { className, contained, children, onClick, active, ...rest }: any,
+  { className, children, onClick, active, ...rest }: any,
   tabsRef,
   wunderbarRef
 ) => ({
-  nav: cn({
+  nav: cn(ccTabs.wrapperUnderlined, {
     [className]: !!className,
-    [contained ? ccTabs.wrapperContained : ccTabs.wrapperUnderlined]: true,
   }),
-  div: cn({
-    [ccTabs.tabContainer]: true,
+  div: cn(ccTabs.tabContainer,{
     [gridLayout[`cols${children.length}`]]: true,
   }),
   wunderbar: cn(ccTabs.wunderbar),
   attrs: rest,
   updateWunderbar: () => {
-    if (contained) return;
     window.requestAnimationFrame(() => {
       try {
         const activeEl = tabsRef.current.querySelector(
