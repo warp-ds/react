@@ -6,7 +6,7 @@ import {
   useRecompute as recompute,
   arrowLabels,
 } from '@warp-ds/core/attention';
-import { attention as c } from '@warp-ds/component-classes';
+import { attention as ccAttention } from '@warp-ds/component-classes';
 import { ArrowProps, AttentionProps } from './props';
 
 export function Attention(props: AttentionProps) {
@@ -19,6 +19,15 @@ export function Attention(props: AttentionProps) {
     className,
     ...rest
   } = props;
+
+  const wrapperClasses = classNames(
+    ccAttention.base,  
+    {
+      [ccAttention.tooltip]: props.tooltip,
+      [ccAttention.callout]: props.callout,
+      [ccAttention.popover]: props.popover,
+    }
+  );
 
   const [actualDirection, setActualDirection] = useState(placement);
   // Don't show attention element before its position is computed on first render
@@ -91,14 +100,7 @@ export function Attention(props: AttentionProps) {
       )}
       ref={attentionRef}
     >
-      <div
-        className={classNames({
-          [c.base]: true,
-          [c.tooltip]: props.tooltip,
-          [c.callout]: props.callout,
-          [c.popover]: props.popover,
-        })}
-      >
+      <div className={wrapperClasses}>
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
@@ -110,20 +112,26 @@ export function Attention(props: AttentionProps) {
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
   const { direction, tooltip, callout, popover } = props;
-
   const arrowDirection = opposites[direction];
+
+  const arrowType = () => {
+    if (tooltip) return 'arrowTooltip';
+    else if (callout) return 'arrowCallout';
+    else if (popover) return 'arrowPopover';
+    return '';
+  }
+
+  const arrowClasses = classNames(
+    ccAttention.arrowBase,
+    ccAttention.arrowDirection[arrowDirection],
+    {[ccAttention[arrowType()]]: tooltip || callout || popover},
+  );
 
   return (
     <div
       aria-label={arrowLabels[arrowDirection]}
       ref={ref}
-      className={classNames({
-        [c.arrowBase]: true,
-        [`-${arrowDirection}-8`]: true,
-        [c.arrowTooltip]: tooltip,
-        [c.arrowCallout]: callout,
-        [c.arrowPopover]: popover,
-      })}
+      className={arrowClasses}
       style={{
         // TW doesn't let us specify exactly one corner, only whole sides
         borderTopLeftRadius: '4px',

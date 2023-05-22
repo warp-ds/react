@@ -7,6 +7,7 @@ import {
   Switch as ReactSwitch,
 } from 'react-router-dom';
 import Alert from '../../packages/alert/docs/Alert.mdx';
+import Attention from '../../packages/attention/docs/Attention.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
@@ -25,7 +26,6 @@ import Select from '../../packages/select/docs/Select.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
 import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
-import Attention from '../../packages/attention/docs/Attention.mdx';
 */
 import Home from '../pages/index.jsx';
 import Code from './components/Code';
@@ -53,6 +53,10 @@ const App = () => {
 
           <Route path="/alert">
             <Alert />
+          </Route>
+
+          <Route path="/attention">
+            <Attention />
           </Route>
 
           <Route path="/button">
@@ -93,11 +97,6 @@ const App = () => {
           {/*
           <Route path="/modal">
             <Modal />
-          </Route>
-        
-
-          <Route path="/attention">
-            <Attention />
           </Route>
 
           <Route path="/select">
