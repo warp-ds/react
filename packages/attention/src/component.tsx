@@ -110,8 +110,14 @@ export function Attention(props: AttentionProps) {
   );
 }
 
+const arrowDirectionClassname = (dir: string) => {
+  const direction = dir.charAt(0).toUpperCase() + dir.slice(1);
+
+  return `arrowDirection${direction}`;
+}
+
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
-  const { direction, tooltip, callout, popover } = props;
+  const { callout, direction, popover, tooltip } = props;
   const arrowDirection = opposites[direction];
 
   const arrowType = () => {
@@ -123,8 +129,10 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
 
   const arrowClasses = classNames(
     ccAttention.arrowBase,
-    ccAttention.arrowDirection[arrowDirection],
-    {[ccAttention[arrowType()]]: tooltip || callout || popover},
+    ccAttention[arrowDirectionClassname(arrowDirection)],
+    {
+      [ccAttention[arrowType()]]: tooltip || callout || popover
+    },
   );
 
   return (
@@ -137,9 +145,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
         borderTopLeftRadius: '4px',
         zIndex: 1,
         // border alignment is off by a fraction of a pixel, this fixes it
-        [`margin${
-          arrowDirection.charAt(0).toUpperCase() + arrowDirection.slice(1)
-        }`]: '-0.5px',
+        [`margin${arrowDirection.charAt(0).toUpperCase() + arrowDirection.slice(1)}`]: '-0.5px',
         transform: `rotate(${rotation[arrowDirection]}deg)`,
       }}
     />
