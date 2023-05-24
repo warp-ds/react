@@ -6,31 +6,28 @@ import React, {
   Children,
 } from 'react';
 import { classNames as cn } from '@chbphone55/classnames';
-import { tabs as c } from '@warp-ds/component-classes';
+import { gridLayout, tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
 
 const setup = (
-  { className, contained, children, onClick, active, ...rest }: any,
+  { className, children, onClick, active, ...rest }: any,
   tabsRef,
-  wunderbarRef,
+  wunderbarRef
 ) => ({
-  nav: cn({
+  nav: cn(ccTabs.wrapperUnderlined, {
     [className]: !!className,
-    [contained ? c.wrapperContained : c.wrapperUnderlined]: true,
   }),
-  div: cn({
-    [c.tabContainer]: true,
-    [`grid-cols-${children.length}`]: true,
+  div: cn(ccTabs.tabContainer,{
+    [gridLayout[`cols${children.length}`]]: true,
   }),
-  wunderbar: cn(c.wunderbar),
+  wunderbar: cn(ccTabs.wunderbar),
   attrs: rest,
   updateWunderbar: () => {
-    if (contained) return;
     window.requestAnimationFrame(() => {
       try {
         const activeEl = tabsRef.current.querySelector(
-          'button[role="tab"][aria-selected="true"]',
+          'button[role="tab"][aria-selected="true"]'
         );
         const { left: parentLeft } = tabsRef.current.getBoundingClientRect();
         const { left, width } = activeEl.getBoundingClientRect();
@@ -43,18 +40,27 @@ const setup = (
   },
 });
 
-export function Tabs(props: TabsProps) {
+export const Tabs = (props: TabsProps) => {
   const isBrowser = Boolean(
-    typeof document === 'object' && document?.createElement,
+    typeof document === 'object' && document?.createElement
   );
   const tabsRef = useRef(null);
   const wunderbarRef = useRef(null);
-  const { children, contained, onChange } = props;
+  const { children, onChange } = props;
   const { nav, div, wunderbar, attrs, updateWunderbar } = setup(
     props,
     tabsRef,
-    wunderbarRef,
+    wunderbarRef
   );
+  useEffect(() => {
+    // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
+    isBrowser && updatePanels();
+    updateWunderbar();
+    const updateDebounced = debounce(updateWunderbar, 100);
+    window.addEventListener('resize', updateDebounced);
+    return () => window.removeEventListener('resize', updateDebounced);
+  });
+
   const findActive = (): string => {
     if (props.active) {
       return String(props.active);
@@ -63,7 +69,7 @@ export function Tabs(props: TabsProps) {
       const activeChild =
         childrenArray?.find(
           // @ts-ignore: semantic error
-          (child) => child?.props?.isActive,
+          (child) => child?.props?.isActive
         ) || childrenArray[0];
       // @ts-ignore: semantic error
       return String(activeChild?.props?.name || '');
@@ -77,7 +83,7 @@ export function Tabs(props: TabsProps) {
       if (typeof child === 'object') {
         const panel = document.getElementById(
           // @ts-ignore: semantic error
-          `warp-tabpanel-${child?.props?.name}`,
+          `warp-tabpanel-${child?.props?.name}`
         );
         if (panel) {
           // @ts-ignore: semantic error
@@ -131,15 +137,6 @@ export function Tabs(props: TabsProps) {
     }
   };
 
-  useEffect(() => {
-    // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
-    isBrowser && updatePanels();
-    updateWunderbar();
-    const updateDebounced = debounce(updateWunderbar, 100);
-    window.addEventListener('resize', updateDebounced);
-    return () => window.removeEventListener('resize', updateDebounced);
-  });
-
   return (
     <div {...attrs} className={nav}>
       <div
@@ -150,13 +147,12 @@ export function Tabs(props: TabsProps) {
       >
         {Children.map(children, (child: any) => {
           return cloneElement(child, {
-            contained,
             setActive: change,
             isActive: child.props.name === active,
           });
         })}
-        {!contained && <span className={wunderbar} ref={wunderbarRef} />}
+        {<span className={wunderbar} ref={wunderbarRef} />}
       </div>
     </div>
   );
-}
+};

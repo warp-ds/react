@@ -1,5 +1,5 @@
 import React from 'react';
-import { tab as c } from '@warp-ds/component-classes';
+import { tab as ccTab } from '@warp-ds/component-classes';
 import type { TabPanelProps } from './props';
 
 export function TabPanel(props: TabPanelProps) {
@@ -16,7 +16,7 @@ export function TabPanel(props: TabPanelProps) {
         hidden === undefined && typeof document === 'object'
           ? !document
               ?.getElementById(`warp-tab-${name}`)
-              ?.classList?.contains(c.tabActive)
+              ?.classList?.contains(ccTab.tabActive)
           : hidden
       }
     >
