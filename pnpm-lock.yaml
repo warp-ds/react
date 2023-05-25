@@ -79,8 +79,8 @@ devDependencies:
     specifier: ^1.1.3
     version: 1.3.6
   '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.26
-    version: 1.0.0-alpha.26
+    specifier: ^1.0.0-alpha.29
+    version: 1.0.0-alpha.29
   babel-eslint:
     specifier: ^10.1.0
     version: 10.1.0(eslint@7.32.0)
@@ -4434,8 +4434,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.26:
-    resolution: {integrity: sha512-VrcGayt9OvhUyki43cnHKr7e41SxUfcu8ILkuMCJkm5mNfzap1WDX6j/Hb01qrgdcjBG4lbcAb0I3HfS9IEBQg==}
+  /@warp-ds/uno@1.0.0-alpha.29:
+    resolution: {integrity: sha512-Yybf2haqAFqcICjFTdZVEwbe3y2Fz24zq1yC0Di03Beli16CUNlNOVJAVJ4r41cciOdB59qcOc2qSbfNZD9yLw==}
     dependencies:
       '@unocss/core': 0.50.6
       '@unocss/preset-mini': 0.50.6
