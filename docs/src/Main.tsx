@@ -15,6 +15,7 @@ import Expandable from '../../packages/expandable/docs/Expandable.mdx';
 import Pill from '../../packages/pill/docs/Pill.mdx';
 import Slider from '../../packages/slider/docs/Slider.mdx';
 import Steps from '../../packages/steps/docs/Steps.mdx';
+import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import TextArea from '../../packages/textarea/docs/TextArea.mdx';
 import TextField from '../../packages/textfield/docs/TextField.mdx';
 
@@ -24,7 +25,6 @@ import Combobox from '../../packages/combobox/docs/Combobox.mdx';
 import Modal from '../../packages/modal/docs/Modal.mdx';
 import Select from '../../packages/select/docs/Select.mdx';
 import Switch from '../../packages/switch/docs/Switch.mdx';
-import Tabs from '../../packages/tabs/docs/Tabs.mdx';
 import Toggle from '../../packages/toggle/docs/Toggle.mdx';
 */
 import Home from '../pages/index.jsx';
@@ -63,14 +63,6 @@ const App = () => {
             <Button />
           </Route>
 
-          <Route path="/textfield">
-            <TextField />
-          </Route>
-
-          <Route path="/textarea">
-            <TextArea />
-          </Route>
-
           <Route path="/box">
             <Box />
           </Route>
@@ -82,16 +74,28 @@ const App = () => {
             <Expandable />
           </Route>
 
-          <Route path="/steps">
-            <Steps />
-          </Route>
-
           <Route path="/pill">
             <Pill />
           </Route>
 
           <Route path="/slider">
             <Slider />
+          </Route>
+
+          <Route path="/steps">
+            <Steps />
+          </Route>
+
+          <Route path="/tabs">
+            <Tabs />
+          </Route>
+
+          <Route path="/textfield">
+            <TextField />
+          </Route>
+
+          <Route path="/textarea">
+            <TextArea />
           </Route>
 
           {/*
@@ -101,10 +105,6 @@ const App = () => {
 
           <Route path="/select">
             <Select />
-          </Route>
-
-          <Route path="/tabs">
-            <Tabs />
           </Route>
 
           <Route path="/combobox">
