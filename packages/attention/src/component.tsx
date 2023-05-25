@@ -104,7 +104,7 @@ export function Attention(props: AttentionProps) {
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
-        <div className="last-child:mb-0">{props.children}</div>
+        <div className="last:mb-0">{props.children}</div>
       </div>
     </div>
   );
