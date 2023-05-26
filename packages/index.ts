@@ -5,6 +5,7 @@ export * from './box/src';
 export * from './breadcrumbs/src';
 export * from './button/src';
 export * from './card/src';
+export * from './combobox/src';
 export * from './expandable/src';
 export * from './modal/src';
 export * from './pill/src';
@@ -17,5 +18,6 @@ export * from './textfield/src';
 export * from './toggle/src';
 /* export * from './box/src';
 export * from './combobox/src';
+export * from './attention/src';
 export * from './switch/src';
 */

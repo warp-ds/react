@@ -11,14 +11,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { combobox as ccCombobox } from '@warp-ds/component-classes';
 import { TextField } from '../../textfield/src';
 import { useId } from '../../utils/src';
 import { ComboboxProps, OptionWithIdAndMatch } from './props';
 import { createOptionsWithIdAndMatch, getAriaText } from './utils';
 
-const OPTION_HIGHLIGHT_COLOR = 'bluegray-100';
-const OPTION_CLASS_NAME = 'f-react-combobox-option';
-const MATCH_SEGMENTS_CLASS_NAME = 'f-react-combobox-match';
+const OPTION_CLASS_NAME = 'w-react-combobox-option';
+const MATCH_SEGMENTS_CLASS_NAME = 'w-react-combobox-match';
 
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
   ({ id: pid, ...props }, forwardRef) => {
@@ -231,7 +231,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
     return (
       <div
-        className={classNames(className, 'relative')}
+        className={classNames(className, ccCombobox.wrapper)}
         onBlur={(e) => handleContainerBlur(e, setOpen)}
         ref={containerRef}
       >
@@ -245,7 +245,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           )}
         </div>
 
-        <span className="sr-only" role="status">
+        <span className={ccCombobox.a11y} role="status">
           {getAriaText(currentOptions, value)}
         </span>
 
@@ -253,7 +253,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           hidden={!isOpen || !currentOptions.length}
           className={classNames(
             listClassName,
-            'absolute left-0 right-0 bg-primary pb-8 rounded-8 bg-white shadow',
+            ccCombobox.combobox,
           )}
           style={{
             zIndex: 3, // Force popover above misc. page content (mobile safari issue)
@@ -262,7 +262,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           <ul
             id={listboxId}
             role="listbox"
-            className={classNames('m-0 p-0 select-none list-none', {
+            className={classNames(ccCombobox.listbox, {
               [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
             })}
           >
@@ -280,7 +280,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                   match = (
                     <>
                       {display.substring(0, startIdx)}
-                      <span data-combobox-text-match className="font-bold">
+                      <span data-combobox-text-match className={ccCombobox.textMatch}>
                         {display.substring(startIdx, endIdx)}
                       </span>
                       {display.substring(endIdx)}
@@ -308,9 +308,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                     );
                   }}
                   className={classNames({
-                    [`block cursor-pointer p-8 hover:bg-${OPTION_HIGHLIGHT_COLOR} ${OPTION_CLASS_NAME}`]:
+                    [`${ccCombobox.option} ${OPTION_CLASS_NAME}`]:
                       true,
-                    [`bg-${OPTION_HIGHLIGHT_COLOR}`]:
+                    [ccCombobox.optionSelected]:
                       navigationOption?.id === option.id,
                   })}
                 >
