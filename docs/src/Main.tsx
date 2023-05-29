@@ -115,14 +115,6 @@ const App = () => {
             <Combobox />
           </Route>
 
-          <Route path="/expandable">
-            <Expandable />
-          </Route>
-
-          <Route path="/switch">
-            <Switch />
-          </Route>
-
           <Route path="/toggle">
             <Toggle />
           </Route>
