@@ -28,7 +28,7 @@ export function Switch({
         {...attrs}
       >
         <span
-          className={classNames([ccSwitch.track, 'top-0', 'left-0', value ? ccSwitch.trackActive : ccSwitch.trackInactive])}
+            className={classNames([ccSwitch.track, value ? ccSwitch.trackActive : ccSwitch.trackInactive])}
         />
         <span
           className={classNames([ccSwitch.handle, ccSwitch.handleNotDisabled], {
