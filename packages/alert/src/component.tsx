@@ -1,6 +1,6 @@
 import { classNames } from '@chbphone55/classnames';
 import React, { PropsWithChildren, ReactElement } from 'react';
-import { alert } from '@warp-ds/component-classes';
+import { alert as ccAlert } from '@warp-ds/component-classes';
 import { AlertProps } from '.';
 import { ExpandTransition } from '../../_helpers';
 
@@ -12,8 +12,8 @@ export function Alert({
   ...props
 }: PropsWithChildren<AlertProps>) {
 
-  const variantClasses = alert[type]
-  const iconVariantClasses = alert[`${type}Icon`]
+  const variantClasses = ccAlert[type]
+  const iconVariantClasses = ccAlert[`${type}Icon`]
 
   return (
     <ExpandTransition show={show}>
@@ -21,17 +21,16 @@ export function Alert({
         role={role}
         className={classNames(
           props.className,
-         `${alert.alert} ${variantClasses}`,
+         `${ccAlert.alert} ${variantClasses}`,
         )}
         style={props.style}
       >
         <div
-          className={`${alert.icon} ${iconVariantClasses}`}
+          className={`${ccAlert.icon} ${iconVariantClasses}`}
         >
           {iconMap[type]}
         </div>
-        {/* TODO: replace text-14 with a token */}
-        <div className="last:mb-0 text-14">{children}</div>
+        <div className={ccAlert.textWrapper}>{children}</div>
       </div>
     </ExpandTransition>
   );
