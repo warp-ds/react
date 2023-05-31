@@ -17,7 +17,3 @@ export * from './tabs/src';
 export * from './textarea/src';
 export * from './textfield/src';
 export * from './toggle/src';
-/* export * from './box/src';
-export * from './combobox/src';
-export * from './attention/src';
-*/
