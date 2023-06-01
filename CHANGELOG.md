@@ -1,21 +1,3 @@
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-06-01)
-
-
-### Bug Fixes
-
-* **alert:** use imported instead of inline classes ([#41](https://github.com/warp-ds/react/issues/41)) ([c8c8da2](https://github.com/warp-ds/react/commit/c8c8da2cbcf9bb2fb694f23b8beeff7015643824))
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-* Move react specific switch track classes to component-classes ([#40](https://github.com/warp-ds/react/issues/40)) ([a024fb5](https://github.com/warp-ds/react/commit/a024fb5232e84bcdaac897b6cfb1d7e32467e060))
-* warpify modal ([#36](https://github.com/warp-ds/react/issues/36)) ([5d0b084](https://github.com/warp-ds/react/commit/5d0b0849b97a0b1dadc558672c266463170916cb))
-
-
-### Features
-
-* add component classes to the combobox ([#38](https://github.com/warp-ds/react/issues/38)) ([232bf60](https://github.com/warp-ds/react/commit/232bf60e268f2112cd04692d0fb53a75810c9785))
-* **attention:** warpify attention ([#37](https://github.com/warp-ds/react/issues/37)) ([61f6895](https://github.com/warp-ds/react/commit/61f68952bd8f7757dad96e7cec545dbcdecf2bb0))
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-* Warpified Switch component ([#39](https://github.com/warp-ds/react/issues/39)) ([20eddea](https://github.com/warp-ds/react/commit/20eddea0cf04e871f027fd5843f191f6d9207c65))
-
 # [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-30)
 
 
@@ -33,82 +15,6 @@
 * **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
 * Warpified Switch component ([#39](https://github.com/warp-ds/react/issues/39)) ([20eddea](https://github.com/warp-ds/react/commit/20eddea0cf04e871f027fd5843f191f6d9207c65))
 
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-29)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-* warpify modal ([#36](https://github.com/warp-ds/react/issues/36)) ([5d0b084](https://github.com/warp-ds/react/commit/5d0b0849b97a0b1dadc558672c266463170916cb))
-
-
-### Features
-
-* add component classes to the combobox ([#38](https://github.com/warp-ds/react/issues/38)) ([232bf60](https://github.com/warp-ds/react/commit/232bf60e268f2112cd04692d0fb53a75810c9785))
-* **attention:** warpify attention ([#37](https://github.com/warp-ds/react/issues/37)) ([61f6895](https://github.com/warp-ds/react/commit/61f68952bd8f7757dad96e7cec545dbcdecf2bb0))
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-* Warpified Switch component ([#39](https://github.com/warp-ds/react/issues/39)) ([20eddea](https://github.com/warp-ds/react/commit/20eddea0cf04e871f027fd5843f191f6d9207c65))
-
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-26)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-* warpify modal ([#36](https://github.com/warp-ds/react/issues/36)) ([5d0b084](https://github.com/warp-ds/react/commit/5d0b0849b97a0b1dadc558672c266463170916cb))
-
-
-### Features
-
-* add component classes to the combobox ([#38](https://github.com/warp-ds/react/issues/38)) ([232bf60](https://github.com/warp-ds/react/commit/232bf60e268f2112cd04692d0fb53a75810c9785))
-* **attention:** warpify attention ([#37](https://github.com/warp-ds/react/issues/37)) ([61f6895](https://github.com/warp-ds/react/commit/61f68952bd8f7757dad96e7cec545dbcdecf2bb0))
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-25)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-* warpify modal ([#36](https://github.com/warp-ds/react/issues/36)) ([5d0b084](https://github.com/warp-ds/react/commit/5d0b0849b97a0b1dadc558672c266463170916cb))
-
-
-### Features
-
-* add component classes to the combobox ([#38](https://github.com/warp-ds/react/issues/38)) ([232bf60](https://github.com/warp-ds/react/commit/232bf60e268f2112cd04692d0fb53a75810c9785))
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-24)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-* warpify modal ([#36](https://github.com/warp-ds/react/issues/36)) ([5d0b084](https://github.com/warp-ds/react/commit/5d0b0849b97a0b1dadc558672c266463170916cb))
-
-
-### Features
-
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-22)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
-
-
-### Features
-
-* **tabs:** warpify tabs ([#34](https://github.com/warp-ds/react/issues/34)) ([ce210d2](https://github.com/warp-ds/react/commit/ce210d28e58310227966ac53b9f847035ed34185))
-
-# [1.0.0-alpha.25](https://github.com/warp-ds/react/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2023-05-19)
-
-
-### Bug Fixes
-
-* make sure to style text for links as buttons ([#35](https://github.com/warp-ds/react/issues/35)) ([96aa46c](https://github.com/warp-ds/react/commit/96aa46ca71b134586b01db09808ae42e79309a2d))
 
 # [1.0.0-alpha.24](https://github.com/warp-ds/react/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2023-05-17)
 
