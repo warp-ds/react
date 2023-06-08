@@ -1,5 +1,5 @@
 import mdx from 'vite-plugin-mdx';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import slug from 'remark-slug';
 import autoLinkHeadings from 'remark-autolink-headings';
 import jsxExample from './docs/src/plugins/jsxExample.cjs';
@@ -17,7 +17,7 @@ export default function config() {
         presets: [presetWarp({ usePreflight: true })],
         safelist: classes,
       }),
-      reactRefresh(),
+      react(),
       mdx.default({
         remarkPlugins: [slug, autoLinkHeadings, jsxExample, propTable],
       }),
