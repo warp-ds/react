@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "1.0.0-alpha.26",
+  "version": "1.0.0-alpha.27",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@warp-ds/component-classes": "^1.0.0-alpha.93",
+    "@warp-ds/component-classes": "^1.0.0-alpha.96",
     "@warp-ds/core": "^1.0.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",

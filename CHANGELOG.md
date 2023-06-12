@@ -1,3 +1,10 @@
+# [1.0.0-alpha.27](https://github.com/warp-ds/react/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2023-06-09)
+
+
+### Bug Fixes
+
+* bump component classes ([#46](https://github.com/warp-ds/react/issues/46)) ([8e33518](https://github.com/warp-ds/react/commit/8e335187004377573d7fdc62ebbaac3bec99cc73))
+
 # [1.0.0-alpha.26](https://github.com/warp-ds/react/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2023-06-07)
 
 
