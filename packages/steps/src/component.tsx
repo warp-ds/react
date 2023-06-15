@@ -1,6 +1,8 @@
 import React, { createContext } from 'react';
 import { StepsProps } from './props';
 import { classNames } from '@chbphone55/classnames';
+import { steps as ccSteps } from '@warp-ds/component-classes';
+
 
 export const StepsContext = createContext<{
   horizontal?: boolean;
@@ -10,21 +12,21 @@ export const StepsContext = createContext<{
   right: undefined,
 });
 
-export function Steps(props: StepsProps) {
+export function Steps({horizontal, right, className, children}: StepsProps) {
   return (
     <StepsContext.Provider
       value={{
-        horizontal: props.horizontal,
-        right: props.right,
+        horizontal: horizontal,
+        right: right,
       }}
     >
       <div
-        className={classNames(props.className, {
-          'w-full': true,
-          flex: props.horizontal,
+        className={classNames(className, {
+          [ccSteps.steps]: true,
+          [ccSteps.stepsHorizontal]: horizontal,
         })}
       >
-        {props.children}
+        {children}
       </div>
     </StepsContext.Provider>
   );
