@@ -58,7 +58,7 @@ export function Expandable(props: ExpandableProps) {
         >
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? (
-              <span className="h4">{title}</span>
+              <span className={ccExpandable.titleType}>{title}</span>
             ) : (
               title
             )}
