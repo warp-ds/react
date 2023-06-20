@@ -5,7 +5,7 @@ import React, {
   cloneElement,
   Children,
 } from 'react';
-import { classNames as cn } from '@chbphone55/classnames';
+import { classNames } from '@chbphone55/classnames';
 import { gridLayout, tabs as ccTabs } from '@warp-ds/component-classes';
 import { debounce } from './utils';
 import type { TabsProps } from './props';
@@ -15,13 +15,13 @@ const setup = (
   tabsRef,
   wunderbarRef
 ) => ({
-  nav: cn(ccTabs.wrapperUnderlined, {
+  nav: classNames(ccTabs.wrapperUnderlined, {
     [className]: !!className,
   }),
-  div: cn(ccTabs.tabContainer,{
+  div: classNames(ccTabs.tabContainer,{
     [gridLayout[`cols${children.length}`]]: true,
   }),
-  wunderbar: cn(ccTabs.wunderbar),
+  wunderbar: classNames(ccTabs.wunderbar),
   attrs: rest,
   updateWunderbar: () => {
     window.requestAnimationFrame(() => {

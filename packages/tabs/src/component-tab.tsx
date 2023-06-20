@@ -1,15 +1,15 @@
 import React from 'react';
-import { classNames as cn } from '@chbphone55/classnames';
+import { classNames } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/component-classes';
 import type { TabProps } from './props';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
-  tab: cn(ccTab.tab, {
+  tab: classNames(ccTab.tab, {
     [className]: !!className,
     [ccTab.tabActive]: isActive,
   }),
-  icon: cn(ccTab.icon, ccTab.iconUnderlined, isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive),
-  content: cn(ccTab.contentUnderlined, {
+  icon: classNames(ccTab.icon, ccTab.iconUnderlined, isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive),
+  content: classNames(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
     [ccTab.contentUnderlinedInactive]: !isActive,
   }),
@@ -55,7 +55,7 @@ export function Tab(props: TabProps) {
       )}
 
       {children && !over && (
-        <div className="flex items-center justify-center gap-8">
+        <div className={ccTab.content}>
           {children}
           {label}
         </div>

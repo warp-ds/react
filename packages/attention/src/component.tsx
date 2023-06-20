@@ -92,7 +92,7 @@ export function Attention(props: AttentionProps) {
     <div
       className={classNames(
         {
-          'absolute z-50': !props.callout,
+          [ccAttention.notCallout]: !props.callout,
           invisible: !isVisible && !props.callout,
           hidden: !isVisible && !props.tooltip,
         },

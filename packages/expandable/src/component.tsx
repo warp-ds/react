@@ -56,9 +56,9 @@ export function Expandable(props: ExpandableProps) {
           })}
           onClick={() => toggleExpandable(stateExpanded)}
         >
-          <div className="flex justify-between align-center">
+          <div className={ccExpandable.title}>
             {typeof title === 'string' ? (
-              <span className="h4">{title}</span>
+              <span className={ccExpandable.titleType}>{title}</span>
             ) : (
               title
             )}
@@ -95,7 +95,8 @@ export function Expandable(props: ExpandableProps) {
         <div
           className={classNames({
             [contentClass || '']: true,
-            [ccBox.box + (title ? ' pt-0' : '')]: box,
+            [ccBox.box]: box,
+            [ccExpandable.paddingTop]: box && title,
           })}
         >
           {children}
@@ -111,8 +112,8 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
   ) : (
     <div
       className={classNames({
-        'overflow-hidden': true,
-        'h-0 invisible': !stateExpanded,
+        [ccExpandable.expansion]: true,
+        [ccExpandable.expansionNotExpanded]: !stateExpanded,
       })}
       aria-hidden={!stateExpanded ? true : undefined}
     >

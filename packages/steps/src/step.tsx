@@ -28,39 +28,49 @@ export function Step({ active, completed, children }: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
+  const stepClasses = classNames({
+    [ccStep.stepVertical]: vertical,
+    [ccStep.stepVerticalLeft]: vertical && left,
+    [ccStep.stepVerticalRight]: vertical && !left,
+    [ccStep.stepHorizontal]: !vertical,
+  })
+
+  const stepLineHorizontalClasses = classNames({
+    [ccStep.stepLine]: true,
+    [ccStep.stepLineHorizontal]: !vertical,
+    [ccStep.stepLineIncomplete]: !active && !completed,
+    [ccStep.stepLineComplete]: active || completed,
+  })
+
+  const stepDotClasses = classNames({
+    [ccStep.stepDot]: true,
+    [ccStep.stepDotVerticalRight]: vertical && !left,
+    [ccStep.stepDotHorizontal]: !vertical,
+    [ccStep.stepDotIncomplete]: !(active || completed),
+    [ccStep.stepDotActive]: active || completed,
+  })
+
+  const stepLineClasses = classNames({
+    [ccStep.stepLine]: true,
+    [ccStep.stepLineVertical]: vertical,
+    [ccStep.stepLineVerticalRight]: vertical && !left,
+    [ccStep.stepLineHorizontal]: !vertical,
+    [ccStep.stepLineIncomplete]: !completed,
+    [ccStep.stepLineComplete]: completed,
+  })
+
+  const stepContentClasses = classNames({
+    [ccStep.content]: true,
+    [ccStep.contentVertical]: vertical,
+    [ccStep.contentHorizontal]: !vertical,
+  })
+
   return (
-    <div
-      className={classNames({
-        'f-step': true,
-        [ccStep.stepVertical]: vertical,
-        [ccStep.stepVerticalLeft]: vertical && left,
-        [ccStep.stepVerticalRight]: vertical && !left,
-        [ccStep.stepHorizontal]: !vertical,
-      })}
-    >
+    <div className={stepClasses}>
       {!vertical && (
-        <div
-          className={classNames({
-            'step-line-h-l': true,
-            [ccStep.stepLine]: true,
-            [ccStep.stepLineHorizontal]: !vertical,
-            [ccStep.stepLineIncomplete]: !active && !completed,
-            [ccStep.stepLineComplete]: active || completed,
-          })}
-        />
+        <div className={stepLineHorizontalClasses}/>
       )}
-      <div
-        className={classNames({
-          [ccStep.stepDot]: true,
-          [ccStep.stepDotVertical]: vertical,
-          [ccStep.stepDotVerticalLeft]: vertical && left,
-          [ccStep.stepDotVerticalRight]: vertical && !left,
-          [ccStep.stepDotHorizontal]: !vertical,
-          [ccStep.stepDotIncomplete]: !(active || completed),
-          [ccStep.stepDotActive]: active,
-          [ccStep.stepDotComplete]: completed,
-        })}
-      >
+      <div className={stepDotClasses}>
         {completed && (
           <svg
             role="img"
@@ -80,25 +90,8 @@ export function Step({ active, completed, children }: StepProps) {
           </svg>
         )}
       </div>
-      <div
-        className={classNames({
-          'step-line-h-r': true,
-          [ccStep.stepLine]: true,
-          [ccStep.stepLineVertical]: vertical,
-          [ccStep.stepLineVerticalLeft]: vertical && left,
-          [ccStep.stepLineVerticalRight]: vertical && !left,
-          [ccStep.stepLineHorizontal]: !vertical,
-          [ccStep.stepLineIncomplete]: !completed,
-          [ccStep.stepLineComplete]: completed,
-        })}
-      />
-      <div
-        className={classNames({
-          [ccStep.content]: true,
-          [ccStep.contentVertical]: vertical,
-          [ccStep.contentHorizontal]: !vertical,
-        })}
-      >
+      <div className={stepLineClasses}/>
+      <div className={stepContentClasses}>
         {children}
       </div>
     </div>

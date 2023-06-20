@@ -1,3 +1,31 @@
+# [1.0.0-alpha.31](https://github.com/warp-ds/react/compare/v1.0.0-alpha.30...v1.0.0-alpha.31) (2023-06-20)
+
+
+### Bug Fixes
+
+* remove background from checkbox/toggle ([#51](https://github.com/warp-ds/react/issues/51)) ([f0eba8e](https://github.com/warp-ds/react/commit/f0eba8ee713333f5df2be3514f38d49710649d71))
+
+# [1.0.0-alpha.30](https://github.com/warp-ds/react/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2023-06-16)
+
+
+### Bug Fixes
+
+* **packages:** use className and style in TextField and Select ([#50](https://github.com/warp-ds/react/issues/50)) ([fdfe96a](https://github.com/warp-ds/react/commit/fdfe96ae0bc23d0e738682b033b282451f6eaf5d))
+
+# [1.0.0-alpha.29](https://github.com/warp-ds/react/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2023-06-15)
+
+
+### Bug Fixes
+
+* **components:** update component classes ([#49](https://github.com/warp-ds/react/issues/49)) ([7a445d2](https://github.com/warp-ds/react/commit/7a445d2b97c7738da7811d85eda6ac0962ca1d44))
+
+# [1.0.0-alpha.28](https://github.com/warp-ds/react/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2023-06-14)
+
+
+### Bug Fixes
+
+* bump versions ([#47](https://github.com/warp-ds/react/issues/47)) ([a347969](https://github.com/warp-ds/react/commit/a347969cf37f3c142cfff8813a069a529cf8530e))
+
 # [1.0.0-alpha.27](https://github.com/warp-ds/react/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2023-06-09)
 
 

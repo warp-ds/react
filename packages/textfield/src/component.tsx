@@ -7,6 +7,7 @@ import { TextFieldProps } from './props';
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const {
+      className,
       disabled,
       id: providedId,
       children,
@@ -34,7 +35,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     );
 
     return (
-        <div>
+        <div 
+          className={className}
+          style={style}
+        >
           {label && (
             <label htmlFor={id} className={classNames({
               [ccLabel.label]: true,
