@@ -6,7 +6,7 @@ import {
   useRecompute as recompute,
   arrowLabels,
 } from '@warp-ds/core/attention';
-import { attention as ccAttention } from '@warp-ds/component-classes';
+import { attention as ccAttention } from '@warp-ds/css/component-classes';
 import { ArrowProps, AttentionProps } from './props';
 
 export function Attention(props: AttentionProps) {

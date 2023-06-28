@@ -1,6 +1,6 @@
 import { classNames } from '@chbphone55/classnames';
 import React, { PropsWithChildren, ReactElement } from 'react';
-import { alert as ccAlert } from '@warp-ds/component-classes';
+import { alert as ccAlert } from '@warp-ds/css/component-classes';
 import { AlertProps } from '.';
 import { ExpandTransition } from '../../_helpers';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { card as ccCard } from '@warp-ds/component-classes';
+import { card as ccCard } from '@warp-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import { CardProps } from './props';
 import { useLogDeprecationWarning } from '../../utils/src';

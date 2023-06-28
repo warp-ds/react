@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { BreadcrumbsProps } from './props';
 import { interleave } from '@warp-ds/core/breadcrumbs';
-import { breadcrumbs as ccBreadcrumbs } from "@warp-ds/component-classes";
+import { breadcrumbs as ccBreadcrumbs } from "@warp-ds/css/component-classes";
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;

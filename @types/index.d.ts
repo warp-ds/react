@@ -9,5 +9,4 @@ declare module '*.module.css' {
 }
 
 declare module '@fabric-ds/css';
-declare module '@warp-ds/component-classes';
 declare module '@fabric-ds/css/tailwind-css';

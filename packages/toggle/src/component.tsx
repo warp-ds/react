@@ -1,5 +1,5 @@
 import React from 'react';
-import { label as ccLabel, helpText as ccHelpText, toggle as ccToggle } from '@warp-ds/component-classes';
+import { label as ccLabel, helpText as ccHelpText, toggle as ccToggle } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { ToggleEntry, ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';

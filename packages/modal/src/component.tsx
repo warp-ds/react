@@ -1,5 +1,5 @@
 import { classNames } from '@chbphone55/classnames';
-import { modal as ccModal } from '@warp-ds/component-classes';
+import { modal as ccModal } from '@warp-ds/css/component-classes';
 import React, { useEffect, useRef } from 'react';
 import { useId } from '../../utils/src';
 import FocusLock from 'react-focus-lock';

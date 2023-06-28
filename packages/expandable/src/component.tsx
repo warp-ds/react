@@ -2,7 +2,7 @@ import { classNames } from '@chbphone55/classnames';
 import {
   box as ccBox,
   expandable as ccExpandable,
-} from '@warp-ds/component-classes';
+} from '@warp-ds/css/component-classes';
 import React from 'react';
 import { ExpandTransition, UnstyledHeading } from '../../_helpers';
 import { ExpandableProps } from './props';
