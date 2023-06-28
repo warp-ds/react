@@ -12,8 +12,11 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   '@warp-ds/css':
-    specifier: ^1.0.0-alpha.9
-    version: 1.0.0-alpha.9
+    specifier: ^1.0.0-alpha.11
+    version: 1.0.0-alpha.11
+  '@warp-ds/uno':
+    specifier: ^1.0.0-alpha.50
+    version: 1.0.0-alpha.50
   react-focus-lock:
     specifier: ^2.5.2
     version: 2.9.4(@types/react@17.0.53)(react@16.14.0)
@@ -85,9 +88,6 @@ devDependencies:
   '@vitejs/plugin-react':
     specifier: ^4.0.0
     version: 4.0.0(vite@4.3.9)
-  '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.47
-    version: 1.0.0-alpha.47
   babel-eslint:
     specifier: ^10.1.0
     version: 10.1.0(eslint@7.32.0)
@@ -5243,12 +5243,12 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.0.0-alpha.9:
-    resolution: {integrity: sha512-lMCAW1V9OEMbgtXQWf9CTadh6lOO1fUoLH/dGMevM7CtDbhkHJfkVkiP4m0NBidznq8B5dq3n1H+sbYv6+44lA==}
+  /@warp-ds/css@1.0.0-alpha.11:
+    resolution: {integrity: sha512-Ai1u+GLypVbkBz0lBZe2xNYOfHCFHJQams7PXV7xmdzDJnnNaEpfgq04KDu00aguC1/SPFFHv85GeyQmlAySkg==}
     dependencies:
       '@sindresorhus/slugify': 2.2.1
       '@warp-ds/tokenizer': 0.0.2
-      '@warp-ds/uno': 1.0.0-alpha.49
+      '@warp-ds/uno': 1.0.0-alpha.50
       drnm: 0.9.0
       lightningcss: 1.21.1
     dev: false
@@ -5260,15 +5260,8 @@ packages:
       yaml: 2.3.1
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.47:
-    resolution: {integrity: sha512-+8RGDnthKD5/FDGx+7/WdY0NsmGenTCfrPeHA+VoyFDrVgFxz+DiWn6SldayaeYVgjlmvXyKTVAn0leGZROXdQ==}
-    dependencies:
-      '@unocss/core': 0.50.6
-      '@unocss/preset-mini': 0.50.6
-    dev: true
-
-  /@warp-ds/uno@1.0.0-alpha.49:
-    resolution: {integrity: sha512-72c5dT6QAy7GFmL+SN2gRlOsJWBWYM4uJpyw8WA9gCQHNENHXtoWu+D24+c47T9K908M3ZG+2+U1M/FXEZ7ojA==}
+  /@warp-ds/uno@1.0.0-alpha.50:
+    resolution: {integrity: sha512-L7hlWNjIF6WCsEdnfTeckVDiZ5eCVnxv4YzmOfBkfrusoXtuudhJwT3Cr02F24KjcOnREl0NSdPWzerB5WpwqA==}
     dependencies:
       '@unocss/core': 0.50.6
       '@unocss/preset-mini': 0.50.6

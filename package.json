@@ -64,7 +64,6 @@
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "@vitejs/plugin-react": "^4.0.0",
-    "@warp-ds/uno": "^1.0.0-alpha.47",
     "babel-eslint": "^10.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "element-collapse": "^1.0.1",
@@ -104,8 +103,9 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@warp-ds/css": "^1.0.0-alpha.9",
+    "@warp-ds/css": "^1.0.0-alpha.11",
     "@warp-ds/core": "^1.0.0",
+    "@warp-ds/uno": "^1.0.0-alpha.50",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-doctor": "^1.0.0"
