@@ -12,11 +12,11 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   '@warp-ds/css':
-    specifier: ^1.0.0-alpha.14
-    version: 1.0.0-alpha.14
+    specifier: ^1.0.0-alpha.15
+    version: 1.0.0-alpha.15(@warp-ds/component-classes@1.0.0-alpha.110)
   '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.50
-    version: 1.0.0-alpha.50
+    specifier: ^1.0.0-alpha.53
+    version: 1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110)
   react-focus-lock:
     specifier: ^2.5.2
     version: 2.9.4(@types/react@17.0.53)(react@16.14.0)
@@ -5237,20 +5237,26 @@ packages:
       - supports-color
     dev: true
 
+  /@warp-ds/component-classes@1.0.0-alpha.110:
+    resolution: {integrity: sha512-kqOYLHBxNjyuIs7X7hlZyywxua//Gxd6+h3H13d1RT/Zfkjnr/ByUJdFvbcYqPNrNsLLwqdPsRZTbL02f0EuDg==}
+    dev: false
+
   /@warp-ds/core@1.0.0:
     resolution: {integrity: sha512-HCzgWm6wHR2Wh/rvNu9I4Qe1HdUj/i3v5amjioW38ZPh/Ve/y/0imX//ZXMLjshDVK+ZKU34Xd0TC56z/Yg36g==}
     dependencies:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.0.0-alpha.14:
-    resolution: {integrity: sha512-DjHb2ruYj76THBCNYy2TAcfOrBmnRupNcW7WAVR1kfkw5NDVwP5v1WzfRGJqyaLxwu3oSd/rlWpo2HSL7C0YCQ==}
+  /@warp-ds/css@1.0.0-alpha.15(@warp-ds/component-classes@1.0.0-alpha.110):
+    resolution: {integrity: sha512-PobpPTG+xGELgyvkqQO9FlvJCFjnNrZlvTDXlyXfK6tvi+7cqCPSYlsPOPJuPkn9mIbanDjnpb6Y8d+67jZBbQ==}
     dependencies:
       '@sindresorhus/slugify': 2.2.1
       '@warp-ds/tokenizer': 0.0.2
-      '@warp-ds/uno': 1.0.0-alpha.50
+      '@warp-ds/uno': 1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110)
       drnm: 0.9.0
       lightningcss: 1.21.1
+    transitivePeerDependencies:
+      - '@warp-ds/component-classes'
     dev: false
 
   /@warp-ds/tokenizer@0.0.2:
@@ -5260,11 +5266,14 @@ packages:
       yaml: 2.3.1
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.50:
-    resolution: {integrity: sha512-L7hlWNjIF6WCsEdnfTeckVDiZ5eCVnxv4YzmOfBkfrusoXtuudhJwT3Cr02F24KjcOnREl0NSdPWzerB5WpwqA==}
+  /@warp-ds/uno@1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110):
+    resolution: {integrity: sha512-wlpsUTCiVZx9YHrHHeAnJcIGYXJLTiyxnH0DRwqWnDzDDeWHkG7ob+VMxC1FVSRAqe5uu1RARU95HCDkSkaq/w==}
+    peerDependencies:
+      '@warp-ds/component-classes': 1.0.0-alpha.110
     dependencies:
       '@unocss/core': 0.50.6
       '@unocss/preset-mini': 0.50.6
+      '@warp-ds/component-classes': 1.0.0-alpha.110
     dev: false
 
   /@yarnpkg/esbuild-plugin-pnp@3.0.0-rc.15(esbuild@0.17.18):
