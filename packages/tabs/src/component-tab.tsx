@@ -8,10 +8,11 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
     [className]: !!className,
     [ccTab.tabActive]: isActive,
   }),
-  icon: classNames(ccTab.icon, ccTab.iconUnderlined, isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive),
+  icon: classNames(ccTab.icon, {
+    [ccTab.iconUnderlinedActive] : isActive,
+  }),
   content: classNames(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
-    [ccTab.contentUnderlinedInactive]: !isActive,
   }),
   attrs: { ...rest },
 });

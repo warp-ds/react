@@ -6,6 +6,8 @@ import jsxExample from './docs/src/plugins/jsxExample.cjs';
 import propTable from './docs/src/plugins/propTable.cjs';
 import { presetWarp } from '@warp-ds/uno'
 import uno from 'unocss/vite'
+import { classes } from '@warp-ds/css/component-classes/classes';
+
 
 
 export default function config() {
@@ -14,6 +16,7 @@ export default function config() {
     plugins: [
       uno({
         presets: [presetWarp({ usePreflight: true })],
+        safelist: classes,
       }),
       react(),
       mdx.default({

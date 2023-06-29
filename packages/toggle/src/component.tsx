@@ -50,10 +50,10 @@ export function Toggle(props: ToggleProps) {
     props.selected !== undefined || props.checked !== undefined;  
 
   const labelClasses = classNames({
+    [ccToggle.indeterminate]: props.indeterminate,
     [ccToggle.label]: !isRadioButton,
     [ccToggle.focusable]: !isRadioButton,
     [ccToggle.noContent]: !props.indeterminate,
-    [ccToggle.indeterminate]: props.indeterminate,
     [`${ccToggle.radio} ${ccToggle.labelRadioBorder} ${ccToggle.radioChecked}`]: isRadio,
     [ccToggle.radioInvalid]: isRadio && isInvalid,
     [`${ccToggle.checkbox} ${ccToggle.labelCheckboxBorder} ${ccToggle.checkboxChecked}`]: isCheckbox,
