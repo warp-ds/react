@@ -29,8 +29,8 @@ export type ButtonProps = {
   primary?: boolean;
 
   /**
-   * Set the button to be a secondary, flat style button. Can be combined with `quiet` and `small`.
-   * @default true
+   * Set the button to be a secondary button. Can be combined with `quiet` and `small`.
+   * @default false
    */
   secondary?: boolean;
 
