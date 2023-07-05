@@ -1,3 +1,24 @@
+# [1.0.0-alpha.35](https://github.com/warp-ds/react/compare/v1.0.0-alpha.34...v1.0.0-alpha.35) (2023-07-05)
+
+
+### Bug Fixes
+
+* add placeholder to texarea ([cebd307](https://github.com/warp-ds/react/commit/cebd307d80b9bae6493d112709675b208236b27a))
+
+# [1.0.0-alpha.34](https://github.com/warp-ds/react/compare/v1.0.0-alpha.33...v1.0.0-alpha.34) (2023-07-04)
+
+
+### Bug Fixes
+
+* secondary button prop is not true by default ([#56](https://github.com/warp-ds/react/issues/56)) ([d82680a](https://github.com/warp-ds/react/commit/d82680a8a3eae31fff61bff8a400eefc7a4a2711))
+
+# [1.0.0-alpha.33](https://github.com/warp-ds/react/compare/v1.0.0-alpha.32...v1.0.0-alpha.33) (2023-06-30)
+
+
+### Bug Fixes
+
+* use correct padding for small buttons ([a054d29](https://github.com/warp-ds/react/commit/a054d2960b9e83125bd8c54196d3dfbbef64a3be))
+
 # [1.0.0-alpha.32](https://github.com/warp-ds/react/compare/v1.0.0-alpha.31...v1.0.0-alpha.32) (2023-06-21)
 
 
