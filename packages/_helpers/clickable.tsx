@@ -56,7 +56,7 @@ export function Clickable({
   return radio || checkbox ? (
     <ToggleItem
       labelClassName={classNames(props.labelClassName)}
-      className={`focus:focusable:focus focus-visible:focusable:focus-visible not-focus-visible:focusable:focus:not(:focus-visible) focusable-inset ${ccClickable.clickable}`} //TODO should be rewritten when fixed in drive, only `focusable` should be needed
+      className={ccClickable.toggle}
       type={type}
       controlled={false}
       onChange={props.onClick ? props.onClick : () => undefined}
@@ -70,11 +70,11 @@ export function Clickable({
       props.href ? 'a' : 'button',
       {
         ...props,
-        className: classNames(props.className, 'focus:focusable:focus focus:focusable:not(:focus-visible)'),
+        className: classNames(ccClickable.buttonOrLink, props.className),
         type: props.href ? undefined : props.type || 'button',
       },
       <>
-        <span className={ccClickable.clickableNotToggle} aria-hidden="true"></span>
+        <span className={ccClickable.buttonOrLinkStretch} aria-hidden="true"></span>
         {children}
       </>,
     )

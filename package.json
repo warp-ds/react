@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "1.0.0-alpha.35",
+  "version": "1.0.0-alpha.36",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -64,7 +64,6 @@
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.0",
-    "@warp-ds/uno": "^1.0.0-alpha.47",
     "cz-conventional-changelog": "^3.3.0",
     "element-collapse": "^1.0.1",
     "esbuild": "0.15.5",
@@ -102,7 +101,8 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@warp-ds/component-classes": "^1.0.0-alpha.108",
+    "@warp-ds/uno": "^1.0.0-alpha.49",
+    "@warp-ds/component-classes": "^1.0.0-alpha.115",
     "@warp-ds/core": "^1.0.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",

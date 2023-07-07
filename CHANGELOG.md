@@ -1,3 +1,10 @@
+# [1.0.0-alpha.36](https://github.com/warp-ds/react/compare/v1.0.0-alpha.35...v1.0.0-alpha.36) (2023-07-07)
+
+
+### Bug Fixes
+
+* stable FINN prod alpha-release ([#59](https://github.com/warp-ds/react/issues/59)) ([0733c47](https://github.com/warp-ds/react/commit/0733c47cd68a5b5dc2e8a5d1224b4c70c2c3355d))
+
 # [1.0.0-alpha.35](https://github.com/warp-ds/react/compare/v1.0.0-alpha.34...v1.0.0-alpha.35) (2023-07-05)
 
 
