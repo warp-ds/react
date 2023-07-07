@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.0.0-alpha.15
     version: 1.0.0-alpha.15(@warp-ds/component-classes@1.0.0-alpha.110)
   '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.53
-    version: 1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110)
+    specifier: ^1.0.0-alpha.57
+    version: 1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110)
   react-focus-lock:
     specifier: ^2.5.2
     version: 2.9.4(@types/react@17.0.53)(react@16.14.0)
@@ -5252,7 +5252,7 @@ packages:
     dependencies:
       '@sindresorhus/slugify': 2.2.1
       '@warp-ds/tokenizer': 0.0.2
-      '@warp-ds/uno': 1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110)
+      '@warp-ds/uno': 1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110)
       drnm: 0.9.0
       lightningcss: 1.21.1
     transitivePeerDependencies:
@@ -5266,8 +5266,8 @@ packages:
       yaml: 2.3.1
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.53(@warp-ds/component-classes@1.0.0-alpha.110):
-    resolution: {integrity: sha512-wlpsUTCiVZx9YHrHHeAnJcIGYXJLTiyxnH0DRwqWnDzDDeWHkG7ob+VMxC1FVSRAqe5uu1RARU95HCDkSkaq/w==}
+  /@warp-ds/uno@1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110):
+    resolution: {integrity: sha512-DPV+0uzb0DWRmY1YM3CkkR5HSemZG8gW+r8NEAycbraMY9dSESg7pcOEQREKdAAye3HfwhDjD7Dh69LjsP7JsA==}
     peerDependencies:
       '@warp-ds/component-classes': 1.0.0-alpha.110
     dependencies:

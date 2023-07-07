@@ -68,6 +68,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             [ccInput.readOnly]: readOnly,
           })}
           {...rest}
+          placeholder={placeholder}
           aria-describedby={helpId}
           aria-errormessage={isInvalid && helpId ? helpId : undefined}
           aria-invalid={isInvalid}

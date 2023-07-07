@@ -39,7 +39,9 @@ export const Button = forwardRef<
     [ccButton.buttonUtilityFlat]: utility && quiet,
     // others
     [ccButton.buttonSmall]: small,
+    [ccButton.buttonSmallOverride]: small && !(secondary || utility),
     [ccButton.buttonUtility]: utility && !quiet,
+    [ccButton.buttonSmallUtility]: small && utility,
     [ccButton.buttonLink]: link,
     [ccButton.buttonPill]: pill,
     [ccButton.buttonInProgress]: loading,
