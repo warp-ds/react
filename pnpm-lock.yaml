@@ -12,11 +12,11 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   '@warp-ds/css':
-    specifier: ^1.0.0-alpha.15
-    version: 1.0.0-alpha.15(@warp-ds/component-classes@1.0.0-alpha.110)
+    specifier: ^1.0.0-alpha.33
+    version: 1.0.0-alpha.33(@warp-ds/component-classes@1.0.0-alpha.110)
   '@warp-ds/uno':
-    specifier: ^1.0.0-alpha.57
-    version: 1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110)
+    specifier: ^1.0.0-alpha.58
+    version: 1.0.0-alpha.58(@warp-ds/component-classes@1.0.0-alpha.110)
   react-focus-lock:
     specifier: ^2.5.2
     version: 2.9.4(@types/react@17.0.53)(react@16.14.0)
@@ -4005,21 +4005,6 @@ packages:
       - supports-color
     dev: true
 
-  /@sindresorhus/slugify@2.2.1:
-    resolution: {integrity: sha512-MkngSCRZ8JdSOCHRaYd+D01XhvU3Hjy6MGl06zhOk614hp9EOAp5gIkBeQg7wtmxpitU6eAL4kdiRMcJa2dlrw==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@sindresorhus/transliterate': 1.6.0
-      escape-string-regexp: 5.0.0
-    dev: false
-
-  /@sindresorhus/transliterate@1.6.0:
-    resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
-    engines: {node: '>=12'}
-    dependencies:
-      escape-string-regexp: 5.0.0
-    dev: false
-
   /@storybook/addon-actions@7.0.22(react-dom@16.14.0)(react@16.14.0):
     resolution: {integrity: sha512-liHeHflDuJz+iAye387L0Dw5sSSZ/qSa0uhSrB5zPvilbZj7vAgEc+Uonqvl21nKm3jlu9KuXn7SNVUhdY3R6g==}
     peerDependencies:
@@ -5247,16 +5232,18 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.0.0-alpha.15(@warp-ds/component-classes@1.0.0-alpha.110):
-    resolution: {integrity: sha512-PobpPTG+xGELgyvkqQO9FlvJCFjnNrZlvTDXlyXfK6tvi+7cqCPSYlsPOPJuPkn9mIbanDjnpb6Y8d+67jZBbQ==}
+  /@warp-ds/css@1.0.0-alpha.33(@warp-ds/component-classes@1.0.0-alpha.110):
+    resolution: {integrity: sha512-zc+g1CyKptApAfryLKpEc5N3SnPW87gl7Rx2Zz9hGOrqY42PvjG2NplkKbas1/bLvpGKW5VTBrdaVcyt049cFA==}
     dependencies:
-      '@sindresorhus/slugify': 2.2.1
+      '@warp-ds/fonts': 1.1.0
       '@warp-ds/tokenizer': 0.0.2
-      '@warp-ds/uno': 1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110)
-      drnm: 0.9.0
-      lightningcss: 1.21.1
+      '@warp-ds/uno': 1.0.0-alpha.58(@warp-ds/component-classes@1.0.0-alpha.110)
     transitivePeerDependencies:
       - '@warp-ds/component-classes'
+    dev: false
+
+  /@warp-ds/fonts@1.1.0:
+    resolution: {integrity: sha512-kLNZzK3o0rMJApm7/YT3K7rYoFKgH5PyJMTVwv34O4Dx6ikfN7appc4f2DFYkE2XY6gifpD5F2r1ftcJtdW4+w==}
     dev: false
 
   /@warp-ds/tokenizer@0.0.2:
@@ -5266,8 +5253,8 @@ packages:
       yaml: 2.3.1
     dev: false
 
-  /@warp-ds/uno@1.0.0-alpha.57(@warp-ds/component-classes@1.0.0-alpha.110):
-    resolution: {integrity: sha512-DPV+0uzb0DWRmY1YM3CkkR5HSemZG8gW+r8NEAycbraMY9dSESg7pcOEQREKdAAye3HfwhDjD7Dh69LjsP7JsA==}
+  /@warp-ds/uno@1.0.0-alpha.58(@warp-ds/component-classes@1.0.0-alpha.110):
+    resolution: {integrity: sha512-azdVumf9P46ZwT0uLxOm2ik8yUWupBsVyE7pHncOdkubUBj23oSH8MalaqSO0p/7sK5H9hl6yKFG4lsD/kCYsQ==}
     peerDependencies:
       '@warp-ds/component-classes': 1.0.0-alpha.110
     dependencies:
@@ -6895,12 +6882,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /detect-libc@1.0.3:
-    resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
-    engines: {node: '>=0.10'}
-    hasBin: true
-    dev: false
-
   /detect-node-es@1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
     dev: false
@@ -6991,10 +6972,6 @@ packages:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
     dev: true
-
-  /drnm@0.9.0:
-    resolution: {integrity: sha512-ZNkurkg7xoWPQNTf4TfUxS/lvm+zPve01xjLS/RUWCPr6OB3zBlM4Y2dIXkR6NsELojppfum8+wdWZ0vnjdwmg==}
-    dev: false
 
   /duplexer2@0.1.4:
     resolution: {integrity: sha512-asLFVfWWtJ90ZyOUHMqk7/S2w2guQKxUI2itj3d92ADHhxUSbCMGi1f1cBcJ7xM1To+pE/Khbwo1yuNbMEPKeA==}
@@ -7612,11 +7589,6 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
     dev: true
-
-  /escape-string-regexp@5.0.0:
-    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
-    engines: {node: '>=12'}
-    dev: false
 
   /escodegen@2.0.0:
     resolution: {integrity: sha512-mmHKys/C8BFUGI+MAWNcSYoORYLMdPzjrknd2Vc+bUsjN5bXcr8EhrNB+UTqfL1y3I9c4fw2ihgtMPQLBRiQxw==}
@@ -9915,94 +9887,6 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
     dev: true
-
-  /lightningcss-darwin-arm64@1.21.1:
-    resolution: {integrity: sha512-dljpsZ15RN4AxI958n9qO7sAv29FRuUMCB10CSDBGmDOW+oDDbNLs1k5/7MlYg5FXnZqznUSTtHBFHFyo1Rs2Q==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-darwin-x64@1.21.1:
-    resolution: {integrity: sha512-e/dAKKOcLe2F/A5a89gh03ABxZHn4yjGapGimCFxnCpg68iIdtoPrJTFAyxPV3Jty4djLYRlitoIWNidOK35zA==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-linux-arm-gnueabihf@1.21.1:
-    resolution: {integrity: sha512-Ak12ti7D4Q9Tk3tX9fktCJVe+spP12/dOcebw67DBeZ3EQ4meIGTkFpl2ryZK8Z7kbIJNUsscVsz3zXW21/25A==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-linux-arm64-gnu@1.21.1:
-    resolution: {integrity: sha512-ggCX0iyG/h2C1MfDfmfhB0zpEUTTP+kG9XBbwHRFKrQsmb3b7WC5QiyVuGYkzoGiHy1JNuyi27qR9cNVLCR8FQ==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-linux-arm64-musl@1.21.1:
-    resolution: {integrity: sha512-vGaVLju7Zhus/sl5Oz/1YbV7L/Mr/bfjHbThj/DJcFggZPj1wfSeWc6gAAISqK3bIAUMVlcUEm2UnIDGj0tsOQ==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-linux-x64-gnu@1.21.1:
-    resolution: {integrity: sha512-W6b+ndCCO/SeIT4s7kJhkJGXZVz96uwb7eY61SwCAibs5HirzRMrIyuMY3JKcRESg9/jysHo4YWrr1icbzWiXw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-linux-x64-musl@1.21.1:
-    resolution: {integrity: sha512-eA2ygIg/IbjglRq/QRCDTgnR8mtmXJ65t/1C1QUUvvexWfr0iiTKJj3iozgUKZmupfomrPIhF3Qya0el9PqjUA==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss-win32-x64-msvc@1.21.1:
-    resolution: {integrity: sha512-2PKZvhrMxr7TjceUkkAtNQtDOEozcbp8GdcOKCrhNmrQ1OT8Mm5p4sMp7bzT0QytT7W5EuhIteWQFW/qI64Wtw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /lightningcss@1.21.1:
-    resolution: {integrity: sha512-TKkVZzKnJVtGLI+8QMXLH2JdNcxjodA06So+uXA5qelvuReKvPyCJBX/6ZznADA76zNijmDc3OhjxvTBmNtCoA==}
-    engines: {node: '>= 12.0.0'}
-    dependencies:
-      detect-libc: 1.0.3
-    optionalDependencies:
-      lightningcss-darwin-arm64: 1.21.1
-      lightningcss-darwin-x64: 1.21.1
-      lightningcss-linux-arm-gnueabihf: 1.21.1
-      lightningcss-linux-arm64-gnu: 1.21.1
-      lightningcss-linux-arm64-musl: 1.21.1
-      lightningcss-linux-x64-gnu: 1.21.1
-      lightningcss-linux-x64-musl: 1.21.1
-      lightningcss-win32-x64-msvc: 1.21.1
-    dev: false
 
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}

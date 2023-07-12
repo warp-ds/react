@@ -1,3 +1,10 @@
+# [1.0.0-alpha.37](https://github.com/warp-ds/react/compare/v1.0.0-alpha.36...v1.0.0-alpha.37) (2023-07-10)
+
+
+### Bug Fixes
+
+* **buttons:** bump component-classes to 1.0.0-alpha.116 ([#60](https://github.com/warp-ds/react/issues/60)) ([b483bcd](https://github.com/warp-ds/react/commit/b483bcd3b002cc953002d54379fe46ce5b012007))
+
 # [1.0.0-alpha.36](https://github.com/warp-ds/react/compare/v1.0.0-alpha.35...v1.0.0-alpha.36) (2023-07-07)
 
 
