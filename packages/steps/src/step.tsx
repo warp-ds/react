@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { step as ccStep } from '@warp-ds/component-classes';
+import { step as ccStep } from '@warp-ds/css/component-classes';
 import { useContext } from 'react';
 import { StepsContext } from './component';
 

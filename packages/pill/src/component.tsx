@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { PillProps } from '.';
-import { pill as ccPill } from '@warp-ds/component-classes';
+import { pill as ccPill } from '@warp-ds/css/component-classes';
 
 export function Pill(props: PillProps) {
   return (

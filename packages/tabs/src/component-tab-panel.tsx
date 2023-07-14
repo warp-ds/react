@@ -1,5 +1,5 @@
 import React from 'react';
-import { tab as ccTab } from '@warp-ds/component-classes';
+import { tab as ccTab } from '@warp-ds/css/component-classes';
 import type { TabPanelProps } from './props';
 
 export function TabPanel(props: TabPanelProps) {

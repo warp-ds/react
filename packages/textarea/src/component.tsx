@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/component-classes';
+import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { TextAreaProps } from './props';
 import useTextAreaHeight from './useTextAreaHeight';

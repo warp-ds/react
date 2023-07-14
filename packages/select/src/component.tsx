@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { select as ccSelect, label as ccLabel, helpText as ccHelpText } from '@warp-ds/component-classes';
+import { select as ccSelect, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';

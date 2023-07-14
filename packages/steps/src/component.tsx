@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import { StepsProps } from './props';
 import { classNames } from '@chbphone55/classnames';
-import { steps as ccSteps } from '@warp-ds/component-classes';
+import { steps as ccSteps } from '@warp-ds/css/component-classes';
 
 
 export const StepsContext = createContext<{

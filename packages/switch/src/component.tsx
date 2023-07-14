@@ -1,7 +1,7 @@
 import React from 'react';
 import { SwitchProps } from './props';
 import { classNames } from '@chbphone55/classnames';
-import { switchToggle as ccSwitch } from '@warp-ds/component-classes';
+import { switchToggle as ccSwitch } from '@warp-ds/css/component-classes';
 
 export function Switch({
   id,

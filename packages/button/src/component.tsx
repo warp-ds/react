@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref } from 'react';
-import { button as ccButton } from '@warp-ds/component-classes';
+import { button as ccButton } from '@warp-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
 import type { ButtonProps } from './props';
 

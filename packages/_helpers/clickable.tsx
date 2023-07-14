@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { clickable as ccClickable } from '@warp-ds/component-classes';
+import { clickable as ccClickable } from '@warp-ds/css/component-classes';
 import { Item as ToggleItem } from '../toggle/src/item';
 import { useId } from '../utils/src/useId';
 

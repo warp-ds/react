@@ -11,7 +11,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { combobox as ccCombobox } from '@warp-ds/component-classes';
+import { combobox as ccCombobox } from '@warp-ds/css/component-classes';
 import { TextField } from '../../textfield/src';
 import { useId } from '../../utils/src';
 import { ComboboxProps, OptionWithIdAndMatch } from './props';

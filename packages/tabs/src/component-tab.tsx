@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { tab as ccTab } from '@warp-ds/component-classes';
+import { tab as ccTab } from '@warp-ds/css/component-classes';
 import type { TabProps } from './props';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
@@ -8,10 +8,11 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
     [className]: !!className,
     [ccTab.tabActive]: isActive,
   }),
-  icon: classNames(ccTab.icon, ccTab.iconUnderlined, isActive ? ccTab.iconUnderlinedActive : ccTab.iconUnderlinedInactive),
+  icon: classNames(ccTab.icon, {
+    [ccTab.iconUnderlinedActive] : isActive,
+  }),
   content: classNames(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
-    [ccTab.contentUnderlinedInactive]: !isActive,
   }),
   attrs: { ...rest },
 });

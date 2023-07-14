@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { toggle as ccToggle } from '@warp-ds/component-classes';
+import { toggle as ccToggle } from '@warp-ds/css/component-classes';
 import { Item } from '../toggle/src/item';
 
 export interface DeadToggleProps {

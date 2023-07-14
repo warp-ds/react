@@ -1,5 +1,5 @@
 import React from 'react';
-import { toggle as ccToggle } from '@warp-ds/component-classes';
+import { toggle as ccToggle } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { ToggleEntry } from './props';
 
