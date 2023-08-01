@@ -37,6 +37,7 @@ export function Step({ active, completed, children }: StepProps) {
 
   const stepLineHorizontalClasses = classNames({
     [ccStep.stepLine]: true,
+    [ccStep.stepLineHorizontalLeft]: true,
     [ccStep.stepLineHorizontal]: !vertical,
     [ccStep.stepLineIncomplete]: !active && !completed,
     [ccStep.stepLineComplete]: active || completed,
@@ -52,6 +53,7 @@ export function Step({ active, completed, children }: StepProps) {
 
   const stepLineClasses = classNames({
     [ccStep.stepLine]: true,
+    [ccStep.stepLineHorizontalRight]: true,
     [ccStep.stepLineVertical]: vertical,
     [ccStep.stepLineVerticalRight]: vertical && !left,
     [ccStep.stepLineHorizontal]: !vertical,
