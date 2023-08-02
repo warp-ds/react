@@ -1,3 +1,10 @@
+# [1.0.0-alpha.39](https://github.com/warp-ds/react/compare/v1.0.0-alpha.38...v1.0.0-alpha.39) (2023-08-01)
+
+
+### Bug Fixes
+
+* **step:** hide outer lines on horizontal variant of steps ([#62](https://github.com/warp-ds/react/issues/62)) ([a345319](https://github.com/warp-ds/react/commit/a3453195fc8fc663c907f66d5fc5157b0a5addbe))
+
 # [1.0.0-alpha.38](https://github.com/warp-ds/react/compare/v1.0.0-alpha.37...v1.0.0-alpha.38) (2023-07-14)
 
 
