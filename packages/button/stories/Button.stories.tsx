@@ -28,6 +28,18 @@ export const Example = () => {
         <Button className="mr-32" primary small loading>
           Small Loading
         </Button>
+        {/* @ts-ignore */}
+        <Button className="mr-32" primary quiet>
+          Quiet
+        </Button>
+        {/* @ts-ignore */}
+        <Button className="mr-32" primary quiet small>
+          Quiet Small
+        </Button>
+        {/* @ts-ignore */}
+        <Button className="mr-32" primary quiet small loading>
+          Quiet Small Loading
+        </Button>
       </div>
       <div>
         <h3>Secondary</h3>
@@ -71,22 +83,22 @@ export const Example = () => {
         <h3>Negative</h3>
         {/* @ts-ignore */}
         <Button className="mr-32" negative>
-          Primary
+        Negative
         </Button>
         <Button className="mr-32" negative href="https://google.com">
           Simple href
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" negative loading>
-          Primary Loading
+          Negative Loading
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" negative small>
-          Primary Small
+          Negative Small
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" negative small loading>
-          Primary Small Loading
+          Negative Small Loading
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" negative quiet>
