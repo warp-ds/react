@@ -245,7 +245,7 @@ export const Example = () => {
           className="mr-32"
           target="_blank"
         >
-          Disabled button utility
+          Disabled button utility small
         </Button>
       </div>
     </div>
