@@ -100,7 +100,7 @@
     "unified": "^10.1.2",
     "unist-builder": "^3.0.1",
     "unist-util-visit": "^4.1.2",
-    "unocss": "^0.50.6",
+    "unocss": "^0.55.1",
     "vite": "^4.3.9",
     "vite-plugin-mdx": "^3.5.11"
   },
@@ -108,8 +108,8 @@
     "@chbphone55/classnames": "^2.0.0",
     "@lingui/core": "^4.3.0",
     "@warp-ds/core": "^1.0.0",
-    "@warp-ds/css": "^1.0.0-alpha.37",
-    "@warp-ds/uno": "^1.0.0-alpha.60",
+    "@warp-ds/css": "^1.0.0",
+    "@warp-ds/uno": "^1.0.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-doctor": "^1.0.0"
