@@ -1,3 +1,22 @@
+# [1.0.0-alpha.41](https://github.com/warp-ds/react/compare/v1.0.0-alpha.40...v1.0.0-alpha.41) (2023-08-25)
+
+
+### Bug Fixes
+
+* add Finnish language ([77a32c0](https://github.com/warp-ds/react/commit/77a32c040b3ca8c4ed961cb450e5e75a4ffc4a80))
+* add more translations ([a8f57a6](https://github.com/warp-ds/react/commit/a8f57a65a1ec053e2f67f604ad23612e051d4d57))
+* add translation for "magnifying glass" used in affix ([41d6774](https://github.com/warp-ds/react/commit/41d67741f6e1fdf4cfd8c0676c16a623aa08dc9e))
+* detect locale on server ([1ffbc50](https://github.com/warp-ds/react/commit/1ffbc500243686e956c23c154a7b1614959e0361))
+* extract supportedLocales to avoid to define it twice ([73a81f6](https://github.com/warp-ds/react/commit/73a81f66ba2c6c3138cbfefcbf989f6ff31feff1))
+* import and load messages in component to avoid issues with dynamic import ([4aeadf0](https://github.com/warp-ds/react/commit/4aeadf08e40671134e442592e0d142c1f51f81fc))
+* only support 'en' and 'nb' for now ([3e78b12](https://github.com/warp-ds/react/commit/3e78b127a3ad3fece4d842306f03bdd9fab0ffd9))
+* use process.env.NMP_LANGUAGE if available if SSR ([a7bba9c](https://github.com/warp-ds/react/commit/a7bba9c93969d4b74cbea93785a66f87d033d42a))
+
+
+### Features
+
+* add internationalization ([4ffec64](https://github.com/warp-ds/react/commit/4ffec64ca6a16e1ba8dbeba93c947c94c3ab6ce1))
+
 # [1.0.0-alpha.40](https://github.com/warp-ds/react/compare/v1.0.0-alpha.39...v1.0.0-alpha.40) (2023-08-10)
 
 

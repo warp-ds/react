@@ -1,10 +1,14 @@
 import React, { forwardRef, useRef } from 'react';
+import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
 import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { TextAreaProps } from './props';
 import useTextAreaHeight from './useTextAreaHeight';
-
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 /**
  * A textarea component that automatically resizes as content changes.
  */
@@ -27,6 +31,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       placeholder,
       ...rest
     } = props;
+
+    activateI18n(enMessages, nbMessages, fiMessages);
 
     const id = useId(providedId);
     const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -54,7 +60,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             {label}
             {optional && (
               <span className={ccLabel.optional}>
-                (valgfritt)
+                {i18n._(
+                  /*i18n*/ {
+                    id: 'textarea.label.optional',
+                    message: '(optional)',
+                    comment: 'Shown behind label when marked as optional',
+                  },
+                )}
               </span>
             )}
           </label>

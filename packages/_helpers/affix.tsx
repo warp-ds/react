@@ -1,6 +1,11 @@
 import React from 'react';
 import { suffix, prefix } from '@warp-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
+import { i18n } from '@lingui/core';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../i18n';
 
 interface AffixProps {
   /** Defines a string value that labels the affix element. */
@@ -27,6 +32,13 @@ interface AffixProps {
 
 export function Affix(props: AffixProps) {
   const classBase = props.prefix ? prefix : suffix;
+  activateI18n(enMessages, nbMessages, fiMessages);
+  const ariaLabelMagnifyingGlass = i18n._(
+    /*i18n*/ {
+      id: 'forms.affix.aria.magnifyingGlass',
+      message: 'Magnifying glass',
+      comment: 'Aria label for magnifying glass used as affix in Combobox and Textfield components',
+    });
 
   return React.createElement(
     props.label ? 'div' : 'button',
@@ -63,7 +75,7 @@ export function Affix(props: AffixProps) {
       {props.search && (
         <svg
           role="img"
-          aria-label="Forstørrelsesglass"
+          aria-label={ariaLabelMagnifyingGlass}
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"

@@ -2,10 +2,23 @@ import * as React from 'react';
 import type { BreadcrumbsProps } from './props';
 import { interleave } from '@warp-ds/core/breadcrumbs';
 import { breadcrumbs as ccBreadcrumbs } from "@warp-ds/css/component-classes";
+import { i18n } from '@lingui/core';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
-  const ariaLabel = props['aria-label'] || 'Her er du';
+
+  activateI18n(enMessages, nbMessages, fiMessages);
+
+  const ariaLabel = props['aria-label'] || i18n._(
+    /*i18n*/ {
+      id: 'breadcrumbs.ariaLabel',
+      message: 'You are here',
+      comment: 'Default screenreader message for the breadcrumb component',
+    });
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);

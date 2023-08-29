@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "1.0.0-alpha.40",
+  "version": "1.0.0-alpha.41",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -40,7 +40,9 @@
     "lint": "pnpm run lint:format && pnpm run lint:eslint",
     "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
     "lint:format": "prettier --check . --ignore-path .gitignore",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "messages:extract": "lingui extract",
+    "messages:compile": "lingui compile --strict"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -51,6 +53,8 @@
     "@eik/cli": "^2.0.22",
     "@eik/esbuild-plugin": "^1.1.0",
     "@fabric-ds/icons": "0.5.1",
+    "@lingui/cli": "^4.3.0",
+    "@lingui/conf": "^4.3.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "1.6.22",
     "@semantic-release/changelog": "^6.0.1",
@@ -59,6 +63,7 @@
     "@storybook/builder-vite": "^7.0.22",
     "@storybook/cli": "^7.0.22",
     "@storybook/react-vite": "^7.0.22",
+    "@types/node": "^20.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
@@ -95,15 +100,16 @@
     "unified": "^10.1.2",
     "unist-builder": "^3.0.1",
     "unist-util-visit": "^4.1.2",
-    "unocss": "^0.50.6",
+    "unocss": "^0.55.1",
     "vite": "^4.3.9",
     "vite-plugin-mdx": "^3.5.11"
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
-    "@warp-ds/css": "^1.0.0-alpha.37",
+    "@lingui/core": "^4.3.0",
     "@warp-ds/core": "^1.0.0",
-    "@warp-ds/uno": "^1.0.0-alpha.60",
+    "@warp-ds/css": "^1.0.0",
+    "@warp-ds/uno": "^1.0.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-doctor": "^1.0.0"
