@@ -224,12 +224,33 @@ export const Example = () => {
         </Button>
         {/* @ts-ignore */}
         <Button
+          secondary
+          small
+          quiet
+          disabled
+          className="mr-32"
+          target="_blank"
+        >
+          Disabled small quiet secondary button
+        </Button>
+        {/* @ts-ignore */}
+        <Button
           primary
           disabled
           className="mr-32"
           target="_blank"
         >
           Disabled button primary
+        </Button>
+               {/* @ts-ignore */}
+               <Button
+          primary
+          small
+          disabled
+          className="mr-32"
+          target="_blank"
+        >
+          Disabled button small primary
         </Button>
         {/* @ts-ignore */}
         <Button
