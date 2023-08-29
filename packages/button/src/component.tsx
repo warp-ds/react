@@ -119,7 +119,7 @@ export const Button = forwardRef<
 
     pill: `${buttonSizes.pill} ${buttonTextSizes.medium} ${buttonTypes.pill} ${buttonColors.pill}`,
     pillSmall: `${buttonSizes.pillSmall} ${buttonTextSizes.xsmall} ${buttonTypes.pill} ${buttonColors.pill}`,
-    pillLoading: `${buttonSizes.pill} ${buttonTextSizes.medium} ${buttonTypes.pill}`,
+    pillLoading: `${buttonSizes.pill} ${buttonTextSizes.medium} ${buttonTypes.pill} ${buttonVariants.buttonInProgress}`,
     pillSmallLoading: `${buttonSizes.pillSmall} ${buttonTextSizes.xsmall} ${buttonTypes.pill} ${buttonVariants.buttonInProgress}`,
 
     link: `${buttonSizes.medium} ${buttonTextSizes.medium} ${buttonTypes.link}`,
