@@ -39,7 +39,7 @@ export const PillsWithIcon = () => {
   return (
     <div className="flex space-x-8">
       <Pill
-        icon={<IconSearch16 lang={lang}/>}
+        icon={<IconSearch16 />}
         onClick={() => alert('onClick event')}
         className="py-12"
       />

@@ -18,7 +18,7 @@ export const Example = () => {
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" primary loading>
-          Loading test
+          Loading
         </Button>
         {/* @ts-ignore */}
         <Button className="mr-32" primary small>
@@ -243,7 +243,7 @@ export const Example = () => {
           Disabled button primary
         </Button>
                {/* @ts-ignore */}
-               <Button
+        <Button
           primary
           small
           disabled
