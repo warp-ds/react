@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref } from 'react';
+import React, { forwardRef, Ref, AnchorHTMLAttributes } from 'react';
 import { button as ccButton } from '@warp-ds/css/component-classes';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
@@ -18,7 +18,7 @@ const buttonTypes = [
 ] as const;
 
 export const Button = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
+  HTMLButtonElement | AnchorHTMLAttributes<HTMLAnchorElement>,
   ButtonProps
 >((props, ref) => {
   const {
@@ -111,6 +111,7 @@ export const Button = forwardRef<
     <>
       {props.href ? (
         <a
+          aria-current={props['aria-current']}
           href={props.href}
           target={props.target}
           rel={
