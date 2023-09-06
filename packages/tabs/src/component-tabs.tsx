@@ -146,9 +146,9 @@ export const Tabs = (props: TabsProps) => {
         onKeyDown={handleKeyDown}
       >
         {Children.map(children, (child: any) => {
-          return cloneElement(child, {
-            setActive: change,
-            isActive: child.props.name === active,
+          return child && cloneElement(child, {
+                setActive: change,
+                isActive: child?.props?.name === active,
           });
         })}
         {<span className={wunderbar} ref={wunderbarRef} />}

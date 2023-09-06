@@ -27,7 +27,7 @@ export const Default = () => {
   return (
     <Tabs onChange={(e) => console.log(e)}>
       <Tab label="Tab 1" name="one" />
-      <Tab label="Tab 2" name="two" />
+      {false && <Tab label="Tab 2" name="two" />}
       <Tab label="Tab 3" name="three" isActive />
     </Tabs>
   );
