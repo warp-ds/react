@@ -1,6 +1,7 @@
 export * from './_helpers';
 export * from './alert/src';
 export * from './attention/src';
+export * from './badge/src';
 export * from './box/src';
 export * from './breadcrumbs/src';
 export * from './button/src';

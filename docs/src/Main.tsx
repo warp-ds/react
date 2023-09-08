@@ -9,6 +9,7 @@ import {
 import Alert from '../../packages/alert/docs/Alert.mdx';
 import Attention from '../../packages/attention/docs/Attention.mdx';
 import Breadcrumbs from '../../packages/breadcrumbs/docs/Breadcrumbs.mdx';
+import Badge from '../../packages/badge/docs/Badge.mdx';
 import Box from '../../packages/box/docs/Box.mdx';
 import Button from '../../packages/button/docs/Button.mdx';
 import Expandable from '../../packages/expandable/docs/Expandable.mdx';
@@ -59,15 +60,20 @@ const App = () => {
             <Attention />
           </Route>
 
-          <Route path="/button">
-            <Button />
+          <Route path="/badge">
+            <Badge />
           </Route>
 
           <Route path="/box">
             <Box />
           </Route>
+
           <Route path="/breadcrumbs">
             <Breadcrumbs />
+          </Route>
+
+          <Route path="/button">
+            <Button />
           </Route>
 
           <Route path="/expandable">

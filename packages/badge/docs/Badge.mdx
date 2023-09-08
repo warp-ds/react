@@ -1,0 +1,109 @@
+import { Box } from '../src';
+import { Clickable } from '../../_helpers';
+
+# Box
+
+Box is a layout component used for separating content areas on a page.
+
+## Import
+
+```js
+import { Box } from '@warp-ds/react';
+```
+
+## Visual Options
+
+### Default
+
+```jsx example
+<Box>
+  <h1>Default example</h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Neutral
+
+```jsx example
+<Box neutral>
+  <h1>Neutral example</h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Info
+
+```jsx example
+<Box info>
+  <h1>Info example</h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Bordered
+
+```jsx example
+<Box bordered>
+  <h1>Bordered example</h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Clickable - Neutral (using button)
+
+```jsx example
+<Box neutral clickable>
+  <h1>
+    <Clickable className="font-bold" onClick={() => alert('hey')}>
+      Clickable example
+    </Clickable>
+  </h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Clickable - Info (using anchor)
+
+```jsx example
+<Box info clickable>
+  <h1>
+    <Clickable
+      className="font-bold text-gray-700 hover:no-underline"
+      href="https://finn.no"
+      target="_blank"
+    >
+      Clickable example
+    </Clickable>
+  </h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+### Clickable - Bordered (using anchor)
+
+```jsx example
+<Box bordered clickable>
+  <h1>
+    <Clickable
+      className="font-bold text-gray-700 hover:no-underline"
+      href="https://finn.no"
+      target="_blank"
+    >
+      Clickable example
+    </Clickable>
+  </h1>
+  <p>Box contents go here.</p>
+</Box>
+```
+
+## Props
+
+```props packages/box/src/component.tsx
+
+```
+
+## Clickable props
+
+```props packages/_helpers/clickable.tsx
+
+```
