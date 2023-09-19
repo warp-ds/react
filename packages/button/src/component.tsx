@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, AnchorHTMLAttributes } from 'react';
+import React, { forwardRef, Ref, AnchorHTMLAttributes, MouseEvent } from 'react';
 import { button as ccButton } from '@warp-ds/css/component-classes';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
@@ -98,6 +98,12 @@ export const Button = forwardRef<
     [ccButton.linkAsButton]: !!props.href,
   });
 
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (props.onClick) {
+      props.onClick(e);
+    }
+  };
+
   activateI18n(enMessages, nbMessages, fiMessages);
 
   const ariaValueTextLoading = i18n._(
@@ -111,6 +117,7 @@ export const Button = forwardRef<
     <>
       {props.href ? (
         <a
+          onClick={handleClick}
           aria-current={props['aria-current']}
           href={props.href}
           target={props.target}

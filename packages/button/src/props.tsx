@@ -9,7 +9,7 @@ export type ButtonProps = {
   /**
    * Action to be called when the component is clicked
    */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
 
   /**
    * CSS styles to inline on the component

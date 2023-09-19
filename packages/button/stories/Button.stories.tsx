@@ -210,6 +210,15 @@ export const Example = () => {
         >
           Simple link as button utility
         </Button>
+        {/* @ts-ignore */}
+        <Button
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+          onClick={() => alert("you've clicked")}
+        >
+          Simple link with onClick
+        </Button>
       </div>
       <div>
         <h3>Disabled button</h3>
