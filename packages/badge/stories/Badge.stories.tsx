@@ -6,34 +6,34 @@ export default metadata;
 
 export const Default = () => (
   <Badge>
-    A badge without type or position
+    A badge without variant or position
   </Badge>
 );
 
-export const Types = () => (
+export const Variants = () => (
   <div className="space-x-16">
-    <Badge type="neutral">
+    <Badge variant="neutral">
       neutral badge
     </Badge>
-    <Badge type="info">
+    <Badge variant="info">
       info badge
     </Badge>
-    <Badge type="positive">
+    <Badge variant="positive">
       positive badge
     </Badge>
-    <Badge type="warning">
+    <Badge variant="warning">
       warning badge
     </Badge>
-    <Badge type="negative">
+    <Badge variant="negative">
       negative badge
     </Badge>
-    <Badge type="disabled">
+    <Badge variant="disabled">
       disabled badge
     </Badge>
-    <Badge type="notification">
+    <Badge variant="notification">
       notification badge
     </Badge>
-    <Badge type="price">
+    <Badge variant="price">
       price badge
     </Badge>
   </div>
@@ -43,19 +43,19 @@ export const Positions = () => (
   <div className="space-y-16 max-w-[400px]">
     <div className="relative border border-0 rounded-8 overflow-hidden h-96">
       <img className="w-full h-96 object-cover" src="https://source.unsplash.com/random/400x96" />
-      <Badge type="price" position="tl">tl : Top Left</Badge>
+      <Badge variant="price" position="top-left">top-left</Badge>
     </div>
     <div className="relative border border-0 rounded-8 overflow-hidden h-96">
       <img className="w-full h-96 object-cover" src="https://source.unsplash.com/random/400x96" />
-      <Badge type="price" position="tr">tr : Top Right</Badge>
+      <Badge variant="price" position="top-right">top-right</Badge>
     </div>
     <div className="relative border border-0 rounded-8 overflow-hidden h-96">
       <img className="w-full h-96 object-cover" src="https://source.unsplash.com/random/400x96" />
-      <Badge type="price" position="br">br : Bottom Right</Badge>
+      <Badge variant="price" position="bottom-right">bottom-right</Badge>
     </div>
     <div className="relative border border-0 rounded-8 overflow-hidden h-96">
       <img className="w-full h-96 object-cover" src="https://source.unsplash.com/random/400x96" />
-      <Badge type="price" position="bl">bl : Bottom Left</Badge>
+      <Badge variant="price" position="bottom-left">bottom-left</Badge>
     </div>
   </div>
 );

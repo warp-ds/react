@@ -7,7 +7,7 @@ export function Badge(props: BadgeProps) {
   const {
     children,
     as = 'div',
-    type = 'neutral',
+    variant = 'neutral',
     position,
     ...rest
   } = props;
@@ -18,13 +18,13 @@ export function Badge(props: BadgeProps) {
       ...(rest as Omit<BadgeProps, 'children'> as {}),
       className: classNames(
         ccBadge.base,
-        ccBadge[type],
+        ccBadge[variant],
         {
             [ccBadge.positionBase]: !!position,
-            [ccBadge.positionTL]: position === 'tl',
-            [ccBadge.positionTR]: position === 'tr',
-            [ccBadge.positionBR]: position === 'br',
-            [ccBadge.positionBL]: position === 'bl',
+            [ccBadge.positionTL]: position === 'top-left',
+            [ccBadge.positionTR]: position === 'top-right',
+            [ccBadge.positionBR]: position === 'bottom-right',
+            [ccBadge.positionBL]: position === 'bottom-left',
         },
         props.className,
       ),
