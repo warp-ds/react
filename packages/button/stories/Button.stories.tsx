@@ -290,6 +290,13 @@ export const Example = () => {
           Disabled button utility small
         </Button>
       </div>
+      <div>
+      <h3>Full width button</h3>
+      {/* @ts-ignore */}
+      <Button fullWidth className="mr-32" primary>
+          Full width
+        </Button>
+      </div>
     </div>
   );
 };

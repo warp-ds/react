@@ -79,6 +79,12 @@ export type ButtonProps = {
   /**
    * Set the href for the location where clicking the button will take you to. Uses an a tag instead of a button tag for the underlying implementation
    */
+
+  fullWidth?: boolean;
+
+  /**
+   * Sets the button's width to its parent's width. Useful on mobile when button should take full width.
+   */
   href?: string;
 
   /**
