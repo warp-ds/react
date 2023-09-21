@@ -9,7 +9,7 @@ export type ButtonProps = {
   /**
    * Action to be called when the component is clicked
    */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
 
   /**
    * CSS styles to inline on the component
@@ -78,6 +78,12 @@ export type ButtonProps = {
 
   /**
    * Set the href for the location where clicking the button will take you to. Uses an a tag instead of a button tag for the underlying implementation
+   */
+
+  fullWidth?: boolean;
+
+  /**
+   * Sets the button's width to its parent's width. Useful on mobile when button should take full width.
    */
   href?: string;
 

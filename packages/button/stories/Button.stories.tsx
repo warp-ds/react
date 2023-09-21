@@ -210,6 +210,15 @@ export const Example = () => {
         >
           Simple link as button utility
         </Button>
+        {/* @ts-ignore */}
+        <Button
+          className="mr-32"
+          href="https://google.com/"
+          target="_blank"
+          onClick={() => alert("you've clicked")}
+        >
+          Simple link with onClick
+        </Button>
       </div>
       <div>
         <h3>Disabled button</h3>
@@ -279,6 +288,13 @@ export const Example = () => {
           target="_blank"
         >
           Disabled button utility small
+        </Button>
+      </div>
+      <div>
+      <h3>Full width button</h3>
+      {/* @ts-ignore */}
+      <Button fullWidth className="mr-32" primary>
+          Full width
         </Button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, AnchorHTMLAttributes } from 'react';
+import React, { forwardRef, Ref, AnchorHTMLAttributes, MouseEvent } from 'react';
 import { button as ccButton } from '@warp-ds/css/component-classes';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
@@ -8,7 +8,7 @@ import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as fiMessages} from './locales/fi/messages.mjs';
 import { activateI18n } from '../../i18n';
 
-const buttonTypes = [    
+const buttonVariants = [
   'primary',
   'secondary',
   'negative',
@@ -31,24 +31,25 @@ export const Button = forwardRef<
     link,
     pill,
     loading,
+    fullWidth,
     ...rest
   } = props;
 
-  const buttonType = buttonTypes.find(b => !!props[b]);
-  
+  const defaultVariant = secondary || !buttonVariants.find(b => !!props[b]);
+
   const classes = classNames(props.className, {
-    [ccButton.secondary]: (secondary || !buttonType) && !small && !quiet && !loading && !props.disabled,
-    [ccButton.secondaryDisabled]: (secondary || !buttonType) && !small && !quiet && !loading && props.disabled,
-    [ccButton.secondarySmall]: secondary && small && !quiet && !loading && !props.disabled,
-    [ccButton.secondarySmallDisabled]: secondary && small && !quiet && !loading && props.disabled,
-    [ccButton.secondarySmallLoading]: secondary && small && !quiet && loading,
-    [ccButton.secondarySmallQuiet]: secondary && small && quiet && !loading && !props.disabled,
-    [ccButton.secondarySmallQuietDisabled]: secondary && small && quiet && !loading && props.disabled,
-    [ccButton.secondarySmallQuietLoading]: secondary && small && quiet && loading,
-    [ccButton.secondaryQuiet]: secondary && !small && quiet && !loading && !props.disabled,
-    [ccButton.secondaryQuietDisabled]: secondary && !small && quiet && !loading && props.disabled,
-    [ccButton.secondaryQuietLoading]: secondary && !small && quiet && loading,
-    [ccButton.secondaryLoading]: secondary && !small && !quiet && loading,
+    [ccButton.secondary]: defaultVariant && !small && !quiet && !loading && !props.disabled,
+    [ccButton.secondaryDisabled]: defaultVariant && !small && !quiet && !loading && props.disabled,
+    [ccButton.secondarySmall]: defaultVariant && small && !quiet && !loading && !props.disabled,
+    [ccButton.secondarySmallDisabled]: defaultVariant && small && !quiet && !loading && props.disabled,
+    [ccButton.secondarySmallLoading]: defaultVariant && small && !quiet && loading,
+    [ccButton.secondarySmallQuiet]: defaultVariant && small && quiet && !loading && !props.disabled,
+    [ccButton.secondarySmallQuietDisabled]: defaultVariant && small && quiet && !loading && props.disabled,
+    [ccButton.secondarySmallQuietLoading]: defaultVariant && small && quiet && loading,
+    [ccButton.secondaryQuiet]: defaultVariant && !small && quiet && !loading && !props.disabled,
+    [ccButton.secondaryQuietDisabled]: defaultVariant && !small && quiet && !loading && props.disabled,
+    [ccButton.secondaryQuietLoading]: defaultVariant && !small && quiet && loading,
+    [ccButton.secondaryLoading]: defaultVariant && !small && !quiet && loading,
     
     [ccButton.primary]: primary && !small && !quiet && !loading && !props.disabled,
     [ccButton.primaryDisabled]: primary && !small && !quiet && !loading && props.disabled,
@@ -96,7 +97,15 @@ export const Button = forwardRef<
     [ccButton.link]: link && !small,
     [ccButton.linkSmall]: link && small,
     [ccButton.linkAsButton]: !!props.href,
+    [ccButton.fullWidth]: fullWidth,
+    [ccButton.contentWidth]: !fullWidth,
   });
+
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (props.onClick) {
+      props.onClick(e);
+    }
+  };
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -111,6 +120,7 @@ export const Button = forwardRef<
     <>
       {props.href ? (
         <a
+          onClick={handleClick}
           aria-current={props['aria-current']}
           href={props.href}
           target={props.target}

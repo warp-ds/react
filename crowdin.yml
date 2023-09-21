@@ -1,0 +1,45 @@
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_API_TOKEN
+base_url_env: CROWDIN_BASE_URL
+base_path: "."
+
+preserve_hierarchy: true
+
+files:
+  [
+    {
+      "source": "/packages/_helpers/locales/en/messages.po",
+      "dest": "react/packages/_helpers/messages.po",
+      "translation": "/packages/_helpers/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/breadcrumbs/src/locales/en/messages.po",
+      "dest": "react/packages/breadcrumbs/messages.po",
+      "translation": "/packages/breadcrumbs/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/button/src/locales/en/messages.po",
+      "dest": "react/packages/button/messages.po",
+      "translation": "/packages/button/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/combobox/src/locales/en/messages.po",
+      "dest": "react/packages/combobox/messages.po",
+      "translation": "/packages/combobox/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/modal/src/locales/en/messages.po",
+      "dest": "react/packages/modal/messages.po",
+      "translation": "/packages/modal/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/pill/src/locales/en/messages.po",
+      "dest": "react/packages/pill/messages.po",
+      "translation": "/packages/pill/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/textarea/src/locales/en/messages.po",
+      "dest": "react/packages/textarea/messages.po",
+      "translation": "/packages/textarea/src/locales/%two_letters_code%/messages.po",
+    },
+  ]
