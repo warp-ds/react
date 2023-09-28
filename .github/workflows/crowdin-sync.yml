@@ -1,4 +1,4 @@
-name: Crowdin Synchronisation
+name: Crowdin Synchronisation Trigger
 
 on:
   push:
