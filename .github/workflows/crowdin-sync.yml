@@ -8,7 +8,7 @@ jobs:
   synchronize-with-crowdin:
     uses: warp-ds/reusable-workflows/.github/workflows/crowdin-sync.yml@main
     secrets:
-      CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
-      CROWDIN_BASE_URL: ${{ vars.CROWDIN_BASE_URL }}
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_BASE_URL: ${{ secrets.CROWDIN_BASE_URL }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
