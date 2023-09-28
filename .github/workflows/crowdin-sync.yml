@@ -2,7 +2,7 @@ name: Crowdin Synchronisation
 
 on:
   push:
-    branches: [next, main]
+    branches: [use-reusable-crowdin-workflow, next, main]
 
 jobs:
   synchronize-with-crowdin:
