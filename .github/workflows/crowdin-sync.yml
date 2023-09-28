@@ -7,5 +7,3 @@ on:
 jobs:
   synchronize-with-crowdin:
     uses: warp-ds/reusable-workflows/.github/workflows/crowdin-sync.yml@main
-    with:
-      config_name: "../../crowdin.yml"
