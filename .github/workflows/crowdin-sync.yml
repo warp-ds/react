@@ -1,8 +1,8 @@
-name: Crowdin Synchronisation Trigger
+name: Crowdin Synchronisation
 
 on:
   push:
-    branches: [use-reusable-crowdin-workflow, next, main]
+    branches: [next, main]
 
 jobs:
   synchronize-with-crowdin:
