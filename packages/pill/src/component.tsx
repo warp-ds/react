@@ -43,7 +43,7 @@ export function Pill(props: PillProps) {
           className={classNames(props.className, {
             [ccPill.button]: true,
             [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
-            [ccPill.close]: true,
+            [ccPill.closeX]: true,
           })}
           onClick={props.onClose}
         >
