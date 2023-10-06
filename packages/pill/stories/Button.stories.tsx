@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pill } from '../src';
-import { IconSearch16, IconPlus16 } from '@fabric-ds/icons/react';
+import { IconSearch16, IconPlus16 } from '@warp-ds/icons/react';
 
 const metadata = { title: 'Buttons/Pill' };
 export default metadata;

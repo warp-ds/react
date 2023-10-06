@@ -1,4 +1,4 @@
-import { IconBag16 } from '@fabric-ds/icons/react';
+import { IconBag16 } from '@warp-ds/icons/react';
 import * as React from 'react';
 import { Expandable } from '../src';
 
