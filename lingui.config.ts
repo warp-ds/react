@@ -40,6 +40,10 @@ const config: LinguiConfig = {
       include: ['packages/select/src/**/*.{ts,tsx}'],
       path: 'packages/select/src/locales/{locale}/messages',
     },
+    {
+      include: ['packages/toggle/src/**/*.{ts,tsx}'],
+      path: 'packages/toggle/src/locales/{locale}/messages',
+    },
   ],
   compileNamespace: 'es',
 };

@@ -52,4 +52,9 @@ files:
       "dest": "react/packages/select/messages.po",
       "translation": "/packages/select/src/locales/%two_letters_code%/messages.po",
     },
+    {
+      "source": "/packages/toggle/src/locales/en/messages.po",
+      "dest": "react/packages/toggle/messages.po",
+      "translation": "/packages/toggle/src/locales/%two_letters_code%/messages.po",
+    },
   ]

@@ -66,7 +66,7 @@ export interface ToggleProps {
 
   /**
    * Whether the toggle is optional
-   * Appends (valgfritt) to the end of the title for indication
+   * Appends localized '(optional)' to the end of the title for indication
    */
   optional?: boolean;
 
