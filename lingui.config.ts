@@ -32,6 +32,10 @@ const config: LinguiConfig = {
       include: ['packages/textarea/src/**/*.{ts,tsx}'],
       path: 'packages/textarea/src/locales/{locale}/messages',
     },
+    {
+      include: ['packages/textfield/src/**/*.{ts,tsx}'],
+      path: 'packages/textfield/src/locales/{locale}/messages',
+    },
   ],
   compileNamespace: 'es',
 };
