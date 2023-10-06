@@ -1,11 +1,18 @@
 import React from 'react';
+import { i18n } from '@lingui/core';
 import { label as ccLabel, helpText as ccHelpText, toggle as ccToggle } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { ToggleEntry, ToggleProps } from './props';
 import { classNames } from '@chbphone55/classnames';
 import { Item } from './item';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 
 function Title({ id, isInvalid, title, optional }) {
+  activateI18n(enMessages, nbMessages, fiMessages);
+
   return (
     <legend
       id={`${id}__title`}
@@ -17,7 +24,13 @@ function Title({ id, isInvalid, title, optional }) {
       {title}
       {optional && (
         <span className={ccLabel.optional}>
-          (valgfritt)
+          {i18n._(
+            /*i18n*/ {
+              id: 'toggle.label.optional',
+              message: '(optional)',
+              comment: 'Shown behind label when marked as optional',
+            },
+          )}
         </span>
       )}
     </legend>
