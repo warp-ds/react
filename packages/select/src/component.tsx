@@ -3,6 +3,7 @@ import { select as ccSelect, label as ccLabel, helpText as ccHelpText } from '@w
 import { useId } from '../../utils/src';
 import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
+import { IconChevronDown16 } from '@warp-ds/icons/react';
 
 const setup = (props) => {
   const {
@@ -93,21 +94,7 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
           <div
             className={classNames(chevronClasses)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="none"
-              viewBox="0 0 16 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M2.5 5.5L8 11L13.5 5.5"
-              />
-            </svg>
+            <IconChevronDown16 />
           </div>
       </div>
       {help && <div className={helpTextClasses} {...help} />}

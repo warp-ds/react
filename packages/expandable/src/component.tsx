@@ -1,22 +1,23 @@
-import { classNames } from '@chbphone55/classnames';
+import { classNames } from "@chbphone55/classnames";
 import {
   box as ccBox,
   expandable as ccExpandable,
-} from '@warp-ds/css/component-classes';
-import React from 'react';
-import { ExpandTransition, UnstyledHeading } from '../../_helpers';
-import { ExpandableProps } from './props';
+} from "@warp-ds/css/component-classes";
+import React from "react";
+import { ExpandTransition, UnstyledHeading } from "../../_helpers";
+import { ExpandableProps } from "./props";
+import { IconChevronDown16 } from "@warp-ds/icons/react";
 
 export function Expandable(props: ExpandableProps) {
   const {
     children,
     expanded = false,
-    title = '',
+    title = "",
     info = false,
     box = false,
     bleed = false,
-    buttonClass = '',
-    contentClass = '',
+    buttonClass = "",
+    contentClass = "",
     className,
     onChange,
     chevron = true,
@@ -50,14 +51,14 @@ export function Expandable(props: ExpandableProps) {
           type="button"
           aria-expanded={stateExpanded}
           className={classNames({
-            [buttonClass || '']: true,
+            [buttonClass || ""]: true,
             [ccExpandable.button]: true,
             [ccExpandable.buttonBox]: box,
           })}
           onClick={() => toggleExpandable(stateExpanded)}
         >
           <div className={ccExpandable.title}>
-            {typeof title === 'string' ? (
+            {typeof title === "string" ? (
               <span className={ccExpandable.titleType}>{title}</span>
             ) : (
               title
@@ -71,21 +72,7 @@ export function Expandable(props: ExpandableProps) {
                   [ccExpandable.chevronNonBox]: !box,
                 })}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    d="M2.5 5.5L8 11l5.5-5.5"
-                  />
-                </svg>
+                <IconChevronDown16 />
               </div>
             )}
           </div>
@@ -94,7 +81,7 @@ export function Expandable(props: ExpandableProps) {
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
           className={classNames({
-            [contentClass || '']: true,
+            [contentClass || ""]: true,
             [ccBox.box]: box,
             [ccExpandable.paddingTop]: box && title,
           })}
