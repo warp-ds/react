@@ -28,5 +28,5 @@
     "strictNullChecks": true
   },
   "typeRoots": ["node_modules/@types", "@types"],
-  "exclude": ["**/__tests__", "**/*.stories.tsx", "docs"]
+  "exclude": ["**/__tests__", "docs"]
 }

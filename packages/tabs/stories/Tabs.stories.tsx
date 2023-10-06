@@ -1,27 +1,9 @@
-import * as React from 'react';
-import { Tab, TabPanel, Tabs } from '../src';
+import * as React from "react";
+import { Tab, TabPanel, Tabs } from "../src";
+import { IconPlus16 } from "@warp-ds/icons/react";
 
-const metadata = { title: 'Navigation/Tabs' };
+const metadata = { title: "Navigation/Tabs" };
 export default metadata;
-
-const svgicon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 32 32"
-    style={{ verticalAlign: 'sub' }}
-  >
-    <g fill="none" fillRule="evenodd">
-      <path d="M0 0h32v32H0z" />
-      <path
-        fill="currentColor"
-        fillRule="nonzero"
-        d="M17 15V4h-2v11H4v2h11v11h2V17h11v-2z"
-      />
-    </g>
-  </svg>
-);
 
 export const Default = () => {
   return (
@@ -58,12 +40,12 @@ export const DefaultWithExternalLinks = () => {
         <Tab
           label="Tab 2 (www.finn.no)"
           name="two"
-          onClick={(e) => window.open('https://www.finn.no/', '_blank')}
+          onClick={(e) => window.open("https://www.finn.no/", "_blank")}
         />
         <Tab
           label="Tab 3 (www.schibsted.com without panel)"
           name="three"
-          onClick={(e) => window.open('https://www.schibsted.com/', '_blank')}
+          onClick={(e) => window.open("https://www.schibsted.com/", "_blank")}
         />
       </Tabs>
       <div className="mb-16">
@@ -78,16 +60,16 @@ export const Icon = () => {
   return (
     <Tabs>
       <Tab label="Tab 1" name="one" isActive>
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 2" name="two">
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 3" name="three">
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 4" name="four">
-        {svgicon}
+        <IconPlus16 />
       </Tab>
     </Tabs>
   );
@@ -97,16 +79,16 @@ export const IconOvertop = () => {
   return (
     <Tabs>
       <Tab label="Tab 1" name="one" over isActive>
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 2" name="two" over>
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 3" name="three" over>
-        {svgicon}
+        <IconPlus16 />
       </Tab>
       <Tab label="Tab 4" name="four" over>
-        {svgicon}
+        <IconPlus16 />
       </Tab>
     </Tabs>
   );
@@ -117,16 +99,16 @@ export const IconWithPanel = () => {
     <>
       <Tabs>
         <Tab label="Tab 1" name="one" isActive>
-          {svgicon}
+          <IconPlus16 />
         </Tab>
         <Tab label="Tab 2" name="two">
-          {svgicon}
+          <IconPlus16 />
         </Tab>
         <Tab label="Tab 3" name="three">
-          {svgicon}
+          <IconPlus16 />
         </Tab>
         <Tab label="Tab 4" name="four">
-          {svgicon}
+          <IconPlus16 />
         </Tab>
       </Tabs>
       <div className="mb-16">
