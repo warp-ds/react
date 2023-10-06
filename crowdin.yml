@@ -42,9 +42,14 @@ files:
       "dest": "react/packages/textarea/messages.po",
       "translation": "/packages/textarea/src/locales/%two_letters_code%/messages.po",
     },
-        {
+    {
       "source": "/packages/textfield/src/locales/en/messages.po",
       "dest": "react/packages/textfield/messages.po",
       "translation": "/packages/textfield/src/locales/%two_letters_code%/messages.po",
+    },
+    {
+      "source": "/packages/select/src/locales/en/messages.po",
+      "dest": "react/packages/select/messages.po",
+      "translation": "/packages/select/src/locales/%two_letters_code%/messages.po",
     },
   ]

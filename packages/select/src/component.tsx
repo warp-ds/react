@@ -1,8 +1,13 @@
 import * as React from 'react';
+import { i18n } from '@lingui/core';
 import { select as ccSelect, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 
 const setup = (props) => {
   const {
@@ -18,6 +23,8 @@ const setup = (props) => {
     disabled,
     ...rest
   } = props;
+
+  activateI18n(enMessages, nbMessages, fiMessages);
 
   const helpId = hint ? `${id}__hint` : undefined;
 
@@ -83,7 +90,13 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
           {label.children}
           {optional && (
             <span className={ccLabel.optional}>
-              (valgfritt)
+              {i18n._(
+                /*i18n*/ {
+                  id: 'select.label.optional',
+                  message: '(optional)',
+                  comment: 'Shown behind label when marked as optional',
+                },
+              )}
             </span>
           )}
         </label>
