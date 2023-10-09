@@ -23,4 +23,3 @@ msgstr ""
 #: packages/textarea/src/component.tsx:64
 msgid "textarea.label.optional"
 msgstr "(valgfritt)"
-

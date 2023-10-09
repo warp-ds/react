@@ -29,4 +29,3 @@ msgstr "Takaisin"
 #: packages/modal/src/component.tsx:123
 msgid "modal.aria.close"
 msgstr "Sulje"
-
