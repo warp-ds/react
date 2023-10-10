@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi\n"
 "Project-Id-Version: 2853b3c41d7b7a59e7cd64c0153b540a\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-11 14:59\n"
+"PO-Revision-Date: 2023-10-10 06:32\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -29,3 +29,4 @@ msgstr "Takaisin"
 #: packages/modal/src/component.tsx:123
 msgid "modal.aria.close"
 msgstr "Sulje"
+
