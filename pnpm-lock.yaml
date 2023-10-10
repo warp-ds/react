@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0
   '@warp-ds/icons':
-    specifier: 1.1.0-alpha.3
-    version: 1.1.0-alpha.3
+    specifier: 1.1.0-next.10
+    version: 1.1.0-next.10
   '@warp-ds/uno':
     specifier: ^1.1.0
     version: 1.1.0
@@ -5803,8 +5803,8 @@ packages:
     resolution: {integrity: sha512-kLNZzK3o0rMJApm7/YT3K7rYoFKgH5PyJMTVwv34O4Dx6ikfN7appc4f2DFYkE2XY6gifpD5F2r1ftcJtdW4+w==}
     dev: false
 
-  /@warp-ds/icons@1.1.0-alpha.3:
-    resolution: {integrity: sha512-ItdMSPYvUNuB+hXEq+ODI4xM9FlG7ebiE6vuTIDVM3fmRmOoCqoY+DIHdwroYUS+nyUKYZ0hLrMT9SiwbIJ+cw==}
+  /@warp-ds/icons@1.1.0-next.10:
+    resolution: {integrity: sha512-lMhn6tKtOUr+0u/vUaH3L/Dl1nJGjGLnpzWuVD6k/K26brlLJXcOcs0b5e6zg+Ekg/lfrI7dtVh0b7g+jgBIgQ==}
     dependencies:
       '@lingui/core': 4.5.0
     dev: false
