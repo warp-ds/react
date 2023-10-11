@@ -80,7 +80,6 @@
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-focus-lock": "^2.5.2",
-    "react-router-dom": "^5.2.0",
     "resize-observer-polyfill": "^1.5.1",
     "semantic-release": "^19.0.2",
     "semantic-release-slack-bot": "^3.5.2",
