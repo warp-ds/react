@@ -12,7 +12,7 @@ export function Callout() {
       <Box info>
         <h1>I am a box full of info</h1>
       </Box>
-      <Attention callout placement="right" isShowing={true}>
+      <Attention callout placement="right" ariaLabel="Green speech bubble pointing left" isShowing={true}>
         <p style={{ width: 200 }}>
           I'm a callout because that box over there is new or something
         </p>
@@ -37,11 +37,12 @@ export function Tooltip() {
       </h1>
       <Attention
         tooltip
+        ariaLabel="Black speech bubble pointing up"
         placement="bottom"
         targetEl={targetEl}
         isShowing={show}
       >
-        <p>lol i am a popover</p>
+        <p>lol i am a tooltip</p>
       </Attention>
     </div>
   );
@@ -68,6 +69,8 @@ export function Popover() {
     <div ref={containerRef}>
       <Button
         small
+        aria-expanded={show}
+        aria-controls="pop-over-attention-example"
         utility
         onClick={() => setShow(!show)}
         className="w-max mb-0"
@@ -77,6 +80,7 @@ export function Popover() {
       </Button>
       <Attention
         popover
+        ariaLabel="White speech bubble pointing up"
         placement="bottom"
         targetEl={targetEl}
         isShowing={show}

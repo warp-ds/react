@@ -14,6 +14,7 @@ export function Attention(props: AttentionProps) {
     noArrow,
     isShowing,
     children,
+    ariaLabel,
     placement,
     targetEl,
     className,
@@ -30,6 +31,7 @@ export function Attention(props: AttentionProps) {
   );
 
   const [actualDirection, setActualDirection] = useState(placement);
+  const [ariaLabelDescription, setariaLabelDescription] = useState(ariaLabel);
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false);
 
@@ -49,6 +51,12 @@ export function Attention(props: AttentionProps) {
     },
     set actualDirection(v) {
       setActualDirection(v);
+    },
+    get ariaLabelDescription() {
+      return ariaLabelDescription;
+    },
+    set ariaLabelDescription(v) {
+      setariaLabelDescription(v);
     },
     get directionName() {
       return placement;
@@ -100,7 +108,7 @@ export function Attention(props: AttentionProps) {
       )}
       ref={attentionRef}
     >
-      <div className={wrapperClasses}>
+      <div  role="img" aria-label={ariaLabel} className={wrapperClasses}>
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}

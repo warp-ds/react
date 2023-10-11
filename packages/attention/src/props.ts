@@ -47,6 +47,13 @@ export type AttentionProps = {
   children?: JSX.Element[] | JSX.Element;
 
   /**
+   * Sets the aria-label for the Attention component
+   */
+  ariaLabel: string;
+
+  /**
+
+  /**
    * Placement according to the target element
    * Arrow would be on the opposite side of this position
    */
