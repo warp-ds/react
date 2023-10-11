@@ -91,7 +91,7 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.0.0",
-    "remark-slug": "^6.0.0",
+    "remark-slug": "^7.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "semantic-release": "^19.0.2",
     "semantic-release-slack-bot": "^3.5.2",
