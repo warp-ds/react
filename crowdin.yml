@@ -9,52 +9,52 @@ files:
       [
             {
                   "source": "/packages/_helpers/locales/en/messages.po",
-                  "dest": "/react/packages/_helpers/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/_helpers/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/breadcrumbs/src/locales/en/messages.po",
-                  "dest": "/react/packages/breadcrumbs/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/breadcrumbs/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/button/src/locales/en/messages.po",
-                  "dest": "/react/packages/button/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/button/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/combobox/src/locales/en/messages.po",
-                  "dest": "/react/packages/combobox/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/combobox/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/modal/src/locales/en/messages.po",
-                  "dest": "/react/packages/modal/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/modal/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/pill/src/locales/en/messages.po",
-                  "dest": "/react/packages/pill/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/pill/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/textarea/src/locales/en/messages.po",
-                  "dest": "/react/packages/textarea/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/textarea/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/textfield/src/locales/en/messages.po",
-                  "dest": "/react/packages/textfield/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/textfield/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/select/src/locales/en/messages.po",
-                  "dest": "/react/packages/select/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/select/src/locales/%two_letters_code%/messages.po",
             },
             {
                   "source": "/packages/toggle/src/locales/en/messages.po",
-                  "dest": "/react/packages/toggle/messages.po",
+                  "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/toggle/src/locales/%two_letters_code%/messages.po",
             },
       ]
