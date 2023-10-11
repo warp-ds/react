@@ -3,6 +3,7 @@ import { supportedLocales } from './packages/i18n';
 
 const config: LinguiConfig = {
   locales: supportedLocales as unknown as string[],
+  sourceLocale: 'en',
   catalogs: [
     {
       include: ['packages/_helpers/**/*.{ts,tsx}'],

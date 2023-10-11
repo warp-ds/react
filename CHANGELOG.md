@@ -1,3 +1,11 @@
+## [1.1.1-next.3](https://github.com/warp-ds/react/compare/v1.1.1-next.2...v1.1.1-next.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* add source locale to lingui config ([#103](https://github.com/warp-ds/react/issues/103)) ([aaf3dc0](https://github.com/warp-ds/react/commit/aaf3dc0bb320e5df297d3d82f851ce61c00c2274))
+* improve destination config for crowdin ([#112](https://github.com/warp-ds/react/issues/112)) ([7bd543a](https://github.com/warp-ds/react/commit/7bd543ac560a7c8396e4791af81e7531ca006e5a))
+
 ## [1.1.1-next.2](https://github.com/warp-ds/react/compare/v1.1.1-next.1...v1.1.1-next.2) (2023-10-10)
 
 
