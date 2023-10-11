@@ -53,7 +53,7 @@ export type AttentionProps = {
   ariaLabel?: string;
 
  /**
-   * Sets the aria-role attribute for the Attention component
+   * Sets the role attribute for the Attention component
    */
  ariaRole?: string;
 
