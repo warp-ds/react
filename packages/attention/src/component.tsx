@@ -1,13 +1,13 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { classNames } from '@chbphone55/classnames';
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { classNames } from "@chbphone55/classnames";
 import {
   opposites,
   rotation,
   useRecompute as recompute,
   arrowLabels,
-} from '@warp-ds/core/attention';
-import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import { ArrowProps, AttentionProps } from './props';
+} from "@warp-ds/core/attention";
+import { attention as ccAttention } from "@warp-ds/css/component-classes";
+import { ArrowProps, AttentionProps } from "./props";
 
 export function Attention(props: AttentionProps) {
   const {
@@ -15,23 +15,21 @@ export function Attention(props: AttentionProps) {
     isShowing,
     children,
     ariaLabel,
+    ariaRole,
+    ariaDescribedby,
     placement,
     targetEl,
     className,
     ...rest
   } = props;
 
-  const wrapperClasses = classNames(
-    ccAttention.base,  
-    {
-      [ccAttention.tooltip]: props.tooltip,
-      [ccAttention.callout]: props.callout,
-      [ccAttention.popover]: props.popover,
-    }
-  );
+  const wrapperClasses = classNames(ccAttention.base, {
+    [ccAttention.tooltip]: props.tooltip,
+    [ccAttention.callout]: props.callout,
+    [ccAttention.popover]: props.popover,
+  });
 
   const [actualDirection, setActualDirection] = useState(placement);
-  const [ariaLabelDescription, setariaLabelDescription] = useState(ariaLabel);
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false);
 
@@ -51,12 +49,6 @@ export function Attention(props: AttentionProps) {
     },
     set actualDirection(v) {
       setActualDirection(v);
-    },
-    get ariaLabelDescription() {
-      return ariaLabelDescription;
-    },
-    set ariaLabelDescription(v) {
-      setariaLabelDescription(v);
     },
     get directionName() {
       return placement;
@@ -98,17 +90,23 @@ export function Attention(props: AttentionProps) {
 
   return (
     <div
+      aria-describedby={ariaDescribedby}
+      role={ariaRole}
+      aria-label={ariaLabel}
+      tabIndex={0}
       className={classNames(
         {
           [ccAttention.notCallout]: !props.callout,
           invisible: !isVisible && !props.callout,
           hidden: !isVisible && !props.tooltip,
         },
-        className,
+        className
       )}
       ref={attentionRef}
     >
-      <div  role="img" aria-label={ariaLabel} className={wrapperClasses}>
+      <div
+        className={wrapperClasses}
+      >
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
@@ -122,7 +120,7 @@ const arrowDirectionClassname = (dir: string) => {
   const direction = dir.charAt(0).toUpperCase() + dir.slice(1);
 
   return `arrowDirection${direction}`;
-}
+};
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
   const { callout, direction, popover, tooltip } = props;
@@ -135,7 +133,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
       [ccAttention.arrowTooltip]: tooltip,
       [ccAttention.arrowCallout]: callout,
       [ccAttention.arrowPopover]: popover,
-    },
+    }
   );
 
   return (
@@ -145,10 +143,10 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
       className={arrowClasses}
       style={{
         // TW doesn't let us specify exactly one corner, only whole sides
-        borderTopLeftRadius: '4px',
+        borderTopLeftRadius: "4px",
         zIndex: 1,
         // border alignment is off by a fraction of a pixel, this fixes it
-        [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
+        [`margin${arrowDirectionClassname(arrowDirection)}`]: "-0.5px",
         transform: `rotate(${rotation[arrowDirection]}deg)`,
       }}
     />
