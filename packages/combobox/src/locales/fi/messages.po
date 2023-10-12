@@ -29,4 +29,3 @@ msgstr "{numResults, plural, one {# tulos} other {# tulosta}}"
 #: packages/combobox/src/utils.ts:34
 msgid "combobox.aria.noResults"
 msgstr "Ei tuloksia"
-

@@ -1,3 +1,44 @@
+## [1.1.1-next.4](https://github.com/warp-ds/react/compare/v1.1.1-next.3...v1.1.1-next.4) (2023-10-11)
+
+
+### Bug Fixes
+
+* a11y issues for attention component ([#123](https://github.com/warp-ds/react/issues/123)) ([0588564](https://github.com/warp-ds/react/commit/05885644551b77913285a35faa2266b1b16a0138))
+
+## [1.1.1-next.3](https://github.com/warp-ds/react/compare/v1.1.1-next.2...v1.1.1-next.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* add source locale to lingui config ([#103](https://github.com/warp-ds/react/issues/103)) ([aaf3dc0](https://github.com/warp-ds/react/commit/aaf3dc0bb320e5df297d3d82f851ce61c00c2274))
+* improve destination config for crowdin ([#112](https://github.com/warp-ds/react/issues/112)) ([7bd543a](https://github.com/warp-ds/react/commit/7bd543ac560a7c8396e4791af81e7531ca006e5a))
+
+## [1.1.1-next.2](https://github.com/warp-ds/react/compare/v1.1.1-next.1...v1.1.1-next.2) (2023-10-10)
+
+
+### Bug Fixes
+
+* only sync locales on next branch for now ([#99](https://github.com/warp-ds/react/issues/99)) ([f068199](https://github.com/warp-ds/react/commit/f06819920016e7d02b6736cfe5f7212c6967087f))
+
+## [1.1.1-next.1](https://github.com/warp-ds/react/compare/v1.1.0...v1.1.1-next.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* add leading slash to crowdin path ([#98](https://github.com/warp-ds/react/issues/98)) ([472d456](https://github.com/warp-ds/react/commit/472d4563157de905dfa4a5d09bb43812626c1b5d))
+
+# [1.1.0](https://github.com/warp-ds/react/compare/v1.0.1...v1.1.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* **forms:** localize 'optional' label in forms ([#94](https://github.com/warp-ds/react/issues/94)) ([f1bc283](https://github.com/warp-ds/react/commit/f1bc283891d56e4642a829140ac8641a0bd67d3f))
+
+
+### Features
+
+* Add Badge component ([#85](https://github.com/warp-ds/react/issues/85)) ([ce8ba9d](https://github.com/warp-ds/react/commit/ce8ba9d81ee021a412bf14f2d533fd107c2b3032))
+
 # [1.1.0-next.2](https://github.com/warp-ds/react/compare/v1.1.0-next.1...v1.1.0-next.2) (2023-10-06)
 
 

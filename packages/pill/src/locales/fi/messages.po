@@ -29,4 +29,3 @@ msgstr "Avaa suodatin"
 #: packages/pill/src/component.tsx:53
 msgid "pill.aria.removeFilter"
 msgstr "Tyhjennä suodatin {label}"
-

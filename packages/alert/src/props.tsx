@@ -17,4 +17,8 @@ export type AlertProps = {
   className?: string;
   /** Additional CSS styles for the container. */
   style?: React.CSSProperties;
+  /**
+   * id used for relationship ARIA attributes
+   */
+  id?: string;
 };

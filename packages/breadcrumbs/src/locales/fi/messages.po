@@ -23,4 +23,3 @@ msgstr ""
 #: packages/breadcrumbs/src/component.tsx:17
 msgid "breadcrumbs.ariaLabel"
 msgstr "Olet tässä"
-
