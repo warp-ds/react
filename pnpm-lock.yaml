@@ -15,11 +15,11 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   '@warp-ds/css':
-    specifier: ^1.1.1-next.3
-    version: 1.1.1-next.3
+    specifier: ^1.1.1
+    version: 1.1.1
   '@warp-ds/icons':
-    specifier: 1.1.0-next.10
-    version: 1.1.0-next.10
+    specifier: 1.1.0-next.11
+    version: 1.1.0-next.11
   '@warp-ds/uno':
     specifier: ^1.1.0
     version: 1.1.0
@@ -5629,8 +5629,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.1.1-next.3:
-    resolution: {integrity: sha512-UWcB5J0Byzhzs3a5ypsPjhE/DKvfjsd/usLMnK2T72Zpzssii/F/sd0O/+tx/O8UpRuzekINN89RSr09PiRdmA==}
+  /@warp-ds/css@1.1.1:
+    resolution: {integrity: sha512-xki6RMW9tO1jknPSkBNsWNlU/ADcGUOj4rlMfTBgOm7phwsI9kHd64zxI/29Xuh3dVE+ah7x9BIB0TxoZonSKA==}
     dependencies:
       '@warp-ds/fonts': 1.1.0
       '@warp-ds/tokenizer': 0.0.2
@@ -5641,8 +5641,8 @@ packages:
     resolution: {integrity: sha512-kLNZzK3o0rMJApm7/YT3K7rYoFKgH5PyJMTVwv34O4Dx6ikfN7appc4f2DFYkE2XY6gifpD5F2r1ftcJtdW4+w==}
     dev: false
 
-  /@warp-ds/icons@1.1.0-next.10:
-    resolution: {integrity: sha512-lMhn6tKtOUr+0u/vUaH3L/Dl1nJGjGLnpzWuVD6k/K26brlLJXcOcs0b5e6zg+Ekg/lfrI7dtVh0b7g+jgBIgQ==}
+  /@warp-ds/icons@1.1.0-next.11:
+    resolution: {integrity: sha512-/yKnwS5wkRn9X3S+0xy/CuJ+Pj+1SgJOd5U6/9TIBdzMbfjb4WikvG6i9bK7Iw6EeMR0TCreTrQpZDYCJRRxIg==}
     dependencies:
       '@lingui/core': 4.5.0
     dev: false
