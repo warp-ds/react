@@ -3831,6 +3831,13 @@ packages:
     dependencies:
       '@messageformat/parser': 5.1.0
 
+  /@lingui/message-utils@4.5.0:
+    resolution: {integrity: sha512-iRqh2wvNtzJO3NStB77nEXEfeI53aVVjzD7/mBrEm/P0lC7sqPHk0WBQCfzE0N9xm6a+XHmHu3J+x2nnQ2OjcA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@messageformat/parser': 5.1.0
+    dev: false
+
   /@messageformat/parser@5.1.0:
     resolution: {integrity: sha512-jKlkls3Gewgw6qMjKZ9SFfHUpdzEVdovKFtW1qRhJ3WI4FW5R/NnGDqr8SDGz+krWDO3ki94boMmQvGke1HwUQ==}
     dependencies:
@@ -9966,6 +9973,7 @@ packages:
 
   /lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
