@@ -7,34 +7,34 @@ export default metadata;
 
 export const Default = () => (
   <Expandable title="This is a title">
-    <h1>I am expandable</h1>
+    <h2>I am expandable</h2>
   </Expandable>
 );
 
 export const Box = () => (
   <Expandable title="This is a title" box>
-    <h1>I am expandable</h1>
+    <h2>I am expandable</h2>
   </Expandable>
 );
 
 export const BoxWithCustomIcon = () => (
   <Expandable
     title={
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center" aria-label="This is a title with an icon, ">
+        <p className="mr-8 mb-0">This is a title with an icon</p>
         <IconBag16 />
-        <p className="ml-8 mb-0">This is a title with an icon</p>
       </div>
     }
     box
     info
   >
-    <h1>I am expandable</h1>
+    <h2>I am expandable</h2>
   </Expandable>
 );
 
 export const InfoBox = () => (
   <Expandable title="This is a title" box info>
-    <h1>I am expandable</h1>
+    <h2>I am expandable</h2>
   </Expandable>
 );
 
@@ -57,7 +57,7 @@ export const NoChevron = () => {
       chevron={false}
       onChange={setOpen}
     >
-      <h1>I am expandable</h1>
+      <h2>I am expandable</h2>
     </Expandable>
   );
 };
@@ -65,7 +65,7 @@ export const NoChevron = () => {
 export const Animated = () => {
   return (
     <Expandable title="Animated box" box info animated>
-      <h1>I am expandable</h1>
+      <h2>I am expandable</h2>
     </Expandable>
   );
 };
@@ -73,7 +73,7 @@ export const Animated = () => {
 export const AnimatedExpanded = () => {
   return (
     <Expandable title="Animated box" expanded box info animated>
-      <h1>I am expandable</h1>
+      <h2>I am expandable</h2>
     </Expandable>
   );
 };
@@ -81,7 +81,7 @@ export const AnimatedExpanded = () => {
 export const Heading = () => {
   return (
     <Expandable title="I'm also a heading" headingLevel={1}>
-      <h1>I am expandable</h1>
+      <h2>I am expandable</h2>
     </Expandable>
   );
 };
