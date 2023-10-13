@@ -4,7 +4,6 @@ import {
   opposites,
   rotation,
   useRecompute as recompute,
-  arrowLabels,
 } from "@warp-ds/core/attention";
 import { attention as ccAttention } from "@warp-ds/css/component-classes";
 import { ArrowProps, AttentionProps } from "./props";
@@ -14,8 +13,6 @@ export function Attention(props: AttentionProps) {
     noArrow,
     isShowing,
     children,
-    ariaLabel,
-    ariaRole,
     ariaDescribedby,
     placement,
     targetEl,
@@ -70,15 +67,41 @@ export function Attention(props: AttentionProps) {
     },
   };
 
+  const activeAttentionProp = () => {
+    if (props.tooltip) {
+      return "tooltip";
+    } else if (props.callout) {
+      return "callout";
+    } else if (props.popover) {
+      return "popover";
+    } else {
+      return "";
+    }
+  }
+
+  const pointingAt = () => {
+    if (actualDirection === "bottom") {
+      return "up";
+    } else if (actualDirection === "top") {
+      return "down";
+    } else if (actualDirection === "right") {
+      return "left";
+    } else if (actualDirection === "left") {
+      return "right";
+    } else {
+      return "";
+    }
+  }
   // Recompute on re-render
   useEffect(() => {
     recompute(attentionState);
-  });
 
+  });
+  
   useEffect(() => {
     if (isMounted.current) {
       isMounted.current = false;
-
+      
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
         setIsVisible(isShowing);
@@ -91,8 +114,8 @@ export function Attention(props: AttentionProps) {
   return (
     <div
       aria-describedby={ariaDescribedby}
-      role={ariaRole}
-      aria-label={ariaLabel}
+      role={props.tooltip ? 'tooltip' : 'img'}
+      aria-label={`${activeAttentionProp()} speech bubble pointing ${pointingAt()}`}
       tabIndex={0}
       className={classNames(
         {
@@ -138,7 +161,6 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
 
   return (
     <div
-      aria-label={arrowLabels[arrowDirection]}
       ref={ref}
       className={arrowClasses}
       style={{

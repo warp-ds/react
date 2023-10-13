@@ -15,8 +15,6 @@ export function Callout() {
       <Attention
         callout
         placement="right"
-        ariaLabel="Green speech bubble pointing left"
-        ariaRole="img"
         isShowing={true}
       >
         <p style={{ width: 200 }}>
@@ -56,8 +54,6 @@ export function Tooltip() {
       <Attention
         tooltip
         ariaDescribedby="tooltip-example"
-        ariaLabel="Black speech bubble pointing up"
-        ariaRole="tooltip"
         placement="bottom"
         targetEl={targetEl}
         isShowing={show}
@@ -100,8 +96,6 @@ export function Popover() {
       </Button>
       <Attention
         popover
-        ariaLabel="White speech bubble pointing up"
-        ariaRole="img"
         placement="bottom"
         targetEl={targetEl}
         isShowing={show}
