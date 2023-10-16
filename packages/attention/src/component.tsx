@@ -80,14 +80,8 @@ export function Attention(props: AttentionProps) {
   }
 
   const pointingAt = () => {
-    if (actualDirection === "bottom") {
-      return "up";
-    } else if (actualDirection === "top") {
-      return "down";
-    } else if (actualDirection === "right") {
-      return "left";
-    } else if (actualDirection === "left") {
-      return "right";
+    if (!props.noArrow) {
+      return `pointing to the ${opposites[actualDirection]}`;
     } else {
       return "";
     }
@@ -115,7 +109,7 @@ export function Attention(props: AttentionProps) {
     <div
       aria-describedby={ariaDescribedby}
       role={props.tooltip ? 'tooltip' : 'img'}
-      aria-label={`${activeAttentionProp()} speech bubble pointing ${pointingAt()}`}
+      aria-label={`${activeAttentionProp()} speech bubble ${pointingAt()}`}
       tabIndex={0}
       className={classNames(
         {
