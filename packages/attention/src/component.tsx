@@ -79,25 +79,20 @@ export function Attention(props: AttentionProps) {
     } else {
       return "";
     }
-  }
+  };
+  
+  const pointingAt = () =>
+    !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : "";
 
-  const pointingAt = () => {
-    if (!props.noArrow) {
-      return `pointing to the ${opposites[actualDirection]}`;
-    } else {
-      return "";
-    }
-  }
   // Recompute on re-render
   useEffect(() => {
     recompute(attentionState);
-
   });
-  
+
   useEffect(() => {
     if (isMounted.current) {
       isMounted.current = false;
-      
+
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
         setIsVisible(isShowing);
@@ -110,8 +105,11 @@ export function Attention(props: AttentionProps) {
   return (
     <div
       aria-describedby={ariaDescribedby}
-      role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
-      aria-label={props.ariaLabel ?? `${activeAttentionProp()} speech bubble ${pointingAt()}`}
+      role={props.role ?? (props.tooltip ? "tooltip" : "img")}
+      aria-label={
+        props.ariaLabel ??
+        `${activeAttentionProp()} speech bubble ${pointingAt()}`
+      }
       tabIndex={0}
       className={classNames(
         {
@@ -123,9 +121,7 @@ export function Attention(props: AttentionProps) {
       )}
       ref={attentionRef}
     >
-      <div
-        className={wrapperClasses}
-      >
+      <div className={wrapperClasses}>
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
