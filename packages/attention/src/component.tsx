@@ -13,6 +13,8 @@ export function Attention(props: AttentionProps) {
     noArrow,
     isShowing,
     children,
+    ariaLabel,
+    ariaRole,
     ariaDescribedby,
     placement,
     targetEl,
@@ -108,8 +110,8 @@ export function Attention(props: AttentionProps) {
   return (
     <div
       aria-describedby={ariaDescribedby}
-      role={props.tooltip ? 'tooltip' : 'img'}
-      aria-label={`${activeAttentionProp()} speech bubble ${pointingAt()}`}
+      role={props.ariaRole ?? (props.tooltip ? 'tooltip' : 'img')}
+      aria-label={props.ariaLabel ?? `${activeAttentionProp()} speech bubble ${pointingAt()}`}
       tabIndex={0}
       className={classNames(
         {
