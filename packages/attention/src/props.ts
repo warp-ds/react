@@ -45,17 +45,17 @@ export type AttentionProps = {
    * Elements inside of the Attention component
    */
   children?: JSX.Element[] | JSX.Element;
-   
-  /**
+  
+ /**
    * Sets the aria-label attribute for the Attention component
    */
-   ariaLabel?: string;
+ ariaLabel?: string;
+ 
+ /**
+   * Sets the role attribute for the Attention component
+   */
+ role?: string;
 
-   /**
-     * Sets the role attribute for the Attention component
-     */
-   role?: string;
-  
  /**
    * Sets the aria-describedby attribute for the Attention component to associate it with the target element
    */
