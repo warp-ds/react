@@ -1,12 +1,12 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
-import { classNames } from "@chbphone55/classnames";
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { classNames } from '@chbphone55/classnames';
 import {
   opposites,
   rotation,
   useRecompute as recompute,
-} from "@warp-ds/core/attention";
-import { attention as ccAttention } from "@warp-ds/css/component-classes";
-import { ArrowProps, AttentionProps } from "./props";
+} from '@warp-ds/core/attention';
+import { attention as ccAttention } from '@warp-ds/css/component-classes';
+import { ArrowProps, AttentionProps } from './props';
 
 export function Attention(props: AttentionProps) {
   const {
@@ -71,15 +71,15 @@ export function Attention(props: AttentionProps) {
 
   const activeAttentionProp = () =>
     props.tooltip
-      ? "tooltip"
+      ? 'tooltip'
       : props.callout
-      ? "callout"
+      ? 'callout'
       : props.popover
-      ? "popover"
-      : "";
+      ? 'popover'
+      : '';
 
   const pointingAt = () =>
-    !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : "";
+    !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : '';
 
   // Recompute on re-render
   useEffect(() => {
@@ -102,7 +102,7 @@ export function Attention(props: AttentionProps) {
   return (
     <div
       aria-describedby={ariaDescribedby}
-      role={props.role ?? (props.tooltip ? "tooltip" : "img")}
+      role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
       aria-label={
         props.ariaLabel ??
         `${activeAttentionProp()} speech bubble ${pointingAt()}`
@@ -154,10 +154,10 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
       className={arrowClasses}
       style={{
         // TW doesn't let us specify exactly one corner, only whole sides
-        borderTopLeftRadius: "4px",
+        borderTopLeftRadius: '4px',
         zIndex: 1,
         // border alignment is off by a fraction of a pixel, this fixes it
-        [`margin${arrowDirectionClassname(arrowDirection)}`]: "-0.5px",
+        [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
         transform: `rotate(${rotation[arrowDirection]}deg)`,
       }}
     />
