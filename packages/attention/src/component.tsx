@@ -1,12 +1,12 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { classNames } from '@chbphone55/classnames';
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   rotation,
   useRecompute as recompute,
-} from '@warp-ds/core/attention';
-import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import { ArrowProps, AttentionProps } from './props';
+} from '@warp-ds/core/attention'
+import { attention as ccAttention } from '@warp-ds/css/component-classes'
+import { ArrowProps, AttentionProps } from './props'
 
 export function Attention(props: AttentionProps) {
   const {
@@ -20,54 +20,54 @@ export function Attention(props: AttentionProps) {
     targetEl,
     className,
     ...rest
-  } = props;
+  } = props
 
   const wrapperClasses = classNames(ccAttention.base, {
     [ccAttention.tooltip]: props.tooltip,
     [ccAttention.callout]: props.callout,
     [ccAttention.popover]: props.popover,
-  });
+  })
 
-  const [actualDirection, setActualDirection] = useState(placement);
+  const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
-  const [isVisible, setIsVisible] = useState<Boolean | undefined>(false);
+  const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
 
-  const isMounted = useRef(true);
-  const attentionRef = useRef<HTMLDivElement | null>(null);
-  const arrowRef = useRef<HTMLDivElement | null>(null);
+  const isMounted = useRef(true)
+  const attentionRef = useRef<HTMLDivElement | null>(null)
+  const arrowRef = useRef<HTMLDivElement | null>(null)
 
   const attentionState = {
     get isShowing() {
-      return isShowing;
+      return isShowing
     },
     get isCallout() {
-      return rest.callout;
+      return rest.callout
     },
     get actualDirection() {
-      return actualDirection;
+      return actualDirection
     },
     set actualDirection(v) {
-      setActualDirection(v);
+      setActualDirection(v)
     },
     get directionName() {
-      return placement;
+      return placement
     },
     get arrowEl() {
-      return arrowRef.current;
+      return arrowRef.current
     },
     get attentionEl() {
-      return attentionRef.current;
+      return attentionRef.current
     },
     set attentionEl(v) {
-      attentionRef.current = v;
+      attentionRef.current = v
     },
     get targetEl() {
-      return targetEl?.current;
+      return targetEl?.current
     },
     get noArrow() {
-      return props.noArrow;
+      return props.noArrow
     },
-  };
+  }
 
   const activeAttentionProp = () =>
     props.tooltip
@@ -76,28 +76,28 @@ export function Attention(props: AttentionProps) {
       ? 'callout'
       : props.popover
       ? 'popover'
-      : '';
+      : ''
 
   const pointingAt = () =>
-    !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : '';
+    !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : ''
 
   // Recompute on re-render
   useEffect(() => {
-    recompute(attentionState);
-  });
+    recompute(attentionState)
+  })
 
   useEffect(() => {
     if (isMounted.current) {
-      isMounted.current = false;
+      isMounted.current = false
 
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
-        setIsVisible(isShowing);
+        setIsVisible(isShowing)
       }
     } else {
-      setIsVisible(isShowing);
+      setIsVisible(isShowing)
     }
-  }, [isShowing, props.callout]);
+  }, [isShowing, props.callout])
 
   return (
     <div
@@ -125,18 +125,18 @@ export function Attention(props: AttentionProps) {
         <div className={ccAttention.content}>{props.children}</div>
       </div>
     </div>
-  );
+  )
 }
 
 const arrowDirectionClassname = (dir: string) => {
-  const direction = dir.charAt(0).toUpperCase() + dir.slice(1);
+  const direction = dir.charAt(0).toUpperCase() + dir.slice(1)
 
-  return `arrowDirection${direction}`;
-};
+  return `arrowDirection${direction}`
+}
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
-  const { callout, direction, popover, tooltip } = props;
-  const arrowDirection = opposites[direction];
+  const { callout, direction, popover, tooltip } = props
+  const arrowDirection = opposites[direction]
 
   const arrowClasses = classNames(
     ccAttention.arrowBase,
@@ -146,7 +146,7 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
       [ccAttention.arrowCallout]: callout,
       [ccAttention.arrowPopover]: popover,
     }
-  );
+  )
 
   return (
     <div
@@ -161,5 +161,5 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
         transform: `rotate(${rotation[arrowDirection]}deg)`,
       }}
     />
-  );
-});
+  )
+})

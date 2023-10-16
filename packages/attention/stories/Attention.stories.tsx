@@ -1,10 +1,10 @@
-import React from 'react';
-import { Attention } from '../src';
-import { Box } from '../../box/src';
-import { Button } from '../../button/src';
+import React from 'react'
+import { Attention } from '../src'
+import { Box } from '../../box/src'
+import { Button } from '../../button/src'
 
-const metadata = { title: 'Overlays/Attention' };
-export default metadata;
+const metadata = { title: 'Overlays/Attention' }
+export default metadata
 
 export function Callout() {
   return (
@@ -18,18 +18,18 @@ export function Callout() {
         </p>
       </Attention>
     </div>
-  );
+  )
 }
 
 export function Tooltip() {
-  const [show, setShow] = React.useState(false);
-  const targetEl = React.useRef();
+  const [show, setShow] = React.useState(false)
+  const targetEl = React.useRef()
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
-      setShow(false);
+      setShow(false)
     }
-  };
+  }
 
   return (
     <div>
@@ -57,25 +57,25 @@ export function Tooltip() {
         <p>lol i am a tooltip</p>
       </Attention>
     </div>
-  );
+  )
 }
 
 export function Popover() {
-  const [show, setShow] = React.useState(false);
-  const containerRef = React.useRef();
-  const targetEl = React.useRef();
+  const [show, setShow] = React.useState(false)
+  const containerRef = React.useRef()
+  const targetEl = React.useRef()
 
   React.useEffect(() => {
     function onBlurHandler(e) {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setShow(false);
+        setShow(false)
       }
     }
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener('mousedown', onBlurHandler)
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
-    };
-  });
+      document.removeEventListener('mousedown', onBlurHandler)
+    }
+  })
 
   return (
     <div ref={containerRef}>
@@ -112,5 +112,5 @@ export function Popover() {
         </ul>
       </Attention>
     </div>
-  );
+  )
 }
