@@ -54,7 +54,7 @@ export type AttentionProps = {
    /**
      * Sets the role attribute for the Attention component
      */
-   ariaRole?: string;
+   role?: string;
   
  /**
    * Sets the aria-describedby attribute for the Attention component to associate it with the target element
