@@ -69,18 +69,15 @@ export function Attention(props: AttentionProps) {
     },
   };
 
-  const activeAttentionProp = () => {
-    if (props.tooltip) {
-      return "tooltip";
-    } else if (props.callout) {
-      return "callout";
-    } else if (props.popover) {
-      return "popover";
-    } else {
-      return "";
-    }
-  };
-  
+  const activeAttentionProp = () =>
+    props.tooltip
+      ? "tooltip"
+      : props.callout
+      ? "callout"
+      : props.popover
+      ? "popover"
+      : "";
+
   const pointingAt = () =>
     !props.noArrow ? `pointing to the ${opposites[actualDirection]}` : "";
 
