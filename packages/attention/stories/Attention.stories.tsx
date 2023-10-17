@@ -20,6 +20,20 @@ export function Callout() {
     </div>
   )
 }
+export function CalloutWithOverwrittenRoleAndAriaLabel() {
+  return (
+    <div className='flex items-center'>
+      <Box info>
+        <h1>I am a box full of info</h1>
+      </Box>
+      <Attention callout role='' aria-label='' placement='right' isShowing={true}>
+        <p style={{ width: 200 }}>
+          I'm a callout including overwritten role and aria-label attributes.
+        </p>
+      </Attention>
+    </div>
+  )
+}
 
 export function Tooltip() {
   const [show, setShow] = React.useState(false)
