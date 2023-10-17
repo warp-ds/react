@@ -9,10 +9,17 @@ export default metadata;
 export const Example = () => {
   const [open, setOpen] = React.useState(true);
   const toggleModal = () => setOpen(!open);
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      openModalRef.current?.focus();
+    }
+  }, [open]);
 
   return (
     <>
-      <Button utility onClick={toggleModal}>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
         Open modal
       </Button>
       <Modal
@@ -45,10 +52,17 @@ export const Example = () => {
 export const WithBackAndCloseButton = () => {
   const [open, setOpen] = React.useState(true);
   const toggleModal = () => setOpen(!open);
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      openModalRef.current?.focus();
+    }
+  }, [open]);
 
   return (
     <>
-      <Button utility onClick={toggleModal}>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
         Open modal
       </Button>
       <Modal
@@ -83,11 +97,19 @@ export const WithBackAndCloseButton = () => {
 export const MustConfirmToProceed = () => {
   const [open, setOpen] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      setChecked(false);
+      openModalRef.current?.focus();
+    }
+  }, [open]);
 
   const toggleModal = () => setOpen(!open);
   return (
     <>
-      <Button utility onClick={toggleModal}>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
         Open modal
       </Button>
       <Modal
@@ -111,11 +133,17 @@ export const InitialFocus = () => {
   const [open, setOpen] = React.useState(false);
   const toggleModal = () => setOpen(!open);
 
-  const focusRef = React.useRef();
+  const focusRef = React.useRef<HTMLButtonElement>();
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
 
+  React.useEffect(() => {
+    if (!open) {
+      openModalRef.current?.focus();
+    }
+  }, [open]);
   return (
     <>
-      <Button utility onClick={toggleModal}>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
         Open modal
       </Button>
       <Modal
@@ -149,10 +177,16 @@ export const InitialFocus = () => {
 export const Overflowing = () => {
   const [open, setOpen] = React.useState(true);
   const toggleModal = () => setOpen(!open);
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
+  React.useEffect(() => {
+    if (open) {
+      openModalRef.current?.focus();
+    }
+  }, [open]);
 
   return (
     <>
-      <Button utility onClick={toggleModal}>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
         Open modal
       </Button>
       <Modal
