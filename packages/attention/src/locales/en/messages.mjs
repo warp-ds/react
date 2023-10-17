@@ -1,0 +1,1 @@
+/*eslint-disable*/export const messages=JSON.parse("{\"attention.direction.bottom\":\"bottom\",\"attention.direction.left\":\"left\",\"attention.ariaLabel.pointingAt\":\"pointing to the\",\"attention.direction.right\":\"right\",\"attention.direction.top\":\"top\"}");

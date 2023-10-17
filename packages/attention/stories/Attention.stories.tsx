@@ -49,7 +49,7 @@ export function Tooltip() {
       </h1>
       <Attention
         tooltip
-        ariaDescribedby='tooltip-example'
+        aria-describedby='tooltip-example'
         placement='bottom'
         targetEl={targetEl}
         isShowing={show}

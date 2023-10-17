@@ -49,7 +49,7 @@ export type AttentionProps = {
  /**
    * Sets the aria-label attribute for the Attention component
    */
- ariaLabel?: string;
+ 'aria-label'?: string;
  
  /**
    * Sets the role attribute for the Attention component
@@ -59,7 +59,7 @@ export type AttentionProps = {
  /**
    * Sets the aria-describedby attribute for the Attention component to associate it with the target element
    */
- ariaDescribedby?: string;
+ 'aria-describedby'?: string;
  
   /**
    * Placement according to the target element
