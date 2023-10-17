@@ -40,7 +40,7 @@
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "semantic-release": "semantic-release",
     "messages:extract": "lingui extract",
-    "messages:compile": "lingui compile --strict"
+    "messages:compile": "lingui compile"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

@@ -8,10 +8,10 @@ import {
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps } from './props'
 import { i18n } from '@lingui/core'
-// import { messages as nbMessages } from "./locales/nb/messages.mjs";
-// import { messages as enMessages } from "./locales/en/messages.mjs";
-// import { messages as fiMessages } from "./locales/fi/messages.mjs";
-// import { activateI18n } from "../../i18n";
+import { messages as nbMessages } from './locales/nb/messages.mjs'
+import { messages as enMessages } from './locales/en/messages.mjs'
+import { messages as fiMessages } from './locales/fi/messages.mjs'
+import { activateI18n } from '../../i18n'
 
 export function Attention(props: AttentionProps) {
 	const {
@@ -27,7 +27,7 @@ export function Attention(props: AttentionProps) {
 		...rest
 	} = props
 
-	// activateI18n(enMessages, nbMessages, fiMessages);
+	activateI18n(enMessages, nbMessages, fiMessages)
 
 	const wrapperClasses = classNames(ccAttention.base, {
 		[ccAttention.tooltip]: props.tooltip,
@@ -113,14 +113,28 @@ export function Attention(props: AttentionProps) {
 	}, [actualDirection])
 
 	// TODO: See if we can move this function to the core repo:
-  const activeAttentionProp = () =>
-		props.tooltip
-			? 'tooltip'
-			: props.callout
-			? 'callout'
-			: props.popover
-			? 'popover'
-			: ''
+	const activeAttentionProp = props.tooltip
+		? i18n._({
+	    id: 'attention.tooltip',
+	    message: 'tooltip',
+	    comment:
+	      'Default screenreader message for tooltip in the attention component',
+	  })
+		: props.callout
+		? i18n._({
+	    id: 'attention.callout',
+	    message: 'callout',
+	    comment:
+	      'Default screenreader message for callout in the attention component',
+	  })
+		: props.popover
+		? i18n._({
+	    id: 'attention.popover',
+	    message: 'popover',
+	    comment:
+	      'Default screenreader message for popover in the attention component',
+	  })
+		: ''
 
 	// TODO: See if we can move this function to the core repo:
 	const getDefaultAriaLabel = () => {
@@ -135,7 +149,7 @@ export function Attention(props: AttentionProps) {
 			? `${pointingAtTranslation} ${getTranslatedDirection}`
 			: ''
 
-		return `${activeAttentionProp()} ${pointingAt}`
+		return `${activeAttentionProp} ${pointingAt}`
 	}
 	// Recompute on re-render
 	useEffect(() => {
