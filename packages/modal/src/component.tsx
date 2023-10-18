@@ -38,7 +38,7 @@ export const Modal = ({
     } else {
       props.initialFocusRef.current?.focus();
     }
-  }, [props.open, props.initialFocusRef, closeButtonRef]);
+  }, [props.open, props.initialFocusRef, props.right]);
 
   if (!props.open) return <></>;
 
