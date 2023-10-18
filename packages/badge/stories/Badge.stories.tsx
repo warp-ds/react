@@ -11,32 +11,32 @@ export const Default = () => (
 );
 
 export const Variants = () => (
-  <div className="space-x-16">
-    <Badge variant="neutral">
+  <ul className="flex flex-wrap gap-8">
+    <Badge as="li" variant="neutral">
       neutral badge
     </Badge>
-    <Badge variant="info">
+    <Badge as="li" variant="info">
       info badge
     </Badge>
-    <Badge variant="positive">
+    <Badge as="li" variant="positive">
       positive badge
     </Badge>
-    <Badge variant="warning">
+    <Badge as="li" variant="warning">
       warning badge
     </Badge>
-    <Badge variant="negative">
+    <Badge as="li" variant="negative">
       negative badge
     </Badge>
-    <Badge variant="disabled">
+    <Badge as="li" variant="disabled">
       disabled badge
     </Badge>
-    <Badge variant="notification">
+    <Badge as="li" variant="notification">
       notification badge
     </Badge>
-    <Badge variant="price">
+    <Badge as="li" variant="price">
       price badge
     </Badge>
-  </div>
+  </ul>
 );
 
 export const Positions = () => (
