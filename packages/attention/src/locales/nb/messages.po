@@ -21,7 +21,7 @@ msgstr ""
 
 #. Default screenreader message for callout in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:124
+#: packages/attention/src/component.tsx:126
 msgid "attention.callout"
 msgstr ""
 
@@ -33,13 +33,13 @@ msgstr ""
 
 #. Default screenreader message for the pointingAt function in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:141
+#: packages/attention/src/component.tsx:146
 msgid "attention.ariaLabel.pointingAt"
 msgstr ""
 
 #. Default screenreader message for popover in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:131
+#: packages/attention/src/component.tsx:133
 msgid "attention.popover"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 
 #. Default screenreader message for tooltip in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:117
+#: packages/attention/src/component.tsx:119
 msgid "attention.tooltip"
 msgstr ""
 

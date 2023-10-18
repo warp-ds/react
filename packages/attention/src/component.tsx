@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import { classNames } from '@chbphone55/classnames'
 import {
 	opposites,
@@ -77,7 +77,7 @@ export function Attention(props: AttentionProps) {
 	}
 
 	//TODO: See if we can move this function to the core-repo:
-	const getTranslatedDirection = useMemo(() => {
+	const translatedDirection = (() => {
 		switch (opposites[actualDirection]) {
 			case 'top':
 				return i18n._({
@@ -110,31 +110,36 @@ export function Attention(props: AttentionProps) {
 			default:
 				return ''
 		}
-	}, [actualDirection])
+	})()
 
 	// TODO: See if we can move this function to the core repo:
-	const activeAttentionProp = props.tooltip
-		? i18n._({
-	    id: 'attention.tooltip',
-	    message: 'tooltip',
-	    comment:
-	      'Default screenreader message for tooltip in the attention component',
-	  })
-		: props.callout
-		? i18n._({
-	    id: 'attention.callout',
-	    message: 'callout',
-	    comment:
-	      'Default screenreader message for callout in the attention component',
-	  })
-		: props.popover
-		? i18n._({
-	    id: 'attention.popover',
-	    message: 'popover',
-	    comment:
-	      'Default screenreader message for popover in the attention component',
-	  })
-		: ''
+	const activeAttentionType = (() => {
+		switch (true) {
+			case props.tooltip:
+				return i18n._({
+					id: 'attention.tooltip',
+					message: 'tooltip',
+					comment:
+						'Default screenreader message for tooltip in the attention component',
+				})
+			case props.callout:
+				return i18n._({
+					id: 'attention.callout',
+					message: 'callout',
+					comment:
+						'Default screenreader message for callout in the attention component',
+				})
+			case props.popover:
+				return i18n._({
+					id: 'attention.popover',
+					message: 'popover',
+					comment:
+						'Default screenreader message for popover in the attention component',
+				})
+			default:
+				return ''
+		}
+	})()
 
 	// TODO: See if we can move this function to the core repo:
 	const getDefaultAriaLabel = () => {
@@ -146,10 +151,10 @@ export function Attention(props: AttentionProps) {
 		})
 
 		const pointingAt = !props.noArrow
-			? `${pointingAtTranslation} ${getTranslatedDirection}`
+			? `${pointingAtTranslation} ${translatedDirection}`
 			: ''
 
-		return `${activeAttentionProp} ${pointingAt}`
+		return `${activeAttentionType} ${pointingAt}`
 	}
 	// Recompute on re-render
 	useEffect(() => {
