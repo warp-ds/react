@@ -77,33 +77,33 @@ export function Attention(props: AttentionProps) {
 	}
 
 	//TODO: See if we can move this function to the core-repo:
-	const translatedDirection = (() => {
+	const pointingAtDirection = (() => {
 		switch (opposites[actualDirection]) {
 			case 'top':
 				return i18n._({
 					id: 'attention.direction.top',
-					message: 'top',
+					message: 'pointing up',
 					comment:
 						'Default screenreader message for top direction in the attention component',
 				})
 			case 'right':
 				return i18n._({
 					id: 'attention.direction.right',
-					message: 'right',
+					message: 'pointing right',
 					comment:
 						'Default screenreader message for right direction in the attention component',
 				})
 			case 'bottom':
 				return i18n._({
 					id: 'attention.direction.bottom',
-					message: 'bottom',
+					message: 'pointing down',
 					comment:
 						'Default screenreader message for bottom direction in the attention component',
 				})
 			case 'left':
 				return i18n._({
 					id: 'attention.direction.left',
-					message: 'left',
+					message: 'pointing left',
 					comment:
 						'Default screenreader message for left direction in the attention component',
 				})
@@ -118,23 +118,23 @@ export function Attention(props: AttentionProps) {
 			case props.tooltip:
 				return i18n._({
 					id: 'attention.tooltip',
-					message: 'tooltip',
+					message: 'tooltip speech bubble',
 					comment:
-						'Default screenreader message for tooltip in the attention component',
+						'Default screenreader message for tooltip speech bubble in the attention component',
 				})
 			case props.callout:
 				return i18n._({
 					id: 'attention.callout',
-					message: 'callout',
+					message: 'callout speech bubble',
 					comment:
-						'Default screenreader message for callout in the attention component',
+						'Default screenreader message for callout speech bubble in the attention component',
 				})
 			case props.popover:
 				return i18n._({
 					id: 'attention.popover',
-					message: 'popover',
+					message: 'popover speech bubble',
 					comment:
-						'Default screenreader message for popover in the attention component',
+						'Default screenreader message for popover speech bubble in the attention component',
 				})
 			default:
 				return ''
@@ -142,19 +142,8 @@ export function Attention(props: AttentionProps) {
 	})()
 
 	// TODO: See if we can move this function to the core repo:
-	const getDefaultAriaLabel = () => {
-		const pointingAtTranslation = i18n._({
-			id: 'attention.ariaLabel.pointingAt',
-			message: 'pointing to the',
-			comment:
-				'Default screenreader message for the pointingAt function in the attention component',
-		})
-
-		const pointingAt = !props.noArrow
-			? `${pointingAtTranslation} ${translatedDirection}`
-			: ''
-
-		return `${activeAttentionType} ${pointingAt}`
+	const defaultAriaLabel = () => {
+		return `${activeAttentionType} ${!props.noArrow ? pointingAtDirection : ''}`
 	}
 	// Recompute on re-render
 	useEffect(() => {
@@ -178,7 +167,7 @@ export function Attention(props: AttentionProps) {
 		<div
 			aria-describedby={ariaDescribedby}
 			role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
-			aria-label={ariaLabel ?? getDefaultAriaLabel()}
+			aria-label={ariaLabel ?? defaultAriaLabel()}
 			tabIndex={0}
 			className={classNames(
 				{

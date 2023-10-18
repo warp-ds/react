@@ -1,62 +1,50 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-10-17 14:01+0200\n"
+"POT-Creation-Date: 2023-10-18 14:22+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+
+#. Default screenreader message for callout speech bubble in the attention component
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:126
+msgid "attention.callout"
+msgstr "callout speech bubble"
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:97
 msgid "attention.direction.bottom"
-msgstr "bottom"
-
-#. Default screenreader message for callout in the attention component
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:126
-msgid "attention.callout"
-msgstr "callout"
+msgstr "pointing down"
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:104
 msgid "attention.direction.left"
-msgstr "left"
-
-#. Default screenreader message for the pointingAt function in the attention component
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:146
-msgid "attention.ariaLabel.pointingAt"
-msgstr "pointing to the"
-
-#. Default screenreader message for popover in the attention component
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:133
-msgid "attention.popover"
-msgstr "popover"
+msgstr "pointing left"
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:90
 msgid "attention.direction.right"
-msgstr "right"
-
-#. Default screenreader message for tooltip in the attention component
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:119
-msgid "attention.tooltip"
-msgstr "tooltip"
+msgstr "pointing right"
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:83
 msgid "attention.direction.top"
-msgstr "top"
+msgstr "pointing up"
+
+#. Default screenreader message for popover speech bubble in the attention component
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:133
+msgid "attention.popover"
+msgstr "popover speech bubble"
+
+#. Default screenreader message for tooltip speech bubble in the attention component
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:119
+msgid "attention.tooltip"
+msgstr "tooltip speech bubble"
