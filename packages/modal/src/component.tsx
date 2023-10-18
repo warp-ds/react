@@ -113,7 +113,7 @@ export const Modal = ({
               )}
             >
               {typeof props.title === "string" ? (
-                <h2 className={ccModal.titleText}>{props.title}</h2>
+                <h1 className={ccModal.titleText}>{props.title}</h1>
               ) : (
                 props.title
               )}
