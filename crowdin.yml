@@ -57,4 +57,9 @@ files:
                   "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/toggle/src/locales/%two_letters_code%/messages.po",
             },
+            {
+                  "source": "/packages/attention/src/locales/en/messages.po",
+                  "dest": "/react/**/%original_file_name%",
+                  "translation": "/packages/attention/src/locales/%two_letters_code%/messages.po",
+            },
       ]
