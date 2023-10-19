@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-10-18 14:22+0200\n"
+"POT-Creation-Date: 2023-10-19 13:45+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,25 +16,25 @@ msgstr ""
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:97
-msgid "attention.direction.bottom"
+msgid "attention.pointingDown"
 msgstr ""
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:104
-msgid "attention.direction.left"
+msgid "attention.pointingLeft"
 msgstr ""
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:90
-msgid "attention.direction.right"
+msgid "attention.pointingRight"
 msgstr ""
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:83
-msgid "attention.direction.top"
+msgid "attention.pointingUp"
 msgstr ""
 
 #. Default screenreader message for popover speech bubble in the attention component
