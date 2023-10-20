@@ -122,7 +122,7 @@ export const Button = forwardRef<
         <a
           onClick={handleClick}
           aria-current={props['aria-current']}
-          href={props.href}
+          href={props.disabled ? undefined : props.href}
           target={props.target}
           rel={
             props.target === '_blank'
@@ -131,6 +131,8 @@ export const Button = forwardRef<
           }
           ref={ref as Ref<HTMLAnchorElement>}
           className={classes}
+          role='button'
+          aria-disabled={props.disabled}
         >
           {props.children}
         </a>
@@ -140,6 +142,7 @@ export const Button = forwardRef<
           type={props.type || 'button'}
           ref={ref as Ref<HTMLButtonElement>}
           className={classes}
+          role={props.link ? 'link' : 'button'}
         >
           {props.children}
         </button>
