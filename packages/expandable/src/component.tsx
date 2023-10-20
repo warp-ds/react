@@ -67,66 +67,31 @@ export function Expandable(props: ExpandableProps) {
 						) : (
 							title
 						)}
-
-						{/* Discuss which solution to go with:
-            First option:  */}
 						{chevron && (
 							<div
 								className={classNames({
 									[ccExpandable.chevron]: true,
-									[ccExpandable.chevronExpand]: stateExpanded && !showChevronUp,
-									[ccExpandable.chevronCollapse]:
-										!stateExpanded && showChevronUp,
 									[ccExpandable.chevronBox]: box,
 									[ccExpandable.chevronNonBox]: !box,
 								})}
 							>
-								{!showChevronUp ? <IconChevronDown16 /> : <IconChevronUp16 />}
+								{!showChevronUp ? (
+									<IconChevronDown16
+										className={classNames({
+											[ccExpandable.chevronExpand]:
+												stateExpanded && !showChevronUp,
+										})}
+									/>
+								) : (
+									<IconChevronUp16
+										className={classNames({
+											[ccExpandable.chevronCollapse]:
+												!stateExpanded && showChevronUp,
+										})}
+									/>
+								)}
 							</div>
 						)}
-            {/* Pros:
-                We keep the solution in the same div as before. No repetition.
-
-                Cons:
-                The transition isn’t as smooth. 
-                The animation is still there but it animates and then jumps for a split-section.  */}
-
-						{/* Second option:  */}
-						{/* {chevron && (
-              <div
-                className={classNames({
-                  [ccExpandable.chevron]: true,
-                  [ccExpandable.chevronExpand]: stateExpanded && !showChevronUp,
-                  [ccExpandable.chevronCollapse]: !stateExpanded && showChevronUp,
-                  [ccExpandable.chevronBox]: box,
-                  [ccExpandable.chevronNonBox]: !box,
-                })}
-              >
-                {!showChevronUp && (
-                  <IconChevronDown16 />
-                )}
-              </div>
-            )}
-            {chevron && (
-              <div
-                className={classNames({
-                  [ccExpandable.chevron]: true,
-                  [ccExpandable.chevronBox]: box,
-                  [ccExpandable.chevronCollapse]: !stateExpanded && showChevronUp,
-                  [ccExpandable.chevronNonBox]: !box,
-                })}
-              >
-                {showChevronUp && (
-                  <IconChevronUp16 />
-                )}
-              </div>
-            )} */}
-
-            {/* Pros:
-                Gives a smooth transition between the icons
-                Cons: 
-                A lot of repetition
-            */}
 					</div>
 				</button>
 			</UnstyledHeading>
