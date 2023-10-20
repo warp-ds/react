@@ -75,16 +75,18 @@ export function Expandable(props: ExpandableProps) {
 									[ccExpandable.chevronNonBox]: !box,
 								})}
 							>
-                {showChevronUp ? (
-                  <IconChevronUp16
-                  className={classNames({
-                    [ccExpandable.chevronCollapse]:
-                      !stateExpanded && showChevronUp,
-                  })}
-                />
+								{showChevronUp ? (
+									<IconChevronUp16
+										className={classNames({
+											[ccExpandable.chevronTransform]: true,
+											[ccExpandable.chevronCollapse]:
+												!stateExpanded && showChevronUp,
+										})}
+									/>
 								) : (
 									<IconChevronDown16
 										className={classNames({
+											[ccExpandable.chevronTransform]: true,
 											[ccExpandable.chevronExpand]:
 												stateExpanded && !showChevronUp,
 										})}
