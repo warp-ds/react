@@ -25,3 +25,4 @@ jobs:
         with:
           branch: gh-pages
           folder: storybook-static
+          clean-exclude: pr-preview/
