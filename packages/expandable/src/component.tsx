@@ -35,10 +35,10 @@ export function Expandable(props: ExpandableProps) {
 
 	const toggleExpandable = (state) => {
 		setStateExpanded(!state)
-		if (onChange) onChange(!state)
 		setTimeout(() => {
 			setShowChevronUp(!state)
 		}, 200)
+		if (onChange) onChange(!state)
 	}
 
 	return (
@@ -75,18 +75,18 @@ export function Expandable(props: ExpandableProps) {
 									[ccExpandable.chevronNonBox]: !box,
 								})}
 							>
-								{!showChevronUp ? (
+                {showChevronUp ? (
+                  <IconChevronUp16
+                  className={classNames({
+                    [ccExpandable.chevronCollapse]:
+                      !stateExpanded && showChevronUp,
+                  })}
+                />
+								) : (
 									<IconChevronDown16
 										className={classNames({
 											[ccExpandable.chevronExpand]:
 												stateExpanded && !showChevronUp,
-										})}
-									/>
-								) : (
-									<IconChevronUp16
-										className={classNames({
-											[ccExpandable.chevronCollapse]:
-												!stateExpanded && showChevronUp,
 										})}
 									/>
 								)}
