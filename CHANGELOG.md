@@ -1,3 +1,17 @@
+## [1.1.1-next.7](https://github.com/warp-ds/react/compare/v1.1.1-next.6...v1.1.1-next.7) (2023-10-20)
+
+
+### Bug Fixes
+
+* connect helptext to text area ([#131](https://github.com/warp-ds/react/issues/131)) ([a7a7643](https://github.com/warp-ds/react/commit/a7a76436a96b667cb72c5c7cc001fd43b2e345f8))
+
+## [1.1.1-next.6](https://github.com/warp-ds/react/compare/v1.1.1-next.5...v1.1.1-next.6) (2023-10-18)
+
+
+### Bug Fixes
+
+* ay11 fixes for the Modal component and affected stories ([#128](https://github.com/warp-ds/react/issues/128)) ([a1fdf92](https://github.com/warp-ds/react/commit/a1fdf92f4497049d8dc788fd301163be07c28591))
+
 ## [1.1.1-next.5](https://github.com/warp-ds/react/compare/v1.1.1-next.4...v1.1.1-next.5) (2023-10-13)
 
 

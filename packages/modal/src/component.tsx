@@ -22,6 +22,7 @@ export const Modal = ({
 }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const id = useId(props.id);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -32,9 +33,12 @@ export const Modal = ({
   }, [props.open, contentRef]);
 
   useEffect(() => {
-    if (!props.initialFocusRef) return;
-    props.initialFocusRef.current?.focus();
-  }, [props.open, props.initialFocusRef]);
+    if (!props.initialFocusRef) {
+      props.right && closeButtonRef.current?.focus();
+    } else {
+      props.initialFocusRef.current?.focus();
+    }
+  }, [props.open, props.initialFocusRef, props.right]);
 
   if (!props.open) return <></>;
 
@@ -109,7 +113,7 @@ export const Modal = ({
               )}
             >
               {typeof props.title === "string" ? (
-                <p className={ccModal.titleText}>{props.title}</p>
+                <h1 className={ccModal.titleText}>{props.title}</h1>
               ) : (
                 props.title
               )}
@@ -117,6 +121,7 @@ export const Modal = ({
 
             {typeof props.right === "boolean" && props.right ? (
               <button
+                ref={closeButtonRef}
                 type="button"
                 aria-label={i18n._(
                   /*i18n*/ {
