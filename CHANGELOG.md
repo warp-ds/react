@@ -1,3 +1,29 @@
+## [1.1.1](https://github.com/warp-ds/react/compare/v1.1.0...v1.1.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* a11y fixes for button link and link as buttons ([#132](https://github.com/warp-ds/react/issues/132)) ([47c6bd7](https://github.com/warp-ds/react/commit/47c6bd7fab38151bff5e373e88606f25c2656719))
+* a11y issues for attention component ([#123](https://github.com/warp-ds/react/issues/123)) ([0588564](https://github.com/warp-ds/react/commit/05885644551b77913285a35faa2266b1b16a0138))
+* add leading slash to crowdin path ([#98](https://github.com/warp-ds/react/issues/98)) ([472d456](https://github.com/warp-ds/react/commit/472d4563157de905dfa4a5d09bb43812626c1b5d))
+* add source locale to lingui config ([#103](https://github.com/warp-ds/react/issues/103)) ([aaf3dc0](https://github.com/warp-ds/react/commit/aaf3dc0bb320e5df297d3d82f851ce61c00c2274))
+* anchor text alignment & icon translations ([#134](https://github.com/warp-ds/react/issues/134)) ([d682586](https://github.com/warp-ds/react/commit/d682586225c9056a1883984c7ccd4c2ded2e16e5))
+* ay11 fixes for the Modal component and affected stories ([#128](https://github.com/warp-ds/react/issues/128)) ([a1fdf92](https://github.com/warp-ds/react/commit/a1fdf92f4497049d8dc788fd301163be07c28591))
+* **breadcrumbs.js:**  Remove double Aria Label ([90d56a8](https://github.com/warp-ds/react/commit/90d56a8429427af70f040ecfbcab5a828ff5a9a4))
+* **breadcrumbs:** fixed double arialabel and removed area hidden from the seperators ([02f4eb2](https://github.com/warp-ds/react/commit/02f4eb27ac3dc2fe316d4cede8ea62df78d26304))
+* connect helptext to text area ([#131](https://github.com/warp-ds/react/issues/131)) ([a7a7643](https://github.com/warp-ds/react/commit/a7a76436a96b667cb72c5c7cc001fd43b2e345f8))
+* improve destination config for crowdin ([#112](https://github.com/warp-ds/react/issues/112)) ([7bd543a](https://github.com/warp-ds/react/commit/7bd543ac560a7c8396e4791af81e7531ca006e5a))
+* only sync locales on next branch for now ([#99](https://github.com/warp-ds/react/issues/99)) ([f068199](https://github.com/warp-ds/react/commit/f06819920016e7d02b6736cfe5f7212c6967087f))
+* replace inline svgs with warp icons ([#95](https://github.com/warp-ds/react/issues/95)) ([17f5b05](https://github.com/warp-ds/react/commit/17f5b054c1a574fd413b367cf2624e815bbf8a32))
+
+## [1.1.1-next.10](https://github.com/warp-ds/react/compare/v1.1.1-next.9...v1.1.1-next.10) (2023-10-23)
+
+
+### Bug Fixes
+
+* **breadcrumbs.js:**  Remove double Aria Label ([90d56a8](https://github.com/warp-ds/react/commit/90d56a8429427af70f040ecfbcab5a828ff5a9a4))
+* **breadcrumbs:** fixed double arialabel and removed area hidden from the seperators ([02f4eb2](https://github.com/warp-ds/react/commit/02f4eb27ac3dc2fe316d4cede8ea62df78d26304))
+
 ## [1.1.1-next.9](https://github.com/warp-ds/react/compare/v1.1.1-next.8...v1.1.1-next.9) (2023-10-20)
 
 
