@@ -12,6 +12,7 @@ export function Box(props: BoxProps) {
     neutral,
     bordered,
     info,
+    role,
     ...rest
   } = props;
 
@@ -19,6 +20,7 @@ export function Box(props: BoxProps) {
     as,
     {
       ...(rest as Omit<BoxProps, 'children'> as {}),
+      role: role ?? 'region',
       className: classNames(
         ccBox.box,
         {
