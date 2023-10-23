@@ -10,10 +10,10 @@ export function Callout() {
   return (
     <div className='flex items-center'>
       <Box info>
-        <h1>I am a box full of info</h1>
+        <h1 aria-details="callout-bubbletext">I am a box full of info</h1>
       </Box>
       <Attention callout placement='right' isShowing={true}>
-        <p style={{ width: 200 }}>
+        <p id="callout-bubbletext" style={{ width: 200 }}>
           I'm a callout because that box over there is new or something
         </p>
       </Attention>
@@ -24,7 +24,7 @@ export function CalloutResettingRoleAndAriaLabel() {
   return (
     <div className='flex items-center'>
       <Box info>
-        <h1>I am a box full of info</h1>
+        <h1 aria-details="callout-reset-bubbletext">I am a box full of info</h1>
       </Box>
       <Attention
         callout
@@ -33,7 +33,7 @@ export function CalloutResettingRoleAndAriaLabel() {
         placement='right'
         isShowing={true}
       >
-        <p style={{ width: 200 }}>
+        <p id="callout-reset-bubbletext" style={{ width: 200 }}>
           I'm a callout with resetted role and aria-label attributes.
         </p>
       </Attention>
@@ -56,7 +56,7 @@ export function Tooltip() {
       <h1
         className='w-max mb-0'
         ref={targetEl}
-        aria-describedby='tooltip-example'
+        aria-details='tooltip-bubbletext'
         aria-hidden={!show}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
@@ -69,12 +69,11 @@ export function Tooltip() {
       </h1>
       <Attention
         tooltip
-        aria-describedby='tooltip-example'
         placement='bottom'
         targetEl={targetEl}
         isShowing={show}
       >
-        <p>lol i am a tooltip</p>
+        <p id="tooltip-bubbletext">lol i am a tooltip</p>
       </Attention>
     </div>
   )
@@ -103,6 +102,7 @@ export function Popover() {
         small
         aria-expanded={show}
         aria-controls='pop-over-attention-example'
+        aria-details="pop-over-bubbletext"
         utility
         onClick={() => setShow(!show)}
         className='w-max mb-0'
@@ -116,7 +116,7 @@ export function Popover() {
         targetEl={targetEl}
         isShowing={show}
       >
-        <ul className='bg-white w-full text-center'>
+        <ul className='bg-white w-full text-center' id="pop-over-bubbletext">
           <li
             tabIndex={0}
             className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'

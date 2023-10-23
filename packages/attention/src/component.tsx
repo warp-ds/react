@@ -20,7 +20,6 @@ export function Attention(props: AttentionProps) {
     children,
     role,
     'aria-label': ariaLabel,
-    'aria-describedby': ariaDescribedby,
     placement,
     targetEl,
     className,
@@ -165,7 +164,6 @@ export function Attention(props: AttentionProps) {
 
   return (
     <div
-      aria-describedby={ariaDescribedby}
       role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
       aria-label={ariaLabel ?? defaultAriaLabel()}
       tabIndex={0}
