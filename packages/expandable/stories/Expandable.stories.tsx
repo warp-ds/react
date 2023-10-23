@@ -20,8 +20,9 @@ export const Box = () => (
 export const BoxWithCustomIcon = () => (
   <Expandable
     title={
-      <div className="flex flex-row items-center" aria-label="This is a title with an icon, ">
+      <div className="flex flex-row items-center">
         <p className="mr-8 mb-0">This is a title with an icon</p>
+        <span className="sr-only">,</span>
         <IconBag16 />
       </div>
     }
