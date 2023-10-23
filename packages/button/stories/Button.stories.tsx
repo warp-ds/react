@@ -297,6 +297,12 @@ export const Example = () => {
           Full width
         </Button>
       </div>
+      <div>
+        <h3>Full width link (href) styled as button</h3>
+        <Button fullWidth className="mr-32" primary href="https://google.com/">
+          Go to google.com
+        </Button>
+      </div>
     </div>
   );
 };
