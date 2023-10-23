@@ -164,8 +164,6 @@ export function Attention(props: AttentionProps) {
 
   return (
     <div
-      role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
-      aria-label={ariaLabel ?? defaultAriaLabel()}
       tabIndex={0}
       className={classNames(
         {
@@ -177,7 +175,11 @@ export function Attention(props: AttentionProps) {
       )}
       ref={attentionRef}
     >
-      <div className={wrapperClasses}>
+      <div
+        role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
+        aria-label={ariaLabel ?? defaultAriaLabel()}
+        className={wrapperClasses}
+      >
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
