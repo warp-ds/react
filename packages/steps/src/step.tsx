@@ -4,6 +4,7 @@ import { step as ccStep } from "@warp-ds/css/component-classes";
 import { useContext } from "react";
 import { StepsContext } from "./component";
 import { IconCheck16 } from "@warp-ds/icons/react";
+import { i18n } from '@lingui/core';
 
 export interface StepProps {
   /**
@@ -72,7 +73,15 @@ export function Step({ active, completed, children }: StepProps) {
     <li className={stepClasses}>
       {!vertical && <div className={stepLineHorizontalClasses} />}
       <div className={stepDotClasses}
-      {...(!active && !completed && { role: 'img', 'aria-label': 'empty circle'})}
+      {...(!active && !completed && { 
+        role: 'img', 
+      'aria-label': i18n._(
+        /*i18n*/ {
+          id: "steps.aria.emptyCircle",
+          message: "Empty circle",
+          comment: "Empty circle",
+        }
+      )})}
       {...(active && { 'aria-current': 'step'})}>{completed && <IconCheck16 />}</div>
       <div className={stepLineClasses} />
       <div className={stepContentClasses}>{children}</div>
