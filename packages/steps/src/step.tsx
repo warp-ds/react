@@ -69,11 +69,13 @@ export function Step({ active, completed, children }: StepProps) {
   });
 
   return (
-    <div className={stepClasses}>
+    <li className={stepClasses}>
       {!vertical && <div className={stepLineHorizontalClasses} />}
-      <div className={stepDotClasses}>{completed && <IconCheck16 />}</div>
+      <div className={stepDotClasses}
+      {...(!active && !completed && { role: 'img', 'aria-label': 'empty circle'})}
+      {...(active && { 'aria-current': 'step'})}>{completed && <IconCheck16 />}</div>
       <div className={stepLineClasses} />
       <div className={stepContentClasses}>{children}</div>
-    </div>
+    </li>
   );
 }
