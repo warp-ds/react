@@ -33,6 +33,12 @@ export type ExpandableProps = {
   expanded?: boolean;
 
   /**
+   * The state of the chevron-up icon, if set to true, chevron up should be displayed, if set to false then chevron-down icon should be displayed.
+   * @default false
+   */
+  showChevronUpIcon?: boolean;
+
+  /**
    * Event function to be called any time the component is expanded or closed. Function will be passed a boolean with a value of true if the component is now expanded or false if it is now closed.
    */
   onChange?: (state: boolean) => void;

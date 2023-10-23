@@ -12,6 +12,7 @@ export function Expandable(props: ExpandableProps) {
 	const {
 		children,
 		expanded = false,
+		showChevronUpIcon = false,
 		title = '',
 		info = false,
 		box = false,
@@ -27,7 +28,7 @@ export function Expandable(props: ExpandableProps) {
 	} = props
 
 	const [stateExpanded, setStateExpanded] = React.useState(expanded)
-	const [showChevronUp, setShowChevronUp] = React.useState(false)
+	const [showChevronUp, setShowChevronUp] = React.useState(showChevronUpIcon)
 
 	React.useEffect(() => {
 		setStateExpanded(expanded)

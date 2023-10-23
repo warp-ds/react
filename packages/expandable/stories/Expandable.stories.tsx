@@ -73,7 +73,7 @@ export const Animated = () => {
 
 export const AnimatedExpanded = () => {
   return (
-    <Expandable title="Animated box" expanded box info animated>
+    <Expandable title="Animated box" expanded box info animated showChevronUpIcon>
       <h2>I am expandable</h2>
     </Expandable>
   );
