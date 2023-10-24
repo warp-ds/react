@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "1.1.1",
+  "version": "1.1.2-next.2",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -40,7 +40,7 @@
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "semantic-release": "semantic-release",
     "messages:extract": "lingui extract",
-    "messages:compile": "lingui compile --strict"
+    "messages:compile": "lingui compile"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

@@ -16,5 +16,5 @@ msgstr ""
 #. Aria label for magnifying glass used as affix in Combobox and Textfield components
 #. js-lingui-explicit-id
 #: packages/_helpers/affix.tsx:37
-msgid "forms.affix.aria.magnifyingGlass"
-msgstr "Magnifying glass"
+#~ msgid "forms.affix.aria.magnifyingGlass"
+#~ msgstr "Magnifying glass"

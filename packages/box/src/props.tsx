@@ -56,4 +56,9 @@ export interface BoxProps {
    * @default false
    */
   neutral?: boolean;
+
+  /**
+   * ARIA live region "role" attribute value
+   */
+  role?: string;
 }
