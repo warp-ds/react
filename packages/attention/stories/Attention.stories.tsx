@@ -33,8 +33,8 @@ export function CalloutResettingRoleAndAriaLabel() {
         placement='right'
         isShowing={true}
       >
-        <p id="callout-reset-bubbletext" style={{ width: 200 }}>
-          I'm a callout with resetted role and aria-label attributes.
+        <p id="callout-reset-bubbletext" role="img" style={{ width: 200 }}>
+          I'm a callout speech bubble with resetted role and aria-label attributes pointing left.
         </p>
       </Attention>
     </div>

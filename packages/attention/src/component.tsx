@@ -176,8 +176,8 @@ export function Attention(props: AttentionProps) {
       ref={attentionRef}
     >
       <div
-        role={props.role ?? (props.tooltip ? 'tooltip' : 'img')}
-        aria-label={ariaLabel ?? defaultAriaLabel()}
+        role={props.role === '' ? undefined : (props.tooltip ? 'tooltip' : 'img')}
+        aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
         className={wrapperClasses}
       >
         {!props.noArrow && (
