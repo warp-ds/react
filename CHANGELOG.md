@@ -1,3 +1,10 @@
+## [1.1.2-next.1](https://github.com/warp-ds/react/compare/v1.1.1...v1.1.2-next.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* Add role property to Box component ([#139](https://github.com/warp-ds/react/issues/139)) ([e46db48](https://github.com/warp-ds/react/commit/e46db48882ad79ab20fc839bf67f6c1c92b5a81e))
+
 ## [1.1.1](https://github.com/warp-ds/react/compare/v1.1.0...v1.1.1) (2023-10-23)
 
 
