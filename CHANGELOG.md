@@ -1,3 +1,10 @@
+## [1.1.2-next.3](https://github.com/warp-ds/react/compare/v1.1.2-next.2...v1.1.2-next.3) (2023-10-24)
+
+
+### Bug Fixes
+
+* crowdin build step ([#142](https://github.com/warp-ds/react/issues/142)) ([f2ace37](https://github.com/warp-ds/react/commit/f2ace37db88b53c1fc81dfb8c42e17daad8f2063))
+
 ## [1.1.2-next.2](https://github.com/warp-ds/react/compare/v1.1.2-next.1...v1.1.2-next.2) (2023-10-24)
 
 

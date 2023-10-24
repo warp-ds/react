@@ -32,6 +32,7 @@ pnpm add @warp-ds/react
 <script src="https://assets.finn.no/pkg/@warp-ds/react/v1"></script>
 ```
 
+
 ### Documentation
 
 For information on the components available in the package and how to use them,
@@ -47,6 +48,16 @@ Anyone needing to use the latest changes of this package can point to the `next`
 ## Changelog
 
 Detailed changes for each release can be found in the [CHANGELOG](CHANGELOG.md) file.
+
+## NOTE:
+Currently Crowdin has a bug that makes the synchronize-with-crowdin build step fail in the next-branch. Crowdin does some extra pre-processing of uploaded files, and their processor breaks with obsolete strings syntax in the .po-files. 
+
+A temporary fix to this is to run 
+```sh
+pnpm lingui extract --clean
+```
+
+This command should no longer be necessary to run once the bug in Crowdin is fixed.
 
 
 ## License

@@ -17,9 +17,3 @@ msgstr ""
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: /react/packages/_helpers/messages.po\n"
 "X-Crowdin-File-ID: 651\n"
-
-#. Aria label for magnifying glass used as affix in Combobox and Textfield components
-#. js-lingui-explicit-id
-#: packages/_helpers/affix.tsx:37
-#~ msgid "forms.affix.aria.magnifyingGlass"
-#~ msgstr "Suurennuslasi"
