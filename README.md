@@ -52,7 +52,8 @@ Detailed changes for each release can be found in the [CHANGELOG](CHANGELOG.md) 
 ## NOTE:
 Currently Crowdin has a bug that makes the synchronize-with-crowdin build step fail in the next-branch. Crowdin does some extra pre-processing of uploaded files, and their processor breaks with obsolete strings syntax in the .po-files. 
 
-A temporary fix to this is to run ```sh
+A temporary fix to this is to run 
+```sh
 pnpm lingui extract --clean
 ```
 
