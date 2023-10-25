@@ -15,42 +15,48 @@ msgstr ""
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:125
+#: packages/attention/src/component.tsx:147
 msgid "attention.callout"
+msgstr ""
+
+#. Default screenreader message for highlighted speech bubble in the attention component
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:161
+msgid "attention.aria.highlight"
 msgstr ""
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:96
+#: packages/attention/src/component.tsx:118
 msgid "attention.pointingDown"
 msgstr ""
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:103
+#: packages/attention/src/component.tsx:125
 msgid "attention.pointingLeft"
 msgstr ""
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:89
+#: packages/attention/src/component.tsx:111
 msgid "attention.pointingRight"
 msgstr ""
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:82
+#: packages/attention/src/component.tsx:104
 msgid "attention.pointingUp"
 msgstr ""
 
 #. Default screenreader message for popover speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:132
+#: packages/attention/src/component.tsx:154
 msgid "attention.popover"
 msgstr ""
 
 #. Default screenreader message for tooltip in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:118
+#: packages/attention/src/component.tsx:140
 msgid "attention.tooltip"
 msgstr ""

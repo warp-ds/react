@@ -157,6 +157,13 @@ export function Attention(props: AttentionProps) {
           comment:
             'Default screenreader message for popover speech bubble in the attention component',
         })
+      case props.highlight:
+        return i18n._({
+          id: 'attention.aria.highlight',
+          message: 'highlighted speech bubble',
+          comment:
+            'Default screenreader message for highlighted speech bubble in the attention component',
+        })
       default:
         return ''
     }
