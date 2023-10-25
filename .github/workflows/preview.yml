@@ -1,10 +1,17 @@
-name: Storybook
+name: Storybook preview
+
 on:
-  push:
-    branches:
-      - next
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
 jobs:
-  build-and-deploy:
+  deploy-preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,9 +27,10 @@ jobs:
           run_install: true
       - name: Build storybook
         run: pnpm run build-storybook
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
         with:
-          branch: gh-pages
-          folder: storybook-static
-          clean-exclude: pr-preview/
+          source-dir: ./storybook-static/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto

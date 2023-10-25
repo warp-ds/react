@@ -1,3 +1,24 @@
+## [1.1.2-next.4](https://github.com/warp-ds/react/compare/v1.1.2-next.3...v1.1.2-next.4) (2023-10-25)
+
+
+### Bug Fixes
+
+* add a11y attributes for to define steps in more accessible way ([#140](https://github.com/warp-ds/react/issues/140)) ([47af229](https://github.com/warp-ds/react/commit/47af2297dfd79f5e8ff121e4008d37f3cf5a5ef0))
+
+## [1.1.2-next.3](https://github.com/warp-ds/react/compare/v1.1.2-next.2...v1.1.2-next.3) (2023-10-24)
+
+
+### Bug Fixes
+
+* crowdin build step ([#142](https://github.com/warp-ds/react/issues/142)) ([f2ace37](https://github.com/warp-ds/react/commit/f2ace37db88b53c1fc81dfb8c42e17daad8f2063))
+
+## [1.1.2-next.2](https://github.com/warp-ds/react/compare/v1.1.2-next.1...v1.1.2-next.2) (2023-10-24)
+
+
+### Bug Fixes
+
+* a11y adjust attention ([#127](https://github.com/warp-ds/react/issues/127)) ([6fba30c](https://github.com/warp-ds/react/commit/6fba30ceefe92fd671c062ad87f7247087b446f2))
+
 ## [1.1.2-next.1](https://github.com/warp-ds/react/compare/v1.1.1...v1.1.2-next.1) (2023-10-23)
 
 
