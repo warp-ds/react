@@ -5,6 +5,10 @@ import { useContext } from "react";
 import { StepsContext } from "./component";
 import { IconCheck16 } from "@warp-ds/icons/react";
 import { i18n } from '@lingui/core';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 
 const availableAriaLabels = {
   completed: i18n._(
@@ -54,6 +58,8 @@ export interface StepProps {
 }
 
 export function Step(props: StepProps) {
+  activateI18n(enMessages, nbMessages, fiMessages);
+
   const { active, completed, children } = props;
   const StepsProps = useContext(StepsContext);
   const vertical = !StepsProps.horizontal;
