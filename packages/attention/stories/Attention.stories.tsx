@@ -57,8 +57,6 @@ export function Tooltip() {
       <h1
         className='w-max mb-0'
         ref={targetEl}
-        aria-describedby='tooltip-bubbletext'
-        aria-hidden={!show}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onFocus={() => setShow(true)}
@@ -109,8 +107,8 @@ export function Popover() {
       <Button
         small
         aria-expanded={show}
-        aria-controls='pop-over-attention-example'
-        aria-details='pop-over-bubbletext'
+        aria-controls='popover-example'
+        aria-details='popover-bubbletext'
         utility
         onClick={() => setShow(!show)}
         className='w-max mb-0'
@@ -124,7 +122,7 @@ export function Popover() {
         targetEl={targetEl}
         isShowing={show}
       >
-        <ul className='bg-white w-full text-center' id='pop-over-bubbletext'>
+        <ul className='bg-white w-full text-center' id='popover-bubbletext'>
           <li
             tabIndex={0}
             className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
