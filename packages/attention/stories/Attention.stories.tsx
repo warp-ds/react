@@ -66,7 +66,14 @@ export function Tooltip() {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        <button>hover this for useless info</button>
+        <button
+          aria-describedby='tooltip-bubbletext'
+          aria-expanded='true'
+          type='button'
+          className='bg-transparent'
+        >
+          hover this for useless info
+        </button>
       </h1>
       <Attention
         tooltip
@@ -74,9 +81,7 @@ export function Tooltip() {
         targetEl={targetEl}
         isShowing={show}
       >
-        <p id='tooltip-bubbletext' role='tooltip'>
-          lol i am a tooltip
-        </p>
+        <p id='tooltip-bubbletext'>lol i am a tooltip</p>
       </Attention>
     </div>
   )
