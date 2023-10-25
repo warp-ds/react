@@ -12,7 +12,6 @@ export function Expandable(props: ExpandableProps) {
   const {
     children,
     expanded = false,
-    showChevronUpIcon = false,
     title = '',
     info = false,
     box = false,
@@ -28,7 +27,7 @@ export function Expandable(props: ExpandableProps) {
   } = props
 
   const [stateExpanded, setStateExpanded] = React.useState(expanded)
-  const [showChevronUp, setShowChevronUp] = React.useState(showChevronUpIcon)
+  const [showChevronUp, setShowChevronUp] = React.useState(expanded)
 
   React.useEffect(() => {
     setStateExpanded(expanded)
@@ -36,6 +35,7 @@ export function Expandable(props: ExpandableProps) {
 
   const toggleExpandable = (state) => {
     setStateExpanded(!state)
+    // We need a slight delay for the animation since it has a transition-duration of 150ms:
     setTimeout(() => {
       setShowChevronUp(!state)
     }, 200)

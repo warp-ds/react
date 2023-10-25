@@ -79,7 +79,6 @@ export const AnimatedExpanded = () => {
       box
       info
       animated
-      showChevronUpIcon
     >
       <h2>I am expandable</h2>
     </Expandable>
