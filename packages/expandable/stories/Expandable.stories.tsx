@@ -87,7 +87,7 @@ export const AnimatedExpanded = () => {
 
 export const Heading = () => {
   return (
-    <Expandable title="I'm also a heading" headingLevel={1}>
+    <Expandable title="I'm also a heading" headingLevel={2}>
       <h2>I am expandable</h2>
     </Expandable>
   )
