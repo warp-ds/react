@@ -25,12 +25,35 @@ export const hint = () => (
   <Select hint="We assume this is your jam preference" always />
 );
 
-export const invalid = () => (
+export const invalid = () => {
+  const [value, setValue] = React.useState('');
+  const [valid, setValid] = React.useState(true);
+  React.useEffect(() => {
+    setValid(value === 'Cloudberries');
+  }, [value]);
+
+  const handleOnChange = (e) => {
+    setValue(e.target.value);
+    return action('change');
+  }
+  
+  return (
   <div className="flex flex-col space-y-32">
-    <Select invalid />
-    <Select invalid hint="Wrong choice" />
+    <WarpSelect
+      invalid={!valid}
+      hint={!valid ? "Wrong choice" : ""}
+      onChange={handleOnChange}
+      onFocus={action('focus')}
+      onBlur={action('blur')}
+      aria-label="You're selection is berry nice!"
+    >
+      <option value={'Strawberries'}>Strawberries</option>
+      <option value={'Raspberries'}>Raspberries</option>
+      <option value={'Cloudberries'}>Cloudberries</option>
+    </WarpSelect>
+
   </div>
-);
+)};
 
 export const disabled = () => (
   <div className="flex flex-col space-y-32">
