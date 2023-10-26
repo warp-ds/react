@@ -1,1 +1,1 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"forms.affix.aria.magnifyingGlass\":\"Suurennuslasi\"}");
+/*eslint-disable*/export const messages=JSON.parse("{}");
