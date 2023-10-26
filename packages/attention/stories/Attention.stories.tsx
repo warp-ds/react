@@ -107,8 +107,7 @@ export function Popover() {
       <Button
         small
         aria-expanded={show}
-        aria-controls='popover-example'
-        aria-details='popover-bubbletext'
+        aria-controls='popover-bubbletext'
         utility
         onClick={() => setShow(!show)}
         className='w-max mb-0'
@@ -121,6 +120,7 @@ export function Popover() {
         placement='bottom'
         targetEl={targetEl}
         isShowing={show}
+        
       >
         <ul className='bg-white w-full text-center' id='popover-bubbletext'>
           <li
