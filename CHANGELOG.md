@@ -1,3 +1,10 @@
+## [1.1.2-next.5](https://github.com/warp-ds/react/compare/v1.1.2-next.4...v1.1.2-next.5) (2023-10-26)
+
+
+### Bug Fixes
+
+* activate translations in steps ([#144](https://github.com/warp-ds/react/issues/144)) ([8eb603e](https://github.com/warp-ds/react/commit/8eb603ea3efb20a5cf04bc58fedb3d4dafe2cb15))
+
 ## [1.1.2-next.4](https://github.com/warp-ds/react/compare/v1.1.2-next.3...v1.1.2-next.4) (2023-10-25)
 
 
