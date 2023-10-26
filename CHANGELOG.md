@@ -1,3 +1,10 @@
+## [1.1.2-next.6](https://github.com/warp-ds/react/compare/v1.1.2-next.5...v1.1.2-next.6) (2023-10-26)
+
+
+### Bug Fixes
+
+* a11y issues for expandable ([#138](https://github.com/warp-ds/react/issues/138)) ([ff8fecc](https://github.com/warp-ds/react/commit/ff8fecc5826b25549aceb35f324d9cf0f2284bee))
+
 ## [1.1.2-next.5](https://github.com/warp-ds/react/compare/v1.1.2-next.4...v1.1.2-next.5) (2023-10-26)
 
 
