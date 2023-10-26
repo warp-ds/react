@@ -1,3 +1,17 @@
+## [1.1.2-next.5](https://github.com/warp-ds/react/compare/v1.1.2-next.4...v1.1.2-next.5) (2023-10-26)
+
+
+### Bug Fixes
+
+* activate translations in steps ([#144](https://github.com/warp-ds/react/issues/144)) ([8eb603e](https://github.com/warp-ds/react/commit/8eb603ea3efb20a5cf04bc58fedb3d4dafe2cb15))
+
+## [1.1.2-next.4](https://github.com/warp-ds/react/compare/v1.1.2-next.3...v1.1.2-next.4) (2023-10-25)
+
+
+### Bug Fixes
+
+* add a11y attributes for to define steps in more accessible way ([#140](https://github.com/warp-ds/react/issues/140)) ([47af229](https://github.com/warp-ds/react/commit/47af2297dfd79f5e8ff121e4008d37f3cf5a5ef0))
+
 ## [1.1.2-next.3](https://github.com/warp-ds/react/compare/v1.1.2-next.2...v1.1.2-next.3) (2023-10-24)
 
 

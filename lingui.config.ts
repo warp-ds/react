@@ -46,6 +46,10 @@ const config: LinguiConfig = {
       path: 'packages/toggle/src/locales/{locale}/messages',
     },
     {
+      include: ['packages/steps/src/**/*.{ts,tsx}'],
+      path: 'packages/steps/src/locales/{locale}/messages',
+    },
+    {
       include: ['packages/attention/src/**/*.{ts,tsx}'],
       path: 'packages/attention/src/locales/{locale}/messages',
     },

@@ -4,7 +4,40 @@ import { step as ccStep } from "@warp-ds/css/component-classes";
 import { useContext } from "react";
 import { StepsContext } from "./component";
 import { IconCheck16 } from "@warp-ds/icons/react";
+import { i18n } from '@lingui/core';
+import { messages as nbMessages} from './locales/nb/messages.mjs';
+import { messages as enMessages} from './locales/en/messages.mjs';
+import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { activateI18n } from '../../i18n';
 
+const availableAriaLabels = {
+  completed: i18n._(
+    /*i18n*/ {
+      id: "steps.aria.completed",
+      message: "Step indicator completed circle",
+      comment: "Completed circle",
+    }
+  ),
+  active: i18n._(
+    /*i18n*/ {
+      id: "steps.aria.active",
+      message: "Step indicator active circle",
+      comment: "Active circle",
+    }
+  ),
+  default: i18n._(
+    /*i18n*/ {
+      id: "steps.aria.emptyCircle",
+      message: "Empty circle",
+      comment: "Empty circle",
+    }
+  )
+}
+
+const getAriaLabel = (props: StepProps) => {
+  const ariaLabel = Object.keys(availableAriaLabels).find(a => props[a]);
+  return ariaLabel ? availableAriaLabels[ariaLabel] : availableAriaLabels.default;
+}
 export interface StepProps {
   /**
    * Step is active
@@ -24,7 +57,10 @@ export interface StepProps {
   children: JSX.Element | JSX.Element[];
 }
 
-export function Step({ active, completed, children }: StepProps) {
+export function Step(props: StepProps) {
+  activateI18n(enMessages, nbMessages, fiMessages);
+
+  const { active, completed, children } = props;
   const StepsProps = useContext(StepsContext);
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
@@ -69,11 +105,13 @@ export function Step({ active, completed, children }: StepProps) {
   });
 
   return (
-    <div className={stepClasses}>
+    <li className={stepClasses}>
       {!vertical && <div className={stepLineHorizontalClasses} />}
-      <div className={stepDotClasses}>{completed && <IconCheck16 />}</div>
+      <div className={stepDotClasses} role='img'
+      aria-label={getAriaLabel(props)}
+       {...(active && { 'aria-current': 'step'})}>{completed && <IconCheck16 />}</div>
       <div className={stepLineClasses} />
       <div className={stepContentClasses}>{children}</div>
-    </div>
+    </li>
   );
 }
