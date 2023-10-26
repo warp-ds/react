@@ -36,7 +36,7 @@ export const invalid = () => {
     setValue(e.target.value);
     return action('change');
   }
-  
+
   return (
   <div className="flex flex-col space-y-32">
     <WarpSelect
@@ -58,7 +58,6 @@ export const invalid = () => {
 export const disabled = () => (
   <div className="flex flex-col space-y-32">
     <Select disabled />
-    <Select disabled hint="Wrong choice" />
   </div>
 );
 

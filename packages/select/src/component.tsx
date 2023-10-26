@@ -43,6 +43,7 @@ const setup = (props) => {
         'aria-describedby': helpId,
         'aria-errormessage': invalid && helpId ? helpId : undefined,
         'aria-invalid': invalid,
+        disabled,
         id,
       },
       optional,
