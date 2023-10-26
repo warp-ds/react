@@ -208,6 +208,7 @@ export function Attention(props: AttentionProps) {
         role={props.role === '' ? undefined : (props.tooltip ? 'tooltip' : 'img')}
         aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
         className={wrapperClasses}
+        id={props.id}
       >
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
