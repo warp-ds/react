@@ -83,4 +83,14 @@ export type AttentionProps = {
    * id used for relationship ARIA attributes
    */
   id?: string;
+
+  /**
+   * Whether a close button is shown
+   */
+  canClose?: boolean;
+
+  /**
+   * Handler that is called when the close button is clicked
+   */
+  onDismiss?: () => void;
 } & AttentionVariants;

@@ -80,6 +80,46 @@ export function Highlight() {
   )
 }
 
+export function DismissibleHighlight() {
+  const [show, setShow] = React.useState(false)
+  const targetEl = React.useRef()
+
+  return (
+    <div className='flex flex-col justify-between h-[200]'>
+      <Button
+        small
+        aria-expanded={show}
+        aria-controls='highlight-attention-example'
+        utility
+        onClick={() => setShow(!show)}
+        className='w-max mb-0'
+      >
+        Show an onboarding hint
+      </Button>
+      <div>
+        <div ref={targetEl} className="w-2/3">
+          <Box info>
+            <h1>I am a box full of info</h1>
+          </Box>
+        </div>
+        <Attention
+          highlight
+          canClose
+          onDismiss={() => setShow(false)}
+          placement='top'
+          isShowing={show}
+          targetEl={targetEl}
+          id='highlight-attention-example'
+        >
+          <p>
+            I'm a highlight that can dismiss itself
+          </p>
+        </Attention>
+      </div>
+    </div>
+  )
+}
+
 export function Tooltip() {
   const [show, setShow] = React.useState(false)
   const targetEl = React.useRef()

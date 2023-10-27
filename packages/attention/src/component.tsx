@@ -12,6 +12,7 @@ import { messages as nbMessages } from './locales/nb/messages.mjs'
 import { messages as enMessages } from './locales/en/messages.mjs'
 import { messages as fiMessages } from './locales/fi/messages.mjs'
 import { activateI18n } from '../../i18n'
+import { IconClose16 } from "@warp-ds/icons/react";
 
 const variantClasses = {
   callout: {
@@ -46,6 +47,8 @@ export function Attention(props: AttentionProps) {
     placement,
     targetEl,
     className,
+    canClose,
+    onDismiss,
     ...rest
   } = props
 
@@ -212,7 +215,31 @@ export function Attention(props: AttentionProps) {
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
-        <div className={ccAttention.content}>{props.children}</div>
+        <div className={ccAttention.content}>
+          {props.children}
+        </div>
+        {canClose && (
+          <button
+            type="button"
+            aria-label={i18n._(
+              /*i18n*/ {
+                id: "attention.aria.close",
+                message: "Close",
+                comment: "Aria label for the close button in attention",
+              }
+            )}
+            onClick={onDismiss}
+            onKeyDown={(event) => {
+              if (!props.onDismiss) return;
+              if (event.key === "Escape") {
+                props.onDismiss();
+              }
+            }}
+            className={ccAttention.closeBtn}
+          >
+            <IconClose16 />
+          </button>
+        )}
       </div>
     </div>
   )

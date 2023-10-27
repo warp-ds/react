@@ -15,48 +15,54 @@ msgstr ""
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:147
+#: packages/attention/src/component.tsx:150
 msgid "attention.aria.callout"
 msgstr "callout speech bubble"
 
+#. Aria label for the close button in attention
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:225
+msgid "attention.aria.close"
+msgstr "Close"
+
 #. Default screenreader message for highlighted speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:161
+#: packages/attention/src/component.tsx:164
 msgid "attention.aria.highlight"
 msgstr "highlighted speech bubble"
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:118
+#: packages/attention/src/component.tsx:121
 msgid "attention.aria.pointingDown"
 msgstr "pointing down"
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:125
+#: packages/attention/src/component.tsx:128
 msgid "attention.aria.pointingLeft"
 msgstr "pointing left"
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:111
+#: packages/attention/src/component.tsx:114
 msgid "attention.aria.pointingRight"
 msgstr "pointing right"
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:104
+#: packages/attention/src/component.tsx:107
 msgid "attention.aria.pointingUp"
 msgstr "pointing up"
 
 #. Default screenreader message for popover speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:154
+#: packages/attention/src/component.tsx:157
 msgid "attention.aria.popover"
 msgstr "popover speech bubble"
 
 #. Default screenreader message for tooltip in the attention component
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:140
+#: packages/attention/src/component.tsx:143
 msgid "attention.aria.tooltip"
 msgstr "tooltip"
