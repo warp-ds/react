@@ -193,7 +193,6 @@ export function Attention(props: AttentionProps) {
 
   return (
     <div
-      tabIndex={0}
       className={classNames(
         {
           [ccAttention.notCallout]: !props.callout,
