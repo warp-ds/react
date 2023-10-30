@@ -42,6 +42,44 @@ export function CalloutResettingRoleAndAriaLabel() {
   )
 }
 
+export function Highlight() {
+  const [show, setShow] = React.useState(false)
+  const targetEl = React.useRef()
+
+  return (
+    <div className='flex flex-col justify-between h-[200]'>
+      <Button
+        small
+        aria-expanded={show}
+        aria-controls='highlight-attention-example'
+        utility
+        onClick={() => setShow(!show)}
+        className='w-max mb-0'
+      >
+        Show an onboarding hint
+      </Button>
+      <div>
+        <div ref={targetEl} className="w-2/3">
+          <Box info>
+            <h1>I am a box full of info</h1>
+          </Box>
+        </div>
+        <Attention 
+          highlight
+          placement='top'
+          isShowing={show}
+          targetEl={targetEl}
+          id='highlight-attention-example'
+        >
+          <p>
+            I'm a highlight because that box over there is new or something
+          </p>
+        </Attention>
+      </div>
+    </div>
+  )
+}
+
 export function Tooltip() {
   const [show, setShow] = React.useState(false)
   const targetEl = React.useRef()
@@ -107,7 +145,8 @@ export function Popover() {
       <Button
         small
         aria-expanded={show}
-        aria-controls='pop-over-bubbletext'
+        aria-controls='popover-attention-example'
+        aria-details="popover-bubbletext"
         utility
         onClick={() => setShow(!show)}
         className='w-max mb-0'
@@ -120,7 +159,7 @@ export function Popover() {
         placement='bottom'
         targetEl={targetEl}
         isShowing={show}
-        id='pop-over-bubbletext'
+        id='popover-bubbletext'
       >
         <ul className='bg-white w-full text-center'>
           <li

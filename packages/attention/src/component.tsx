@@ -6,12 +6,35 @@ import {
   useRecompute as recompute,
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
-import { ArrowProps, AttentionProps } from './props'
+import { ArrowProps, AttentionProps, AttentionVariants } from './props'
 import { i18n } from '@lingui/core'
 import { messages as nbMessages } from './locales/nb/messages.mjs'
 import { messages as enMessages } from './locales/en/messages.mjs'
 import { messages as fiMessages } from './locales/fi/messages.mjs'
 import { activateI18n } from '../../i18n'
+
+const variantClasses = {
+  callout: {
+    wrapper: ccAttention.callout,
+    arrow: ccAttention.arrowCallout
+  },
+  highlight: {
+    wrapper: ccAttention.highlight,
+    arrow: ccAttention.arrowHighlight
+  },
+  tooltip: {
+    wrapper: ccAttention.tooltip,
+    arrow: ccAttention.arrowTooltip
+  },
+  popover: {
+    wrapper: ccAttention.popover,
+    arrow: ccAttention.arrowPopover
+  },
+}
+
+const getVariant = (variantProps: AttentionVariants) => {
+  return Object.keys(variantClasses).find(b => !!variantProps[b]) || '';
+};
 
 export function Attention(props: AttentionProps) {
   const {
@@ -28,11 +51,10 @@ export function Attention(props: AttentionProps) {
 
   activateI18n(enMessages, nbMessages, fiMessages)
 
-  const wrapperClasses = classNames(ccAttention.base, {
-    [ccAttention.tooltip]: props.tooltip,
-    [ccAttention.callout]: props.callout,
-    [ccAttention.popover]: props.popover,
-  })
+  const wrapperClasses = classNames(
+    ccAttention.base,
+    variantClasses[getVariant(rest)].wrapper
+  );
 
   const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
@@ -135,6 +157,13 @@ export function Attention(props: AttentionProps) {
           comment:
             'Default screenreader message for popover speech bubble in the attention component',
         })
+      case props.highlight:
+        return i18n._({
+          id: 'attention.aria.highlight',
+          message: 'highlighted speech bubble',
+          comment:
+            'Default screenreader message for highlighted speech bubble in the attention component',
+        })
       default:
         return ''
     }
@@ -179,6 +208,7 @@ export function Attention(props: AttentionProps) {
         role={props.role === '' ? undefined : (props.tooltip ? 'tooltip' : 'img')}
         aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
         className={wrapperClasses}
+        id={props.id}
       >
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
@@ -195,18 +225,13 @@ const arrowDirectionClassname = (dir: string) => {
   return `arrowDirection${direction}`
 }
 
-const Arrow = forwardRef<HTMLDivElement, ArrowProps>((props, ref) => {
-  const { callout, direction, popover, tooltip } = props
+const Arrow = forwardRef<HTMLDivElement, ArrowProps>(({ direction, ...rest }, ref) => {
   const arrowDirection = opposites[direction]
 
   const arrowClasses = classNames(
     ccAttention.arrowBase,
     ccAttention[arrowDirectionClassname(arrowDirection)],
-    {
-      [ccAttention.arrowTooltip]: tooltip,
-      [ccAttention.arrowCallout]: callout,
-      [ccAttention.arrowPopover]: popover,
-    }
+    variantClasses[getVariant(rest)].arrow
   )
 
   return (

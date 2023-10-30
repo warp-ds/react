@@ -1,3 +1,10 @@
+# [1.2.0-next.1](https://github.com/warp-ds/react/compare/v1.1.2-next.6...v1.2.0-next.1) (2023-10-26)
+
+
+### Features
+
+* **attention:** add highlight variant ([#145](https://github.com/warp-ds/react/issues/145)) ([1b86124](https://github.com/warp-ds/react/commit/1b861240b6f7fbc82502ee05eece68d3eb55774e))
+
 ## [1.1.2-next.6](https://github.com/warp-ds/react/compare/v1.1.2-next.5...v1.1.2-next.6) (2023-10-26)
 
 
