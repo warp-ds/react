@@ -45,4 +45,9 @@ export type PillProps = {
    * Additional styles applied to the Pill
    */
   className?: string;
+
+   /**
+   * Sets the aria-label attribute for the pill component
+   */
+ 'aria-label'?: string;
 };
