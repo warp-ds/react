@@ -135,21 +135,19 @@ export function Tooltip() {
       <h1
         className='w-max mb-0'
         ref={targetEl}
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
-        onFocus={() => setShow(true)}
-        onBlur={() => setShow(false)}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
       >
-        <button
+        <Button
           aria-describedby='tooltip-bubbletext'
           aria-expanded='true'
           type='button'
           className='bg-transparent'
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+          onFocus={() => setShow(true)}
+          onBlur={() => setShow(false)}
         >
           hover this for useless info
-        </button>
+        </Button>
       </h1>
       <Attention
         tooltip
