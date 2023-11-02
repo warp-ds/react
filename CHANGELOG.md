@@ -1,3 +1,31 @@
+# [1.2.0-next.3](https://github.com/warp-ds/react/compare/v1.2.0-next.2...v1.2.0-next.3) (2023-11-02)
+
+
+### Features
+
+* **attention:** add close button ([#149](https://github.com/warp-ds/react/issues/149)) ([6a5c9d6](https://github.com/warp-ds/react/commit/6a5c9d6c42242ea818ccf84a8c8e06ef0fab86bc))
+
+# [1.2.0-next.2](https://github.com/warp-ds/react/compare/v1.2.0-next.1...v1.2.0-next.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* adjust further a11y issues attention ([#147](https://github.com/warp-ds/react/issues/147)) ([b668aeb](https://github.com/warp-ds/react/commit/b668aeb18c18645a443802e9566bbed54483431b))
+
+# [1.2.0-next.1](https://github.com/warp-ds/react/compare/v1.1.2-next.6...v1.2.0-next.1) (2023-10-26)
+
+
+### Features
+
+* **attention:** add highlight variant ([#145](https://github.com/warp-ds/react/issues/145)) ([1b86124](https://github.com/warp-ds/react/commit/1b861240b6f7fbc82502ee05eece68d3eb55774e))
+
+## [1.1.2-next.6](https://github.com/warp-ds/react/compare/v1.1.2-next.5...v1.1.2-next.6) (2023-10-26)
+
+
+### Bug Fixes
+
+* a11y issues for expandable ([#138](https://github.com/warp-ds/react/issues/138)) ([ff8fecc](https://github.com/warp-ds/react/commit/ff8fecc5826b25549aceb35f324d9cf0f2284bee))
+
 ## [1.1.2-next.5](https://github.com/warp-ds/react/compare/v1.1.2-next.4...v1.1.2-next.5) (2023-10-26)
 
 

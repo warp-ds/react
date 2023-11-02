@@ -1,41 +1,46 @@
-import { classNames } from "@chbphone55/classnames";
+import { classNames } from '@chbphone55/classnames'
 import {
   box as ccBox,
   expandable as ccExpandable,
-} from "@warp-ds/css/component-classes";
-import React from "react";
-import { ExpandTransition, UnstyledHeading } from "../../_helpers";
-import { ExpandableProps } from "./props";
-import { IconChevronDown16 } from "@warp-ds/icons/react";
+} from '@warp-ds/css/component-classes'
+import React from 'react'
+import { ExpandTransition, UnstyledHeading } from '../../_helpers'
+import { ExpandableProps } from './props'
+import { IconChevronDown16, IconChevronUp16 } from '@warp-ds/icons/react'
 
 export function Expandable(props: ExpandableProps) {
   const {
     children,
     expanded = false,
-    title = "",
+    title = '',
     info = false,
     box = false,
     bleed = false,
-    buttonClass = "",
-    contentClass = "",
+    buttonClass = '',
+    contentClass = '',
     className,
     onChange,
     chevron = true,
     animated,
     headingLevel,
     ...rest
-  } = props;
+  } = props
 
-  const [stateExpanded, setStateExpanded] = React.useState(expanded);
+  const [stateExpanded, setStateExpanded] = React.useState(expanded)
+  const [showChevronUp, setShowChevronUp] = React.useState(expanded)
 
   React.useEffect(() => {
-    setStateExpanded(expanded);
-  }, [expanded]);
+    setStateExpanded(expanded)
+  }, [expanded])
 
   const toggleExpandable = (state) => {
-    setStateExpanded(!state);
-    if (onChange) onChange(!state);
-  };
+    setStateExpanded(!state)
+    // We need a slight delay for the animation since it has a transition-duration of 150ms:
+    setTimeout(() => {
+      setShowChevronUp(!state)
+    }, 200)
+    if (onChange) onChange(!state)
+  }
 
   return (
     <div
@@ -48,17 +53,17 @@ export function Expandable(props: ExpandableProps) {
     >
       <UnstyledHeading level={headingLevel}>
         <button
-          type="button"
+          type='button'
           aria-expanded={stateExpanded}
           className={classNames({
-            [buttonClass || ""]: true,
+            [buttonClass || '']: true,
             [ccExpandable.button]: true,
             [ccExpandable.buttonBox]: box,
           })}
           onClick={() => toggleExpandable(stateExpanded)}
         >
           <div className={ccExpandable.title}>
-            {typeof title === "string" ? (
+            {typeof title === 'string' ? (
               <span className={ccExpandable.titleType}>{title}</span>
             ) : (
               title
@@ -67,12 +72,27 @@ export function Expandable(props: ExpandableProps) {
               <div
                 className={classNames({
                   [ccExpandable.chevron]: true,
-                  [ccExpandable.chevronExpanded]: stateExpanded,
                   [ccExpandable.chevronBox]: box,
                   [ccExpandable.chevronNonBox]: !box,
                 })}
               >
-                <IconChevronDown16 />
+                {showChevronUp ? (
+                  <IconChevronUp16
+                    className={classNames({
+                      [ccExpandable.chevronTransform]: true,
+                      [ccExpandable.chevronCollapse]:
+                        !stateExpanded && showChevronUp,
+                    })}
+                  />
+                ) : (
+                  <IconChevronDown16
+                    className={classNames({
+                      [ccExpandable.chevronTransform]: true,
+                      [ccExpandable.chevronExpand]:
+                        stateExpanded && !showChevronUp,
+                    })}
+                  />
+                )}
               </div>
             )}
           </div>
@@ -81,7 +101,7 @@ export function Expandable(props: ExpandableProps) {
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
         <div
           className={classNames({
-            [contentClass || ""]: true,
+            [contentClass || '']: true,
             [ccBox.box]: box,
             [ccExpandable.paddingTop]: box && title,
           })}
@@ -90,7 +110,7 @@ export function Expandable(props: ExpandableProps) {
         </div>
       </ExpansionBehaviour>
     </div>
-  );
+  )
 }
 
 function ExpansionBehaviour({ animated, stateExpanded, children }) {
@@ -106,5 +126,5 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
     >
       {children}
     </div>
-  );
+  )
 }

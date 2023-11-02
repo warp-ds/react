@@ -2,12 +2,7 @@ import { MutableRefObject } from 'react';
 
 export type Directions = 'top' | 'right' | 'bottom' | 'left';
 
-export type ArrowProps = {
-  /**
-   * Opposite direction of which the arrow should point
-   */
-  direction: Directions;
-
+export type AttentionVariants = {
   /**
    * Render tooltip
    */
@@ -24,10 +19,22 @@ export type ArrowProps = {
   popover?: boolean;
 
   /**
+   * Render highlight
+   */
+  highlight?: boolean;
+}
+
+export type ArrowProps = {
+  /**
+   * Opposite direction of which the arrow should point
+   */
+  direction: Directions;
+
+  /**
    * Forward arrow ref so Attention element can use it
    */
   ref?: React.Ref<HTMLDivElement>;
-};
+} & AttentionVariants;
 
 export type AttentionProps = {
   /**
@@ -71,4 +78,19 @@ export type AttentionProps = {
    * Extend the Attention component container styling
    */
   className?: string;
-} & Omit<ArrowProps, 'direction'>;
+
+  /**
+   * id used for relationship ARIA attributes
+   */
+  id?: string;
+
+  /**
+   * Whether a close button is shown
+   */
+  canClose?: boolean;
+
+  /**
+   * Handler that is called when the close button is clicked
+   */
+  onDismiss?: () => void;
+} & AttentionVariants;
