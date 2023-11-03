@@ -6,8 +6,8 @@ import { pill as ccPill } from '@warp-ds/css/component-classes'
 export function Pill(props: PillProps) {
   return (
     <div
-      role={props.role === '' ? undefined : props.role}
-      aria-label={props['aria-label'] === '' ? undefined : props['aria-label']}
+      role={props.role}
+      aria-label={props['aria-label']}
       className={ccPill.pill}
     >
       <button
