@@ -6,51 +6,26 @@ const metadata = { title: 'Buttons/Pill' }
 export default metadata
 
 export const Default = () => {
-  return (
-    <Pill
-      aria-label='a pill that shows default behaviour'
-      label='Example'
-    />
-  )
+  return <Pill label='Example' />
 }
 
 export const DefaultCanClose = () => {
-  return (
-    <Pill
-      aria-label='a pill that you can close and that shows default behaviour'
-      label='Example'
-      canClose
-      onClose={() => alert('remove')}
-    />
-  )
+  return <Pill label='Example' canClose onClose={() => alert('remove')} />
 }
 
 export const Suggestion = () => {
-  return (
-    <Pill
-      aria-label='a pill with suggestion'
-      label='Example'
-      suggestion
-    />
-  )
+  return <Pill label='Example' suggestion />
 }
 
 export const SuggestionCanClose = () => {
   return (
-    <Pill
-      aria-label='a pill with suggestion and that you can close'
-      label='Example'
-      suggestion
-      canClose
-      onClose={() => alert('remove')}
-    />
+    <Pill label='Example' suggestion canClose onClose={() => alert('remove')} />
   )
 }
 
 export const PillOnClickAndOnClose = () => {
   return (
     <Pill
-      aria-label='a pill that is clickable and that you can close'
       label='Example'
       onClick={() => alert('pill is clicked')}
       suggestion
@@ -64,12 +39,14 @@ export const PillsWithIcon = () => {
   return (
     <div className='flex space-x-8'>
       <Pill
+        role='img'
         aria-label='a pill with a search icon'
         icon={<IconSearch16 />}
         onClick={() => alert('onClick event')}
         className='py-12'
       />
       <Pill
+        role='img'
         aria-label='a pill with a plus icon'
         icon={<IconPlus16 />}
         onClick={() => alert('onClick event')}
