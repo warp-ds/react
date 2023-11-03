@@ -5,14 +5,11 @@ import { pill as ccPill } from '@warp-ds/css/component-classes'
 
 export function Pill(props: PillProps) {
   return (
-    <div
-      role={props.role}
-      aria-label={props['aria-label']}
-      className={ccPill.pill}
-    >
+    <div className={ccPill.pill}>
       <button
         type='button'
         onClick={props.onClick}
+        aria-label={props['aria-label']}
         className={classNames(!props.canClose ? props.className : '', {
           [ccPill.button]: true,
           [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,

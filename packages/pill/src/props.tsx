@@ -36,10 +36,6 @@ export type PillProps = {
    */
   className?: string;
 
-   /**
-   * Sets the ARIA role attribute for the pill component
-   */
-  role?: string;
   /**
    * Sets the aria-label attribute for the pill component
    */

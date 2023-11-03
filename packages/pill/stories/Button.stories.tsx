@@ -39,14 +39,12 @@ export const PillsWithIcon = () => {
   return (
     <div className='flex space-x-8'>
       <Pill
-        role='img'
         aria-label='a pill with a search icon'
         icon={<IconSearch16 />}
         onClick={() => alert('onClick event')}
         className='py-12'
       />
       <Pill
-        role='img'
         aria-label='a pill with a plus icon'
         icon={<IconPlus16 />}
         onClick={() => alert('onClick event')}
