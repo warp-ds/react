@@ -33,11 +33,6 @@ files:
                   "translation": "/packages/modal/src/locales/%two_letters_code%/messages.po",
             },
             {
-                  "source": "/packages/pill/src/locales/en/messages.po",
-                  "dest": "/react/**/%original_file_name%",
-                  "translation": "/packages/pill/src/locales/%two_letters_code%/messages.po",
-            },
-            {
                   "source": "/packages/textarea/src/locales/en/messages.po",
                   "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/textarea/src/locales/%two_letters_code%/messages.po",

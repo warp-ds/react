@@ -26,10 +26,6 @@ const config: LinguiConfig = {
       path: 'packages/modal/src/locales/{locale}/messages',
     },
     {
-      include: ['packages/pill/src/**/*.{ts,tsx}'],
-      path: 'packages/pill/src/locales/{locale}/messages',
-    },
-    {
       include: ['packages/textarea/src/**/*.{ts,tsx}'],
       path: 'packages/textarea/src/locales/{locale}/messages',
     },
