@@ -116,6 +116,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
           navigationOption,
           currentOptions,
         });
+      } else if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+        return;
       }
 
       // Other keys
