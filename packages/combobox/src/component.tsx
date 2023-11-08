@@ -200,7 +200,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
       'aria-label': props['aria-label'],
       'aria-labelledby': props['aria-labelledby'],
       'aria-autocomplete': 'list',
-      'aria-expanded': !!navigationOption?.id,
+      'aria-expanded': isOpen && currentOptions.length !== 0,
       'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
       'aria-controls': listboxId,
       onChange: function (e: ChangeEvent<HTMLInputElement>) {
