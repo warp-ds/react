@@ -8,18 +8,17 @@ msgstr ""
 "Language: nb_NO\n"
 "Project-Id-Version: 2853b3c41d7b7a59e7cd64c0153b540a\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-11 14:59\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 2853b3c41d7b7a59e7cd64c0153b540a\n"
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: nb\n"
-"X-Crowdin-File: /react/packages/breadcrumbs/messages.po\n"
-"X-Crowdin-File-ID: 655\n"
+"X-Crowdin-File-ID: 2524\n"
 
 #. Default screenreader message for the breadcrumb component
 #. js-lingui-explicit-id
 #: packages/breadcrumbs/src/component.tsx:19
 msgid "breadcrumbs.ariaLabel"
 msgstr "Her er du"
+
