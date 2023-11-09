@@ -6,10 +6,6 @@ const config: LinguiConfig = {
   sourceLocale: 'en',
   catalogs: [
     {
-      include: ['packages/_helpers/**/*.{ts,tsx}'],
-      path: 'packages/_helpers/locales/{locale}/messages',
-    },
-    {
       include: ['packages/breadcrumbs/src/**/*.{ts,tsx}'],
       path: 'packages/breadcrumbs/src/locales/{locale}/messages',
     },

@@ -8,11 +8,6 @@ preserve_hierarchy: true
 files:
       [
             {
-                  "source": "/packages/_helpers/locales/en/messages.po",
-                  "dest": "/react/**/%original_file_name%",
-                  "translation": "/packages/_helpers/locales/%two_letters_code%/messages.po",
-            },
-            {
                   "source": "/packages/breadcrumbs/src/locales/en/messages.po",
                   "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/breadcrumbs/src/locales/%two_letters_code%/messages.po",
