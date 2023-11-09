@@ -12,6 +12,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: \n"
+"X-Crowdin-SourceKey: msgstr\n"
 
 #. Aria text for combobox when one or more results
 #. js-lingui-explicit-id
@@ -24,3 +25,4 @@ msgstr "{numResults, plural, one {# result} other {# results}}"
 #: packages/combobox/src/utils.ts:34
 msgid "combobox.aria.noResults"
 msgstr "No results"
+

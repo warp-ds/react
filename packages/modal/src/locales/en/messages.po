@@ -12,15 +12,17 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: \n"
+"X-Crowdin-SourceKey: msgstr\n"
 
 #. Aria label for the back button in modal
 #. js-lingui-explicit-id
-#: packages/modal/src/component.tsx:82
+#: packages/modal/src/component.tsx:73
 msgid "modal.aria.back"
 msgstr "Back"
 
 #. Aria label for the close button in modal
 #. js-lingui-explicit-id
-#: packages/modal/src/component.tsx:127
+#: packages/modal/src/component.tsx:123
 msgid "modal.aria.close"
 msgstr "Close"
+
