@@ -108,7 +108,9 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
 
       const ignoreList = ['ArrowDown', 'ArrowLeft', 'ArrowUp', 'ArrowRight'];
 
-      if (isNavigationKey && !isOpen) {
+      if ((e.code === 'Space' || isNavigationKey) && !isOpen) {
+        // Only show dropdown, don't trigger onChange()
+        e.preventDefault();
         return setOpen(true);
       } else if (isNavigationKey && isOpen) {
         findAndSetActiveOption(e, {
