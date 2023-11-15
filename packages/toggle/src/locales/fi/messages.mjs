@@ -1,1 +1,1 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"toggle.label.optional\":\"(valinnainen)\"}");
+/*eslint-disable*/export const messages=JSON.parse("{\"toggle.label.optional\":\"(vapaaehtoinen)\"}");

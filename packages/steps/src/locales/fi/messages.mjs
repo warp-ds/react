@@ -1,1 +1,1 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Empty circle\",\"steps.aria.active\":\"Step indicator active circle\",\"steps.aria.completed\":\"Step indicator completed circle\"}");
+/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Tyhjä ympyrä\",\"steps.aria.active\":\"Vaiheilmaisin aktiivinen ympyrä\",\"steps.aria.completed\":\"Vaiheilmaisin valmis ympyrä\"}");

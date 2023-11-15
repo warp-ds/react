@@ -1,1 +1,1 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Empty circle\",\"steps.aria.active\":\"Step indicator active circle\",\"steps.aria.completed\":\"Step indicator completed circle\"}");
+/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Tom sirkel\",\"steps.aria.active\":\"Stegindikator aktiv sirkel\",\"steps.aria.completed\":\"Stegindikator fullført sirkel\"}");
