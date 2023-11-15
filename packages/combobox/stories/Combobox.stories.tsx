@@ -266,7 +266,7 @@ export const WithAffix = () => {
           { value: 'Pineapple', label: '🍍 Pineapple' },
         ]}
       >
-        <Affix suffix clear onClick={() => setValue('')} />
+        <Affix suffix clear aria-label="Clear text" onClick={() => setValue('')} />
       </Combobox>
     </>
   );
