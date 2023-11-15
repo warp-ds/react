@@ -34,10 +34,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 
-    const hasSuffix = React.Children.toArray(children).some(
+    const suffix = React.Children.toArray(children).find(
       (child) => React.isValidElement(child) && child.props.suffix,
     );
-    const hasPrefix = React.Children.toArray(children).some(
+    const prefix = React.Children.toArray(children).find(
       (child) => React.isValidElement(child) && child.props.prefix,
     );
 
@@ -66,6 +66,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             </label>
           )}
           <div className={ccInput.wrapper}>
+            {prefix}
             <input
             className={classNames({
               [ccInput.default]: true,
@@ -73,8 +74,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               [ccInput.disabled]: disabled,
               [ccInput.readOnly]: readOnly,
               [ccInput.placeholder]: !!props.placeholder,
-              [ccInput.suffix]: hasSuffix,
-              [ccInput.prefix]: hasPrefix,    
+              [ccInput.suffix]: !!suffix,
+              [ccInput.prefix]: !!prefix,    
             })}
               {...rest}
               aria-describedby={helpId}
@@ -86,7 +87,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               ref={ref}
               type={type}
             />
-            {children}
+            {suffix}
           </div>
 
           {helpText && (
