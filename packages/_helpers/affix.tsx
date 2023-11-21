@@ -1,6 +1,4 @@
 import React from "react";
-import { suffix, prefix } from "@warp-ds/css/component-classes";
-import { classNames } from "@chbphone55/classnames";
 import { IconClose16, IconSearch16 } from "@warp-ds/icons/react";
 
 interface AffixProps {
@@ -27,7 +25,6 @@ interface AffixProps {
 }
 
 export function Affix(props: AffixProps) {
-  const classBase = props.prefix ? prefix : suffix;
 
   return React.createElement(
     props.label ? "div" : "button",
@@ -35,18 +32,20 @@ export function Affix(props: AffixProps) {
       "aria-label": !props.label ? props["aria-label"] : undefined,
       type: props.search ? "submit" : props.clear ? "reset" : undefined,
       onClick: props.onClick,
-      className: classNames({
-        [classBase.wrapper]: true,
-        [classBase.wrapperWithLabel]: props.label,
-        [classBase.wrapperWithIcon]: !props.label,
-      }),
+      className: props.label ? `flex justify-center items-center focusable focus:[--w-outline-offset:-2px] bg-transparent ${props.prefix ? "pl-12 pr-10" : "pl-10 pr-12"}` : "flex justify-center items-center focusable focus:[--w-outline-offset:-2px] bg-transparent min-w-40",
     },
     <>
       {props.clear && <IconClose16 />}
 
       {props.search && <IconSearch16 />}
 
-      {props.label && <span className={classBase.label}>{props.label}</span>}
+      {props.label && <span className="antialiased block relative cursor-default pb-0 font-bold text-xs i-text-$color-label-text">{props.label}</span>}
     </>
   );
 }
+
+/*
+className: props.label ? `flex justify-center items-center focusable focus:[--w-outline-offset:-2px] bg-transparent ${props.prefix ? "pl-12 pr-10" : "pl-10 pr-12"}` : "flex justify-center items-center focusable focus:[--w-outline-offset:-2px] bg-transparent min-w-40",
+
+{props.label && <span className="antialiased block relative cursor-default pb-0 font-bold text-xs i-text-$color-label-text">{props.label}</span>}
+*/
