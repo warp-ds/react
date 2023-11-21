@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
-import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
+import { label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 import { useId } from '../../utils/src';
 import { TextFieldProps } from './props';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
@@ -46,6 +46,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           className={className}
           style={style}
         >
+          <style>{`
+            .s-outline-focused {
+              outline-color: var(--w-s-color-focused);
+            }`}
+          </style>
           {label && (
             <label htmlFor={id} className={classNames({
               [ccLabel.label]: true,
@@ -65,18 +70,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               )}
             </label>
           )}
-          <div className={ccInput.wrapper}>
+          <div className="s-outline-focused focus-within:outline focus-within:-outline-offset-2 focus-within:outline-2 relative i-bg-$color-input-background i-border-$color-input-border hover:i-border-$color-input-border-hover rounded-4 overflow-hidden border-1 flex">
             {prefix}
             <input
-            className={classNames({
-              [ccInput.default]: true,
-              [ccInput.invalid]: isInvalid,
-              [ccInput.disabled]: disabled,
-              [ccInput.readOnly]: readOnly,
-              [ccInput.placeholder]: !!props.placeholder,
-              [ccInput.suffix]: !!suffix,
-              [ccInput.prefix]: !!prefix,    
-            })}
+            className={`text-m mb-0 leading-m i-text-$color-input-text-filled py-12 ${(prefix && suffix) ? "px-0" : prefix ? "pl-0 pr-8" : suffix ? "pl-8 pr-0" : "px-8"} block w-full caret-current outline-0`}
               {...rest}
               aria-describedby={helpId}
               aria-errormessage={isInvalid && helpId ? helpId : undefined}
