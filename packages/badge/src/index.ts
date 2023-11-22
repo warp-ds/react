@@ -1,2 +1,2 @@
-export { Badge } from './component';
-export type { BadgeProps } from './props';
+export { Badge } from './component.js';
+export type { BadgeProps } from './props.js';

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { HeadingLevel } from './props';
+import { HeadingLevel } from './props.js';
 
 export const UnstyledHeading = ({
   level,

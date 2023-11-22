@@ -18,14 +18,14 @@ dependencies:
     specifier: ^1.3.0
     version: 1.3.0
   '@warp-ds/icons':
-    specifier: 1.1.1
-    version: 1.1.1
+    specifier: 1.3.0-next.2
+    version: 1.3.0-next.2
   '@warp-ds/uno':
     specifier: ^1.1.0
     version: 1.1.0
   react-focus-lock:
     specifier: ^2.5.2
-    version: 2.9.4(@types/react@17.0.53)(react@16.14.0)
+    version: 2.9.6(@types/react@17.0.53)(react@16.14.0)
   resize-observer-polyfill:
     specifier: ^1.5.1
     version: 1.5.1
@@ -5827,8 +5827,8 @@ packages:
       '@warp-ds/uno': 1.1.0
     dev: false
 
-  /@warp-ds/icons@1.1.1:
-    resolution: {integrity: sha512-XUDIxqHVbqLgoQHgpCSCgchCKwNUdsBz3siEcyE9/gRitEN30vbEReKgU2sIBoco8YCgKo0MuebA1+CCvfqFNg==}
+  /@warp-ds/icons@1.3.0-next.2:
+    resolution: {integrity: sha512-48TbzeIbl54MHvxZ5bO1gExYyKyQkRjaMcOyE7BP1AGOmLCTF5tsjeSn+aklebdcbV0q+5rjWm4zoR4RGktYhg==}
     dependencies:
       '@lingui/core': 4.5.0
     dev: false
@@ -8479,8 +8479,8 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /focus-lock@0.11.6:
-    resolution: {integrity: sha512-KSuV3ur4gf2KqMNoZx3nXNVhqCkn42GuTYCX4tXPEwf0MjpFQmNMiN6m7dXaUXgIoivL6/65agoUMg4RLS0Vbg==}
+  /focus-lock@1.0.0:
+    resolution: {integrity: sha512-a8Ge6cdKh9za/GZR/qtigTAk7SrGore56EFcoMshClsh7FLk1zwszc/ltuMfKhx56qeuyL/jWQ4J4axou0iJ9w==}
     engines: {node: '>=10'}
     dependencies:
       tslib: 2.5.0
@@ -11491,8 +11491,8 @@ packages:
       react-is: 18.1.0
     dev: true
 
-  /react-focus-lock@2.9.4(@types/react@17.0.53)(react@16.14.0):
-    resolution: {integrity: sha512-7pEdXyMseqm3kVjhdVH18sovparAzLg5h6WvIx7/Ck3ekjhrrDMEegHSa3swwC8wgfdd7DIdUVRGeiHT9/7Sgg==}
+  /react-focus-lock@2.9.6(@types/react@17.0.53)(react@16.14.0):
+    resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -11502,7 +11502,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@types/react': 17.0.53
-      focus-lock: 0.11.6
+      focus-lock: 1.0.0
       prop-types: 15.8.1
       react: 16.14.0
       react-clientside-effect: 1.2.6(react@16.14.0)

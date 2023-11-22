@@ -1,16 +1,17 @@
 import { classNames } from "@chbphone55/classnames";
 import { modal as ccModal } from "@warp-ds/css/component-classes";
 import React, { useEffect, useRef } from "react";
-import { useId } from "../../utils/src";
-import FocusLock from "react-focus-lock";
-import { ModalProps } from "./props";
+import { useId } from "../../utils/src/index.js";
+import FocusLock from "react-focus-lock/dist/es2015";
+import { ModalProps } from "./props.js";
 import { setup, teardown } from "scroll-doctor";
 import { i18n } from "@lingui/core";
 import { messages as nbMessages } from "./locales/nb/messages.mjs";
 import { messages as enMessages } from "./locales/en/messages.mjs";
 import { messages as fiMessages } from "./locales/fi/messages.mjs";
-import { activateI18n } from "../../i18n";
-import { IconClose16, IconTableSortDown16 } from "@warp-ds/icons/react";
+import { activateI18n } from "../../i18n.js";
+import IconClose16 from '@warp-ds/icons/react/close-16';
+import IconTableSortDown16 from '@warp-ds/icons/react/table-sort-down-16';
 
 /**
  * A Modal dialog that renders on top the page

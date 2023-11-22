@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/css/component-classes';
-import type { TabProps } from './props';
+import type { TabProps } from './props.js';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
   tab: classNames(ccTab.tab, {

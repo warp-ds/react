@@ -1,5 +1,5 @@
-export { Clickable } from './clickable';
-export { DeadToggle } from './dead-toggle';
-export { Affix } from './affix';
-export { ExpandTransition } from './expand-transition';
-export { UnstyledHeading } from './unstyled-heading';
+export { Clickable } from './clickable.js';
+export { DeadToggle } from './dead-toggle.js';
+export { Affix } from './affix.js';
+export { ExpandTransition } from './expand-transition.js';
+export { UnstyledHeading } from './unstyled-heading.js';

@@ -1,14 +1,12 @@
 import { classNames } from "@chbphone55/classnames";
 import React, { PropsWithChildren, ReactElement } from "react";
 import { alert as ccAlert } from "@warp-ds/css/component-classes";
-import { AlertProps } from ".";
-import { ExpandTransition } from "../../_helpers";
-import {
-  IconAlertError16,
-  IconAlertInfo16,
-  IconAlertSuccess16,
-  IconAlertWarning16,
-} from "@warp-ds/icons/react";
+import { AlertProps } from "./props.js";
+import { ExpandTransition } from "../../_helpers/index.js";
+import IconAlertError16 from '@warp-ds/icons/react/alert-error-16';
+import IconAlertInfo16 from '@warp-ds/icons/react/alert-info-16';
+import IconAlertSuccess16 from '@warp-ds/icons/react/alert-success-16';
+import IconAlertWarning16 from '@warp-ds/icons/react/alert-warning-16';
 
 export function Alert({
   show,

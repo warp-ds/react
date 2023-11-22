@@ -2,7 +2,7 @@ import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { SliderProps } from './props';
+import { SliderProps } from './props.js';
 
 export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   const { disabled, onChange } = rest;

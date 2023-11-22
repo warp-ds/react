@@ -1,1 +1,1 @@
-export { Attention } from './component';
+export { Attention } from './component.js';

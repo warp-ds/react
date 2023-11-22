@@ -6,13 +6,13 @@ import {
   useRecompute as recompute,
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
-import { ArrowProps, AttentionProps, AttentionVariants } from './props'
+import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
 import { i18n } from '@lingui/core'
 import { messages as nbMessages } from './locales/nb/messages.mjs'
 import { messages as enMessages } from './locales/en/messages.mjs'
 import { messages as fiMessages } from './locales/fi/messages.mjs'
-import { activateI18n } from '../../i18n'
-import { IconClose16 } from "@warp-ds/icons/react";
+import { activateI18n } from '../../i18n.js'
+import IconClose16 from "@warp-ds/icons/react/close-16";
 
 const variantClasses = {
   callout: {

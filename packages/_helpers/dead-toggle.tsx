@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { toggle as ccToggle } from '@warp-ds/css/component-classes';
-import { Item } from '../toggle/src/item';
+import { Item } from '../toggle/src/item.js';
 
 export interface DeadToggleProps {
   /**

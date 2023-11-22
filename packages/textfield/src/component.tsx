@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
 import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
-import { useId } from '../../utils/src';
-import { TextFieldProps } from './props';
+import { useId } from '../../utils/src/index.js';
+import { TextFieldProps } from './props.js';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as enMessages} from './locales/en/messages.mjs';
 import { messages as fiMessages} from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n';
+import { activateI18n } from '../../i18n.js';
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {

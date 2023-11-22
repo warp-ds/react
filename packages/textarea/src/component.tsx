@@ -2,13 +2,13 @@ import React, { forwardRef, useRef } from 'react';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
 import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
-import { useId } from '../../utils/src';
-import { TextAreaProps } from './props';
-import useTextAreaHeight from './useTextAreaHeight';
+import { useId } from '../../utils/src/index.js';
+import { TextAreaProps } from './props.js';
+import useTextAreaHeight from './useTextAreaHeight.js';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as enMessages} from './locales/en/messages.mjs';
 import { messages as fiMessages} from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n';
+import { activateI18n } from '../../i18n.js';
 /**
  * A textarea component that automatically resizes as content changes.
  */

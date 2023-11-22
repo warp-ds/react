@@ -1,4 +1,4 @@
-export { default as useElementSizeObserver } from './useElementSizeObserver';
-export { useLayoutEffect } from './useIsomorphicLayoutEffect';
-export { useId } from './useId';
-export { useLogDeprecationWarning } from './useLogDeprecationWarning';
+export { default as useElementSizeObserver } from './useElementSizeObserver.js';
+export { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
+export { useId } from './useId.js';
+export { useLogDeprecationWarning } from './useLogDeprecationWarning.js';

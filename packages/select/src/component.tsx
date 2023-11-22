@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { i18n } from '@lingui/core';
 import { select as ccSelect, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
-import { useId } from '../../utils/src';
+import { useId } from '../../utils/src/index.js';
 import { classNames } from '@chbphone55/classnames';
-import type { SelectProps } from './props';
-import { IconChevronDown16 } from '@warp-ds/icons/react';
+import type { SelectProps } from './props.js';
+import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as enMessages} from './locales/en/messages.mjs';
 import { messages as fiMessages} from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n';
+import { activateI18n } from '../../i18n.js';
 
 const setup = (props) => {
   const {

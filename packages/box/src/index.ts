@@ -1,2 +1,2 @@
-export { Box } from './component';
-export type { BoxProps } from './props';
+export { Box } from './component.js';
+export type { BoxProps } from './props.js';

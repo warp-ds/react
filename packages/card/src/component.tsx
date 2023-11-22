@@ -1,8 +1,8 @@
 import React from 'react';
 import { card as ccCard } from '@warp-ds/css/component-classes';
 import { classNames } from '@chbphone55/classnames';
-import { CardProps } from './props';
-import { useLogDeprecationWarning } from '../../utils/src';
+import { CardProps } from './props.js';
+import { useLogDeprecationWarning } from '../../utils/src/index.js';
 
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, ...rest } = props;

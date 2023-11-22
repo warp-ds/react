@@ -1,8 +1,8 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { clickable as ccClickable } from '@warp-ds/css/component-classes';
-import { Item as ToggleItem } from '../toggle/src/item';
-import { useId } from '../utils/src/useId';
+import { Item as ToggleItem } from '../toggle/src/item.js';
+import { useId } from '../utils/src/useId.js';
 
 export type ClickableProps = {
   /**

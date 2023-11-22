@@ -1,5 +1,5 @@
-import { generateId } from '../../utils/src/useId';
-import { ComboboxOption, OptionWithIdAndMatch } from './props';
+import { generateId } from '../../utils/src/useId.js';
+import { ComboboxOption, OptionWithIdAndMatch } from './props.js';
 import { i18n } from '@lingui/core';
 
 // Add id and match to the object

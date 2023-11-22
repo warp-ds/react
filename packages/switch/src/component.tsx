@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwitchProps } from './props';
+import { SwitchProps } from './props.js';
 import { classNames } from '@chbphone55/classnames';
 import { switchToggle as ccSwitch } from '@warp-ds/css/component-classes';
 

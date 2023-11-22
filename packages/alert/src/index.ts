@@ -1,2 +1,2 @@
-export { Alert } from './component';
-export type { AlertProps } from './props';
+export { Alert } from './component.js';
+export type { AlertProps } from './props.js';

@@ -1,2 +1,2 @@
-export { Pill } from './component';
-export type { PillProps } from './props';
+export { Pill } from './component.js';
+export type { PillProps } from './props.js';

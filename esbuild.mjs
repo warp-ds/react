@@ -32,7 +32,7 @@ if (version === '17') {
     format: 'esm',
     sourcemap: true,
     target: 'es2017',
-    minify: true,
+    minify: false,
   });
 }
 
@@ -44,5 +44,5 @@ await esbuild.build({
   format: 'esm',
   sourcemap: true,
   target: 'es2017',
-  minify: true,
+  minify: false,
 });
