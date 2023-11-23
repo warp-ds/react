@@ -46,6 +46,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           className={className}
           style={style}
         >
+          {/* we style input with prefix here because we cannot use arbitrary values with commas in UnoCSS like pl-[var(--w-prefix-width, 40px)] */}
+          <style>
+            {`
+              div+#${id}, button+#${id} {
+                padding-left:var(--w-prefix-width, 40px);
+              }
+            `}
+          </style>
           {label && (
             <label htmlFor={id} className={classNames({
               [ccLabel.label]: true,

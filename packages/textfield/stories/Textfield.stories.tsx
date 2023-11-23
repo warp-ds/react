@@ -50,6 +50,12 @@ export const labelPrefix = () => (
   </TextField>
 );
 
+export const longLabelPrefix = () => (
+  <TextField className="[--w-prefix-width:90px]" value="With some value">
+    <Affix prefix label="Long prefix" />
+  </TextField>
+);
+
 export const clearSuffix = () => (
   <TextField>
     <Affix suffix clear aria-label="Clear text" onClick={() => alert('clear')} />
