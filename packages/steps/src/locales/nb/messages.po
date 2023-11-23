@@ -32,5 +32,5 @@ msgstr "Stegindikator aktiv sirkel"
 #. js-lingui-explicit-id
 #: packages/steps/src/step.tsx:15
 msgid "steps.aria.completed"
-msgstr "Stegindikator fullført sirkel"
+msgstr "Stegindikator hel sirkel"
 
