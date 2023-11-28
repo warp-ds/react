@@ -30,7 +30,7 @@ msgstr "Close"
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:164
 msgid "attention.aria.highlight"
-msgstr "A attention speech bubble with important information"
+msgstr "An attention speech bubble with important information"
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
