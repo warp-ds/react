@@ -1,9 +1,10 @@
-import React, {
+import {
   useState,
   useRef,
   useEffect,
   cloneElement,
   Children,
+  RefObject,
 } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { gridLayout, tabs as ccTabs } from '@warp-ds/css/component-classes';
@@ -25,16 +26,16 @@ const setup = (
   attrs: rest,
   updateWunderbar: () => {
     window.requestAnimationFrame(() => {
-      try {
+      if (tabsRef.current && wunderbarRef.current) {
         const activeEl = tabsRef.current.querySelector(
           'button[role="tab"][aria-selected="true"]'
         );
-        const { left: parentLeft } = tabsRef.current.getBoundingClientRect();
-        const { left, width } = activeEl.getBoundingClientRect();
-        wunderbarRef.current.style.left = `${left - parentLeft}px`;
-        wunderbarRef.current.style.width = `${width}px`;
-      } catch (err) {
-        console.warn('Problem updating tabs', err);
+        if (activeEl) {
+          const parentLeft = tabsRef.current.getBoundingClientRect().left;
+          const { left, width } = activeEl.getBoundingClientRect();
+          wunderbarRef.current.style.left = `${left - parentLeft}px`;
+          wunderbarRef.current.style.width = `${width}px`;
+        }
       }
     });
   },
@@ -44,7 +45,7 @@ export const Tabs = (props: TabsProps) => {
   const isBrowser = Boolean(
     typeof document === 'object' && document?.createElement
   );
-  const tabsRef = useRef(null);
+  const tabsRef: RefObject<HTMLDivElement> = useRef(null);
   const wunderbarRef = useRef(null);
   const { children, onChange } = props;
   const { nav, div, wunderbar, attrs, updateWunderbar } = setup(
@@ -52,6 +53,7 @@ export const Tabs = (props: TabsProps) => {
     tabsRef,
     wunderbarRef
   );
+
   useEffect(() => {
     // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
     isBrowser && updatePanels();
@@ -106,33 +108,28 @@ export const Tabs = (props: TabsProps) => {
       !event.shiftKey &&
       ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
     ) {
-      try {
-        const tabs = [
-          // @ts-ignore: semantic error
-          ...tabsRef.current.querySelectorAll('button[role="tab"]'),
-        ];
-        const current = tabs.findIndex((tab) => tab.name === active);
-        const next = (() => {
+      const tabs:HTMLButtonElement[] = Array.from(tabsRef?.current?.querySelectorAll('button[role="tab"]') ?? []);
+      const activeTabIndex = tabs.findIndex((tab) => tab.name === active);
+      if (activeTabIndex >= 0) {
+        const nextIndex = (() => {
           switch (event.key) {
             case 'Home':
               return 0;
             case 'End':
               return tabs.length - 1;
             case 'ArrowLeft':
-              return Math.max(0, current - 1);
+              return Math.max(0, activeTabIndex - 1);
             case 'ArrowRight':
-              return Math.min(tabs.length - 1, current + 1);
+              return Math.min(tabs.length - 1, activeTabIndex + 1);
             default:
-              return current;
+              return activeTabIndex;
           }
         })();
-        if (current !== next) {
+        if (activeTabIndex !== nextIndex && tabs[nextIndex]?.name) {
           event.preventDefault();
-          change(tabs[next].name);
-          tabs[next].focus();
+          change(tabs[nextIndex].name);
+          tabs[nextIndex].focus();
         }
-      } catch (err) {
-        console.warn('Problem handling keydown', err);
       }
     }
   };
@@ -147,8 +144,8 @@ export const Tabs = (props: TabsProps) => {
       >
         {Children.map(children, (child: any) => {
           return child && cloneElement(child, {
-                setActive: change,
-                isActive: child?.props?.name === active,
+            setActive: change,
+            isActive: child?.props?.name === active,
           });
         })}
         {<span className={wunderbar} ref={wunderbarRef} />}
