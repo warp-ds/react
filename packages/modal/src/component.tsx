@@ -75,7 +75,10 @@ export const Modal = ({
           className={ccModal.modal}
           tabIndex={-1}
         >
-          <div className={ccModal.title}>
+          <div className={classNames(
+            ccModal.title,
+            props.headerClasses
+            )}>
             {typeof props.left === "boolean" && props.left ? (
               <button
                 type="button"

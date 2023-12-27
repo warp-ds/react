@@ -214,3 +214,47 @@ export const Overflowing = () => {
     </>
   );
 };
+
+export const ExampleWithLongTitle = () => {
+  const [open, setOpen] = React.useState(true);
+  const toggleModal = () => setOpen(!open);
+  const openModalRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      openModalRef.current?.focus();
+    }
+  }, [open]);
+
+  return (
+    <>
+      <Button ref={openModalRef} utility onClick={toggleModal}>
+        Open modal
+      </Button>
+      <Modal
+        open={open}
+        onDismiss={toggleModal}
+        headerClasses={"h-full"}
+        title="Title of the content goes here, and for this example we have chosen a long title!"
+        footer={
+          <>
+            <Button onClick={toggleModal} className="mr-12">
+              Cancel
+            </Button>
+            <Button primary onClick={toggleModal}>
+              Accept
+            </Button>
+          </>
+        }
+      >
+        <p>
+          Content information goes here. Optional illustration on top. Can
+          contain links.
+        </p>
+        <a href="#" onClick={(event) => event.preventDefault()}>
+          Optional link to read more.
+        </a>
+      </Modal>
+    </>
+  );
+};

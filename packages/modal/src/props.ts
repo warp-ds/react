@@ -63,4 +63,10 @@ export type ModalProps = {
    * A reference to the element that should be focused. By default it'll be the first interactive element.
    */
   initialFocusRef?: React.RefObject<any>;
+
+    /**
+   * Classes here will be set on the wrapper for the header.
+   */
+    headerClasses?: string | JSX.Element;
+
 };
