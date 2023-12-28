@@ -233,9 +233,10 @@ export const ExampleWithLongTitle = () => {
       </Button>
       <Modal
         open={open}
+        right
         onDismiss={toggleModal}
-        headerClasses={"h-full"}
-        title="Title of the content goes here, and for this example we have chosen a long title!"
+        title="Title of the content goes here, and here we have chosen a long title!"
+        headerClasses={"h-full sm:h-full"}
         footer={
           <>
             <Button onClick={toggleModal} className="mr-12">

@@ -111,8 +111,9 @@ export const Modal = ({
               id={`${id}__title`}
               className={classNames(
                 ccModal.transitionTitle,
+                ccModal.transitionTitleMaxWidth,
                 !!props.left
-                  ? ccModal.transitionTitleCenter
+                  ? [ccModal.transitionTitleCenter, ccModal.transitionTitleColSpan]
                   : ccModal.transitionTitleColSpan
               )}
             >
