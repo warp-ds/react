@@ -60,7 +60,7 @@ export function Pill(props: PillProps) {
                 },
               )}
           </span>
-          <IconClose16 />
+          <IconClose16 className="w-12 h-12"/>
         </button>
       )}
     </div>
