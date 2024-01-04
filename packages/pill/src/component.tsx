@@ -2,6 +2,7 @@ import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { PillProps } from './props.js';
 import { pill as ccPill } from '@warp-ds/css/component-classes';
+import IconClose16 from "@warp-ds/icons/react/close-16";
 import { i18n } from '@lingui/core';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as enMessages} from './locales/en/messages.mjs';
@@ -59,7 +60,7 @@ export function Pill(props: PillProps) {
                 },
               )}
           </span>
-          <span>x</span>
+          <IconClose16 />
         </button>
       )}
     </div>
