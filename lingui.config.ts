@@ -49,6 +49,10 @@ const config: LinguiConfig = {
       include: ['packages/attention/src/**/*.{ts,tsx}'],
       path: 'packages/attention/src/locales/{locale}/messages',
     },
+    {
+      include: ['packages/pagination/src/**/*.{ts,tsx}'],
+      path: 'packages/pagination/src/locales/{locale}/messages',
+    },
   ],
   compileNamespace: 'es',
 };
