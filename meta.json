@@ -5,8 +5,8 @@
       "imports": [],
       "format": "esm"
     },
-    "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js": {
-      "bytes": 38743,
+    "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js": {
+      "bytes": 39333,
       "imports": [],
       "format": "esm"
     },
@@ -109,7 +109,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -145,7 +145,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -181,7 +181,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -324,7 +324,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -517,7 +517,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -722,7 +722,7 @@
           "original": "@warp-ds/core/attention"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -789,7 +789,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -831,7 +831,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -898,7 +898,7 @@
           "original": "@warp-ds/core/breadcrumbs"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -970,7 +970,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -1032,7 +1032,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -1104,7 +1104,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -1212,7 +1212,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -1326,7 +1326,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -2589,7 +2589,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -2688,7 +2688,7 @@
       "format": "esm"
     },
     "packages/pill/src/component.tsx": {
-      "bytes": 2278,
+      "bytes": 2336,
       "imports": [
         {
           "path": "react",
@@ -2706,9 +2706,14 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
+        },
+        {
+          "path": "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/close-16.js",
+          "kind": "import-statement",
+          "original": "@warp-ds/icons/react/close-16"
         },
         {
           "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
@@ -2778,7 +2783,7 @@
           "original": "@lingui/core"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -2882,7 +2887,7 @@
           "original": "@warp-ds/core/slider"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -2934,7 +2939,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         }
@@ -2991,7 +2996,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3078,7 +3083,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3115,7 +3120,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3136,7 +3141,7 @@
           "external": true
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3154,7 +3159,7 @@
       "format": "esm"
     },
     "packages/tabs/src/component-tabs.tsx": {
-      "bytes": 4560,
+      "bytes": 4591,
       "imports": [
         {
           "path": "react",
@@ -3167,7 +3172,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3255,7 +3260,7 @@
           "original": "@chbphone55/classnames"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3342,7 +3347,7 @@
           "original": "@lingui/core"
         },
         {
-          "path": "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js",
+          "path": "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js",
           "kind": "import-statement",
           "original": "@warp-ds/css/component-classes"
         },
@@ -3512,7 +3517,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 643897
+      "bytes": 644592
     },
     "dist/npm/index.js": {
       "imports": [
@@ -3854,8 +3859,8 @@
         "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js": {
           "bytesInOutput": 363
         },
-        "node_modules/.pnpm/@warp-ds+css@1.6.1/node_modules/@warp-ds/css/component-classes/index.js": {
-          "bytesInOutput": 33615
+        "node_modules/.pnpm/@warp-ds+css@1.7.0/node_modules/@warp-ds/css/component-classes/index.js": {
+          "bytesInOutput": 33634
         },
         "packages/toggle/src/item.tsx": {
           "bytesInOutput": 1977
@@ -4215,7 +4220,7 @@
           "bytesInOutput": 0
         },
         "packages/pill/src/component.tsx": {
-          "bytesInOutput": 1695
+          "bytesInOutput": 1700
         },
         "packages/pill/src/locales/nb/messages.mjs": {
           "bytesInOutput": 127
@@ -4296,7 +4301,7 @@
           "bytesInOutput": 680
         },
         "packages/tabs/src/component-tabs.tsx": {
-          "bytesInOutput": 4773
+          "bytesInOutput": 4876
         },
         "packages/tabs/src/utils.ts": {
           "bytesInOutput": 375
@@ -4335,7 +4340,7 @@
           "bytesInOutput": 0
         }
       },
-      "bytes": 343747
+      "bytes": 343874
     }
   }
 }
