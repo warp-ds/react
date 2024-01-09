@@ -29,7 +29,7 @@
     "build:clean": "rm -rf dist",
     "build:eik": "node esbuild.mjs 17 && node esbuild.mjs 18",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@warp-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
-    "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react --metafile=meta.json",
+    "build:npm": "npx esbuild ./packages/index.ts --outdir=dist/npm --target=es2017 --bundle --sourcemap --format=esm --external:react",
     "build:node": "npx esbuild ./packages/index.ts --outdir=dist/npm --out-extension:.js=.cjs --target=es2017 --bundle --sourcemap --format=cjs --external:react",
     "build": "pnpm run build:clean && pnpm run build:npm && pnpm run build:node && pnpm run build:eik && pnpm run build:types",
     "dev": "storybook dev -p 9003 --ci",
