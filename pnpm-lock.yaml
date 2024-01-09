@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.0.2
     version: 1.0.2
   '@warp-ds/css':
-    specifier: 1.7.0-next.1
-    version: 1.7.0-next.1
+    specifier: 1.7.0
+    version: 1.7.0
   '@warp-ds/icons':
     specifier: 1.4.0
     version: 1.4.0
@@ -5823,8 +5823,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.7.0-next.1:
-    resolution: {integrity: sha512-yuCPmyr/4eCCAqtYRyd35jaeqBsOkCnl0+hwP7JYm2/G3qvRBfc29cKB0rgfus4IFYMDNETCiPz6qJfXK6cieg==}
+  /@warp-ds/css@1.7.0:
+    resolution: {integrity: sha512-fupSS33C7h+2OZ+58TUekhUnfPS1D/EW41ZoGFytyQrdS/uVNQQ/FXEOIHkumoV1m0FPj5s+qAPPuOw6oXu+Rw==}
     dependencies:
       '@warp-ds/tokenizer': 0.0.2
       '@warp-ds/uno': 1.4.0
@@ -5840,7 +5840,7 @@ packages:
     resolution: {integrity: sha512-pEtBvP6my14f1kOmYSoDNhofGK/L2yNqnZkEotvY6boVs3jcIncHpgo9Nt4AHOiAvzDrPP0t8b36jwqGaWzNPg==}
     dependencies:
       glob: 9.3.5
-      yaml: 2.3.2
+      yaml: 2.3.4
     dev: false
 
   /@warp-ds/uno@1.4.0:
@@ -10030,8 +10030,8 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
-  /lru-cache@10.0.1:
-    resolution: {integrity: sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==}
+  /lru-cache@10.1.0:
+    resolution: {integrity: sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==}
     engines: {node: 14 || >=16.14}
     dev: false
 
@@ -10438,6 +10438,12 @@ packages:
   /minipass@5.0.0:
     resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /minipass@7.0.4:
+    resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dev: false
 
   /minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -11097,8 +11103,8 @@ packages:
     resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
-      lru-cache: 10.0.1
-      minipass: 5.0.0
+      lru-cache: 10.1.0
+      minipass: 7.0.4
     dev: false
 
   /path-to-regexp@0.1.7:
@@ -13351,8 +13357,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /yaml@2.3.2:
-    resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
+  /yaml@2.3.4:
+    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
     dev: false
 
