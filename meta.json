@@ -3405,8 +3405,470 @@
       ],
       "format": "esm"
     },
+    "packages/pagination/src/locales/en/messages.mjs": {
+      "bytes": 400,
+      "imports": [],
+      "format": "esm"
+    },
+    "packages/pagination/src/locales/fi/messages.mjs": {
+      "bytes": 416,
+      "imports": [],
+      "format": "esm"
+    },
+    "packages/pagination/src/locales/nb/messages.mjs": {
+      "bytes": 403,
+      "imports": [],
+      "format": "esm"
+    },
+    "../css/component-classes/index.js": {
+      "bytes": 39346,
+      "imports": [],
+      "format": "esm"
+    },
+    "packages/pagination/src/PaginationContainer.tsx": {
+      "bytes": 2393,
+      "imports": [
+        {
+          "path": "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js",
+          "kind": "import-statement",
+          "original": "@chbphone55/classnames"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/CurrentPage.tsx": {
+      "bytes": 1172,
+      "imports": [
+        {
+          "path": "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js",
+          "kind": "import-statement",
+          "original": "@chbphone55/classnames"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-double-left-16.js": {
+      "bytes": 3193,
+      "imports": [
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/FirstPage.tsx": {
+      "bytes": 1425,
+      "imports": [
+        {
+          "path": "packages/button/src/index.ts",
+          "kind": "import-statement",
+          "original": "../../button/src/index.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-double-left-16.js",
+          "kind": "import-statement",
+          "original": "@warp-ds/icons/react/chevron-double-left-16"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-right-16.js": {
+      "bytes": 3072,
+      "imports": [
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/NextPage.tsx": {
+      "bytes": 2166,
+      "imports": [
+        {
+          "path": "packages/button/src/index.ts",
+          "kind": "import-statement",
+          "original": "../../button/src/index.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js",
+          "kind": "import-statement",
+          "original": "@chbphone55/classnames"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-right-16.js",
+          "kind": "import-statement",
+          "original": "@warp-ds/icons/react/chevron-right-16"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/Page.tsx": {
+      "bytes": 1489,
+      "imports": [
+        {
+          "path": "packages/button/src/index.ts",
+          "kind": "import-statement",
+          "original": "../../button/src/index.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js",
+          "kind": "import-statement",
+          "original": "@chbphone55/classnames"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/Pages.tsx": {
+      "bytes": 1123,
+      "imports": [
+        {
+          "path": "node_modules/.pnpm/@chbphone55+classnames@2.0.0/node_modules/@chbphone55/classnames/dist/index.m.js",
+          "kind": "import-statement",
+          "original": "@chbphone55/classnames"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-left-16.js": {
+      "bytes": 3055,
+      "imports": [
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.5.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/PrevPage.tsx": {
+      "bytes": 1418,
+      "imports": [
+        {
+          "path": "packages/button/src/index.ts",
+          "kind": "import-statement",
+          "original": "../../button/src/index.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@lingui+core@4.3.0/node_modules/@lingui/core/dist/index.mjs",
+          "kind": "import-statement",
+          "original": "@lingui/core"
+        },
+        {
+          "path": "../css/component-classes/index.js",
+          "kind": "import-statement",
+          "original": "../../../../css/component-classes/index.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-left-16.js",
+          "kind": "import-statement",
+          "original": "@warp-ds/icons/react/chevron-left-16"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/Pagination.tsx": {
+      "bytes": 2667,
+      "imports": [
+        {
+          "path": "packages/i18n.ts",
+          "kind": "import-statement",
+          "original": "../../i18n.js"
+        },
+        {
+          "path": "packages/pagination/src/locales/en/messages.mjs",
+          "kind": "import-statement",
+          "original": "./locales/en/messages.mjs"
+        },
+        {
+          "path": "packages/pagination/src/locales/fi/messages.mjs",
+          "kind": "import-statement",
+          "original": "./locales/fi/messages.mjs"
+        },
+        {
+          "path": "packages/pagination/src/locales/nb/messages.mjs",
+          "kind": "import-statement",
+          "original": "./locales/nb/messages.mjs"
+        },
+        {
+          "path": "packages/pagination/src/CurrentPage.tsx",
+          "kind": "import-statement",
+          "original": "./CurrentPage.js"
+        },
+        {
+          "path": "packages/pagination/src/FirstPage.tsx",
+          "kind": "import-statement",
+          "original": "./FirstPage.js"
+        },
+        {
+          "path": "packages/pagination/src/NextPage.tsx",
+          "kind": "import-statement",
+          "original": "./NextPage.js"
+        },
+        {
+          "path": "packages/pagination/src/Page.tsx",
+          "kind": "import-statement",
+          "original": "./Page.js"
+        },
+        {
+          "path": "packages/pagination/src/Pages.tsx",
+          "kind": "import-statement",
+          "original": "./Pages.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "packages/pagination/src/PrevPage.tsx",
+          "kind": "import-statement",
+          "original": "./PrevPage.js"
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "packages/pagination/src/index.ts": {
+      "bytes": 441,
+      "imports": [
+        {
+          "path": "packages/pagination/src/Pagination.tsx",
+          "kind": "import-statement",
+          "original": "./Pagination.js"
+        },
+        {
+          "path": "packages/pagination/src/PaginationContainer.tsx",
+          "kind": "import-statement",
+          "original": "./PaginationContainer.js"
+        },
+        {
+          "path": "packages/pagination/src/FirstPage.tsx",
+          "kind": "import-statement",
+          "original": "./FirstPage.js"
+        },
+        {
+          "path": "packages/pagination/src/NextPage.tsx",
+          "kind": "import-statement",
+          "original": "./NextPage.js"
+        },
+        {
+          "path": "packages/pagination/src/PrevPage.tsx",
+          "kind": "import-statement",
+          "original": "./PrevPage.js"
+        },
+        {
+          "path": "packages/pagination/src/Page.tsx",
+          "kind": "import-statement",
+          "original": "./Page.js"
+        },
+        {
+          "path": "packages/pagination/src/Pages.tsx",
+          "kind": "import-statement",
+          "original": "./Pages.js"
+        },
+        {
+          "path": "packages/pagination/src/CurrentPage.tsx",
+          "kind": "import-statement",
+          "original": "./CurrentPage.js"
+        }
+      ],
+      "format": "esm"
+    },
     "packages/index.ts": {
-      "bytes": 784,
+      "bytes": 827,
       "imports": [
         {
           "path": "packages/_helpers/index.ts",
@@ -3507,6 +3969,11 @@
           "path": "packages/toggle/src/index.ts",
           "kind": "import-statement",
           "original": "./toggle/src/index.js"
+        },
+        {
+          "path": "packages/pagination/src/index.ts",
+          "kind": "import-statement",
+          "original": "./pagination/src/index.js"
         }
       ],
       "format": "esm"
@@ -3517,10 +3984,65 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 644592
+      "bytes": 729094
     },
     "dist/npm/index.js": {
       "imports": [
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
+        {
+          "path": "react",
+          "kind": "import-statement",
+          "external": true
+        },
         {
           "path": "react",
           "kind": "import-statement",
@@ -3788,11 +4310,19 @@
         "Card",
         "Clickable",
         "Combobox",
+        "CurrentPage",
         "DeadToggle",
         "ExpandTransition",
         "Expandable",
+        "FirstPage",
         "Modal",
+        "NextPage",
+        "Page",
+        "Pages",
+        "Pagination",
+        "PaginationContainer",
         "Pill",
+        "PrevPage",
         "Select",
         "Slider",
         "Step",
@@ -3804,7 +4334,8 @@
         "TextArea",
         "TextField",
         "Toggle",
-        "UnstyledHeading"
+        "UnstyledHeading",
+        "usePagination"
       ],
       "entryPoint": "packages/index.ts",
       "inputs": {
@@ -4338,9 +4869,57 @@
         },
         "packages/toggle/src/index.ts": {
           "bytesInOutput": 0
+        },
+        "packages/pagination/src/locales/en/messages.mjs": {
+          "bytesInOutput": 346
+        },
+        "packages/pagination/src/locales/fi/messages.mjs": {
+          "bytesInOutput": 364
+        },
+        "packages/pagination/src/locales/nb/messages.mjs": {
+          "bytesInOutput": 351
+        },
+        "../css/component-classes/index.js": {
+          "bytesInOutput": 18366
+        },
+        "packages/pagination/src/PaginationContainer.tsx": {
+          "bytesInOutput": 1821
+        },
+        "packages/pagination/src/CurrentPage.tsx": {
+          "bytesInOutput": 799
+        },
+        "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-double-left-16.js": {
+          "bytesInOutput": 2807
+        },
+        "packages/pagination/src/FirstPage.tsx": {
+          "bytesInOutput": 802
+        },
+        "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-right-16.js": {
+          "bytesInOutput": 2733
+        },
+        "packages/pagination/src/NextPage.tsx": {
+          "bytesInOutput": 1493
+        },
+        "packages/pagination/src/Page.tsx": {
+          "bytesInOutput": 882
+        },
+        "packages/pagination/src/Pages.tsx": {
+          "bytesInOutput": 830
+        },
+        "node_modules/.pnpm/@warp-ds+icons@1.3.0-next.2/node_modules/@warp-ds/icons/dist/react/chevron-left-16.js": {
+          "bytesInOutput": 2724
+        },
+        "packages/pagination/src/PrevPage.tsx": {
+          "bytesInOutput": 805
+        },
+        "packages/pagination/src/Pagination.tsx": {
+          "bytesInOutput": 1630
+        },
+        "packages/pagination/src/index.ts": {
+          "bytesInOutput": 0
         }
       },
-      "bytes": 343874
+      "bytes": 381741
     }
   }
 }

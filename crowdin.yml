@@ -62,4 +62,9 @@ files:
                   "dest": "/react/**/%original_file_name%",
                   "translation": "/packages/steps/src/locales/%two_letters_code%/messages.po",
             },
+            {
+                  "source": "/packages/pagination/src/locales/en/messages.po",
+                  "dest": "/react/**/%original_file_name%",
+                  "translation": "/packages/pagination/src/locales/%two_letters_code%/messages.po",
+            },
       ]

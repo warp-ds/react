@@ -1,3 +1,10 @@
+# [1.3.0-next.1](https://github.com/warp-ds/react/compare/v1.2.2...v1.3.0-next.1) (2024-01-09)
+
+
+### Features
+
+* Add Pagination component to WARP ([#189](https://github.com/warp-ds/react/issues/189)) ([16b1a5c](https://github.com/warp-ds/react/commit/16b1a5c2329d9bc90dd45e02e70d725c36e1d157))
+
 ## [1.2.2](https://github.com/warp-ds/react/compare/v1.2.1...v1.2.2) (2023-12-20)
 
 

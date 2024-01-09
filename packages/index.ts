@@ -18,3 +18,4 @@ export * from './tabs/src/index.js';
 export * from './textarea/src/index.js';
 export * from './textfield/src/index.js';
 export * from './toggle/src/index.js';
+export * from './pagination/src/index.js';
