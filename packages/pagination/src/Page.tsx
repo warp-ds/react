@@ -37,7 +37,7 @@ const Page = React.forwardRef<
 
   const isCurrentPage = page === currentPage;
 
-  const ariaLabel = i18n._({
+  const ariaLabel = props['aria-label'] ?? i18n._({
     id: 'pagination.aria.page',
     message: 'Page {currentPage}',
     values: { currentPage },

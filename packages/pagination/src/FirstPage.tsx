@@ -34,7 +34,7 @@ const FirstPage = React.forwardRef<
     return null;
   }
 
-  const ariaLabel = i18n._({
+  const ariaLabel = props['aria-label'] ?? i18n._({
     id: 'pagination.aria.first-page',
     message: 'First page',
     comment:

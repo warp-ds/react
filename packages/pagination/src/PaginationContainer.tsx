@@ -13,7 +13,7 @@ export const usePagination = () => React.useContext(PaginationContext);
 export type PaginationContainerProps = {
   /**
    *
-   * @default Resultatsider
+   * @default Pages
    */
   'aria-label'?: string;
 

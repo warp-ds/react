@@ -40,7 +40,7 @@ const NextPage = React.forwardRef<
     return null;
   }
 
-  const ariaLabel = i18n._({
+  const ariaLabel = props['aria-label'] ?? i18n._({
     id: 'pagination.aria.next-page',
     message: 'Next page',
     comment:
