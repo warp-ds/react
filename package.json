@@ -40,7 +40,9 @@
     "lint:format": "prettier --check . --ignore-path .gitignore",
     "semantic-release": "semantic-release",
     "messages:extract": "lingui extract",
-    "messages:compile": "lingui compile"
+    "messages:compile": "lingui compile",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest run --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -58,12 +60,15 @@
     "@storybook/builder-vite": "^7.0.22",
     "@storybook/cli": "^7.0.22",
     "@storybook/react-vite": "^7.0.22",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
     "@types/node": "^20.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-react": "^4.0.0",
+    "@vitest/coverage-v8": "^1.1.3",
     "cz-conventional-changelog": "^3.3.0",
     "element-collapse": "^1.0.1",
     "esbuild": "0.19.5",
@@ -75,9 +80,10 @@
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "happy-dom": "^12.10.3",
     "prettier": "^3.0.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",
     "semantic-release": "^19.0.2",
@@ -85,7 +91,8 @@
     "storybook": "^7.0.22",
     "typescript": "5.2.2",
     "unocss": "^0.57.0",
-    "vite": "^4.3.9"
+    "vite": "^5.0.11",
+    "vitest": "^1.1.3"
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
