@@ -11,10 +11,7 @@ const PaginationContext = React.createContext({
 export const usePagination = () => React.useContext(PaginationContext);
 
 export type PaginationContainerProps = {
-  /**
-   *
-   * @default Pages
-   */
+  /** Pages */
   'aria-label'?: string;
 
   children: React.ReactNode;
