@@ -106,7 +106,7 @@ export function DismissibleHighlight() {
           highlight
           canClose
           onDismiss={() => setShow(false)}
-          placement='top'
+          placement='bottom'
           isShowing={show}
           targetEl={targetEl}
           id='highlight-attention-example'

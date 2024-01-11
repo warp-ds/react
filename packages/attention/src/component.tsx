@@ -246,7 +246,13 @@ export function Attention(props: AttentionProps) {
 }
 
 const arrowDirectionClassname = (dir: string) => {
-  const direction = dir.charAt(0).toUpperCase() + dir.slice(1)
+   let direction: string; 
+  if (/-/.test(dir)) {
+    direction = dir.split("-").map((d) => d.charAt(0).toUpperCase() + d.slice(1)).join("")
+  } else {
+    direction = dir.charAt(0).toUpperCase() + dir.slice(1)
+
+  }
 
   return `arrowDirection${direction}`
 }

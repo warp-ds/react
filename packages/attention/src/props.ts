@@ -1,6 +1,17 @@
 import { MutableRefObject } from 'react';
 
-export type Directions = 'top' | 'right' | 'bottom' | 'left';
+export type Directions =  | 'top'
+| 'top-start'
+| 'top-end'
+| 'right'
+| 'right-start'
+| 'right-end'
+| 'bottom'
+| 'bottom-start'
+| 'bottom-end'
+| 'left'
+| 'left-start'
+| 'left-end';
 
 export type AttentionVariants = {
   /**
