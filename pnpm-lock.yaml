@@ -12,7 +12,7 @@ dependencies:
     specifier: ^4.3.0
     version: 4.3.0
   '@warp-ds/core':
-    specifier: ^1.0.2
+    specifier: 1.0.2
     version: 1.0.2
   '@warp-ds/css':
     specifier: 1.7.0
@@ -21,7 +21,7 @@ dependencies:
     specifier: 1.4.0
     version: 1.4.0
   '@warp-ds/uno':
-    specifier: ^1.4.0
+    specifier: 1.4.0
     version: 1.4.0
   react-focus-lock:
     specifier: ^2.5.2
@@ -5604,7 +5604,6 @@ packages:
 
   /@unocss/core@0.57.7:
     resolution: {integrity: sha512-1d36M0CV3yC80J0pqOa5rH1BX6g2iZdtKmIb3oSBN4AWnMCSrrJEPBrUikyMq2TEQTrYWJIVDzv5A9hBUat3TA==}
-    dev: false
 
   /@unocss/extractor-arbitrary-variants@0.57.1:
     resolution: {integrity: sha512-9s+azHhBnwjxm46TsD1RY0krDAwOR8tcw58Vtl3emd6C0VQsAOdoprt7UHE7GEXMvDVq7nMf8lAT0BM0LteW3w==}
@@ -5718,7 +5717,7 @@ packages:
     resolution: {integrity: sha512-Hdicz7YORZx7SHICldzOGjPNeJwk/Xhy3cycqiPbg6nB6d639bpgZn5BsbDzHCPKpguwDomUqTZS6+C3s7tUVg==}
     engines: {node: '>=14'}
     dependencies:
-      '@unocss/core': 0.57.1
+      '@unocss/core': 0.57.7
       magic-string: 0.30.5
     dev: true
 
@@ -11488,6 +11487,7 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: true
+    bundledDependencies: false
 
   /react-element-to-jsx-string@15.0.0(react-dom@16.14.0)(react@16.14.0):
     resolution: {integrity: sha512-UDg4lXB6BzlobN60P8fHWVPX3Kyw8ORrTeBtClmIlGdkOOE+GYQSFvmEU5iLLpwp/6v42DINwNcwOhOLfQ//FQ==}
@@ -11548,6 +11548,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       prop-types: 15.8.1
+    bundledDependencies: false
 
   /read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
