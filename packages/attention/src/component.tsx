@@ -12,30 +12,30 @@ import { messages as nbMessages } from './locales/nb/messages.mjs'
 import { messages as enMessages } from './locales/en/messages.mjs'
 import { messages as fiMessages } from './locales/fi/messages.mjs'
 import { activateI18n } from '../../i18n.js'
-import IconClose16 from "@warp-ds/icons/react/close-16";
+import IconClose16 from '@warp-ds/icons/react/close-16'
 
 const variantClasses = {
   callout: {
     wrapper: ccAttention.callout,
-    arrow: ccAttention.arrowCallout
+    arrow: ccAttention.arrowCallout,
   },
   highlight: {
     wrapper: ccAttention.highlight,
-    arrow: ccAttention.arrowHighlight
+    arrow: ccAttention.arrowHighlight,
   },
   tooltip: {
     wrapper: ccAttention.tooltip,
-    arrow: ccAttention.arrowTooltip
+    arrow: ccAttention.arrowTooltip,
   },
   popover: {
     wrapper: ccAttention.popover,
-    arrow: ccAttention.arrowPopover
+    arrow: ccAttention.arrowPopover,
   },
 }
 
 const getVariant = (variantProps: AttentionVariants) => {
-  return Object.keys(variantClasses).find(b => !!variantProps[b]) || '';
-};
+  return Object.keys(variantClasses).find((b) => !!variantProps[b]) || ''
+}
 
 export function Attention(props: AttentionProps) {
   const {
@@ -57,7 +57,7 @@ export function Attention(props: AttentionProps) {
   const wrapperClasses = classNames(
     ccAttention.base,
     variantClasses[getVariant(rest)].wrapper
-  );
+  )
 
   const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
@@ -103,28 +103,36 @@ export function Attention(props: AttentionProps) {
   //TODO: See if we can move this function to the core-repo:
   const pointingAtDirection = (() => {
     switch (opposites[actualDirection]) {
+      case 'top-start':
       case 'top':
+      case 'top-end':
         return i18n._({
           id: 'attention.aria.pointingUp',
           message: 'pointing up',
           comment:
             'Default screenreader message for top direction in the attention component',
         })
+      case 'right-start':
       case 'right':
+      case 'right-end':
         return i18n._({
           id: 'attention.aria.pointingRight',
           message: 'pointing right',
           comment:
             'Default screenreader message for right direction in the attention component',
         })
+      case 'bottom-start':
       case 'bottom':
+      case 'bottom-end':
         return i18n._({
           id: 'attention.aria.pointingDown',
           message: 'pointing down',
           comment:
             'Default screenreader message for bottom direction in the attention component',
         })
+      case 'left-start':
       case 'left':
+      case 'left-end':
         return i18n._({
           id: 'attention.aria.pointingLeft',
           message: 'pointing left',
@@ -207,32 +215,32 @@ export function Attention(props: AttentionProps) {
       ref={attentionRef}
     >
       <div
-        role={props.role === '' ? undefined : (props.tooltip ? 'tooltip' : 'img')}
-        aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
+        role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
+        aria-label={
+          ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()
+        }
         className={wrapperClasses}
         id={props.id}
       >
         {!props.noArrow && (
           <Arrow {...props} ref={arrowRef} direction={placement} />
         )}
-        <div className={ccAttention.content}>
-          {props.children}
-        </div>
+        <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
           <button
-            type="button"
+            type='button'
             aria-label={i18n._(
               /*i18n*/ {
-                id: "attention.aria.close",
-                message: "Close",
-                comment: "Aria label for the close button in attention",
+                id: 'attention.aria.close',
+                message: 'Close',
+                comment: 'Aria label for the close button in attention',
               }
             )}
             onClick={onDismiss}
             onKeyDown={(event) => {
-              if (!props.onDismiss) return;
-              if (event.key === "Escape") {
-                props.onDismiss();
+              if (!props.onDismiss) return
+              if (event.key === 'Escape') {
+                props.onDismiss()
               }
             }}
             className={ccAttention.closeBtn}
@@ -246,38 +254,41 @@ export function Attention(props: AttentionProps) {
 }
 
 const arrowDirectionClassname = (dir: string) => {
-   let direction: string; 
+  let direction: string
   if (/-/.test(dir)) {
-    direction = dir.split("-").map((d) => d.charAt(0).toUpperCase() + d.slice(1)).join("")
+    direction = dir
+      .split('-')
+      .map((d) => d.charAt(0).toUpperCase() + d.slice(1))
+      .join('')
   } else {
     direction = dir.charAt(0).toUpperCase() + dir.slice(1)
-
   }
 
   return `arrowDirection${direction}`
 }
 
-const Arrow = forwardRef<HTMLDivElement, ArrowProps>(({ direction, ...rest }, ref) => {
-  const arrowDirection = opposites[direction]
+const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
+  ({ direction, ...rest }, ref) => {
+    const arrowDirection = opposites[direction]
+    const arrowClasses = classNames(
+      ccAttention.arrowBase,
+      ccAttention[arrowDirectionClassname(arrowDirection)],
+      variantClasses[getVariant(rest)].arrow
+    )
 
-  const arrowClasses = classNames(
-    ccAttention.arrowBase,
-    ccAttention[arrowDirectionClassname(arrowDirection)],
-    variantClasses[getVariant(rest)].arrow
-  )
-
-  return (
-    <div
-      ref={ref}
-      className={arrowClasses}
-      style={{
-        // TW doesn't let us specify exactly one corner, only whole sides
-        borderTopLeftRadius: '4px',
-        zIndex: 1,
-        // border alignment is off by a fraction of a pixel, this fixes it
-        [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
-        transform: `rotate(${rotation[arrowDirection]}deg)`,
-      }}
-    />
-  )
-})
+    return (
+      <div
+        ref={ref}
+        className={arrowClasses}
+        style={{
+          // TW doesn't let us specify exactly one corner, only whole sides
+          borderTopLeftRadius: '4px',
+          zIndex: 1,
+          // border alignment is off by a fraction of a pixel, this fixes it
+          [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
+          transform: `rotate(${rotation[arrowDirection]}deg)`,
+        }}
+      />
+    )
+  }
+)
