@@ -186,7 +186,14 @@ export function Attention(props: AttentionProps) {
   }
   // Recompute on re-render
   useEffect(() => {
+    
+    // TODO: this updates actualDirection, but seems to still not be reflected correctly in the DOM
     recompute(attentionState)
+    recompute(attentionState).then((position) => {
+      setActualDirection(position.placement);
+    });
+
+    console.log("actualDirection: ", actualDirection);
   })
 
   useEffect(() => {
