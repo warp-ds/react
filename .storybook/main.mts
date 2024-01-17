@@ -1,7 +1,7 @@
-const { mergeConfig } = require('vite');
-const { dirname } = require('path');
+import { mergeConfig } from 'vite';
+import { dirname } from 'path';
 
-module.exports = {
+export default {
   stories: ['../packages/**/*.stories.[tj]sx'],
   addons: ['@storybook/addon-actions'],
   framework: {
