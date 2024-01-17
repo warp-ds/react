@@ -184,16 +184,27 @@ export function Attention(props: AttentionProps) {
   const defaultAriaLabel = () => {
     return `${activeAttentionType} ${!props.noArrow ? pointingAtDirection : ''}`
   }
+  const arrowDirectionClassname = (dir: string) => {
+    let direction: string
+    if (/-/.test(dir)) {
+      direction = dir
+        .split('-')
+        .map((d) => d.charAt(0).toUpperCase() + d.slice(1))
+        .join('')
+    } else {
+      direction = dir.charAt(0).toUpperCase() + dir.slice(1)
+    }
+    return `arrowDirection${direction}`
+  }
   // Recompute on re-render
   useEffect(() => {
     
-    // TODO: this updates actualDirection, but seems to still not be reflected correctly in the DOM
-    recompute(attentionState)
     recompute(attentionState).then((position) => {
-      setActualDirection(position.placement);
+      if (position) {
+        // @ts-ignore
+        setActualDirection(position.placement);
+      }
     });
-
-    console.log("actualDirection: ", actualDirection);
   })
 
   useEffect(() => {
@@ -209,6 +220,31 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout])
 
+  const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
+    ({ ...rest }, ref) => {
+      const arrowDirection = opposites[actualDirection]
+      const arrowClasses = classNames(
+        ccAttention.arrowBase,
+        ccAttention[arrowDirectionClassname(arrowDirection)],
+        variantClasses[getVariant(rest)].arrow
+      )
+  
+      return (
+        <div
+          ref={ref}
+          className={arrowClasses}
+          style={{
+            // TW doesn't let us specify exactly one corner, only whole sides
+            borderTopLeftRadius: '4px',
+            zIndex: 1,
+            // border alignment is off by a fraction of a pixel, this fixes it
+            [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
+            transform: `rotate(${rotation[arrowDirection]}deg)`,
+          }}
+        />
+      )
+    }
+  )
   return (
     <div
       className={classNames(
@@ -260,42 +296,4 @@ export function Attention(props: AttentionProps) {
   )
 }
 
-const arrowDirectionClassname = (dir: string) => {
-  let direction: string
-  if (/-/.test(dir)) {
-    direction = dir
-      .split('-')
-      .map((d) => d.charAt(0).toUpperCase() + d.slice(1))
-      .join('')
-  } else {
-    direction = dir.charAt(0).toUpperCase() + dir.slice(1)
-  }
 
-  return `arrowDirection${direction}`
-}
-
-const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
-  ({ direction, ...rest }, ref) => {
-    const arrowDirection = opposites[direction]
-    const arrowClasses = classNames(
-      ccAttention.arrowBase,
-      ccAttention[arrowDirectionClassname(arrowDirection)],
-      variantClasses[getVariant(rest)].arrow
-    )
-
-    return (
-      <div
-        ref={ref}
-        className={arrowClasses}
-        style={{
-          // TW doesn't let us specify exactly one corner, only whole sides
-          borderTopLeftRadius: '4px',
-          zIndex: 1,
-          // border alignment is off by a fraction of a pixel, this fixes it
-          [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
-          transform: `rotate(${rotation[arrowDirection]}deg)`,
-        }}
-      />
-    )
-  }
-)
