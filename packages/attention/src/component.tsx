@@ -216,8 +216,8 @@ export function Attention(props: AttentionProps) {
   }, [isShowing, props.callout])
 
   const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
-    ({ ...rest }, ref) => {
-      const arrowDirection = opposites[actualDirection]
+    ({ direction, ...rest }, ref) => {
+      const arrowDirection = opposites[direction];
       const arrowClasses = classNames(
         ccAttention.arrowBase,
         ccAttention[arrowDirectionClassname(arrowDirection)],
@@ -261,7 +261,7 @@ export function Attention(props: AttentionProps) {
         id={props.id}
       >
         {!props.noArrow && (
-          <Arrow {...props} ref={arrowRef} direction={placement} />
+          <Arrow {...props} ref={arrowRef} direction={actualDirection} />
         )}
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
