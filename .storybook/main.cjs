@@ -15,6 +15,7 @@ module.exports = {
     });
   },
   docs: {
-    autodocs: true
+    // set to 'true' when we have autodocs content generated from our stories properly
+    autodocs: false
   }
 };
