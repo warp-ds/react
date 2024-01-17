@@ -199,12 +199,7 @@ export function Attention(props: AttentionProps) {
   // Recompute on re-render
   useEffect(() => {
     
-    recompute(attentionState).then((position) => {
-      if (position) {
-        // @ts-ignore
-        setActualDirection(position.placement);
-      }
-    });
+    recompute(attentionState)
   })
 
   useEffect(() => {
