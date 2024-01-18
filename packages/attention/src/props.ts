@@ -83,7 +83,7 @@ export type AttentionProps = {
   /**
    * Container the Attention component is rendered relatively to
    */
-  targetEl?: MutableRefObject<unknown>;
+  targetEl?: MutableRefObject<any>;
 
   /**
    * Extend the Attention component container styling
