@@ -198,7 +198,6 @@ export function Attention(props: AttentionProps) {
   }
   // Recompute on re-render
   useEffect(() => {
-    
     recompute(attentionState)
   }, [])
 
