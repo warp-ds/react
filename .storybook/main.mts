@@ -3,7 +3,7 @@ import { dirname } from 'path';
 
 export default {
   stories: ['../packages/**/*.stories.[tj]sx'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-interactions'],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',
     options: {}
