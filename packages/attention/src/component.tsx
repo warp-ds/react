@@ -200,7 +200,7 @@ export function Attention(props: AttentionProps) {
   useEffect(() => {
     
     recompute(attentionState)
-  })
+  }, [])
 
   useEffect(() => {
     if (isMounted.current) {
