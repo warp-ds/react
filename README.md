@@ -31,7 +31,13 @@ pnpm add @warp-ds/react
 ```html
 <script src="https://assets.finn.no/pkg/@warp-ds/react/v1"></script>
 ```
+### Testing
 
+This app contains 2 types of tests:
+
+1. Unit tests: These are based on vitest and testing-library. Run these tests in watch mode using `pnpm test:watch` or with coverage report by `pnpm test:unit`.
+2. Component tests: These are currently written with storybook. You can start storybook using `pnpm dev` and see the tests in the interavtive panel for a story. Alternatively, you can run these tests on CI/Command line using `pnpm test:storybook`. This will start storybook and run tests concurrently. 
+Note: you might have to run `pnpm exec playwright install` first time as you might not have the chromium playwright executable available locally.
 
 ### Documentation
 
