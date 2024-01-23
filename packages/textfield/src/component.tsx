@@ -1,7 +1,8 @@
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef } from 'react';
 import { i18n } from '@lingui/core';
 import { classNames } from '@chbphone55/classnames';
 import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
+import { useId } from '../../utils/src/index.js';
 import { TextFieldProps } from './props.js';
 import { messages as nbMessages} from './locales/nb/messages.mjs';
 import { messages as enMessages} from './locales/en/messages.mjs';
@@ -28,10 +29,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     activateI18n(enMessages, nbMessages, fiMessages);
     
-    // useId returns a string that includes colons (:), e.g., :r0:, :r1:, etc.
-    // This string is NOT supported in CSS selectors. Hence the replace.
-    const id = providedId ?? useId().replace(/:/g, '');
-
+    const id = useId(providedId);
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 

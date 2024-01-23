@@ -45,53 +45,14 @@
  * https://github.com/facebook/react/pull/17322
  */
 
-import { useState, useEffect } from 'react';
-import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
-
-let serverHandoffComplete = false;
-// Generate a pseudorandom seed to prefix to each generated id instead of solely relying on the counter.
-// We don't want id collisions across React roots/podlets.
-const prefix = generateId();
-
-let id = 0;
-const genId = () => {
-  id = id + 1;
-  return prefix + id;
-};
+import { useId as reactUseId } from 'react';
 
 export const useId = (hasFallback?): string => {
-  /*
-   * If this instance isn't part of the initial render, we don't have to do the
-   * double render/patch-up dance. We can just generate the ID and return it.
-   */
-  const initialId = hasFallback || (serverHandoffComplete ? genId() : null);
-
-  const [id, setId] = useState(initialId);
-
-  useLayoutEffect(() => {
-    if (id === null) {
-      /*
-       * Patch the ID after render. We do this in `useLayoutEffect` to avoid any
-       * rendering flicker, though it'll make the first render slower (unlikely
-       * to matter, but you're welcome to measure your app and let us know if
-       * it's a problem).
-       */
-      setId(genId());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (serverHandoffComplete === false) {
-      /*
-       * Flag all future uses of `useId` to skip the update dance. This is in
-       * `useEffect` because it goes after `useLayoutEffect`, ensuring we don't
-       * accidentally bail out of the patch-up dance prematurely.
-       */
-      serverHandoffComplete = true;
-    }
-  }, []);
-  return id;
+  const prefix = generateId();
+  
+  // reactUseId returns a string that includes colons (:), e.g., :r0:, :r1:, etc.
+  // This string is NOT supported in CSS selectors. Hence the replace.
+  return hasFallback ?? prefix + reactUseId().replace(/:/g, '');
 };
 
 /**
