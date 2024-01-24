@@ -3,8 +3,7 @@ import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   rotation,
-  updatePosition,
-  // cleanUp,
+  useRecompute as recompute,
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
@@ -64,13 +63,16 @@ export function Attention(props: AttentionProps) {
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
 
-  const isMounted = useRef(true)
+  const isMounted = useRef(false)
   const attentionRef = useRef<HTMLDivElement | null>(null)
   const arrowRef = useRef<HTMLDivElement | null>(null)
 
   const attentionState = {
     get isShowing() {
       return isShowing
+    },
+    set isShowing(v) {
+      setIsVisible(v)
     },
     get isCallout() {
       return rest.callout
@@ -199,27 +201,35 @@ export function Attention(props: AttentionProps) {
   }
 
   useEffect(() => {
-    if (isMounted.current)
-    if (isShowing && attentionState.targetEl && attentionState.attentionEl) {
-      return updatePosition(attentionState)
-      }
-      isMounted.current = false;
-  }, [isShowing, attentionState])
+      isMounted.current = true;
+      console.log("isMounted: ", isMounted.current, "isShowing: ", isShowing);
+      return () => { isMounted.current = false; console.log("setting isMounted to false: ", isMounted.current, "isShowing: ", isShowing);
+    } 
+  }, [])
 
   useEffect(() => {
-    if (isMounted.current) {
-      isMounted.current = false
-
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
+        console.log("isSHowing: ", isShowing);
         setIsVisible(isShowing)
-        // updatePosition(attentionState)
+        
+      } else {
+        setIsVisible(isShowing)
+        recompute(attentionState, isMounted.current)
+        console.log("isSHowing in else: ", isShowing);
       }
-    } else {
-      setIsVisible(isShowing)
-      // updatePosition(attentionState)
+  }, [isShowing, props.callout, attentionState])
+
+  useEffect(() => {
+    if (isMounted.current === true) {
+      if (isShowing === true && attentionState.targetEl && attentionState.attentionEl) {
+        console.log("Do we arrive here????????");
+        
+        recompute(attentionState, isMounted.current)
+      }
     }
-  }, [isShowing, props.callout])
+  }, [isShowing, attentionState])
+  
 
   const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
     ({ direction, ...rest }, ref) => {
