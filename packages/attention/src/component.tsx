@@ -3,7 +3,8 @@ import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   rotation,
-  useRecompute as recompute,
+  updatePosition,
+  // cleanUp,
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
@@ -196,10 +197,14 @@ export function Attention(props: AttentionProps) {
     }
     return `arrowDirection${direction}`
   }
-  // Recompute on re-render
+
   useEffect(() => {
-    recompute(attentionState)
-  }, [attentionState])
+    if (isMounted.current)
+    if (isShowing && attentionState.targetEl && attentionState.attentionEl) {
+      return updatePosition(attentionState)
+      }
+      isMounted.current = false;
+  }, [isShowing, attentionState])
 
   useEffect(() => {
     if (isMounted.current) {
@@ -208,9 +213,11 @@ export function Attention(props: AttentionProps) {
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
         setIsVisible(isShowing)
+        // updatePosition(attentionState)
       }
     } else {
       setIsVisible(isShowing)
+      // updatePosition(attentionState)
     }
   }, [isShowing, props.callout])
 
