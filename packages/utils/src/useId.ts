@@ -6,3 +6,10 @@ export const useId = (hasFallback?): string => {
   return hasFallback ?? reactUseId().replace(/:/g, '');
 };
 
+/**
+ * Generates a unique string ID
+ * @returns string
+ */
+export function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+}

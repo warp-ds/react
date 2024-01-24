@@ -1,4 +1,4 @@
-import { useId } from '../../utils/src/useId.js';
+import { generateId } from '../../utils/src/useId.js';
 import { ComboboxOption, OptionWithIdAndMatch } from './props.js';
 import { i18n } from '@lingui/core';
 
@@ -9,7 +9,7 @@ export function createOptionsWithIdAndMatch(
 ): OptionWithIdAndMatch[] {
   return options.map((option) => ({
     ...option,
-    id: useId(),
+    id: generateId(),
     currentInputValue,
   }));
 }
