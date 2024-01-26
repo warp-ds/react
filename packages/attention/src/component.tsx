@@ -3,8 +3,16 @@ import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   rotation,
-  useRecompute as recompute,
 } from '@warp-ds/core/attention'
+import {
+  computePosition,
+  flip,
+  offset,
+  shift,
+  arrow,
+  autoUpdate,
+  ReferenceElement
+} from '@floating-ui/dom'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
 import { i18n } from '@lingui/core'
@@ -37,6 +45,16 @@ const getVariant = (variantProps: AttentionVariants) => {
   return Object.keys(variantClasses).find((b) => !!variantProps[b]) || ''
 }
 
+const middlePosition = "calc(50% - 7px)";
+const isDirectionVertical = (name: string) => ["top-start", "top", "top-end", "bottom-start", "bottom", "bottom-end"].includes(name);
+
+const computeCalloutArrow = ({ placement, arrowEl, actualDirection }) => {
+  actualDirection.value = placement.value
+  const directionIsVertical = isDirectionVertical(placement.value)
+  arrowEl.value.$el.style.left = directionIsVertical ? middlePosition : null
+  arrowEl.value.$el.style.top = !directionIsVertical ? middlePosition : null
+}
+
 export function Attention(props: AttentionProps) {
   const {
     noArrow,
@@ -64,44 +82,80 @@ export function Attention(props: AttentionProps) {
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
 
   const isMounted = useRef(false)
-  const attentionRef = useRef<HTMLDivElement | null>(null)
-  const arrowRef = useRef<HTMLDivElement | null>(null)
+  const attentionEl = useRef<HTMLDivElement | null>(null)
+  const arrowEl = useRef<HTMLDivElement | null>(null)
 
-  const attentionState = {
-    get isShowing() {
-      return isShowing
-    },
-    set isShowing(v) {
-      setIsVisible(v)
-    },
-    get isCallout() {
-      return rest.callout
-    },
-    get actualDirection() {
-      return actualDirection
-    },
-    set actualDirection(v) {
-      setActualDirection(v)
-    },
-    get directionName() {
-      return placement
-    },
-    get arrowEl() {
-      return arrowRef.current
-    },
-    get attentionEl() {
-      return attentionRef.current
-    },
-    set attentionEl(v) {
-      attentionRef.current = v
-    },
-    get targetEl() {
-      return targetEl?.current
-    },
-    get noArrow() {
-      return props.noArrow
-    },
-  }
+  // const attentionState = {
+  //   get isShowing() {
+  //     return isShowing
+  //   },
+  //   set isShowing(v) {
+  //     setIsVisible(v)
+  //   },
+  //   get isCallout() {
+  //     return rest.callout
+  //   },
+  //   get actualDirection() {
+  //     return actualDirection
+  //   },
+  //   set actualDirection(v) {
+  //     setActualDirection(v)
+  //   },
+  //   get directionName() {
+  //     return placement
+  //   },
+  //   get arrowEl() {
+  //     return arrowEl.current
+  //   },
+  //   get attentionEl() {
+  //     return attentionEl.current
+  //   },
+  //   set attentionEl(v) {
+  //     attentionEl.current = v
+  //   },
+  //   get targetEl() {
+  //     return targetEl
+  //   },
+  //   get noArrow() {
+  //     return props.noArrow
+  //   },
+  // }
+  
+  const referenceEl = props.targetEl?.current as unknown as ReferenceElement
+  const floatingEl = attentionEl.current as unknown as HTMLElement
+  const arrowElement = arrowEl.current as unknown as HTMLElement
+
+  const recompute = async () => {
+    if (!isShowing)return
+    if (props.callout)
+    return computeCalloutArrow({ placement:props.placement, arrowEl, actualDirection })
+  if (!attentionEl)return
+    computePosition(referenceEl, floatingEl, {
+          placement: props.placement,
+          middleware: [
+            offset(8),
+            flip(),
+            shift({ padding: 16 }),
+            !props.noArrow && arrowElement && arrow({ element: arrowElement })]
+        }).then(({ x, y, middlewareData, placement}) => {
+          setActualDirection(placement)
+          console.log("actualDirection: ", actualDirection);
+          
+          Object.assign(floatingEl.style, {
+            left: `${x}px`,
+            top: `${y}px`,
+          })
+      
+          if (middlewareData.arrow) {
+            const { x, y } = middlewareData.arrow
+            Object.assign(arrowElement.style || {}, {
+              left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
+              // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
+              top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
+            });
+          }
+        });    
+  } 
 
   //TODO: See if we can move this function to the core-repo:
   const pointingAtDirection = (() => {
@@ -199,36 +253,42 @@ export function Attention(props: AttentionProps) {
     }
     return `arrowDirection${direction}`
   }
+  let cleanup: any = null;
 
+  
   useEffect(() => {
-      isMounted.current = true;
-      console.log("isMounted: ", isMounted.current, "isShowing: ", isShowing);
-      return () => { isMounted.current = false; console.log("setting isMounted to false: ", isMounted.current, "isShowing: ", isShowing);
+    recompute
+  }, [props.placement])
+  
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false;
     } 
   }, [])
-
+  
   useEffect(() => {
-      // update attention's visibility after first render if showing by default or it's of type callout
-      if (isShowing === true || props.callout) {
-        console.log("isSHowing: ", isShowing);
-        setIsVisible(isShowing)
-        
-      } else {
-        setIsVisible(isShowing)
-        recompute(attentionState, isMounted.current)
-        console.log("isSHowing in else: ", isShowing);
-      }
-  }, [isShowing, props.callout, attentionState])
+  if (!cleanup && referenceEl && isShowing === true) {
+    console.log("autoupdate", referenceEl, floatingEl, isShowing);
+    
+    cleanup = autoUpdate(referenceEl, floatingEl, recompute);
+  } else if (cleanup) {
+    console.log("cleanup");
+    
+    cleanup = null;
+  }
+}, [referenceEl, isShowing])
 
-  useEffect(() => {
-    if (isMounted.current === true) {
-      if (isShowing === true && attentionState.targetEl && attentionState.attentionEl) {
-        console.log("Do we arrive here????????");
-        
-        recompute(attentionState, isMounted.current)
-      }
+useEffect(() => {
+  // update attention's visibility after first render if showing by default or it's of type callout
+  if (isShowing === true || props.callout) {
+    setIsVisible(isShowing)
+  } else {
+    setIsVisible(isShowing)
+    console.log("isShowing: ", isShowing);
     }
-  }, [isShowing, attentionState])
+  }, [isShowing, referenceEl, props.callout])
+  
+
   
 
   const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
@@ -266,7 +326,7 @@ export function Attention(props: AttentionProps) {
         },
         className
       )}
-      ref={attentionRef}
+      ref={attentionEl}
     >
       <div
         role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
@@ -277,7 +337,7 @@ export function Attention(props: AttentionProps) {
         id={props.id}
       >
         {!props.noArrow && (
-          <Arrow {...props} ref={arrowRef} direction={actualDirection} />
+          <Arrow {...props} ref={arrowEl} direction={actualDirection} />
         )}
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
