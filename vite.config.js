@@ -3,7 +3,7 @@ import { presetWarp } from '@warp-ds/uno';
 import uno from 'unocss/vite';
 import { classes } from '@warp-ds/css/component-classes/classes';
 
-export default function config() {
+export default function config(env) {
   return {
     // base: '/',
     plugins: [
@@ -11,7 +11,18 @@ export default function config() {
         presets: [presetWarp({ skipResets: true })],
         safelist: classes,
       }),
-      react(),
+      env.mode !== 'test' && react(),
     ],
+    test: {
+      environment: 'happy-dom',
+      globals: true,
+      setupFiles: ['./setup.ts'],
+      include: ['./tests/components/**'],
+      exclude: ['**.json'],
+      coverage: {
+        cleanOnRerun: true,
+        reporter: ['text'],
+      },
+    },
   };
 }

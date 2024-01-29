@@ -28,9 +28,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     } = props;
 
     activateI18n(enMessages, nbMessages, fiMessages);
-
+    
     const id = useId(providedId);
-
     const helpId = helpText ? `${id}__hint` : undefined;
     const isInvalid = invalid || error;
 

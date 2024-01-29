@@ -1,13 +1,21 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { TextField as TroikaTextField } from '../src';
+import { TextField as WarpTextField } from '../src';
 import { Affix } from '../../_helpers';
 
-const metadata = { title: 'Forms/TextField' };
-export default metadata;
+export default { title: 'Forms/TextField', component: WarpTextField };
+
+const Template = (args) => <WarpTextField label="Address"
+  onChange={action('change')}
+  onFocus={action('focus')}
+  onBlur={action('blur')} {...args} />;
+export const Default = Template.bind({});
+Default.args = {
+  value: 'test',
+};
 
 const TextField = (args) => (
-  <TroikaTextField
+  <WarpTextField
     label="Address"
     onChange={action('change')}
     onFocus={action('focus')}
@@ -54,7 +62,7 @@ export const longLabelPrefix = () => (
   <TextField className="[--w-prefix-width:90px]" value="With some value">
     <Affix prefix label="Long prefix" />
   </TextField>
-);
+    );
 
 export const clearSuffix = () => (
   <TextField>

@@ -2,30 +2,39 @@ import React from 'react';
 import { Button } from '../../button/src';
 import { Alert, AlertProps } from '../src';
 
-const metadata = { title: 'FeedbackIndicators/Alert' };
-export default metadata;
+import { within, expect } from '@storybook/test';
+
+export default { title: 'FeedbackIndicators/Alert', component: Alert };
+
+const Template = (args) => <Alert {...args} />;
+export const Default = Template.bind({});
+Default.args = {
+  type: 'negative',
+  show: true,
+  children: 'This is "negative" variant of the alert component',
+};
 
 export const Variants = () => (
   <div className="flex flex-col gap-y-16">
-    <div>
+    <div data-testid="negative">
       <h3>Negative</h3>
       <Alert type="negative" show>
         This is "negative" variant of the alert component
       </Alert>
     </div>
-    <div>
+    <div data-testid="positive">
       <h3>Positive</h3>
       <Alert type="positive" show role="status">
         This is "positive" variant of the alert component
       </Alert>
     </div>
-    <div>
+    <div data-testid="warning">
       <h3>Warning</h3>
       <Alert type="warning" show>
         This is "warning" variant of the alert component
       </Alert>
     </div>
-    <div>
+    <div data-testid="info">
       <h3>Info</h3>
       <Alert type="info" show role="status">
         This is "info" variant of the alert component
@@ -33,6 +42,28 @@ export const Variants = () => (
     </div>
   </div>
 );
+
+Variants.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  
+  const negative = within(canvas.getByTestId('negative'));
+  // test the outer container
+  await expect(negative.getByRole('alert')).toBeInTheDocument();
+  // test the icon
+  await expect(negative.getByTitle(/Red octagon/)).toBeInTheDocument();
+  
+  const positive = within(canvas.getByTestId('positive'));
+  await expect(positive.getByRole('status')).toBeInTheDocument();
+  await expect(positive.getByTitle(/Green circle/)).toBeInTheDocument();
+  
+  const warning = within(canvas.getByTestId('warning'));
+  await expect(warning.getByRole('alert')).toBeInTheDocument();
+  await expect(warning.getByTitle(/Yellow warning/)).toBeInTheDocument();
+  
+  const info = within(canvas.getByTestId('info'));
+  await expect(info.getByRole('status')).toBeInTheDocument();
+  await expect(info.getByTitle(/Blue circle/)).toBeInTheDocument();
+};
 
 const InteractiveContent = ({type}: Pick<AlertProps, "type">) => (
   <>
@@ -123,4 +154,11 @@ export const WithOverriddenRole = () => {
       </Alert>
     </>
   );
+};
+
+export const NegativeAlertTask = Template.bind({});
+NegativeAlertTask.args = { ...Default.args };
+NegativeAlertTask.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await expect(canvas.getByRole('alert')).toBeInTheDocument();
 };
