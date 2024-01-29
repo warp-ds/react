@@ -75,7 +75,7 @@ export function Attention(props: AttentionProps) {
   const isMounted = useRef(false)
   const attentionEl = useRef<HTMLDivElement | null>(null)
   const arrowEl = useRef<HTMLDivElement | null>(null)
-
+  
   const attentionState = {
     get isShowing() {
       return isShowing
@@ -105,7 +105,6 @@ export function Attention(props: AttentionProps) {
   
   const referenceEl = props.targetEl?.current as unknown as ReferenceElement
   const floatingEl = attentionEl.current as unknown as HTMLElement
-  const arrowElement = arrowEl.current as unknown as HTMLElement
 
  function update() {
   computePosition(referenceEl, floatingEl, {
@@ -114,7 +113,7 @@ export function Attention(props: AttentionProps) {
             offset(8),
             flip(),
             shift({ padding: 16 }),
-            !props.noArrow && arrowElement && arrow({ element: arrowElement })]
+            !props.noArrow && arrowEl && arrow({ element: arrowEl.current as unknown as HTMLElement })]
         }).then(({ x, y, middlewareData, placement}) => {
           setActualDirection(placement)
           console.log("actualDirection: ", actualDirection);
@@ -126,10 +125,15 @@ export function Attention(props: AttentionProps) {
       
           if (middlewareData.arrow) {
             const { x, y } = middlewareData.arrow
-            Object.assign(arrowElement.style || {}, {
-              left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
+            console.log("x: ", x, "y: ", y);
+            
+            Object.assign(arrowEl?.current?.style || {}, {
+              left: x ? `${x}px` : '',
               // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
-              top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
+              top: y !== null ? `${y}px` : '',
+              // left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
+              // // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
+              // top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
             });
           }
         });    
