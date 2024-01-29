@@ -95,12 +95,6 @@ export function Attention(props: AttentionProps) {
     get arrowEl() {
       return arrowEl.current
     },
-    get attentionEl() {
-      return attentionEl.current
-    },
-    set attentionEl(v) {
-      attentionEl.current = v
-    },
   }
   
   const referenceEl = props.targetEl?.current as ReferenceElement
