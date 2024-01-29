@@ -116,8 +116,6 @@ export function Attention(props: AttentionProps) {
             !props.noArrow && arrowEl && arrow({ element: arrowEl.current as unknown as HTMLElement })]
         }).then(({ x, y, middlewareData, placement}) => {
           setActualDirection(placement)
-          console.log("actualDirection: ", actualDirection);
-          
           Object.assign(floatingEl.style, {
             left: `${x}px`,
             top: `${y}px`,
@@ -125,8 +123,6 @@ export function Attention(props: AttentionProps) {
       
           if (middlewareData.arrow) {
             const { x, y } = middlewareData.arrow
-            console.log("x: ", x, "y: ", y);
-            
             Object.assign(arrowEl?.current?.style || {}, {
               // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
               left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
@@ -247,15 +243,12 @@ export function Attention(props: AttentionProps) {
       }
     } else {
       setIsVisible(isShowing)
-      console.log("isShowing: ", isShowing);
     }
   }, [isShowing, props.callout])
   
-    // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
   useEffect(() => {
     if (isShowing === true && referenceEl && floatingEl) {
-      
-      console.log("autoupdate", referenceEl, floatingEl, isShowing);
+      // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
       const cleanup = autoUpdate(referenceEl, floatingEl, update)
       // we need to return cleanup in order to stop the autoUpdate once the attention element is no longer visible
       return cleanup
