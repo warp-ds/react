@@ -72,7 +72,7 @@ export function Attention(props: AttentionProps) {
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
 
-  const isMounted = useRef(false)
+  const isMounted = useRef(true)
   const attentionEl = useRef<HTMLDivElement | null>(null)
   const arrowEl = useRef<HTMLDivElement | null>(null)
   
@@ -236,22 +236,20 @@ export function Attention(props: AttentionProps) {
   useEffect(() => {
     recompute(attentionState, update)
   }, [attentionState])
-  
+    
   useEffect(() => {
-    isMounted.current = true;
-    return () => { isMounted.current = false;
-    } 
-  }, [])
-  
-  useEffect(() => {
-    // update attention's visibility after first render if showing by default or it's of type callout
-    if (isShowing === true || props.callout) {
-      setIsVisible(isShowing)
+    if (isMounted.current) {
+      isMounted.current = false
+
+      // update attention's visibility after first render if showing by default or it's of type callout
+      if (isShowing === true || props.callout) {
+        setIsVisible(isShowing)
+      }
     } else {
       setIsVisible(isShowing)
       console.log("isShowing: ", isShowing);
-      }
-    }, [isShowing, referenceEl, props.callout])
+    }
+  }, [isShowing, props.callout])
   
     // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
   useEffect(() => {
