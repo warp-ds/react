@@ -253,13 +253,13 @@ export function Attention(props: AttentionProps) {
       }
     }, [isShowing, referenceEl, props.callout])
   
-    // starts the autoUpdate, making sure the floatingEl's position stays anchored to the referenceEl 
+    // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
   useEffect(() => {
     if (isShowing === true && referenceEl && floatingEl) {
       
       console.log("autoupdate", referenceEl, floatingEl, isShowing);
       const cleanup = autoUpdate(referenceEl, floatingEl, update)
-      // we need to return cleanup in order to stop the autoUpdate once the floatingEl is no longer visible
+      // we need to return cleanup in order to stop the autoUpdate once the attention element is no longer visible
       return cleanup
     } 
     return () => {};
