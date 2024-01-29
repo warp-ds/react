@@ -61,12 +61,12 @@ export function Highlight() {
       <div>
         <div ref={targetEl} className="w-2/3">
           <Box info>
-            <h1>I am a box full of info sdgo jsogj  sogj osgj so jsoh jsodjg sodh jsodh sodhj sodh sodhj sodhj sodhj sohj sohj sodhj osdhj sodhj sodhj sodhj sodh jsohfd </h1>
+            <h1>I am a box full with lots of info to show you how the attention element can position itself at the right-top corner of the target-element!</h1>
           </Box>
         </div>
         <Attention 
           highlight
-          placement='right'
+          placement='right-start'
           isShowing={show}
           targetEl={targetEl}
           id='highlight-attention-example'

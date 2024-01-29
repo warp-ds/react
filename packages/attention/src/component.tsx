@@ -128,12 +128,9 @@ export function Attention(props: AttentionProps) {
             console.log("x: ", x, "y: ", y);
             
             Object.assign(arrowEl?.current?.style || {}, {
-              left: x ? `${x}px` : '',
               // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
-              top: y !== null ? `${y}px` : '',
-              // left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
-              // // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
-              // top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
+              left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
+              top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
             });
           }
         });    
