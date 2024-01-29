@@ -1,8 +1,7 @@
-import React, { MutableRefObject } from 'react'
+import React from 'react'
 import { Attention } from '../src'
 import { Box } from '../../box/src'
 import { Button } from '../../button/src'
-import { ReferenceElement } from '@floating-ui/dom'
 
 const metadata = { title: 'Overlays/Attention' }
 export default metadata
@@ -46,7 +45,6 @@ export function CalloutResettingRoleAndAriaLabel() {
 export function Highlight() {
   const [show, setShow] = React.useState(false)
   const targetEl = React.useRef<HTMLDivElement | null>(null)
-  const floatingEl = targetEl as unknown as MutableRefObject<ReferenceElement>
 
   return (
     <div className='flex flex-col justify-between h-[200]'>
@@ -70,7 +68,7 @@ export function Highlight() {
           highlight
           placement='right'
           isShowing={show}
-          targetEl={floatingEl}
+          targetEl={targetEl}
           id='highlight-attention-example'
         >
           <p>
@@ -85,7 +83,6 @@ export function Highlight() {
 export function DismissibleHighlight() {
   const [show, setShow] = React.useState(false)
   const targetEl = React.useRef<HTMLDivElement | null>(null)
-  const floatingEl = targetEl as unknown as MutableRefObject<ReferenceElement>
 
   return (
     <div className='flex flex-col justify-between h-[200]'>
@@ -111,7 +108,7 @@ export function DismissibleHighlight() {
           onDismiss={() => setShow(false)}
           placement='bottom'
           isShowing={show}
-          targetEl={floatingEl}
+          targetEl={targetEl}
           id='highlight-attention-example'
         >
           <p>
@@ -126,7 +123,6 @@ export function DismissibleHighlight() {
 export function Tooltip() {
   const [show, setShow] = React.useState(false)
   const targetEl = React.useRef<HTMLDivElement | null>(null)
-  const floatingEl = targetEl as unknown as MutableRefObject<ReferenceElement>
 
   return (
     <div>
@@ -150,7 +146,7 @@ export function Tooltip() {
       <Attention
         tooltip
         placement='bottom'
-        targetEl={floatingEl}
+        targetEl={targetEl}
         isShowing={show}
       >
         <p id='tooltip-bubbletext'>lol i am a tooltip</p>
@@ -163,7 +159,6 @@ export function Popover() {
   const [show, setShow] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)
   const targetEl = React.useRef<any>(null);
-  const floatingEl = targetEl as unknown as MutableRefObject<ReferenceElement>
 
   React.useEffect(() => {
     function onBlurHandler(e) {
@@ -193,7 +188,7 @@ export function Popover() {
       <Attention
         popover
         placement='bottom'
-        targetEl={floatingEl}
+        targetEl={targetEl}
         isShowing={show}
       >
         <ul className='bg-white w-full text-center'>

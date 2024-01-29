@@ -1,4 +1,3 @@
-import { ReferenceElement } from '@floating-ui/dom'
 import { MutableRefObject } from 'react';
 
 export type Directions =  | 'top'
@@ -84,7 +83,7 @@ export type AttentionProps = {
   /**
    * Container the Attention component is rendered relatively to
    */
-  targetEl?: MutableRefObject<ReferenceElement>;
+  targetEl?: MutableRefObject<unknown>;
 
   /**
    * Extend the Attention component container styling
