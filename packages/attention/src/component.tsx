@@ -104,9 +104,10 @@ export function Attention(props: AttentionProps) {
   }
   
   const referenceEl = props.targetEl?.current as ReferenceElement
-  const floatingEl = attentionEl.current as unknown as HTMLElement
+  const floatingEl = attentionEl?.current as unknown as HTMLElement
 
  function update() {
+  if (!floatingEl) return
     computePosition(referenceEl, floatingEl, {
           placement: props.placement,
           middleware: [
