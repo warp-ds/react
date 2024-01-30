@@ -114,7 +114,7 @@
     "@warp-ds/uno": "^1.6.0",
     "react-focus-lock": "^2.5.2",
     "resize-observer-polyfill": "^1.5.1",
-    "scroll-doctor": "^1.0.0"
+    "scroll-doctor": "^2.0.0"
   },
   "eik": {
     "server": "https://assets.finn.no",
