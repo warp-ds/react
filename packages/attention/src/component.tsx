@@ -101,7 +101,7 @@ export function Attention(props: AttentionProps) {
   const referenceEl = props.targetEl?.current as ReferenceElement
   const floatingEl = attentionEl?.current as unknown as HTMLElement
 
- function update() {
+ function updatePosition() {
   if (!floatingEl) return
     computePosition(referenceEl, floatingEl, {
           placement: props.placement,
@@ -226,7 +226,7 @@ export function Attention(props: AttentionProps) {
   }
   
   useEffect(() => {
-    recompute(attentionState, update)
+    recompute(attentionState, updatePosition)
   }, [attentionState])
     
   useEffect(() => {
@@ -245,7 +245,7 @@ export function Attention(props: AttentionProps) {
   useEffect(() => {
     if (isShowing === true && referenceEl && floatingEl) {
       // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
-      const cleanup = autoUpdate(referenceEl, floatingEl, update)
+      const cleanup = autoUpdate(referenceEl, floatingEl, updatePosition)
       // we need to return cleanup in order to stop the autoUpdate once the attention element is no longer visible
       return cleanup
     } 
