@@ -69,6 +69,7 @@ export function Highlight() {
           placement='right-start'
           isShowing={show}
           targetEl={targetEl}
+          fallbackDirection='start'
           id='highlight-attention-example'
         >
           <p>

@@ -57,6 +57,7 @@ export function Attention(props: AttentionProps) {
     targetEl,
     className,
     canClose,
+    fallbackDirection = 'none',
     onDismiss,
     ...rest
   } = props
@@ -106,8 +107,7 @@ export function Attention(props: AttentionProps) {
           placement: props.placement,
           middleware: [
             offset(8),
-            // @ts-ignore
-            flip({ fallbackAxisSideDirection: 'start' | 'end' }),
+            flip({ fallbackAxisSideDirection: props.fallbackDirection, fallbackStrategy: 'initialPlacement'}),
             shift({ padding: 16 }),
             !props.noArrow && arrowEl && arrow({ element: arrowEl.current as unknown as HTMLElement })]
         }).then(({ x, y, middlewareData, placement}) => {
