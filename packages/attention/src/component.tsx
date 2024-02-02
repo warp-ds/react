@@ -106,7 +106,8 @@ export function Attention(props: AttentionProps) {
           placement: props.placement,
           middleware: [
             offset(8),
-            flip(),
+            // @ts-ignore
+            flip({ fallbackAxisSideDirection: 'start' | 'end' }),
             shift({ padding: 16 }),
             !props.noArrow && arrowEl && arrow({ element: arrowEl.current as unknown as HTMLElement })]
         }).then(({ x, y, middlewareData, placement}) => {
