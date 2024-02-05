@@ -241,7 +241,8 @@ export function Attention(props: AttentionProps) {
       setIsVisible(isShowing)
     }
   }, [isShowing, props.callout])
-  
+
+  // @ts-ignore
   useEffect(() => {
     if (isShowing === true && referenceEl && floatingEl) {
       // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
@@ -249,7 +250,6 @@ export function Attention(props: AttentionProps) {
       // we need to return cleanup in order to stop the autoUpdate once the attention element is no longer visible
       return cleanup
     } 
-    return () => {};
   }, [referenceEl, isShowing, floatingEl])
 
   
