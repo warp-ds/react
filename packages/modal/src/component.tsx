@@ -91,7 +91,7 @@ export const Modal = ({
                   ccModal.titleButton,
                   ccModal.titleButtonLeft
                 )}
-                onClick={props.onDismiss}
+                onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}
               >
                 <IconTableSortDown16
                   className={classNames(
