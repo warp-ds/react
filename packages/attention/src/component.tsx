@@ -3,17 +3,9 @@ import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   rotation,
-  useRecompute as recompute,
+  autoUpdatePosition,
+  computeCalloutArrow
 } from '@warp-ds/core/attention'
-import {
-  computePosition,
-  flip,
-  offset,
-  shift,
-  arrow,
-  autoUpdate,
-  ReferenceElement
-} from '@floating-ui/dom'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
 import { i18n } from '@lingui/core'
@@ -72,6 +64,7 @@ export function Attention(props: AttentionProps) {
   const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
+  const [cleanup, setCleanup] = useState<any>(null)
 
   const isMounted = useRef(true)
   const attentionEl = useRef<HTMLDivElement | null>(null)
@@ -96,36 +89,22 @@ export function Attention(props: AttentionProps) {
     get arrowEl() {
       return arrowEl.current
     },
-  }
-  
-  const referenceEl = props.targetEl?.current as ReferenceElement
-  const floatingEl = attentionEl?.current as unknown as HTMLElement
+    get attentionEl() {
+      return attentionEl.current
+    },
+    set attentionEl(v) {
+      attentionEl.current = v
+    },
+    get targetEl() {
+      return targetEl?.current
+    },
+    get noArrow() {
+      return props.noArrow
+    },
 
- function updatePosition() {
-  if (!floatingEl) return
-    computePosition(referenceEl, floatingEl, {
-          placement: props.placement,
-          middleware: [
-            offset(8),
-            flip({ fallbackAxisSideDirection: props.fallbackDirection, fallbackStrategy: 'initialPlacement'}),
-            shift({ padding: 16 }),
-            !props.noArrow && arrowEl && arrow({ element: arrowEl.current as unknown as HTMLElement })]
-        }).then(({ x, y, middlewareData, placement}) => {
-          setActualDirection(placement)
-          Object.assign(floatingEl.style, {
-            left: `${x}px`,
-            top: `${y}px`,
-          })
-      
-          if (middlewareData.arrow) {
-            const { x, y } = middlewareData.arrow
-            Object.assign(arrowEl?.current?.style || {}, {
-              // TODO: temporary fix, for some reason left-start and right-start positions the arrowEL slightly too far from the attentionEl
-              left: x ? placement.includes("-start") ? `${x - 12}px` : `${x}px` : '',
-              top: y ? placement.includes("-start") ? `${y - 12}px` : `${y}px` : '',
-            });
-          }
-        });    
+    get fallbackDirection() {
+      return fallbackDirection
+    }
   }
 
   //TODO: See if we can move this function to the core-repo:
@@ -226,8 +205,10 @@ export function Attention(props: AttentionProps) {
   }
   
   useEffect(() => {
-    recompute(attentionState, updatePosition)
-  }, [attentionState])
+    if (props.callout) {
+      computeCalloutArrow(actualDirection, placement, arrowEl.current)
+    }
+  }, [props.callout])
     
   useEffect(() => {
     if (isMounted.current) {
@@ -242,15 +223,17 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout])
 
-  // @ts-ignore
   useEffect(() => {
-    if (isShowing === true && referenceEl && floatingEl) {
+    if (isShowing === true && targetEl && attentionEl) {
       // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
-      const cleanup = autoUpdate(referenceEl, floatingEl, updatePosition)
-      // we need to return cleanup in order to stop the autoUpdate once the attention element is no longer visible
-      return cleanup
+      setCleanup(() => autoUpdatePosition(attentionState))
     } 
-  }, [referenceEl, isShowing, floatingEl])
+    else if(cleanup) {
+      // we need to call cleanup in order to stop the autoUpdate once the attention element is no longer visible
+      cleanup()
+      setCleanup(null)
+    }
+  }, [targetEl, isShowing, attentionEl])
 
   
   
