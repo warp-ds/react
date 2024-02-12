@@ -11,7 +11,7 @@ import { messages as enMessages } from "./locales/en/messages.mjs";
 import { messages as fiMessages } from "./locales/fi/messages.mjs";
 import { activateI18n } from "../../i18n.js";
 import IconClose16 from '@warp-ds/icons/react/close-16';
-import IconTableSortDown16 from '@warp-ds/icons/react/table-sort-down-16';
+import IconArrowLeft16 from '@warp-ds/icons/react/arrow-left-16';
 
 /**
  * A Modal dialog that renders on top the page
@@ -93,11 +93,8 @@ export const Modal = ({
                 )}
                 onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}
               >
-                <IconTableSortDown16
-                  className={classNames(
-                    ccModal.titleButtonIcon,
-                    ccModal.titleButtonIconRotated
-                  )}
+                <IconArrowLeft16
+                  className={classNames(ccModal.titleButtonIcon)}
                 />
               </button>
             ) : (
