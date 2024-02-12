@@ -50,19 +50,19 @@ Variants.play = async ({ canvasElement }) => {
   // test the outer container
   await expect(negative.getByRole('alert')).toBeInTheDocument();
   // test the icon
-  await expect(negative.getByTitle(/Red octagon/)).toBeInTheDocument();
+  await expect(negative.getByTitle(/Octagon/)).toBeInTheDocument();
   
   const positive = within(canvas.getByTestId('positive'));
   await expect(positive.getByRole('status')).toBeInTheDocument();
-  await expect(positive.getByTitle(/Green circle/)).toBeInTheDocument();
+  await expect(positive.getByTitle(/checkmark/)).toBeInTheDocument();
   
   const warning = within(canvas.getByTestId('warning'));
   await expect(warning.getByRole('alert')).toBeInTheDocument();
-  await expect(warning.getByTitle(/Yellow warning/)).toBeInTheDocument();
+  await expect(warning.getByTitle(/Warning/)).toBeInTheDocument();
   
   const info = within(canvas.getByTestId('info'));
   await expect(info.getByRole('status')).toBeInTheDocument();
-  await expect(info.getByTitle(/Blue circle/)).toBeInTheDocument();
+  await expect(info.getByTitle(/Information/)).toBeInTheDocument();
 };
 
 const InteractiveContent = ({type}: Pick<AlertProps, "type">) => (
