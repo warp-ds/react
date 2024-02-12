@@ -1,4 +1,3 @@
-import { Button } from '../../button/src/index.js';
 import { classNames } from "@chbphone55/classnames";
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
@@ -27,10 +26,7 @@ export type PageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const Page = React.forwardRef<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  PageProps
->(({ page = 0, className, currentPage, ...props }, ref) => {
+const Page = (({ page = 0, className, currentPage, ...props }: PageProps) => {
   if (page < 1) {
     return null;
   }
@@ -46,19 +42,17 @@ const Page = React.forwardRef<
   });
 
   return (
-    <Button
-      pill
+    <a
       aria-label={ariaLabel}
       {...props}
-      ref={ref}
       rel="nofollow"
       aria-current={isCurrentPage ? 'page' : undefined}
-      className={classNames(className, ccPagination.defaultPage, {
+      className={classNames(className, ccPagination.defaultPage, ccPagination.button, {
         [ccPagination.active]: isCurrentPage,
       })}
     >
       {page}
-    </Button>
+    </a>
   );
 });
 

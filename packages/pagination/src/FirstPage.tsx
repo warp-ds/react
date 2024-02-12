@@ -1,4 +1,4 @@
-import { Button } from '../../button/src/index.js';
+import { classNames } from "@chbphone55/classnames";
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
@@ -24,10 +24,7 @@ type FirstPageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const FirstPage = React.forwardRef<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  FirstPageProps
->(({ className, ...props }, ref) => {
+const FirstPage = (({ className, ...props }: FirstPageProps) => {
   const { currentPage } = usePagination();
 
   if (currentPage <= 2) {
@@ -42,16 +39,14 @@ const FirstPage = React.forwardRef<
   });
 
   return (
-    <Button
-      pill
-      ref={ref}
+    <a
       {...props}
       aria-label={ariaLabel}
-      className={className}
+      className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="start"
     >
-      <IconChevronDoubleLeft16 className={ccPagination.icon} />
-    </Button>
+      <IconChevronDoubleLeft16 />
+    </a>
   );
 });
 
