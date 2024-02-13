@@ -39,7 +39,7 @@ const Page = React.forwardRef<
   const ariaLabel = props['aria-label'] ?? i18n._({
     id: 'pagination.aria.page',
     message: 'Page {currentPage}',
-    values: { currentPage },
+    values: { currentPage: page },
     comment:
       'Default screenreader message for page button in the pagination component',
   });
