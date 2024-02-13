@@ -1,4 +1,5 @@
-import { classNames } from "@chbphone55/classnames";
+import { Button } from '../../button/src/index.js';
+import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
@@ -55,13 +56,14 @@ const NextPage = (({ children, className, ...props }: NextPageProps) => {
   return (
     <>
       {currentPage <= 1 && (
-        <a
+        <Button
+          link
           {...props}
           rel="next nofollow"
           className={classNames(ccPagination.firstPageButton, className)}
         >
           <span className={ccPagination.firstPageLabel}>{label}</span>
-        </a>
+        </Button>
       )}
       <a
         aria-label={ariaLabel}
