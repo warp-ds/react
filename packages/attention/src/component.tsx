@@ -49,7 +49,6 @@ export function Attention(props: AttentionProps) {
     targetEl,
     className,
     canClose,
-    fallbackDirection = 'start',
     onDismiss,
     ...rest
   } = props
@@ -101,10 +100,6 @@ export function Attention(props: AttentionProps) {
     get noArrow() {
       return props.noArrow
     },
-
-    get fallbackDirection() {
-      return fallbackDirection
-    }
   }
 
   //TODO: See if we can move this function to the core-repo:

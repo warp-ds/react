@@ -13,8 +13,6 @@ export type Directions =  | 'top'
 | 'left-start'
 | 'left-end';
 
-export type FallbackDirection = | 'none' | 'start' | 'end';
-
 export type AttentionVariants = {
   /**
    * Render tooltip
@@ -106,12 +104,4 @@ export type AttentionProps = {
    * Handler that is called when the close button is clicked
    */
   onDismiss?: () => void;
-  /**
-   * Option to pass in to choose which preferred side attention element should fallback to when the placement prop value no longer fits on the screen. 
-   * Possible options: 'none' | 'start' | 'end'. 
-   * Default is 'start'
-   * 'start' means that it will try the following placements (in order): ['right', 'left', 'top', 'bottom']
-   * 'end' means that it will try the following placements (in order): ['right', 'left', 'bottom', 'top']
-   */
-  fallbackDirection?: FallbackDirection;
 } & AttentionVariants;
