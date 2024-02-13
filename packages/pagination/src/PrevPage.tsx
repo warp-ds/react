@@ -44,6 +44,7 @@ const PrevPage = (({ className, ...props }: PrevPageProps) => {
       {...props}
       className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="prev nofollow"
+      role="button"
     >
       <IconChevronLeft16 />
     </a>

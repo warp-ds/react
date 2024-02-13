@@ -44,6 +44,7 @@ const FirstPage = (({ className, ...props }: FirstPageProps) => {
       aria-label={ariaLabel}
       className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="start"
+      role="button"
     >
       <IconChevronDoubleLeft16 />
     </a>

@@ -69,6 +69,7 @@ const NextPage = (({ children, className, ...props }: NextPageProps) => {
         aria-label={ariaLabel}
         {...props}
         rel="next nofollow"
+        role="button"
         className={classNames(className, ccPagination.button, ccPagination.icon)}
       >
         <IconChevronRight16 />

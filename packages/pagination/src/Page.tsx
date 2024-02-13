@@ -46,6 +46,7 @@ const Page = (({ page = 0, className, currentPage, ...props }: PageProps) => {
       aria-label={ariaLabel}
       {...props}
       rel="nofollow"
+      role="button"
       aria-current={isCurrentPage ? 'page' : undefined}
       className={classNames(className, ccPagination.button, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >
