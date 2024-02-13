@@ -47,9 +47,7 @@ const Page = (({ page = 0, className, currentPage, ...props }: PageProps) => {
       {...props}
       rel="nofollow"
       aria-current={isCurrentPage ? 'page' : undefined}
-      className={classNames(className, ccPagination.defaultPage, ccPagination.button, {
-        [ccPagination.active]: isCurrentPage,
-      })}
+      className={classNames(className, ccPagination.button, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >
       {page}
     </a>
