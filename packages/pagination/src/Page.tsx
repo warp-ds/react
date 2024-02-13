@@ -50,7 +50,6 @@ const Page = React.forwardRef<
       {...props}
       ref={ref as Ref<HTMLAnchorElement>}
       rel="nofollow"
-      role="button"
       aria-current={isCurrentPage ? 'page' : undefined}
       className={classNames(className, ccPagination.button, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >

@@ -74,7 +74,6 @@ const NextPage = React.forwardRef<
         {...props}
         ref={ref as Ref<HTMLAnchorElement>}
         rel="next nofollow"
-        role="button"
         className={classNames(className, ccPagination.button, ccPagination.icon)}
       >
         <IconChevronRight16 />

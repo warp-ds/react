@@ -48,7 +48,6 @@ const FirstPage = React.forwardRef<
       aria-label={ariaLabel}
       className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="start"
-      role="button"
     >
       <IconChevronDoubleLeft16 />
     </a>

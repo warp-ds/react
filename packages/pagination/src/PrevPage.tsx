@@ -48,7 +48,6 @@ const PrevPage = React.forwardRef<
       ref={ref as Ref<HTMLAnchorElement>}
       className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="prev nofollow"
-      role="button"
     >
       <IconChevronLeft16 />
     </a>
