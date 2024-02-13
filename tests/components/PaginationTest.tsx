@@ -30,8 +30,8 @@ describe('Pagination component', () => {
     });
 
     it('calls on change function on click of next page', () => {
-        expect(screen.getByRole('button', { name: 'Next page' })).toHaveTextContent('Next page');
-        fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+        expect(screen.getAllByRole('button', { name: 'Next page' })[0]).toHaveTextContent('Next page');
+        fireEvent.click(screen.getAllByRole('button', { name: 'Next page' })[0]);
 
         expect(onChangeFunction).toHaveBeenCalledTimes(1);
         expect(onChangeFunction).toHaveBeenCalledWith(1);
