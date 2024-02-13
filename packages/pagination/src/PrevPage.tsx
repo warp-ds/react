@@ -3,7 +3,7 @@ import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
 import IconChevronLeft16 from '@warp-ds/icons/react/chevron-left-16';
-import React from 'react';
+import React, { Ref } from 'react';
 
 type PrevPageProps = {
   /**
@@ -24,7 +24,10 @@ type PrevPageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const PrevPage = (({ className, ...props }: PrevPageProps) => {
+const PrevPage = React.forwardRef<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  PrevPageProps
+>(({ className, ...props }, ref) => {
   const { currentPage } = usePagination();
 
   if (currentPage <= 1) {
@@ -42,6 +45,7 @@ const PrevPage = (({ className, ...props }: PrevPageProps) => {
     <a
       aria-label={ariaLabel}
       {...props}
+      ref={ref as Ref<HTMLAnchorElement>}
       className={classNames(className, ccPagination.button, ccPagination.icon)}
       rel="prev nofollow"
       role="button"

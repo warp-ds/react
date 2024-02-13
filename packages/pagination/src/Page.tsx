@@ -1,7 +1,7 @@
 import { classNames } from "@chbphone55/classnames";
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
-import React from 'react';
+import React, { Ref } from 'react';
 
 export type PageProps = {
   /**
@@ -26,7 +26,10 @@ export type PageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const Page = (({ page = 0, className, currentPage, ...props }: PageProps) => {
+const Page = React.forwardRef<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  PageProps
+>(({ page = 0, className, currentPage, ...props }, ref) => {
   if (page < 1) {
     return null;
   }
@@ -45,6 +48,7 @@ const Page = (({ page = 0, className, currentPage, ...props }: PageProps) => {
     <a
       aria-label={ariaLabel}
       {...props}
+      ref={ref as Ref<HTMLAnchorElement>}
       rel="nofollow"
       role="button"
       aria-current={isCurrentPage ? 'page' : undefined}

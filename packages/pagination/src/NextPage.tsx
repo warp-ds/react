@@ -4,7 +4,7 @@ import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
 import IconChevronRight16 from '@warp-ds/icons/react/chevron-right-16';
-import React from 'react';
+import React, { Ref } from 'react';
 
 type NextPageProps = {
   /**
@@ -30,7 +30,10 @@ type NextPageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const NextPage = (({ children, className, ...props }: NextPageProps) => {
+const NextPage = React.forwardRef<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  NextPageProps
+>(({ children, className, ...props }, ref) => {
   const { currentPage, lastPage } = usePagination();
 
   if (currentPage >= lastPage) {
@@ -59,6 +62,7 @@ const NextPage = (({ children, className, ...props }: NextPageProps) => {
         <Button
           link
           {...props}
+          ref={ref}
           rel="next nofollow"
           className={classNames(ccPagination.firstPageButton, className)}
         >
@@ -68,6 +72,7 @@ const NextPage = (({ children, className, ...props }: NextPageProps) => {
       <a
         aria-label={ariaLabel}
         {...props}
+        ref={ref as Ref<HTMLAnchorElement>}
         rel="next nofollow"
         role="button"
         className={classNames(className, ccPagination.button, ccPagination.icon)}
