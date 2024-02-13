@@ -2,7 +2,6 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
-  rotation,
   autoUpdatePosition,
   useRecompute as recompute
 } from '@warp-ds/core/attention'
@@ -200,10 +199,8 @@ export function Attention(props: AttentionProps) {
   }
   
   useEffect(() => {
-    if (props.callout) {
       recompute(attentionState)
-    }
-  }, [props.callout])
+  }, [attentionState])
     
   useEffect(() => {
     if (isMounted.current) {
@@ -252,9 +249,6 @@ export function Attention(props: AttentionProps) {
             // TW doesn't let us specify exactly one corner, only whole sides
             borderTopLeftRadius: '4px',
             zIndex: 1,
-            // border alignment is off by a fraction of a pixel, this fixes it
-            [`margin${arrowDirectionClassname(arrowDirection)}`]: '-0.5px',
-            transform: `rotate(${rotation[arrowDirection]}deg)`,
           }}
         />
       )
