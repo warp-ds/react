@@ -4,7 +4,7 @@ import {
   opposites,
   rotation,
   autoUpdatePosition,
-  computeCalloutArrow
+  useRecompute as recompute
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
@@ -49,7 +49,7 @@ export function Attention(props: AttentionProps) {
     targetEl,
     className,
     canClose,
-    fallbackDirection = 'none',
+    fallbackDirection = 'start',
     onDismiss,
     ...rest
   } = props
@@ -206,7 +206,7 @@ export function Attention(props: AttentionProps) {
   
   useEffect(() => {
     if (props.callout) {
-      computeCalloutArrow(actualDirection, placement, arrowEl.current)
+      recompute(attentionState)
     }
   }, [props.callout])
     

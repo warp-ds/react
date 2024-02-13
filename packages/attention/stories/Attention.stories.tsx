@@ -69,7 +69,6 @@ export function Highlight() {
           placement='right-start'
           isShowing={show}
           targetEl={targetEl}
-          fallbackDirection='start'
           id='highlight-attention-example'
         >
           <p>
@@ -174,6 +173,7 @@ export function Popover() {
   })
 
   return (
+  <div className='flex items-center justify-center'>
     <div ref={containerRef}>
       <Button
         small
@@ -208,5 +208,6 @@ export function Popover() {
         </ul>
       </Attention>
     </div>
+  </div>
   )
 }
