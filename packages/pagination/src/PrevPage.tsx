@@ -34,22 +34,35 @@ const PrevPage = React.forwardRef<
     return null;
   }
 
-  const ariaLabel = i18n._({
-    id: 'pagination.aria.prev-page',
-    message: 'Previous page',
-    comment:
-      'Default screenreader message for previous page button in the pagination component',
-  });
+  const ariaLabel = 
+    props['aria-label'] ??
+    i18n._({
+      id: 'pagination.aria.prev-page',
+      message: 'Previous page',
+      comment:
+        'Default screenreader message for previous page link in the pagination component',
+    });
+
+  const iconSuffix =
+    i18n._({
+      id: 'pagination.aria.icon-suffix',
+      message: 'icon',
+      comment:
+        'Suffix added at the end of icon titles when img semantics are lost on an html element',
+    });
 
   return (
     <a
-      aria-label={ariaLabel}
       {...props}
       ref={ref as Ref<HTMLAnchorElement>}
-      className={classNames(className, ccPagination.button, ccPagination.icon)}
+      className={classNames(className, ccPagination.link, ccPagination.icon)}
       rel="prev nofollow"
     >
+      <span className={ccPagination.a11y}>
+        {ariaLabel},
+      </span>
       <IconChevronLeft16 />
+      <span className={ccPagination.a11y}>{iconSuffix}</span>
     </a>
   );
 });

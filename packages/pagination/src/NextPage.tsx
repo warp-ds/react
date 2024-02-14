@@ -38,19 +38,30 @@ const NextPage = React.forwardRef<
     id: 'pagination.aria.next-page',
     message: 'Next page',
     comment:
-      'Default screenreader message for next page button in the pagination component',
+      'Default screenreader message for next page link in the pagination component',
   });
+
+  const iconSuffix =
+    i18n._({
+      id: 'pagination.aria.icon-suffix',
+      message: 'icon',
+      comment:
+        'Suffix added at the end of icon titles when img semantics are lost on an html element',
+    });
 
   return (
     <>
       <a
-        aria-label={ariaLabel}
         {...props}
         ref={ref as Ref<HTMLAnchorElement>}
         rel="next nofollow"
-        className={classNames(className, ccPagination.button, ccPagination.icon)}
+        className={classNames(className, ccPagination.link, ccPagination.icon)}
       >
+        <span className={ccPagination.a11y}>
+          {ariaLabel},
+        </span>
         <IconChevronRight16 />
+        <span className={ccPagination.a11y}>{iconSuffix}</span>
       </a>
     </>
   );

@@ -41,7 +41,7 @@ const Page = React.forwardRef<
     message: 'Page {currentPage}',
     values: { currentPage: page },
     comment:
-      'Default screenreader message for page button in the pagination component',
+      'Default screenreader message for page link in the pagination component',
   });
 
   return (
@@ -51,7 +51,7 @@ const Page = React.forwardRef<
       ref={ref as Ref<HTMLAnchorElement>}
       rel="nofollow"
       aria-current={isCurrentPage ? 'page' : undefined}
-      className={classNames(className, ccPagination.button, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
+      className={classNames(className, ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >
       {page}
     </a>

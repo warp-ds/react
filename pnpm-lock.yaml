@@ -15,14 +15,14 @@ dependencies:
     specifier: 1.0.2
     version: 1.0.2
   '@warp-ds/css':
-    specifier: 1.8.1
-    version: 1.8.1
+    specifier: 1.8.2-next.2
+    version: 1.8.2-next.2
   '@warp-ds/icons':
     specifier: 2.0.0
     version: 2.0.0
   '@warp-ds/uno':
-    specifier: 1.8.0
-    version: 1.8.0
+    specifier: 1.8.1
+    version: 1.8.1
   react-focus-lock:
     specifier: 2.9.7
     version: 2.9.7(@types/react@18.2.55)(react@18.2.0)
@@ -5962,7 +5962,7 @@ packages:
       colorette: 2.0.20
       consola: 3.2.3
       fast-glob: 3.3.2
-      magic-string: 0.30.5
+      magic-string: 0.30.7
       pathe: 1.1.1
       perfect-debounce: 1.0.0
     transitivePeerDependencies:
@@ -5983,7 +5983,6 @@ packages:
 
   /@unocss/core@0.58.5:
     resolution: {integrity: sha512-qbPqL+46hf1/UelQOwUwpAuvm6buoss43DPYHOPdfNJ+NTWkSpATQMF0JKT04QE0QRQbHNSHdMe9ariG+IIlCw==}
-    dev: false
 
   /@unocss/extractor-arbitrary-variants@0.58.3:
     resolution: {integrity: sha512-QszC2atLcvzyoZFsjgtMBbILN4lrYI60iVRWdii+GGiKVtoIaKRWiA/3WERkvYGVPseVWOMflUpfxNeq+s9zUw==}
@@ -6017,7 +6016,7 @@ packages:
       '@unocss/rule-utils': 0.58.3
       css-tree: 2.3.1
       fast-glob: 3.3.2
-      magic-string: 0.30.5
+      magic-string: 0.30.7
       postcss: 8.4.34
     dev: true
 
@@ -6098,8 +6097,8 @@ packages:
     resolution: {integrity: sha512-0Px9gIW+VOKetZuYET19uamIRpk7A9c8sCzQuGlNvCLXKEWamqXz5asLtnvPzw6SwCXEQDgWXE9i+aeoXaM0Jg==}
     engines: {node: '>=14'}
     dependencies:
-      '@unocss/core': 0.58.3
-      magic-string: 0.30.5
+      '@unocss/core': 0.58.5
+      magic-string: 0.30.7
     dev: true
 
   /@unocss/rule-utils@0.58.5:
@@ -6165,7 +6164,7 @@ packages:
       '@unocss/transformer-directives': 0.58.3
       chokidar: 3.5.3
       fast-glob: 3.3.2
-      magic-string: 0.30.5
+      magic-string: 0.30.7
       vite: 5.0.12(@types/node@20.11.16)
     transitivePeerDependencies:
       - rollup
@@ -6293,11 +6292,11 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.8.1:
-    resolution: {integrity: sha512-NoI3ZycFEMdKTp1noZmJ8IFhBJzFIeTYzG/2x8VrDJ83t244DayfKxyMl0c6sEGRsakvMUJOEBe6LlH8vwpNMw==}
+  /@warp-ds/css@1.8.2-next.2:
+    resolution: {integrity: sha512-PPAJ7l8RO26Mvwk3XxWOCwidDTCjE6rJpHGphcXEE0rm1B4NuDuxnPsg+HLSTDt1s7I+lRkizniAhhgCo3kyUw==}
     dependencies:
-      '@warp-ds/tokenizer': 0.0.3
-      '@warp-ds/uno': 1.8.0
+      '@warp-ds/tokenizer': 0.0.4
+      '@warp-ds/uno': 1.8.1
     dev: false
 
   /@warp-ds/icons@2.0.0:
@@ -6306,15 +6305,15 @@ packages:
       '@lingui/core': 4.7.0
     dev: false
 
-  /@warp-ds/tokenizer@0.0.3:
-    resolution: {integrity: sha512-7e1/gquOPcSIUNbk6GutvvGJwneWQ2bmTvxnwi+qyuSF+h4yQvuy2XncS8EtNjb3e+xDkVA7B+9wNM9Am6A47w==}
+  /@warp-ds/tokenizer@0.0.4:
+    resolution: {integrity: sha512-D4qIUQdY0Tp23OpeR6P9T5QXpsr9crN/FusHWN+975Yk5WoWZOMAf7SVyvgFKV0uq5s70I3qlZqjT51khMwPNQ==}
     dependencies:
       glob: 10.3.10
       yaml: 2.3.4
     dev: false
 
-  /@warp-ds/uno@1.8.0:
-    resolution: {integrity: sha512-UAW4yy/OnhrCxqwhw/d3WIl1W4Z3UZzbeC4EU78p6e/UiXkEoY8HuIhLMzX0P+SSVsidQuei5VFJd3qGQB6wIA==}
+  /@warp-ds/uno@1.8.1:
+    resolution: {integrity: sha512-khmp3D4MiKOzQ4gHVGHDOPuKsefr7J1Tim62lZjuDZba3t9Mjx2Wd5InfgL5eY3uqV6JTLZHxlPfh9TkhcS8vg==}
     dependencies:
       '@unocss/core': 0.58.5
       '@unocss/preset-mini': 0.58.5
@@ -11803,13 +11802,6 @@ packages:
 
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
-
-  /magic-string@0.30.5:
-    resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15

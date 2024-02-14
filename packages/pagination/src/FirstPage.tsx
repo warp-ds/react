@@ -38,18 +38,29 @@ const FirstPage = React.forwardRef<
     id: 'pagination.aria.first-page',
     message: 'First page',
     comment:
-      'Default screenreader message for first page button in the pagination component',
+      'Default screenreader message for first page link in the pagination component',
   });
+
+  const iconSuffix =
+    i18n._({
+      id: 'pagination.aria.icon-suffix',
+      message: 'icon',
+      comment:
+        'Suffix added at the end of icon titles when img semantics are lost on an html element',
+    });
 
   return (
     <a
       ref={ref as Ref<HTMLAnchorElement>}
       {...props}
-      aria-label={ariaLabel}
-      className={classNames(className, ccPagination.button, ccPagination.icon)}
+      className={classNames(className, ccPagination.link, ccPagination.icon)}
       rel="start"
     >
+      <span className={ccPagination.a11y}>
+        {ariaLabel},
+      </span>
       <IconChevronDoubleLeft16 />
+      <span className={ccPagination.a11y}>{iconSuffix}</span>
     </a>
   );
 });

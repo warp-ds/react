@@ -25,13 +25,13 @@ describe('Pagination component', () => {
         expect(heading).toHaveTextContent('Pages');
     });
 
-    it('renders correct number of buttons', () => {
-        expect(screen.getAllByRole('button')).toHaveLength(5);
+    it('renders correct number of links', () => {
+        expect(screen.getAllByRole('link')).toHaveLength(4);
     });
 
     it('calls on change function on click of next page', () => {
-        expect(screen.getAllByRole('button', { name: 'Next page' })[0]).toHaveTextContent('Next page');
-        fireEvent.click(screen.getAllByRole('button', { name: 'Next page' })[0]);
+        expect(screen.getByRole('link', { name: 'Next page, icon' })).toHaveTextContent('Rightward arrow');
+        fireEvent.click(screen.getByRole('link', { name: 'Next page, icon' }));
 
         expect(onChangeFunction).toHaveBeenCalledTimes(1);
         expect(onChangeFunction).toHaveBeenCalledWith(1);
