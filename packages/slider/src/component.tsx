@@ -115,7 +115,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       />
       <div
         className={classNames({
-          [ccSlider.activeTrack]: true,
+          [ccSlider.activeTrack]: !disabled,
           [ccSlider.activeTrackDisabled]: disabled,
         })}
         style={sliderActiveStyle}
