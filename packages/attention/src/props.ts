@@ -104,4 +104,14 @@ export type AttentionProps = {
    * Handler that is called when the close button is clicked
    */
   onDismiss?: () => void;
+
+  /**
+   * The distance from which to offset the attentionEl from the targetEl 
+   */
+distance?: number;
+ /**
+   * The distance from which to offset the attentionEl along its targetEl
+   */
+ skidding?: number;
+
 } & AttentionVariants;

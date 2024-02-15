@@ -49,6 +49,8 @@ export function Attention(props: AttentionProps) {
     className,
     canClose,
     onDismiss,
+    distance = 8,
+    skidding = 0,
     ...rest
   } = props
 
@@ -72,6 +74,9 @@ export function Attention(props: AttentionProps) {
     get isShowing() {
       return isShowing
     },
+    // set isShowing(v) {
+    //   setIsVisible(v)
+    // },
     get isCallout() {
       return rest.callout
     },
@@ -99,6 +104,12 @@ export function Attention(props: AttentionProps) {
     get noArrow() {
       return props.noArrow
     },
+    get distance(){
+      return distance
+    },
+    get skidding(){
+      return skidding
+    }
   }
 
   //TODO: See if we can move this function to the core-repo:
