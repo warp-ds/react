@@ -50,6 +50,11 @@ export type ModalProps = {
   onDismiss?: () => void;
 
   /**
+   * Handler that is called when the user clicks the left button
+   */
+  onLeftClick?: () => void;
+
+  /**
    * Defines a string value that labels the current element. Must be set if neither `aria-labelledby` or `<ModalHeading>` is defined,
    */
   'aria-label'?: string;

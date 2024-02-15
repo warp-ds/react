@@ -70,6 +70,10 @@ export const WithBackAndCloseButton = () => {
         left
         right
         onDismiss={toggleModal}
+        onLeftClick={() => {
+          console.log('left clicked');
+          toggleModal();
+        }}
         title="Title of the content goes here"
         footer={
           <>

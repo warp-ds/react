@@ -83,7 +83,7 @@ const PaginationContainer = React.forwardRef<
         aria-labelledby={ariaLabelledBy}
         ref={ref}
       >
-        <h1 className={ccPagination.heading} id={ariaLabelledBy}>
+        <h1 className={ccPagination.a11y} id={ariaLabelledBy}>
           {ariaLabel}
         </h1>
         <PaginationContext.Provider value={context}>

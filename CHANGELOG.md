@@ -1,3 +1,67 @@
+## [1.4.1](https://github.com/warp-ds/react/compare/v1.4.0...v1.4.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* bump deps ([#202](https://github.com/warp-ds/react/issues/202)) ([f5650c1](https://github.com/warp-ds/react/commit/f5650c192850182b7aa7163507098c722cdbf496))
+* **pagination:** use styled anchors instead of Button Pill ([#206](https://github.com/warp-ds/react/issues/206)) ([c0ae4e6](https://github.com/warp-ds/react/commit/c0ae4e66753531e33d0ce0e36f19865a63314d5f))
+* Remove redundant component css class from modal backdrop ([#207](https://github.com/warp-ds/react/issues/207)) ([ef37ae0](https://github.com/warp-ds/react/commit/ef37ae07f4ab911cb4552c8853b612e9458f7dec))
+* rename deleted icons after @warp-ds/icons update to 2.0.0 ([#205](https://github.com/warp-ds/react/issues/205)) ([121bd55](https://github.com/warp-ds/react/commit/121bd554de5094ef6b73a6ee3340a456d0304e98))
+
+## [1.4.1-next.4](https://github.com/warp-ds/react/compare/v1.4.1-next.3...v1.4.1-next.4) (2024-02-15)
+
+
+### Bug Fixes
+
+* **pagination:** use styled anchors instead of Button Pill ([#206](https://github.com/warp-ds/react/issues/206)) ([c0ae4e6](https://github.com/warp-ds/react/commit/c0ae4e66753531e33d0ce0e36f19865a63314d5f))
+
+## [1.4.1-next.3](https://github.com/warp-ds/react/compare/v1.4.1-next.2...v1.4.1-next.3) (2024-02-15)
+
+
+### Bug Fixes
+
+* Remove redundant component css class from modal backdrop ([#207](https://github.com/warp-ds/react/issues/207)) ([ef37ae0](https://github.com/warp-ds/react/commit/ef37ae07f4ab911cb4552c8853b612e9458f7dec))
+
+## [1.4.1-next.2](https://github.com/warp-ds/react/compare/v1.4.1-next.1...v1.4.1-next.2) (2024-02-13)
+
+
+### Bug Fixes
+
+* rename deleted icons after @warp-ds/icons update to 2.0.0 ([#205](https://github.com/warp-ds/react/issues/205)) ([121bd55](https://github.com/warp-ds/react/commit/121bd554de5094ef6b73a6ee3340a456d0304e98))
+
+## [1.4.1-next.1](https://github.com/warp-ds/react/compare/v1.4.0...v1.4.1-next.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* bump deps ([#202](https://github.com/warp-ds/react/issues/202)) ([f5650c1](https://github.com/warp-ds/react/commit/f5650c192850182b7aa7163507098c722cdbf496))
+
+# [1.4.0](https://github.com/warp-ds/react/compare/v1.3.2...v1.4.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* bump scroll-doctor lib to fix modal issue with scrollbars ([#199](https://github.com/warp-ds/react/issues/199)) ([e4bb6e9](https://github.com/warp-ds/react/commit/e4bb6e9f9d68d3eb2868a2c8822d4cbbb0600f91))
+
+
+### Features
+
+* **modal:** add onLeftClick prop to control left button event-handling ([#200](https://github.com/warp-ds/react/issues/200)) ([96a750b](https://github.com/warp-ds/react/commit/96a750b1303cb8db7fb767f22c43d5dd3717e206))
+
+# [1.4.0-next.1](https://github.com/warp-ds/react/compare/v1.3.3-next.1...v1.4.0-next.1) (2024-02-05)
+
+
+### Features
+
+* **modal:** add onLeftClick prop to control left button event-handling ([#200](https://github.com/warp-ds/react/issues/200)) ([96a750b](https://github.com/warp-ds/react/commit/96a750b1303cb8db7fb767f22c43d5dd3717e206))
+
+## [1.3.3-next.1](https://github.com/warp-ds/react/compare/v1.3.2...v1.3.3-next.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* bump scroll-doctor lib to fix modal issue with scrollbars ([#199](https://github.com/warp-ds/react/issues/199)) ([e4bb6e9](https://github.com/warp-ds/react/commit/e4bb6e9f9d68d3eb2868a2c8822d4cbbb0600f91))
+
 ## [1.3.2](https://github.com/warp-ds/react/compare/v1.3.1...v1.3.2) (2024-01-25)
 
 

@@ -15,7 +15,7 @@ const CurrentPage = React.forwardRef<HTMLDivElement, CurrentPageProps>(
   ({ children, className, ...props }, ref) => {
     const { currentPage } = usePagination();
 
-    if (currentPage <= 1) {
+    if (currentPage < 1) {
       return null;
     }
 

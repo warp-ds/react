@@ -22,6 +22,18 @@ export default function config(env) {
       coverage: {
         cleanOnRerun: true,
         reporter: ['text'],
+        exclude: [
+          "**.json",
+          "dev/**",
+          "storybook-static/**",
+          ".storybook/**",
+          "packages/**/stories",
+          "packages/**/src/locales",
+          "esbuild.mjs",
+          "lingui.config.ts",
+          "@types",
+          "tests/"
+        ],
       },
     },
   };

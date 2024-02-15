@@ -1,9 +1,9 @@
-import { Button } from '../../button/src/index.js';
+import { classNames } from "@chbphone55/classnames";
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
 import IconChevronDoubleLeft16 from '@warp-ds/icons/react/chevron-double-left-16';
-import React from 'react';
+import React, { Ref } from 'react';
 
 type FirstPageProps = {
   /**
@@ -38,20 +38,30 @@ const FirstPage = React.forwardRef<
     id: 'pagination.aria.first-page',
     message: 'First page',
     comment:
-      'Default screenreader message for first page button in the pagination component',
+      'Default screenreader message for first page link in the pagination component',
   });
 
+  const iconSuffix =
+    i18n._({
+      id: 'pagination.aria.icon-suffix',
+      message: 'icon',
+      comment:
+        'Suffix added at the end of icon titles when img semantics are lost on an html element',
+    });
+
   return (
-    <Button
-      pill
-      ref={ref}
+    <a
+      ref={ref as Ref<HTMLAnchorElement>}
       {...props}
-      aria-label={ariaLabel}
-      className={className}
+      className={classNames(className, ccPagination.link, ccPagination.icon)}
       rel="start"
     >
-      <IconChevronDoubleLeft16 className={ccPagination.icon} />
-    </Button>
+      <span className={ccPagination.a11y}>
+        {ariaLabel},
+      </span>
+      <IconChevronDoubleLeft16 />
+      <span className={ccPagination.a11y}>{iconSuffix}</span>
+    </a>
   );
 });
 

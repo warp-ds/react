@@ -3,10 +3,10 @@ import React, { PropsWithChildren, ReactElement } from "react";
 import { alert as ccAlert } from "@warp-ds/css/component-classes";
 import { AlertProps } from "./props.js";
 import { ExpandTransition } from "../../_helpers/index.js";
-import IconAlertError16 from '@warp-ds/icons/react/alert-error-16';
-import IconAlertInfo16 from '@warp-ds/icons/react/alert-info-16';
-import IconAlertSuccess16 from '@warp-ds/icons/react/alert-success-16';
-import IconAlertWarning16 from '@warp-ds/icons/react/alert-warning-16';
+import IconError16 from '@warp-ds/icons/react/error-16';
+import IconInfo16 from '@warp-ds/icons/react/info-16';
+import IconSuccess16 from '@warp-ds/icons/react/success-16';
+import IconWarning16 from '@warp-ds/icons/react/warning-16';
 
 export function Alert({
   show,
@@ -40,8 +40,8 @@ export function Alert({
 const iconMap: {
   [key in AlertProps["type"]]: ReactElement;
 } = {
-  negative: <IconAlertError16 />,
-  positive: <IconAlertSuccess16 />,
-  warning: <IconAlertWarning16 />,
-  info: <IconAlertInfo16 />,
+  negative: <IconError16 />,
+  positive: <IconSuccess16 />,
+  warning: <IconWarning16 />,
+  info: <IconInfo16 />,
 };

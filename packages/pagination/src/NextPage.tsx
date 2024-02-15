@@ -1,21 +1,15 @@
-import { Button } from '../../button/src/index.js';
-import { classNames } from "@chbphone55/classnames";
+import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
 import IconChevronRight16 from '@warp-ds/icons/react/chevron-right-16';
-import React from 'react';
+import React, { Ref } from 'react';
 
 type NextPageProps = {
   /**
    * @default Next page
    */
   'aria-label'?: string;
-
-  /**
-   * Butto label to render on mobile
-   */
-  children?: React.ReactNode;
 
   /** Additional CSS class for the element. */
   className?: string;
@@ -33,7 +27,7 @@ type NextPageProps = {
 const NextPage = React.forwardRef<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   NextPageProps
->(({ children, className, ...props }, ref) => {
+>(({ className, ...props }, ref) => {
   const { currentPage, lastPage } = usePagination();
 
   if (currentPage >= lastPage) {
@@ -44,41 +38,31 @@ const NextPage = React.forwardRef<
     id: 'pagination.aria.next-page',
     message: 'Next page',
     comment:
-      'Default screenreader message for next page button in the pagination component',
+      'Default screenreader message for next page link in the pagination component',
   });
 
-  const label =
-    children ??
+  const iconSuffix =
     i18n._({
-      id: 'pagination.button.next-page',
-      message: 'Next page',
+      id: 'pagination.aria.icon-suffix',
+      message: 'icon',
       comment:
-        'Default message for next page button in the pagination component',
+        'Suffix added at the end of icon titles when img semantics are lost on an html element',
     });
 
   return (
     <>
-      {currentPage <= 1 && (
-        <Button
-          link
-          {...props}
-          ref={ref}
-          rel="next nofollow"
-          className={classNames(ccPagination.firstPageButton, className)}
-        >
-          <span className={ccPagination.firstPageLabel}>{label}</span>
-        </Button>
-      )}
-      <Button
-        pill
-        aria-label={ariaLabel}
+      <a
         {...props}
-        ref={ref}
+        ref={ref as Ref<HTMLAnchorElement>}
         rel="next nofollow"
-        className={classNames(ccPagination.nextPage, className)}
+        className={classNames(className, ccPagination.link, ccPagination.icon)}
       >
-        <IconChevronRight16 className={ccPagination.icon} />
-      </Button>
+        <span className={ccPagination.a11y}>
+          {ariaLabel},
+        </span>
+        <IconChevronRight16 />
+        <span className={ccPagination.a11y}>{iconSuffix}</span>
+      </a>
     </>
   );
 });
