@@ -37,7 +37,19 @@
   "files": [
     "dist/npm"
   ],
-  "types": "dist/npm/index.d.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/npm/index.d.ts"
+      ],
+      "./cjs": [
+        "./dist/npm/index.d.ts"
+      ],
+      "./components/*": [
+        "./dist/npm/packages/*/index.d.ts"
+      ]
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
