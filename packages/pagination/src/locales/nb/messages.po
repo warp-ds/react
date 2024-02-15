@@ -17,12 +17,6 @@ msgstr ""
 "X-Crowdin-File-ID: 15506\n"
 "PO-Revision-Date: \n"
 
-#. Default message for next page button in the pagination component
-#. js-lingui-explicit-id
-#: packages/pagination/src/react/NextPage.tsx:51
-#~ msgid "pagination.button.next-page"
-#~ msgstr "Neste side"
-
 #. Default screenreader message for first page link in the pagination component
 #. js-lingui-explicit-id
 #: packages/pagination/src/FirstPage.tsx:37
