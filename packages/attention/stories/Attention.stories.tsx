@@ -107,7 +107,7 @@ export function DismissibleHighlight() {
           highlight
           canClose
           onDismiss={() => setShow(false)}
-          placement='bottom'
+          placement='top'
           isShowing={show}
           targetEl={targetEl}
           id='highlight-attention-example'
@@ -236,7 +236,7 @@ export function PopoverIconAsTargetEl() {
       <Button
         small
         aria-expanded={show}
-        aria-controls='popover--icon-target-el-attention-example'
+        aria-controls='popover-icon-target-el-attention-example'
         utility
         onClick={() => setShow(!show)}
         className='w-max mb-0'
