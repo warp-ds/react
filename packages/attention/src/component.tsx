@@ -38,7 +38,7 @@ const getVariant = (variantProps: AttentionVariants) => {
 }
 
 export function Attention(props: AttentionProps) {
-  const {
+  let {
     noArrow,
     isShowing,
     children,
@@ -63,7 +63,7 @@ export function Attention(props: AttentionProps) {
 
   const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
-  const [isVisible, setIsVisible] = useState<Boolean | undefined>(false)
+  const [isVisible, setIsVisible] = useState<boolean | undefined>(false)
   const [cleanup, setCleanup] = useState<any>(null)
 
   const isMounted = useRef(true)
@@ -74,9 +74,10 @@ export function Attention(props: AttentionProps) {
     get isShowing() {
       return isShowing
     },
-    // set isShowing(v) {
-    //   setIsVisible(v)
-    // },
+    set isShowing(v) {
+      isShowing = v
+      setIsVisible(isShowing)
+    },
     get isCallout() {
       return rest.callout
     },
@@ -216,7 +217,6 @@ export function Attention(props: AttentionProps) {
   useEffect(() => {
     if (isMounted.current) {
       isMounted.current = false
-
       // update attention's visibility after first render if showing by default or it's of type callout
       if (isShowing === true || props.callout) {
         setIsVisible(isShowing)
@@ -225,19 +225,19 @@ export function Attention(props: AttentionProps) {
       setIsVisible(isShowing)
     }
   }, [isShowing, props.callout])
-
+  
   useEffect(() => {
     if (isShowing === true && targetEl && attentionEl) {
       // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
       setCleanup(() => autoUpdatePosition(attentionState))
     } 
-    else if(cleanup) {
+    else if(cleanup && !isShowing) {
       // we need to call cleanup in order to stop the autoUpdate once the attention element is no longer visible
       cleanup()
       setCleanup(null)
     }
   }, [targetEl, isShowing, attentionEl])
-
+  
   
   
 
