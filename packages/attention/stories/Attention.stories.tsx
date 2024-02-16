@@ -2,6 +2,7 @@ import React from 'react'
 import { Attention } from '../src'
 import { Box } from '../../box/src'
 import { Button } from '../../button/src'
+import IconInfo16 from '@warp-ds/icons/react/info-16';
 
 const metadata = { title: 'Overlays/Attention' }
 export default metadata
@@ -189,6 +190,65 @@ export function Popover() {
       <Attention
         popover
         placement='bottom'
+        targetEl={targetEl}
+        isShowing={show}
+      >
+        <ul className='bg-white w-full text-center'>
+          <li
+            tabIndex={0}
+            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+          >
+            Hello
+          </li>
+          <li
+            tabIndex={0}
+            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+          >
+            World
+          </li>
+        </ul>
+      </Attention>
+    </div>
+  </div>
+  )
+}
+
+export function PopoverIconAsTargetEl() {
+  const [show, setShow] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const targetEl = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    function onBlurHandler(e) {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setShow(false)
+      }
+    }
+    document.addEventListener('mousedown', onBlurHandler)
+    return () => {
+      document.removeEventListener('mousedown', onBlurHandler)
+    }
+  })
+
+  return (
+  <div className='flex items-center justify-center'>
+    <div ref={containerRef}>
+      <Button
+        small
+        aria-expanded={show}
+        aria-controls='popover--icon-target-el-attention-example'
+        utility
+        onClick={() => setShow(!show)}
+        className='w-max mb-0'
+        ref={targetEl}
+      >
+        <IconInfo16 />
+      </Button>
+      <Attention
+        popover
+        placement='bottom-start'
+        distance={-0.5}
+        skidding={-121}
         targetEl={targetEl}
         isShowing={show}
       >
