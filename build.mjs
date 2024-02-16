@@ -12,7 +12,7 @@ const esbuildDefaults = {
   sourcemap: true,
   target: "es2017",
   minify: false,
-  external: ["react", "react-dom", "@lingui/core"],
+  external: ["react", "@lingui/core"],
 };
 
 function generateTypeDefinitions(inputFilePath, packageName, outDir) {
@@ -82,10 +82,19 @@ function buildComponents(outDir, extraBuildOptions = {}) {
 async function buildIndex(outDir, extraBuildOptions = {}) {
   console.log("react: building index.js");
   try {
+    // ESM build
     await esbuild.build({
       entryPoints: [indexPath],
       outfile: `${outDir}/index.js`,
       ...esbuildDefaults,
+      ...extraBuildOptions,
+    });
+    // CJS build
+    await esbuild.build({
+      ...esbuildDefaults,
+      entryPoints: [indexPath],
+      outfile: `${outDir}/index.cjs`,
+      format: "cjs",
       ...extraBuildOptions,
     });
   } catch (err) {
