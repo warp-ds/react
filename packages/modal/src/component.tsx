@@ -49,8 +49,7 @@ export const Modal = ({
         onClick={props.onDismiss}
         className={classNames(
           props.className,
-          ccModal.backdrop,
-          ccModal.transparentBg
+          ccModal.backdrop
         )}
         style={{ ...props.style }}
       >

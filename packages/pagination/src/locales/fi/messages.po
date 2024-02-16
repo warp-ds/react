@@ -15,46 +15,50 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File-ID: 15506\n"
+"PO-Revision-Date: \n"
 
-#. Default screenreader message for first page button in the pagination component
+#. Default screenreader message for first page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/FirstPage.tsx:36
+#: packages/pagination/src/FirstPage.tsx:37
 msgid "pagination.aria.first-page"
 msgstr "Ensimmäinen sivu"
 
-#. Default screenreader message for next page button in the pagination component
+#. Suffix added at the end of icon titles when img semantics are lost on an html element
+#. Suffix added at the end of icon titles when img semantics are lost on an html element
+#. Suffix added at the end of icon titles when img semantics are lost on an html element
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/NextPage.tsx:42
-msgid "pagination.aria.next-page"
-msgstr "Seuraava sivu"
+#: packages/pagination/src/FirstPage.tsx:45
+#: packages/pagination/src/NextPage.tsx:45
+#: packages/pagination/src/PrevPage.tsx:47
+msgid "pagination.aria.icon-suffix"
+msgstr "kuvake"
 
-#. Default message for next page button in the pagination component
+#. Default screenreader message for next page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/NextPage.tsx:51
-msgid "pagination.button.next-page"
+#: packages/pagination/src/NextPage.tsx:37
+msgid "pagination.aria.next-page"
 msgstr "Seuraava sivu"
 
 #. Default message for current page label in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/CurrentPage.tsx:23
+#: packages/pagination/src/CurrentPage.tsx:24
 msgid "pagination.label.current-page"
 msgstr "Sivu {currentPage}"
 
-#. Default screenreader message for page button in the pagination component
+#. Default screenreader message for page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/Page.tsx:43
+#: packages/pagination/src/Page.tsx:39
 msgid "pagination.aria.page"
 msgstr "Sivu {currentPage}"
 
 #. Default screenreader message for pagination container in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/PaginationContainer.tsx:68
+#: packages/pagination/src/PaginationContainer.tsx:69
 msgid "pagination.aria.pagination"
 msgstr "Sivut"
 
-#. Default screenreader message for previous page button in the pagination component
+#. Default screenreader message for previous page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/react/PrevPage.tsx:36
+#: packages/pagination/src/PrevPage.tsx:39
 msgid "pagination.aria.prev-page"
 msgstr "Edellinen sivu"
-

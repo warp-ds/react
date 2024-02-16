@@ -1,8 +1,7 @@
-import { Button } from '../../button/src/index.js';
 import { classNames } from "@chbphone55/classnames";
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
-import React from 'react';
+import React, { Ref } from 'react';
 
 export type PageProps = {
   /**
@@ -40,25 +39,22 @@ const Page = React.forwardRef<
   const ariaLabel = props['aria-label'] ?? i18n._({
     id: 'pagination.aria.page',
     message: 'Page {currentPage}',
-    values: { currentPage },
+    values: { currentPage: page },
     comment:
-      'Default screenreader message for page button in the pagination component',
+      'Default screenreader message for page link in the pagination component',
   });
 
   return (
-    <Button
-      pill
+    <a
       aria-label={ariaLabel}
       {...props}
-      ref={ref}
+      ref={ref as Ref<HTMLAnchorElement>}
       rel="nofollow"
       aria-current={isCurrentPage ? 'page' : undefined}
-      className={classNames(className, ccPagination.defaultPage, {
-        [ccPagination.active]: isCurrentPage,
-      })}
+      className={classNames(className, ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >
       {page}
-    </Button>
+    </a>
   );
 });
 
