@@ -238,6 +238,7 @@ export function PopoverIconAsTargetEl() {
         aria-expanded={show}
         aria-controls='popover-icon-target-el-attention-example'
         utility
+        quiet
         onClick={() => setShow(!show)}
         className='w-max mb-0'
         ref={targetEl}

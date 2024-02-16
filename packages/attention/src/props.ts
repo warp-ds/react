@@ -106,11 +106,11 @@ export type AttentionProps = {
   onDismiss?: () => void;
 
   /**
-   * The distance from which to offset the attentionEl from the targetEl 
+   * The distance from which to offset the attentionEl from the targetEl vertically
    */
 distance?: number;
  /**
-   * The distance from which to offset the attentionEl along its targetEl
+   * The distance from which to offset the attentionEl along its targetEl horizontally
    */
  skidding?: number;
 
