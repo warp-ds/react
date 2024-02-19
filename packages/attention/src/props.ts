@@ -78,7 +78,7 @@ export type AttentionProps = {
    * Placement according to the target element
    * Arrow would be on the opposite side of this position
    */
-  placement: Directions;
+  placement?: Directions;
 
   /**
    * Container the Attention component is rendered relatively to

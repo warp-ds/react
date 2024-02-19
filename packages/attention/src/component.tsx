@@ -44,7 +44,7 @@ export function Attention(props: AttentionProps) {
     children,
     role,
     'aria-label': ariaLabel,
-    placement,
+    placement = 'bottom',
     targetEl,
     className,
     canClose,
