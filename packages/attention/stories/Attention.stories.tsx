@@ -71,6 +71,7 @@ export function Highlight() {
           isShowing={show}
           targetEl={targetEl}
           flip={true}
+          fallbackPlacements={['bottom-end']}
           id='highlight-attention-example'
         >
           <p>
@@ -112,6 +113,7 @@ export function DismissibleHighlight() {
           isShowing={show}
           targetEl={targetEl}
           flip={true}
+          fallbackPlacements={['right', 'top']}
           id='highlight-attention-example'
         >
           <p>
