@@ -66,7 +66,6 @@ export function Attention(props: AttentionProps) {
   const [actualDirection, setActualDirection] = useState(placement)
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<boolean | undefined>(false)
-  const [cleanup, setCleanup] = useState<any>(null)
 
   const isMounted = useRef(true)
   const attentionEl = useRef<HTMLDivElement | null>(null)
@@ -215,7 +214,7 @@ export function Attention(props: AttentionProps) {
   }
   
   useEffect(() => {
-      recompute(attentionState)
+    recompute(attentionState)
   }, [attentionState])
     
   useEffect(() => {
@@ -230,17 +229,15 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout])
   
+  // @ts-ignore
   useEffect(() => {
     if (isShowing && flip && targetEl && attentionEl) {
-      // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
-      setCleanup(() => autoUpdatePosition(attentionState))
+        // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
+       const cleanup = autoUpdatePosition(attentionState);
+
+       return cleanup
     } 
-    else if(cleanup && !isShowing) {
-      // we need to call cleanup in order to stop the autoUpdate once the attention element is no longer visible
-      cleanup()
-      setCleanup(null)
-    }
-  }, [targetEl, isShowing, attentionEl])
+  }, [targetEl, isShowing, attentionEl, flip])
   
   
   
