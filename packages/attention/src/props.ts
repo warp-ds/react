@@ -113,5 +113,13 @@ distance?: number;
    * The distance from which to offset the attentionEl along its targetEl horizontally
    */
  skidding?: number;
+   /**
+   * Whether Attention element should flip its placement in order to keep it in view
+   */
+flip?: boolean;
+/**
+  * Choose which preferred placements the Attention element should flip to
+  */
+fallbackPlacements?: Directions[];
 
 } & AttentionVariants;

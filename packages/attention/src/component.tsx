@@ -51,6 +51,8 @@ export function Attention(props: AttentionProps) {
     onDismiss,
     distance = 8,
     skidding = 0,
+    flip = false,
+    fallbackPlacements = undefined,
     ...rest
   } = props
 
@@ -73,10 +75,6 @@ export function Attention(props: AttentionProps) {
   const attentionState = {
     get isShowing() {
       return isShowing
-    },
-    set isShowing(v) {
-      isShowing = v
-      setIsVisible(isShowing)
     },
     get isCallout() {
       return rest.callout
@@ -110,6 +108,12 @@ export function Attention(props: AttentionProps) {
     },
     get skidding(){
       return skidding
+    },
+    get flip(){
+      return flip
+    },
+    get fallbackPlacements(){
+      return fallbackPlacements
     }
   }
 
@@ -218,7 +222,7 @@ export function Attention(props: AttentionProps) {
     if (isMounted.current) {
       isMounted.current = false
       // update attention's visibility after first render if showing by default or it's of type callout
-      if (isShowing === true || props.callout) {
+      if (isShowing || props.callout) {
         setIsVisible(isShowing)
       }
     } else {
@@ -227,7 +231,7 @@ export function Attention(props: AttentionProps) {
   }, [isShowing, props.callout])
   
   useEffect(() => {
-    if (isShowing === true && targetEl && attentionEl) {
+    if (isShowing && flip && targetEl && attentionEl) {
       // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
       setCleanup(() => autoUpdatePosition(attentionState))
     } 

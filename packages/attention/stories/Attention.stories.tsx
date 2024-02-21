@@ -62,7 +62,7 @@ export function Highlight() {
       <div>
         <div ref={targetEl} className="w-2/3">
           <Box info>
-            <h1>I am a box full with lots of info to show you how the attention element can position itself at the right-top corner of the target-element!</h1>
+            <h1>I am a box full with lots of info to show you how the attention element will change its placement in order to stay in view.</h1>
           </Box>
         </div>
         <Attention 
@@ -70,6 +70,7 @@ export function Highlight() {
           placement='right-start'
           isShowing={show}
           targetEl={targetEl}
+          flip={true}
           id='highlight-attention-example'
         >
           <p>
@@ -107,9 +108,10 @@ export function DismissibleHighlight() {
           highlight
           canClose
           onDismiss={() => setShow(false)}
-          placement='top'
+          placement='bottom'
           isShowing={show}
           targetEl={targetEl}
+          flip={true}
           id='highlight-attention-example'
         >
           <p>
@@ -248,8 +250,8 @@ export function PopoverIconAsTargetEl() {
       <Attention
         popover
         placement='bottom-start'
-        distance={-0.5}
-        skidding={-121}
+        distance={1}
+        skidding={-122}
         targetEl={targetEl}
         isShowing={show}
       >
