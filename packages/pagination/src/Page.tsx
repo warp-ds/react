@@ -29,10 +29,7 @@ export type PageProps = {
 const Page = React.forwardRef<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   PageProps
->(({ page = 0, className, currentPage, ...props }, ref) => {
-  if (page < 1) {
-    return null;
-  }
+>(({ page = 1, className, currentPage, ...props }, ref) => {
 
   const isCurrentPage = page === currentPage;
 
