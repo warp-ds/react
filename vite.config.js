@@ -21,6 +21,7 @@ export default function config(env) {
       exclude: ['**.json'],
       coverage: {
         cleanOnRerun: true,
+        skipFull: true,
         reporter: ['text'],
         exclude: [
           "**.json",
