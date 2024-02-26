@@ -73,7 +73,7 @@ export function Toggle(props: ToggleProps) {
     [ccToggle.icon]: isCheckbox && !props.indeterminate,
     [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
     [ccToggle.radioButtonsLabel]: isRadioButton,
-    [ccToggle.radioButtonsLabelSmall]: props.small,
+    [ccToggle.radioButtonsLabelSmall]: props.small && isRadioButton,
   });
   const inputClasses = classNames({
     [ccToggle.input]: true,
