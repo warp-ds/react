@@ -31,6 +31,12 @@ describe('Usage of aria-label attribute', () => {
     const defaultAriaLabel = screen.getByLabelText('A green speech bubble introducing something new pointing left')
     expect(defaultAriaLabel).toBeInTheDocument()
   })
+
+  it('renders highlight with default aria-label', () => {
+    render(<Attention highlight isShowing={true}><p>I am a highlight with default aria-label</p></Attention>)
+    const defaultAriaLabel = screen.getByLabelText('An attention speech bubble with important information pointing up')
+    expect(defaultAriaLabel).toBeInTheDocument()
+  })
   
   it('renders popover with resetted aria-label', () => {
     render(<Attention popover isShowing={true} aria-label=''><p>I am a popover with resetted aria-label</p></Attention>)
