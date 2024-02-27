@@ -1,17 +1,22 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
-import { Button } from '../../packages/button/src';
 
-// describe('Attention component', () => {
-  // it('should render callout component"', () => {
-  //   expect(
-  //   render(<Attention callout placement='right' isShowing={true}><p>I am a callout</p></Attention>)
-  //   ).toMatchSnapshot()
-  //  })
 
-// })
+describe('Attention component', () => {
+  it('should not show Attention component when isShowing is false"', () => {
+    const { container } = render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
+
+    expect(container.firstChild).toHaveClass('hidden')
+   })
+
+   it('should show attention component when isShowing is true"', () => {
+    const {container} = render(<Attention callout placement='right' isShowing={true}><p>I am a callout</p></Attention>)
+
+   expect(container.firstChild).not.toHaveClass('hidden')
+   })
+})
 
 describe('Usage of aria-label attribute', () => {
   it('renders popover with default aria-label', () => {
@@ -35,6 +40,12 @@ describe('Usage of aria-label attribute', () => {
   it('renders highlight with default aria-label', () => {
     render(<Attention highlight isShowing={true}><p>I am a highlight with default aria-label</p></Attention>)
     const defaultAriaLabel = screen.getByLabelText('An attention speech bubble with important information pointing up')
+    expect(defaultAriaLabel).toBeInTheDocument()
+  })
+
+  it('renders highlight with updated default aria-label when setting placement prop', () => {
+    render(<Attention highlight placement='left' isShowing={true}><p>I am a highlight with default aria-label</p></Attention>)
+    const defaultAriaLabel = screen.getByLabelText('An attention speech bubble with important information pointing right')
     expect(defaultAriaLabel).toBeInTheDocument()
   })
   
