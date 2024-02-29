@@ -13,6 +13,10 @@ export type Directions =  | 'top'
 | 'left-start'
 | 'left-end';
 
+type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
+
+type ReferenceElement = Element | VirtualElement
+
 export type AttentionVariants = {
   /**
    * Render tooltip
@@ -83,7 +87,7 @@ export type AttentionProps = {
   /**
    * Container the Attention component is rendered relatively to
    */
-  targetEl?: MutableRefObject<unknown>;
+  targetEl?: MutableRefObject<ReferenceElement | null>;
 
   /**
    * Extend the Attention component container styling
