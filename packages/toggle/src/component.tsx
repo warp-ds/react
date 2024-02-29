@@ -82,8 +82,8 @@ export function Toggle(props: ToggleProps) {
 
   const wrapperClasses = classNames(props.className, {
     [ccToggle.wrapper]: true,
-    [`${ccToggle.radioButtons} ${ccToggle.focusableWithin}`]: isRadioButton,
-    [ccToggle.radioButtonsJustified]: props.equalWidth,
+    [ccToggle.wrapperRadioButtons]: isRadioButton && !props.equalWidth,
+    [ccToggle.wrapperRadioButtonsJustified]: isRadioButton && props.equalWidth,
   });
 
   const groupClasses = classNames({
