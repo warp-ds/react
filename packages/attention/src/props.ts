@@ -1,17 +1,5 @@
 import { MutableRefObject } from 'react';
-
-export type Directions =  | 'top'
-| 'top-start'
-| 'top-end'
-| 'right'
-| 'right-start'
-| 'right-end'
-| 'bottom'
-| 'bottom-start'
-| 'bottom-end'
-| 'left'
-| 'left-start'
-| 'left-end';
+import { Directions } from '@warp-ds/core/attention'
 
 type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
 
