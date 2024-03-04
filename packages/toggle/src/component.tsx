@@ -55,6 +55,7 @@ export function Toggle(props: ToggleProps) {
   const id = useId();
   const helpId = props.helpText ? `${id}__hint` : undefined;
   const isInvalid = props.invalid;
+  const isIndeterminate = props.indeterminate;
   const isRadio = props.type === 'radio';
   const isCheckbox = props.type === 'checkbox';
   const isRadioButton = props.type === 'radio-button';
@@ -63,17 +64,16 @@ export function Toggle(props: ToggleProps) {
     props.selected !== undefined || props.checked !== undefined;  
 
   const labelClasses = classNames({
-    [ccToggle.indeterminate]: props.indeterminate,
     [ccToggle.label]: !isRadioButton,
-    [ccToggle.focusable]: !isRadioButton,
-    [ccToggle.noContent]: !props.indeterminate,
-    [`${ccToggle.radio} ${ccToggle.labelRadioBorder} ${ccToggle.radioChecked}`]: isRadio,
+    [ccToggle.labelBefore]: !isRadioButton && !isIndeterminate,
+    [ccToggle.indeterminate]: isCheckbox && isIndeterminate,
+    [ccToggle.radio]: isRadio && !isInvalid,
     [ccToggle.radioInvalid]: isRadio && isInvalid,
-    [`${ccToggle.checkbox} ${ccToggle.labelCheckboxBorder} ${ccToggle.checkboxChecked}`]: isCheckbox,
-    [ccToggle.icon]: isCheckbox && !props.indeterminate,
+    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid,
     [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
     [ccToggle.radioButtonsLabel]: isRadioButton,
-    [ccToggle.radioButtonsLabelSmall]: props.small,
+    [ccToggle.radioButtonsRegular]: isRadioButton && !props.small,
+    [ccToggle.radioButtonsSmall]: isRadioButton && props.small,
   });
   const inputClasses = classNames({
     [ccToggle.input]: true,
