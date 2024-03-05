@@ -69,6 +69,20 @@ export const Invalid = () => {
   );
 };
 
+export const Disabled = () => {
+  return (
+    <Toggle
+      type="radio"
+      title="Favorite color"
+      helpText="No way you like blue"
+      disabled
+      selected={[options[1]]}
+      options={options}
+      onChange={(selected) => console.log(selected)}
+    />
+  );
+};
+
 export const SelectedDefaultControlled = () => {
   return (
     <Toggle

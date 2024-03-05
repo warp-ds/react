@@ -62,15 +62,19 @@ export function Toggle(props: ToggleProps) {
   const isRadioGroup = isRadio || isRadioButton;
   const isControlled =
     props.selected !== undefined || props.checked !== undefined;  
+  const isDisabled = !isRadioButton && props.disabled;
 
   const labelClasses = classNames({
     [ccToggle.label]: !isRadioButton,
     [ccToggle.labelBefore]: !isRadioButton && !isIndeterminate,
-    [ccToggle.indeterminate]: isCheckbox && isIndeterminate,
-    [ccToggle.radio]: isRadio && !isInvalid,
-    [ccToggle.radioInvalid]: isRadio && isInvalid,
-    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid,
-    [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
+    [ccToggle.indeterminate]: isCheckbox && isIndeterminate && !isDisabled,
+    [ccToggle.indeterminateDisabled]: isCheckbox && isIndeterminate && isDisabled,
+    [ccToggle.radio]: isRadio && !isInvalid && !isDisabled,
+    [ccToggle.radioInvalid]: isRadio && isInvalid && !isDisabled,
+    [ccToggle.radioDisabled]: isRadio && !isInvalid && isDisabled,
+    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.checkboxInvalid]: isCheckbox && isInvalid && !isDisabled,
+    [ccToggle.checkboxDisabled]: isCheckbox && !isInvalid && isDisabled,
     [ccToggle.radioButtonsLabel]: isRadioButton,
     [ccToggle.radioButtonsRegular]: isRadioButton && !props.small,
     [ccToggle.radioButtonsSmall]: isRadioButton && props.small,
@@ -124,6 +128,7 @@ export function Toggle(props: ToggleProps) {
             name={`${id}:toggle`}
             key={`${id + props.type}`}
             invalid={isInvalid}
+            disabled={isDisabled}
             helpId={helpId}
             type={isRadioGroup ? 'radio' : 'checkbox'}
             noVisibleLabel={props.noVisibleLabel}
@@ -146,6 +151,7 @@ export function Toggle(props: ToggleProps) {
               name={`${id}:toggle`}
               key={`${id + i + props.type}`}
               invalid={isInvalid}
+              disabled={isDisabled}
               helpId={helpId}
               type={isRadioGroup ? 'radio' : 'checkbox'}
               noVisibleLabel={props.noVisibleLabel}

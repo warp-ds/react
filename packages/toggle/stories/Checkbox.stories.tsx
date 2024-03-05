@@ -181,6 +181,29 @@ export const Invalid = () => {
   );
 };
 
+export const Disabled = () => {
+  return (
+    <>
+      <Toggle
+        onChange={(selected) => console.log(selected)}
+        checked={false}
+        type="checkbox"
+        label="Select all companies"
+        indeterminate={true}
+        disabled
+      />
+      <Toggle
+        type="checkbox"
+        title="Companies"
+        options={options}
+        selected={[options[0]]}
+        onChange={(selected) => console.log(selected)}
+        disabled
+      />
+    </>
+  );
+}
+
 export const SelectedDefault = () => {
   return (
     <Toggle
