@@ -100,6 +100,18 @@ it('renders checkbox with invalid', () => {
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.checkboxInvalid);
 });
 
+it('renders checkbox with disabled', () => {
+  render(
+    <Toggle
+      type="checkbox"
+      label="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      disabled
+    />
+  );
+  expect(screen.getByRole('checkbox')).toBeDisabled();
+});
+
 it('renders checkbox with indeterminate', () => {
   render(
     <Toggle
@@ -113,6 +125,34 @@ it('renders checkbox with indeterminate', () => {
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminate);
 });
 
+it('renders checkbox with indeterminate invalid', () => {
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      indeterminate
+      invalid
+      label="Toggle X"
+    />
+  );
+  expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminateInvalid);
+});
+
+it('renders checkbox with indeterminate disabled', () => {
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      indeterminate
+      disabled
+      label="Toggle X"
+    />
+  );
+  expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminateDisabled);
+});
+
 it('renders checkbox with no visible label', () => {
   render(
     <Toggle
@@ -123,18 +163,6 @@ it('renders checkbox with no visible label', () => {
     />
   );
   expect(screen.getByText('Favorite color')).toHaveClass(ccToggle.a11y);
-});
-
-it('renders checkbox with disabled', () => {
-  render(
-    <Toggle
-      type="checkbox"
-      label="Favorite color"
-      onChange={(selected) => onChangeFunction(selected)}
-      disabled
-    />
-  );
-  expect(screen.getByRole('checkbox')).toBeDisabled();
 });
 
 // Radio

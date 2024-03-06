@@ -54,27 +54,27 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
 export function Toggle(props: ToggleProps) {
   const id = useId();
   const helpId = props.helpText ? `${id}__hint` : undefined;
-  const isInvalid = props.invalid;
-  const isIndeterminate = props.indeterminate;
   const isRadio = props.type === 'radio';
   const isCheckbox = props.type === 'checkbox';
   const isRadioButton = props.type === 'radio-button';
   const isRadioGroup = isRadio || isRadioButton;
-  const isControlled =
-    props.selected !== undefined || props.checked !== undefined;  
+  const isIndeterminate = isCheckbox && props.indeterminate;
+  const isInvalid = props.invalid;
   const isDisabled = !isRadioButton && props.disabled;
+  const isControlled = props.selected !== undefined || props.checked !== undefined;
 
   const labelClasses = classNames({
     [ccToggle.label]: !isRadioButton,
     [ccToggle.labelBefore]: !isRadioButton && !isIndeterminate,
-    [ccToggle.indeterminate]: isCheckbox && isIndeterminate && !isDisabled,
-    [ccToggle.indeterminateDisabled]: isCheckbox && isIndeterminate && isDisabled,
+    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.checkboxInvalid]: isCheckbox && !isIndeterminate && isInvalid && !isDisabled,
+    [ccToggle.checkboxDisabled]: isCheckbox && !isIndeterminate && !isInvalid && isDisabled,
+    [ccToggle.indeterminate]: isCheckbox&& isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.indeterminateInvalid]: isCheckbox && isIndeterminate && isInvalid && !isDisabled,
+    [ccToggle.indeterminateDisabled]: isCheckbox && isIndeterminate && !isInvalid && isDisabled,
     [ccToggle.radio]: isRadio && !isInvalid && !isDisabled,
     [ccToggle.radioInvalid]: isRadio && isInvalid && !isDisabled,
     [ccToggle.radioDisabled]: isRadio && !isInvalid && isDisabled,
-    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid && !isDisabled,
-    [ccToggle.checkboxInvalid]: isCheckbox && isInvalid && !isDisabled,
-    [ccToggle.checkboxDisabled]: isCheckbox && !isInvalid && isDisabled,
     [ccToggle.radioButtonsLabel]: isRadioButton,
     [ccToggle.radioButtonsRegular]: isRadioButton && !props.small,
     [ccToggle.radioButtonsSmall]: isRadioButton && props.small,

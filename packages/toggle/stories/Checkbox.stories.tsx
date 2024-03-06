@@ -58,9 +58,12 @@ export const SingleOptionCheckedUncontrolledDefault = () => {
   );
 };
 
-export const IndeterminateState = () => {
+export const IndeterminateState = ({
+    isInvalid = false,
+    isDisabled = false
+  }: { isInvalid?: boolean, isDisabled?: boolean }) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([options[0]]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked === false) {
@@ -99,6 +102,8 @@ export const IndeterminateState = () => {
           selectedOptions.length > 0 &&
           selectedOptions.length !== options.length
         }
+        invalid={isInvalid}
+        disabled={isDisabled}
       />
       <Toggle
         type="checkbox"
@@ -106,10 +111,15 @@ export const IndeterminateState = () => {
         options={options}
         selected={selectedOptions}
         onChange={handleSelect}
+        invalid={isInvalid}
+        disabled={isDisabled}
       />
     </>
   );
 };
+
+export const Invalid = () => <IndeterminateState isInvalid={true} />;
+export const Disabled = () => <IndeterminateState isDisabled={true} />;
 
 export const SingleOptionHelpText = () => {
   return (
@@ -166,43 +176,6 @@ export const HelpText = () => {
     />
   );
 };
-
-export const Invalid = () => {
-  return (
-    <Toggle
-      type="checkbox"
-      title="Companies"
-      helpText="Please don't select Microsoft"
-      invalid
-      selected={[options[1]]}
-      options={options}
-      onChange={(selected) => console.log(selected)}
-    />
-  );
-};
-
-export const Disabled = () => {
-  return (
-    <>
-      <Toggle
-        onChange={(selected) => console.log(selected)}
-        checked={false}
-        type="checkbox"
-        label="Select all companies"
-        indeterminate={true}
-        disabled
-      />
-      <Toggle
-        type="checkbox"
-        title="Companies"
-        options={options}
-        selected={[options[0]]}
-        onChange={(selected) => console.log(selected)}
-        disabled
-      />
-    </>
-  );
-}
 
 export const SelectedDefault = () => {
   return (
