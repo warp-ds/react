@@ -15,8 +15,8 @@ dependencies:
     specifier: 1.0.2
     version: 1.0.2
   '@warp-ds/css':
-    specifier: 1.8.4-next.3
-    version: 1.8.4-next.3
+    specifier: 1.8.4
+    version: 1.8.4
   '@warp-ds/icons':
     specifier: 2.0.0
     version: 2.0.0
@@ -6288,8 +6288,8 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.8.4-next.3:
-    resolution: {integrity: sha512-QGyp+MMf6/8MEgAxQSgP4X9huofVVZr9+mFcXJK4/qRxnu7rmhEIa6Vbgb7uKkdFi00gJgs1x4iGWOJgOr/6dQ==}
+  /@warp-ds/css@1.8.4:
+    resolution: {integrity: sha512-SGX3bORF13I20XzCg4Ab0FlUe7Yj4XUH1/klu+NeCVrIWymPhExgFTbFJrs+9RvTKh81d4/IFiyiqdHSpRG6iw==}
     dependencies:
       '@warp-ds/tokenizer': 0.0.4
       '@warp-ds/uno': 1.9.0
@@ -6305,7 +6305,7 @@ packages:
     resolution: {integrity: sha512-D4qIUQdY0Tp23OpeR6P9T5QXpsr9crN/FusHWN+975Yk5WoWZOMAf7SVyvgFKV0uq5s70I3qlZqjT51khMwPNQ==}
     dependencies:
       glob: 10.3.10
-      yaml: 2.3.4
+      yaml: 2.4.1
     dev: false
 
   /@warp-ds/uno@1.9.0:
@@ -15783,9 +15783,10 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /yaml@2.3.4:
-    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
+  /yaml@2.4.1:
+    resolution: {integrity: sha512-pIXzoImaqmfOrL7teGUBt/T7ZDnyeGBWyXQBvOVhLkWLN37GXv8NMLK406UY6dS51JfcQHsmcW5cJ441bHg6Lg==}
     engines: {node: '>= 14'}
+    hasBin: true
     dev: false
 
   /yargs-parser@18.1.3:
