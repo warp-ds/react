@@ -15,14 +15,14 @@ dependencies:
     specifier: 1.0.2
     version: 1.0.2
   '@warp-ds/css':
-    specifier: 1.8.3
-    version: 1.8.3
+    specifier: 1.8.4-next.3
+    version: 1.8.4-next.3
   '@warp-ds/icons':
     specifier: 2.0.0
     version: 2.0.0
   '@warp-ds/uno':
-    specifier: 1.8.1
-    version: 1.8.1
+    specifier: 1.9.0
+    version: 1.9.0
   react-focus-lock:
     specifier: 2.9.7
     version: 2.9.7(@types/react@18.2.55)(react@18.2.0)
@@ -6288,11 +6288,11 @@ packages:
       '@floating-ui/dom': 0.5.4
     dev: false
 
-  /@warp-ds/css@1.8.3:
-    resolution: {integrity: sha512-SFG9gmnMv0POtCb9HHp73Gq6Y7eZeoWZDdXhB8tBY71nMRLp45a7tvu5q28OEGIlNF44PGLmRoF2YHbfq+jThg==}
+  /@warp-ds/css@1.8.4-next.3:
+    resolution: {integrity: sha512-QGyp+MMf6/8MEgAxQSgP4X9huofVVZr9+mFcXJK4/qRxnu7rmhEIa6Vbgb7uKkdFi00gJgs1x4iGWOJgOr/6dQ==}
     dependencies:
       '@warp-ds/tokenizer': 0.0.4
-      '@warp-ds/uno': 1.8.1
+      '@warp-ds/uno': 1.9.0
     dev: false
 
   /@warp-ds/icons@2.0.0:
@@ -6308,8 +6308,8 @@ packages:
       yaml: 2.3.4
     dev: false
 
-  /@warp-ds/uno@1.8.1:
-    resolution: {integrity: sha512-khmp3D4MiKOzQ4gHVGHDOPuKsefr7J1Tim62lZjuDZba3t9Mjx2Wd5InfgL5eY3uqV6JTLZHxlPfh9TkhcS8vg==}
+  /@warp-ds/uno@1.9.0:
+    resolution: {integrity: sha512-DVL43/FHdSmOWgKtORsWDKM8WDOZLQHE6cCLYMxkLgJaYMcJGzZ3NrPPV8nwr3g3CL9RF5ySjp5aEKC+ax40Rg==}
     dependencies:
       '@unocss/core': 0.58.5
       '@unocss/preset-mini': 0.58.5

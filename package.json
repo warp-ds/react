@@ -109,9 +109,9 @@
     "@chbphone55/classnames": "2.0.0",
     "@lingui/core": "4.7.0",
     "@warp-ds/core": "1.0.2",
-    "@warp-ds/css": "1.8.3",
+    "@warp-ds/css": "1.8.4-next.3",
     "@warp-ds/icons": "2.0.0",
-    "@warp-ds/uno": "1.8.1",
+    "@warp-ds/uno": "1.9.0",
     "react-focus-lock": "2.9.7",
     "resize-observer-polyfill": "1.5.1",
     "scroll-doctor": "2.0.2"
