@@ -3,6 +3,7 @@ import { classNames } from '@chbphone55/classnames'
 import {
   opposites,
   autoUpdatePosition,
+  arrowDirectionClassname,
   useRecompute as recompute
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
@@ -200,18 +201,6 @@ export function Attention(props: AttentionProps) {
   const defaultAriaLabel = () => {
     return `${activeAttentionType} ${!props.noArrow ? pointingAtDirection : ''}`
   }
-  const arrowDirectionClassname = (dir: string) => {
-    let direction: string
-    if (/-/.test(dir)) {
-      direction = dir
-        .split('-')
-        .map((d) => d.charAt(0).toUpperCase() + d.slice(1))
-        .join('')
-    } else {
-      direction = dir.charAt(0).toUpperCase() + dir.slice(1)
-    }
-    return `arrowDirection${direction}`
-  }
   
   useEffect(() => {
     recompute(attentionState)
@@ -239,33 +228,6 @@ export function Attention(props: AttentionProps) {
     } 
   }, [targetEl, isShowing, attentionEl, flip])
   
-  
-  
-
-  
-
-  const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
-    ({ direction, ...rest }, ref) => {
-      const arrowDirection = opposites[direction];
-      const arrowClasses = classNames(
-        ccAttention.arrowBase,
-        ccAttention[arrowDirectionClassname(arrowDirection)],
-        variantClasses[getVariant(rest)].arrow
-      )
-  
-      return (
-        <div
-          ref={ref}
-          className={arrowClasses}
-          style={{
-            // TW doesn't let us specify exactly one corner, only whole sides
-            borderTopLeftRadius: '4px',
-            zIndex: 1,
-          }}
-        />
-      )
-    }
-  )
   return (
     <div
       className={classNames(
@@ -316,5 +278,28 @@ export function Attention(props: AttentionProps) {
     </div>
   )
 }
+
+const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
+  ({ direction, ...rest }, ref) => {
+    const arrowDirection = opposites[direction];
+    const arrowClasses = classNames(
+      ccAttention.arrowBase,
+      ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
+      variantClasses[getVariant(rest)].arrow
+    )
+
+    return (
+      <div
+        ref={ref}
+        className={arrowClasses}
+        style={{
+          // TW doesn't let us specify exactly one corner, only whole sides
+          borderTopLeftRadius: '4px',
+          zIndex: 1,
+        }}
+      />
+    )
+  }
+)
 
 
