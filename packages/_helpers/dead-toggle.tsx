@@ -33,6 +33,11 @@ export interface DeadToggleProps {
    * Additional classnames to the toggle label
    */
   labelClassName?: string;
+
+  /**
+   * Name of the toggle input
+   */
+  name?: string;
 }
 
 export function DeadToggle(props: DeadToggleProps) {
@@ -50,7 +55,7 @@ export function DeadToggle(props: DeadToggleProps) {
           [ccDeadToggle.labelRadio]: props.radio,
           [ccDeadToggle.labelCheckbox]: props.checkbox,
         })}
-        name="dead-toggle"
+        name={props.name ? `${props.name}:dead-toggle` : "dead-toggle"}
         controlled={true}
         onChange={() => undefined}
         value={props.value}
