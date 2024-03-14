@@ -73,9 +73,10 @@ export function Highlight() {
           flip={true}
           fallbackPlacements={['bottom-end']}
           id='highlight-attention-example'
+          className='max-w-[359px]'
         >
           <p>
-            I'm a highlight because that box over there is new or something
+            I'm a highlight because that box over there is new or something and I need to have a lot of text!
           </p>
         </Attention>
       </div>
