@@ -292,11 +292,6 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
       <div
         ref={ref}
         className={arrowClasses}
-        style={{
-          // TW doesn't let us specify exactly one corner, only whole sides
-          borderTopLeftRadius: '4px',
-          zIndex: 1,
-        }}
       />
     )
   }
