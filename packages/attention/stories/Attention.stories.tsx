@@ -252,10 +252,10 @@ export function PopoverIconAsTargetEl() {
       </Button>
       <Attention
         popover
-        placement='bottom-start'
+        placement='bottom-end'
         flip
         distance={2}
-        skidding={-99}
+        skidding={12}
         targetEl={targetEl}
         isShowing={show}
       >
