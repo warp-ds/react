@@ -89,4 +89,9 @@ export interface ToggleProps {
    * The checkbox will appear with a small dash instead of a tick to indicate that the option is not exactly checked or unchecked.
    */
   indeterminate?: boolean;
+
+  /**
+   * Whether the toggle is disabled
+   */
+  disabled?: boolean;
 }

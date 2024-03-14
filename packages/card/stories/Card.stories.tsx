@@ -330,3 +330,57 @@ export const DeadToggleInCard = () => {
     </div>
   );
 };
+
+const ClickableCardWithDeadToggle = ({
+  id,
+  isSelected,
+  setSelected,
+  name,
+}: {
+  id: number;
+  isSelected: boolean;
+  setSelected: (value: React.SetStateAction<number | null>) => void;
+  name: string;
+}) => {
+  return (
+      <Card className={`w-full flex items-center py-14 px-14 gap-14 my-12`} selected={isSelected}>
+          <DeadToggle radio checked={isSelected} name={name} />
+          <Clickable radio name={name} onClick={() => setSelected(id)} autofocus={true}>
+              <h2 className="h4 mb-0">{id}</h2>
+          </Clickable>
+      </Card>
+  );
+};
+
+export const MultipleDeadToggleGroups = () => {
+  const [selectedRadio, setSelectedRadio] = useState<number | null>(null);
+  const [secondSelectedRadio, setSecondSelectedRadio] = useState<number | null>(null);
+  return (
+      <div>
+          <fieldset key={1} className="mb-12" role="radiogroup">
+              Radio group 1
+              {[0, 1, 2].map((i) => (
+                  <ClickableCardWithDeadToggle
+                      key={i}
+                      id={i}
+                      isSelected={selectedRadio === i}
+                      setSelected={(x) => setSelectedRadio(x)}
+                      name="first-group"
+                  />
+              ))}
+          </fieldset>
+          <fieldset key={2} role="radiogroup">
+              Radio group 2
+              {[3, 4, 5].map((i) => (
+                  <ClickableCardWithDeadToggle
+                      key={i}
+                      id={i}
+                      isSelected={secondSelectedRadio === i}
+                      setSelected={(x) => setSecondSelectedRadio(x)}
+                      name="second-group"
+                  />
+              ))}
+          </fieldset>
+      </div>
+  );
+};

@@ -54,26 +54,30 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
 export function Toggle(props: ToggleProps) {
   const id = useId();
   const helpId = props.helpText ? `${id}__hint` : undefined;
-  const isInvalid = props.invalid;
   const isRadio = props.type === 'radio';
   const isCheckbox = props.type === 'checkbox';
   const isRadioButton = props.type === 'radio-button';
   const isRadioGroup = isRadio || isRadioButton;
-  const isControlled =
-    props.selected !== undefined || props.checked !== undefined;  
+  const isIndeterminate = isCheckbox && props.indeterminate;
+  const isInvalid = props.invalid;
+  const isDisabled = !isRadioButton && props.disabled;
+  const isControlled = props.selected !== undefined || props.checked !== undefined;
 
   const labelClasses = classNames({
-    [ccToggle.indeterminate]: props.indeterminate,
     [ccToggle.label]: !isRadioButton,
-    [ccToggle.focusable]: !isRadioButton,
-    [ccToggle.noContent]: !props.indeterminate,
-    [`${ccToggle.radio} ${ccToggle.labelRadioBorder} ${ccToggle.radioChecked}`]: isRadio,
-    [ccToggle.radioInvalid]: isRadio && isInvalid,
-    [`${ccToggle.checkbox} ${ccToggle.labelCheckboxBorder} ${ccToggle.checkboxChecked}`]: isCheckbox,
-    [ccToggle.icon]: isCheckbox && !props.indeterminate,
-    [ccToggle.checkboxInvalid]: isCheckbox && isInvalid,
+    [ccToggle.labelBefore]: !isRadioButton && !isIndeterminate,
+    [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.checkboxInvalid]: isCheckbox && !isIndeterminate && isInvalid && !isDisabled,
+    [ccToggle.checkboxDisabled]: isCheckbox && !isIndeterminate && !isInvalid && isDisabled,
+    [ccToggle.indeterminate]: isCheckbox&& isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.indeterminateInvalid]: isCheckbox && isIndeterminate && isInvalid && !isDisabled,
+    [ccToggle.indeterminateDisabled]: isCheckbox && isIndeterminate && !isInvalid && isDisabled,
+    [ccToggle.radio]: isRadio && !isInvalid && !isDisabled,
+    [ccToggle.radioInvalid]: isRadio && isInvalid && !isDisabled,
+    [ccToggle.radioDisabled]: isRadio && !isInvalid && isDisabled,
     [ccToggle.radioButtonsLabel]: isRadioButton,
-    [ccToggle.radioButtonsLabelSmall]: props.small,
+    [ccToggle.radioButtonsRegular]: isRadioButton && !props.small,
+    [ccToggle.radioButtonsSmall]: isRadioButton && props.small,
   });
   const inputClasses = classNames({
     [ccToggle.input]: true,
@@ -82,8 +86,8 @@ export function Toggle(props: ToggleProps) {
 
   const wrapperClasses = classNames(props.className, {
     [ccToggle.wrapper]: true,
-    [`${ccToggle.radioButtons} ${ccToggle.focusableWithin}`]: isRadioButton,
-    [ccToggle.radioButtonsJustified]: props.equalWidth,
+    [ccToggle.wrapperRadioButtons]: isRadioButton && !props.equalWidth,
+    [ccToggle.wrapperRadioButtonsJustified]: isRadioButton && props.equalWidth,
   });
 
   const groupClasses = classNames({
@@ -124,6 +128,7 @@ export function Toggle(props: ToggleProps) {
             name={`${id}:toggle`}
             key={`${id + props.type}`}
             invalid={isInvalid}
+            disabled={isDisabled}
             helpId={helpId}
             type={isRadioGroup ? 'radio' : 'checkbox'}
             noVisibleLabel={props.noVisibleLabel}
@@ -146,6 +151,7 @@ export function Toggle(props: ToggleProps) {
               name={`${id}:toggle`}
               key={`${id + i + props.type}`}
               invalid={isInvalid}
+              disabled={isDisabled}
               helpId={helpId}
               type={isRadioGroup ? 'radio' : 'checkbox'}
               noVisibleLabel={props.noVisibleLabel}

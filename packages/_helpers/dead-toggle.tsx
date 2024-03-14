@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from '@chbphone55/classnames';
-import { toggle as ccToggle } from '@warp-ds/css/component-classes';
+import { deadToggle as ccDeadToggle } from '@warp-ds/css/component-classes';
 import { Item } from '../toggle/src/item.js';
 
 export interface DeadToggleProps {
@@ -33,39 +33,29 @@ export interface DeadToggleProps {
    * Additional classnames to the toggle label
    */
   labelClassName?: string;
+
+  /**
+   * Name of the toggle input
+   */
+  name?: string;
 }
 
 export function DeadToggle(props: DeadToggleProps) {
   const type = props.radio ? 'radio' : 'checkbox';
 
-  const labelClasses = classNames(props.labelClassName, {
-    [ccToggle.label]: true,
-    [ccToggle.focusable]: true,
-    [ccToggle.noContent]: true,
-    [`${ccToggle.radio} ${ccToggle.labelRadioBorder} ${ccToggle.radioChecked}`]: props.radio,
-    [`${ccToggle.checkbox} ${ccToggle.labelCheckboxBorder} ${ccToggle.checkboxChecked}`]: props.checkbox,
-    [ccToggle.icon]: props.checkbox,
-  });
-  const inputClasses = classNames({
-    [ccToggle.input]: true,
-    [ccToggle.a11y]: true,
-    [ccToggle.deadToggleInput]: true,
-  });
-
-  const wrapperClasses = {
-    [ccToggle.wrapper]: true,
-    [ccToggle.deadToggleWrapper]: true,
-  };
   return (
     <div
-      className={classNames(props.className, wrapperClasses)}
+      className={classNames(props.className, ccDeadToggle.wrapper)}
       aria-hidden="true"
     >
       <Item
         type={type}
-        className={inputClasses}
-        labelClassName={labelClasses}
-        name="dead-toggle"
+        inputClassName={ccDeadToggle.input}
+        labelClassName={classNames(props.labelClassName, {
+          [ccDeadToggle.labelRadio]: props.radio,
+          [ccDeadToggle.labelCheckbox]: props.checkbox,
+        })}
+        name={props.name ? `${props.name}:dead-toggle` : "dead-toggle"}
         controlled={true}
         onChange={() => undefined}
         value={props.value}

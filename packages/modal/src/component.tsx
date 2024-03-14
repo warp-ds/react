@@ -28,6 +28,13 @@ export const Modal = ({
   activateI18n(enMessages, nbMessages, fiMessages);
 
   useEffect(() => {
+    // Cleanup scroll lock if component unmounts before it receives an updated
+    // open prop and is closed. Can happen if the host conditionally renders the
+    // modal.
+    return () => teardown();
+  }, []);
+
+  useEffect(() => {
     teardown();
     if (!contentRef.current) return;
     props.open && setup(contentRef.current);

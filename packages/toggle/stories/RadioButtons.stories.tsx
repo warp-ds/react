@@ -35,6 +35,7 @@ export const Small = () => {
   return (
     <Toggle
       type="radio-button"
+      title="Favorite color"
       small
       options={options}
       onChange={(selected) => console.log(selected)}
