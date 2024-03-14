@@ -220,13 +220,13 @@ export function Attention(props: AttentionProps) {
   
   // @ts-ignore
   useEffect(() => {
-    if (isShowing && targetEl && attentionEl) {
+    if (isShowing && flip && targetEl && attentionEl) {
         // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
        const cleanup = autoUpdatePosition(attentionState);
 
        return cleanup
     } 
-  }, [targetEl, isShowing, attentionEl])
+  }, [targetEl, isShowing, attentionEl, flip])
   
   return (
     <div

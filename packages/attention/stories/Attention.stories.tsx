@@ -194,6 +194,7 @@ export function Popover() {
       <Attention
         popover
         placement='bottom'
+        flip
         targetEl={targetEl}
         isShowing={show}
       >
@@ -252,6 +253,7 @@ export function PopoverIconAsTargetEl() {
       <Attention
         popover
         placement='bottom-start'
+        flip
         distance={2}
         skidding={-99}
         targetEl={targetEl}
