@@ -195,7 +195,6 @@ export function Popover() {
       <Attention
         popover
         placement='bottom'
-        flip
         targetEl={targetEl}
         isShowing={show}
       >
