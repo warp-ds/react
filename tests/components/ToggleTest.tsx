@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { toggle as ccToggle, label as ccLabel } from '@warp-ds/css/component-classes';
+import { toggle as ccToggle, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 
 import { Toggle } from '../../packages/toggle/src/index.js';
 
@@ -94,10 +94,11 @@ it('renders checkbox with invalid', () => {
       onChange={(selected) => onChangeFunction(selected)}
       invalid
       label="Toggle X"
+      helpText="This is an error message"
     />
   );
-  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.labelInvalid);
-  expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.checkboxInvalid);
+  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
+  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
 });
 
 it('renders checkbox with disabled', () => {
@@ -243,10 +244,11 @@ it('renders radio with invalid', () => {
       onChange={(selected) => onChangeFunction(selected)}
       invalid
       label="Toggle X"
+      helpText="This is an error message"
     />
   );
-  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.labelInvalid);
-  expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.radioInvalid);
+  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
+  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
 });
 
 it('renders radio with no visible label', () => {

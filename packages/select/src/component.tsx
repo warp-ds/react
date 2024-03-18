@@ -70,10 +70,6 @@ const setup = (props) => {
       [ccHelpText.helpTextColor]: !invalid,
       [ccHelpText.helpTextColorInvalid]: invalid
     }),
-    labelClasses: classNames({
-      [ccLabel.label]: true,
-      [ccLabel.labelInvalid]: invalid
-    }),
     chevronClasses: classNames({
       [ccSelect.chevron]: true,
       [ccSelect.chevronDisabled]: disabled,
@@ -83,13 +79,13 @@ const setup = (props) => {
 
 function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const id = useId(props.id);
-  const { attrs, wrapperClasses, selectClasses, selectWrapperClasses, helpTextClasses, labelClasses, chevronClasses } = setup({ ...props, id });
+  const { attrs, wrapperClasses, selectClasses, selectWrapperClasses, helpTextClasses, chevronClasses } = setup({ ...props, id });
   const { div, label, select, help, optional } = attrs;
 
   return (
     <div className={wrapperClasses} {...div}>
       {label.children && (
-        <label htmlFor={label.htmlFor} className={labelClasses}>
+        <label htmlFor={label.htmlFor} className={ccLabel.label}>
           {label.children}
           {optional && (
             <span className={ccLabel.optional}>

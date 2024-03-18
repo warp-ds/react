@@ -10,16 +10,13 @@ import { messages as enMessages} from './locales/en/messages.mjs';
 import { messages as fiMessages} from './locales/fi/messages.mjs';
 import { activateI18n } from '../../i18n.js';
 
-function Title({ id, isInvalid, title, optional }) {
+function Title({ id, title, optional }) {
   activateI18n(enMessages, nbMessages, fiMessages);
 
   return (
     <legend
       id={`${id}__title`}
-      className={classNames({
-        [ccLabel.label]: true,
-        [ccLabel.labelInvalid]: isInvalid,
-      })}
+      className={ccLabel.label}
     >
       {title}
       {optional && (
@@ -108,7 +105,6 @@ export function Toggle(props: ToggleProps) {
         <Title
           id={id}
           title={props.title}
-          isInvalid={isInvalid}
           optional={props.optional}
         />
       )}
