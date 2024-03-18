@@ -67,7 +67,8 @@ const setup = (props) => {
     }),
     helpTextClasses: classNames({
       [ccHelpText.helpText]: true,
-      [ccHelpText.helpTextInvalid]: invalid
+      [ccHelpText.helpTextColor]: !invalid,
+      [ccHelpText.helpTextColorInvalid]: invalid
     }),
     labelClasses: classNames({
       [ccLabel.label]: true,

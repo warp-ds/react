@@ -43,7 +43,8 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
       id={helpId}
       className={classNames({
         [ccHelpText.helpText]: true,
-        [ccHelpText.helpTextInvalid]: isInvalid
+        [ccHelpText.helpTextColor]: !isInvalid,
+        [ccHelpText.helpTextColorInvalid]: isInvalid
       })}
     >
       {helpText}

@@ -103,7 +103,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {helpText && <div 
           className={classNames({
             [ccHelpText.helpText]: true,
-            [ccHelpText.helpTextInvalid]: isInvalid
+            [ccHelpText.helpTextColor]: !isInvalid,
+            [ccHelpText.helpTextColorInvalid]: isInvalid
           })}
           id={helpId}
           >{helpText}</div>}

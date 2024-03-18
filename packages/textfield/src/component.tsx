@@ -100,7 +100,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {helpText && (
             <div className={classNames({
               [ccHelpText.helpText]: true,
-              [ccHelpText.helpTextInvalid]: isInvalid
+              [ccHelpText.helpTextColor]: !isInvalid,
+              [ccHelpText.helpTextColorInvalid]: isInvalid
             })} id={helpId}>
               {helpText}
             </div>
