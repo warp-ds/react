@@ -67,11 +67,11 @@ export function Highlight() {
         </div>
         <Attention 
           highlight
-          placement='right-start'
+          placement='bottom-end'
           isShowing={show}
           targetEl={targetEl}
           flip={true}
-          fallbackPlacements={['bottom-end']}
+          fallbackPlacements={['bottom']}
           id='highlight-attention-example'
           className='max-w-[359px]'
         >
@@ -254,6 +254,7 @@ export function PopoverIconAsTargetEl() {
         popover
         placement='bottom-end'
         flip
+        fallbackPlacements={['bottom']}
         distance={2}
         skidding={12}
         targetEl={targetEl}
