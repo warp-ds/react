@@ -201,14 +201,12 @@ export function Popover() {
       >
         <ul className='bg-white w-full text-center'>
           <li
-            tabIndex={0}
-            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+            className='p-2 px-40'
           >
             Hello
           </li>
           <li
-            tabIndex={0}
-            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+            className='p-2 px-40'
           >
             World
           </li>
@@ -264,14 +262,12 @@ export function PopoverIconAsTargetEl() {
       >
         <ul className='bg-white w-full text-center'>
           <li
-            tabIndex={0}
-            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+            className='p-2 px-40'
           >
             Hello
           </li>
           <li
-            tabIndex={0}
-            className='p-2 px-40 hover:bg-blue-200 hover:text-blue-500 cursor-pointer'
+            className='p-2 px-40'
           >
             World
           </li>
