@@ -18,6 +18,24 @@ describe('Attention component', () => {
    })
 })
 
+describe('ArrowEl', () => {
+  it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
+    const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
+    const arrowDiv = container.children[0].children[0].children[0]
+    expect(arrowDiv).toHaveClass('-left-[8px]')
+   })
+   it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
+    const { container } = render(<Attention popover placement='bottom'><p>I am a popover on the left</p></Attention>)
+    const arrowDiv = container.children[0].children[0].children[0]
+    expect(arrowDiv).toHaveClass('-top-[8px]')
+   })
+   it('should not position the arrowEl to the top if AttentionEl has placement="right"', () => {
+    const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
+    const arrowDiv = container.children[0].children[0].children[0]
+    expect(arrowDiv).not.toHaveClass('-top-[8px]')
+   })
+})
+
 describe('Usage of aria-label attribute', () => {
   it('renders popover with default aria-label', () => {
     render(<Attention popover isShowing={true}><p>I am a popover with default aria-label</p></Attention>)
