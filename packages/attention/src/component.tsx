@@ -53,7 +53,7 @@ export function Attention(props: AttentionProps) {
     distance = 8,
     skidding = 0,
     flip = false,
-    fallbackPlacements = undefined,
+    fallbackPlacements,
     ...rest
   } = props
 
