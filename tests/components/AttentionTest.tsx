@@ -55,18 +55,18 @@ describe('Different variants of Attention component', () => {
 describe('ArrowEl', () => {
   it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
     const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
-    const arrowDiv = container.children[0].children[0].children[0]
-    expect(arrowDiv).toHaveClass('-left-[8px]')
+    const arrowEl = container.children[0].children[0].children[0]
+    expect(arrowEl).toHaveClass('-left-[8px]')
    })
    it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
     const { container } = render(<Attention popover placement='bottom'><p>I am a popover on the left</p></Attention>)
-    const arrowDiv = container.children[0].children[0].children[0]
-    expect(arrowDiv).toHaveClass('-top-[8px]')
+    const arrowEl = container.children[0].children[0].children[0]
+    expect(arrowEl).toHaveClass('-top-[8px]')
    })
    it('should not position the arrowEl to the top if AttentionEl has placement="right"', () => {
     const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
-    const arrowDiv = container.children[0].children[0].children[0]
-    expect(arrowDiv).not.toHaveClass('-top-[8px]')
+    const arrowEl = container.children[0].children[0].children[0]
+    expect(arrowEl).not.toHaveClass('-top-[8px]')
    })
 })
 
