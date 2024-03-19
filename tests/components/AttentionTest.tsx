@@ -2,19 +2,53 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
+import { attention as ccAttention } from '@warp-ds/css/component-classes';
 
 
 describe('Attention component', () => {
-  it('should not show Attention component when isShowing is false"', () => {
+  it('should not show Attention component when isShowing is false', () => {
     const { container } = render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
 
     expect(container.firstChild).toHaveClass('hidden')
    })
 
-   it('should show attention component when isShowing is true"', () => {
+   it('should show attention component when isShowing is true', () => {
     const {container} = render(<Attention callout placement='right' isShowing={true}><p>I am a callout</p></Attention>)
 
    expect(container.firstChild).not.toHaveClass('hidden')
+   })
+})
+
+describe('Different variants of Attention component', () => {
+  it('should show Attention component as a callout', () => {
+    const { container } = render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
+    const attentionEl = container.children[0].children[0]
+    expect(attentionEl).toHaveClass(ccAttention.callout)
+   })
+
+   it('should show Attention component as a highlight', () => {
+    const { container } = render(<Attention highlight placement='bottom'><p>I am a highlight</p></Attention>)
+    const attentionEl = container.children[0].children[0]
+
+    expect(attentionEl).toHaveClass(ccAttention.highlight)
+   })
+   it('should show Attention component as a tooltip', () => {
+    const { container } = render(<Attention tooltip placement='top'><p>I am a tooltip</p></Attention>)
+    const attentionEl = container.children[0].children[0]
+
+    expect(attentionEl).toHaveClass(ccAttention.tooltip)
+   })
+   it('should show Attention component as a popover', () => {
+    const { container } = render(<Attention popover placement='bottom'><p>I am a popover</p></Attention>)
+    const attentionEl = container.children[0].children[0]
+
+    expect(attentionEl).toHaveClass(ccAttention.popover)
+   })
+   it('should not show Attention component as a popover', () => {
+    const { container } = render(<Attention tooltip placement='bottom'><p>I am a NOT a popover</p></Attention>)
+    const attentionEl = container.children[0].children[0]
+
+    expect(attentionEl).not.toHaveClass(ccAttention.popover)
    })
 })
 
