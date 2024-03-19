@@ -197,6 +197,7 @@ export function Popover() {
         placement='bottom'
         targetEl={targetEl}
         isShowing={show}
+        id='popover-attention-example'
       >
         <ul className='bg-white w-full text-center'>
           <li
@@ -259,6 +260,7 @@ export function PopoverIconAsTargetEl() {
         skidding={12}
         targetEl={targetEl}
         isShowing={show}
+        id='popover-icon-target-el-attention-example'
       >
         <ul className='bg-white w-full text-center'>
           <li
