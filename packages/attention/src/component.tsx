@@ -230,6 +230,7 @@ export function Attention(props: AttentionProps) {
   
   return (
     <div
+      data-testid="attention-el"
       className={classNames(
         {
           [ccAttention.notCallout]: !props.callout,
