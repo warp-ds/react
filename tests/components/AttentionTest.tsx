@@ -1,11 +1,75 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
+import { Box } from '../../packages/box/src/component';
+import { Button } from '../../packages/button/src/component';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
 
+const onClickFunction = vi.fn();
+const mockTargetEl = { current: document.createElement('div')}
+let mockIsShowing = false
 
 describe('Attention component', () => {
+  beforeEach(() => {
+    render(
+      <div>
+      <Button
+        small
+        utility
+        onClick={() => {
+          mockIsShowing = !mockIsShowing;
+          onClickFunction(mockIsShowing);
+        }}
+      >
+        Show an onboarding hint
+      </Button>
+      <div>
+        <div ref={() => mockTargetEl}>
+          <Box info>
+            <h1>I am a box full with lots of info to show you how the attention element will change its placement in order to stay in view.</h1>
+          </Box>
+        </div>
+        <Attention 
+          highlight
+          placement='bottom-end'
+          isShowing={mockIsShowing}
+          targetEl={mockTargetEl}
+        >
+          <p>
+            I'm a highlight because that box over there is new or something and I need to have a lot of text!
+          </p>
+        </Attention>
+      </div>
+    </div>
+    )
+  })
+
+  afterEach(() => {
+    vi.resetAllMocks();
+  })
+
+  it('Attention component renders with mocked props', () => {
+   const attentionElement = screen.getByText("I'm a highlight because that box over there is new or something and I need to have a lot of text!");
+   
+   expect(attentionElement).toBeInTheDocument();
+   expect(mockTargetEl.current).toBeDefined();
+   expect(mockIsShowing).toBe(false);
+ });
+
+  it('Button onClick toggles Attentions show state', () => {
+    const button = screen.getByText('Show an onboarding hint');
+    
+    expect(mockIsShowing).toBe(false);
+    
+    fireEvent.click(button);
+
+    expect(onClickFunction).toHaveBeenCalledTimes(1);
+    expect(onClickFunction).toHaveBeenCalledWith(true);
+    expect(mockIsShowing).toBe(true);
+   })
+
+
   it('should not show Attention component when isShowing is false', () => {
     const { container } = render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
 
