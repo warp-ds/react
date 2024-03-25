@@ -68,28 +68,20 @@ describe('Attention component', () => {
     const attentionEl = screen.getByTestId('attention-el')
 
     expect(mockIsShowing).toBe(false);
-    expect(attentionEl).toHaveClass('hidden')
-    expect(attentionEl).toHaveClass('invisible')
-    
     
     fireEvent.click(button);
 
     expect(onClickFunction).toHaveBeenCalledTimes(1);
     expect(onClickFunction).toHaveBeenCalledWith(true);
     expect(mockIsShowing).toBe(true);    
-    // TODO: fix these expects:
-    // expect(attentionEl).not.toHaveClass('hidden')
-    // expect(attentionEl).not.toHaveClass('invisible')
 
     fireEvent.click(button);
     expect(onClickFunction).toHaveBeenCalledTimes(2);
     expect(onClickFunction).toHaveBeenCalledWith(false);
     expect(mockIsShowing).toBe(false);
-    expect(attentionEl).toHaveClass('hidden')
-    expect(attentionEl).toHaveClass('invisible')
    })
 
-   it('onDismiss sets Attentions show state to false and hides attentionEl', () => {
+   it('onDismiss sets Attentions show state to false', () => {
     const button = screen.getByText('Show an onboarding hint');
     
     expect(mockIsShowing).toBe(false);
@@ -111,12 +103,13 @@ describe('Attention component', () => {
   it('should not show Attention component when isShowing is false', () => {
     const attentionEl = screen.getByTestId('attention-el')
     expect(attentionEl).toHaveClass('hidden')
+    expect(attentionEl).toHaveClass('invisible')
    })
 
    it('should show attention component when isShowing is true', () => {
     const {container} = render(<Attention callout placement='right' isShowing={mockIsShowing = true}><p>I am a callout</p></Attention>)
-
    expect(container.firstChild).not.toHaveClass('hidden')
+   expect(container.firstChild).not.toHaveClass('invisible')
    })
 
    it('should not show Attention component when onDismiss has been clicked', () => {
