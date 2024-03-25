@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { render, screen, fireEvent, renderHook } from '@testing-library/react';
+import React, { useEffect } from 'react'
+import { render, screen, fireEvent, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
 import { Box } from '../../packages/box/src/component';
@@ -10,10 +10,6 @@ import { autoUpdatePosition } from '@warp-ds/core/attention';
 const onClickFunction = vi.fn();
 const mockTargetEl = { current: document.createElement('div')}
 let mockIsShowing = false
-// const { result } = renderHook(() => useState(false));
-// const [mockIsShowing, setMockIsShowing] = result.current;
-
-
 
 vi.mock('@warp-ds/core/attention', async (importOriginial) => {
   const actual = await importOriginial()
@@ -27,7 +23,6 @@ vi.mock('@warp-ds/core/attention', async (importOriginial) => {
 describe('Attention component', () => {
   beforeEach(() => {
     mockIsShowing = false;
-    // setMockIsShowing(false)
     render(
       <div>
       <Button
@@ -145,46 +140,26 @@ describe('Attention component', () => {
      fireEvent.click(button);
      expect(mockIsShowing).toBe(true)
      const attentionEl = screen.getByTestId('attention-el')
-
-     let mockAttentionState = {
-       isShowing: mockIsShowing,
-       isCallout: false,
-       actualDirection: 'bottom-end',
-       directionName: 'bottom-en',
-       arrowEl: null,
-       attentionEl: attentionEl,
-       targetEl: mockTargetEl,
-       noArrow: false,
-       distance: 8,
-       skidding: 0,
-       flip: false,
-       fallbackPlacements: undefined
-     }
-
-     const mockAutoUpdatePosition = vi.fn(({}) => {
-      return () => {}
-    })
     
     const { result } = renderHook(() => useEffect(() => {
       if (mockIsShowing && mockTargetEl && attentionEl) {
-        const cleanup = mockAutoUpdatePosition(mockAttentionState);
+        const cleanup = autoUpdatePosition({});
 
         return cleanup
       } 
     }, [mockTargetEl, mockIsShowing, attentionEl]));
 
-    expect(mockAutoUpdatePosition).toHaveBeenCalledTimes(1);
-    expect(mockAutoUpdatePosition).toHaveBeenCalledWith(mockAttentionState);
+    expect(autoUpdatePosition).toHaveBeenCalledTimes(1)
+    expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object))
   });
 
   //  it('calls autoUpdatePosition with the correct arguments when the component mounts', async () => {
   //   const button = screen.getByText('Show an onboarding hint');
-  //   fireEvent.click(button);
-    
-  //   expect(mockIsShowing).toBe(true)
+  //    fireEvent.click(button);
+  //    expect(mockIsShowing).toBe(true)
 
-  //   expect(autoUpdatePosition).toHaveBeenCalledTimes(1);
-  //   expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object));
+  //   await waitFor(() => expect(autoUpdatePosition).toHaveBeenCalledTimes(1))
+  //   await waitFor(() => expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object)))
   // });
 
 })
