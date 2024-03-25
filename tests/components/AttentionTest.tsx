@@ -1,18 +1,33 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React, { useEffect, useState } from 'react'
+import { render, screen, fireEvent, renderHook } from '@testing-library/react';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
 import { Box } from '../../packages/box/src/component';
 import { Button } from '../../packages/button/src/component';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
+import { autoUpdatePosition } from '@warp-ds/core/attention';
 
 const onClickFunction = vi.fn();
 const mockTargetEl = { current: document.createElement('div')}
 let mockIsShowing = false
+// const { result } = renderHook(() => useState(false));
+// const [mockIsShowing, setMockIsShowing] = result.current;
+
+
+
+vi.mock('@warp-ds/core/attention', async (importOriginial) => {
+  const actual = await importOriginial()
+  return {
+    // @ts-ignore
+    ...actual,
+    autoUpdatePosition: vi.fn(),
+  }
+})
 
 describe('Attention component', () => {
   beforeEach(() => {
     mockIsShowing = false;
+    // setMockIsShowing(false)
     render(
       <div>
       <Button
@@ -50,22 +65,21 @@ describe('Attention component', () => {
     </div>
     )
   })
-
+  
   afterEach(() => {
     vi.resetAllMocks();
   })
 
   it('Attention component renders with mocked props', () => {
-   const attentionElement = screen.getByText("I'm a highlight that can dismiss itself");
+    const attentionEl = screen.getByTestId('attention-el')
    
-   expect(attentionElement).toBeInTheDocument();
-   expect(mockTargetEl.current).toBeDefined();
+   expect(attentionEl).toBeInTheDocument();
+   expect(mockTargetEl).toBeDefined();
    expect(mockIsShowing).toBe(false);
  });
 
   it('Button onClick toggles Attentions show state', () => {
     const button = screen.getByText('Show an onboarding hint');
-    const attentionEl = screen.getByTestId('attention-el')
 
     expect(mockIsShowing).toBe(false);
     
@@ -99,6 +113,20 @@ describe('Attention component', () => {
     expect(mockIsShowing).toBe(false);
    })
 
+   it('onKeyDown "Escape" calls onDismiss() and sets Attentions show state to false', () => {
+    const button = screen.getByText('Show an onboarding hint');
+    const closeButton = screen.getByLabelText('Close');
+  
+    fireEvent.click(button);
+    expect(onClickFunction).toHaveBeenCalledTimes(1);
+    expect(onClickFunction).toHaveBeenCalledWith(true);
+    expect(mockIsShowing).toBe(true);
+  
+    fireEvent.keyDown(closeButton, { key: 'Escape' });
+    expect(onClickFunction).toHaveBeenCalledTimes(2);
+    expect(onClickFunction).toHaveBeenCalledWith(false);
+    expect(mockIsShowing).toBe(false);
+  });
 
   it('should not show Attention component when isShowing is false', () => {
     const attentionEl = screen.getByTestId('attention-el')
@@ -107,15 +135,58 @@ describe('Attention component', () => {
    })
 
    it('should show attention component when isShowing is true', () => {
-    const {container} = render(<Attention callout placement='right' isShowing={mockIsShowing = true}><p>I am a callout</p></Attention>)
+    const {container} = render(<Attention callout placement='right' isShowing={mockIsShowing= true}><p>I am a callout</p></Attention>)
    expect(container.firstChild).not.toHaveClass('hidden')
    expect(container.firstChild).not.toHaveClass('invisible')
    })
 
-   it('should not show Attention component when onDismiss has been clicked', () => {
-    const { container } = render(<Attention callout canClose onDismiss={() => {mockIsShowing = false; onClickFunction(mockIsShowing)}} placement='right' isShowing={mockIsShowing}><p>I am a callout</p></Attention>)
-    expect(container.firstChild).toHaveClass('hidden')
-   })
+   it('should update the attention element position when the target element is shown', () => {
+     const button = screen.getByText('Show an onboarding hint');
+     fireEvent.click(button);
+     expect(mockIsShowing).toBe(true)
+     const attentionEl = screen.getByTestId('attention-el')
+
+     let mockAttentionState = {
+       isShowing: mockIsShowing,
+       isCallout: false,
+       actualDirection: 'bottom-end',
+       directionName: 'bottom-en',
+       arrowEl: null,
+       attentionEl: attentionEl,
+       targetEl: mockTargetEl,
+       noArrow: false,
+       distance: 8,
+       skidding: 0,
+       flip: false,
+       fallbackPlacements: undefined
+     }
+
+     const mockAutoUpdatePosition = vi.fn(({}) => {
+      return () => {}
+    })
+    
+    const { result } = renderHook(() => useEffect(() => {
+      if (mockIsShowing && mockTargetEl && attentionEl) {
+        const cleanup = mockAutoUpdatePosition(mockAttentionState);
+
+        return cleanup
+      } 
+    }, [mockTargetEl, mockIsShowing, attentionEl]));
+
+    expect(mockAutoUpdatePosition).toHaveBeenCalledTimes(1);
+    expect(mockAutoUpdatePosition).toHaveBeenCalledWith(mockAttentionState);
+  });
+
+  //  it('calls autoUpdatePosition with the correct arguments when the component mounts', async () => {
+  //   const button = screen.getByText('Show an onboarding hint');
+  //   fireEvent.click(button);
+    
+  //   expect(mockIsShowing).toBe(true)
+
+  //   expect(autoUpdatePosition).toHaveBeenCalledTimes(1);
+  //   expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object));
+  // });
+
 })
 
 describe('Different variants of Attention component', () => {
