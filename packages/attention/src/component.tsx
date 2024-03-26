@@ -4,7 +4,8 @@ import {
   opposites,
   autoUpdatePosition,
   arrowDirectionClassname,
-  useRecompute as recompute
+  useRecompute as recompute,
+  Directions,
 } from '@warp-ds/core/attention'
 import { attention as ccAttention } from '@warp-ds/css/component-classes'
 import { ArrowProps, AttentionProps, AttentionVariants } from './props.js'
@@ -36,6 +37,83 @@ const variantClasses = {
 
 const getVariant = (variantProps: AttentionVariants) => {
   return Object.keys(variantClasses).find((b) => !!variantProps[b]) || ''
+}
+export const pointingAtDirection = (actualDirection: Directions) => {
+  switch (opposites[actualDirection]) {
+    case 'top-start':
+    case 'top':
+    case 'top-end':
+      return i18n._({
+        id: 'attention.aria.pointingUp',
+        message: 'pointing up',
+        comment:
+          'Default screenreader message for top direction in the attention component',
+      })
+    case 'right-start':
+    case 'right':
+    case 'right-end':
+      return i18n._({
+        id: 'attention.aria.pointingRight',
+        message: 'pointing right',
+        comment:
+          'Default screenreader message for right direction in the attention component',
+      })
+    case 'bottom-start':
+    case 'bottom':
+    case 'bottom-end':
+      return i18n._({
+        id: 'attention.aria.pointingDown',
+        message: 'pointing down',
+        comment:
+          'Default screenreader message for bottom direction in the attention component',
+      })
+    case 'left-start':
+    case 'left':
+    case 'left-end':
+      return i18n._({
+        id: 'attention.aria.pointingLeft',
+        message: 'pointing left',
+        comment:
+          'Default screenreader message for left direction in the attention component',
+      })
+    default:
+      return ''
+  }
+}
+
+export const activeAttentionType = (props: AttentionProps) => {
+  switch (true) {
+    case props.tooltip:
+      return i18n._({
+        id: 'attention.aria.tooltip',
+        message: 'tooltip',
+        comment:
+          'Default screenreader message for tooltip in the attention component',
+      })
+    case props.callout:
+      return i18n._({
+        id: 'attention.aria.callout',
+        message: 'callout speech bubble',
+        comment:
+          'Default screenreader message for callout speech bubble in the attention component',
+      })
+    case props.popover:
+      return i18n._({
+        id: 'attention.aria.popover',
+        message: 'popover speech bubble',
+        comment:
+          'Default screenreader message for popover speech bubble in the attention component',
+      })
+    case props.highlight:
+      return i18n._({
+        id: 'attention.aria.highlight',
+        message: 'highlighted speech bubble',
+        comment:
+          'Default screenreader message for highlighted speech bubble in the attention component',
+      })
+    default:
+      return ''
+  }
 }
 
 export function Attention(props: AttentionProps) {
@@ -71,7 +149,7 @@ export function Attention(props: AttentionProps) {
   const isMounted = useRef(true)
   const attentionEl = useRef<HTMLDivElement | null>(null)
   const arrowEl = useRef<HTMLDivElement | null>(null)
-  
+
   const attentionState = {
     get isShowing() {
       return isShowing
@@ -103,109 +181,29 @@ export function Attention(props: AttentionProps) {
     get noArrow() {
       return props.noArrow
     },
-    get distance(){
+    get distance() {
       return distance
     },
-    get skidding(){
+    get skidding() {
       return skidding
     },
-    get flip(){
+    get flip() {
       return flip
     },
-    get fallbackPlacements(){
+    get fallbackPlacements() {
       return fallbackPlacements
-    }
+    },
   }
-
-  //TODO: See if we can move this function to the core-repo:
-  const pointingAtDirection = (() => {
-    switch (opposites[actualDirection]) {
-      case 'top-start':
-      case 'top':
-      case 'top-end':
-        return i18n._({
-          id: 'attention.aria.pointingUp',
-          message: 'pointing up',
-          comment:
-            'Default screenreader message for top direction in the attention component',
-        })
-      case 'right-start':
-      case 'right':
-      case 'right-end':
-        return i18n._({
-          id: 'attention.aria.pointingRight',
-          message: 'pointing right',
-          comment:
-            'Default screenreader message for right direction in the attention component',
-        })
-      case 'bottom-start':
-      case 'bottom':
-      case 'bottom-end':
-        return i18n._({
-          id: 'attention.aria.pointingDown',
-          message: 'pointing down',
-          comment:
-            'Default screenreader message for bottom direction in the attention component',
-        })
-      case 'left-start':
-      case 'left':
-      case 'left-end':
-        return i18n._({
-          id: 'attention.aria.pointingLeft',
-          message: 'pointing left',
-          comment:
-            'Default screenreader message for left direction in the attention component',
-        })
-      default:
-        return ''
-    }
-  })()
-
-  // TODO: See if we can move this function to the core repo:
-  const activeAttentionType = (() => {
-    switch (true) {
-      case props.tooltip:
-        return i18n._({
-          id: 'attention.aria.tooltip',
-          message: 'tooltip',
-          comment:
-            'Default screenreader message for tooltip in the attention component',
-        })
-      case props.callout:
-        return i18n._({
-          id: 'attention.aria.callout',
-          message: 'callout speech bubble',
-          comment:
-            'Default screenreader message for callout speech bubble in the attention component',
-        })
-      case props.popover:
-        return i18n._({
-          id: 'attention.aria.popover',
-          message: 'popover speech bubble',
-          comment:
-            'Default screenreader message for popover speech bubble in the attention component',
-        })
-      case props.highlight:
-        return i18n._({
-          id: 'attention.aria.highlight',
-          message: 'highlighted speech bubble',
-          comment:
-            'Default screenreader message for highlighted speech bubble in the attention component',
-        })
-      default:
-        return ''
-    }
-  })()
 
   // TODO: See if we can move this function to the core repo:
   const defaultAriaLabel = () => {
-    return `${activeAttentionType} ${!props.noArrow ? pointingAtDirection : ''}`
+    return `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`
   }
-  
+
   useEffect(() => {
     recompute(attentionState)
   }, [attentionState])
-    
+
   useEffect(() => {
     if (isMounted.current) {
       isMounted.current = false
@@ -217,20 +215,20 @@ export function Attention(props: AttentionProps) {
       setIsVisible(isShowing)
     }
   }, [isShowing, props.callout])
-  
+
   // @ts-ignore
   useEffect(() => {
     if (isShowing && targetEl && attentionEl) {
-        // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element 
-       const cleanup = autoUpdatePosition(attentionState);
+      // starts the autoUpdate, making sure the attention elements's position stays anchored to the target element
+      const cleanup = autoUpdatePosition(attentionState)
 
-       return cleanup
-    } 
+      return cleanup
+    }
   }, [targetEl, isShowing, attentionEl])
-  
+
   return (
     <div
-      data-testid="attention-el"
+      data-testid='attention-el'
       className={classNames(
         {
           [ccAttention.notCallout]: !props.callout,
@@ -282,20 +280,13 @@ export function Attention(props: AttentionProps) {
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
   ({ direction, ...rest }, ref) => {
-    const arrowDirection = opposites[direction];
+    const arrowDirection = opposites[direction]
     const arrowClasses = classNames(
       ccAttention.arrowBase,
       ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
       variantClasses[getVariant(rest)].arrow
     )
 
-    return (
-      <div
-        ref={ref}
-        className={arrowClasses}
-      />
-    )
+    return <div ref={ref} className={arrowClasses} />
   }
 )
-
-
