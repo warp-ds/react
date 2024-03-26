@@ -1,38 +1,16 @@
-import React, { useEffect } from 'react'
-import { render, screen, fireEvent, renderHook, waitFor } from '@testing-library/react';
+import React from 'react'
+import { render, screen, fireEvent, renderHook } from '@testing-library/react';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { Attention } from '../../packages/attention/src/component';
 import { Box } from '../../packages/box/src/component';
 import { Button } from '../../packages/button/src/component';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import { autoUpdatePosition } from '@warp-ds/core/attention';
-import { pointingAtDirection, activeAttentionType } from '../../packages/attention/src/component';
 import { Directions } from '@warp-ds/core/attention'
-
-
+import { activeAttentionType, pointingAtDirection, useAutoUpdatePosition, getVariant } from '../../packages/_helpers/attention';
 
 const onClickFunction = vi.fn();
 const mockTargetEl = { current: document.createElement('div')}
 let mockIsShowing = false
-
-// vi.mock('@warp-ds/core/attention', async (importOriginial) => {
-//   const actual = await importOriginial()
-//   return {
-//     // @ts-ignore
-//     ...actual,
-//     autoUpdatePosition: vi.fn(),
-//   }
-// })
-
-// vi.mock('../../packages/attention/src/component', async (importOriginial) => {
-//   const actual = await importOriginial()
-//   return {
-//     // @ts-ignore
-//     ...actual,
-//     pointingAtDirection: vi.fn(),
-//     activeAttentionType: vi.fn(),
-//   }
-// })
 
 describe('Attention component', () => {
   beforeEach(() => {
@@ -148,35 +126,59 @@ describe('Attention component', () => {
    expect(container.firstChild).not.toHaveClass('hidden')
    expect(container.firstChild).not.toHaveClass('invisible')
    })
-
-  //  it('should update the attention element position when the target element is shown', () => {
-  //    const button = screen.getByText('Show an onboarding hint');
-  //    fireEvent.click(button);
-  //    expect(mockIsShowing).toBe(true)
-  //    const attentionEl = screen.getByTestId('attention-el')
-    
-  //   const { result } = renderHook(() => useEffect(() => {
-  //     if (mockIsShowing && mockTargetEl && attentionEl) {
-  //       const cleanup = autoUpdatePosition({});
-
-  //       return cleanup
-  //     } 
-  //   }, [mockTargetEl, mockIsShowing, attentionEl]));
-
-  //   expect(autoUpdatePosition).toHaveBeenCalledTimes(1)
-  //   expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object))
-  // });
-
-  //  it('calls autoUpdatePosition with the correct arguments when the component mounts', async () => {
-  //   const button = screen.getByText('Show an onboarding hint');
-  //    fireEvent.click(button);
-  //    expect(mockIsShowing).toBe(true)
-
-  //   await waitFor(() => expect(autoUpdatePosition).toHaveBeenCalledTimes(1))
-  //   await waitFor(() => expect(autoUpdatePosition).toHaveBeenCalledWith(expect.any(Object)))
-  // });
-
 })
+
+describe('useEffect for autoUpdatePosition', () => {
+  it('should call autoUpdatePosition when isShowing, targetEl, and attenttionEl are defined', () => {
+    const targetEl: any = document.createElement('div');
+    const attentionEl:any = document.createElement('div');
+    const isShowing = true;
+    const autoUpdatePositionMock = vi.fn()
+    const mockedAttentionState = {}
+
+    const { unmount } = renderHook(() => 
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState)
+    )
+    expect(autoUpdatePositionMock).toHaveBeenCalled();
+
+    unmount()
+  })
+})
+
+describe('getVariant function', () => {
+  const variantClasses = {
+    callout: {
+      wrapper: ccAttention.callout,
+      arrow: ccAttention.arrowCallout,
+    },
+    highlight: {
+      wrapper: ccAttention.highlight,
+      arrow: ccAttention.arrowHighlight,
+    },
+    tooltip: {
+      wrapper: ccAttention.tooltip,
+      arrow: ccAttention.arrowTooltip,
+    },
+    popover: {
+      wrapper: ccAttention.popover,
+      arrow: ccAttention.arrowPopover,
+    },
+  }
+
+  it('should return the correct variant based on variantProps', () => {
+    const variantProps = {
+      callout: true,
+      highlight: false,
+      tooltip: false,
+      popover: false,
+    };
+
+    const result = getVariant(variantProps, variantClasses);
+
+    expect(result).toBe('callout');
+  });
+})
+
 describe('pointingAtDirection function returns correct message based on direction', () => {
   type TestCase = {
     direction: Directions,

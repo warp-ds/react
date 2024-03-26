@@ -1,9 +1,9 @@
 import { MutableRefObject } from 'react';
 import { Directions } from '@warp-ds/core/attention'
 
-type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
+export type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
 
-type ReferenceElement = Element | VirtualElement
+export type ReferenceElement = Element | VirtualElement
 
 export type AttentionVariants = {
   /**
