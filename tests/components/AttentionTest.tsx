@@ -143,6 +143,34 @@ describe('useEffect for autoUpdatePosition', () => {
 
     unmount()
   })
+  it('should not call autoUpdatePosition if isShowing, targetEl, or attenttionEl are undefined', () => {
+    const targetEl: any = undefined;
+    const attentionEl:any = document.createElement('div');
+    const isShowing = true;
+    const autoUpdatePositionMock = vi.fn()
+    const mockedAttentionState = {}
+
+    const { unmount } = renderHook(() => 
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState)
+    )
+    expect(autoUpdatePositionMock).not.toHaveBeenCalled();
+
+    unmount()
+  })
+  it('should not call autoUpdatePosition if isShowing is false', () => {
+    const targetEl: any = document.createElement('div');
+    const attentionEl:any = document.createElement('div');
+    const isShowing = false;
+    const autoUpdatePositionMock = vi.fn()
+    const mockedAttentionState = {}
+
+    const { unmount } = renderHook(() => 
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState)
+    )
+    expect(autoUpdatePositionMock).not.toHaveBeenCalled();
+
+    unmount()
+  })
 })
 
 describe('getVariant function', () => {
