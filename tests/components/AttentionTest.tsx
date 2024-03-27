@@ -126,7 +126,16 @@ describe('Attention component', () => {
    expect(container.firstChild).not.toHaveClass('hidden')
    expect(container.firstChild).not.toHaveClass('invisible')
    })
-})
+
+   it('should check that attentionState object has the correct properties and methods', async () => {
+     const attentionEl = screen.getByTestId('attention-el')
+     const attentionComponent = attentionEl?.firstChild as any
+     const attentionState = attentionComponent?.['attentionState'];
+     
+     expect(attentionState).toBeDefined();
+   })
+  })
+
 
 describe('useEffect for autoUpdatePosition', () => {
   it('should call autoUpdatePosition when isShowing, targetEl, and attenttionEl are defined', () => {
@@ -143,7 +152,7 @@ describe('useEffect for autoUpdatePosition', () => {
 
     unmount()
   })
-  it('should not call autoUpdatePosition if isShowing, targetEl, or attenttionEl are undefined', () => {
+  it('should not call autoUpdatePosition if isShowing, targetEl, or attenttionEl is undefined', () => {
     const targetEl: any = undefined;
     const attentionEl:any = document.createElement('div');
     const isShowing = true;
@@ -257,51 +266,47 @@ describe('activeAttentionType function returns correct message based on prop', (
 
 describe('Different variants of Attention component', () => {
   it('should show Attention component as a callout', () => {
-    const { container } = render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
-    const attentionEl = container.children[0].children[0]
+    render(<Attention callout placement='right'><p>I am a callout</p></Attention>)
+    const attentionEl = screen.getByTestId('attention-el').firstChild
     expect(attentionEl).toHaveClass(ccAttention.callout)
    })
 
    it('should show Attention component as a highlight', () => {
-    const { container } = render(<Attention highlight placement='bottom'><p>I am a highlight</p></Attention>)
-    const attentionEl = container.children[0].children[0]
-
+    render(<Attention highlight placement='bottom'><p>I am a highlight</p></Attention>)
+    const attentionEl = screen.getByTestId('attention-el').firstChild
     expect(attentionEl).toHaveClass(ccAttention.highlight)
    })
    it('should show Attention component as a tooltip', () => {
-    const { container } = render(<Attention tooltip placement='top'><p>I am a tooltip</p></Attention>)
-    const attentionEl = container.children[0].children[0]
-
+    render(<Attention tooltip placement='top'><p>I am a tooltip</p></Attention>)
+    const attentionEl = screen.getByTestId('attention-el').firstChild
     expect(attentionEl).toHaveClass(ccAttention.tooltip)
    })
    it('should show Attention component as a popover', () => {
-    const { container } = render(<Attention popover placement='bottom'><p>I am a popover</p></Attention>)
-    const attentionEl = container.children[0].children[0]
-
+    render(<Attention popover placement='bottom'><p>I am a popover</p></Attention>)
+    const attentionEl = screen.getByTestId('attention-el').firstChild
     expect(attentionEl).toHaveClass(ccAttention.popover)
    })
    it('should not show Attention component as a popover', () => {
-    const { container } = render(<Attention tooltip placement='bottom'><p>I am a NOT a popover</p></Attention>)
-    const attentionEl = container.children[0].children[0]
-
+    render(<Attention tooltip placement='bottom'><p>I am a NOT a popover</p></Attention>)
+    const attentionEl = screen.getByTestId('attention-el').firstChild
     expect(attentionEl).not.toHaveClass(ccAttention.popover)
    })
 })
 
 describe('ArrowEl', () => {
   it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
-    const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
-    const arrowEl = container.children[0].children[0].children[0]
+   render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
+    const arrowEl = screen.getByTestId('attention-arrow-el')
     expect(arrowEl).toHaveClass('-left-[8px]')
    })
    it('should position the arrowEl of the AttentionEl on the opposite side of depending on the placement prop', () => {
-    const { container } = render(<Attention popover placement='bottom'><p>I am a popover on the left</p></Attention>)
-    const arrowEl = container.children[0].children[0].children[0]
+   render(<Attention popover placement='bottom'><p>I am a popover on the left</p></Attention>)
+    const arrowEl = screen.getByTestId('attention-arrow-el')
     expect(arrowEl).toHaveClass('-top-[8px]')
    })
    it('should not position the arrowEl to the top if AttentionEl has placement="right"', () => {
-    const { container } = render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
-    const arrowEl = container.children[0].children[0].children[0]
+   render(<Attention popover placement='right'><p>I am a popover on the left</p></Attention>)
+    const arrowEl = screen.getByTestId('attention-arrow-el')
     expect(arrowEl).not.toHaveClass('-top-[8px]')
    })
 })

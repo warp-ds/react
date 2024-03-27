@@ -197,6 +197,6 @@ const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
       variantClasses[getVariant(rest, variantClasses)].arrow
     )
 
-    return <div ref={ref} className={arrowClasses} />
+    return <div data-testid='attention-arrow-el' ref={ref} className={arrowClasses} />
   }
 )
