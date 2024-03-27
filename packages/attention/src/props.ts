@@ -1,6 +1,9 @@
 import { MutableRefObject } from 'react';
+import { Directions } from '@warp-ds/core/attention'
 
-export type Directions = 'top' | 'right' | 'bottom' | 'left';
+export type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
+
+export type ReferenceElement = Element | VirtualElement
 
 export type AttentionVariants = {
   /**
@@ -67,12 +70,12 @@ export type AttentionProps = {
    * Placement according to the target element
    * Arrow would be on the opposite side of this position
    */
-  placement: Directions;
+  placement?: Directions;
 
   /**
    * Container the Attention component is rendered relatively to
    */
-  targetEl?: MutableRefObject<unknown>;
+  targetEl?: MutableRefObject<ReferenceElement | null>;
 
   /**
    * Extend the Attention component container styling
@@ -93,4 +96,22 @@ export type AttentionProps = {
    * Handler that is called when the close button is clicked
    */
   onDismiss?: () => void;
+
+  /**
+   * The distance from which to offset the attentionEl from the targetEl vertically
+   */
+distance?: number;
+ /**
+   * The distance from which to offset the attentionEl along its targetEl horizontally
+   */
+ skidding?: number;
+   /**
+   * Whether Attention element should flip its placement in order to keep it in view
+   */
+flip?: boolean;
+/**
+  * Choose which preferred placements the Attention element should flip to
+  */
+fallbackPlacements?: Directions[];
+
 } & AttentionVariants;
