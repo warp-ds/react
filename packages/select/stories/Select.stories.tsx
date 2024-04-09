@@ -40,6 +40,7 @@ export const invalid = () => {
   return (
   <div className="flex flex-col space-y-32">
     <WarpSelect
+      label="Berries"
       invalid={!valid}
       hint={!valid ? "Wrong choice" : ""}
       onChange={handleOnChange}

@@ -112,6 +112,7 @@ export const IndeterminateState = ({
         selected={selectedOptions}
         onChange={handleSelect}
         invalid={isInvalid}
+        helpText={isInvalid ? 'This is an error message' : undefined}
         disabled={isDisabled}
       />
     </>

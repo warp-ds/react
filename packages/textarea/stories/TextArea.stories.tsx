@@ -47,12 +47,7 @@ export const autoFocus = () => <TextArea label="Description" autoFocus />;
 
 export const disabled = () => <TextArea label="Description" disabled />;
 
-export const invalid = () => (
-  <div className="flex flex-col space-y-48">
-    <TextArea label="Description" invalid />
-    <TextArea label="Description" invalid helpText="Invalid text" />
-  </div>
-);
+export const invalid = () => <TextArea label="Description" invalid helpText="Invalid text" />;
 
 export const minimumRows3 = () => (
   <TextArea label="Description" minimumRows={3} />

@@ -54,10 +54,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             `}
           </style>
           {label && (
-            <label htmlFor={id} className={classNames({
-              [ccLabel.label]: true,
-              [ccLabel.labelInvalid]: isInvalid
-            })} >
+            <label htmlFor={id} className={ccLabel.label} >
               {label}
               {optional && (
                 <span className={ccLabel.optional}>
@@ -100,7 +97,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {helpText && (
             <div className={classNames({
               [ccHelpText.helpText]: true,
-              [ccHelpText.helpTextInvalid]: isInvalid
+              [ccHelpText.helpTextColor]: !isInvalid,
+              [ccHelpText.helpTextColorInvalid]: isInvalid
             })} id={helpId}>
               {helpText}
             </div>

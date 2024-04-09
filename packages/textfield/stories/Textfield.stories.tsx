@@ -92,12 +92,7 @@ export const helpText = () => (
   <TextField helpText="Necessary because of reasons" />
 );
 
-export const invalid = () => (
-  <div className="flex flex-col space-y-48">
-    <TextField invalid />
-    <TextField helpText="Error text" invalid />
-  </div>
-);
+export const invalid = () => <TextField helpText="Error text" invalid />;
 
 export const optional = () => (
   <div className="flex flex-col space-y-48">

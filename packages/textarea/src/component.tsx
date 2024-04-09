@@ -53,10 +53,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         style={style}
       >
         {label && (
-          <label htmlFor={id} className={classNames({
-            [ccLabel.label]: true,
-            [ccLabel.labelInvalid]: isInvalid
-          })} >
+          <label htmlFor={id} className={ccLabel.label} >
             {label}
             {optional && (
               <span className={ccLabel.optional}>
@@ -103,7 +100,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {helpText && <div 
           className={classNames({
             [ccHelpText.helpText]: true,
-            [ccHelpText.helpTextInvalid]: isInvalid
+            [ccHelpText.helpTextColor]: !isInvalid,
+            [ccHelpText.helpTextColorInvalid]: isInvalid
           })}
           id={helpId}
           >{helpText}</div>}
