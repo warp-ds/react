@@ -238,7 +238,6 @@ export function PopoverIconAsTargetEl() {
   <div className='flex items-center justify-center'>
     <div ref={containerRef}>
       <Button
-        small
         aria-expanded={show}
         aria-controls='popover-icon-target-el-attention-example'
         utility
