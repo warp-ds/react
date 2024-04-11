@@ -20,10 +20,9 @@ export function Card(props: CardProps) {
       className: classNames(props.className, {
         [ccCard.card]: true,
         [ccCard.cardShadow]: !props.flat,
-        [props.selected ? ccCard.cardSelected : ccCard.cardUnselected]: !props.flat,
+        [ccCard.cardSelected]: !props.flat && props.selected,
         [ccCard.cardFlat]: props.flat,
-        [props.selected ? ccCard.cardFlatSelected : ccCard.cardFlatUnselected]:
-          props.flat,
+        [props.selected ? ccCard.cardFlatSelected : ccCard.cardFlatUnselected]: props.flat,
       }),
       // @balbinak(08.11.22): onClick support in Card is deprecated. Remove when Fabric React users are ready for this major change
       tabIndex: props.onClick ? 0 : undefined,
@@ -54,11 +53,10 @@ export function Card(props: CardProps) {
 
       {!props.flat && (
         <div
-          className={classNames({
-            [ccCard.cardOutline]: true,
-            [props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected]:
-              true,
-          })}
+          className={classNames([
+            ccCard.cardOutline,
+            props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected,
+          ])}
         />
       )}
 
