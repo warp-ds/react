@@ -67,7 +67,7 @@ export function Highlight() {
         </div>
         <Attention 
           highlight
-          placement='bottom-end'
+          placement='right-start'
           isShowing={show}
           targetEl={targetEl}
           flip={true}
