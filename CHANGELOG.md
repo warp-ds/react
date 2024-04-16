@@ -1,3 +1,10 @@
+## [1.4.5-next.1](https://github.com/warp-ds/react/compare/v1.4.4...v1.4.5-next.1) (2024-04-16)
+
+
+### Bug Fixes
+
+* Styling fixes for Card component ([#229](https://github.com/warp-ds/react/issues/229)) ([a99dc9c](https://github.com/warp-ds/react/commit/a99dc9c24cd31857e3efe26da91e4e90aa118627))
+
 ## [1.4.4](https://github.com/warp-ds/react/compare/v1.4.3...v1.4.4) (2024-03-21)
 
 
