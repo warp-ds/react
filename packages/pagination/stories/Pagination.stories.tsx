@@ -6,7 +6,7 @@ export default metadata;
 
 const Example = ({ initialPage = 1, lastPage = 30, ...props }) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-
+  
   return (
     <>
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -29,5 +29,6 @@ export const Normal = () => (
     <Example initialPage={1} lastPage={10} aria-labelledby="pagination-1" />
     <Example initialPage={10} lastPage={20} aria-labelledby="pagination-2" />
     <Example initialPage={30} lastPage={30} aria-labelledby="pagination-3" />
+    <Example initialPage={1} lastPage={10} aria-labelledby="pagination-4" noFollow />
   </>
 );
