@@ -99,7 +99,7 @@ export function DismissibleHighlight() {
         Show an onboarding hint
       </Button>
       <div>
-        <div ref={targetEl} className="w-2/3">
+        <div ref={targetEl} className="w-2/3 mt-96">
           <Box info>
             <h1>I am a box full of info that shows how the highlight can change position on scroll/resize</h1>
           </Box>
