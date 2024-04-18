@@ -48,7 +48,7 @@ export function Highlight() {
   const targetEl = React.useRef<HTMLDivElement | null>(null)
 
   return (
-    <div className='flex flex-col justify-between h-[200]'>
+    <div className='flex flex-col justify-between h-[200] space-y-20'>
       <Button
         small
         aria-expanded={show}
@@ -60,9 +60,9 @@ export function Highlight() {
         Show an onboarding hint
       </Button>
       <div>
-        <div ref={targetEl} className="w-2/3">
+        <div ref={targetEl} className="w-1/3">
           <Box info>
-            <h1>I am a box full with lots of info to show you how the attention element will change its placement in order to stay in view.</h1>
+            <h1>I am a box full with lots of info to show you how the attention element is positioned on the right-top corner.</h1>
           </Box>
         </div>
         <Attention 
@@ -70,8 +70,6 @@ export function Highlight() {
           placement='right-start'
           isShowing={show}
           targetEl={targetEl}
-          flip={true}
-          fallbackPlacements={['bottom']}
           id='highlight-attention-example'
           className='max-w-[359px]'
         >
@@ -103,7 +101,7 @@ export function DismissibleHighlight() {
       <div>
         <div ref={targetEl} className="w-2/3">
           <Box info>
-            <h1>I am a box full of info</h1>
+            <h1>I am a box full of info that shows how the highlight can change position on scroll/resize</h1>
           </Box>
         </div>
         <Attention
@@ -251,8 +249,6 @@ export function PopoverIconAsTargetEl() {
       <Attention
         popover
         placement='bottom-end'
-        flip
-        fallbackPlacements={['bottom']}
         distance={2}
         skidding={12}
         targetEl={targetEl}
