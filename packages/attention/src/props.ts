@@ -109,6 +109,10 @@ distance?: number;
    * Whether Attention element should flip its placement in order to keep it in view
    */
 flip?: boolean;
+  /**
+   * Whether Attention element should ignore cross axis overflow when flip is enabled
+   */
+  crossAxis?: boolean;
 /**
   * Choose which preferred placements the Attention element should flip to
   */

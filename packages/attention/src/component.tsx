@@ -50,6 +50,7 @@ export function Attention(props: AttentionProps) {
     distance = 8,
     skidding = 0,
     flip = false,
+    crossAxis = false,
     fallbackPlacements,
     ...rest
   } = props
@@ -111,6 +112,9 @@ export function Attention(props: AttentionProps) {
     },
     get flip() {
       return flip
+    },
+    get crossAxis() {
+      return crossAxis
     },
     get fallbackPlacements() {
       return fallbackPlacements
