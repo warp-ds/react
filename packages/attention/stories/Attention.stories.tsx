@@ -112,6 +112,7 @@ export function DismissibleHighlight() {
           isShowing={show}
           targetEl={targetEl}
           flip={true}
+          crossAxis={true}
           fallbackPlacements={['right', 'top']}
           id='highlight-attention-example'
         >
