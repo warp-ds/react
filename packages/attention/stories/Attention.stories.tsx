@@ -68,7 +68,6 @@ export function Highlight() {
         <Attention 
           highlight
           placement='right-start'
-          flip={true}
           isShowing={show}
           targetEl={targetEl}
           id='highlight-attention-example'
@@ -113,7 +112,6 @@ export function DismissibleHighlight() {
           isShowing={show}
           targetEl={targetEl}
           flip={true}
-          crossAxis={true}
           fallbackPlacements={['right', 'top']}
           id='highlight-attention-example'
         >
