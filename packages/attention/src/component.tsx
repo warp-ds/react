@@ -144,54 +144,58 @@ export function Attention(props: AttentionProps) {
   useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePosition, attentionState)
   
   return (
-    <div
-      data-testid='attention-el'
-      className={classNames(
-        {
-          [ccAttention.notCallout]: !props.callout,
-          invisible: !isVisible && !props.callout,
-          hidden: !isVisible && !props.tooltip,
-        },
-        className
-      )}
-      ref={attentionEl}
-    >
-      <div
-        role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
-        aria-label={
-          ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()
-        }
-        className={wrapperClasses}
-        id={props.id}
-      >
-        {!props.noArrow && (
-          <Arrow {...props} ref={arrowEl} direction={actualDirection} />
-        )}
-        <div className={ccAttention.content}>{props.children}</div>
-        {canClose && (
-          <button
-            type='button'
-            aria-label={i18n._(
-              /*i18n*/ {
-                id: 'attention.aria.close',
-                message: 'Close',
-                comment: 'Aria label for the close button in attention',
-              }
-            )}
-            onClick={onDismiss}
-            onKeyDown={(event) => {
-              if (!props.onDismiss) return
-              if (event.key === 'Escape') {
-                props.onDismiss()
-              }
-            }}
-            className={ccAttention.closeBtn}
+    <>
+      {(props.callout || (props.targetEl !== undefined && !props.callout)) && (
+        <div
+          data-testid='attention-el'
+          className={classNames(
+            {
+              [ccAttention.notCallout]: !props.callout,
+              invisible: !isVisible && !props.callout,
+              hidden: !isVisible && !props.tooltip,
+            },
+            className
+          )}
+          ref={attentionEl}
+        >
+          <div
+            role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
+            aria-label={
+              ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()
+            }
+            className={wrapperClasses}
+            id={props.id}
           >
-            <IconClose16 />
-          </button>
-        )}
-      </div>
-    </div>
+            {!props.noArrow && (
+              <Arrow {...props} ref={arrowEl} direction={actualDirection} />
+            )}
+            <div className={ccAttention.content}>{props.children}</div>
+            {canClose && (
+              <button
+                type='button'
+                aria-label={i18n._(
+                  /*i18n*/ {
+                    id: 'attention.aria.close',
+                    message: 'Close',
+                    comment: 'Aria label for the close button in attention',
+                  }
+                )}
+                onClick={onDismiss}
+                onKeyDown={(event) => {
+                  if (!props.onDismiss) return
+                  if (event.key === 'Escape') {
+                    props.onDismiss()
+                  }
+                }}
+                className={ccAttention.closeBtn}
+              >
+                <IconClose16 />
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
