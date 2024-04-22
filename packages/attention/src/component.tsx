@@ -77,9 +77,6 @@ export function Attention(props: AttentionProps) {
     get isCallout() {
       return rest.callout
     },
-    get isTooltip() {
-      return rest.tooltip
-    },
     get actualDirection() {
       return actualDirection
     },
