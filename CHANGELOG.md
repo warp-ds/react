@@ -1,3 +1,17 @@
+# [1.5.0-next.3](https://github.com/warp-ds/react/compare/v1.5.0-next.2...v1.5.0-next.3) (2024-04-18)
+
+
+### Features
+
+* Individual imports ([#212](https://github.com/warp-ds/react/issues/212)) ([766282c](https://github.com/warp-ds/react/commit/766282c068d0fb04bb37a657f6ab1ebe7f156a90))
+
+# [1.5.0-next.2](https://github.com/warp-ds/react/compare/v1.5.0-next.1...v1.5.0-next.2) (2024-04-17)
+
+
+### Features
+
+* Add an optional prop to enable nofollow for pagination component ([#231](https://github.com/warp-ds/react/issues/231)) ([9534ae3](https://github.com/warp-ds/react/commit/9534ae3295e041b1143d5ba2c9c827df082959b2))
+
 # [1.5.0-next.1](https://github.com/warp-ds/react/compare/v1.4.5-next.1...v1.5.0-next.1) (2024-04-16)
 
 

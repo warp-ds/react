@@ -27,6 +27,9 @@ export type PaginationProps = {
   /** The number of the last page. */
   lastPage: number;
 
+  /** Enable nofollow rel */
+  noFollow?: boolean;
+
   /** Handler that is called with the page number to navigate to. `event.preventDefault` is called for you. Fallbacks to default browser behavior if undefined. */
   onChange?: (page: number) => void;
 
@@ -46,6 +49,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       createHref,
       className,
       onChange,
+      noFollow,
       ...props
     },
     ref,
@@ -77,16 +81,18 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         <PrevPage
           href={createHref(currentPage - 1)}
           onClick={handleClick(currentPage - 1)}
+          noFollow={noFollow}
         />
         <Pages numPages={numPages}>
           {(page) => (
-            <Page href={createHref(page)} onClick={handleClick(page)} />
+            <Page href={createHref(page)} onClick={handleClick(page)} noFollow={noFollow} />
           )}
         </Pages>
         <CurrentPage />
         <NextPage
           href={createHref(currentPage + 1)}
           onClick={handleClick(currentPage + 1)}
+          noFollow={noFollow}
         />
       </PaginationContainer>
     );

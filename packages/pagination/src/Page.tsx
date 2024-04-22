@@ -19,6 +19,9 @@ export type PageProps = {
 
   page?: number;
 
+  /** Enable nofollow rel */
+  noFollow?: boolean;
+
   /** Additional CSS styles for the element. */
   style?: React.CSSProperties;
 
@@ -29,7 +32,7 @@ export type PageProps = {
 const Page = React.forwardRef<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   PageProps
->(({ page = 1, className, currentPage, ...props }, ref) => {
+>(({ page = 1, className, currentPage, noFollow, ...props }, ref) => {
 
   const isCurrentPage = page === currentPage;
 
@@ -46,7 +49,7 @@ const Page = React.forwardRef<
       aria-label={ariaLabel}
       {...props}
       ref={ref as Ref<HTMLAnchorElement>}
-      rel="nofollow"
+      rel={`${noFollow ? 'nofollow' : ''}`}
       aria-current={isCurrentPage ? 'page' : undefined}
       className={classNames(className, ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}
     >

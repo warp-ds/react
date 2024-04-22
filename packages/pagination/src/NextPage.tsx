@@ -17,6 +17,9 @@ type NextPageProps = {
   /** The href for the anchor element. */
   href: string;
 
+  /** Enable nofollow rel */
+  noFollow?: boolean;
+
   /** Additional CSS styles for the element. */
   style?: React.CSSProperties;
 
@@ -27,7 +30,7 @@ type NextPageProps = {
 const NextPage = React.forwardRef<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   NextPageProps
->(({ className, ...props }, ref) => {
+>(({ className, noFollow, ...props }, ref) => {
   const { currentPage, lastPage } = usePagination();
 
   if (currentPage >= lastPage) {
@@ -54,7 +57,7 @@ const NextPage = React.forwardRef<
       <a
         {...props}
         ref={ref as Ref<HTMLAnchorElement>}
-        rel="next nofollow"
+        rel={`next${noFollow ? ' nofollow' : ''}`}
         className={classNames(className, ccPagination.link, ccPagination.icon)}
       >
         <span className={ccPagination.a11y}>

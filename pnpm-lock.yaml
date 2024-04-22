@@ -147,6 +147,9 @@ devDependencies:
   eslint-plugin-storybook:
     specifier: ^0.6.15
     version: 0.6.15(eslint@8.56.0)(typescript@5.3.3)
+  glob:
+    specifier: ^10.3.10
+    version: 10.3.10
   happy-dom:
     specifier: ^13.1.4
     version: 13.2.0

@@ -19,6 +19,9 @@ type PrevPageProps = {
 
   /** Additional CSS styles for the element. */
   style?: React.CSSProperties;
+  
+  /** Enable nofollow rel */
+  noFollow?: boolean;
 
   /** onClick function */
   onClick: (event: React.UIEvent<HTMLElement>) => void;
@@ -27,7 +30,7 @@ type PrevPageProps = {
 const PrevPage = React.forwardRef<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   PrevPageProps
->(({ className, ...props }, ref) => {
+>(({ className, noFollow, ...props }, ref) => {
   const { currentPage } = usePagination();
 
   if (currentPage === 1) {
@@ -56,7 +59,7 @@ const PrevPage = React.forwardRef<
       {...props}
       ref={ref as Ref<HTMLAnchorElement>}
       className={classNames(className, ccPagination.link, ccPagination.icon)}
-      rel="prev nofollow"
+      rel={`prev${noFollow ? ' nofollow' : ''}`}
     >
       <span className={ccPagination.a11y}>
         {ariaLabel},
