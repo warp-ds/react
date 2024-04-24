@@ -34,7 +34,10 @@ export default function config(env) {
           "@types",
           "tests/",
           "packages/**/src/props.*",
-          "packages/**/src/index.*"
+          "packages/**/src/index.*",
+          "packages/index.ts",
+          "build.js",
+          "esbuild.js",
         ],
       },
     },
