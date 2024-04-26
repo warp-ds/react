@@ -70,11 +70,12 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )}
         <textarea
           className={classNames({
-            [`${ccInput.default} ${ccInput.textArea}`]: true,
+            [`${ccInput.base} ${ccInput.textArea}`]: true,
             [ccInput.placeholder]: !!placeholder,
-            [ccInput.invalid]: isInvalid,
-            [ccInput.disabled]: disabled,
-            [ccInput.readOnly]: readOnly,
+            [ccInput.default]: !isInvalid && !disabled && !readOnly,
+            [ccInput.invalid]: isInvalid && !disabled && !readOnly,
+            [ccInput.disabled]: !isInvalid && disabled && !readOnly,
+            [ccInput.readOnly]: !isInvalid && !disabled && readOnly,
           })}
           {...rest}
           placeholder={placeholder}
