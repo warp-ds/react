@@ -156,6 +156,35 @@ describe('Attention component', () => {
   })
 })
 
+describe('targetEl', () => {
+  it('should not render Attention component when callout is false and targetEl is undefined', () => {
+    render(
+      <Attention highlight placement='bottom'>
+        <p>I am a highlight</p>
+      </Attention>
+    );
+    const attentionEl = screen.queryByTestId('attention-el');
+    expect(attentionEl).toBeNull();
+  });
+  it('should render Attention component when callout is true, even though targetEl is undefined', () => {
+    render(
+      <Attention callout placement='right'>
+        <p>I am a callout</p>
+      </Attention>
+    );
+    const attentionEl = screen.getByTestId('attention-el');
+    expect(attentionEl).toBeInTheDocument();
+  });
+  it('should render Attention component when targetEl is defined and callout is false', () => {
+    render(
+      <Attention popover placement='top-start' targetEl={mockTargetEl}>
+        <p>I am a popover</p>
+      </Attention>
+    );
+    const attentionEl = screen.getByTestId('attention-el');
+    expect(attentionEl).toBeInTheDocument();
+  });
+})
 describe('useEffect for autoUpdatePosition', () => {
   it('should call autoUpdatePosition when isShowing, targetEl, and attenttionEl are defined', () => {
     const targetEl: any = document.createElement('div')
