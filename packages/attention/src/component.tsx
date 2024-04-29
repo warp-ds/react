@@ -141,8 +141,7 @@ export function Attention(props: AttentionProps) {
   useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePosition, attentionState)
   
   return (
-    <>
-      {(!props.callout && props.targetEl === undefined) ? null : (
+      (!props.callout && props.targetEl === undefined) ? null : (
         <div
           data-testid='attention-el'
           className={classNames(
@@ -191,8 +190,7 @@ export function Attention(props: AttentionProps) {
             )}
           </div>
         </div>
-      )}
-    </>
+      )
   )
 }
 
