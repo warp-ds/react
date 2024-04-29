@@ -142,7 +142,7 @@ export function Attention(props: AttentionProps) {
   
   return (
     <>
-      {(props.callout || (props.targetEl !== undefined && !props.callout)) && (
+      {(!props.callout && props.targetEl === undefined) ? null : (
         <div
           data-testid='attention-el'
           className={classNames(
