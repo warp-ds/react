@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Step component > renders correctly with active prop 1`] = `
+<div>
+  <li
+    class="group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
+  >
+    <div
+      aria-current="step"
+      aria-label="Step indicator active circle"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
+      role="img"
+    />
+    <div
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center   s-bg-disabled "
+    />
+    <div
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
+    >
+      Step content
+    </div>
+  </li>
+</div>
+`;
+
+exports[`Step component > renders correctly with both active and completed props 1`] = `
+<div>
+  <li
+    class="group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
+  >
+    <div
+      aria-current="step"
+      aria-label="Step indicator completed circle"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
+      role="img"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Checkmark
+        </title>
+        <path
+          d="M3.83 7.667 7.163 11l5.334-6"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+        />
+      </svg>
+    </div>
+    <div
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center    s-bg-primary"
+    />
+    <div
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
+    >
+      Step content
+    </div>
+  </li>
+</div>
+`;
+
+exports[`Step component > renders correctly with completed prop 1`] = `
+<div>
+  <li
+    class="group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
+  >
+    <div
+      aria-label="Step indicator completed circle"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
+      role="img"
+    >
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Checkmark
+        </title>
+        <path
+          d="M3.83 7.667 7.163 11l5.334-6"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+        />
+      </svg>
+    </div>
+    <div
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center    s-bg-primary"
+    />
+    <div
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
+    >
+      Step content
+    </div>
+  </li>
+</div>
+`;
+
+exports[`Step component > renders correctly with default props 1`] = `
+<div>
+  <li
+    class="group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
+  >
+    <div
+      aria-label="Empty circle"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted   s-border s-bg "
+      role="img"
+    />
+    <div
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center   s-bg-disabled "
+    />
+    <div
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
+    >
+      Step content
+    </div>
+  </li>
+</div>
+`;

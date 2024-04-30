@@ -19,9 +19,14 @@ export function Switch({ id, value, onClick, 'aria-label': ariaLabel, 'aria-labe
         aria-checked={value}
         onClick={onClick}
         className={classNames([ccSwitch.label, switchFocus])}
-        {...attrs}>
-        <span className={classNames([ccSwitch.track, value ? ccSwitch.trackActive : ccSwitch.trackInactive])} />
+        {...attrs}
+      >
         <span
+          data-testid="track"
+          className={classNames([ccSwitch.track, value ? ccSwitch.trackActive : ccSwitch.trackInactive])}
+        />
+        <span
+          data-testid="handle"
           className={classNames([ccSwitch.handle, ccSwitch.handleNotDisabled], {
             [ccSwitch.handleSelected]: value,
           })}

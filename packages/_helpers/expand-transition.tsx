@@ -40,7 +40,12 @@ export function ExpandTransition({ show, children }: PropsWithChildren<{ show?: 
   const initialStyle = !initialShow.current ? 'overflow-hidden h-0' : undefined;
 
   return (
-    <div className={initialStyle} ref={expandableRef} aria-hidden={!show ? true : undefined}>
+    <div
+      className={initialStyle}
+      ref={expandableRef}
+      aria-hidden={!show ? true : undefined}
+      data-testid="expand-transition"
+    >
       {removeElement ? null : children}
     </div>
   );
