@@ -74,7 +74,7 @@
     "semantic-release": "semantic-release",
     "test-storybook": "test-storybook --url http://localhost:9003",
     "test:storybook": "concurrently -k -s first \"pnpm run dev\" \"wait-on http://localhost:9003 && pnpm run test-storybook\"",
-    "test:watch": "vitest run --watch",
+    "test:watch": "vitest watch",
     "test:unit": "vitest run --coverage",
     "test": "pnpm test:unit && pnpm test:storybook"
   },

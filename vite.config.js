@@ -21,7 +21,6 @@ export default function config(env) {
       exclude: ['**.json'],
       coverage: {
         cleanOnRerun: true,
-        skipFull: true,
         reporter: ['text'],
         exclude: [
           "**.json",
@@ -33,7 +32,12 @@ export default function config(env) {
           "esbuild.mjs",
           "lingui.config.ts",
           "@types",
-          "tests/"
+          "tests/",
+          "packages/**/src/props.*",
+          "packages/**/src/index.*",
+          "packages/index.ts",
+          "build.js",
+          "esbuild.js",
         ],
       },
     },
