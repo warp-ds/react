@@ -27,11 +27,13 @@ describe('Select', () => {
   });
 
   it('handles select change', () => {
-    render(<Select {...props}>
+    render(
+      <Select {...props}>
         <option value="s">Strawberries</option>
         <option value="r">Raspberries</option>
         <option value="c">Cloudberries</option>
-    </Select>);
+      </Select>,
+    );
     const select = screen.getByRole('combobox');
     fireEvent.change(select, { target: { value: 's' } });
     expect(select.value).toBe('s');

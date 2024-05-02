@@ -61,10 +61,7 @@ export type ComboboxProps = {
   /**
    * Pass your own function for highlight matching
    */
-  highlightValueMatch?: (
-    optionValue: string,
-    inputValue: string,
-  ) => React.ReactNode;
+  highlightValueMatch?: (optionValue: string, inputValue: string) => React.ReactNode;
 
   /**
    * Called when the user selects an option
@@ -117,7 +114,4 @@ export type ComboboxProps = {
 
   /** Whether to show optional text */
   optional?: boolean;
-} & Omit<
-  React.PropsWithoutRef<JSX.IntrinsicElements['input']>,
-  'onChange' | 'type' | 'value' | 'label'
->;
+} & Omit<React.PropsWithoutRef<JSX.IntrinsicElements['input']>, 'onChange' | 'type' | 'value' | 'label'>;

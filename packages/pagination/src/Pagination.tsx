@@ -35,66 +35,30 @@ export type PaginationProps = {
 
   /** Additional CSS styles for the container. */
   style?: React.CSSProperties;
-} & Omit<
-  React.PropsWithoutRef<JSX.IntrinsicElements['nav']>,
-  'children' | 'onChange'
->;
+} & Omit<React.PropsWithoutRef<JSX.IntrinsicElements['nav']>, 'children' | 'onChange'>;
 
-export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
-  (
-    {
-      currentPage,
-      numPages,
-      lastPage,
-      createHref,
-      className,
-      onChange,
-      noFollow,
-      ...props
-    },
-    ref,
-  ) => {
-    activateI18n(enMessages, nbMessages, fiMessages);
+export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(({ currentPage, numPages, lastPage, createHref, className, onChange, noFollow, ...props }, ref) => {
+  activateI18n(enMessages, nbMessages, fiMessages);
 
-    if (!createHref) {
-      throw new TypeError('createHref is undefined');
+  if (!createHref) {
+    throw new TypeError('createHref is undefined');
+  }
+
+  const handleClick = (page: number) => (event: React.UIEvent<HTMLElement>) => {
+    if (onChange) {
+      event.preventDefault();
+
+      onChange(page);
     }
+  };
 
-    const handleClick =
-      (page: number) => (event: React.UIEvent<HTMLElement>) => {
-        if (onChange) {
-          event.preventDefault();
-
-          onChange(page);
-        }
-      };
-
-    return (
-      <PaginationContainer
-        {...props}
-        ref={ref}
-        currentPage={currentPage}
-        lastPage={lastPage}
-        className={className}
-      >
-        <FirstPage href={createHref(1)} onClick={handleClick(1)} />
-        <PrevPage
-          href={createHref(currentPage - 1)}
-          onClick={handleClick(currentPage - 1)}
-          noFollow={noFollow}
-        />
-        <Pages numPages={numPages}>
-          {(page) => (
-            <Page href={createHref(page)} onClick={handleClick(page)} noFollow={noFollow} />
-          )}
-        </Pages>
-        <CurrentPage />
-        <NextPage
-          href={createHref(currentPage + 1)}
-          onClick={handleClick(currentPage + 1)}
-          noFollow={noFollow}
-        />
-      </PaginationContainer>
-    );
-  },
-);
+  return (
+    <PaginationContainer {...props} ref={ref} currentPage={currentPage} lastPage={lastPage} className={className}>
+      <FirstPage href={createHref(1)} onClick={handleClick(1)} />
+      <PrevPage href={createHref(currentPage - 1)} onClick={handleClick(currentPage - 1)} noFollow={noFollow} />
+      <Pages numPages={numPages}>{(page) => <Page href={createHref(page)} onClick={handleClick(page)} noFollow={noFollow} />}</Pages>
+      <CurrentPage />
+      <NextPage href={createHref(currentPage + 1)} onClick={handleClick(currentPage + 1)} noFollow={noFollow} />
+    </PaginationContainer>
+  );
+});

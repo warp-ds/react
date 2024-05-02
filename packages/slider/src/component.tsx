@@ -59,16 +59,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     },
   };
 
-  const {
-    handleKeyDown,
-    handleFocus,
-    handleBlur,
-    handleMouseDown,
-    handleClick,
-    getThumbPosition,
-    getThumbTransform,
-    getShiftedChange,
-  } = createHandlers({ props: { min, max, ...rest }, sliderState });
+  const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } = createHandlers({ props: { min, max, ...rest }, sliderState });
 
   const thumbPosition = useMemo(getThumbPosition, [getThumbPosition]);
   const sliderActiveStyle = useMemo(
@@ -76,7 +67,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       left: 0,
       right: 100 - thumbPosition + '%',
     }),
-    [thumbPosition]
+    [thumbPosition],
   );
 
   const transformValue = useMemo(getThumbTransform, [getThumbTransform]);
@@ -84,7 +75,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     () => ({
       transform: 'translateX(' + transformValue + 'px)',
     }),
-    [transformValue]
+    [transformValue],
   );
 
   useEffect(() => {
@@ -97,8 +88,9 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [position, rest.value, rest.step]);
 
   useEffect(() => {
-    if (sliderPressed || position === rest.value || value === rest.value)
+    if (sliderPressed || position === rest.value || value === rest.value) {
       return;
+    }
     setPosition(rest.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderPressed, rest.value]);

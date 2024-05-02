@@ -1,9 +1,9 @@
 import { MutableRefObject } from 'react';
-import { Directions } from '@warp-ds/core/attention'
+import { Directions } from '@warp-ds/core/attention';
 
-export type VirtualElement = {getBoundingClientRect: () => ClientRect | DOMRect, contextElement?: Element};
+export type VirtualElement = { getBoundingClientRect: () => ClientRect | DOMRect; contextElement?: Element };
 
-export type ReferenceElement = Element | VirtualElement
+export type ReferenceElement = Element | VirtualElement;
 
 export type AttentionVariants = {
   /**
@@ -25,7 +25,7 @@ export type AttentionVariants = {
    * Render highlight
    */
   highlight?: boolean;
-}
+};
 
 export type ArrowProps = {
   /**
@@ -55,17 +55,17 @@ export type AttentionProps = {
    * Elements inside of the Attention component
    */
   children?: JSX.Element[] | JSX.Element;
-  
- /**
+
+  /**
    * Sets the aria-label attribute for the Attention component
    */
- 'aria-label'?: string;
- 
- /**
+  'aria-label'?: string;
+
+  /**
    * Sets the role attribute for the Attention component
    */
- role?: string;
- 
+  role?: string;
+
   /**
    * Placement according to the target element
    * Arrow would be on the opposite side of this position
@@ -100,22 +100,21 @@ export type AttentionProps = {
   /**
    * The distance from which to offset the attentionEl from the targetEl vertically
    */
-distance?: number;
- /**
+  distance?: number;
+  /**
    * The distance from which to offset the attentionEl along its targetEl horizontally
    */
- skidding?: number;
-   /**
+  skidding?: number;
+  /**
    * Whether Attention element should flip its placement in order to keep it in view
    */
-flip?: boolean;
+  flip?: boolean;
   /**
    * Whether Attention element should ignore cross axis overflow when flip is enabled
    */
   crossAxis?: boolean;
-/**
-  * Choose which preferred placements the Attention element should flip to
-  */
-fallbackPlacements?: Directions[];
-
+  /**
+   * Choose which preferred placements the Attention element should flip to
+   */
+  fallbackPlacements?: Directions[];
 } & AttentionVariants;

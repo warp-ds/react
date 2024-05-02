@@ -11,7 +11,7 @@ export const StepsContext = createContext<{
   right: undefined,
 });
 
-export function Steps({horizontal, right, className, children}: StepsProps) {
+export function Steps({ horizontal, right, className, children }: StepsProps) {
   return (
     <StepsContext.Provider
       value={{

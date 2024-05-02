@@ -20,12 +20,7 @@ export const Basic = () => {
           setValue(val);
           action('select')(val);
         }}
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -47,12 +42,7 @@ export const DisableStaticListFiltering = () => {
           setValue(val);
           action('select')(val);
         }}
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -82,12 +72,7 @@ export const BubbleEventOnEnter = () => {
             setValue(val);
             action('select')(val);
           }}
-          options={[
-            { value: 'Product manager' },
-            { value: 'Produktledelse' },
-            { value: 'Prosessoperatør' },
-            { value: 'Prosjekteier' },
-          ]}
+          options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
         />
       </form>
     </>
@@ -109,12 +94,7 @@ export const MatchTextSegments = () => {
         }}
         matchTextSegments
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -127,18 +107,12 @@ export const CustomMatchAlgorithm = () => {
     return [...optionValue].map((letter, i) => {
       if ([...value.toLowerCase()].includes(letter.toLowerCase())) {
         return (
-          <span
-            data-combobox-text-match
-            key={`${optionValue}-bold-letter-${letter}-${i}`}
-            className="font-bold bg-blue-100 text-blue-800"
-          >
+          <span data-combobox-text-match key={`${optionValue}-bold-letter-${letter}-${i}`} className="font-bold bg-blue-100 text-blue-800">
             {letter}
           </span>
         );
       } else {
-        return (
-          <span key={`${optionValue}-letter-${letter}-${i}`}>{letter}</span>
-        );
+        return <span key={`${optionValue}-letter-${letter}-${i}`}>{letter}</span>;
       }
     });
   }
@@ -155,12 +129,7 @@ export const CustomMatchAlgorithm = () => {
         }}
         highlightValueMatch={highlightValueMatch}
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -181,12 +150,7 @@ export const OpenOnFocus = () => {
         }}
         openOnFocus
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -197,10 +161,7 @@ export const SelectOnClick = () => {
 
   return (
     <>
-      <p>
-        When the user clicks inside the text box the current value will be
-        selected (like the URL bar in browsers).
-      </p>
+      <p>When the user clicks inside the text box the current value will be selected (like the URL bar in browsers).</p>
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
@@ -209,12 +170,7 @@ export const SelectOnClick = () => {
           action('select')(val);
         }}
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -333,10 +289,7 @@ export const Optional = () => {
 
   return (
     <>
-      <p>
-        When the user clicks inside the text box the current value will be
-        selected (like the URL bar in browsers).
-      </p>
+      <p>When the user clicks inside the text box the current value will be selected (like the URL bar in browsers).</p>
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
@@ -346,12 +299,7 @@ export const Optional = () => {
         }}
         label="Stillingstittel"
         optional
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import { TextField } from '../../packages/textfield/src/component';
 import { Affix } from '../../packages/_helpers/affix.tsx';
 
@@ -59,7 +60,12 @@ describe('TextField component', () => {
   });
 
   it('renders prefix or suffix elements when provided', () => {
-    render(<TextField {...defaultProps}> <Affix suffix label="kr" /> </TextField>);
+    render(
+      <TextField {...defaultProps}>
+        {' '}
+        <Affix suffix label="kr" />{' '}
+      </TextField>,
+    );
     expect(screen.getByText('kr')).toBeInTheDocument();
   });
 });

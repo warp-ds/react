@@ -2,11 +2,11 @@ import React from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { PillProps } from './props.js';
 import { pill as ccPill } from '@warp-ds/css/component-classes';
-import IconClose16 from "@warp-ds/icons/react/close-16";
+import IconClose16 from '@warp-ds/icons/react/close-16';
 import { i18n } from '@lingui/core';
-import { messages as nbMessages} from './locales/nb/messages.mjs';
-import { messages as enMessages} from './locales/en/messages.mjs';
-import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as enMessages } from './locales/en/messages.mjs';
+import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { activateI18n } from '../../i18n.js';
 
 export function Pill(props: PillProps) {
@@ -29,12 +29,10 @@ export function Pill(props: PillProps) {
               /*i18n*/ {
                 id: 'pill.aria.openFilter',
                 message: 'Open filter',
-                comment:
-                  'Fallback screenreader message for open filter',
-                values: { label: props.label }
+                comment: 'Fallback screenreader message for open filter',
+                values: { label: props.label },
               },
-            )
-          }
+            )}
         </span>
         {props.icon || <span>{props.label}</span>}
       </button>
@@ -54,9 +52,8 @@ export function Pill(props: PillProps) {
                 /*i18n*/ {
                   id: 'pill.aria.removeFilter',
                   message: 'Remove filter {label}',
-                  comment:
-                    'Fallback screenreader message for removal of the filter',
-                  values: { label: props.label }
+                  comment: 'Fallback screenreader message for removal of the filter',
+                  values: { label: props.label },
                 },
               )}
           </span>

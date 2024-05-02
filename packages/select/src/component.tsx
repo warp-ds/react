@@ -5,25 +5,13 @@ import { useId } from '../../utils/src/index.js';
 import { classNames } from '@chbphone55/classnames';
 import type { SelectProps } from './props.js';
 import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
-import { messages as nbMessages} from './locales/nb/messages.mjs';
-import { messages as enMessages} from './locales/en/messages.mjs';
-import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as enMessages } from './locales/en/messages.mjs';
+import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { activateI18n } from '../../i18n.js';
 
 const setup = (props) => {
-  const {
-    className,
-    invalid,
-    id,
-    hint,
-    always,
-    label,
-    style,
-    optional,
-    readOnly,
-    disabled,
-    ...rest
-  } = props;
+  const { className, invalid, id, hint, always, label, style, optional, readOnly, disabled, ...rest } = props;
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -56,11 +44,11 @@ const setup = (props) => {
           : null,
     },
     wrapperClasses: classNames(ccSelect.wrapper, className),
-    selectClasses:  classNames({
+    selectClasses: classNames({
       [ccSelect.default]: true,
       [ccSelect.invalid]: invalid,
       [ccSelect.disabled]: disabled,
-      [ccSelect.readOnly]: readOnly
+      [ccSelect.readOnly]: readOnly,
     }),
     selectWrapperClasses: classNames({
       [ccSelect.selectWrapper]: true,
@@ -68,12 +56,12 @@ const setup = (props) => {
     helpTextClasses: classNames({
       [ccHelpText.helpText]: true,
       [ccHelpText.helpTextColor]: !invalid,
-      [ccHelpText.helpTextColorInvalid]: invalid
+      [ccHelpText.helpTextColorInvalid]: invalid,
     }),
     chevronClasses: classNames({
       [ccSelect.chevron]: true,
       [ccSelect.chevronDisabled]: disabled,
-    })
+    }),
   };
 };
 
@@ -101,12 +89,10 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
         </label>
       )}
       <div className={selectWrapperClasses}>
-        <select ref={ref} {...select} className={selectClasses}/>
-          <div
-            className={classNames(chevronClasses)}
-          >
-            <IconChevronDown16 />
-          </div>
+        <select ref={ref} {...select} className={selectClasses} />
+        <div className={classNames(chevronClasses)}>
+          <IconChevronDown16 />
+        </div>
       </div>
       {help && <div className={helpTextClasses} {...help} />}
     </div>

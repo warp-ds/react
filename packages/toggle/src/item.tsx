@@ -19,28 +19,11 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   labelClassName?: string;
   inputClassName?: string;
   groupClassName?: string;
-  multiple?: boolean,
+  multiple?: boolean;
   onChange: (data: ToggleEntry | boolean) => void;
 }
 
-export function Item({
-  controlled,
-  option,
-  children,
-  label,
-  invalid,
-  value,
-  helpId,
-  indeterminate = false,
-  checked,
-  defaultChecked,
-  noVisibleLabel,
-  labelClassName,
-  inputClassName,
-  groupClassName,
-  multiple,
-  ...props
-}: ItemProps) {
+export function Item({ controlled, option, children, label, invalid, value, helpId, indeterminate = false, checked, defaultChecked, noVisibleLabel, labelClassName, inputClassName, groupClassName, multiple, ...props }: ItemProps) {
   const id = useId();
   const checkboxRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -56,40 +39,17 @@ export function Item({
 
   const Item = (
     <>
-      <input
-        ref={checkboxRef}
-        id={id}
-        checked={controlled ? checked : undefined}
-        defaultChecked={defaultChecked}
-        aria-invalid={invalid}
-        aria-errormessage={invalid ? helpId : undefined}
-        value={label ? undefined : value ?? undefined}
-        className={inputClassName}
-        {...props}
-        onChange={(e) =>
-          props.onChange(
-            label
-              ? e.target.checked
-              : option
-              ? { label: option?.label, value: option?.value }
-              : false,
-          )
-        }
-      />
+      <input ref={checkboxRef} id={id} checked={controlled ? checked : undefined} defaultChecked={defaultChecked} aria-invalid={invalid} aria-errormessage={invalid ? helpId : undefined} value={label ? undefined : value ?? undefined} className={inputClassName} {...props} onChange={(e) => props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)} />
 
       <label htmlFor={id} className={labelClassName}>
-        {noVisibleLabel ? (
-          <span className={ccToggle.a11y}>{labelContent}</span>
-        ) : labelContent
-        }
+        {noVisibleLabel ? <span className={ccToggle.a11y}>{labelContent}</span> : labelContent}
       </label>
     </>
   );
 
-  if (multiple ) {
-    return <div className={groupClassName}>{Item}</div>
+  if (multiple) {
+    return <div className={groupClassName}>{Item}</div>;
   }
 
   return Item;
-
 }

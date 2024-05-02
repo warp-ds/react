@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  TextArea,
-  Card,
-  Toggle,
-  Combobox,
-  Clickable,
-} from '@warp-ds/react';
+import { Button, TextArea, Card, Toggle, Combobox, Clickable } from '@warp-ds/react';
 
 function useSWMatch(term) {
   const [characters, setCharacters] = React.useState([]);
@@ -36,20 +29,8 @@ export default function App() {
 
   return (
     <div className="m-10">
-      <Toggle
-        onChange={() => console.log('hi')}
-        type="radio"
-        options={[{ label: 'hi', value: 'test' }]}
-        helpText="hi"
-        invalid
-      />
-      <Combobox
-        matchTextSegments
-        label="Star Wars character"
-        onChange={(val) => setSearchTerm(val)}
-        onSelect={(val) => alert(val)}
-        options={characters}
-      />
+      <Toggle onChange={() => console.log('hi')} type="radio" options={[{ label: 'hi', value: 'test' }]} helpText="hi" invalid />
+      <Combobox matchTextSegments label="Star Wars character" onChange={(val) => setSearchTerm(val)} onSelect={(val) => alert(val)} options={characters} />
       <Button
         className="mb-10"
         onClick={() => {
@@ -58,27 +39,16 @@ export default function App() {
       >
         Hi there
       </Button>
-      <TextArea
-        name="my-text"
-        defaultValue="Stuff here"
-        className="mb-10"
-      ></TextArea>
+      <TextArea name="my-text" defaultValue="Stuff here" className="mb-10"></TextArea>
       <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32">
         <Card selected={selected}>
-          <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/400x400"
-            alt="Description"
-          />
-          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">
-            Ukens bolig
-          </p>
+          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
             <p>
               <Clickable checkbox onClick={() => setSelected(!selected)}>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
+                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </p>
             <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
@@ -102,17 +72,12 @@ export default function App() {
           </div>
         </Card>
         <Card selected={selected}>
-          <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/403x403"
-            alt="Description"
-          />
+          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/403x403" alt="Description" />
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
             <p>
               <Clickable checkbox onClick={() => setSelected(!selected)}>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
+                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </p>
             <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
@@ -136,17 +101,12 @@ export default function App() {
           </div>
         </Card>
         <Card selected={selected}>
-          <img
-            className="h-128 w-full object-cover"
-            src="https://source.unsplash.com/random/404x404"
-            alt="Description"
-          />
+          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/404x404" alt="Description" />
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
             <p>
               <Clickable checkbox onClick={() => setSelected(!selected)}>
-                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019.
-                Inkl. bl.a. vv/fyring.
+                Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </p>
             <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>

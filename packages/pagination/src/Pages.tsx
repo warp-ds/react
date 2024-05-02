@@ -1,4 +1,4 @@
-import { classNames } from "@chbphone55/classnames";
+import { classNames } from '@chbphone55/classnames';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
 import React from 'react';
@@ -10,32 +10,24 @@ type PagesProps = {
   numPages?: number;
 };
 
-const Pages = React.forwardRef<HTMLDivElement, PagesProps>(
-  ({ children, numPages = 7, className, ...props }, ref) => {
-    const { currentPage, lastPage } = usePagination();
+const Pages = React.forwardRef<HTMLDivElement, PagesProps>(({ children, numPages = 7, className, ...props }, ref) => {
+  const { currentPage, lastPage } = usePagination();
 
-    const from = Math.max(currentPage - 3, 0);
-    const to = Math.min(from + numPages, lastPage);
-    const pages = Array.from(Array(to - from).keys()).map(
-      (_, i) => from + i + 1,
-    );
+  const from = Math.max(currentPage - 3, 0);
+  const to = Math.min(from + numPages, lastPage);
+  const pages = Array.from(Array(to - from).keys()).map((_, i) => from + i + 1);
 
-    return (
-      <div
-        {...props}
-        className={classNames(ccPagination.pages, className)}
-        ref={ref}
-      >
-        {pages.map((page) =>
-          React.cloneElement(children(page), {
-            key: page,
-            page,
-            currentPage,
-          }),
-        )}
-      </div>
-    );
-  },
-);
+  return (
+    <div {...props} className={classNames(ccPagination.pages, className)} ref={ref}>
+      {pages.map((page) =>
+        React.cloneElement(children(page), {
+          key: page,
+          page,
+          currentPage,
+        }),
+      )}
+    </div>
+  );
+});
 
 export default Pages;

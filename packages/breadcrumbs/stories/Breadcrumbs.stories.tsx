@@ -55,46 +55,34 @@ export const ExampleWithNestedArrays = () => {
 
   return (
     <Breadcrumbs>
-      {breadcrumbs
-        .slice(0, -1)
-        .map(
-          (
-            collection:
-              | BreadcrumbsLink
-              | Array<BreadcrumbsLink | BreadcrumbsLink[]>,
-          ) => {
-            if ('name' in collection) {
-              return (
-                <a href={`?id=${collection.id}`} key={`?id=${collection.id}`}>
-                  {collection.name}
-                </a>
-              );
-            }
+      {breadcrumbs.slice(0, -1).map((collection: BreadcrumbsLink | Array<BreadcrumbsLink | BreadcrumbsLink[]>) => {
+        if ('name' in collection) {
+          return (
+            <a href={`?id=${collection.id}`} key={`?id=${collection.id}`}>
+              {collection.name}
+            </a>
+          );
+        }
 
-            return collection.map((coll) => {
-              if ('name' in coll) {
-                return (
-                  <a href={`?id=${coll.id}`} key={`?id=${coll.id}`}>
-                    {coll.name}
-                  </a>
-                );
-              }
+        return collection.map((coll) => {
+          if ('name' in coll) {
+            return (
+              <a href={`?id=${coll.id}`} key={`?id=${coll.id}`}>
+                {coll.name}
+              </a>
+            );
+          }
 
-              return coll.map((c) => (
-                <a href={`?id=${c.id}`} key={`?id=${c.id}`}>
-                  {c.name}
-                </a>
-              ));
-            });
-          },
-        )}
+          return coll.map((c) => (
+            <a href={`?id=${c.id}`} key={`?id=${c.id}`}>
+              {c.name}
+            </a>
+          ));
+        });
+      })}
       <span aria-current="page">{lastItem.name}</span>
     </Breadcrumbs>
   );
 };
 
-export const ExampleWithStringArray = () => (
-  <Breadcrumbs>
-    {["Page 1", "Current Page"]}
-  </Breadcrumbs>
-);
+export const ExampleWithStringArray = () => <Breadcrumbs>{['Page 1', 'Current Page']}</Breadcrumbs>;

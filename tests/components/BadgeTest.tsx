@@ -4,7 +4,11 @@ import { Badge } from '../../packages/badge/src/component';
 
 describe('Badge', () => {
   test('renders Badge component', () => {
-    render(<Badge variant="neutral" position="top-left">Test Badge</Badge>);
+    render(
+      <Badge variant="neutral" position="top-left">
+        Test Badge
+      </Badge>,
+    );
     expect(screen.getByText('Test Badge')).toBeInTheDocument();
   });
 

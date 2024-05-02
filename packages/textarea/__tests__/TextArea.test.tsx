@@ -7,9 +7,7 @@ import { TextArea } from '../src';
 describe('TextArea', () => {
   test('renders with placeholder text', () => {
     const placeholder = 'placeholder';
-    const tree = render(
-      <TextArea aria-label="label" placeholder={placeholder} />,
-    );
+    const tree = render(<TextArea aria-label="label" placeholder={placeholder} />);
     const input = tree.getByPlaceholderText(placeholder);
     expect(input).toBeTruthy();
     // @ts-ignore

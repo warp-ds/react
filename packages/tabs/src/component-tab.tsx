@@ -9,7 +9,7 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
     [ccTab.tabActive]: isActive,
   }),
   icon: classNames(ccTab.icon, {
-    [ccTab.iconUnderlinedActive] : isActive,
+    [ccTab.iconUnderlinedActive]: isActive,
   }),
   content: classNames(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
@@ -18,14 +18,7 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
 });
 
 export function Tab(props: TabProps) {
-  const {
-    children,
-    label,
-    setActive = () => {},
-    name,
-    onClick,
-    isActive,
-  } = props;
+  const { children, label, setActive = () => {}, name, onClick, isActive } = props;
   const { tab, icon, content, attrs } = setup(props);
   const { over, ...rest } = attrs;
 
@@ -35,17 +28,7 @@ export function Tab(props: TabProps) {
   };
 
   return (
-    <button
-      type="button"
-      {...rest}
-      role="tab"
-      aria-selected={isActive ? 'true' : 'false'}
-      aria-controls={isActive ? `warp-tabpanel-${name}` : undefined}
-      id={`warp-tab-${name}`}
-      tabIndex={isActive ? 0 : -1}
-      className={tab}
-      onClick={handleClick}
-    >
+    <button type="button" {...rest} role="tab" aria-selected={isActive ? 'true' : 'false'} aria-controls={isActive ? `warp-tabpanel-${name}` : undefined} id={`warp-tab-${name}`} tabIndex={isActive ? 0 : -1} className={tab} onClick={handleClick}>
       {!children && <span className={content}>{label}</span>}
 
       {children && over && (

@@ -37,10 +37,7 @@ export const Example = () => {
           </>
         }
       >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -86,10 +83,7 @@ export const WithBackAndCloseButton = () => {
           </>
         }
       >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -166,10 +160,7 @@ export const InitialFocus = () => {
           </>
         }
       >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -209,10 +200,7 @@ export const Overflowing = () => {
         }
       >
         {[...new Array(10)].map((e, i) => (
-          <p key={i}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p key={i}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         ))}
       </Modal>
     </>

@@ -1,25 +1,14 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  cloneElement,
-  Children,
-  RefObject,
-} from 'react';
+import React, { useState, useRef, useEffect, cloneElement, Children, RefObject } from 'react';
 import { classNames } from '@chbphone55/classnames';
 import { gridLayout, tabs as ccTabs } from '@warp-ds/css/component-classes';
 import { debounce } from './utils.js';
 import type { TabsProps } from './props.js';
 
-const setup = (
-  { className, children, onClick, active, ...rest }: any,
-  tabsRef,
-  wunderbarRef
-) => ({
+const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, wunderbarRef) => ({
   nav: classNames(ccTabs.wrapperUnderlined, {
     [className]: !!className,
   }),
-  div: classNames(ccTabs.tabContainer,{
+  div: classNames(ccTabs.tabContainer, {
     [gridLayout[`cols${children.length}`]]: true,
   }),
   wunderbar: classNames(ccTabs.wunderbar),
@@ -27,9 +16,7 @@ const setup = (
   updateWunderbar: () => {
     window.requestAnimationFrame(() => {
       if (tabsRef.current && wunderbarRef.current) {
-        const activeEl = tabsRef.current.querySelector(
-          'button[role="tab"][aria-selected="true"]'
-        );
+        const activeEl = tabsRef.current.querySelector('button[role="tab"][aria-selected="true"]');
         if (activeEl) {
           const parentLeft = tabsRef.current.getBoundingClientRect().left;
           const { left, width } = activeEl.getBoundingClientRect();
@@ -42,17 +29,11 @@ const setup = (
 });
 
 export const Tabs = (props: TabsProps) => {
-  const isBrowser = Boolean(
-    typeof document === 'object' && document?.createElement
-  );
+  const isBrowser = Boolean(typeof document === 'object' && document?.createElement);
   const tabsRef: RefObject<HTMLDivElement> = useRef(null);
   const wunderbarRef = useRef(null);
   const { children, onChange } = props;
-  const { nav, div, wunderbar, attrs, updateWunderbar } = setup(
-    props,
-    tabsRef,
-    wunderbarRef
-  );
+  const { nav, div, wunderbar, attrs, updateWunderbar } = setup(props, tabsRef, wunderbarRef);
 
   useEffect(() => {
     // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
@@ -71,7 +52,7 @@ export const Tabs = (props: TabsProps) => {
       const activeChild =
         childrenArray?.find(
           // @ts-ignore: semantic error
-          (child) => child?.props?.isActive
+          (child) => child?.props?.isActive,
         ) || childrenArray[0];
       // @ts-ignore: semantic error
       return String(activeChild?.props?.name || '');
@@ -85,7 +66,7 @@ export const Tabs = (props: TabsProps) => {
       if (typeof child === 'object') {
         const panel = document.getElementById(
           // @ts-ignore: semantic error
-          `warp-tabpanel-${child?.props?.name}`
+          `warp-tabpanel-${child?.props?.name}`,
         );
         if (panel) {
           // @ts-ignore: semantic error
@@ -102,13 +83,8 @@ export const Tabs = (props: TabsProps) => {
   };
 
   const handleKeyDown = (event) => {
-    if (
-      !event.altKey &&
-      !event.ctrlKey &&
-      !event.shiftKey &&
-      ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
-    ) {
-      const tabs:HTMLButtonElement[] = Array.from(tabsRef?.current?.querySelectorAll('button[role="tab"]') ?? []);
+    if (!event.altKey && !event.ctrlKey && !event.shiftKey && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+      const tabs: HTMLButtonElement[] = Array.from(tabsRef?.current?.querySelectorAll('button[role="tab"]') ?? []);
       const activeTabIndex = tabs.findIndex((tab) => tab.name === active);
       if (activeTabIndex >= 0) {
         const nextIndex = (() => {
@@ -136,18 +112,16 @@ export const Tabs = (props: TabsProps) => {
 
   return (
     <div {...attrs} className={nav}>
-      <div
-        role="tablist"
-        className={div}
-        ref={tabsRef}
-        onKeyDown={handleKeyDown}
-      >
-        {Children.map(children, (child: any) => {
-          return child && cloneElement(child, {
-            setActive: change,
-            isActive: child?.props?.name === active,
-          });
-        })}
+      <div role="tablist" className={div} ref={tabsRef} onKeyDown={handleKeyDown}>
+        {Children.map(
+          children,
+          (child: any) =>
+            child &&
+            cloneElement(child, {
+              setActive: change,
+              isActive: child?.props?.name === active,
+            }),
+        )}
         {<span className={wunderbar} ref={wunderbarRef} />}
       </div>
     </div>

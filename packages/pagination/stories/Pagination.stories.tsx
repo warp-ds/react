@@ -6,20 +6,13 @@ export default metadata;
 
 const Example = ({ initialPage = 1, lastPage = 30, ...props }) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  
+
   return (
     <>
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
         currentPage: {currentPage}, lastPage: {lastPage}
       </div>
-      <Pagination
-        {...props}
-        currentPage={currentPage}
-        numPages={3}
-        lastPage={lastPage}
-        createHref={(page) => `?page=${page}`}
-        onChange={(page) => setCurrentPage(page)}
-      />
+      <Pagination {...props} currentPage={currentPage} numPages={3} lastPage={lastPage} createHref={(page) => `?page=${page}`} onChange={(page) => setCurrentPage(page)} />
     </>
   );
 };

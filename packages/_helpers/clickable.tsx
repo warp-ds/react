@@ -43,26 +43,12 @@ export type ClickableProps = {
 } & Partial<Omit<HTMLAnchorElement, 'children'>> &
   Partial<Omit<HTMLButtonElement, 'children'>>;
 
-export function Clickable({
-  children,
-  radio,
-  checkbox,
-  value,
-  ...props
-}: ClickableProps) {
+export function Clickable({ children, radio, checkbox, value, ...props }: ClickableProps) {
   const id = useId();
   const type = radio ? 'radio' : 'checkbox';
 
   return radio || checkbox ? (
-    <ToggleItem
-      labelClassName={classNames(props.labelClassName)}
-      className={ccClickable.toggle}
-      type={type}
-      controlled={false}
-      onChange={props.onClick ? props.onClick : () => undefined}
-      value={value}
-      name={`${props.name || id}:toggle`}
-    >
+    <ToggleItem labelClassName={classNames(props.labelClassName)} className={ccClickable.toggle} type={type} controlled={false} onChange={props.onClick ? props.onClick : () => undefined} value={value} name={`${props.name || id}:toggle`}>
       {children}
     </ToggleItem>
   ) : (

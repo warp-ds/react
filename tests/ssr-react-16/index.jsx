@@ -12,11 +12,7 @@ export default function App() {
       >
         Hi there
       </Button>
-      <TextArea
-        name="my-text"
-        defaultValue="Stuff here"
-        className="mb-10"
-      ></TextArea>
+      <TextArea name="my-text" defaultValue="Stuff here" className="mb-10"></TextArea>
     </div>
   );
 }

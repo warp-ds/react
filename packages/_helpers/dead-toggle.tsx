@@ -44,10 +44,7 @@ export function DeadToggle(props: DeadToggleProps) {
   const type = props.radio ? 'radio' : 'checkbox';
 
   return (
-    <div
-      className={classNames(props.className, ccDeadToggle.wrapper)}
-      aria-hidden="true"
-    >
+    <div className={classNames(props.className, ccDeadToggle.wrapper)} aria-hidden="true">
       <Item
         type={type}
         inputClassName={ccDeadToggle.input}
@@ -55,7 +52,7 @@ export function DeadToggle(props: DeadToggleProps) {
           [ccDeadToggle.labelRadio]: props.radio,
           [ccDeadToggle.labelCheckbox]: props.checkbox,
         })}
-        name={props.name ? `${props.name}:dead-toggle` : "dead-toggle"}
+        name={props.name ? `${props.name}:dead-toggle` : 'dead-toggle'}
         controlled={true}
         onChange={() => undefined}
         value={props.value}

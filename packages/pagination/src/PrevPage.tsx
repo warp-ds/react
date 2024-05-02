@@ -1,4 +1,4 @@
-import { classNames } from "@chbphone55/classnames";
+import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import { usePagination } from './PaginationContainer.js';
@@ -19,7 +19,7 @@ type PrevPageProps = {
 
   /** Additional CSS styles for the element. */
   style?: React.CSSProperties;
-  
+
   /** Enable nofollow rel */
   noFollow?: boolean;
 
@@ -27,43 +27,30 @@ type PrevPageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const PrevPage = React.forwardRef<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  PrevPageProps
->(({ className, noFollow, ...props }, ref) => {
+const PrevPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>, PrevPageProps>(({ className, noFollow, ...props }, ref) => {
   const { currentPage } = usePagination();
 
   if (currentPage === 1) {
     return null;
   }
 
-  const ariaLabel = 
+  const ariaLabel =
     props['aria-label'] ??
     i18n._({
       id: 'pagination.aria.prev-page',
       message: 'Previous page',
-      comment:
-        'Default screenreader message for previous page link in the pagination component',
+      comment: 'Default screenreader message for previous page link in the pagination component',
     });
 
-  const iconSuffix =
-    i18n._({
-      id: 'pagination.aria.icon-suffix',
-      message: 'icon',
-      comment:
-        'Suffix added at the end of icon titles when img semantics are lost on an html element',
-    });
+  const iconSuffix = i18n._({
+    id: 'pagination.aria.icon-suffix',
+    message: 'icon',
+    comment: 'Suffix added at the end of icon titles when img semantics are lost on an html element',
+  });
 
   return (
-    <a
-      {...props}
-      ref={ref as Ref<HTMLAnchorElement>}
-      className={classNames(className, ccPagination.link, ccPagination.icon)}
-      rel={`prev${noFollow ? ' nofollow' : ''}`}
-    >
-      <span className={ccPagination.a11y}>
-        {ariaLabel},
-      </span>
+    <a {...props} ref={ref as Ref<HTMLAnchorElement>} className={classNames(className, ccPagination.link, ccPagination.icon)} rel={`prev${noFollow ? ' nofollow' : ''}`}>
+      <span className={ccPagination.a11y}>{ariaLabel},</span>
       <IconChevronLeft16 />
       <span className={ccPagination.a11y}>{iconSuffix}</span>
     </a>

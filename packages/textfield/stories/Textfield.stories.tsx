@@ -5,24 +5,13 @@ import { Affix } from '../../_helpers';
 
 export default { title: 'Forms/TextField', component: WarpTextField };
 
-const Template = (args) => <WarpTextField label="Address"
-  onChange={action('change')}
-  onFocus={action('focus')}
-  onBlur={action('blur')} {...args} />;
+const Template = (args) => <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   value: 'test',
 };
 
-const TextField = (args) => (
-  <WarpTextField
-    label="Address"
-    onChange={action('change')}
-    onFocus={action('focus')}
-    onBlur={action('blur')}
-    {...args}
-  />
-);
+const TextField = (args) => <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />;
 
 export const standard = () => <TextField />;
 
@@ -62,7 +51,7 @@ export const longLabelPrefix = () => (
   <TextField className="[--w-prefix-width:90px]" value="With some value">
     <Affix prefix label="Long prefix" />
   </TextField>
-    );
+);
 
 export const clearSuffix = () => (
   <TextField>
@@ -88,9 +77,7 @@ export const suffixAndPrefix = () => (
   </TextField>
 );
 
-export const helpText = () => (
-  <TextField helpText="Necessary because of reasons" />
-);
+export const helpText = () => <TextField helpText="Necessary because of reasons" />;
 
 export const invalid = () => <TextField helpText="Error text" invalid />;
 

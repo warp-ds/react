@@ -10,12 +10,7 @@ type Params = {
   maximumRows?: number;
 };
 
-export default function useTextAreaHeight({
-  ref,
-  value,
-  minimumRows,
-  maximumRows,
-}: Params): void {
+export default function useTextAreaHeight({ ref, value, minimumRows, maximumRows }: Params): void {
   const minHeight = useRef(-Infinity);
   const maxHeight = useRef(Infinity);
 
@@ -39,12 +34,8 @@ export default function useTextAreaHeight({
       const lineHeight = parseFloat(style.getPropertyValue('line-height'));
 
       const topPadding = parseFloat(style.getPropertyValue('padding-top'));
-      const bottomPadding = parseFloat(
-        style.getPropertyValue('padding-bottom'),
-      );
-      const bottomBorder = parseFloat(
-        style.getPropertyValue('border-bottom-width'),
-      );
+      const bottomPadding = parseFloat(style.getPropertyValue('padding-bottom'));
+      const bottomBorder = parseFloat(style.getPropertyValue('border-bottom-width'));
       const offset = topPadding + bottomPadding + bottomBorder;
 
       if (minimumRows) {

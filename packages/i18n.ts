@@ -5,23 +5,14 @@ type SupportedLocale = (typeof supportedLocales)[number];
 
 export const defaultLocale = 'en';
 
-export const getSupportedLocale = (usedLocale: string) => {
-  return (
-    supportedLocales.find(
-      (locale) =>
-        usedLocale === locale || usedLocale.toLowerCase().includes(locale)
-    ) || defaultLocale
-  );
-};
+export const getSupportedLocale = (usedLocale: string) => supportedLocales.find((locale) => usedLocale === locale || usedLocale.toLowerCase().includes(locale)) || defaultLocale;
 
 export function detectLocale(): SupportedLocale {
   if (typeof window === 'undefined') {
     /**
      * Server locale detection. This requires e.g LANG environment variable to be set on the server.
      */
-    const serverLocale =
-      process.env.NMP_LANGUAGE ||
-      Intl.DateTimeFormat().resolvedOptions().locale;
+    const serverLocale = process.env.NMP_LANGUAGE || Intl.DateTimeFormat().resolvedOptions().locale;
     return getSupportedLocale(serverLocale);
   }
 
@@ -37,23 +28,14 @@ export function detectLocale(): SupportedLocale {
   }
 }
 
-export const getMessages = (
-  locale: SupportedLocale,
-  enMsg: Messages,
-  nbMsg: Messages,
-  fiMsg: Messages
-) => {
+export const getMessages = (locale: SupportedLocale, enMsg: Messages, nbMsg: Messages, fiMsg: Messages) => {
   if (locale === 'nb') return nbMsg;
   if (locale === 'fi') return fiMsg;
   // Default to English
   return enMsg;
 };
 
-export const activateI18n = (
-  enMessages: Messages,
-  nbMessages: Messages,
-  fiMessages: Messages
-) => {
+export const activateI18n = (enMessages: Messages, nbMessages: Messages, fiMessages: Messages) => {
   const locale = detectLocale();
   const messages = getMessages(locale, enMessages, nbMessages, fiMessages);
   i18n.load(locale, messages);
