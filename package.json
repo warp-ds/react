@@ -143,7 +143,7 @@
     "@warp-ds/core": "1.1.1",
     "@warp-ds/css": "1.9.3",
     "@warp-ds/icons": "2.0.0",
-    "@warp-ds/uno": "1.10.2",
+    "@warp-ds/uno": "1.12.0",
     "react-focus-lock": "2.9.7",
     "resize-observer-polyfill": "1.5.1",
     "scroll-doctor": "2.0.2"
