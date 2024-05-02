@@ -1,9 +1,6 @@
 export * from './Pagination.js';
 
-export {
-  default as PaginationContainer,
-  usePagination,
-} from './PaginationContainer.js';
+export { default as PaginationContainer, usePagination } from './PaginationContainer.js';
 export { default as FirstPage } from './FirstPage.js';
 export { default as NextPage } from './NextPage.js';
 export { default as PrevPage } from './PrevPage.js';
