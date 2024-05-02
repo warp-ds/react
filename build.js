@@ -1,25 +1,25 @@
-import esbuild from "esbuild";
-import { glob } from "glob";
+import esbuild from 'esbuild';
+import { glob } from 'glob';
 import fs from 'fs';
 import ts from 'typescript';
 
-const components = glob.sync("packages/**/src/index.ts");
-const indexPath = "packages/index.ts";
+const components = glob.sync('packages/**/src/index.ts');
+const indexPath = 'packages/index.ts';
 
 const esbuildDefaults = {
   bundle: true,
-  format: "esm",
+  format: 'esm',
   sourcemap: true,
-  target: "es2017",
+  target: 'es2017',
   minify: false,
-  external: ["react", "@lingui/core"],
+  external: ['react', '@lingui/core'],
 };
 
 function generateTypeDefinitions(inputFilePath, packageName, outDir) {
   let listOfTsFiles = [];
   const options = {
     module: ts.ModuleKind.NodeNext,
-    lib: ["DOM", "ES2020"],
+    lib: ['DOM', 'ES2020'],
     target: ts.ScriptTarget.ES2020,
     sourceMap: true,
     strict: true,
@@ -36,7 +36,7 @@ function generateTypeDefinitions(inputFilePath, packageName, outDir) {
     allowSyntheticDefaultImports: true,
     strictNullChecks: true,
     outDir: outDir,
-  }
+  };
   const host = ts.createCompilerHost(options);
   host.writeFile = (fileName, contents) => listOfTsFiles.push({ fileName, contents });
 
@@ -51,7 +51,7 @@ function generateTypeDefinitions(inputFilePath, packageName, outDir) {
     // Doing this hack since typescript sometimes doesn't output the correct path
     let packageTypePath = file.fileName.replace(outDir, '').replace('src/', '').replace(`${packageName}/`, '');
     const updatedFilename = outDir + packageTypePath;
-    
+
     fs.mkdirSync(updatedFilename.split('/').slice(0, -1).join('/'), { recursive: true });
     fs.writeFileSync(updatedFilename, file.contents);
   });
@@ -62,7 +62,7 @@ function buildComponents(outDir, extraBuildOptions = {}) {
     const regex = /\/(\w+)\//;
     const match = item.match(regex);
 
-    if (item.includes("utils")) return;
+    if (item.includes('utils')) return;
     console.log(`react: building ${match[1]}.js`);
 
     try {
@@ -72,7 +72,7 @@ function buildComponents(outDir, extraBuildOptions = {}) {
         ...esbuildDefaults,
         ...extraBuildOptions,
       });
-      generateTypeDefinitions(item, match[1],`${outDir}/packages/${match[1]}/`);
+      generateTypeDefinitions(item, match[1], `${outDir}/packages/${match[1]}/`);
     } catch (err) {
       console.error(err);
     }
@@ -80,7 +80,7 @@ function buildComponents(outDir, extraBuildOptions = {}) {
 }
 
 async function buildIndex(outDir, extraBuildOptions = {}) {
-  console.log("react: building index.js");
+  console.log('react: building index.js');
   try {
     // ESM build
     await esbuild.build({
@@ -94,7 +94,7 @@ async function buildIndex(outDir, extraBuildOptions = {}) {
       ...esbuildDefaults,
       entryPoints: [indexPath],
       outfile: `${outDir}/index.cjs`,
-      format: "cjs",
+      format: 'cjs',
       ...extraBuildOptions,
     });
   } catch (err) {
@@ -102,7 +102,7 @@ async function buildIndex(outDir, extraBuildOptions = {}) {
   }
 }
 
-console.log("Building react");
+console.log('Building react');
 
-buildComponents("dist/npm");
-buildIndex("dist/npm");
+buildComponents('dist/npm');
+buildIndex('dist/npm');
