@@ -82,7 +82,7 @@ export const useAutoUpdatePosition = (targetEl: MutableRefObject<ReferenceElemen
       const cleanup = memoizedAutoUpdatePosition();
       return cleanup;
     }
-    // Always return a cleanup function to maintain consistent return type and handle potential cleanups explicitly.
+    // We should return a cleanup function to maintain consistent return type and handle potential cleanups explicitly.
     // This ensures compatibility with TypeScript's type expectations and React's cleanup mechanism.
     // Therefore we return an empty function here:
     return () => {};
