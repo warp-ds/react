@@ -65,10 +65,8 @@
     "build": "pnpm run build:clean && pnpm run build:npm && pnpm run build:eik && pnpm run build:types",
     "commit": "cz",
     "dev": "storybook dev -p 9003 --ci",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "lint:eslint": "eslint . --ext ts,tsx,js,jsx,cjs --max-warnings 0 --ignore-path .gitignore",
-    "lint:format": "prettier --check . --ignore-path .gitignore",
-    "lint": "pnpm run lint:format && pnpm run lint:eslint",
+    "lint:check": "eslint . --ext js,cjs,mjs --ignore-path .gitignore",
+    "lint": "eslint . --fix --ext js,cjs,mjs --ignore-path .gitignore",
     "messages:compile": "lingui compile",
     "messages:extract": "lingui extract",
     "semantic-release": "semantic-release",
@@ -112,6 +110,9 @@
     "element-collapse": "^1.0.1",
     "esbuild": "0.19.11",
     "eslint": "^8.56.0",
+    "@warp-ds/eslint-config": "1.0.4",
+    "eslint-plugin-prettier": "5.1.3",
+    "eslint-config-prettier": "9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.29.1",
@@ -152,6 +153,9 @@
     "server": "https://assets.finn.no",
     "type": "package",
     "files": "./dist/eik"
+  },
+  "eslintConfig": {
+    "extends": "@warp-ds"
   },
   "config": {
     "commitizen": {
