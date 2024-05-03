@@ -72,7 +72,6 @@ describe('Expandable component', () => {
   it('renders animated expansion correctly', () => {
     render(<Expandable title="Animated Test" animated>Animated Content</Expandable>);
     const content = screen.getByTestId('expand-transition');
-    //expect(content).not.toHaveClass('overflow-hidden h-0');
     fireEvent.click(screen.getByRole('button'));
     expect(content).toHaveClass('overflow-hidden h-0');
   });
