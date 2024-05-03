@@ -131,6 +131,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "semantic-release": "^23.0.0",
     "semantic-release-slack-bot": "^4.0.0",
+    "@serverless-guru/prettier-plugin-import-order": "^0.4.2",
     "storybook": "^7.6.12",
     "typescript": "5.3.3",
     "unocss": "^0.58.0",
