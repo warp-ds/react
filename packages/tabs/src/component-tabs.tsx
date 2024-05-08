@@ -11,7 +11,7 @@ const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, 
     [className]: !!className,
   }),
   div: classNames(ccTabs.tabContainer, {
-    [gridLayout[`cols${children.length}`]]: true,
+    [gridLayout[`cols${children.filter((node) => node).length}`]]: true,
   }),
   wunderbar: classNames(ccTabs.wunderbar),
   attrs: rest,
