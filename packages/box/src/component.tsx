@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { box as ccBox } from '@warp-ds/css/component-classes';
-import React from 'react';
+
 import { BoxProps } from './props.js';
 
 export function Box(props: BoxProps) {

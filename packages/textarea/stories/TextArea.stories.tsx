@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { TextArea } from '../src';
 
 const metadata = { title: 'Forms/TextArea' };

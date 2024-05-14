@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Tab, TabPanel, Tabs } from '../src';
+
 import { IconPlus16 } from '@warp-ds/icons/react';
+
+import { Tab, TabPanel, Tabs } from '../src';
 
 const metadata = { title: 'Navigation/Tabs' };
 export default metadata;

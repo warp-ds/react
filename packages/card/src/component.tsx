@@ -1,8 +1,11 @@
 import React from 'react';
-import { card as ccCard } from '@warp-ds/css/component-classes';
+
 import { classNames } from '@chbphone55/classnames';
-import { CardProps } from './props.js';
+import { card as ccCard } from '@warp-ds/css/component-classes';
+
 import { useLogDeprecationWarning } from '../../utils/src/index.js';
+
+import { CardProps } from './props.js';
 
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, ...rest } = props;
@@ -41,7 +44,9 @@ export function Card(props: CardProps) {
         </button>
       )}
 
-      {!props.flat && <div className={classNames([ccCard.cardOutline, props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected])} />}
+      {!props.flat && (
+        <div className={classNames([ccCard.cardOutline, props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected])} />
+      )}
 
       {children}
     </>,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Steps, Step } from '../src';
+
 import { Button } from '../../button/src';
+import { Step, Steps } from '../src';
 
 const metadata = { title: 'Navigation/Steps' };
 export default metadata;

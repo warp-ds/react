@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Clickable, DeadToggle } from '../../_helpers';
 import { Card } from '../src';
 
@@ -25,8 +26,7 @@ export const SingleCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -54,8 +54,7 @@ export const SingleCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -99,8 +98,7 @@ export const SelectableCard = () => {
                     fontSize: 10,
                     verticalAlign: 'super',
                     marginRight: 5,
-                  }}
-                >
+                  }}>
                   2
                 </span>
                 Totalpris: 4 869 039 kr
@@ -132,8 +130,7 @@ export const SelectableCard = () => {
                     fontSize: 10,
                     verticalAlign: 'super',
                     marginRight: 5,
-                  }}
-                >
+                  }}>
                   2
                 </span>
                 Totalpris: 4 869 039 kr
@@ -169,8 +166,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -194,8 +190,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -219,8 +214,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -248,8 +242,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -273,8 +266,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -298,8 +290,7 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}
-            >
+              }}>
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -327,7 +318,11 @@ export const AnchorCard = () => (
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
             <h3 className="text-16 font-normal text-gray-800" id="title_id">
-              <Clickable href="//finn.no" target="_blank" title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring." className="text-current hover:no-underline focus:no-underline">
+              <Clickable
+                href="//finn.no"
+                target="_blank"
+                title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring."
+                className="text-current hover:no-underline focus:no-underline">
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
@@ -339,8 +334,7 @@ export const AnchorCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -361,7 +355,11 @@ export const AnchorCard = () => (
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
             <h3 className="text-16 font-normal text-gray-800" id="title_id">
-              <Clickable href="//finn.no" target="_blank" title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring." className="text-current hover:no-underline focus:no-underline">
+              <Clickable
+                href="//finn.no"
+                target="_blank"
+                title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring."
+                className="text-current hover:no-underline focus:no-underline">
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
@@ -373,8 +371,7 @@ export const AnchorCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -521,7 +518,17 @@ export const DeadToggleInCard = () => {
   );
 };
 
-const ClickableCardWithDeadToggle = ({ id, isSelected, setSelected, name }: { id: number; isSelected: boolean; setSelected: (value: React.SetStateAction<number | null>) => void; name: string }) => (
+const ClickableCardWithDeadToggle = ({
+  id,
+  isSelected,
+  setSelected,
+  name,
+}: {
+  id: number;
+  isSelected: boolean;
+  setSelected: (value: React.SetStateAction<number | null>) => void;
+  name: string;
+}) => (
   <Card className="w-full flex items-center py-14 px-14 gap-14 my-12 font-bold" selected={isSelected}>
     <DeadToggle radio checked={isSelected} name={name} className="-mt-6" />
     <Clickable radio name={name} onClick={() => setSelected(id)} autofocus={true}>
@@ -538,13 +545,25 @@ export const MultipleDeadToggleGroups = () => {
       <fieldset key={1} className="mb-12" role="radiogroup">
         Radio group 1
         {[0, 1, 2].map((i) => (
-          <ClickableCardWithDeadToggle key={i} id={i} isSelected={selectedRadio === i} setSelected={(x) => setSelectedRadio(x)} name="first-group" />
+          <ClickableCardWithDeadToggle
+            key={i}
+            id={i}
+            isSelected={selectedRadio === i}
+            setSelected={(x) => setSelectedRadio(x)}
+            name="first-group"
+          />
         ))}
       </fieldset>
       <fieldset key={2} role="radiogroup">
         Radio group 2
         {[3, 4, 5].map((i) => (
-          <ClickableCardWithDeadToggle key={i} id={i} isSelected={secondSelectedRadio === i} setSelected={(x) => setSecondSelectedRadio(x)} name="second-group" />
+          <ClickableCardWithDeadToggle
+            key={i}
+            id={i}
+            isSelected={secondSelectedRadio === i}
+            setSelected={(x) => setSecondSelectedRadio(x)}
+            name="second-group"
+          />
         ))}
       </fieldset>
     </div>

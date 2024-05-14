@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { TextField } from '../../packages/textfield/src/component';
+
 import { Affix } from '../../packages/_helpers/affix.tsx';
+import { TextField } from '../../packages/textfield/src/component';
 
 describe('TextField component', () => {
   const defaultProps = {
@@ -17,7 +19,9 @@ describe('TextField component', () => {
 
   it('renders input field with correct class names', () => {
     render(<TextField {...defaultProps} />);
-    expect(screen.getByRole('textbox')).toHaveClass('block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current');
+    expect(screen.getByRole('textbox')).toHaveClass(
+      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current',
+    );
   });
 
   it('renders label with optional text when optional is true', () => {
@@ -35,19 +39,25 @@ describe('TextField component', () => {
   it('renders input field with invalid class when invalid is true', () => {
     const props = { ...defaultProps, invalid: true };
     render(<TextField {...props} />);
-    expect(screen.getByRole('textbox')).toHaveClass('block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-border-negative s-text-negative! hover:s-border-negative-hover! outline-[--w-s-color-border-negative]!');
+    expect(screen.getByRole('textbox')).toHaveClass(
+      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-border-negative s-text-negative! hover:s-border-negative-hover! outline-[--w-s-color-border-negative]!',
+    );
   });
 
   it('renders input field with disabled class when disabled is true', () => {
     const props = { ...defaultProps, disabled: true };
     render(<TextField {...props} />);
-    expect(screen.getByRole('textbox')).toHaveClass('block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-bg-disabled-subtle s-border-disabled hover:s-border-disabled! s-text-disabled pointer-events-none');
+    expect(screen.getByRole('textbox')).toHaveClass(
+      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-bg-disabled-subtle s-border-disabled hover:s-border-disabled! s-text-disabled pointer-events-none',
+    );
   });
 
   it('renders input field with read-only class when readOnly is true', () => {
     const props = { ...defaultProps, readOnly: true };
     render(<TextField {...props} />);
-    expect(screen.getByRole('textbox')).toHaveClass('block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current pl-0 bg-transparent! border-0! pointer-events-none');
+    expect(screen.getByRole('textbox')).toHaveClass(
+      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current pl-0 bg-transparent! border-0! pointer-events-none',
+    );
   });
 
   it('calls onChange callback when input value changes', () => {

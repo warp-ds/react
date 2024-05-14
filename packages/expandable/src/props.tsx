@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import type { HeadingLevel } from '../../_helpers/props.js';
 
 export type ExpandableProps = {

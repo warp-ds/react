@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { action } from '@storybook/addon-actions';
+
 import { Select as WarpSelect } from '../src';
 
 const metadata = { title: 'Forms/Select' };
@@ -31,7 +33,14 @@ export const Invalid = () => {
 
   return (
     <div className="flex flex-col space-y-32">
-      <WarpSelect label="Berries" invalid={!valid} hint={!valid ? 'Wrong choice' : ''} onChange={handleOnChange} onFocus={action('focus')} onBlur={action('blur')} aria-label="You're selection is berry nice!">
+      <WarpSelect
+        label="Berries"
+        invalid={!valid}
+        hint={!valid ? 'Wrong choice' : ''}
+        onChange={handleOnChange}
+        onFocus={action('focus')}
+        onBlur={action('blur')}
+        aria-label="You're selection is berry nice!">
         <option value={'Strawberries'}>Strawberries</option>
         <option value={'Raspberries'}>Raspberries</option>
         <option value={'Cloudberries'}>Cloudberries</option>
@@ -57,7 +66,12 @@ export const NoLabel = () => (
     <label id="select-label" htmlFor="warp-aria-labelledby-example">
       You're berry good at selecting!
     </label>
-    <WarpSelect id="warp-aria-labelledby-example" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} aria-labelledby="select-label">
+    <WarpSelect
+      id="warp-aria-labelledby-example"
+      onChange={action('change')}
+      onFocus={action('focus')}
+      onBlur={action('blur')}
+      aria-labelledby="select-label">
       <option>Strawberries</option>
       <option>Raspberries</option>
       <option>Cloudberries</option>

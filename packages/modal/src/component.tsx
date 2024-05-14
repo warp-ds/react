@@ -1,17 +1,20 @@
-import { classNames } from '@chbphone55/classnames';
-import { modal as ccModal } from '@warp-ds/css/component-classes';
 import React, { useEffect, useRef } from 'react';
-import { useId } from '../../utils/src/index.js';
-import FocusLock from 'react-focus-lock/dist/es2015';
-import { ModalProps } from './props.js';
-import { setup, teardown } from 'scroll-doctor';
+
+import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { modal as ccModal } from '@warp-ds/css/component-classes';
+import IconArrowLeft16 from '@warp-ds/icons/react/arrow-left-16';
+import IconClose16 from '@warp-ds/icons/react/close-16';
+import FocusLock from 'react-focus-lock/dist/es2015';
+import { setup, teardown } from 'scroll-doctor';
+
+import { activateI18n } from '../../i18n.js';
+import { useId } from '../../utils/src/index.js';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
-import IconClose16 from '@warp-ds/icons/react/close-16';
-import IconArrowLeft16 from '@warp-ds/icons/react/arrow-left-16';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { ModalProps } from './props.js';
 
 /**
  * A Modal dialog that renders on top the page
@@ -68,8 +71,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
             }
           }}
           className={ccModal.modal}
-          tabIndex={-1}
-        >
+          tabIndex={-1}>
           <div className={ccModal.title}>
             {typeof props.left === 'boolean' && props.left ? (
               <button
@@ -82,15 +84,19 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   },
                 )}
                 className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft)}
-                onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}
-              >
+                onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}>
                 <IconArrowLeft16 className={classNames(ccModal.titleButtonIcon)} />
               </button>
             ) : (
               props.left
             )}
 
-            <div id={`${id}__title`} className={classNames(ccModal.transitionTitle, !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan)}>
+            <div
+              id={`${id}__title`}
+              className={classNames(
+                ccModal.transitionTitle,
+                !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
+              )}>
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
 
@@ -106,8 +112,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   },
                 )}
                 onClick={props.onDismiss}
-                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight)}
-              >
+                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight)}>
                 <IconClose16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (

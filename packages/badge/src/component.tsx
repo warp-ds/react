@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { badge as ccBadge } from '@warp-ds/css/component-classes';
-import React from 'react';
+
 import { BadgeProps } from './props.js';
 
 export function Badge(props: BadgeProps) {

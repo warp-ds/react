@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { clickable as ccClickable } from '@warp-ds/css/component-classes';
+
 import { Item as ToggleItem } from '../toggle/src/item.js';
 import { useId } from '../utils/src/useId.js';
 
@@ -48,7 +50,14 @@ export function Clickable({ children, radio, checkbox, value, ...props }: Clicka
   const type = radio ? 'radio' : 'checkbox';
 
   return radio || checkbox ? (
-    <ToggleItem labelClassName={classNames(props.labelClassName)} className={ccClickable.toggle} type={type} controlled={false} onChange={props.onClick ? props.onClick : () => undefined} value={value} name={`${props.name || id}:toggle`}>
+    <ToggleItem
+      labelClassName={classNames(props.labelClassName)}
+      className={ccClickable.toggle}
+      type={type}
+      controlled={false}
+      onChange={props.onClick ? props.onClick : () => undefined}
+      value={value}
+      name={`${props.name || id}:toggle`}>
       {children}
     </ToggleItem>
   ) : (

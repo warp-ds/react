@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/css/component-classes';
+
 import type { TabProps } from './props.js';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
@@ -28,7 +30,16 @@ export function Tab(props: TabProps) {
   };
 
   return (
-    <button type="button" {...rest} role="tab" aria-selected={isActive ? 'true' : 'false'} aria-controls={isActive ? `warp-tabpanel-${name}` : undefined} id={`warp-tab-${name}`} tabIndex={isActive ? 0 : -1} className={tab} onClick={handleClick}>
+    <button
+      type="button"
+      {...rest}
+      role="tab"
+      aria-selected={isActive ? 'true' : 'false'}
+      aria-controls={isActive ? `warp-tabpanel-${name}` : undefined}
+      id={`warp-tab-${name}`}
+      tabIndex={isActive ? 0 : -1}
+      className={tab}
+      onClick={handleClick}>
       {!children && <span className={content}>{label}</span>}
 
       {children && over && (

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, TextArea, Card, Toggle, Combobox, Clickable } from '@warp-ds/react';
+
+import { Button, Card, Clickable, Combobox, TextArea, Toggle } from '@warp-ds/react';
 
 function useSWMatch(term) {
   const [characters, setCharacters] = React.useState([]);
@@ -30,13 +31,18 @@ export default function App() {
   return (
     <div className="m-10">
       <Toggle onChange={() => console.log('hi')} type="radio" options={[{ label: 'hi', value: 'test' }]} helpText="hi" invalid />
-      <Combobox matchTextSegments label="Star Wars character" onChange={(val) => setSearchTerm(val)} onSelect={(val) => alert(val)} options={characters} />
+      <Combobox
+        matchTextSegments
+        label="Star Wars character"
+        onChange={(val) => setSearchTerm(val)}
+        onSelect={(val) => alert(val)}
+        options={characters}
+      />
       <Button
         className="mb-10"
         onClick={() => {
           console.log('click handler called');
-        }}
-      >
+        }}>
         Hi there
       </Button>
       <TextArea name="my-text" defaultValue="Stuff here" className="mb-10"></TextArea>
@@ -59,8 +65,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -88,8 +93,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -117,8 +121,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr

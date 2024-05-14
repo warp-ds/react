@@ -1,6 +1,7 @@
+import fs from 'fs';
+
 import esbuild from 'esbuild';
 import { glob } from 'glob';
-import fs from 'fs';
 import ts from 'typescript';
 
 const components = glob.sync('packages/**/src/index.ts');

@@ -1,10 +1,13 @@
+import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { box as ccBox, expandable as ccExpandable } from '@warp-ds/css/component-classes';
-import React from 'react';
-import { ExpandTransition, UnstyledHeading } from '../../_helpers/index.js';
-import { ExpandableProps } from './props.js';
 import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
 import IconChevronUp16 from '@warp-ds/icons/react/chevron-up-16';
+
+import { ExpandTransition, UnstyledHeading } from '../../_helpers/index.js';
+
+import type { ExpandableProps } from './props.js';
 
 export function Expandable(props: ExpandableProps) {
   // eslint-disable-next-line
@@ -33,8 +36,7 @@ export function Expandable(props: ExpandableProps) {
         [ccExpandable.expandable]: true,
         [ccExpandable.expandableBox]: box,
         [ccExpandable.expandableBleed]: bleed,
-      })}
-    >
+      })}>
       <UnstyledHeading level={headingLevel}>
         <button
           type="button"
@@ -44,8 +46,7 @@ export function Expandable(props: ExpandableProps) {
             [ccExpandable.button]: true,
             [ccExpandable.buttonBox]: box,
           })}
-          onClick={() => toggleExpandable(stateExpanded)}
-        >
+          onClick={() => toggleExpandable(stateExpanded)}>
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? <span className={ccExpandable.titleType}>{title}</span> : title}
             {chevron && (
@@ -54,8 +55,7 @@ export function Expandable(props: ExpandableProps) {
                   [ccExpandable.chevron]: true,
                   [ccExpandable.chevronBox]: box,
                   [ccExpandable.chevronNonBox]: !box,
-                })}
-              >
+                })}>
                 {showChevronUp ? (
                   <IconChevronUp16
                     className={classNames({
@@ -82,8 +82,7 @@ export function Expandable(props: ExpandableProps) {
             [contentClass || '']: true,
             [ccBox.box]: box,
             [ccExpandable.paddingTop]: box && title,
-          })}
-        >
+          })}>
           {children}
         </div>
       </ExpansionBehaviour>
@@ -100,8 +99,7 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
         [ccExpandable.expansion]: true,
         [ccExpandable.expansionNotExpanded]: !stateExpanded,
       })}
-      aria-hidden={!stateExpanded ? true : undefined}
-    >
+      aria-hidden={!stateExpanded ? true : undefined}>
       {children}
     </div>
   );

@@ -1,13 +1,16 @@
 import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
-import { PillProps } from './props.js';
+import { i18n } from '@lingui/core';
 import { pill as ccPill } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
-import { i18n } from '@lingui/core';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+
+import { activateI18n } from '../../i18n.js';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { PillProps } from './props.js';
 
 export function Pill(props: PillProps) {
   activateI18n(enMessages, nbMessages, fiMessages);
@@ -21,8 +24,7 @@ export function Pill(props: PillProps) {
           [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
           [ccPill.label]: true,
           [props.canClose ? ccPill.labelWithClose : ccPill.labelWithoutClose]: true,
-        })}
-      >
+        })}>
         <span className={ccPill.a11y}>
           {props.openSRLabel ||
             i18n._(
@@ -44,8 +46,7 @@ export function Pill(props: PillProps) {
             [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
             [ccPill.close]: true,
           })}
-          onClick={props.onClose}
-        >
+          onClick={props.onClose}>
           <span className={ccPill.a11y}>
             {props.closeSRLabel ||
               i18n._(

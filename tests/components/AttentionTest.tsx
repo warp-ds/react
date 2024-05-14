@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { render, screen, fireEvent, renderHook } from '@testing-library/react';
-import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
+import React, { useEffect, useState } from 'react';
+
+import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import type { Directions } from '@warp-ds/core/attention';
+import { attention as ccAttention } from '@warp-ds/css/component-classes';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../packages/_helpers/attention';
 import { Attention } from '../../packages/attention/src/component';
 import { Box } from '../../packages/box/src/component';
 import { Button } from '../../packages/button/src/component';
-import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import { Directions } from '@warp-ds/core/attention';
-import { activeAttentionType, pointingAtDirection, useAutoUpdatePosition, getVariant } from '../../packages/_helpers/attention';
 
 const onClickFunction = vi.fn();
 const mockTargetEl = { current: document.createElement('div') };
@@ -24,8 +26,7 @@ describe('Attention component', () => {
           onClick={() => {
             mockIsShowing = !mockIsShowing;
             onClickFunction(mockIsShowing);
-          }}
-        >
+          }}>
           Show an onboarding hint
         </Button>
         <div>
@@ -43,8 +44,7 @@ describe('Attention component', () => {
             }}
             placement={mockPlacement}
             isShowing={mockIsShowing}
-            targetEl={mockTargetEl}
-          >
+            targetEl={mockTargetEl}>
             <p>I'm a highlight that can dismiss itself</p>
           </Attention>
         </div>
@@ -187,7 +187,9 @@ describe('useEffect for autoUpdatePosition', () => {
     const autoUpdatePositionMock = vi.fn();
     const mockedAttentionState = {};
 
-    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState));
+    const { unmount } = renderHook(() =>
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
+    );
     expect(autoUpdatePositionMock).toHaveBeenCalled();
 
     unmount();
@@ -199,7 +201,9 @@ describe('useEffect for autoUpdatePosition', () => {
     const autoUpdatePositionMock = vi.fn();
     const mockedAttentionState = {};
 
-    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState));
+    const { unmount } = renderHook(() =>
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
+    );
     expect(autoUpdatePositionMock).not.toHaveBeenCalled();
 
     unmount();
@@ -211,7 +215,9 @@ describe('useEffect for autoUpdatePosition', () => {
     const autoUpdatePositionMock = vi.fn();
     const mockedAttentionState = {};
 
-    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState));
+    const { unmount } = renderHook(() =>
+      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
+    );
     expect(autoUpdatePositionMock).not.toHaveBeenCalled();
 
     unmount();

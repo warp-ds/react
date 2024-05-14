@@ -1,7 +1,9 @@
-import { render } from '@testing-library/react';
 import * as React from 'react';
-import { Tab, Tabs } from '../src';
+
+import { render } from '@testing-library/react';
+
 import { runAxe } from '../../../test/test-helpers';
+import { Tab, Tabs } from '../src';
 
 test('should render component with 3 tabs', () => {
   expect(

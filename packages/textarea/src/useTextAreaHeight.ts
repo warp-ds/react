@@ -1,5 +1,6 @@
-import { useLayoutEffect } from '../../utils/src/index.js';
 import React, { useEffect, useRef } from 'react';
+
+import { useLayoutEffect } from '../../utils/src/index.js';
 
 type Params = {
   ref: React.RefObject<HTMLTextAreaElement>;

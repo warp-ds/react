@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react';
+import { classes } from '@warp-ds/css/component-classes/classes';
 import { presetWarp } from '@warp-ds/uno';
 import uno from 'unocss/vite';
-import { classes } from '@warp-ds/css/component-classes/classes';
 
 export default function config(env) {
   return {
@@ -22,7 +22,23 @@ export default function config(env) {
       coverage: {
         cleanOnRerun: true,
         reporter: ['text'],
-        exclude: ['**.json', 'dev/**', 'storybook-static/**', '.storybook/**', 'packages/**/stories', 'packages/**/src/locales', 'esbuild.mjs', 'lingui.config.ts', '@types', 'tests/', 'packages/**/src/props.*', 'packages/**/src/index.*', 'packages/index.ts', 'build.js', 'esbuild.js'],
+        exclude: [
+          '**.json',
+          'dev/**',
+          'storybook-static/**',
+          '.storybook/**',
+          'packages/**/stories',
+          'packages/**/src/locales',
+          'esbuild.mjs',
+          'lingui.config.ts',
+          '@types',
+          'tests/',
+          'packages/**/src/props.*',
+          'packages/**/src/index.*',
+          'packages/index.ts',
+          'build.js',
+          'esbuild.js',
+        ],
       },
     },
   };

@@ -1,16 +1,33 @@
 import React, { forwardRef } from 'react';
-import { i18n } from '@lingui/core';
+
 import { classNames } from '@chbphone55/classnames';
-import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
+import { i18n } from '@lingui/core';
+import { helpText as ccHelpText, input as ccInput, label as ccLabel } from '@warp-ds/css/component-classes';
+
+import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
-import { TextFieldProps } from './props.js';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { TextFieldProps } from './props.js';
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
-  const { className, disabled, id: providedId, children, invalid, error, helpText, label, readOnly, type = 'text', style, optional, ...rest } = props;
+  const {
+    className,
+    disabled,
+    id: providedId,
+    children,
+    invalid,
+    error,
+    helpText,
+    label,
+    readOnly,
+    type = 'text',
+    style,
+    optional,
+    ...rest
+  } = props;
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -79,8 +96,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
             [ccHelpText.helpTextColor]: !isInvalid,
             [ccHelpText.helpTextColorInvalid]: isInvalid,
           })}
-          id={helpId}
-        >
+          id={helpId}>
           {helpText}
         </div>
       )}

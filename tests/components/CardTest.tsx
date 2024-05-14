@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import { Card } from '../../packages/card/src/component';
 
 describe('Card', () => {
@@ -20,17 +22,23 @@ describe('Card', () => {
 
   it('renders flat card correctly', () => {
     render(<Card as="article" flat />);
-    expect(screen.getByRole('article')).toHaveClass('cursor-pointer overflow-hidden relative transition-all border-2 rounded-4 s-bg hover:s-bg-hover active:s-bg-active s-border hover:s-border-hover active:s-border-active');
+    expect(screen.getByRole('article')).toHaveClass(
+      'cursor-pointer overflow-hidden relative transition-all border-2 rounded-4 s-bg hover:s-bg-hover active:s-bg-active s-border hover:s-border-hover active:s-border-active',
+    );
   });
 
   it('renders selected card correctly', () => {
     render(<Card as="article" selected />);
-    expect(screen.getByRole('article')).toHaveClass('cursor-pointer overflow-hidden relative transition-all group rounded-8 s-surface-elevated-200 hover:s-surface-elevated-200-hover active:s-surface-elevated-200-active !s-bg-selected !hover:s-bg-selected-hover !active:s-bg-selected-active');
+    expect(screen.getByRole('article')).toHaveClass(
+      'cursor-pointer overflow-hidden relative transition-all group rounded-8 s-surface-elevated-200 hover:s-surface-elevated-200-hover active:s-surface-elevated-200-active !s-bg-selected !hover:s-bg-selected-hover !active:s-bg-selected-active',
+    );
   });
 
   it('renders flat selected card correctly', () => {
     render(<Card as="article" flat selected />);
-    expect(screen.getByRole('article')).toHaveClass('cursor-pointer overflow-hidden relative transition-all border-2 rounded-4 s-bg-selected hover:s-bg-selected-hover active:s-bg-selected-active s-border-selected hover:s-border-selected-hover active:s-border-selected-active');
+    expect(screen.getByRole('article')).toHaveClass(
+      'cursor-pointer overflow-hidden relative transition-all border-2 rounded-4 s-bg-selected hover:s-bg-selected-hover active:s-bg-selected-active s-border-selected hover:s-border-selected-hover active:s-border-selected-active',
+    );
   });
 
   it('handles onKeyDown events', () => {

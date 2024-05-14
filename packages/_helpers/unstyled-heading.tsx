@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+
 import { HeadingLevel } from './props.js';
 
 export const UnstyledHeading = ({
@@ -23,8 +24,7 @@ export const UnstyledHeading = ({
         fontSize: 'unset',
         lineHeight: 'unset',
       }}
-      {...attrs}
-    >
+      {...attrs}>
       {children}
     </Heading>
   );

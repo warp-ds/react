@@ -1,15 +1,18 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
-import { opposites, arrowDirectionClassname, useRecompute as recompute } from '@warp-ds/core/attention';
-import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import { ArrowProps, AttentionProps } from './props.js';
 import { i18n } from '@lingui/core';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { arrowDirectionClassname, opposites, useRecompute as recompute } from '@warp-ds/core/attention';
+import { attention as ccAttention } from '@warp-ds/css/component-classes';
+import IconClose16 from '@warp-ds/icons/react/close-16';
+
+import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
+import { activateI18n } from '../../i18n.js';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
-import IconClose16 from '@warp-ds/icons/react/close-16';
-import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { ArrowProps, AttentionProps } from './props.js';
 
 const variantClasses = {
   callout: {
@@ -31,7 +34,24 @@ const variantClasses = {
 };
 
 export function Attention(props: AttentionProps) {
-  let { noArrow, isShowing, children, role, 'aria-label': ariaLabel, placement = 'bottom', targetEl, className, canClose, onDismiss, distance = 8, skidding = 0, flip = false, crossAxis = false, fallbackPlacements, ...rest } = props;
+  let {
+    noArrow,
+    isShowing,
+    children,
+    role,
+    'aria-label': ariaLabel,
+    placement = 'bottom',
+    targetEl,
+    className,
+    canClose,
+    onDismiss,
+    distance = 8,
+    skidding = 0,
+    flip = false,
+    crossAxis = false,
+    fallbackPlacements,
+    ...rest
+  } = props;
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -93,7 +113,21 @@ export function Attention(props: AttentionProps) {
         return fallbackPlacements;
       },
     }),
-    [isShowing, rest.callout, actualDirection, placement, arrowEl, attentionEl, targetEl, props.noArrow, distance, skidding, flip, crossAxis, fallbackPlacements],
+    [
+      isShowing,
+      rest.callout,
+      actualDirection,
+      placement,
+      arrowEl,
+      attentionEl,
+      targetEl,
+      props.noArrow,
+      distance,
+      skidding,
+      flip,
+      crossAxis,
+      fallbackPlacements,
+    ],
   );
 
   const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
@@ -127,9 +161,12 @@ export function Attention(props: AttentionProps) {
         },
         className,
       )}
-      ref={attentionEl}
-    >
-      <div role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'} aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()} className={wrapperClasses} id={props.id}>
+      ref={attentionEl}>
+      <div
+        role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
+        aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
+        className={wrapperClasses}
+        id={props.id}>
         {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
@@ -149,8 +186,7 @@ export function Attention(props: AttentionProps) {
                 props.onDismiss();
               }
             }}
-            className={ccAttention.closeBtn}
-          >
+            className={ccAttention.closeBtn}>
             <IconClose16 />
           </button>
         )}
@@ -161,7 +197,11 @@ export function Attention(props: AttentionProps) {
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>(({ direction, ...rest }, ref) => {
   const arrowDirection = opposites[direction];
-  const arrowClasses = classNames(ccAttention.arrowBase, ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`], variantClasses[getVariant(rest, variantClasses)].arrow);
+  const arrowClasses = classNames(
+    ccAttention.arrowBase,
+    ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
+    variantClasses[getVariant(rest, variantClasses)].arrow,
+  );
 
   return <div data-testid="attention-arrow-el" ref={ref} className={arrowClasses} />;
 });

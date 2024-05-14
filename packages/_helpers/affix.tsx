@@ -1,6 +1,7 @@
 import React from 'react';
-import { suffix, prefix } from '@warp-ds/css/component-classes';
+
 import { classNames } from '@chbphone55/classnames';
+import { prefix, suffix } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
 import IconSearch16 from '@warp-ds/icons/react/search-16';
 

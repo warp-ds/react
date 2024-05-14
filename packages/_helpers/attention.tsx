@@ -1,9 +1,13 @@
-import { AttentionState, Directions, autoUpdatePosition, opposites } from '@warp-ds/core/attention';
-import { AttentionVariants, AttentionProps, ReferenceElement } from '../attention/src/props.js';
-import { i18n } from '@lingui/core';
 import { MutableRefObject, useCallback, useEffect } from 'react';
 
-export const getVariant = (variantProps: AttentionVariants, variantClasses: any) => Object.keys(variantClasses).find((b) => !!variantProps[b]) || '';
+import { i18n } from '@lingui/core';
+import { autoUpdatePosition, opposites } from '@warp-ds/core/attention';
+import type { AttentionState, Directions } from '@warp-ds/core/attention';
+
+import type { AttentionProps, AttentionVariants, ReferenceElement } from '../attention/src/props.js';
+
+export const getVariant = (variantProps: AttentionVariants, variantClasses: any) =>
+  Object.keys(variantClasses).find((b) => !!variantProps[b]) || '';
 export const pointingAtDirection = (actualDirection: Directions) => {
   switch (opposites[actualDirection]) {
     case 'top-start':
@@ -74,7 +78,12 @@ export const activeAttentionType = (props: AttentionProps) => {
   }
 };
 
-export const useAutoUpdatePosition = (targetEl: MutableRefObject<ReferenceElement | null> | undefined, isShowing: boolean | undefined, attentionEl: MutableRefObject<HTMLDivElement | null>, attentionState: AttentionState) => {
+export const useAutoUpdatePosition = (
+  targetEl: MutableRefObject<ReferenceElement | null> | undefined,
+  isShowing: boolean | undefined,
+  attentionEl: MutableRefObject<HTMLDivElement | null>,
+  attentionState: AttentionState,
+) => {
   const memoizedAutoUpdatePosition = useCallback(() => autoUpdatePosition(attentionState), [attentionState]);
 
   useEffect(() => {

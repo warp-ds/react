@@ -1,12 +1,15 @@
 import * as React from 'react';
-import type { BreadcrumbsProps } from './props.js';
+
+import { i18n } from '@lingui/core';
 import { interleave } from '@warp-ds/core/breadcrumbs';
 import { breadcrumbs as ccBreadcrumbs } from '@warp-ds/css/component-classes';
-import { i18n } from '@lingui/core';
-import { messages as enMessages } from './locales/en/messages.mjs';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
-import { messages as fiMessages } from './locales/fi/messages.mjs';
+
 import { activateI18n } from '../../i18n.js';
+
+import { messages as enMessages } from './locales/en/messages.mjs';
+import { messages as fiMessages } from './locales/fi/messages.mjs';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { BreadcrumbsProps } from './props.js';
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;

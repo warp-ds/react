@@ -1,8 +1,9 @@
 import React from 'react';
+
+import { expect, within } from '@storybook/test';
+
 import { Button } from '../../button/src';
 import { Alert, AlertProps } from '../src';
-
-import { within, expect } from '@storybook/test';
 
 export default { title: 'FeedbackIndicators/Alert', component: Alert };
 
@@ -121,8 +122,7 @@ export const WithDefaultRole = () => {
           setShow(!show);
         }}
         aria-controls="negative-alert"
-        aria-expanded={show}
-      >
+        aria-expanded={show}>
         {show ? 'Hide negative alert' : 'Show negative alert'}
       </Button>
 
@@ -148,8 +148,7 @@ export const WithOverriddenRole = () => {
           setShow(!show);
         }}
         aria-controls="overriden-role-example-alert"
-        aria-expanded={show}
-      >
+        aria-expanded={show}>
         {show ? 'Hide warning alert' : 'Show warning alert'}
       </Button>
       <Alert id="overriden-role-example-alert" type="warning" show={show} role="">

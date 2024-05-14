@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { Pagination } from '../src/index.js';
 
 const metadata = { title: 'Navigation/Pagination' };
@@ -12,7 +13,14 @@ const Example = ({ initialPage = 1, lastPage = 30, ...props }) => {
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
         currentPage: {currentPage}, lastPage: {lastPage}
       </div>
-      <Pagination {...props} currentPage={currentPage} numPages={3} lastPage={lastPage} createHref={(page) => `?page=${page}`} onChange={(page) => setCurrentPage(page)} />
+      <Pagination
+        {...props}
+        currentPage={currentPage}
+        numPages={3}
+        lastPage={lastPage}
+        createHref={(page) => `?page=${page}`}
+        onChange={(page) => setCurrentPage(page)}
+      />
     </>
   );
 };

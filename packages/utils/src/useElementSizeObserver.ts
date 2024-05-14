@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react';
+
 import ResizeObserver from 'resize-observer-polyfill';
+
 import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 /**

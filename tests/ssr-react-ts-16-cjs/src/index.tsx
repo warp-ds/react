@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, TextArea, Card, Clickable } from '@warp-ds/react';
+
+import { Button, Card, Clickable, TextArea } from '@warp-ds/react';
 
 export default function App() {
   const [selected, setSelected] = React.useState(false);
@@ -10,8 +11,7 @@ export default function App() {
         className="mb-10"
         onClick={() => {
           console.log('click handler called');
-        }}
-      >
+        }}>
         Hi there
       </Button>
       <TextArea name="my-text" defaultValue="Stuff here" className="mb-10"></TextArea>
@@ -34,8 +34,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -63,8 +62,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -92,8 +90,7 @@ export default function App() {
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}
-              >
+                }}>
                 2
               </span>
               Totalpris: 4 869 039 kr

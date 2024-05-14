@@ -1,8 +1,10 @@
+import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
-import { usePagination } from './PaginationContainer.js';
-import React from 'react';
+
 import type { PageProps } from './Page.js';
+import { usePagination } from './PaginationContainer.js';
 
 type PagesProps = {
   children: (page: number) => React.ReactElement<PageProps>;

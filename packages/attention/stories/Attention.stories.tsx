@@ -1,8 +1,10 @@
 import React from 'react';
-import { Attention } from '../src';
+
+import IconInfo16 from '@warp-ds/icons/react/info-16';
+
 import { Box } from '../../box/src';
 import { Button } from '../../button/src';
-import IconInfo16 from '@warp-ds/icons/react/info-16';
+import { Attention } from '../src';
 
 const metadata = { title: 'Overlays/Attention' };
 export default metadata;
@@ -42,7 +44,13 @@ export function Highlight() {
 
   return (
     <div className="flex flex-col justify-between h-[200] space-y-20">
-      <Button small aria-expanded={show} aria-controls="highlight-attention-example" utility onClick={() => setShow(!show)} className="w-max mb-0">
+      <Button
+        small
+        aria-expanded={show}
+        aria-controls="highlight-attention-example"
+        utility
+        onClick={() => setShow(!show)}
+        className="w-max mb-0">
         Show an onboarding hint
       </Button>
       <div>
@@ -51,7 +59,13 @@ export function Highlight() {
             <h1>I am a box full with lots of info to show you how the attention element is positioned on the right-top corner.</h1>
           </Box>
         </div>
-        <Attention highlight placement="right-start" isShowing={show} targetEl={targetEl} id="highlight-attention-example" className="max-w-[359px]">
+        <Attention
+          highlight
+          placement="right-start"
+          isShowing={show}
+          targetEl={targetEl}
+          id="highlight-attention-example"
+          className="max-w-[359px]">
           <p>I'm a highlight because that box over there is new or something and I need to have a lot of text!</p>
         </Attention>
       </div>
@@ -65,7 +79,13 @@ export function DismissibleHighlight() {
 
   return (
     <div className="flex flex-col justify-between h-[200]">
-      <Button small aria-expanded={show} aria-controls="highlight-attention-example" utility onClick={() => setShow(!show)} className="w-max mb-0">
+      <Button
+        small
+        aria-expanded={show}
+        aria-controls="highlight-attention-example"
+        utility
+        onClick={() => setShow(!show)}
+        className="w-max mb-0">
         Show an onboarding hint
       </Button>
       <div>
@@ -74,7 +94,17 @@ export function DismissibleHighlight() {
             <h1>I am a box full of info that shows how the highlight can change position on scroll/resize</h1>
           </Box>
         </div>
-        <Attention highlight canClose onDismiss={() => setShow(false)} placement="bottom" isShowing={show} targetEl={targetEl} flip={true} crossAxis={true} fallbackPlacements={['right', 'top']} id="highlight-attention-example">
+        <Attention
+          highlight
+          canClose
+          onDismiss={() => setShow(false)}
+          placement="bottom"
+          isShowing={show}
+          targetEl={targetEl}
+          flip={true}
+          crossAxis={true}
+          fallbackPlacements={['right', 'top']}
+          id="highlight-attention-example">
           <p>I'm a highlight that can dismiss itself</p>
         </Attention>
       </div>
@@ -89,7 +119,15 @@ export function Tooltip() {
   return (
     <div>
       <h1 className="w-max mb-0" ref={targetEl}>
-        <Button aria-describedby="tooltip-bubbletext" aria-expanded="true" type="button" className="bg-transparent" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} onFocus={() => setShow(true)} onBlur={() => setShow(false)}>
+        <Button
+          aria-describedby="tooltip-bubbletext"
+          aria-expanded="true"
+          type="button"
+          className="bg-transparent"
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+          onFocus={() => setShow(true)}
+          onBlur={() => setShow(false)}>
           hover this for useless info
         </Button>
       </h1>
@@ -120,7 +158,14 @@ export function Popover() {
   return (
     <div className="flex items-center justify-center">
       <div ref={containerRef}>
-        <Button small aria-expanded={show} aria-controls="popover-attention-example" utility onClick={() => setShow(!show)} className="w-max mb-0" ref={targetEl}>
+        <Button
+          small
+          aria-expanded={show}
+          aria-controls="popover-attention-example"
+          utility
+          onClick={() => setShow(!show)}
+          className="w-max mb-0"
+          ref={targetEl}>
           Open menu
         </Button>
         <Attention popover placement="bottom" targetEl={targetEl} isShowing={show} id="popover-attention-example">
@@ -154,10 +199,24 @@ export function PopoverIconAsTargetEl() {
   return (
     <div className="flex items-center justify-center">
       <div ref={containerRef}>
-        <Button aria-expanded={show} aria-controls="popover-icon-target-el-attention-example" utility quiet onClick={() => setShow(!show)} className="w-max mb-0" ref={targetEl}>
+        <Button
+          aria-expanded={show}
+          aria-controls="popover-icon-target-el-attention-example"
+          utility
+          quiet
+          onClick={() => setShow(!show)}
+          className="w-max mb-0"
+          ref={targetEl}>
           <IconInfo16 />
         </Button>
-        <Attention popover placement="bottom-end" distance={2} skidding={12} targetEl={targetEl} isShowing={show} id="popover-icon-target-el-attention-example">
+        <Attention
+          popover
+          placement="bottom-end"
+          distance={2}
+          skidding={12}
+          targetEl={targetEl}
+          isShowing={show}
+          id="popover-icon-target-el-attention-example">
           <ul className="bg-white w-full text-center">
             <li className="p-2 px-40">Hello</li>
             <li className="p-2 px-40">World</li>

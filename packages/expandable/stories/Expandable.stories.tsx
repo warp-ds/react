@@ -1,5 +1,7 @@
-import { IconBag16 } from '@warp-ds/icons/react';
 import * as React from 'react';
+
+import { IconBag16 } from '@warp-ds/icons/react';
+
 import { Expandable } from '../src';
 
 const metadata = { title: 'Layout/Expandable' };
@@ -27,8 +29,7 @@ export const BoxWithCustomIcon = () => (
       </div>
     }
     box
-    info
-  >
+    info>
     <h2>I am expandable</h2>
   </Expandable>
 );

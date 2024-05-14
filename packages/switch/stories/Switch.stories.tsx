@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Switch } from '../src';
 
 const metadata = { title: 'Forms/Switch' };

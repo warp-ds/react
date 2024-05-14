@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
+import { helpText as ccHelpText, label as ccLabel, toggle as ccToggle } from '@warp-ds/css/component-classes';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { toggle as ccToggle, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 
 import { Toggle } from '../../packages/toggle/src/index.js';
 
@@ -55,12 +56,29 @@ it('renders checkbox with optional', () => {
 });
 
 it('renders checkbox with help text', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} helpText="Choose your favorite color" label="Toggle X" />);
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      helpText="Choose your favorite color"
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Choose your favorite color')).toBeInTheDocument();
 });
 
 it('renders checkbox with invalid', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} invalid label="Toggle X" helpText="This is an error message" />);
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      invalid
+      label="Toggle X"
+      helpText="This is an error message"
+    />,
+  );
   expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
   expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
 });
@@ -71,17 +89,37 @@ it('renders checkbox with disabled', () => {
 });
 
 it('renders checkbox with indeterminate', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} indeterminate label="Toggle X" />);
+  render(
+    <Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} indeterminate label="Toggle X" />,
+  );
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminate);
 });
 
 it('renders checkbox with indeterminate invalid', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} indeterminate invalid label="Toggle X" />);
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      indeterminate
+      invalid
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminateInvalid);
 });
 
 it('renders checkbox with indeterminate disabled', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} indeterminate disabled label="Toggle X" />);
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      indeterminate
+      disabled
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminateDisabled);
 });
 
@@ -128,12 +166,29 @@ it('renders radio with optional', () => {
 });
 
 it('renders radio with help text', () => {
-  render(<Toggle type="radio" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} helpText="Choose your favorite color" label="Toggle X" />);
+  render(
+    <Toggle
+      type="radio"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      helpText="Choose your favorite color"
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Choose your favorite color')).toBeInTheDocument();
 });
 
 it('renders radio with invalid', () => {
-  render(<Toggle type="radio" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} invalid label="Toggle X" helpText="This is an error message" />);
+  render(
+    <Toggle
+      type="radio"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      invalid
+      label="Toggle X"
+      helpText="This is an error message"
+    />,
+  );
   expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
   expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
 });
@@ -188,7 +243,9 @@ describe('Toggle radio button component', () => {
 });
 
 it('renders radio button with equal width', () => {
-  const { container } = render(<Toggle type="radio-button" equalWidth options={options} onChange={(selected) => onChangeFunction(selected)} />);
+  const { container } = render(
+    <Toggle type="radio-button" equalWidth options={options} onChange={(selected) => onChangeFunction(selected)} />,
+  );
   const justifiedRadioButtonClasses = classesToSelectors(ccToggle.radioButtonsGroupJustified);
   expect(container.querySelector(justifiedRadioButtonClasses)).toBeInTheDocument();
 });
@@ -206,11 +263,21 @@ it('renders radio button with title', () => {
 });
 
 it('renders radio button with optional', () => {
-  render(<Toggle optional type="radio-button" title="Favorite color" options={options} onChange={(selected) => onChangeFunction(selected)} />);
+  render(
+    <Toggle optional type="radio-button" title="Favorite color" options={options} onChange={(selected) => onChangeFunction(selected)} />,
+  );
   expect(screen.getByText('Favorite color')).toHaveTextContent('Favorite color(optional)');
 });
 
 it('renders radio button with help text', () => {
-  render(<Toggle type="radio-button" title="Favorite color" options={options} onChange={(selected) => onChangeFunction(selected)} helpText="Choose your favorite color" />);
+  render(
+    <Toggle
+      type="radio-button"
+      title="Favorite color"
+      options={options}
+      onChange={(selected) => onChangeFunction(selected)}
+      helpText="Choose your favorite color"
+    />,
+  );
   expect(screen.getByText('Choose your favorite color')).toBeInTheDocument();
 });

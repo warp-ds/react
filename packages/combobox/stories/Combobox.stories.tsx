@@ -1,7 +1,9 @@
 import React from 'react';
-import { Combobox } from '../src';
-import { Affix } from '../../_helpers';
+
 import { action } from '@storybook/addon-actions';
+
+import { Affix } from '../../_helpers';
+import { Combobox } from '../src';
 
 const metadata = { title: 'Forms/Combobox' };
 export default metadata;
@@ -62,8 +64,7 @@ export const BubbleEventOnEnter = () => {
         onSubmit={(e) => {
           e.preventDefault();
           alert(value);
-        }}
-      >
+        }}>
         <Combobox
           label="Stillingstittel"
           value={value}
@@ -220,8 +221,7 @@ export const WithAffix = () => {
           { value: 'Banana', label: '🍌 Banana' },
           { value: 'Orange', label: '🍊 Orange' },
           { value: 'Pineapple', label: '🍍 Pineapple' },
-        ]}
-      >
+        ]}>
         <Affix suffix clear aria-label="Clear text" onClick={() => setValue('')} />
       </Combobox>
     </>
@@ -270,8 +270,7 @@ export const AsyncFetch = () => {
         setValue(val);
         action('select')(val);
       }}
-      options={characters}
-    >
+      options={characters}>
       <Affix
         suffix
         clear

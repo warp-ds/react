@@ -1,5 +1,6 @@
 import { MutableRefObject } from 'react';
-import { Directions } from '@warp-ds/core/attention';
+
+import type { Directions } from '@warp-ds/core/attention';
 
 export type VirtualElement = { getBoundingClientRect: () => ClientRect | DOMRect; contextElement?: Element };
 

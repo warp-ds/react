@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -50,15 +51,21 @@ it('calls on change function on click of previous page', () => {
 
 it('should throw error if currentPage is not a number', () => {
   // @ts-ignore
-  expect(() => render(<Pagination currentPage={undefined} lastPage={2} createHref={(page) => `?page=${page}`} onChange={onChangeFunction} />)).toThrowError('Invalid currentPage: undefined');
+  expect(() =>
+    render(<Pagination currentPage={undefined} lastPage={2} createHref={(page) => `?page=${page}`} onChange={onChangeFunction} />),
+  ).toThrowError('Invalid currentPage: undefined');
 });
 
 it('should throw error if lastPage is not a number', () => {
   // @ts-ignore
-  expect(() => render(<Pagination currentPage={1} lastPage={undefined} createHref={(page) => `?page=${page}`} onChange={onChangeFunction} />)).toThrowError('Invalid lastPage: undefined');
+  expect(() =>
+    render(<Pagination currentPage={1} lastPage={undefined} createHref={(page) => `?page=${page}`} onChange={onChangeFunction} />),
+  ).toThrowError('Invalid lastPage: undefined');
 });
 
 it('should throw error if createHref is not a function', () => {
   // @ts-ignore
-  expect(() => render(<Pagination currentPage={1} lastPage={2} createHref={undefined} onChange={onChangeFunction} />)).toThrowError('createHref is undefined');
+  expect(() => render(<Pagination currentPage={1} lastPage={2} createHref={undefined} onChange={onChangeFunction} />)).toThrowError(
+    'createHref is undefined',
+  );
 });

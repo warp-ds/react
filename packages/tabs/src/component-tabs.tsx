@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect, cloneElement, Children, RefObject } from 'react';
+import React, { Children, cloneElement, RefObject, useEffect, useRef, useState } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
-import { gridLayout, tabs as ccTabs } from '@warp-ds/css/component-classes';
-import { debounce } from './utils.js';
+import { tabs as ccTabs, gridLayout } from '@warp-ds/css/component-classes';
+
 import type { TabsProps } from './props.js';
+import { debounce } from './utils.js';
 
 const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, wunderbarRef) => ({
   nav: classNames(ccTabs.wrapperUnderlined, {

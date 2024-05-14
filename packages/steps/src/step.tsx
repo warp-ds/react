@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
-import { step as ccStep } from '@warp-ds/css/component-classes';
-import { useContext } from 'react';
-import { StepsContext } from './component.js';
-import IconCheck16 from '@warp-ds/icons/react/check-16';
 import { i18n } from '@lingui/core';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { step as ccStep } from '@warp-ds/css/component-classes';
+import IconCheck16 from '@warp-ds/icons/react/check-16';
+
+import { activateI18n } from '../../i18n.js';
+
+import { StepsContext } from './component.js';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
 
 const availableAriaLabels = {
   completed: i18n._(

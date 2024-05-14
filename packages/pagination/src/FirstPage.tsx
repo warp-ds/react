@@ -1,9 +1,11 @@
+import React, { Ref } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
-import { usePagination } from './PaginationContainer.js';
 import IconChevronDoubleLeft16 from '@warp-ds/icons/react/chevron-double-left-16';
-import React, { Ref } from 'react';
+
+import { usePagination } from './PaginationContainer.js';
 
 type FirstPageProps = {
   /**

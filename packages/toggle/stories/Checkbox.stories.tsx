@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { Toggle } from '../src';
 
 const metadata = { title: 'Forms/Toggle/Checkbox' };
@@ -20,9 +20,13 @@ export const SingleOptionWithInvisibleLabel = () => {
 
 export const SingleOption = () => <Toggle type="checkbox" label="Apple" onChange={(checked) => console.log(checked)} />;
 
-export const SingleOptionCheckedControlledDefault = () => <Toggle type="checkbox" label="Apple" checked onChange={(checked) => console.log(checked)} />;
+export const SingleOptionCheckedControlledDefault = () => (
+  <Toggle type="checkbox" label="Apple" checked onChange={(checked) => console.log(checked)} />
+);
 
-export const SingleOptionCheckedUncontrolledDefault = () => <Toggle type="checkbox" label="Apple" defaultChecked onChange={(checked) => console.log(checked)} />;
+export const SingleOptionCheckedUncontrolledDefault = () => (
+  <Toggle type="checkbox" label="Apple" defaultChecked onChange={(checked) => console.log(checked)} />
+);
 
 export const IndeterminateState = ({ isInvalid = false, isDisabled = false }: { isInvalid?: boolean; isDisabled?: boolean }) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
@@ -54,8 +58,25 @@ export const IndeterminateState = ({ isInvalid = false, isDisabled = false }: { 
 
   return (
     <>
-      <Toggle onChange={handleSelectAll} checked={selectAllChecked} type="checkbox" label="Select all companies" indeterminate={selectedOptions.length > 0 && selectedOptions.length !== options.length} invalid={isInvalid} disabled={isDisabled} />
-      <Toggle type="checkbox" title="Companies" options={options} selected={selectedOptions} onChange={handleSelect} invalid={isInvalid} helpText={isInvalid ? 'This is an error message' : undefined} disabled={isDisabled} />
+      <Toggle
+        onChange={handleSelectAll}
+        checked={selectAllChecked}
+        type="checkbox"
+        label="Select all companies"
+        indeterminate={selectedOptions.length > 0 && selectedOptions.length !== options.length}
+        invalid={isInvalid}
+        disabled={isDisabled}
+      />
+      <Toggle
+        type="checkbox"
+        title="Companies"
+        options={options}
+        selected={selectedOptions}
+        onChange={handleSelect}
+        invalid={isInvalid}
+        helpText={isInvalid ? 'This is an error message' : undefined}
+        disabled={isDisabled}
+      />
     </>
   );
 };
@@ -63,14 +84,37 @@ export const IndeterminateState = ({ isInvalid = false, isDisabled = false }: { 
 export const Invalid = () => <IndeterminateState isInvalid={true} />;
 export const Disabled = () => <IndeterminateState isDisabled={true} />;
 
-export const SingleOptionHelpText = () => <Toggle type="checkbox" label="Apple" helpText="This is helper text" onChange={(selected) => console.log(selected)} />;
+export const SingleOptionHelpText = () => (
+  <Toggle type="checkbox" label="Apple" helpText="This is helper text" onChange={(selected) => console.log(selected)} />
+);
 
 export const MultipleOptions = () => <Toggle type="checkbox" options={options} onChange={(selected) => console.log(selected)} />;
 
-export const WithTitle = () => <Toggle type="checkbox" title="Companies" options={options} onChange={(selected) => console.log(selected)} />;
+export const WithTitle = () => (
+  <Toggle type="checkbox" title="Companies" options={options} onChange={(selected) => console.log(selected)} />
+);
 
-export const Optional = () => <Toggle optional type="checkbox" title="Companies" options={options} onChange={(selected) => console.log(selected)} />;
+export const Optional = () => (
+  <Toggle optional type="checkbox" title="Companies" options={options} onChange={(selected) => console.log(selected)} />
+);
 
-export const HelpText = () => <Toggle type="checkbox" title="Companies" helpText="Select a random company" options={options} onChange={(selected) => console.log(selected)} />;
+export const HelpText = () => (
+  <Toggle
+    type="checkbox"
+    title="Companies"
+    helpText="Select a random company"
+    options={options}
+    onChange={(selected) => console.log(selected)}
+  />
+);
 
-export const SelectedDefault = () => <Toggle type="checkbox" title="Companies" helpText="Everything but first is selected by default" selected={[...options].splice(1)} options={options} onChange={(selected) => console.log(selected)} />;
+export const SelectedDefault = () => (
+  <Toggle
+    type="checkbox"
+    title="Companies"
+    helpText="Everything but first is selected by default"
+    selected={[...options].splice(1)}
+    options={options}
+    onChange={(selected) => console.log(selected)}
+  />
+);

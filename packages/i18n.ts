@@ -1,11 +1,12 @@
-import { Messages, i18n } from '@lingui/core';
+import { i18n, Messages } from '@lingui/core';
 
 export const supportedLocales = ['en', 'nb', 'fi'] as const;
 type SupportedLocale = (typeof supportedLocales)[number];
 
 export const defaultLocale = 'en';
 
-export const getSupportedLocale = (usedLocale: string) => supportedLocales.find((locale) => usedLocale === locale || usedLocale.toLowerCase().includes(locale)) || defaultLocale;
+export const getSupportedLocale = (usedLocale: string) =>
+  supportedLocales.find((locale) => usedLocale === locale || usedLocale.toLowerCase().includes(locale)) || defaultLocale;
 
 export function detectLocale(): SupportedLocale {
   if (typeof window === 'undefined') {

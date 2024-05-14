@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render } from '@testing-library/react';
+
 import { TextArea } from '../src';
 
 // TODO: Write tests for `maximumRows` and `minimumRows`

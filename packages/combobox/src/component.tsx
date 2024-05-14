@@ -1,14 +1,28 @@
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FocusEvent,
+  forwardRef,
+  MutableRefObject,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import { classNames } from '@chbphone55/classnames';
-import React, { ChangeEvent, Dispatch, FocusEvent, forwardRef, MutableRefObject, ReactNode, SetStateAction, useEffect, useRef, useState } from 'react';
 import { combobox as ccCombobox } from '@warp-ds/css/component-classes';
+
+import { activateI18n } from '../../i18n.js';
 import { TextField } from '../../textfield/src/index.js';
 import { useId } from '../../utils/src/index.js';
-import { ComboboxProps, OptionWithIdAndMatch } from './props.js';
-import { createOptionsWithIdAndMatch, getAriaText } from './utils.js';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { ComboboxProps, OptionWithIdAndMatch } from './props.js';
+import { createOptionsWithIdAndMatch, getAriaText } from './utils.js';
 
 const OPTION_CLASS_NAME = 'w-react-combobox-option';
 const MATCH_SEGMENTS_CLASS_NAME = 'w-react-combobox-match';
@@ -32,13 +46,38 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   const [currentOptions, setCurrentOptions] = useState<OptionWithIdAndMatch[]>([]);
 
   // Destructure props
-  const { options, value, label, invalid, helpText, placeholder, openOnFocus, selectOnBlur = true, className, listClassName, disableStaticFiltering = false, matchTextSegments, children, highlightValueMatch, onSelect, onChange, onFocus, onBlur, optional, ...rest } = props;
+  const {
+    options,
+    value,
+    label,
+    invalid,
+    helpText,
+    placeholder,
+    openOnFocus,
+    selectOnBlur = true,
+    className,
+    listClassName,
+    disableStaticFiltering = false,
+    matchTextSegments,
+    children,
+    highlightValueMatch,
+    onSelect,
+    onChange,
+    onFocus,
+    onBlur,
+    optional,
+    ...rest
+  } = props;
 
   const navigationValueOrInputValue = navigationOption?.value || value;
 
   // Set and filter available options based on user input
   useEffect(() => {
-    setCurrentOptions(createOptionsWithIdAndMatch(options, value).filter((option) => (!disableStaticFiltering ? option.value.toLocaleLowerCase().includes(value.toLowerCase()) : true)));
+    setCurrentOptions(
+      createOptionsWithIdAndMatch(options, value).filter((option) =>
+        !disableStaticFiltering ? option.value.toLocaleLowerCase().includes(value.toLowerCase()) : true,
+      ),
+    );
 
     // eslint-disable-next-line
     }, [options, disableStaticFiltering]);
@@ -161,7 +200,10 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
       handleInputBlur(containerRef, inputContainerRef, e, setOpen);
 
       // If user has navigated to an option on blur || the input value equals one of the options' value -> select value
-      selectOnBlur && (navigationOption || (!navigationOption && currentOptions.findIndex((o) => o.value === value) !== -1)) && onSelect && onSelect(navigationOption?.value || value);
+      selectOnBlur &&
+        (navigationOption || (!navigationOption && currentOptions.findIndex((o) => o.value === value) !== -1)) &&
+        onSelect &&
+        onSelect(navigationOption?.value || value);
       setNavigationOption(null);
       onBlur && onBlur(navigationValueOrInputValue);
     },
@@ -199,15 +241,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
         className={classNames(listClassName, ccCombobox.combobox)}
         style={{
           zIndex: 3, // Force popover above misc. page content (mobile safari issue)
-        }}
-      >
+        }}>
         <ul
           id={listboxId}
           role="listbox"
           className={classNames(ccCombobox.listbox, {
             [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
-          })}
-        >
+          })}>
           {currentOptions.map((option) => {
             const display = option.label || option.value;
             let match: ReactNode = [];
@@ -248,8 +288,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
                 className={classNames({
                   [`${ccCombobox.option} ${OPTION_CLASS_NAME}`]: true,
                   [ccCombobox.optionSelected]: navigationOption?.id === option.id,
-                })}
-              >
+                })}>
                 {matchTextSegments || highlightValueMatch ? match : display}
               </li>
             );
@@ -289,7 +328,9 @@ function findAndSetActiveOption(
       setNavigationOption(currIndex - 10 < 0 ? currentOptions[0] : currentOptions[currIndex - 10]);
       break;
     case 'PageDown':
-      setNavigationOption(currIndex + 10 > currentOptions.length ? currentOptions[currentOptions.length - 1] : currentOptions[currIndex + 10]);
+      setNavigationOption(
+        currIndex + 10 > currentOptions.length ? currentOptions[currentOptions.length - 1] : currentOptions[currIndex + 10],
+      );
       break;
     case 'Home':
       setNavigationOption(currentOptions[0]);
@@ -309,7 +350,12 @@ function handleContainerBlur(e: FocusEvent, setOpen: Dispatch<SetStateAction<boo
   }
 }
 
-function handleInputBlur(containerRef: MutableRefObject<HTMLDivElement | null>, inputContainerRef: MutableRefObject<HTMLDivElement | null>, e: FocusEvent, setOpen: Dispatch<SetStateAction<boolean>>) {
+function handleInputBlur(
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+  inputContainerRef: MutableRefObject<HTMLDivElement | null>,
+  e: FocusEvent,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+) {
   if (!containerRef.current) return;
 
   const isClickOutsideContainer = !containerRef.current?.contains(e.relatedTarget) || inputContainerRef.current?.contains(e.relatedTarget);

@@ -1,19 +1,39 @@
 import React, { forwardRef, useRef } from 'react';
-import { i18n } from '@lingui/core';
+
 import { classNames } from '@chbphone55/classnames';
-import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
+import { i18n } from '@lingui/core';
+import { helpText as ccHelpText, input as ccInput, label as ccLabel } from '@warp-ds/css/component-classes';
+
+import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
-import { TextAreaProps } from './props.js';
-import useTextAreaHeight from './useTextAreaHeight.js';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { activateI18n } from '../../i18n.js';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import type { TextAreaProps } from './props.js';
+import useTextAreaHeight from './useTextAreaHeight.js';
+
 /**
  * A textarea component that automatically resizes as content changes.
  */
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, forwardRef) => {
-  const { className, disabled, error, helpText, id: providedId, invalid, label, maximumRows, minimumRows, readOnly, style, value, optional, placeholder, ...rest } = props;
+  const {
+    className,
+    disabled,
+    error,
+    helpText,
+    id: providedId,
+    invalid,
+    label,
+    maximumRows,
+    minimumRows,
+    readOnly,
+    style,
+    value,
+    optional,
+    placeholder,
+    ...rest
+  } = props;
 
   activateI18n(enMessages, nbMessages, fiMessages);
 
@@ -84,8 +104,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
             [ccHelpText.helpTextColor]: !isInvalid,
             [ccHelpText.helpTextColorInvalid]: isInvalid,
           })}
-          id={helpId}
-        >
+          id={helpId}>
           {helpText}
         </div>
       )}
