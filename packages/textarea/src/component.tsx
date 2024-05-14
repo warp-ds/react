@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
-import { helpText as ccHelpText, input as ccInput, label as ccLabel } from '@warp-ds/css/component-classes';
+import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
@@ -10,9 +10,8 @@ import { useId } from '../../utils/src/index.js';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
-import type { TextAreaProps } from './props.js';
+import { TextAreaProps } from './props.js';
 import useTextAreaHeight from './useTextAreaHeight.js';
-
 /**
  * A textarea component that automatically resizes as content changes.
  */
@@ -70,11 +69,12 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
       )}
       <textarea
         className={classNames({
-          [`${ccInput.default} ${ccInput.textArea}`]: true,
+          [`${ccInput.base} ${ccInput.textArea}`]: true,
           [ccInput.placeholder]: !!placeholder,
-          [ccInput.invalid]: isInvalid,
-          [ccInput.disabled]: disabled,
-          [ccInput.readOnly]: readOnly,
+          [ccInput.default]: !isInvalid && !disabled && !readOnly,
+          [ccInput.invalid]: isInvalid && !disabled && !readOnly,
+          [ccInput.disabled]: !isInvalid && disabled && !readOnly,
+          [ccInput.readOnly]: !isInvalid && !disabled && readOnly,
         })}
         {...rest}
         placeholder={placeholder}

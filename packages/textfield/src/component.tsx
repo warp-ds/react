@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
-import { helpText as ccHelpText, input as ccInput, label as ccLabel } from '@warp-ds/css/component-classes';
+import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@warp-ds/css/component-classes';
 
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
@@ -10,7 +10,7 @@ import { useId } from '../../utils/src/index.js';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
-import type { TextFieldProps } from './props.js';
+import { TextFieldProps } from './props.js';
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
   const {
@@ -40,14 +40,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
 
   return (
     <div className={className} style={style}>
-      {/* we style input with prefix here because we cannot use arbitrary values with commas in UnoCSS like pl-[var(--w-prefix-width, 40px)] */}
-      <style>
-        {`
-              div+#${id}, button+#${id} {
-                padding-left:var(--w-prefix-width, 40px);
-              }
-            `}
-      </style>
       {label && (
         <label htmlFor={id} className={ccLabel.label}>
           {label}
@@ -68,10 +60,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
         {prefix}
         <input
           className={classNames({
-            [ccInput.default]: true,
-            [ccInput.invalid]: isInvalid,
-            [ccInput.disabled]: disabled,
-            [ccInput.readOnly]: readOnly,
+            [ccInput.base]: true,
+            [ccInput.default]: !isInvalid && !disabled && !readOnly,
+            [ccInput.invalid]: isInvalid && !disabled && !readOnly,
+            [ccInput.disabled]: !isInvalid && disabled && !readOnly,
+            [ccInput.readOnly]: !isInvalid && !disabled && readOnly,
             [ccInput.placeholder]: !!props.placeholder,
             [ccInput.suffix]: !!suffix,
             [ccInput.prefix]: !!prefix,

@@ -18,14 +18,14 @@ importers:
         specifier: 1.1.1
         version: 1.1.1(@floating-ui/dom@1.6.5)
       '@warp-ds/css':
-        specifier: 1.9.3
-        version: 1.9.3
+        specifier: 1.9.6
+        version: 1.9.6
       '@warp-ds/icons':
         specifier: 2.0.0
         version: 2.0.0
       '@warp-ds/uno':
-        specifier: 1.10.2
-        version: 1.10.2
+        specifier: 1.12.0
+        version: 1.12.0
       react-focus-lock:
         specifier: 2.9.7
         version: 2.9.7(@types/react@18.3.2)(react@18.2.0)
@@ -3080,8 +3080,8 @@ packages:
     peerDependencies:
       '@floating-ui/dom': 1.6.3
 
-  '@warp-ds/css@1.9.3':
-    resolution: {integrity: sha512-NHOGNIPwcCMqVAkydzcemELvn+6Jt7Ji8hfiXfnKXLGc2H8xHV+2kj9FmYM9bDmPmTGzDvFabHwW8txBtxjoUw==}
+  '@warp-ds/css@1.9.6':
+    resolution: {integrity: sha512-h1weeukiNcbapcCz4JBt71qes8gaPXG/xdWvL3BVcje3MJ3bqIwyYaer4PKfYJRIzeKCg/EWVrzylsKplI5U6Q==}
 
   '@warp-ds/eslint-config@1.0.5':
     resolution: {integrity: sha512-cHakkN7BVpqwQxpEeDrl3V8/QDco/7UwHTWIFzN3C9t8RlfcT9Y1QTNfMzJQBiIux8oQNE6rom0AydmWLo8mRw==}
@@ -3097,8 +3097,8 @@ packages:
   '@warp-ds/tokenizer@0.0.4':
     resolution: {integrity: sha512-D4qIUQdY0Tp23OpeR6P9T5QXpsr9crN/FusHWN+975Yk5WoWZOMAf7SVyvgFKV0uq5s70I3qlZqjT51khMwPNQ==}
 
-  '@warp-ds/uno@1.10.2':
-    resolution: {integrity: sha512-w3oJ57EPY2Yl2SAJFflw+E+pDIotp68b1ECddoxHgMvxkqeNEYjoObAF/X+x9McLdzV4LTziBirW/XeDGyJoTw==}
+  '@warp-ds/uno@1.12.0':
+    resolution: {integrity: sha512-PVP74/FW95axmFK94IxXqCvGjcRgHJaOgNuTtkK9IZLaHUJGyipf/1Fn4A4mKjaLUo0EhE4V/7rlhB16hakeZw==}
 
   '@yarnpkg/esbuild-plugin-pnp@3.0.0-rc.15':
     resolution: {integrity: sha512-kYzDJO5CA9sy+on/s2aIW0411AklfCi8Ck/4QDivOqsMKpStZA2SsR+X27VTggGwpStWaLrjJcDcdDMowtG8MA==}
@@ -11408,10 +11408,10 @@ snapshots:
     dependencies:
       '@floating-ui/dom': 1.6.5
 
-  '@warp-ds/css@1.9.3':
+  '@warp-ds/css@1.9.6':
     dependencies:
       '@warp-ds/tokenizer': 0.0.4
-      '@warp-ds/uno': 1.10.2
+      '@warp-ds/uno': 1.12.0
 
   '@warp-ds/eslint-config@1.0.5(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.3.3))(eslint@8.57.0))(eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5))(eslint@8.57.0)':
     dependencies:
@@ -11429,7 +11429,7 @@ snapshots:
       glob: 10.3.15
       yaml: 2.4.2
 
-  '@warp-ds/uno@1.10.2':
+  '@warp-ds/uno@1.12.0':
     dependencies:
       '@unocss/core': 0.58.9
       '@unocss/preset-mini': 0.58.9

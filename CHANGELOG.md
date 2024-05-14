@@ -1,3 +1,10 @@
+# [1.5.0-next.5](https://github.com/warp-ds/react/compare/v1.5.0-next.4...v1.5.0-next.5) (2024-05-14)
+
+
+### Bug Fixes
+
+* **textfield/textarea:** clean up classes ([#239](https://github.com/warp-ds/react/issues/239)) ([4372285](https://github.com/warp-ds/react/commit/4372285b33e51a1688c7cd7f3ab263b1d7120cdc))
+
 # [1.5.0-next.4](https://github.com/warp-ds/react/compare/v1.5.0-next.3...v1.5.0-next.4) (2024-04-30)
 
 

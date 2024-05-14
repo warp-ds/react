@@ -40,7 +40,7 @@ describe('TextField component', () => {
     const props = { ...defaultProps, invalid: true };
     render(<TextField {...props} />);
     expect(screen.getByRole('textbox')).toHaveClass(
-      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-border-negative s-text-negative! hover:s-border-negative-hover! outline-[--w-s-color-border-negative]!',
+      'block text-m leading-m mb-0 px-8 py-12 rounded-4 w-full focusable focus:[--w-outline-offset:-2px] caret-current border-1 s-text-negative s-bg s-border-negative hover:s-border-negative-hover outline-[--w-s-color-border-negative]!',
     );
   });
 
@@ -48,7 +48,7 @@ describe('TextField component', () => {
     const props = { ...defaultProps, disabled: true };
     render(<TextField {...props} />);
     expect(screen.getByRole('textbox')).toHaveClass(
-      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current s-bg-disabled-subtle s-border-disabled hover:s-border-disabled! s-text-disabled pointer-events-none',
+      'block text-m leading-m mb-0 px-8 py-12 rounded-4 w-full focusable focus:[--w-outline-offset:-2px] caret-current border-1 s-text-disabled s-bg-disabled-subtle s-border-disabled pointer-events-none',
     );
   });
 
@@ -56,7 +56,7 @@ describe('TextField component', () => {
     const props = { ...defaultProps, readOnly: true };
     render(<TextField {...props} />);
     expect(screen.getByRole('textbox')).toHaveClass(
-      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current pl-0 bg-transparent! border-0! pointer-events-none',
+      ' block text-m leading-m mb-0 px-8 py-12 rounded-4 w-full focusable focus:[--w-outline-offset:-2px] caret-current pl-0 bg-transparent pointer-events-none',
     );
   });
 
