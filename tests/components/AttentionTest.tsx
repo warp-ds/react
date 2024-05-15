@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import type { Directions } from '@warp-ds/core/attention';
+import { autoUpdatePosition } from '@warp-ds/core/attention';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -14,6 +15,14 @@ const onClickFunction = vi.fn();
 const mockTargetEl = { current: document.createElement('div') };
 let mockIsShowing = false;
 const mockPlacement: Directions = 'bottom-end';
+
+vi.mock('@warp-ds/core/attention', async () => {
+  const attentionModule = await vi.importActual('@warp-ds/core/attention');
+  return {
+    ...attentionModule,
+    autoUpdatePosition: vi.fn(() => () => {}),
+  };
+});
 
 describe('Attention component', () => {
   beforeEach(() => {
@@ -53,7 +62,7 @@ describe('Attention component', () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it('Attention component renders with mocked props', () => {
@@ -179,46 +188,41 @@ describe('targetEl', () => {
     expect(attentionEl).toBeInTheDocument();
   });
 });
-describe('useEffect for autoUpdatePosition', () => {
-  it('should call autoUpdatePosition when isShowing, targetEl, and attenttionEl are defined', () => {
-    const targetEl: any = document.createElement('div');
-    const attentionEl: any = document.createElement('div');
+describe('useAutoUpdatePosition', () => {
+  it('should not call autoUpdatePosition if isShowing, targetEl, or attentionEl is undefined', () => {
+    const targetEl = { current: null };
+    const attentionEl = { current: document.createElement('div') };
     const isShowing = true;
-    const autoUpdatePositionMock = vi.fn();
-    const mockedAttentionState = {};
+    const attentionState = {};
 
-    const { unmount } = renderHook(() =>
-      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
-    );
-    expect(autoUpdatePositionMock).toHaveBeenCalled();
+    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, attentionState));
+
+    expect(autoUpdatePosition).not.toHaveBeenCalled();
 
     unmount();
   });
-  it('should not call autoUpdatePosition if isShowing, targetEl, or attenttionEl is undefined', () => {
-    const targetEl: any = undefined;
-    const attentionEl: any = document.createElement('div');
-    const isShowing = true;
-    const autoUpdatePositionMock = vi.fn();
-    const mockedAttentionState = {};
 
-    const { unmount } = renderHook(() =>
-      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
-    );
-    expect(autoUpdatePositionMock).not.toHaveBeenCalled();
-
-    unmount();
-  });
   it('should not call autoUpdatePosition if isShowing is false', () => {
-    const targetEl: any = document.createElement('div');
-    const attentionEl: any = document.createElement('div');
+    const targetEl = { current: document.createElement('div') };
+    const attentionEl = { current: document.createElement('div') };
     const isShowing = false;
-    const autoUpdatePositionMock = vi.fn();
-    const mockedAttentionState = {};
+    const attentionState = {};
 
-    const { unmount } = renderHook(() =>
-      useAutoUpdatePosition(targetEl, isShowing, attentionEl, autoUpdatePositionMock, mockedAttentionState),
-    );
-    expect(autoUpdatePositionMock).not.toHaveBeenCalled();
+    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, attentionState));
+
+    expect(autoUpdatePosition).not.toHaveBeenCalled();
+
+    unmount();
+  });
+  it('should call autoUpdatePosition when isShowing, targetEl, and attentionEl are defined', async () => {
+    const targetEl = { current: document.createElement('div') };
+    const attentionEl = { current: document.createElement('div') };
+    const isShowing = true;
+    const attentionState = {};
+
+    const { unmount } = renderHook(() => useAutoUpdatePosition(targetEl, isShowing, attentionEl, attentionState));
+
+    expect(autoUpdatePosition).toHaveBeenCalled();
 
     unmount();
   });
