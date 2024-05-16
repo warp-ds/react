@@ -1,3 +1,19 @@
+# [1.5.0](https://github.com/warp-ds/react/compare/v1.4.4...v1.5.0) (2024-05-15)
+
+
+### Bug Fixes
+
+* Styling fixes for Card component ([#229](https://github.com/warp-ds/react/issues/229)) ([a99dc9c](https://github.com/warp-ds/react/commit/a99dc9c24cd31857e3efe26da91e4e90aa118627))
+* **textfield/textarea:** clean up classes ([#239](https://github.com/warp-ds/react/issues/239)) ([4372285](https://github.com/warp-ds/react/commit/4372285b33e51a1688c7cd7f3ab263b1d7120cdc))
+
+
+### Features
+
+* Add an optional prop to enable nofollow for pagination component ([#231](https://github.com/warp-ds/react/issues/231)) ([9534ae3](https://github.com/warp-ds/react/commit/9534ae3295e041b1143d5ba2c9c827df082959b2))
+* Add more features on how attention component is positioned ([#215](https://github.com/warp-ds/react/issues/215)) ([5bf7883](https://github.com/warp-ds/react/commit/5bf7883833ded3cbc05b046fd82330b3062aebc9))
+* add more functionality to attention component ([#233](https://github.com/warp-ds/react/issues/233)) ([95c20b3](https://github.com/warp-ds/react/commit/95c20b3da5d6b361724011171393b0b749317b0e))
+* Individual imports ([#212](https://github.com/warp-ds/react/issues/212)) ([766282c](https://github.com/warp-ds/react/commit/766282c068d0fb04bb37a657f6ab1ebe7f156a90))
+
 # [1.5.0-next.5](https://github.com/warp-ds/react/compare/v1.5.0-next.4...v1.5.0-next.5) (2024-05-14)
 
 
