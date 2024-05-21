@@ -149,7 +149,7 @@ export function Attention(props: AttentionProps) {
   useEffect(() => {
     // targetEl can be undefined if props.callout is true.
     // However, useAutoUpdatePosition hook is using @warp-ds/core that in return is using Floating-ui's computePosition, which requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
-    // Therefore, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook. This is just so that we can use Floating-ui's computePosition to calculate the position of the callout's arrow. 
+    // When props.callout is true, we only need computePosition to calculate the callout's arrow position. So, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook, to avoid Floating-ui to throw an error.
     if (props.callout && initialTargetEl === undefined) {
       targetElRef.current = document?.createElement('div');
     } else {
