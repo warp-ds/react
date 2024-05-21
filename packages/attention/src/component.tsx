@@ -1,18 +1,15 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { arrowDirectionClassname, opposites, useRecompute as recompute } from '@warp-ds/core/attention';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
-
 import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
 import { activateI18n } from '../../i18n.js';
-
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
-import type { ArrowProps, AttentionProps } from './props.js';
+import type { ArrowProps, AttentionProps, ReferenceElement } from './props.js';
 
 const variantClasses = {
   callout: {
@@ -41,7 +38,7 @@ export function Attention(props: AttentionProps) {
     role,
     'aria-label': ariaLabel,
     placement = 'bottom',
-    targetEl,
+    targetEl: initialTargetEl,
     className,
     canClose,
     onDismiss,
@@ -64,6 +61,7 @@ export function Attention(props: AttentionProps) {
   const isMounted = useRef(true);
   const attentionEl = useRef<HTMLDivElement | null>(null);
   const arrowEl = useRef<HTMLDivElement | null>(null);
+  const targetElRef = useRef<ReferenceElement | null>(initialTargetEl?.current || null);
 
   const attentionState = useMemo(
     () => ({
@@ -92,7 +90,7 @@ export function Attention(props: AttentionProps) {
         attentionEl.current = v;
       },
       get targetEl() {
-        return targetEl?.current;
+        return targetElRef.current;
       },
       get noArrow() {
         return props.noArrow;
@@ -120,7 +118,7 @@ export function Attention(props: AttentionProps) {
       placement,
       arrowEl,
       attentionEl,
-      targetEl,
+      targetElRef,
       props.noArrow,
       distance,
       skidding,
@@ -148,9 +146,20 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout]);
 
-  useAutoUpdatePosition(targetEl, isShowing, attentionEl, attentionState);
+  useEffect(() => {
+    // targetEl can be undefined if props.callout is true.
+    // However, useAutoUpdatePosition hook is using @warp-ds/core that in return is using Floating-ui's computePosition, which requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
+    // Therefore, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook. This is just so that we can use Floating-ui's computePosition to calculate the position of the callout's arrow. 
+    if (props.callout && initialTargetEl === undefined) {
+      targetElRef.current = document?.createElement('div');
+    } else {
+      targetElRef.current = initialTargetEl?.current || null;
+    }
+  }, [props.callout, initialTargetEl]);
 
-  return !props.callout && props.targetEl === undefined ? null : (
+  useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
+
+  return !props.callout && initialTargetEl === undefined ? null : (
     <div
       data-testid="attention-el"
       className={classNames(
