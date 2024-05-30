@@ -129,6 +129,17 @@ export function Attention(props: AttentionProps) {
   );
 
   const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
+  
+  useEffect(() => {
+    // targetEl can be undefined if props.callout is true.
+    // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
+    // When props.callout is true, we only need computePosition() to calculate the callout's arrow position. So, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook, in order to avoid Floating-ui from throwing an error.
+    if (props.callout && initialTargetEl === undefined) {
+      targetElRef.current = document?.createElement('div');
+    } else {
+      targetElRef.current = initialTargetEl?.current || null;
+    }
+  }, [props.callout, initialTargetEl]);
 
   useEffect(() => {
     recompute(attentionState);
@@ -146,16 +157,6 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout]);
 
-  useEffect(() => {
-    // targetEl can be undefined if props.callout is true.
-    // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
-    // When props.callout is true, we only need computePosition() to calculate the callout's arrow position. So, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook, in order to avoid Floating-ui from throwing an error.
-    if (props.callout && initialTargetEl === undefined) {
-      targetElRef.current = document?.createElement('div');
-    } else {
-      targetElRef.current = initialTargetEl?.current || null;
-    }
-  }, [props.callout, initialTargetEl]);
 
   useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
 
