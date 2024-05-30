@@ -65,7 +65,7 @@ describe('Step component', () => {
 
   it('renders IconCheck16 when completed prop is true', () => {
     render(<Step completed>Step content</Step>);
-    const icon = screen.getByRole('img');
+    const icon = screen.getByTestId('completed-icon');
     expect(icon).toBeInTheDocument();
   });
 });
