@@ -99,6 +99,7 @@ function ExpansionBehaviour({ animated, stateExpanded, children }) {
         [ccExpandable.expansion]: true,
         [ccExpandable.expansionNotExpanded]: !stateExpanded,
       })}
+      data-testid="expandable-content"
       aria-hidden={!stateExpanded ? true : undefined}>
       {children}
     </div>

@@ -1,15 +1,70 @@
 import React, { createRef } from 'react';
 
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 
-import { TextArea } from '../../packages/textarea/src/component.tsx';
+import { TextArea } from '../../packages/textarea/src/component';
+import * as useTextAreaHeight from '../../packages/textarea/src/useTextAreaHeight.ts';
 
 describe('TextArea component', () => {
   const defaultProps = {
     label: 'Test Label',
     type: 'text',
   };
+  it('renders a textarea element', () => {
+    render(<TextArea />);
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+  });
 
+  it('renders a label element when label prop is provided', () => {
+    render(<TextArea label="My Label" />);
+    expect(screen.getByText('My Label')).toBeInTheDocument();
+  });
+
+  it('renders an optional label when optional prop is true', () => {
+    render(<TextArea label="My Label" optional />);
+    expect(screen.getByText('(optional)')).toBeInTheDocument();
+  });
+
+  it('renders a help text element when helpText prop is provided', () => {
+    render(<TextArea helpText="My Help Text" />);
+    expect(screen.getByText('My Help Text')).toBeInTheDocument();
+  });
+
+  it('sets the aria-describedby attribute when helpText prop is provided', () => {
+    render(<TextArea helpText="My Help Text" id="help" />);
+    expect(screen.getByRole('textbox')).toHaveAttribute('aria-describedby', 'help__hint');
+  });
+
+  it('sets the aria-invalid attribute when invalid prop is true', () => {
+    render(<TextArea invalid />);
+    expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
+  });
+
+  it('calls the forwarded ref function when the textarea element is rendered', () => {
+    const refCallback = vi.fn();
+    render(<TextArea ref={refCallback} />);
+    expect(refCallback).toHaveBeenCalledTimes(1);
+  });
+
+  it('updates the textarea value when the value prop changes', () => {
+    const { rerender } = render(<TextArea value="Initial Value" />);
+    const textarea = screen.getByRole('textbox');
+    expect(textarea.value).toBe('Initial Value');
+    rerender(<TextArea value="New Value" />);
+    expect(textarea.value).toBe('New Value');
+  });
+
+  it('calls the useTextAreaHeight hook with the correct arguments', () => {
+    const useTextAreaHeightSpy = vi.spyOn(useTextAreaHeight, 'default');
+    render(<TextArea value="Initial Value" maximumRows={5} minimumRows={2} />);
+    expect(useTextAreaHeightSpy).toHaveBeenCalledTimes(1);
+    expect(useTextAreaHeightSpy).toHaveBeenCalledWith({
+      minimumRows: 2,
+      maximumRows: 5,
+      value: 'Initial Value',
+      ref: expect.any(Object),
+    });
+  });
   it('renders correctly', () => {
     render(<TextArea {...defaultProps} />);
     expect(screen.getByText(defaultProps.label)).toBeInTheDocument();
@@ -71,7 +126,6 @@ describe('TextArea component', () => {
     const textAreaRef = createRef<HTMLTextAreaElement>();
 
     // Render the TextArea component and pass the ref as forwardRef
-    // eslint-disable-next-line
     const { container } = render(<TextArea ref={textAreaRef} />);
 
     // Use the ref to check the current element

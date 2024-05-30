@@ -110,7 +110,7 @@ export function Step(props: StepProps) {
     <li className={stepClasses}>
       {!vertical && <div className={stepLineHorizontalClasses} />}
       <div className={stepDotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
-        {completed && <IconCheck16 />}
+        {completed && <IconCheck16 data-testid="completed-icon" />}
       </div>
       <div className={stepLineClasses} />
       <div className={stepContentClasses}>{children}</div>
