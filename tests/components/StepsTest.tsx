@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+
 import { Steps } from '../../packages/steps/src/component';
 import { Step } from '../../packages/steps/src/step';
 
@@ -41,7 +43,11 @@ describe('Step component', () => {
   });
 
   it('renders correctly with both active and completed props', () => {
-    const { container } = render(<Step active completed>Step content</Step>);
+    const { container } = render(
+      <Step active completed>
+        Step content
+      </Step>,
+    );
     expect(container).toMatchSnapshot();
   });
 

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, fireEvent, waitFor, screen, act } from '@testing-library/react';
+
 import { Expandable } from '../../packages/expandable/src/component';
 
 describe('Expandable component', () => {
@@ -16,16 +18,9 @@ describe('Expandable component', () => {
 
   it('renders with custom props', () => {
     render(
-      <Expandable
-        title="Custom Title"
-        box
-        bleed
-        buttonClass="custom-button"
-        contentClass="custom-content"
-        headingLevel={2}
-      >
+      <Expandable title="Custom Title" box bleed buttonClass="custom-button" contentClass="custom-content" headingLevel={2}>
         Custom Content
-      </Expandable>
+      </Expandable>,
     );
     expect(screen.getByText('Custom Title')).toBeInTheDocument();
     expect(screen.getByText('Custom Content')).toBeInTheDocument();
@@ -46,7 +41,7 @@ describe('Expandable component', () => {
     render(
       <Expandable title="Toggle Me" onChange={onChange}>
         Toggle Content
-      </Expandable>
+      </Expandable>,
     );
     const button = screen.getByText('Toggle Me');
     fireEvent.click(button);
@@ -62,15 +57,19 @@ describe('Expandable component', () => {
     expect(chevronDown).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button'));
     act(() => {
-        /* fire events that update state */
-        vi.advanceTimersByTime(250);
-        const chevronUp = screen.getByTitle('Upward arrow');
-        expect(chevronUp).toBeInTheDocument();
+      /* fire events that update state */
+      vi.advanceTimersByTime(250);
+      const chevronUp = screen.getByTitle('Upward arrow');
+      expect(chevronUp).toBeInTheDocument();
     });
   });
 
   it('renders animated expansion correctly', () => {
-    render(<Expandable title="Animated Test" animated>Animated Content</Expandable>);
+    render(
+      <Expandable title="Animated Test" animated>
+        Animated Content
+      </Expandable>,
+    );
     const content = screen.getByTestId('expand-transition');
     fireEvent.click(screen.getByRole('button'));
     expect(content).toHaveClass('overflow-hidden h-0');

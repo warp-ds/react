@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, fireEvent, screen } from '@testing-library/react';
+
 import { Switch } from '../../packages/switch/src/component';
 
 describe('Switch component', () => {
@@ -44,8 +46,12 @@ describe('Switch component', () => {
 
   it('renders the correct class names for track and handle elements', () => {
     render(<Switch />);
-    expect(screen.getByTestId('track')).toHaveClass('absolute top-0 left-0 h-full w-full rounded-full transition-colors bg-[--w-color-switch-track-background] group-hover:bg-[--w-color-switch-track-background-hover]');
-    expect(screen.getByTestId('handle')).toHaveClass('absolute transform-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform s-bg shadow-s');
+    expect(screen.getByTestId('track')).toHaveClass(
+      'absolute top-0 left-0 h-full w-full rounded-full transition-colors bg-[--w-color-switch-track-background] group-hover:bg-[--w-color-switch-track-background-hover]',
+    );
+    expect(screen.getByTestId('handle')).toHaveClass(
+      'absolute transform-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform s-bg shadow-s',
+    );
   });
 
   it('updates the handle element class name based on the value prop', () => {
