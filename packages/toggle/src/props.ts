@@ -1,5 +1,5 @@
 export type ToggleEntry = {
-  label: string | React.ReactNode;
+  label: React.ReactNode;
   value: unknown;
 };
 
@@ -42,7 +42,7 @@ export interface ToggleProps {
   /**
    * If you only need to render a single option, use this prop instead
    */
-  label?: string | React.ReactNode;
+  label?: React.ReactNode;
 
   /**
    * Whether the single option should be checked (controlled)
