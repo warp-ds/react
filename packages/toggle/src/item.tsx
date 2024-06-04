@@ -17,7 +17,7 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   invalid?: boolean;
   helpId?: string;
   noVisibleLabel?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
   className?: string;
   labelClassName?: string;
   inputClassName?: string;
