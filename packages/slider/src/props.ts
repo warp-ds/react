@@ -23,6 +23,10 @@ export type SliderProps = {
   /** Handler that is called when the value of the slider changes */
   onChange?: (value: number) => void;
 
+  /** Handler that is called after moving the slider has ended. will only be
+   * called if the action resulted in a change. */
+  onChangeAfter?: (value: number) => void;
+
   /** String value that labels the slider */
   'aria-label'?: string;
 

@@ -7,7 +7,7 @@ import { slider as ccSlider } from '@warp-ds/css/component-classes';
 import { SliderProps } from './props.js';
 
 export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
-  const { disabled, onChange } = rest;
+  const { disabled, onChange, onChangeAfter } = rest;
 
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
@@ -28,6 +28,11 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   useEffect(() => {
     onChange && onChange(value);
   }, [value, onChange]);
+
+  useEffect(() => {
+    if (sliderPressed) return;
+    onChangeAfter && onChangeAfter(value);
+  }, [onChangeAfter, sliderPressed, value]);
 
   const step = useMemo(() => rest.step || 1, [rest]);
 
