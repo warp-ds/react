@@ -1,11 +1,14 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { arrowDirectionClassname, opposites, useRecompute as recompute } from '@warp-ds/core/attention';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
+
 import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
 import { activateI18n } from '../../i18n.js';
+
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -129,7 +132,7 @@ export function Attention(props: AttentionProps) {
   );
 
   const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
-  
+
   useEffect(() => {
     // targetEl can be undefined if props.callout is true.
     // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
@@ -156,7 +159,6 @@ export function Attention(props: AttentionProps) {
       setIsVisible(isShowing);
     }
   }, [isShowing, props.callout]);
-
 
   useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
 
