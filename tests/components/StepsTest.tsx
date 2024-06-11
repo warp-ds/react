@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Steps } from '../../packages/steps/src/component';
 import { Step } from '../../packages/steps/src/step';

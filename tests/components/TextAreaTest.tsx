@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import { TextArea } from '../../packages/textarea/src/component';
 import * as useTextAreaHeight from '../../packages/textarea/src/useTextAreaHeight.ts';
@@ -126,6 +126,7 @@ describe('TextArea component', () => {
     const textAreaRef = createRef<HTMLTextAreaElement>();
 
     // Render the TextArea component and pass the ref as forwardRef
+    // eslint-disable-next-line no-unused-vars
     const { container } = render(<TextArea ref={textAreaRef} />);
 
     // Use the ref to check the current element
