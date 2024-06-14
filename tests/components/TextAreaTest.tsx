@@ -126,8 +126,7 @@ describe('TextArea component', () => {
     const textAreaRef = createRef<HTMLTextAreaElement>();
 
     // Render the TextArea component and pass the ref as forwardRef
-    // eslint-disable-next-line no-unused-vars
-    const { container } = render(<TextArea ref={textAreaRef} />);
+    render(<TextArea ref={textAreaRef} />);
 
     // Use the ref to check the current element
     const textAreaElement = textAreaRef.current;

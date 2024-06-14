@@ -93,7 +93,7 @@ export function Attention(props: AttentionProps) {
         attentionEl.current = v;
       },
       get targetEl() {
-        return targetElRef.current;
+        return targetElRef?.current;
       },
       get noArrow() {
         return props.noArrow;
