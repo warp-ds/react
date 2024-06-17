@@ -26,3 +26,22 @@ export const Disabled = () => {
     </div>
   );
 };
+
+export const ChangeAfter = () => {
+  const [value, setValue] = React.useState(625_000);
+  const [valueAfter, setValueAfter] = React.useState(value);
+
+  return (
+    <div>
+      <output>{valueAfter}</output>
+      <Slider
+        onChange={(val) => setValue(val)}
+        onChangeAfter={(val) => setValueAfter(val)}
+        value={value}
+        min={1000}
+        max={10_000_000}
+        step={1000}
+      />
+    </div>
+  );
+};
