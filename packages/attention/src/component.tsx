@@ -12,7 +12,7 @@ import { activateI18n } from '../../i18n.js';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
-import type { ArrowProps, AttentionProps } from './props.js';
+import type { ArrowProps, AttentionProps, ReferenceElement } from './props.js';
 
 const variantClasses = {
   callout: {
@@ -41,7 +41,7 @@ export function Attention(props: AttentionProps) {
     role,
     'aria-label': ariaLabel,
     placement = 'bottom',
-    targetEl,
+    targetEl: initialTargetEl,
     className,
     canClose,
     onDismiss,
@@ -64,6 +64,7 @@ export function Attention(props: AttentionProps) {
   const isMounted = useRef(true);
   const attentionEl = useRef<HTMLDivElement | null>(null);
   const arrowEl = useRef<HTMLDivElement | null>(null);
+  const targetElRef = useRef<ReferenceElement | null>(initialTargetEl?.current || null);
 
   const attentionState = useMemo(
     () => ({
@@ -92,7 +93,7 @@ export function Attention(props: AttentionProps) {
         attentionEl.current = v;
       },
       get targetEl() {
-        return targetEl?.current;
+        return targetElRef?.current;
       },
       get noArrow() {
         return props.noArrow;
@@ -120,7 +121,7 @@ export function Attention(props: AttentionProps) {
       placement,
       arrowEl,
       attentionEl,
-      targetEl,
+      targetElRef,
       props.noArrow,
       distance,
       skidding,
@@ -131,6 +132,17 @@ export function Attention(props: AttentionProps) {
   );
 
   const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
+
+  useEffect(() => {
+    // targetEl can be undefined if props.callout is true.
+    // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
+    // When props.callout is true, we only need computePosition() to calculate the callout's arrow position. So, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook, in order to avoid Floating-ui from throwing an error.
+    if (props.callout && initialTargetEl === undefined) {
+      targetElRef.current = document?.createElement('div');
+    } else {
+      targetElRef.current = initialTargetEl?.current || null;
+    }
+  }, [props.callout, initialTargetEl]);
 
   useEffect(() => {
     recompute(attentionState);
@@ -148,9 +160,9 @@ export function Attention(props: AttentionProps) {
     }
   }, [isShowing, props.callout]);
 
-  useAutoUpdatePosition(targetEl, isShowing, attentionEl, attentionState);
+  useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
 
-  return !props.callout && props.targetEl === undefined ? null : (
+  return !props.callout && initialTargetEl === undefined ? null : (
     <div
       data-testid="attention-el"
       className={classNames(
