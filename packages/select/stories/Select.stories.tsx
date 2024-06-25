@@ -55,6 +55,12 @@ export const Disabled = () => (
   </div>
 );
 
+export const ReadOnly = () => (
+  <div className="flex flex-col space-y-32">
+    <Select readOnly />
+  </div>
+);
+
 export const NoLabel = () => (
   <div className="flex flex-col space-y-32">
     <WarpSelect onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} aria-label="You're selection is berry nice!">
