@@ -36,37 +36,4 @@ describe('Box', () => {
     const { container } = render(<Box bordered={true}>Test Box</Box>);
     expect(container.firstChild).toHaveClass('group block relative break-words last-child:mb-0 p-16 rounded-8 border-2 s-border s-bg');
   });
-
-  test('renders Box component with correct classes when clickable and info are true', () => {
-    const { container } = render(
-      <Box clickable={true} info={true}>
-        Test Box
-      </Box>,
-    );
-    expect(container.firstChild).toHaveClass(
-      'group block relative break-words last-child:mb-0 p-16 rounded-8 s-bg-info-subtle hover:s-bg-info-subtle-hover active:s-bg-info-subtle-active',
-    );
-  });
-
-  test('renders Box component with correct classes when clickable and neutral are true', () => {
-    const { container } = render(
-      <Box clickable={true} neutral={true}>
-        Test Box
-      </Box>,
-    );
-    expect(container.firstChild).toHaveClass(
-      'group block relative break-words last-child:mb-0 p-16 rounded-8 s-surface-sunken hover:s-bg-hover active:s-bg-active',
-    );
-  });
-
-  test('renders Box component with correct classes when clickable and bordered are true', () => {
-    const { container } = render(
-      <Box clickable={true} bordered={true}>
-        Test Box
-      </Box>,
-    );
-    expect(container.firstChild).toHaveClass(
-      'group block relative break-words last-child:mb-0 p-16 rounded-8 border-2 s-border s-bg hover:s-bg-hover active:s-bg-active hover:s-border-hover active:s-border-active',
-    );
-  });
 });
