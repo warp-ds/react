@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
@@ -25,14 +25,17 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
   const [sliderPressed, setSliderPressed] = useState(false);
 
-  useEffect(() => {
-    onChange && onChange(value);
-  }, [value, onChange]);
+  const updateValue = useCallback(
+    (value: number) => {
+      setValue(value);
+      onChange && onChange(value);
 
-  useEffect(() => {
-    if (sliderPressed) return;
-    onChangeAfter && onChangeAfter(value);
-  }, [onChangeAfter, sliderPressed, value]);
+      if (!sliderPressed) {
+        onChangeAfter && onChangeAfter(value);
+      }
+    },
+    [onChange, onChangeAfter, sliderPressed],
+  );
 
   const step = useMemo(() => rest.step || 1, [rest]);
 
@@ -53,7 +56,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       return value;
     },
     set val(v) {
-      setValue(v);
+      updateValue(v);
     },
     get thumbEl() {
       return thumbRef.current;
@@ -91,9 +94,9 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     if (position === rest.value) return;
     const n = rest.step ? getShiftedChange(position) : position;
     if (value === n) return;
-    setValue(n);
+    updateValue(n);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position, rest.value, rest.step]);
+  }, [position, rest.value, rest.step, updateValue]);
 
   useEffect(() => {
     if (sliderPressed || position === rest.value || value === rest.value) {
@@ -138,9 +141,15 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         aria-valuenow={value}
         aria-valuetext={rest['aria-valuetext']}
         onMouseDown={(e) => {
+          const clientX = e.clientX || 0;
+          const newPosition = clientX;
+          setPosition(newPosition);
           handleMouseDown(e as unknown as KeyboardEvent);
         }}
         onTouchStart={(e) => {
+          const clientX = e.touches[0]?.clientX || 0;
+          const newPosition = clientX;
+          setPosition(newPosition);
           handleMouseDown(e as unknown as KeyboardEvent);
         }}
         onBlur={handleBlur}

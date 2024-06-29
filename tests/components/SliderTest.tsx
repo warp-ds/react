@@ -27,7 +27,6 @@ describe('Slider', () => {
     render(<Slider min={0} max={100} onChange={onChange} />);
     const thumb = screen.getByRole('slider');
     await fireEvent.keyDown(thumb, { key: 'ArrowRight' });
-    // not sure why it gets called twice here
-    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 });
