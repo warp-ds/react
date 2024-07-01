@@ -34,12 +34,6 @@ export interface BoxProps {
   bleed?: boolean;
 
   /**
-   * Applies focus and pointer helpers, should be used with other styling to indicate clickability
-   * @default false
-   */
-  clickable?: boolean;
-
-  /**
    * @default false
    */
   bordered?: boolean;

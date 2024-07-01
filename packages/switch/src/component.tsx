@@ -9,7 +9,7 @@ export function Switch({ id, value, onClick, 'aria-label': ariaLabel, 'aria-labe
   const switchFocus = 'focusable rounded-full';
 
   return (
-    <div className={ccSwitch.switch}>
+    <div>
       <button
         id={id}
         type="button"

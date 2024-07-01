@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Clickable } from '../../_helpers';
 import { Box } from '../src';
 
 const metadata = { title: 'Layout/Box' };
@@ -33,28 +32,6 @@ export const Bordered = () => (
 export const Neutral = () => (
   <Box neutral>
     <h1>I am a neutral colour</h1>
-  </Box>
-);
-
-export const ClickableButton = () => (
-  <Box info clickable>
-    <h1>
-      <Clickable className="font-bold" onClick={() => alert('hey')}>
-        Clickable example
-      </Clickable>
-    </h1>
-    <p>Other contents will go here.</p>
-  </Box>
-);
-
-export const ClickableAnchor = () => (
-  <Box info clickable>
-    <h1>
-      <Clickable className="font-bold text-gray-700 hover:no-underline" href="https://finn.no" target="_blank">
-        Clickable example
-      </Clickable>
-    </h1>
-    <p>Other contents will go here.</p>
   </Box>
 );
 
