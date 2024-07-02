@@ -93,9 +93,8 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   useEffect(() => {
     // prevents shiftedChange when modelValue was set externally
     if (position === rest.value) return;
-    const n = rest.step ? getShiftedChange(position) : position;
-    if (value === n) return;
-    setValue(n);
+    const nextVal = rest.step ? getShiftedChange(position) : position;
+    setValue(nextVal);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position, rest.value, rest.step]);
 
