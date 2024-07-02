@@ -44,13 +44,25 @@ describe('Slider', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('slider updates value correctly when dragged', () => {
+  it('call onChange when slider is dragged', () => {
     const onChange = vi.fn();
     render(<Slider onChange={onChange} />);
+    expect(onChange).toHaveBeenCalledTimes(0);
     const thumb = screen.getByRole('slider');
     fireEvent.mouseDown(thumb, { clientX: 100 });
     fireEvent.mouseMove(thumb, { clientX: 150 });
     fireEvent.mouseUp(thumb);
     expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  it('call onChangeAfter when slider is dragged', () => {
+    const onChangeAfter = vi.fn();
+    render(<Slider onChangeAfter={onChangeAfter} />);
+    expect(onChangeAfter).toHaveBeenCalledTimes(0);
+    const thumb = screen.getByRole('slider');
+    fireEvent.mouseDown(thumb, { clientX: 100 });
+    fireEvent.mouseMove(thumb, { clientX: 150 });
+    fireEvent.mouseUp(thumb);
+    expect(onChangeAfter).toHaveBeenCalledTimes(1);
   });
 });
