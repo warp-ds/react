@@ -53,5 +53,4 @@ describe('Slider', () => {
     fireEvent.mouseUp(thumb);
     expect(onChange).toHaveBeenCalledTimes(1);
   });
-
 });
