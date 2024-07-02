@@ -21,18 +21,22 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [sliderLine]);
 
   const [value, setValue] = useState(rest.value);
+  const [finalValue, setFinalValue] = useState(rest.value);
   const [position, setPosition] = useState(rest.value);
   const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
   const [sliderPressed, setSliderPressed] = useState(false);
 
   useEffect(() => {
-    onChange && onChange(value);
-  }, [value, onChange]);
+    if (value === rest.value) return;
+    onChange?.(value);
+  }, [rest.value, value, onChange]);
 
   useEffect(() => {
     if (sliderPressed) return;
-    onChangeAfter && onChangeAfter(value);
-  }, [onChangeAfter, sliderPressed, value]);
+    if (value === finalValue) return;
+    setFinalValue(value);
+    onChangeAfter?.(value);
+  }, [onChangeAfter, sliderPressed, value, finalValue]);
 
   const step = useMemo(() => rest.step || 1, [rest]);
 
