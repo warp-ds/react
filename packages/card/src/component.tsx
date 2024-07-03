@@ -8,7 +8,6 @@ import { CardProps } from './props.js';
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, ...rest } = props;
 
-
   return React.createElement(
     as,
     {
