@@ -1,23 +1,24 @@
 import React from 'react';
-import { i18n } from '@lingui/core';
-import { label as ccLabel, helpText as ccHelpText, toggle as ccToggle } from '@warp-ds/css/component-classes';
-import { useId } from '../../utils/src/index.js';
-import { ToggleEntry, ToggleProps } from './props.js';
+
 import { classNames } from '@chbphone55/classnames';
-import { Item } from './item.js';
-import { messages as nbMessages} from './locales/nb/messages.mjs';
-import { messages as enMessages} from './locales/en/messages.mjs';
-import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { i18n } from '@lingui/core';
+import { helpText as ccHelpText, label as ccLabel, toggle as ccToggle } from '@warp-ds/css/component-classes';
+
 import { activateI18n } from '../../i18n.js';
+import { useId } from '../../utils/src/index.js';
+
+import { Item } from './item.js';
+import { messages as enMessages } from './locales/en/messages.mjs';
+import { messages as fiMessages } from './locales/fi/messages.mjs';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { ToggleProps } from './props.js';
+import type { ToggleEntry } from './props.js';
 
 function Title({ id, title, optional }) {
   activateI18n(enMessages, nbMessages, fiMessages);
 
   return (
-    <legend
-      id={`${id}__title`}
-      className={ccLabel.label}
-    >
+    <legend id={`${id}__title`} className={ccLabel.label}>
       {title}
       {optional && (
         <span className={ccLabel.optional}>
@@ -41,9 +42,8 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
       className={classNames({
         [ccHelpText.helpText]: true,
         [ccHelpText.helpTextColor]: !isInvalid,
-        [ccHelpText.helpTextColorInvalid]: isInvalid
-      })}
-    >
+        [ccHelpText.helpTextColorInvalid]: isInvalid,
+      })}>
       {helpText}
     </div>
   );
@@ -67,7 +67,7 @@ export function Toggle(props: ToggleProps) {
     [ccToggle.checkbox]: isCheckbox && !isIndeterminate && !isInvalid && !isDisabled,
     [ccToggle.checkboxInvalid]: isCheckbox && !isIndeterminate && isInvalid && !isDisabled,
     [ccToggle.checkboxDisabled]: isCheckbox && !isIndeterminate && !isInvalid && isDisabled,
-    [ccToggle.indeterminate]: isCheckbox&& isIndeterminate && !isInvalid && !isDisabled,
+    [ccToggle.indeterminate]: isCheckbox && isIndeterminate && !isInvalid && !isDisabled,
     [ccToggle.indeterminateInvalid]: isCheckbox && isIndeterminate && isInvalid && !isDisabled,
     [ccToggle.indeterminateDisabled]: isCheckbox && isIndeterminate && !isInvalid && isDisabled,
     [ccToggle.radio]: isRadio && !isInvalid && !isDisabled,
@@ -91,7 +91,7 @@ export function Toggle(props: ToggleProps) {
   const groupClasses = classNames({
     [ccToggle.radioButtonsGroup]: true,
     [ccToggle.radioButtonsGroupJustified]: props.equalWidth,
-  })
+  });
 
   return (
     <fieldset
@@ -99,18 +99,9 @@ export function Toggle(props: ToggleProps) {
       aria-invalid={isRadioGroup ? isInvalid : undefined}
       aria-errormessage={isRadioGroup && isInvalid ? helpId : undefined}
       aria-describedby={helpId}
-      className={ccToggle.field}
-    >
-      {props.title && (
-        <Title
-          id={id}
-          title={props.title}
-          optional={props.optional}
-        />
-      )}
-      <div
-        className={wrapperClasses}
-      >
+      className={ccToggle.field}>
+      {props.title && <Title id={id} title={props.title} optional={props.optional} />}
+      <div className={wrapperClasses}>
         {!props.options && props.label ? (
           <Item
             controlled={isControlled}
@@ -136,12 +127,10 @@ export function Toggle(props: ToggleProps) {
             <Item
               controlled={isControlled}
               checked={props.selected?.some((s) => s.value === option.value)}
-              defaultChecked={props.defaultSelected?.some(
-                (s) => s.value === option.value,
-              )}
+              defaultChecked={props.defaultSelected?.some((s) => s.value === option.value)}
               inputClassName={inputClasses}
-              labelClassName={labelClasses}  
-              groupClassName={groupClasses}  
+              labelClassName={labelClasses}
+              groupClassName={groupClasses}
               option={option}
               // @ts-ignore TODO: typecheck
               onChange={(e: ToggleEntry) => props.onChange(e)}
@@ -158,13 +147,7 @@ export function Toggle(props: ToggleProps) {
         )}
       </div>
 
-      {props.helpText && (
-        <HelpText
-          helpId={helpId}
-          helpText={props.helpText}
-          isInvalid={isInvalid}
-        />
-      )}
+      {props.helpText && <HelpText helpId={helpId} helpText={props.helpText} isInvalid={isInvalid} />}
     </fieldset>
   );
 }

@@ -1,18 +1,12 @@
 import React from 'react';
-import { SwitchProps } from './props.js';
+
 import { classNames } from '@chbphone55/classnames';
 import { switchToggle as ccSwitch } from '@warp-ds/css/component-classes';
 
-export function Switch({
-  id,
-  value,
-  onClick,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
-  ...attrs
-}: SwitchProps) {
-  const switchFocus =
-    'focusable rounded-full';
+import { SwitchProps } from './props.js';
+
+export function Switch({ id, value, onClick, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, ...attrs }: SwitchProps) {
+  const switchFocus = 'focusable rounded-full';
 
   return (
     <div className={ccSwitch.switch}>
@@ -25,12 +19,10 @@ export function Switch({
         aria-checked={value}
         onClick={onClick}
         className={classNames([ccSwitch.label, switchFocus])}
-        {...attrs}
-      >
+        {...attrs}>
+        <span data-testid="track" className={classNames([ccSwitch.track, value ? ccSwitch.trackActive : ccSwitch.trackInactive])} />
         <span
-          className={classNames([ccSwitch.track, value ? ccSwitch.trackActive : ccSwitch.trackInactive])}
-        />
-        <span
+          data-testid="handle"
           className={classNames([ccSwitch.handle, ccSwitch.handleNotDisabled], {
             [ccSwitch.handleSelected]: value,
           })}

@@ -1,8 +1,11 @@
-import fastify from 'fastify';
 import fs from 'fs';
 import { join } from 'path';
+
 import React from 'react';
 import ReactDomServer from 'react-dom/server.js';
+
+import fastify from 'fastify';
+
 import app from './index.js';
 
 const server = fastify();

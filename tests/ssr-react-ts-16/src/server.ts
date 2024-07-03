@@ -1,9 +1,12 @@
-import fastify from 'fastify';
-import React from 'react';
 import fs from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+
+import React from 'react';
 import ReactDomServer from 'react-dom/server.js';
+
+import fastify from 'fastify';
+
 import app from './index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

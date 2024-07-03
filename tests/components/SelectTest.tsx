@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import { Select } from '../../packages/select/src/component';
 
 describe('Select', () => {
@@ -27,11 +29,13 @@ describe('Select', () => {
   });
 
   it('handles select change', () => {
-    render(<Select {...props}>
+    render(
+      <Select {...props}>
         <option value="s">Strawberries</option>
         <option value="r">Raspberries</option>
         <option value="c">Cloudberries</option>
-    </Select>);
+      </Select>,
+    );
     const select = screen.getByRole('combobox');
     fireEvent.change(select, { target: { value: 's' } });
     expect(select.value).toBe('s');

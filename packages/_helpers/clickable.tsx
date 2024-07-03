@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { clickable as ccClickable } from '@warp-ds/css/component-classes';
+
 import { Item as ToggleItem } from '../toggle/src/item.js';
 import { useId } from '../utils/src/useId.js';
 
@@ -43,13 +45,7 @@ export type ClickableProps = {
 } & Partial<Omit<HTMLAnchorElement, 'children'>> &
   Partial<Omit<HTMLButtonElement, 'children'>>;
 
-export function Clickable({
-  children,
-  radio,
-  checkbox,
-  value,
-  ...props
-}: ClickableProps) {
+export function Clickable({ children, radio, checkbox, value, ...props }: ClickableProps) {
   const id = useId();
   const type = radio ? 'radio' : 'checkbox';
 
@@ -61,8 +57,7 @@ export function Clickable({
       controlled={false}
       onChange={props.onClick ? props.onClick : () => undefined}
       value={value}
-      name={`${props.name || id}:toggle`}
-    >
+      name={`${props.name || id}:toggle`}>
       {children}
     </ToggleItem>
   ) : (

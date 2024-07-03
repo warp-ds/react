@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { Pagination } from '../src/index.js';
 
 const metadata = { title: 'Navigation/Pagination' };
@@ -6,7 +7,7 @@ export default metadata;
 
 const Example = ({ initialPage = 1, lastPage = 30, ...props }) => {
   const [currentPage, setCurrentPage] = React.useState(initialPage);
-  
+
   return (
     <>
       <div style={{ textAlign: 'center', marginTop: '50px' }}>

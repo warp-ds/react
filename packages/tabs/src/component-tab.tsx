@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/css/component-classes';
+
 import type { TabProps } from './props.js';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
@@ -9,7 +11,7 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
     [ccTab.tabActive]: isActive,
   }),
   icon: classNames(ccTab.icon, {
-    [ccTab.iconUnderlinedActive] : isActive,
+    [ccTab.iconUnderlinedActive]: isActive,
   }),
   content: classNames(ccTab.contentUnderlined, {
     [ccTab.contentUnderlinedActive]: isActive,
@@ -18,14 +20,7 @@ const setup = ({ className, isActive, setActive, ...rest }: any) => ({
 });
 
 export function Tab(props: TabProps) {
-  const {
-    children,
-    label,
-    setActive = () => {},
-    name,
-    onClick,
-    isActive,
-  } = props;
+  const { children, label, setActive = () => {}, name, onClick, isActive } = props;
   const { tab, icon, content, attrs } = setup(props);
   const { over, ...rest } = attrs;
 
@@ -44,8 +39,7 @@ export function Tab(props: TabProps) {
       id={`warp-tab-${name}`}
       tabIndex={isActive ? 0 : -1}
       className={tab}
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       {!children && <span className={content}>{label}</span>}
 
       {children && over && (

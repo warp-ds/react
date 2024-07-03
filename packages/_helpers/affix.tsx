@@ -1,12 +1,13 @@
-import React from "react";
-import { suffix, prefix } from "@warp-ds/css/component-classes";
-import { classNames } from "@chbphone55/classnames";
-import IconClose16 from "@warp-ds/icons/react/close-16";
-import IconSearch16 from "@warp-ds/icons/react/search-16";
+import React from 'react';
+
+import { classNames } from '@chbphone55/classnames';
+import { prefix, suffix } from '@warp-ds/css/component-classes';
+import IconClose16 from '@warp-ds/icons/react/close-16';
+import IconSearch16 from '@warp-ds/icons/react/search-16';
 
 interface AffixProps {
   /** Defines a string value that labels the affix element. */
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   /** Affix added at the beginning of input */
   prefix?: boolean;
@@ -31,10 +32,10 @@ export function Affix(props: AffixProps) {
   const classBase = props.prefix ? prefix : suffix;
 
   return React.createElement(
-    props.label ? "div" : "button",
+    props.label ? 'div' : 'button',
     {
-      "aria-label": !props.label ? props["aria-label"] : undefined,
-      type: props.search ? "submit" : props.clear ? "reset" : undefined,
+      'aria-label': !props.label ? props['aria-label'] : undefined,
+      type: props.search ? 'submit' : props.clear ? 'reset' : undefined,
       onClick: props.onClick,
       className: classNames({
         [classBase.wrapper]: true,
@@ -48,6 +49,6 @@ export function Affix(props: AffixProps) {
       {props.search && <IconSearch16 />}
 
       {props.label && <span className={classBase.label}>{props.label}</span>}
-    </>
+    </>,
   );
 }

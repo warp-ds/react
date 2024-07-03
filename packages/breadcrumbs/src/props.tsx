@@ -14,7 +14,4 @@ export type BreadcrumbsProps = {
 
   style?: React.CSSProperties;
   // omit aria-label for better prop table docs
-} & Omit<
-  React.PropsWithoutRef<JSX.IntrinsicElements['nav']>,
-  'aria-label' | 'children'
->;
+} & Omit<React.PropsWithoutRef<JSX.IntrinsicElements['nav']>, 'aria-label' | 'children'>;

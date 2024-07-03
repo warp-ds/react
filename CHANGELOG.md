@@ -1,3 +1,45 @@
+# [1.6.0-next.6](https://github.com/warp-ds/react/compare/v1.6.0-next.5...v1.6.0-next.6) (2024-07-03)
+
+
+### Bug Fixes
+
+* **slider:** Prevent onChange/onChangeAfter called on mount ([#253](https://github.com/warp-ds/react/issues/253)) ([84ddd64](https://github.com/warp-ds/react/commit/84ddd646cf9372a4be9086971a1732f5c23b8fa7))
+
+# [1.6.0-next.5](https://github.com/warp-ds/react/compare/v1.6.0-next.4...v1.6.0-next.5) (2024-06-17)
+
+
+### Bug Fixes
+
+* bump core to fix slider ([#250](https://github.com/warp-ds/react/issues/250)) ([5192147](https://github.com/warp-ds/react/commit/5192147a4a4e43199b464793eb9a1eb56f504b91))
+
+# [1.6.0-next.4](https://github.com/warp-ds/react/compare/v1.6.0-next.3...v1.6.0-next.4) (2024-06-17)
+
+
+### Bug Fixes
+
+* add default targetEl for callout ([#248](https://github.com/warp-ds/react/issues/248)) ([e297880](https://github.com/warp-ds/react/commit/e297880a9bac861e82e5a98facf9eaca3d0ec261))
+
+# [1.6.0-next.3](https://github.com/warp-ds/react/compare/v1.6.0-next.2...v1.6.0-next.3) (2024-06-12)
+
+
+### Features
+
+* slider onChangeAfter prop ([#247](https://github.com/warp-ds/react/issues/247)) ([fa1af5c](https://github.com/warp-ds/react/commit/fa1af5c7a33fc5071c26b5652bf46bffa6413408))
+
+# [1.6.0-next.2](https://github.com/warp-ds/react/compare/v1.6.0-next.1...v1.6.0-next.2) (2024-06-05)
+
+
+### Features
+
+* **toggle:** add ReactNode type to toggle labels ([#244](https://github.com/warp-ds/react/issues/244)) ([abeff99](https://github.com/warp-ds/react/commit/abeff999329000607703224fc5b7843379420b04))
+
+# [1.6.0-next.1](https://github.com/warp-ds/react/compare/v1.5.0...v1.6.0-next.1) (2024-05-16)
+
+
+### Features
+
+* add warp ds eslint config ([#238](https://github.com/warp-ds/react/issues/238)) ([d83f799](https://github.com/warp-ds/react/commit/d83f79969a877b533ff288f2238663035398f6ac))
+
 # [1.5.0](https://github.com/warp-ds/react/compare/v1.4.4...v1.5.0) (2024-05-15)
 
 

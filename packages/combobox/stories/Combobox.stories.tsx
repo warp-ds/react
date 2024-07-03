@@ -1,7 +1,9 @@
 import React from 'react';
-import { Combobox } from '../src';
-import { Affix } from '../../_helpers';
+
 import { action } from '@storybook/addon-actions';
+
+import { Affix } from '../../_helpers';
+import { Combobox } from '../src';
 
 const metadata = { title: 'Forms/Combobox' };
 export default metadata;
@@ -20,12 +22,7 @@ export const Basic = () => {
           setValue(val);
           action('select')(val);
         }}
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -47,12 +44,7 @@ export const DisableStaticListFiltering = () => {
           setValue(val);
           action('select')(val);
         }}
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -72,8 +64,7 @@ export const BubbleEventOnEnter = () => {
         onSubmit={(e) => {
           e.preventDefault();
           alert(value);
-        }}
-      >
+        }}>
         <Combobox
           label="Stillingstittel"
           value={value}
@@ -82,12 +73,7 @@ export const BubbleEventOnEnter = () => {
             setValue(val);
             action('select')(val);
           }}
-          options={[
-            { value: 'Product manager' },
-            { value: 'Produktledelse' },
-            { value: 'Prosessoperatør' },
-            { value: 'Prosjekteier' },
-          ]}
+          options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
         />
       </form>
     </>
@@ -109,12 +95,7 @@ export const MatchTextSegments = () => {
         }}
         matchTextSegments
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -127,18 +108,12 @@ export const CustomMatchAlgorithm = () => {
     return [...optionValue].map((letter, i) => {
       if ([...value.toLowerCase()].includes(letter.toLowerCase())) {
         return (
-          <span
-            data-combobox-text-match
-            key={`${optionValue}-bold-letter-${letter}-${i}`}
-            className="font-bold bg-blue-100 text-blue-800"
-          >
+          <span data-combobox-text-match key={`${optionValue}-bold-letter-${letter}-${i}`} className="font-bold bg-blue-100 text-blue-800">
             {letter}
           </span>
         );
       } else {
-        return (
-          <span key={`${optionValue}-letter-${letter}-${i}`}>{letter}</span>
-        );
+        return <span key={`${optionValue}-letter-${letter}-${i}`}>{letter}</span>;
       }
     });
   }
@@ -155,12 +130,7 @@ export const CustomMatchAlgorithm = () => {
         }}
         highlightValueMatch={highlightValueMatch}
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -181,12 +151,7 @@ export const OpenOnFocus = () => {
         }}
         openOnFocus
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -197,10 +162,7 @@ export const SelectOnClick = () => {
 
   return (
     <>
-      <p>
-        When the user clicks inside the text box the current value will be
-        selected (like the URL bar in browsers).
-      </p>
+      <p>When the user clicks inside the text box the current value will be selected (like the URL bar in browsers).</p>
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
@@ -209,12 +171,7 @@ export const SelectOnClick = () => {
           action('select')(val);
         }}
         label="Stillingstittel"
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );
@@ -264,8 +221,7 @@ export const WithAffix = () => {
           { value: 'Banana', label: '🍌 Banana' },
           { value: 'Orange', label: '🍊 Orange' },
           { value: 'Pineapple', label: '🍍 Pineapple' },
-        ]}
-      >
+        ]}>
         <Affix suffix clear aria-label="Clear text" onClick={() => setValue('')} />
       </Combobox>
     </>
@@ -314,8 +270,7 @@ export const AsyncFetch = () => {
         setValue(val);
         action('select')(val);
       }}
-      options={characters}
-    >
+      options={characters}>
       <Affix
         suffix
         clear
@@ -333,10 +288,7 @@ export const Optional = () => {
 
   return (
     <>
-      <p>
-        When the user clicks inside the text box the current value will be
-        selected (like the URL bar in browsers).
-      </p>
+      <p>When the user clicks inside the text box the current value will be selected (like the URL bar in browsers).</p>
       <Combobox
         value={value}
         onChange={(val) => setValue(val)}
@@ -346,12 +298,7 @@ export const Optional = () => {
         }}
         label="Stillingstittel"
         optional
-        options={[
-          { value: 'Product manager' },
-          { value: 'Produktledelse' },
-          { value: 'Prosessoperatør' },
-          { value: 'Prosjekteier' },
-        ]}
+        options={[{ value: 'Product manager' }, { value: 'Produktledelse' }, { value: 'Prosessoperatør' }, { value: 'Prosjekteier' }]}
       />
     </>
   );

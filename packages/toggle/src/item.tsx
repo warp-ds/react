@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { toggle as ccToggle } from '@warp-ds/css/component-classes';
+
 import { useId } from '../../utils/src/index.js';
+
 import { ToggleEntry } from './props.js';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
@@ -14,12 +17,12 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   invalid?: boolean;
   helpId?: string;
   noVisibleLabel?: boolean;
-  label?: string;
+  label?: React.ReactNode;
   className?: string;
   labelClassName?: string;
   inputClassName?: string;
   groupClassName?: string;
-  multiple?: boolean,
+  multiple?: boolean;
   onChange: (data: ToggleEntry | boolean) => void;
 }
 
@@ -66,30 +69,18 @@ export function Item({
         value={label ? undefined : value ?? undefined}
         className={inputClassName}
         {...props}
-        onChange={(e) =>
-          props.onChange(
-            label
-              ? e.target.checked
-              : option
-              ? { label: option?.label, value: option?.value }
-              : false,
-          )
-        }
+        onChange={(e) => props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)}
       />
 
       <label htmlFor={id} className={labelClassName}>
-        {noVisibleLabel ? (
-          <span className={ccToggle.a11y}>{labelContent}</span>
-        ) : labelContent
-        }
+        {noVisibleLabel ? <span className={ccToggle.a11y}>{labelContent}</span> : labelContent}
       </label>
     </>
   );
 
-  if (multiple ) {
-    return <div className={groupClassName}>{Item}</div>
+  if (multiple) {
+    return <div className={groupClassName}>{Item}</div>;
   }
 
   return Item;
-
 }

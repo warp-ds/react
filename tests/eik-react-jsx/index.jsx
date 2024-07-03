@@ -1,9 +1,6 @@
 import React from 'https://assets.finn.no/npm/@pika/react/v16/index.js';
 import ReactDom from 'https://assets.finn.no/npm/@pika/react-dom/v16/index.js';
-import {
-  Button,
-  TextArea,
-} from 'https://assets.finn.no/pkg/@fabric-ds/react/v0/index.js';
+import { Button, TextArea } from 'https://assets.finn.no/pkg/@fabric-ds/react/v0/index.js';
 
 function App() {
   return (

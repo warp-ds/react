@@ -1,43 +1,45 @@
-import React from "react";
-import { classNames } from "@chbphone55/classnames";
-import { step as ccStep } from "@warp-ds/css/component-classes";
-import { useContext } from "react";
-import { StepsContext } from "./component.js";
-import IconCheck16 from "@warp-ds/icons/react/check-16";
+import React, { useContext } from 'react';
+
+import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
-import { messages as nbMessages} from './locales/nb/messages.mjs';
-import { messages as enMessages} from './locales/en/messages.mjs';
-import { messages as fiMessages} from './locales/fi/messages.mjs';
+import { step as ccStep } from '@warp-ds/css/component-classes';
+import IconCheck16 from '@warp-ds/icons/react/check-16';
+
 import { activateI18n } from '../../i18n.js';
+
+import { StepsContext } from './component.js';
+import { messages as enMessages } from './locales/en/messages.mjs';
+import { messages as fiMessages } from './locales/fi/messages.mjs';
+import { messages as nbMessages } from './locales/nb/messages.mjs';
 
 const availableAriaLabels = {
   completed: i18n._(
     /*i18n*/ {
-      id: "steps.aria.completed",
-      message: "Step indicator completed circle",
-      comment: "Completed circle",
-    }
+      id: 'steps.aria.completed',
+      message: 'Step indicator completed circle',
+      comment: 'Completed circle',
+    },
   ),
   active: i18n._(
     /*i18n*/ {
-      id: "steps.aria.active",
-      message: "Step indicator active circle",
-      comment: "Active circle",
-    }
+      id: 'steps.aria.active',
+      message: 'Step indicator active circle',
+      comment: 'Active circle',
+    },
   ),
   default: i18n._(
     /*i18n*/ {
-      id: "steps.aria.emptyCircle",
-      message: "Empty circle",
-      comment: "Empty circle",
-    }
-  )
-}
+      id: 'steps.aria.emptyCircle',
+      message: 'Empty circle',
+      comment: 'Empty circle',
+    },
+  ),
+};
 
 const getAriaLabel = (props: StepProps) => {
-  const ariaLabel = Object.keys(availableAriaLabels).find(a => props[a]);
+  const ariaLabel = Object.keys(availableAriaLabels).find((a) => props[a]);
   return ariaLabel ? availableAriaLabels[ariaLabel] : availableAriaLabels.default;
-}
+};
 export interface StepProps {
   /**
    * Step is active
@@ -107,9 +109,9 @@ export function Step(props: StepProps) {
   return (
     <li className={stepClasses}>
       {!vertical && <div className={stepLineHorizontalClasses} />}
-      <div className={stepDotClasses} role='img'
-      aria-label={getAriaLabel(props)}
-       {...(active && { 'aria-current': 'step'})}>{completed && <IconCheck16 />}</div>
+      <div className={stepDotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
+        {completed && <IconCheck16 data-testid="completed-icon" />}
+      </div>
       <div className={stepLineClasses} />
       <div className={stepContentClasses}>{children}</div>
     </li>

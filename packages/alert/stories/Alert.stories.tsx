@@ -1,8 +1,9 @@
 import React from 'react';
+
+import { expect, within } from '@storybook/test';
+
 import { Button } from '../../button/src';
 import { Alert, AlertProps } from '../src';
-
-import { within, expect } from '@storybook/test';
 
 export default { title: 'FeedbackIndicators/Alert', component: Alert };
 
@@ -45,27 +46,27 @@ export const Variants = () => (
 
 Variants.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  
+
   const negative = within(canvas.getByTestId('negative'));
   // test the outer container
   await expect(negative.getByRole('alert')).toBeInTheDocument();
   // test the icon
   await expect(negative.getByTitle(/Octagon/)).toBeInTheDocument();
-  
+
   const positive = within(canvas.getByTestId('positive'));
   await expect(positive.getByRole('status')).toBeInTheDocument();
   await expect(positive.getByTitle(/checkmark/)).toBeInTheDocument();
-  
+
   const warning = within(canvas.getByTestId('warning'));
   await expect(warning.getByRole('alert')).toBeInTheDocument();
   await expect(warning.getByTitle(/Warning/)).toBeInTheDocument();
-  
+
   const info = within(canvas.getByTestId('info'));
   await expect(info.getByRole('status')).toBeInTheDocument();
   await expect(info.getByTitle(/Information/)).toBeInTheDocument();
 };
 
-const InteractiveContent = ({type}: Pick<AlertProps, "type">) => (
+const InteractiveContent = ({ type }: Pick<AlertProps, 'type'>) => (
   <>
     <h4 className="h5">This is {type} variant of the alert component</h4>
     <p>With an additional description</p>
@@ -83,7 +84,7 @@ export const WithInteractiveContent = () => (
     <div>
       <h3>Negative</h3>
       <Alert type="negative" show>
-        <InteractiveContent type="negative"/>
+        <InteractiveContent type="negative" />
       </Alert>
     </div>
     <div>
@@ -95,13 +96,13 @@ export const WithInteractiveContent = () => (
     <div>
       <h3>Warning</h3>
       <Alert type="warning" show>
-        <InteractiveContent type="warning"/>
+        <InteractiveContent type="warning" />
       </Alert>
     </div>
     <div>
       <h3>Info</h3>
       <Alert type="info" show role="status">
-        <InteractiveContent type="info"/>
+        <InteractiveContent type="info" />
       </Alert>
     </div>
   </div>
@@ -114,15 +115,16 @@ export const WithDefaultRole = () => {
     <>
       <h3>Example with default role="alert"</h3>
       <Button
-          className="mb-16"
-          small
-          primary
-          onClick={() => {setShow(!show)}}
-          aria-controls="negative-alert"
-          aria-expanded={show}
-        >
-          {show ? 'Hide negative alert' : 'Show negative alert'}
-        </Button>
+        className="mb-16"
+        small
+        primary
+        onClick={() => {
+          setShow(!show);
+        }}
+        aria-controls="negative-alert"
+        aria-expanded={show}>
+        {show ? 'Hide negative alert' : 'Show negative alert'}
+      </Button>
 
       <Alert id="negative-alert" type="negative" show={show}>
         <h4 className="h5">This is "negative" variant of the alert component</h4>
@@ -130,7 +132,7 @@ export const WithDefaultRole = () => {
       </Alert>
     </>
   );
-}
+};
 
 export const WithOverriddenRole = () => {
   const [show, setShow] = React.useState(true);
@@ -142,10 +144,11 @@ export const WithOverriddenRole = () => {
         className="mb-16"
         small
         primary
-        onClick={() => {setShow(!show)}}
+        onClick={() => {
+          setShow(!show);
+        }}
         aria-controls="overriden-role-example-alert"
-        aria-expanded={show}
-      >
+        aria-expanded={show}>
         {show ? 'Hide warning alert' : 'Show warning alert'}
       </Button>
       <Alert id="overriden-role-example-alert" type="warning" show={show} role="">

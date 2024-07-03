@@ -1,27 +1,22 @@
 import React from 'react';
+
 import { action } from '@storybook/addon-actions';
-import { TextField as WarpTextField } from '../src';
+
 import { Affix } from '../../_helpers';
+import { TextField as WarpTextField } from '../src';
 
 export default { title: 'Forms/TextField', component: WarpTextField };
 
-const Template = (args) => <WarpTextField label="Address"
-  onChange={action('change')}
-  onFocus={action('focus')}
-  onBlur={action('blur')} {...args} />;
+const Template = (args) => (
+  <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />
+);
 export const Default = Template.bind({});
 Default.args = {
   value: 'test',
 };
 
 const TextField = (args) => (
-  <WarpTextField
-    label="Address"
-    onChange={action('change')}
-    onFocus={action('focus')}
-    onBlur={action('blur')}
-    {...args}
-  />
+  <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />
 );
 
 export const standard = () => <TextField />;
@@ -62,7 +57,7 @@ export const longLabelPrefix = () => (
   <TextField className="[--w-prefix-width:90px]" value="With some value">
     <Affix prefix label="Long prefix" />
   </TextField>
-    );
+);
 
 export const clearSuffix = () => (
   <TextField>
@@ -88,9 +83,7 @@ export const suffixAndPrefix = () => (
   </TextField>
 );
 
-export const helpText = () => (
-  <TextField helpText="Necessary because of reasons" />
-);
+export const helpText = () => <TextField helpText="Necessary because of reasons" />;
 
 export const invalid = () => <TextField helpText="Error text" invalid />;
 

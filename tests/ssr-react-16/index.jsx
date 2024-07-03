@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Button, TextArea } from '@warp-ds/react';
 
 export default function App() {
@@ -8,15 +9,10 @@ export default function App() {
         className="mb-10"
         onClick={() => {
           console.log('click handler called');
-        }}
-      >
+        }}>
         Hi there
       </Button>
-      <TextArea
-        name="my-text"
-        defaultValue="Stuff here"
-        className="mb-10"
-      ></TextArea>
+      <TextArea name="my-text" defaultValue="Stuff here" className="mb-10"></TextArea>
     </div>
   );
 }

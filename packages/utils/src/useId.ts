@@ -1,19 +1,15 @@
 import React from 'react';
 
 const useReactId = React.useId;
+// Determine if useReactId can be used and define a function to always call it if possible.
+// reactUseId returns a string that includes colons (:), e.g., :r0:, :r1:, etc.
+// This string is NOT supported in CSS selectors. Hence the replace.
+const safeUseReactId = typeof useReactId === 'function' ? () => useReactId().replace(/:/g, '') : () => React.useState(generateId())[0];
 
 export const useId = (hasFallback?): string => {
-  if (hasFallback) {
-    return hasFallback;
-  }
-  if (typeof useReactId === 'function') {
-    // reactUseId returns a string that includes colons (:), e.g., :r0:, :r1:, etc.
-    // This string is NOT supported in CSS selectors. Hence the replace.
-    return useReactId().replace(/:/g, '');
-  } else {
-    const [elId] = React.useState(generateId());
-    return elId;
-  }
+  const id = safeUseReactId();
+
+  return hasFallback || id;
 };
 
 /**

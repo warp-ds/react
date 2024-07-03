@@ -1,11 +1,13 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+
 import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+
 import { SliderProps } from './props.js';
 
 export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
-  const { disabled, onChange } = rest;
+  const { disabled, onChange, onChangeAfter } = rest;
 
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
@@ -19,13 +21,22 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   }, [sliderLine]);
 
   const [value, setValue] = useState(rest.value);
+  const [finalValue, setFinalValue] = useState(rest.value);
   const [position, setPosition] = useState(rest.value);
   const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
   const [sliderPressed, setSliderPressed] = useState(false);
 
   useEffect(() => {
-    onChange && onChange(value);
-  }, [value, onChange]);
+    if (value === rest.value) return;
+    onChange?.(value);
+  }, [rest.value, value, onChange]);
+
+  useEffect(() => {
+    if (sliderPressed) return;
+    if (value === finalValue) return;
+    setFinalValue(value);
+    onChangeAfter?.(value);
+  }, [onChangeAfter, sliderPressed, value, finalValue]);
 
   const step = useMemo(() => rest.step || 1, [rest]);
 
@@ -59,16 +70,8 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     },
   };
 
-  const {
-    handleKeyDown,
-    handleFocus,
-    handleBlur,
-    handleMouseDown,
-    handleClick,
-    getThumbPosition,
-    getThumbTransform,
-    getShiftedChange,
-  } = createHandlers({ props: { min, max, ...rest }, sliderState });
+  const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } =
+    createHandlers({ props: { min, max, ...rest }, sliderState });
 
   const thumbPosition = useMemo(getThumbPosition, [getThumbPosition]);
   const sliderActiveStyle = useMemo(
@@ -76,7 +79,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
       left: 0,
       right: 100 - thumbPosition + '%',
     }),
-    [thumbPosition]
+    [thumbPosition],
   );
 
   const transformValue = useMemo(getThumbTransform, [getThumbTransform]);
@@ -84,21 +87,21 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     () => ({
       transform: 'translateX(' + transformValue + 'px)',
     }),
-    [transformValue]
+    [transformValue],
   );
 
   useEffect(() => {
     // prevents shiftedChange when modelValue was set externally
     if (position === rest.value) return;
-    const n = rest.step ? getShiftedChange(position) : position;
-    if (value === n) return;
-    setValue(n);
+    const nextVal = rest.step ? getShiftedChange(position) : position;
+    setValue(nextVal);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position, rest.value, rest.step]);
 
   useEffect(() => {
-    if (sliderPressed || position === rest.value || value === rest.value)
+    if (sliderPressed || position === rest.value || value === rest.value) {
       return;
+    }
     setPosition(rest.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderPressed, rest.value]);
@@ -147,8 +150,7 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         onFocus={handleFocus}
         onKeyDown={(e) => {
           handleKeyDown(e as unknown as KeyboardEvent);
-        }}
-      ></div>
+        }}></div>
     </div>
   );
 }

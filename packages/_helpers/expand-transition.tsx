@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
+
 import { collapse, expand } from 'element-collapse';
 
-export function ExpandTransition({
-  show,
-  children,
-}: PropsWithChildren<{ show?: Boolean }>) {
+export function ExpandTransition({ show, children }: PropsWithChildren<{ show?: Boolean }>) {
   const [removeElement, setRemoveElement] = useState(!show);
   const expandableRef = useRef<HTMLDivElement>(null);
   const isMounted = useRef(false);
@@ -42,11 +40,7 @@ export function ExpandTransition({
   const initialStyle = !initialShow.current ? 'overflow-hidden h-0' : undefined;
 
   return (
-    <div
-      className={initialStyle}
-      ref={expandableRef}
-      aria-hidden={!show ? true : undefined}
-    >
+    <div className={initialStyle} ref={expandableRef} aria-hidden={!show ? true : undefined} data-testid="expand-transition">
       {removeElement ? null : children}
     </div>
   );

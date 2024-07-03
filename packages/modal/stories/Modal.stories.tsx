@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Modal } from '../src';
+
 import { Button } from '../../button/src';
 import { Toggle } from '../../toggle/src';
+import { Modal } from '../src';
 
 const metadata = { title: 'Overlays/Modal' };
 export default metadata;
@@ -35,12 +36,8 @@ export const Example = () => {
               Accept
             </Button>
           </>
-        }
-      >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        }>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -84,12 +81,8 @@ export const WithBackAndCloseButton = () => {
               Accept
             </Button>
           </>
-        }
-      >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        }>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -124,8 +117,7 @@ export const MustConfirmToProceed = () => {
           <Button primary onClick={toggleModal} disabled={!checked}>
             Accept
           </Button>
-        }
-      >
+        }>
         <p>1. You must give me 10 pushups right now</p>
         <Toggle type="checkbox" label="I agree" onChange={setChecked} />
       </Modal>
@@ -164,12 +156,8 @@ export const InitialFocus = () => {
               Accept
             </Button>
           </>
-        }
-      >
-        <p>
-          Content information goes here. Optional illustration on top. Can
-          contain links.
-        </p>
+        }>
+        <p>Content information goes here. Optional illustration on top. Can contain links.</p>
         <a href="#" onClick={(event) => event.preventDefault()}>
           Optional link to read more.
         </a>
@@ -206,12 +194,10 @@ export const Overflowing = () => {
               Accept
             </Button>
           </>
-        }
-      >
+        }>
         {[...new Array(10)].map((e, i) => (
           <p key={i}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         ))}
       </Modal>

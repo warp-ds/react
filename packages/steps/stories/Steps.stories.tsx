@@ -1,85 +1,78 @@
 import React, { useState } from 'react';
-import { Steps, Step } from '../src';
+
 import { Button } from '../../button/src';
+import { Step, Steps } from '../src';
 
 const metadata = { title: 'Navigation/Steps' };
 export default metadata;
 
-export const Vertical = () => {
-  return (
-    <Steps>
-      <Step>
-        <h4>Step one</h4>
-        <p>Content</p>
-      </Step>
-      <Step>
-        <h4>Step two</h4>
-        <p>Content</p>
-      </Step>
-      <Step>
-        <h4>Step three</h4>
-        <p>Content</p>
-      </Step>
-    </Steps>
-  );
-};
+export const Vertical = () => (
+  <Steps>
+    <Step>
+      <h4>Step one</h4>
+      <p>Content</p>
+    </Step>
+    <Step>
+      <h4>Step two</h4>
+      <p>Content</p>
+    </Step>
+    <Step>
+      <h4>Step three</h4>
+      <p>Content</p>
+    </Step>
+  </Steps>
+);
 
-export const WithProgress = () => {
-  return (
-    <Steps>
-      <Step completed>
-        <h4>Step one</h4>
-        <p>Content</p>
-      </Step>
-      <Step active>
-        <h4>Step two</h4>
-        <p>Content</p>
-      </Step>
-      <Step>
-        <h4>Step three</h4>
-        <p>Content</p>
-      </Step>
-    </Steps>
-  );
-};
+export const WithProgress = () => (
+  <Steps>
+    <Step completed>
+      <h4>Step one</h4>
+      <p>Content</p>
+    </Step>
+    <Step active>
+      <h4>Step two</h4>
+      <p>Content</p>
+    </Step>
+    <Step>
+      <h4>Step three</h4>
+      <p>Content</p>
+    </Step>
+  </Steps>
+);
 
-export const RightAligned = () => {
-  return (
-    <Steps right>
-      <Step completed>
-        <h4>Step one</h4>
-        <p>Content</p>
-      </Step>
-      <Step active>
-        <h4>Step two</h4>
-        <p>Content</p>
-      </Step>
-      <Step>
-        <h4>Step three</h4>
-        <p>Content</p>
-      </Step>
-    </Steps>
-  );
-};
+export const RightAligned = () => (
+  <Steps right>
+    <Step completed>
+      <h4>Step one</h4>
+      <p>Content</p>
+    </Step>
+    <Step active>
+      <h4>Step two</h4>
+      <p>Content</p>
+    </Step>
+    <Step>
+      <h4>Step three</h4>
+      <p>Content</p>
+    </Step>
+  </Steps>
+);
 
-export const Horizontal = () => {
-  return (
-    <Steps horizontal>
-      <Step completed>
-        <h4>Step one</h4>
-        <p>Content</p>
-      </Step>
-      <Step active>
-        <h4>Step two</h4>
-        <p>Content</p>
-      </Step>
-      <Step>
-        <h4>Step three</h4>
-        <p>Content</p>
-      </Step>
-    </Steps>
-  );
-};
+export const Horizontal = () => (
+  <Steps horizontal>
+    <Step completed>
+      <h4>Step one</h4>
+      <p>Content</p>
+    </Step>
+    <Step active>
+      <h4>Step two</h4>
+      <p>Content</p>
+    </Step>
+    <Step>
+      <h4>Step three</h4>
+      <p>Content</p>
+    </Step>
+  </Steps>
+);
 export const Interactive = () => {
   const [state, setState] = useState(0);
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box } from '../src';
+
 import { Clickable } from '../../_helpers';
+import { Box } from '../src';
 
 const metadata = { title: 'Layout/Box' };
 export default metadata;
@@ -49,11 +50,7 @@ export const ClickableButton = () => (
 export const ClickableAnchor = () => (
   <Box info clickable>
     <h1>
-      <Clickable
-        className="font-bold text-gray-700 hover:no-underline"
-        href="https://finn.no"
-        target="_blank"
-      >
+      <Clickable className="font-bold text-gray-700 hover:no-underline" href="https://finn.no" target="_blank">
         Clickable example
       </Clickable>
     </h1>

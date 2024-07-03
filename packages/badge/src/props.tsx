@@ -1,4 +1,5 @@
 import React from 'react';
+
 export interface BadgeProps {
   /**
    * Expand element children
@@ -25,7 +26,7 @@ export interface BadgeProps {
    * Type of badge
    @default neutral
    */
-  variant?: 'neutral' | 'info' | 'positive' | 'warning' |'negative' | 'disabled' | 'notification' | 'price';
+  variant?: 'neutral' | 'info' | 'positive' | 'warning' | 'negative' | 'disabled' | 'notification' | 'price';
 
   /**
    * Position of badge

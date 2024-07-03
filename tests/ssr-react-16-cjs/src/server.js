@@ -1,9 +1,13 @@
-const fastify = require('fastify');
 const fs = require('fs');
 const { join } = require('path');
+
 const React = require('react');
 const ReactDomServer = require('react-dom/server.js');
+
+const fastify = require('fastify');
+
 const app = require('../dist/index').default;
+
 const server = fastify();
 
 // @ts-ignore
