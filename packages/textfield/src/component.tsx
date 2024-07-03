@@ -19,7 +19,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
     id: providedId,
     children,
     invalid,
-    error,
     helpText,
     label,
     readOnly,
@@ -33,7 +32,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
 
   const id = useId(providedId);
   const helpId = helpText ? `${id}__hint` : undefined;
-  const isInvalid = invalid || error;
+  const isInvalid = invalid;
 
   const suffix = React.Children.toArray(children).find((child) => React.isValidElement(child) && child.props.suffix);
   const prefix = React.Children.toArray(children).find((child) => React.isValidElement(child) && child.props.prefix);
