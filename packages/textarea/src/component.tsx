@@ -19,7 +19,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
   const {
     className,
     disabled,
-    error,
     helpText,
     id: providedId,
     invalid,
@@ -40,7 +39,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
   const ref = useRef<HTMLTextAreaElement | null>(null);
 
   const helpId = helpText ? `${id}__hint` : undefined;
-  const isInvalid = invalid ?? error;
+  const isInvalid = invalid;
 
   useTextAreaHeight({
     ref,
