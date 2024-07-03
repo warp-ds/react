@@ -1,3 +1,10 @@
+# [1.6.0-next.6](https://github.com/warp-ds/react/compare/v1.6.0-next.5...v1.6.0-next.6) (2024-07-03)
+
+
+### Bug Fixes
+
+* **slider:** Prevent onChange/onChangeAfter called on mount ([#253](https://github.com/warp-ds/react/issues/253)) ([84ddd64](https://github.com/warp-ds/react/commit/84ddd646cf9372a4be9086971a1732f5c23b8fa7))
+
 # [1.6.0-next.5](https://github.com/warp-ds/react/compare/v1.6.0-next.4...v1.6.0-next.5) (2024-06-17)
 
 
