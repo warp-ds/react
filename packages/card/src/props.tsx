@@ -24,9 +24,4 @@ export interface CardProps {
    * Add your own custom styles to the container element
    */
   className?: string;
-
-  /**
-   * When the card is clicked (deprecated)
-   */
-  onClick?: () => void;
 }

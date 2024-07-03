@@ -41,29 +41,29 @@ describe('Card', () => {
     );
   });
 
-  it('handles onKeyDown events', () => {
-    const handleClick = vi.fn();
-    render(<Card as="article" onClick={handleClick} />);
-    fireEvent.keyDown(screen.getByRole('article'), { key: 'Enter', code: 'Enter' });
-    expect(handleClick).toHaveBeenCalledTimes(1);
-    fireEvent.keyDown(screen.getByRole('article'), { key: ' ', code: 'Space' });
-    expect(handleClick).toHaveBeenCalledTimes(2);
-  });
+  // it('handles onKeyDown events', () => {
+  //   const handleClick = vi.fn();
+  //   render(<Card as="article" onClick={handleClick} />);
+  //   fireEvent.keyDown(screen.getByRole('article'), { key: 'Enter', code: 'Enter' });
+  //   expect(handleClick).toHaveBeenCalledTimes(1);
+  //   fireEvent.keyDown(screen.getByRole('article'), { key: ' ', code: 'Space' });
+  //   expect(handleClick).toHaveBeenCalledTimes(2);
+  // });
 
-  it('does not call onClick for other keys', () => {
-    const handleClick = vi.fn();
-    render(<Card as="article" onClick={handleClick} />);
-    fireEvent.keyDown(screen.getByRole('article'), { key: 'ArrowRight', code: 'ArrowRight' });
-    expect(handleClick).not.toHaveBeenCalled();
-  });
+  // it('does not call onClick for other keys', () => {
+  //   const handleClick = vi.fn();
+  //   render(<Card as="article" onClick={handleClick} />);
+  //   fireEvent.keyDown(screen.getByRole('article'), { key: 'ArrowRight', code: 'ArrowRight' });
+  //   expect(handleClick).not.toHaveBeenCalled();
+  // });
 
-  it('renders sr-only button when onClick is provided', () => {
-    render(<Card as="article" onClick={() => {}} />);
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
+  // it('renders sr-only button when onClick is provided', () => {
+  //   render(<Card as="article" onClick={() => {}} />);
+  //   expect(screen.getByRole('button')).toBeInTheDocument();
+  // });
 
-  it('does not render sr-only button when onClick is not provided', () => {
-    render(<Card />);
-    expect(screen.queryByRole('button')).toBeNull();
-  });
+  // it('does not render sr-only button when onClick is not provided', () => {
+  //   render(<Card />);
+  //   expect(screen.queryByRole('button')).toBeNull();
+  // });
 });
