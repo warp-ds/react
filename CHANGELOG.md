@@ -1,3 +1,51 @@
+# [2.0.0-next.1](https://github.com/warp-ds/react/compare/v1.6.0...v2.0.0-next.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* remove deprecated classes ([#252](https://github.com/warp-ds/react/issues/252)) ([d4ffe4c](https://github.com/warp-ds/react/commit/d4ffe4ce97a3d7b3484a583b795ff1e6d80b8c87))
+
+
+### BREAKING CHANGES
+
+* Clickable prop, ccBox.infoClickable, ccBox.neutralClickable and
+ccBox.borderedClickable classes have been removed from the box component.
+
+* fix(switch): remove deprecated switch class
+
+switch class has been deprecated and removed from @warp-ds/css, and should also be removed from the
+switch component.
+* switch class has been removed from the switch component.
+
+* fix: update @warp-ds/css to latest next-version
+
+we have recently made a major prerelease of the @warp-ds/css and have removed deprecated tokens and
+classes, that needs to also be updated in the react-repo
+
+* fix: make @warp-ds/css also as a peerDependency and bump to latest next-version
+
+* fix(textarea): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid prop instead
+* error prop has been removed and replaced by invalid prop
+
+* fix(textfield): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid instead.
+* error prop has been removed and replaced by invalid prop
+
+* fix(card): remove deprecated onClick prop
+
+onClick prop has been deprecated for a while. Use instead Clickable component to handle click events
+in Cards
+* onClick prop has been removed and its tests
+
+* fix(card): fix linting issues and remove commented out tests for onClick prop
+
+* fix: update pnpm/action-setup@v2 to v4
+
+* fix: bump stylesheet to v2
+
 # [1.6.0](https://github.com/warp-ds/react/compare/v1.5.0...v1.6.0) (2024-07-03)
 
 
