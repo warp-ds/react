@@ -6,6 +6,7 @@ import { button as ccButton } from '@warp-ds/css/component-classes';
 
 import { activateI18n } from '../../i18n.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -88,7 +89,7 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
     }
   };
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   const ariaValueTextLoading = i18n._(
     /*i18n*/ {

@@ -8,6 +8,7 @@ import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
 import { Item } from './item.js';
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -15,7 +16,7 @@ import { ToggleProps } from './props.js';
 import type { ToggleEntry } from './props.js';
 
 function Title({ id, title, optional }) {
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   return (
     <legend id={`${id}__title`} className={ccLabel.label}>
