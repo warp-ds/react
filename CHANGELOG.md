@@ -1,3 +1,10 @@
+# [2.0.0-next.2](https://github.com/warp-ds/react/compare/v2.0.0-next.1...v2.0.0-next.2) (2024-07-04)
+
+
+### Bug Fixes
+
+* support danish locale ([#256](https://github.com/warp-ds/react/issues/256)) ([e0e9124](https://github.com/warp-ds/react/commit/e0e912439a5c4141796a49902dcdfc68afe86b1d))
+
 # [2.0.0-next.1](https://github.com/warp-ds/react/compare/v1.6.0...v2.0.0-next.1) (2024-07-04)
 
 
