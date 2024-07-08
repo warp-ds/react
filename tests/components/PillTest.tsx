@@ -31,14 +31,13 @@ describe('Pill component', () => {
     const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
     expect(closeButton).toBeInTheDocument();
   });
-  
+
   it('calls onClose when close button is clicked', () => {
     render(<Pill {...defaultProps} />);
     const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
     fireEvent.click(closeButton);
     expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
   });
-  
 
   it('renders suggestion class when suggestion is true', () => {
     const props: PillProps = { ...defaultProps, suggestion: true };

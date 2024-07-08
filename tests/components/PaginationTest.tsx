@@ -33,7 +33,7 @@ describe('Pagination component', () => {
   it('calls on change function on click of next page', () => {
     expect(screen.getByRole('link', { name: 'Next page, Rightward arrow icon' })).toHaveTextContent('Rightward arrow');
     fireEvent.click(screen.getByRole('link', { name: 'Next page, Rightward arrow icon' }));
-  
+
     expect(onChangeFunction).toHaveBeenCalledTimes(1);
     expect(onChangeFunction).toHaveBeenCalledWith(1);
   });
