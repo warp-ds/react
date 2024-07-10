@@ -11,13 +11,6 @@ export type TextAreaProps = {
   /** Whether the input is disabled. */
   disabled?: boolean;
 
-  /**
-   * Renders the field in an invalid state. Often paired together with `helpText` to provide feedback about the error.
-   *
-   * @deprecated use `invalid` instead.
-   */
-  error?: boolean;
-
   /**  Renders the field in an invalid state. Often paired together with `helpText` to provide feedback about the error. */
   invalid?: boolean;
 

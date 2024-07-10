@@ -7,6 +7,7 @@ import { input as ccInput, label as ccLabel, helpText as ccHelpText } from '@war
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -19,7 +20,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
   const {
     className,
     disabled,
-    error,
     helpText,
     id: providedId,
     invalid,
@@ -34,13 +34,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   const id = useId(providedId);
   const ref = useRef<HTMLTextAreaElement | null>(null);
 
   const helpId = helpText ? `${id}__hint` : undefined;
-  const isInvalid = invalid ?? error;
+  const isInvalid = invalid;
 
   useTextAreaHeight({
     ref,

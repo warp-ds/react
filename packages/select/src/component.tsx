@@ -8,6 +8,7 @@ import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -16,7 +17,7 @@ import type { SelectProps } from './props.js';
 const setup = (props: SelectProps) => {
   const { className, invalid, id, hint, always, label, style, optional, readOnly, disabled, ...rest } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   const helpId = hint ? `${id}__hint` : undefined;
 

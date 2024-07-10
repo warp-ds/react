@@ -1,3 +1,81 @@
+# [2.0.0-next.2](https://github.com/warp-ds/react/compare/v2.0.0-next.1...v2.0.0-next.2) (2024-07-04)
+
+
+### Bug Fixes
+
+* support danish locale ([#256](https://github.com/warp-ds/react/issues/256)) ([e0e9124](https://github.com/warp-ds/react/commit/e0e912439a5c4141796a49902dcdfc68afe86b1d))
+
+# [2.0.0-next.1](https://github.com/warp-ds/react/compare/v1.6.0...v2.0.0-next.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* remove deprecated classes ([#252](https://github.com/warp-ds/react/issues/252)) ([d4ffe4c](https://github.com/warp-ds/react/commit/d4ffe4ce97a3d7b3484a583b795ff1e6d80b8c87))
+
+
+### BREAKING CHANGES
+
+* Clickable prop, ccBox.infoClickable, ccBox.neutralClickable and
+ccBox.borderedClickable classes have been removed from the box component.
+
+* fix(switch): remove deprecated switch class
+
+switch class has been deprecated and removed from @warp-ds/css, and should also be removed from the
+switch component.
+* switch class has been removed from the switch component.
+
+* fix: update @warp-ds/css to latest next-version
+
+we have recently made a major prerelease of the @warp-ds/css and have removed deprecated tokens and
+classes, that needs to also be updated in the react-repo
+
+* fix: make @warp-ds/css also as a peerDependency and bump to latest next-version
+
+* fix(textarea): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid prop instead
+* error prop has been removed and replaced by invalid prop
+
+* fix(textfield): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid instead.
+* error prop has been removed and replaced by invalid prop
+
+* fix(card): remove deprecated onClick prop
+
+onClick prop has been deprecated for a while. Use instead Clickable component to handle click events
+in Cards
+* onClick prop has been removed and its tests
+
+* fix(card): fix linting issues and remove commented out tests for onClick prop
+
+* fix: update pnpm/action-setup@v2 to v4
+
+* fix: bump stylesheet to v2
+
+# [1.6.0](https://github.com/warp-ds/react/compare/v1.5.0...v1.6.0) (2024-07-03)
+
+
+### Bug Fixes
+
+* add default targetEl for callout ([#248](https://github.com/warp-ds/react/issues/248)) ([e297880](https://github.com/warp-ds/react/commit/e297880a9bac861e82e5a98facf9eaca3d0ec261))
+* bump core to fix slider ([#250](https://github.com/warp-ds/react/issues/250)) ([5192147](https://github.com/warp-ds/react/commit/5192147a4a4e43199b464793eb9a1eb56f504b91))
+* **slider:** Prevent onChange/onChangeAfter called on mount ([#253](https://github.com/warp-ds/react/issues/253)) ([84ddd64](https://github.com/warp-ds/react/commit/84ddd646cf9372a4be9086971a1732f5c23b8fa7))
+
+
+### Features
+
+* add warp ds eslint config ([#238](https://github.com/warp-ds/react/issues/238)) ([d83f799](https://github.com/warp-ds/react/commit/d83f79969a877b533ff288f2238663035398f6ac))
+* slider onChangeAfter prop ([#247](https://github.com/warp-ds/react/issues/247)) ([fa1af5c](https://github.com/warp-ds/react/commit/fa1af5c7a33fc5071c26b5652bf46bffa6413408))
+* **toggle:** add ReactNode type to toggle labels ([#244](https://github.com/warp-ds/react/issues/244)) ([abeff99](https://github.com/warp-ds/react/commit/abeff999329000607703224fc5b7843379420b04))
+
+# [1.6.0-next.6](https://github.com/warp-ds/react/compare/v1.6.0-next.5...v1.6.0-next.6) (2024-07-03)
+
+
+### Bug Fixes
+
+* **slider:** Prevent onChange/onChangeAfter called on mount ([#253](https://github.com/warp-ds/react/issues/253)) ([84ddd64](https://github.com/warp-ds/react/commit/84ddd646cf9372a4be9086971a1732f5c23b8fa7))
+
 # [1.6.0-next.5](https://github.com/warp-ds/react/compare/v1.6.0-next.4...v1.6.0-next.5) (2024-06-17)
 
 

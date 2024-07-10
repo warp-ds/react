@@ -18,6 +18,7 @@ import { activateI18n } from '../../i18n.js';
 import { TextField } from '../../textfield/src/index.js';
 import { useId } from '../../utils/src/index.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -34,7 +35,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   // Options list open boolean
   const [isOpen, setOpen] = useState(false);
