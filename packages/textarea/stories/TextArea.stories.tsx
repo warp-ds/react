@@ -21,7 +21,7 @@ export const TextFieldWithRef = () => {
     console.log(ref.current);
   });
 
-  return <TextArea label="Description" value="hey" ref={ref} />;
+  return <TextArea label="Description" defaultValue="hey" ref={ref} />;
 };
 
 export const required = () => <TextArea label="Description" required />;

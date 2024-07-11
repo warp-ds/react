@@ -28,13 +28,13 @@ describe('Pill component', () => {
 
   it('renders close button when canClose is true', () => {
     render(<Pill {...defaultProps} />);
-    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label' });
+    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
     expect(closeButton).toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', () => {
     render(<Pill {...defaultProps} />);
-    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label' });
+    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
     fireEvent.click(closeButton);
     expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
   });

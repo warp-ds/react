@@ -212,8 +212,8 @@ export function PopoverIconAsTargetEl() {
         <Attention
           popover
           placement="bottom-end"
-          distance={2}
-          skidding={12}
+          distance={0}
+          skidding={2}
           targetEl={targetEl}
           isShowing={show}
           id="popover-icon-target-el-attention-example">
