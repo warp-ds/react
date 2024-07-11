@@ -1,3 +1,10 @@
+# [2.0.0-next.3](https://github.com/warp-ds/react/compare/v2.0.0-next.2...v2.0.0-next.3) (2024-07-11)
+
+
+### Bug Fixes
+
+* update dependencies ([#259](https://github.com/warp-ds/react/issues/259)) ([d1a546d](https://github.com/warp-ds/react/commit/d1a546dc4510bef010df331b6c0ba83dd967edab))
+
 # [2.0.0-next.2](https://github.com/warp-ds/react/compare/v2.0.0-next.1...v2.0.0-next.2) (2024-07-04)
 
 
