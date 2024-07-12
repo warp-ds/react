@@ -13,34 +13,8 @@ import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 
-const availableAriaLabels = {
-  completed: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.completed',
-      message: 'Step indicator completed circle',
-      comment: 'Completed circle',
-    },
-  ),
-  active: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.active',
-      message: 'Step indicator active circle',
-      comment: 'Active circle',
-    },
-  ),
-  default: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.emptyCircle',
-      message: 'Empty circle',
-      comment: 'Empty circle',
-    },
-  ),
-};
+type StepClassKeys = keyof typeof ccStep;
 
-const getAriaLabel = (props: StepProps) => {
-  const ariaLabel = Object.keys(availableAriaLabels).find((a) => props[a]);
-  return ariaLabel ? availableAriaLabels[ariaLabel] : availableAriaLabels.default;
-};
 export interface StepProps {
   /**
    * Step is active
@@ -60,6 +34,51 @@ export interface StepProps {
   children: JSX.Element | JSX.Element[];
 }
 
+const availableAriaLabels = {
+  completed: i18n._({
+    id: 'steps.aria.completed',
+    message: 'Step indicator completed circle',
+    comment: 'Completed circle',
+  }),
+  active: i18n._({
+    id: 'steps.aria.active',
+    message: 'Step indicator active circle',
+    comment: 'Active circle',
+  }),
+  default: i18n._({
+    id: 'steps.aria.emptyCircle',
+    message: 'Empty circle',
+    comment: 'Empty circle',
+  }),
+};
+
+const getAriaLabel = (props: StepProps) => {
+  const ariaLabel = Object.keys(availableAriaLabels).find((a) => props[a as keyof StepProps]);
+  return ariaLabel ? availableAriaLabels[ariaLabel] : availableAriaLabels.default;
+};
+
+/**
+ * getClassNames() returns a combined class string based on a base class and conditional classes.
+ *
+ * @param {StepClassKeys} baseClass - The base class to be included.
+ * @param {Partial<Record<StepClassKeys, boolean>>} conditions - An object with class names as keys and booleans as values indicating whether to include the class.
+ * @returns {string} - A combined class string.
+ */
+const getClassNames = (baseClass: StepClassKeys, conditions: Partial<Record<StepClassKeys, boolean>>): string => {
+  return classNames({
+    [ccStep[baseClass]]: true,
+    ...Object.entries(conditions).reduce(
+      (acc, [key, value]) => {
+        if (value) {
+          acc[ccStep[key as StepClassKeys]] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, boolean>,
+    ),
+  });
+};
+
 export function Step(props: StepProps) {
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
@@ -68,43 +87,39 @@ export function Step(props: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
-  const stepClasses = classNames({
-    [ccStep.stepVertical]: vertical,
-    [ccStep.stepVerticalLeft]: vertical && left,
-    [ccStep.stepVerticalRight]: vertical && !left,
-    [ccStep.stepHorizontal]: !vertical,
+  const stepClasses = getClassNames('step', {
+    vertical,
+    alignLeft: vertical && left,
+    alignRight: vertical && !left,
+    horizontal: !vertical,
   });
 
-  const stepLineHorizontalClasses = classNames({
-    [ccStep.stepLine]: true,
-    [ccStep.stepLineHorizontalLeft]: true,
-    [ccStep.stepLineHorizontal]: !vertical,
-    [ccStep.stepLineIncomplete]: !active && !completed,
-    [ccStep.stepLineComplete]: active || completed,
+  const stepLineHorizontalClasses = getClassNames('stepLine', {
+    lineHorizontalAlignLeft: true,
+    lineHorizontal: !vertical,
+    lineIncomplete: !active && !completed,
+    lineComplete: active || completed,
   });
 
-  const stepDotClasses = classNames({
-    [ccStep.stepDot]: true,
-    [ccStep.stepDotVerticalRight]: vertical && !left,
-    [ccStep.stepDotHorizontal]: !vertical,
-    [ccStep.stepDotIncomplete]: !(active || completed),
-    [ccStep.stepDotActive]: active || completed,
+  const stepDotClasses = getClassNames('stepDot', {
+    dotAlignRight: vertical && !left,
+    dotHorizontal: !vertical,
+    dotIncomplete: !(active || completed),
+    dotActive: active || completed,
   });
 
-  const stepLineClasses = classNames({
-    [ccStep.stepLine]: true,
-    [ccStep.stepLineHorizontalRight]: true,
-    [ccStep.stepLineVertical]: vertical,
-    [ccStep.stepLineVerticalRight]: vertical && !left,
-    [ccStep.stepLineHorizontal]: !vertical,
-    [ccStep.stepLineIncomplete]: !completed,
-    [ccStep.stepLineComplete]: completed,
+  const stepLineClasses = getClassNames('stepLine', {
+    lineHorizontalAlignRight: true,
+    lineVertical: vertical,
+    lineAlignRight: vertical && !left,
+    lineHorizontal: !vertical,
+    lineIncomplete: !completed,
+    lineComplete: completed,
   });
 
-  const stepContentClasses = classNames({
-    [ccStep.content]: true,
-    [ccStep.contentVertical]: vertical,
-    [ccStep.contentHorizontal]: !vertical,
+  const stepContentClasses = getClassNames('content', {
+    contentVertical: vertical,
+    contentHorizontal: !vertical,
   });
 
   return (

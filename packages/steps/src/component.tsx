@@ -20,13 +20,7 @@ export function Steps({ horizontal, right, className, children }: StepsProps) {
         horizontal: horizontal,
         right: right,
       }}>
-      <ul
-        className={classNames(className, {
-          [ccSteps.steps]: true,
-          [ccSteps.stepsHorizontal]: horizontal,
-        })}>
-        {children}
-      </ul>
+      <ul className={classNames(className, [ccSteps.container, { [ccSteps.horizontal]: horizontal }])}>{children}</ul>
     </StepsContext.Provider>
   );
 }
