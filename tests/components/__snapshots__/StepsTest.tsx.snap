@@ -3,19 +3,19 @@
 exports[`Step component > renders correctly with active prop 1`] = `
 <div>
   <li
-    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]"
+    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
   >
     <div
       aria-current="step"
       aria-label="Step indicator active circle"
-      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted s-border-primary s-bg-primary"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
       role="img"
     />
     <div
-      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center s-bg-disabled"
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center   s-bg-disabled "
     />
     <div
-      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32"
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
     >
       Step content
     </div>
@@ -26,12 +26,12 @@ exports[`Step component > renders correctly with active prop 1`] = `
 exports[`Step component > renders correctly with both active and completed props 1`] = `
 <div>
   <li
-    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]"
+    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
   >
     <div
       aria-current="step"
       aria-label="Step indicator completed circle"
-      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted s-border-primary s-bg-primary"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
       role="img"
     >
       <svg
@@ -55,10 +55,10 @@ exports[`Step component > renders correctly with both active and completed props
       </svg>
     </div>
     <div
-      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center s-bg-primary"
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center    s-bg-primary"
     />
     <div
-      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32"
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
     >
       Step content
     </div>
@@ -69,11 +69,11 @@ exports[`Step component > renders correctly with both active and completed props
 exports[`Step component > renders correctly with completed prop 1`] = `
 <div>
   <li
-    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]"
+    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
   >
     <div
       aria-label="Step indicator completed circle"
-      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted s-border-primary s-bg-primary"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted    s-border-primary s-bg-primary"
       role="img"
     >
       <svg
@@ -97,10 +97,10 @@ exports[`Step component > renders correctly with completed prop 1`] = `
       </svg>
     </div>
     <div
-      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center s-bg-primary"
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center    s-bg-primary"
     />
     <div
-      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32"
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
     >
       Step content
     </div>
@@ -111,18 +111,18 @@ exports[`Step component > renders correctly with completed prop 1`] = `
 exports[`Step component > renders correctly with default props 1`] = `
 <div>
   <li
-    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]"
+    class="group/step group/stepv grid-rows-[20px_auto] grid grid-flow-col gap-x-16 grid-cols-[20px_1fr]  "
   >
     <div
       aria-label="Empty circle"
-      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted s-border s-bg"
+      class="rounded-full border-2 h-20 w-20 transition-colors duration-300 s-icon-inverted   s-border s-bg "
       role="img"
     />
     <div
-      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center s-bg-disabled"
+      class="group-last/stepv:hidden transition-colors duration-300 group-last/steph:bg-transparent w-2 h-full justify-self-center   s-bg-disabled "
     />
     <div
-      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32"
+      class="last:mb-0 group-last/step:last:pb-0 row-span-2 pb-32 "
     >
       Step content
     </div>
