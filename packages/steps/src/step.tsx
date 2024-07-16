@@ -76,15 +76,15 @@ export function Step(props: StepProps) {
 
   const lineHorizontalClasses = classNames(
     ccStep.line,
-    ccStep.lineHorizontalAlignLeft,
     ccStep.lineHorizontal,
+    ccStep.lineHorizontalAlignLeft,
     active || completed ? ccStep.lineComplete : ccStep.lineIncomplete,
   );
 
   const dotClasses = classNames(
     ccStep.dot,
-    active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
     vertical ? (!left ? ccStep.dotAlignRight : '') : ccStep.dotHorizontal,
+    active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
   );
 
   const lineClasses = classNames(
