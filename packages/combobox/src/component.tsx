@@ -81,7 +81,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     );
 
     // eslint-disable-next-line
-    }, [options, disableStaticFiltering]);
+  }, [options, disableStaticFiltering, value]);
 
   useEffect(() => {
     if (disableStaticFiltering && currentOptions.length && currentOptions.length === 1 && !currentOptions.some((o) => o.value === value)) {
