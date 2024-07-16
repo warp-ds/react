@@ -68,7 +68,7 @@ export function Step(props: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
-  const stepClasses = classNames(ccStep.step, {
+  const stepClasses = classNames(ccStep.container, {
     [ccStep.vertical]: vertical,
     [ccStep.alignLeft]: vertical && left,
     [ccStep.alignRight]: vertical && !left,
