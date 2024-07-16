@@ -68,38 +68,34 @@ export function Step(props: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
-  const stepClasses = classNames(ccStep.container, {
-    [ccStep.vertical]: vertical,
-    [ccStep.alignLeft]: vertical && left,
-    [ccStep.alignRight]: vertical && !left,
-    [ccStep.horizontal]: !vertical,
-  });
+  const stepClasses = classNames(
+    ccStep.container,
+    vertical ? ccStep.vertical : ccStep.horizontal,
+    vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : '',
+  );
 
-  const lineHorizontalClasses = classNames(ccStep.line, ccStep.lineHorizontalAlignLeft, {
-    [ccStep.lineHorizontal]: !vertical,
-    [ccStep.lineIncomplete]: !active && !completed,
-    [ccStep.lineComplete]: active || completed,
-  });
+  const lineHorizontalClasses = classNames(
+    ccStep.line,
+    ccStep.lineHorizontalAlignLeft,
+    ccStep.lineHorizontal,
+    active || completed ? ccStep.lineComplete : ccStep.lineIncomplete,
+  );
 
-  const dotClasses = classNames(ccStep.dot, {
-    [ccStep.dotAlignRight]: vertical && !left,
-    [ccStep.dotHorizontal]: !vertical,
-    [ccStep.dotIncomplete]: !(active || completed),
-    [ccStep.dotActive]: active || completed,
-  });
+  const dotClasses = classNames(
+    ccStep.dot,
+    active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
+    vertical ? (!left ? ccStep.dotAlignRight : '') : ccStep.dotHorizontal,
+  );
 
-  const lineClasses = classNames(ccStep.line, ccStep.lineHorizontalAlignRight, {
-    [ccStep.lineVertical]: vertical,
-    [ccStep.lineAlignRight]: vertical && !left,
-    [ccStep.lineHorizontal]: !vertical,
-    [ccStep.lineIncomplete]: !completed,
-    [ccStep.lineComplete]: completed,
-  });
+  const lineClasses = classNames(
+    ccStep.line,
+    ccStep.lineHorizontalAlignRight,
+    vertical ? ccStep.lineVertical : ccStep.lineHorizontal,
+    vertical && !left ? ccStep.lineAlignRight : '',
+    completed ? ccStep.lineComplete : ccStep.lineIncomplete,
+  );
 
-  const contentClasses = classNames(ccStep.content, {
-    [ccStep.contentVertical]: vertical,
-    [ccStep.contentHorizontal]: !vertical,
-  });
+  const contentClasses = classNames(ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal);
 
   return (
     <li className={stepClasses}>
