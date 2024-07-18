@@ -5,6 +5,7 @@ import { beforeEach, vi } from 'vitest';
 
 import { Combobox } from '../../packages/combobox/src/component';
 import type { ComboboxProps } from '../../packages/combobox/src/props';
+import { Affix } from '../../packages/_helpers';
 
 describe('Combobox', () => {
   const defaultProps: ComboboxProps = {
@@ -187,5 +188,69 @@ describe('Combobox', () => {
     fireEvent.focus(input);
     fireEvent.blur(input);
     await waitFor(() => expect(defaultProps.onSelect).not.toHaveBeenCalled());
+  });
+
+  it('sets the combobox open on navigation key if closed', async () => {
+    render(<ComboboxWrapper />);
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+  });
+
+  it('dismisses the popover on Delete key press', async () => {
+    render(<ComboboxWrapper />);
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'Delete' });
+    expect(screen.queryByRole('listbox')).toBeNull();
+  });
+
+  it('sets empty options on select when disableStaticFiltering is true', async () => {
+    render(<ComboboxWrapper disableStaticFiltering />);
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(defaultProps.onSelect).toHaveBeenCalledWith('Option 1');
+    expect(screen.queryByText('Option 1')).toBeNull();
+  });
+
+  it('renders TextField with Affix component correctly', async () => {
+    const ComboboxWithAffixWrapper = (props: Partial<ComboboxProps>) => {
+      const [_, setValue] = useState(props.value || '');
+  
+      return (
+       <ComboboxWrapper>
+          <Affix suffix clear aria-label="Clear text" onClick={() => setValue('')} />
+        </ComboboxWrapper>
+      );
+    };
+
+    render(<ComboboxWithAffixWrapper />);
+
+    const clearButton = screen.getByLabelText('Clear text');
+    expect(clearButton).toBeInTheDocument();
+    fireEvent.click(clearButton);
+    expect(screen.getByRole('combobox')).toHaveValue('');
+  });
+
+  it('matches text segments correctly', async () => {
+    render(<ComboboxWrapper value="Option 1" matchTextSegments />);
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    fireEvent.change(input, { target: { value: 'Option 1' } });
+    expect(screen.getByRole('listbox')).toHaveClass('w-react-combobox-match')
+  });
+
+  it('handles PageDown key correctly', async () => {
+    render(<ComboboxWrapper />);
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'PageDown' });
+    expect(screen.getByText('Option 2')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
   });
 });
