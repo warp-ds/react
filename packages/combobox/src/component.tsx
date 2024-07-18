@@ -72,7 +72,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
   const navigationValueOrInputValue = navigationOption?.value || value;
 
-  const optionClasses = (option) => classNames(
+  const optionClasses = (option: OptionWithIdAndMatch) => classNames(
     ccCombobox.option,
     OPTION_CLASS_NAME,
     navigationOption?.id === option?.id ? ccCombobox.optionSelected : ccCombobox.optionUnselected
