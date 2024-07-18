@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { beforeEach, vi } from 'vitest';
 
+import { Affix } from '../../packages/_helpers';
 import { Combobox } from '../../packages/combobox/src/component';
 import type { ComboboxProps } from '../../packages/combobox/src/props';
-import { Affix } from '../../packages/_helpers';
 
 describe('Combobox', () => {
   const defaultProps: ComboboxProps = {
@@ -55,7 +55,7 @@ describe('Combobox', () => {
     expect(screen.getByRole('listbox')).toBeInTheDocument();
   });
 
-  it('filters options based on user input', async () => {
+  it('filters options based on user input', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.change(input, { target: { value: 'Option 1' } });
@@ -75,7 +75,7 @@ describe('Combobox', () => {
     await waitFor(() => expect(defaultProps.onSelect).toHaveBeenCalledWith('Option 1'));
   });
 
-  it('navigates options with arrow keys', async () => {
+  it('navigates options with arrow keys', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -87,7 +87,7 @@ describe('Combobox', () => {
     expect(screen.getByText('Option 1')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
   });
 
-  it('closes the options list on escape key press', async () => {
+  it('closes the options list on escape key press', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -95,7 +95,7 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('closes options list on blur', async () => {
+  it('closes options list on blur', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -103,7 +103,7 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('filters options based on input value when static filtering is disabled', async () => {
+  it('filters options based on input value when static filtering is disabled', () => {
     render(<ComboboxWrapper disableStaticFiltering />);
     const input = screen.getByRole('combobox');
     fireEvent.change(input, { target: { value: 'Option 1' } });
@@ -111,7 +111,7 @@ describe('Combobox', () => {
     expect(screen.queryByText('Option 2')).toBeInTheDocument();
   });
 
-  it('navigates options with keyboard and selects an option', async () => {
+  it('navigates options with keyboard and selects an option', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -121,7 +121,7 @@ describe('Combobox', () => {
     expect(defaultProps.onSelect).toHaveBeenCalledWith('Option 1');
   });
 
-  it('navigates options with keyboard and closes list on Escape', async () => {
+  it('navigates options with keyboard and closes list on Escape', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -130,7 +130,7 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('handles special keys without breaking', async () => {
+  it('handles special keys without breaking', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -141,7 +141,7 @@ describe('Combobox', () => {
     expect(screen.getByRole('listbox')).toBeInTheDocument();
   });
 
-  it('handles onChange and onBlur correctly', async () => {
+  it('handles onChange and onBlur correctly', () => {
     const onChange = vi.fn();
     const onBlur = vi.fn();
     render(<ComboboxWrapper onChange={onChange} onBlur={onBlur} />);
@@ -178,7 +178,7 @@ describe('Combobox', () => {
     await waitFor(() => expect(defaultProps.onSelect).not.toHaveBeenCalled());
   });
 
-  it('dismisses the popover on Escape key press', async () => {
+  it('dismisses the popover on Escape key press', () => {
     render(<ComboboxWrapper openOnFocus />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
@@ -186,8 +186,8 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('sets empty options on select when disableStaticFiltering is true', async () => {
-    render(<ComboboxWrapper disableStaticFiltering openOnFocus/>);
+  it('sets empty options on select when disableStaticFiltering is true', () => {
+    render(<ComboboxWrapper disableStaticFiltering openOnFocus />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -196,12 +196,13 @@ describe('Combobox', () => {
     expect(screen.queryByText('Option 1')).toBeNull();
   });
 
-  it('renders TextField with Affix component correctly', async () => {
+  it('renders TextField with Affix component correctly', () => {
     const ComboboxWithAffixWrapper = (props: Partial<ComboboxProps>) => {
+      // eslint-disable-next-line
       const [_, setValue] = useState(props.value || '');
-  
+
       return (
-       <ComboboxWrapper>
+        <ComboboxWrapper>
           <Affix suffix clear aria-label="Clear text" onClick={() => setValue('')} />
         </ComboboxWrapper>
       );
@@ -215,17 +216,17 @@ describe('Combobox', () => {
     expect(screen.getByRole('combobox')).toHaveValue('');
   });
 
-  it('matches text segments correctly', async () => {
+  it('matches text segments correctly', () => {
     render(<ComboboxWrapper value="Option 1" matchTextSegments />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     expect(screen.getByRole('listbox')).toBeInTheDocument();
     fireEvent.change(input, { target: { value: 'Option 1' } });
-    expect(screen.getByRole('listbox')).toHaveClass('w-react-combobox-match')
+    expect(screen.getByRole('listbox')).toHaveClass('w-react-combobox-match');
   });
 
-  it('handles PageDown key correctly', async () => {
+  it('handles PageDown key correctly', () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
