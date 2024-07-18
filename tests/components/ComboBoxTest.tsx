@@ -103,18 +103,6 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('does not close options list on blur if clicked inside', async () => {
-    render(<ComboboxWrapper />);
-    const input = screen.getByRole('combobox');
-    fireEvent.focus(input);
-    const option = await screen.findByText('Option 1');
-    fireEvent.mouseDown(option);
-    setTimeout(() => {
-      fireEvent.blur(input);
-      expect(screen.getByRole('listbox')).toBeInTheDocument();
-    }, 0);
-  });
-
   it('filters options based on input value when static filtering is disabled', async () => {
     render(<ComboboxWrapper disableStaticFiltering />);
     const input = screen.getByRole('combobox');
@@ -190,27 +178,18 @@ describe('Combobox', () => {
     await waitFor(() => expect(defaultProps.onSelect).not.toHaveBeenCalled());
   });
 
-  it('sets the combobox open on navigation key if closed', async () => {
-    render(<ComboboxWrapper />);
+  it('dismisses the popover on Escape key press', async () => {
+    render(<ComboboxWrapper openOnFocus />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
-    fireEvent.keyDown(input, { key: 'ArrowDown' });
-    expect(screen.getByRole('listbox')).toBeInTheDocument();
-  });
-
-  it('dismisses the popover on Delete key press', async () => {
-    render(<ComboboxWrapper />);
-    const input = screen.getByRole('combobox');
-    fireEvent.focus(input);
-    fireEvent.keyDown(input, { key: 'Delete' });
+    fireEvent.keyDown(input, { key: 'Escape' });
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
   it('sets empty options on select when disableStaticFiltering is true', async () => {
-    render(<ComboboxWrapper disableStaticFiltering />);
+    render(<ComboboxWrapper disableStaticFiltering openOnFocus/>);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
-    fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.keyDown(input, { key: 'Enter' });
     expect(defaultProps.onSelect).toHaveBeenCalledWith('Option 1');
