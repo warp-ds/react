@@ -186,7 +186,7 @@ describe('Combobox', () => {
     expect(screen.queryByRole('listbox')).toBeNull();
   });
 
-  it('sets empty options on select when disableStaticFiltering is true', () => {
+  it('sets empty states on select when disableStaticFiltering is true', () => {
     render(<ComboboxWrapper disableStaticFiltering openOnFocus />);
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);

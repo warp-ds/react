@@ -72,11 +72,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
   const navigationValueOrInputValue = navigationOption?.value || value;
 
-  const optionClasses = (option: OptionWithIdAndMatch) => classNames(
-    ccCombobox.option,
-    OPTION_CLASS_NAME,
-    navigationOption?.id === option?.id ? ccCombobox.optionSelected : ccCombobox.optionUnselected
-  )
+  const optionClasses = (option: OptionWithIdAndMatch) =>
+    classNames(
+      ccCombobox.option,
+      OPTION_CLASS_NAME,
+      navigationOption?.id === option?.id ? ccCombobox.optionSelected : ccCombobox.optionUnselected,
+    );
 
   // Set and filter available options based on user input
   useEffect(() => {
