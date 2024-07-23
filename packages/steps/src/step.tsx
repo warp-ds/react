@@ -68,53 +68,43 @@ export function Step(props: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
-  const stepClasses = classNames({
-    [ccStep.stepVertical]: vertical,
-    [ccStep.stepVerticalLeft]: vertical && left,
-    [ccStep.stepVerticalRight]: vertical && !left,
-    [ccStep.stepHorizontal]: !vertical,
-  });
+  const stepClasses = classNames(
+    ccStep.container,
+    vertical ? ccStep.vertical : ccStep.horizontal,
+    vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : '',
+  );
 
-  const stepLineHorizontalClasses = classNames({
-    [ccStep.stepLine]: true,
-    [ccStep.stepLineHorizontalLeft]: true,
-    [ccStep.stepLineHorizontal]: !vertical,
-    [ccStep.stepLineIncomplete]: !active && !completed,
-    [ccStep.stepLineComplete]: active || completed,
-  });
+  const lineHorizontalClasses = classNames(
+    ccStep.line,
+    ccStep.lineHorizontal,
+    ccStep.lineHorizontalAlignLeft,
+    active || completed ? ccStep.lineComplete : ccStep.lineIncomplete,
+  );
 
-  const stepDotClasses = classNames({
-    [ccStep.stepDot]: true,
-    [ccStep.stepDotVerticalRight]: vertical && !left,
-    [ccStep.stepDotHorizontal]: !vertical,
-    [ccStep.stepDotIncomplete]: !(active || completed),
-    [ccStep.stepDotActive]: active || completed,
-  });
+  const dotClasses = classNames(
+    ccStep.dot,
+    vertical ? (!left ? ccStep.dotAlignRight : '') : ccStep.dotHorizontal,
+    active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
+  );
 
-  const stepLineClasses = classNames({
-    [ccStep.stepLine]: true,
-    [ccStep.stepLineHorizontalRight]: true,
-    [ccStep.stepLineVertical]: vertical,
-    [ccStep.stepLineVerticalRight]: vertical && !left,
-    [ccStep.stepLineHorizontal]: !vertical,
-    [ccStep.stepLineIncomplete]: !completed,
-    [ccStep.stepLineComplete]: completed,
-  });
+  const lineClasses = classNames(
+    ccStep.line,
+    ccStep.lineHorizontalAlignRight,
+    vertical ? ccStep.lineVertical : ccStep.lineHorizontal,
+    vertical && !left ? ccStep.lineAlignRight : '',
+    completed ? ccStep.lineComplete : ccStep.lineIncomplete,
+  );
 
-  const stepContentClasses = classNames({
-    [ccStep.content]: true,
-    [ccStep.contentVertical]: vertical,
-    [ccStep.contentHorizontal]: !vertical,
-  });
+  const contentClasses = classNames(ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal);
 
   return (
     <li className={stepClasses}>
-      {!vertical && <div className={stepLineHorizontalClasses} />}
-      <div className={stepDotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
+      {!vertical && <div className={lineHorizontalClasses} />}
+      <div className={dotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
         {completed && <IconCheck16 data-testid="completed-icon" />}
       </div>
-      <div className={stepLineClasses} />
-      <div className={stepContentClasses}>{children}</div>
+      <div className={lineClasses} />
+      <div className={contentClasses}>{children}</div>
     </li>
   );
 }
