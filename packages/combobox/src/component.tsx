@@ -72,6 +72,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
   const navigationValueOrInputValue = navigationOption?.value || value;
 
+  const optionClasses = (option: OptionWithIdAndMatch) =>
+    classNames(
+      ccCombobox.option,
+      OPTION_CLASS_NAME,
+      navigationOption?.id === option?.id ? ccCombobox.optionSelected : ccCombobox.optionUnselected,
+    );
+
   // Set and filter available options based on user input
   useEffect(() => {
     setCurrentOptions(
@@ -81,7 +88,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     );
 
     // eslint-disable-next-line
-    }, [options, disableStaticFiltering]);
+  }, [options, disableStaticFiltering, value]);
 
   useEffect(() => {
     if (disableStaticFiltering && currentOptions.length && currentOptions.length === 1 && !currentOptions.some((o) => o.value === value)) {
@@ -239,7 +246,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
       <div
         hidden={!isOpen || !currentOptions.length}
-        className={classNames(listClassName, ccCombobox.combobox)}
+        className={classNames(listClassName, ccCombobox.base)}
         style={{
           zIndex: 3, // Force popover above misc. page content (mobile safari issue)
         }}>
@@ -286,10 +293,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
                     handleSelect(option);
                   });
                 }}
-                className={classNames({
-                  [`${ccCombobox.option} ${OPTION_CLASS_NAME}`]: true,
-                  [ccCombobox.optionSelected]: navigationOption?.id === option.id,
-                })}>
+                className={optionClasses(option)}>
                 {matchTextSegments || highlightValueMatch ? match : display}
               </li>
             );
