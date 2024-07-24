@@ -110,14 +110,14 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
     <div className={ccSlider.wrapper}>
       <div ref={sliderLine} className={classNames(ccSlider.track, disabled && ccSlider.trackDisabled)} onClick={handleClick} />
       <div
-        className={classNames(!disabled && ccSlider.activeTrack, disabled && ccSlider.activeTrackDisabled)}
+        className={classNames(ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled)}
         style={sliderActiveStyle}
         onClick={handleClick}
       />
       <div
         role="slider"
         tabIndex={0}
-        className={classNames(ccSlider.thumb, disabled && ccSlider.thumbDisabled, !disabled && ccSlider.thumbEnabled)}
+        className={classNames(ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled)}
         ref={thumbRef}
         style={thumbStyles}
         aria-label={rest['aria-label']}
