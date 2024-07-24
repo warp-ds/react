@@ -6,13 +6,13 @@ import { Steps } from '../../packages/steps/src/component';
 import { Step } from '../../packages/steps/src/step';
 
 describe('Steps component', () => {
-  it('renders a ul element with the correct class names', () => {
+  it('renders a ul element with the correct class names for horizontal steps', () => {
     const { container } = render(<Steps horizontal={true} right={false} />);
     const ulElement = container.querySelector('ul');
     expect(ulElement).toHaveClass('w-full flex');
   });
 
-  it('renders a ul element with the correct class names vertical', () => {
+  it('renders a ul element with the correct class names for vertical steps', () => {
     const { container } = render(<Steps horizontal={false} right={false} />);
     const ulElement = container.querySelector('ul');
     expect(ulElement).toHaveClass('w-full');
@@ -28,7 +28,7 @@ describe('Steps component', () => {
 describe('Step component', () => {
   it('renders correctly with default props', () => {
     const { container } = render(<Step>Step content</Step>);
-    // dom is a bit complicated hence snapshot testing
+    // DOM is a bit complicated hence snapshot testing
     expect(container).toMatchSnapshot();
   });
 
