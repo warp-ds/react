@@ -106,18 +106,33 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
     [transformValue],
   );
 
+  const trackClasses = classNames(
+    ccSlider.track,
+    disabled && ccSlider.trackDisabled
+  );
+
+  const activeTrackClasses = classNames(
+    ccSlider.activeTrack,
+    disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled
+  );
+
+  const thumbClasses = classNames(
+    ccSlider.thumb,
+    disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled
+  );
+
   return (
     <div className={ccSlider.wrapper}>
-      <div ref={sliderLine} className={classNames(ccSlider.track, disabled && ccSlider.trackDisabled)} onClick={handleClick} />
+      <div ref={sliderLine} className={trackClasses} onClick={handleClick} />
       <div
-        className={classNames(ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled)}
+        className={activeTrackClasses}
         style={sliderActiveStyle}
         onClick={handleClick}
       />
       <div
         role="slider"
         tabIndex={0}
-        className={classNames(ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled)}
+        className={thumbClasses}
         ref={thumbRef}
         style={thumbStyles}
         aria-label={rest['aria-label']}
