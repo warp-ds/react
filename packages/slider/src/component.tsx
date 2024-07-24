@@ -106,29 +106,16 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
     [transformValue],
   );
 
-  const trackClasses = classNames(
-    ccSlider.track,
-    disabled && ccSlider.trackDisabled
-  );
+  const trackClasses = classNames(ccSlider.track, disabled && ccSlider.trackDisabled);
 
-  const activeTrackClasses = classNames(
-    ccSlider.activeTrack,
-    disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled
-  );
+  const activeTrackClasses = classNames(ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled);
 
-  const thumbClasses = classNames(
-    ccSlider.thumb,
-    disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled
-  );
+  const thumbClasses = classNames(ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled);
 
   return (
     <div className={ccSlider.wrapper}>
       <div ref={sliderLine} className={trackClasses} onClick={handleClick} />
-      <div
-        className={activeTrackClasses}
-        style={sliderActiveStyle}
-        onClick={handleClick}
-      />
+      <div className={activeTrackClasses} style={sliderActiveStyle} onClick={handleClick} />
       <div
         role="slider"
         tabIndex={0}
