@@ -10,14 +10,6 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
 
-  const { mountedHook, unmountedHook } = useDimensions();
-  useEffect(() => {
-    if (!sliderLine.current) return;
-    mountedHook(sliderLine.current, setDimensions);
-    return () => unmountedHook();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderLine]);
-
   const [value, setValue] = useState(initialValue);
   const [finalValue, setFinalValue] = useState(initialValue);
   const [position, setPosition] = useState(initialValue);
@@ -59,6 +51,15 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
 
   const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } =
     createHandlers({ props: { min, max, step, ...rest }, sliderState });
+
+  const { mountedHook, unmountedHook } = useDimensions();
+
+  useEffect(() => {
+    if (!sliderLine.current) return;
+    mountedHook(sliderLine.current, setDimensions);
+    return () => unmountedHook();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sliderLine]);
 
   useEffect(() => {
     if (value !== initialValue) onChange?.(value);

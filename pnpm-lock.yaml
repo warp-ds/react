@@ -19,7 +19,7 @@ importers:
         version: 1.1.5(@floating-ui/dom@1.6.8)
       '@warp-ds/css':
         specifier: github:warp-ds/css#component-classes-cleanup
-        version: https://codeload.github.com/warp-ds/css/tar.gz/05c53205a424e74916f263af7d193bb787ff1a4a(@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))))
+        version: https://codeload.github.com/warp-ds/css/tar.gz/02328190aed028059634f01db69aa76dde47bdbf(@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))))
       '@warp-ds/icons':
         specifier: 2.0.2
         version: 2.0.2
@@ -119,7 +119,7 @@ importers:
         version: 1.0.5(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.2))(eslint@8.57.0)
       '@warp-ds/uno':
         specifier: 2.x
-        version: 2.0.0(unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))
+        version: 2.0.0(unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))
       concurrently:
         specifier: 8.2.2
         version: 8.2.2
@@ -185,7 +185,7 @@ importers:
         version: 5.5.3
       unocss:
         specifier: 0.x
-        version: 0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))
+        version: 0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))
       vite:
         specifier: 5.3.3
         version: 5.3.3(@types/node@20.14.10)
@@ -1957,10 +1957,10 @@ packages:
   '@storybook/codemod@8.2.1':
     resolution: {integrity: sha512-LYvVLOKj5mDbbAPLrxd3BWQaemTqp2y5RV5glNqsPq3FoFX4rn4VnWb5X/YBWsMqqCK+skimH/f7HQ5fDvWubg==}
 
-  '@storybook/core-common@8.2.5':
-    resolution: {integrity: sha512-aTHOodg6uqGvx/pcS2DhypylFf0JUXoNIiT08Y/8xezXl1Wh+pgz8UuTCcD9Sv8WmdfvQUljWb+ltT6/MLErVw==}
+  '@storybook/core-common@8.2.6':
+    resolution: {integrity: sha512-PLBaCpX2FuuVNEaW3rOI2YtRJ5SSHhfB890ShKX/9XyD1rCjT3C11dgCNZ3Im1GLF/T6vKvfGc+5fie7W2Rjtg==}
     peerDependencies:
-      storybook: ^8.2.5
+      storybook: ^8.2.6
 
   '@storybook/core@8.2.1':
     resolution: {integrity: sha512-hmuBRtT0JwmvEpsi4f/hh/QOqiEUmvV1xCbLQy+FEqMBxk5VsksVLKXJiWFG5lYodmjdxCLCb37JDVuOOZIIpw==}
@@ -1970,10 +1970,10 @@ packages:
     peerDependencies:
       storybook: ^8.2.1
 
-  '@storybook/csf-tools@8.2.5':
-    resolution: {integrity: sha512-5EznbHIW1U937seDu61qmuwloPxu7VAEkNc3YZs36gQjP3ewaDx4mBvqTVim7saGhSDQ9uMH1W+T3XWumTm5HQ==}
+  '@storybook/csf-tools@8.2.6':
+    resolution: {integrity: sha512-gmPuSeX7zwulg8kViY4Cpi18P91psqrRdeO64PJdYqasLmKbsdWRSNFSKeGoV3tRUADSz6uIlEeaJGd7AZPEDw==}
     peerDependencies:
-      storybook: ^8.2.5
+      storybook: ^8.2.6
 
   '@storybook/csf@0.0.1':
     resolution: {integrity: sha512-USTLkZze5gkel8MYCujSRBVIrUQ3YPBrLOx7GNk/0wttvVtlzWXAq9eLbQ4p/NicGxP+3T7KPEMVV//g+yubpw==}
@@ -1996,10 +1996,10 @@ packages:
     peerDependencies:
       storybook: ^8.2.1
 
-  '@storybook/preview-api@8.2.5':
-    resolution: {integrity: sha512-C5A3MtubUM5Tq1An1gIqiEmiBX4ybaTzAeBuohsqToPmWHvM2uIdSl6XpTyQQJowkvrqBKjchqZUy/2mynX4lQ==}
+  '@storybook/preview-api@8.2.6':
+    resolution: {integrity: sha512-5vTj2ndX5ng4nDntZYe+r8UwLjCIGFymhq5/r2adAvRKL+Bo4zQDWGO7bhvGJk16do2THb2JvPz49ComW9LLZw==}
     peerDependencies:
-      storybook: ^8.2.5
+      storybook: ^8.2.6
 
   '@storybook/react-dom-shim@8.2.1':
     resolution: {integrity: sha512-c6nfjyqiNduN6qk9yMP3EVNMslTJB+KGpKEDjpNOBGrTLkapp4dKTk8fN3EiFc3jEwhfN+xY+19eXwq7JBWCtg==}
@@ -2597,8 +2597,8 @@ packages:
     peerDependencies:
       '@floating-ui/dom': 1.6.x
 
-  '@warp-ds/css@https://codeload.github.com/warp-ds/css/tar.gz/05c53205a424e74916f263af7d193bb787ff1a4a':
-    resolution: {tarball: https://codeload.github.com/warp-ds/css/tar.gz/05c53205a424e74916f263af7d193bb787ff1a4a}
+  '@warp-ds/css@https://codeload.github.com/warp-ds/css/tar.gz/02328190aed028059634f01db69aa76dde47bdbf':
+    resolution: {tarball: https://codeload.github.com/warp-ds/css/tar.gz/02328190aed028059634f01db69aa76dde47bdbf}
     version: 2.0.0-next.4
     peerDependencies:
       '@warp-ds/uno': 2.x
@@ -3492,8 +3492,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.5.0:
-    resolution: {integrity: sha512-Vb3xHHYnLseK8vlMJQKJYXJ++t4u1/qJ3vykuVrVjvdiOEhYyT1AuP4x03G8EnPmYvYOhe9T+dADTmthjRQMkA==}
+  electron-to-chromium@1.5.1:
+    resolution: {integrity: sha512-FKbOCOQ5QRB3VlIbl1LZQefWIYwszlBloaXcY2rbfpu9ioJnNh3TK03YtIDKDo3WKBi8u+YV4+Fn2CkEozgf4w==}
 
   element-collapse@1.1.0:
     resolution: {integrity: sha512-jgwpetB8NlM/Z7DI1y3/zw0rWEQqxKc3rzooBtzzCwaEVlUzPquoxvE3J2r6cJahYjMXUAm/KKBD6lpyzva4+Q==}
@@ -5708,8 +5708,8 @@ packages:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
 
-  postcss@8.4.39:
-    resolution: {integrity: sha512-0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==}
+  postcss@8.4.40:
+    resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -9155,7 +9155,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/core-common@8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
+  '@storybook/core-common@8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
     dependencies:
       storybook: 8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7))
 
@@ -9182,7 +9182,7 @@ snapshots:
       storybook: 8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7))
       unplugin: 1.12.0
 
-  '@storybook/csf-tools@8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
+  '@storybook/csf-tools@8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
     dependencies:
       storybook: 8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7))
 
@@ -9208,7 +9208,7 @@ snapshots:
       storybook: 8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7))
       util: 0.12.5
 
-  '@storybook/preview-api@8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
+  '@storybook/preview-api@8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))':
     dependencies:
       storybook: 8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7))
 
@@ -9272,10 +9272,10 @@ snapshots:
       '@babel/template': 7.24.7
       '@babel/types': 7.24.9
       '@jest/types': 29.6.3
-      '@storybook/core-common': 8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      '@storybook/core-common': 8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       '@storybook/csf': 0.1.11
-      '@storybook/csf-tools': 8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
-      '@storybook/preview-api': 8.2.5(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      '@storybook/csf-tools': 8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      '@storybook/preview-api': 8.2.6(storybook@8.2.1(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       '@swc/core': 1.7.1
       '@swc/jest': 0.2.36(@swc/core@1.7.1)
       expect-playwright: 0.8.0
@@ -9820,7 +9820,7 @@ snapshots:
       gzip-size: 6.0.0
       sirv: 2.0.4
 
-  '@unocss/postcss@0.61.5(postcss@8.4.39)':
+  '@unocss/postcss@0.61.5(postcss@8.4.40)':
     dependencies:
       '@unocss/config': 0.61.5
       '@unocss/core': 0.61.5
@@ -9828,7 +9828,7 @@ snapshots:
       css-tree: 2.3.1
       fast-glob: 3.3.2
       magic-string: 0.30.10
-      postcss: 8.4.39
+      postcss: 8.4.40
 
   '@unocss/preset-attributify@0.61.5':
     dependencies:
@@ -10015,9 +10015,9 @@ snapshots:
     dependencies:
       '@floating-ui/dom': 1.6.8
 
-  '@warp-ds/css@https://codeload.github.com/warp-ds/css/tar.gz/05c53205a424e74916f263af7d193bb787ff1a4a(@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))))':
+  '@warp-ds/css@https://codeload.github.com/warp-ds/css/tar.gz/02328190aed028059634f01db69aa76dde47bdbf(@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))))':
     dependencies:
-      '@warp-ds/uno': 2.0.0(unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))
+      '@warp-ds/uno': 2.0.0(unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))
 
   '@warp-ds/eslint-config@1.0.5(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.2))(eslint@8.57.0)':
     dependencies:
@@ -10030,12 +10030,12 @@ snapshots:
     dependencies:
       '@lingui/core': 4.11.2
 
-  '@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))':
+  '@warp-ds/uno@2.0.0(unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)))':
     dependencies:
       '@unocss/core': 0.61.5
       '@unocss/preset-mini': 0.61.5
       '@unocss/rule-utils': 0.61.5
-      unocss: 0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))
+      unocss: 0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))
 
   '@yarnpkg/fslib@2.10.3':
     dependencies:
@@ -10447,7 +10447,7 @@ snapshots:
   browserslist@4.23.2:
     dependencies:
       caniuse-lite: 1.0.30001643
-      electron-to-chromium: 1.5.0
+      electron-to-chromium: 1.5.1
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.2)
 
@@ -11032,7 +11032,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.5.0: {}
+  electron-to-chromium@1.5.1: {}
 
   element-collapse@1.1.0: {}
 
@@ -13759,7 +13759,7 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss@8.4.39:
+  postcss@8.4.40:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.1
@@ -14877,13 +14877,13 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unocss@0.61.5(postcss@8.4.39)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)):
+  unocss@0.61.5(postcss@8.4.40)(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10)):
     dependencies:
       '@unocss/astro': 0.61.5(rollup@4.19.0)(vite@5.3.3(@types/node@20.14.10))
       '@unocss/cli': 0.61.5(rollup@4.19.0)
       '@unocss/core': 0.61.5
       '@unocss/extractor-arbitrary-variants': 0.61.5
-      '@unocss/postcss': 0.61.5(postcss@8.4.39)
+      '@unocss/postcss': 0.61.5(postcss@8.4.40)
       '@unocss/preset-attributify': 0.61.5
       '@unocss/preset-icons': 0.61.5
       '@unocss/preset-mini': 0.61.5
@@ -15009,7 +15009,7 @@ snapshots:
   vite@5.3.3(@types/node@20.14.10):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.39
+      postcss: 8.4.40
       rollup: 4.19.0
     optionalDependencies:
       '@types/node': 20.14.10
