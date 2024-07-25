@@ -6,13 +6,54 @@ import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
 import { SliderProps } from './props.js';
 
-export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
-  const { disabled, onChange, onChangeAfter } = rest;
-
+export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disabled, onChange, onChangeAfter, ...rest }: SliderProps) {
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
 
+  const [value, setValue] = useState(initialValue);
+  const [finalValue, setFinalValue] = useState(initialValue);
+  const [position, setPosition] = useState(initialValue);
+  const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
+  const [sliderPressed, setSliderPressed] = useState(false);
+
+  const sliderState = useMemo(
+    () => ({
+      get position() {
+        return position;
+      },
+      set position(v) {
+        setPosition(v);
+      },
+      get sliderPressed() {
+        return sliderPressed;
+      },
+      set sliderPressed(v) {
+        setSliderPressed(v);
+      },
+      get val() {
+        return value;
+      },
+      set val(v) {
+        setValue(v);
+      },
+      get thumbEl() {
+        return thumbRef.current;
+      },
+      get dimensions() {
+        return dimensions;
+      },
+      get step() {
+        return step;
+      },
+    }),
+    [position, sliderPressed, value, dimensions, step],
+  );
+
+  const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } =
+    createHandlers({ props: { min, max, step, ...rest }, sliderState });
+
   const { mountedHook, unmountedHook } = useDimensions();
+
   useEffect(() => {
     if (!sliderLine.current) return;
     mountedHook(sliderLine.current, setDimensions);
@@ -20,64 +61,40 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderLine]);
 
-  const [value, setValue] = useState(rest.value);
-  const [finalValue, setFinalValue] = useState(rest.value);
-  const [position, setPosition] = useState(rest.value);
-  const [dimensions, setDimensions] = useState({ left: 0, width: 0 });
-  const [sliderPressed, setSliderPressed] = useState(false);
+  useEffect(() => {
+    if (value !== initialValue) onChange?.(value);
+  }, [value, initialValue, onChange]);
 
   useEffect(() => {
-    if (value === rest.value) return;
-    onChange?.(value);
-  }, [rest.value, value, onChange]);
-
-  useEffect(() => {
-    if (sliderPressed) return;
-    if (value === finalValue) return;
-    setFinalValue(value);
-    onChangeAfter?.(value);
+    if (!sliderPressed && value !== finalValue) {
+      setFinalValue(value);
+      onChangeAfter?.(value);
+    }
   }, [onChangeAfter, sliderPressed, value, finalValue]);
 
-  const step = useMemo(() => rest.step || 1, [rest]);
+  useEffect(() => {
+    // prevents shiftedChange when modelValue was set externally
+    if (position !== initialValue) {
+      const nextVal = step ? getShiftedChange(position) : position;
+      if (nextVal !== value) {
+        setValue(nextVal);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [position, initialValue, step]);
 
-  const sliderState = {
-    get position() {
-      return position;
-    },
-    set position(v) {
-      setPosition(v);
-    },
-    get sliderPressed() {
-      return sliderPressed;
-    },
-    set sliderPressed(v) {
-      setSliderPressed(v);
-    },
-    get val() {
-      return value;
-    },
-    set val(v) {
-      setValue(v);
-    },
-    get thumbEl() {
-      return thumbRef.current;
-    },
-    get dimensions() {
-      return dimensions;
-    },
-    get step() {
-      return step;
-    },
-  };
-
-  const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } =
-    createHandlers({ props: { min, max, ...rest }, sliderState });
+  useEffect(() => {
+    if (!sliderPressed && position !== initialValue && value !== initialValue) {
+      setPosition(initialValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sliderPressed, initialValue]);
 
   const thumbPosition = useMemo(getThumbPosition, [getThumbPosition]);
   const sliderActiveStyle = useMemo(
     () => ({
       left: 0,
-      right: 100 - thumbPosition + '%',
+      right: `${100 - thumbPosition}%`,
     }),
     [thumbPosition],
   );
@@ -85,53 +102,25 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
   const transformValue = useMemo(getThumbTransform, [getThumbTransform]);
   const thumbStyles = useMemo(
     () => ({
-      transform: 'translateX(' + transformValue + 'px)',
+      transform: `translateX(${transformValue}px)`,
     }),
     [transformValue],
   );
 
-  useEffect(() => {
-    // prevents shiftedChange when modelValue was set externally
-    if (position === rest.value) return;
-    const nextVal = rest.step ? getShiftedChange(position) : position;
-    setValue(nextVal);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position, rest.value, rest.step]);
+  const trackClasses = classNames(ccSlider.track, disabled && ccSlider.trackDisabled);
 
-  useEffect(() => {
-    if (sliderPressed || position === rest.value || value === rest.value) {
-      return;
-    }
-    setPosition(rest.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sliderPressed, rest.value]);
+  const activeTrackClasses = classNames(ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled);
+
+  const thumbClasses = classNames(ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled);
 
   return (
     <div className={ccSlider.wrapper}>
-      <div
-        ref={sliderLine}
-        className={classNames({
-          [ccSlider.track]: true,
-          [ccSlider.trackDisabled]: disabled,
-        })}
-        onClick={handleClick}
-      />
-      <div
-        className={classNames({
-          [ccSlider.activeTrack]: !disabled,
-          [ccSlider.activeTrackDisabled]: disabled,
-        })}
-        style={sliderActiveStyle}
-        onClick={handleClick}
-      />
+      <div ref={sliderLine} className={trackClasses} onClick={handleClick} />
+      <div className={activeTrackClasses} style={sliderActiveStyle} onClick={handleClick} />
       <div
         role="slider"
         tabIndex={0}
-        className={classNames({
-          [ccSlider.thumb]: true,
-          [ccSlider.thumbDisabled]: disabled,
-          [ccSlider.thumbEnabled]: !disabled,
-        })}
+        className={thumbClasses}
         ref={thumbRef}
         style={thumbStyles}
         aria-label={rest['aria-label']}
@@ -140,17 +129,12 @@ export function Slider({ min = 0, max = 100, ...rest }: SliderProps) {
         aria-valuemax={max}
         aria-valuenow={value}
         aria-valuetext={rest['aria-valuetext']}
-        onMouseDown={(e) => {
-          handleMouseDown(e as unknown as KeyboardEvent);
-        }}
-        onTouchStart={(e) => {
-          handleMouseDown(e as unknown as KeyboardEvent);
-        }}
+        onMouseDown={(e) => handleMouseDown(e as unknown as KeyboardEvent)}
+        onTouchStart={(e) => handleMouseDown(e as unknown as KeyboardEvent)}
         onBlur={handleBlur}
         onFocus={handleFocus}
-        onKeyDown={(e) => {
-          handleKeyDown(e as unknown as KeyboardEvent);
-        }}></div>
+        onKeyDown={(e) => handleKeyDown(e as unknown as KeyboardEvent)}
+      />
     </div>
   );
 }
