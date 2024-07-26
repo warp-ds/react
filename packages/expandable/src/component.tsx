@@ -34,17 +34,18 @@ export function Expandable(props: ExpandableProps) {
   }, [expanded]);
 
   const toggleExpandable = () => {
-    const newState = !stateExpanded;
-    setStateExpanded(newState);
+    setStateExpanded(!stateExpanded);
 
-    if (onChange) onChange(newState);
+    if (onChange) onChange(!stateExpanded);
   };
 
-  const chevronIcon = stateExpanded ? (
-    <IconChevronUp16 className={classNames([ccExpandable.chevronTransform, !stateExpanded && ccExpandable.chevronCollapse])} />
-  ) : (
-    <IconChevronDown16 className={classNames([ccExpandable.chevronTransform, stateExpanded && ccExpandable.chevronExpand])} />
-  );
+  const chevronIcon = () => {
+    const upClasses = classNames([ccExpandable.chevronTransform, !stateExpanded && ccExpandable.chevronCollapse]);
+
+    const downClasses = classNames([ccExpandable.chevronTransform, stateExpanded && ccExpandable.chevronExpand]);
+
+    return stateExpanded ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
+  };
 
   return (
     <div
@@ -63,7 +64,7 @@ export function Expandable(props: ExpandableProps) {
           onClick={toggleExpandable}>
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? <span className={ccExpandable.titleType}>{title}</span> : title}
-            {chevron && <div className={classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox])}>{chevronIcon}</div>}
+            {chevron && <div className={classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox])}>{chevronIcon()}</div>}
           </div>
         </button>
       </UnstyledHeading>
