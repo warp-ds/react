@@ -41,21 +41,9 @@ export function Expandable(props: ExpandableProps) {
   };
 
   const chevronIcon = stateExpanded ? (
-    <IconChevronUp16
-      className={classNames([
-        ccExpandable.chevronTransform,
-        ccExpandable.elementsTransformChevronUpPart,
-        !stateExpanded && [ccExpandable.chevronCollapse, ccExpandable.elementsChevronUpCollapsePart],
-      ])}
-    />
+    <IconChevronUp16 className={classNames([ccExpandable.chevronTransform, !stateExpanded && ccExpandable.chevronCollapse])} />
   ) : (
-    <IconChevronDown16
-      className={classNames([
-        ccExpandable.chevronTransform,
-        ccExpandable.elementsTransformChevronDownPart,
-        stateExpanded && [ccExpandable.chevronExpand, ccExpandable.elementsChevronDownExpandPart],
-      ])}
-    />
+    <IconChevronDown16 className={classNames([ccExpandable.chevronTransform, stateExpanded && ccExpandable.chevronExpand])} />
   );
 
   return (
