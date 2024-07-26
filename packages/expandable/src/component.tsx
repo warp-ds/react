@@ -39,6 +39,17 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!stateExpanded);
   };
 
+  const wrapperClasses = classNames([
+    ccExpandable.expandable,
+    box && ccExpandable.expandableBox,
+    info && box && ccExpandable.expandableInfo,
+    bleed && ccExpandable.expandableBleed,
+  ]);
+
+  const buttonClasses = classNames(buttonClass, [ccExpandable.button, box && ccExpandable.buttonBox]);
+
+  const chevronClasses = classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox]);
+
   const chevronIcon = () => {
     const upClasses = classNames([ccExpandable.chevronTransform, !stateExpanded && ccExpandable.chevronCollapse]);
 
@@ -47,48 +58,32 @@ export function Expandable(props: ExpandableProps) {
     return stateExpanded ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
 
+  const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.paddingTop]);
+
   return (
-    <div
-      {...rest}
-      className={classNames(className, [
-        ccExpandable.expandable,
-        box && ccExpandable.expandableBox,
-        info && box && ccExpandable.expandableInfo,
-        bleed && ccExpandable.expandableBleed,
-      ])}>
+    <div {...rest} className={wrapperClasses}>
       <UnstyledHeading level={headingLevel}>
-        <button
-          type="button"
-          aria-expanded={stateExpanded}
-          className={classNames(buttonClass, [ccExpandable.button, box && ccExpandable.buttonBox])}
-          onClick={toggleExpandable}>
+        <button type="button" aria-expanded={stateExpanded} className={buttonClasses} onClick={toggleExpandable}>
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? <span className={ccExpandable.titleType}>{title}</span> : title}
-            {chevron && <div className={classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox])}>{chevronIcon()}</div>}
+            {chevron && <div className={chevronClasses}>{chevronIcon()}</div>}
           </div>
         </button>
       </UnstyledHeading>
       <ExpansionBehaviour animated={animated} stateExpanded={stateExpanded}>
-        <div
-          className={classNames(contentClass, {
-            [ccBox.box]: box,
-            [ccExpandable.paddingTop]: box && title,
-          })}>
-          {children}
-        </div>
+        <div className={contentClasses}>{children}</div>
       </ExpansionBehaviour>
     </div>
   );
 }
 
 function ExpansionBehaviour({ animated, stateExpanded, children }) {
+  const expansionClasses = classNames([ccExpandable.expansion, !stateExpanded && ccExpandable.expansionNotExpanded]);
+
   return animated ? (
     <ExpandTransition show={stateExpanded}>{children}</ExpandTransition>
   ) : (
-    <div
-      className={classNames([ccExpandable.expansion, !stateExpanded && ccExpandable.expansionNotExpanded])}
-      data-testid="expandable-content"
-      aria-hidden={!stateExpanded ? true : undefined}>
+    <div className={expansionClasses} data-testid="expandable-content" aria-hidden={!stateExpanded ? true : undefined}>
       {children}
     </div>
   );
