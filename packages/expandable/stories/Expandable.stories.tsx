@@ -28,8 +28,7 @@ export const BoxWithCustomIcon = () => (
         <IconBag16 />
       </div>
     }
-    box
-    info>
+    box>
     <h2>I am expandable</h2>
   </Expandable>
 );
@@ -59,13 +58,13 @@ export const NoChevron = () => {
 };
 
 export const Animated = () => (
-  <Expandable title="Animated box" box info animated>
+  <Expandable title="Animated box" box animated>
     <h2>I am expandable</h2>
   </Expandable>
 );
 
 export const AnimatedExpanded = () => (
-  <Expandable title="Animated box" expanded box info animated>
+  <Expandable title="Animated box" expanded box animated>
     <h2>I am expandable</h2>
   </Expandable>
 );
