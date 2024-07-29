@@ -52,7 +52,7 @@ export function Expandable(props: ExpandableProps) {
     return stateExpanded ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
 
-  const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.paddingTop]);
+  const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.contentWithTitle]);
 
   return (
     <div {...rest} className={wrapperClasses}>
