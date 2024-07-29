@@ -14,7 +14,6 @@ export function Expandable(props: ExpandableProps) {
     children,
     expanded = false,
     title = '',
-    info = false,
     box = false,
     bleed = false,
     buttonClass = '',
@@ -39,12 +38,7 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!stateExpanded);
   };
 
-  const wrapperClasses = classNames([
-    ccExpandable.expandable,
-    box && ccExpandable.expandableBox,
-    info && box && ccExpandable.expandableInfo,
-    bleed && ccExpandable.expandableBleed,
-  ]);
+  const wrapperClasses = classNames([ccExpandable.expandable, box && ccExpandable.expandableBox, bleed && ccExpandable.expandableBleed]);
 
   const buttonClasses = classNames(buttonClass, [ccExpandable.button, box && ccExpandable.buttonBox]);
 
@@ -58,7 +52,7 @@ export function Expandable(props: ExpandableProps) {
     return stateExpanded ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
 
-  const contentClasses = classNames(contentClass, [box && ccBox.box, (box || info) && title && ccExpandable.paddingTop]);
+  const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.paddingTop]);
 
   return (
     <div {...rest} className={wrapperClasses}>
