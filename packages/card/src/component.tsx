@@ -12,13 +12,11 @@ export function Card(props: CardProps) {
     as,
     {
       ...rest,
-      className: classNames(props.className, {
-        [ccCard.card]: true,
-        [ccCard.cardShadow]: !props.flat,
-        [ccCard.cardSelected]: !props.flat && props.selected,
-        [ccCard.cardFlat]: props.flat,
-        [props.selected ? ccCard.cardFlatSelected : ccCard.cardFlatUnselected]: props.flat,
-      }),
+      className: classNames(props.className, [
+        ccCard.card,
+        props.flat ? ccCard.cardFlat : ccCard.cardShadow,
+        props.selected ? (props.flat ? ccCard.cardFlatSelected : ccCard.cardSelected) : props.flat && ccCard.cardFlatUnselected,
+      ]),
     },
     <>
       {!props.flat && (
