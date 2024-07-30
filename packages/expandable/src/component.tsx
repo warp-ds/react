@@ -27,15 +27,19 @@ export function Expandable(props: ExpandableProps) {
   } = props;
 
   const [stateExpanded, setStateExpanded] = React.useState(expanded);
+  const [showChevronUp, setShowChevronUp] = React.useState(expanded);
 
   React.useEffect(() => {
     setStateExpanded(expanded);
   }, [expanded]);
 
-  const toggleExpandable = () => {
-    setStateExpanded(!stateExpanded);
-
-    if (onChange) onChange(!stateExpanded);
+  const toggleExpandable = (state) => {
+    setStateExpanded(!state);
+    // We need a slight delay for the animation since it has a transition-duration of 150ms:
+    setTimeout(() => {
+      setShowChevronUp(!state);
+    }, 200);
+    if (onChange) onChange(!state);
   };
 
   const wrapperClasses = classNames([ccExpandable.expandable, box && ccExpandable.expandableBox, bleed && ccExpandable.expandableBleed]);
@@ -45,11 +49,10 @@ export function Expandable(props: ExpandableProps) {
   const chevronClasses = classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox]);
 
   const chevronIcon = () => {
-    const upClasses = classNames([ccExpandable.chevronTransform, !stateExpanded && ccExpandable.chevronCollapse]);
+    const upClasses = classNames([ccExpandable.chevronTransform, !stateExpanded && showChevronUp && ccExpandable.chevronCollapse]);
+    const downClasses = classNames([ccExpandable.chevronTransform, stateExpanded && !showChevronUp && ccExpandable.chevronExpand]);
 
-    const downClasses = classNames([ccExpandable.chevronTransform, stateExpanded && ccExpandable.chevronExpand]);
-
-    return stateExpanded ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
+    return showChevronUp ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
 
   const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.contentWithTitle]);
@@ -57,7 +60,7 @@ export function Expandable(props: ExpandableProps) {
   return (
     <div {...rest} className={wrapperClasses}>
       <UnstyledHeading level={headingLevel}>
-        <button type="button" aria-expanded={stateExpanded} className={buttonClasses} onClick={toggleExpandable}>
+        <button type="button" aria-expanded={stateExpanded} className={buttonClasses} onClick={() => toggleExpandable(stateExpanded)}>
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? <span className={ccExpandable.titleType}>{title}</span> : title}
             {chevron && <div className={chevronClasses}>{chevronIcon()}</div>}
