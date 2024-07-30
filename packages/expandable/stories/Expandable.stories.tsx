@@ -28,14 +28,7 @@ export const BoxWithCustomIcon = () => (
         <IconBag16 />
       </div>
     }
-    box
-    info>
-    <h2>I am expandable</h2>
-  </Expandable>
-);
-
-export const InfoBox = () => (
-  <Expandable title="This is a title" box info>
+    box>
     <h2>I am expandable</h2>
   </Expandable>
 );
@@ -43,7 +36,7 @@ export const InfoBox = () => (
 export const Controlled = () => {
   const [open, setOpen] = React.useState(false);
   return (
-    <Expandable title={open ? 'Open' : 'Closed'} box info onChange={setOpen}>
+    <Expandable title={open ? 'Open' : 'Closed'} box onChange={setOpen}>
       <h1>I am expandable</h1>
     </Expandable>
   );
@@ -52,20 +45,20 @@ export const Controlled = () => {
 export const NoChevron = () => {
   const [open, setOpen] = React.useState(false);
   return (
-    <Expandable title={open ? 'Open' : 'Closed'} box info chevron={false} onChange={setOpen}>
+    <Expandable title={open ? 'Open' : 'Closed'} box chevron={false} onChange={setOpen}>
       <h2>I am expandable</h2>
     </Expandable>
   );
 };
 
 export const Animated = () => (
-  <Expandable title="Animated box" box info animated>
+  <Expandable title="Animated box" box animated>
     <h2>I am expandable</h2>
   </Expandable>
 );
 
 export const AnimatedExpanded = () => (
-  <Expandable title="Animated box" expanded box info animated>
+  <Expandable title="Animated box" expanded box animated>
     <h2>I am expandable</h2>
   </Expandable>
 );
