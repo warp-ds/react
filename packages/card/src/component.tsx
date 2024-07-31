@@ -15,7 +15,8 @@ export function Card(props: CardProps) {
       className: classNames(props.className, [
         ccCard.base,
         flat ? ccCard.flat : ccCard.shadow,
-        selected ? (flat ? ccCard.flatSelected : ccCard.selected) : flat && ccCard.flatUnselected,
+        selected && !flat && ccCard.selected,
+        selected && flat ? ccCard.flatSelected : ccCard.flatUnselected,
       ]),
     },
     <>
