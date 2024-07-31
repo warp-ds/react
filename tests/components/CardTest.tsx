@@ -30,7 +30,7 @@ describe('Card', () => {
   it('renders selected card correctly', () => {
     render(<Card as="article" selected />);
     expect(screen.getByRole('article')).toHaveClass(
-      'cursor-pointer overflow-hidden relative transition-all group rounded-8 s-bg-selected hover:s-bg-selected-hover active:s-bg-selected-active',
+      'cursor-pointer overflow-hidden relative transition-all group rounded-8 s-surface-elevated-200 hover:s-surface-elevated-200-hover active:s-surface-elevated-200-active !s-bg-selected !hover:s-bg-selected-hover !active:s-bg-selected-active',
     );
   });
 
