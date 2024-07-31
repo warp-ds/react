@@ -8,23 +8,18 @@ import { CardProps } from './props.js';
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, selected, ...rest } = props;
 
-  let backgroundClass: string;
-  if (selected) {
-    backgroundClass = flat ? ccCard.cardFlatSelected : ccCard.cardSelected;
-  } else {
-    backgroundClass = flat ? ccCard.cardFlatUnselected : ccCard.cardShadowBackground;
-  }
-
   return React.createElement(
     as,
     {
       ...rest,
-      className: classNames(props.className, [ccCard.card, props.flat ? ccCard.cardFlat : ccCard.cardShadow, backgroundClass]),
+      className: classNames(props.className, [
+        ccCard.base,
+        flat ? ccCard.flat : ccCard.shadow,
+        selected ? (flat ? ccCard.flatSelected : ccCard.selected) : flat && ccCard.flatUnselected,
+      ]),
     },
     <>
-      {!props.flat && (
-        <div className={classNames([ccCard.cardOutline, props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected])} />
-      )}
+      {!props.flat && <div className={classNames([ccCard.outline, props.selected ? ccCard.outlineSelected : ccCard.outlineUnselected])} />}
 
       {children}
     </>,
