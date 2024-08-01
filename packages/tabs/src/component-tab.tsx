@@ -6,10 +6,10 @@ import { tab as ccTab } from '@warp-ds/css/component-classes';
 import type { TabProps } from './props.js';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
-  tab: classNames(ccTab.tab, {
+  tab: classNames(ccTab.base, {
     [className]: !!className,
-    [ccTab.tabInactive]: !isActive,
-    [ccTab.tabActive]: isActive,
+    [ccTab.inactive]: !isActive,
+    [ccTab.active]: isActive,
   }),
   attrs: { ...rest },
 });

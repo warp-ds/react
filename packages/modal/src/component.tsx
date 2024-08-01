@@ -71,7 +71,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               props.onDismiss();
             }
           }}
-          className={ccModal.modal}
+          className={ccModal.base}
           tabIndex={-1}>
           <div className={ccModal.title}>
             {typeof props.left === 'boolean' && props.left ? (

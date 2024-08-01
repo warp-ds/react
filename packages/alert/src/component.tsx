@@ -17,7 +17,7 @@ export function Alert({ show, type, role = 'alert', children, ...props }: PropsW
 
   return (
     <ExpandTransition show={show}>
-      <div role={role} className={classNames(props.className, `${ccAlert.alert} ${variantClasses}`)} style={props.style}>
+      <div role={role} className={classNames(props.className, `${ccAlert.wrapper} ${variantClasses}`)} style={props.style}>
         <div className={`${ccAlert.icon} ${iconVariantClasses}`}>{iconMap[type]}</div>
         <div className={ccAlert.textWrapper}>{children}</div>
       </div>

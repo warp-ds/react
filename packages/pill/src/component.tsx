@@ -16,7 +16,7 @@ import type { PillProps } from './props.js';
 export function Pill(props: PillProps) {
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
   return (
-    <div className={ccPill.pill}>
+    <div className={ccPill.wrapper}>
       <button
         type="button"
         onClick={props.onClick}

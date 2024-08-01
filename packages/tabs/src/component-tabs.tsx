@@ -6,24 +6,24 @@ import { tabs as ccTabs, gridLayout } from '@warp-ds/css/component-classes';
 import type { TabsProps } from './props.js';
 import { debounce } from './utils.js';
 
-const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, wunderbarRef) => ({
-  nav: classNames(ccTabs.wrapperUnderlined, {
+const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, selectionIndicatorRef) => ({
+  nav: classNames(ccTabs.wrapper, {
     [className]: !!className,
   }),
-  div: classNames(ccTabs.tabContainer, {
+  div: classNames(ccTabs.container, {
     [gridLayout[`cols${children.filter((node) => node).length}`]]: true,
   }),
-  wunderbar: classNames(ccTabs.wunderbar),
+  selectionIndicator: classNames(ccTabs.selectionIndicator),
   attrs: rest,
-  updateWunderbar: () => {
+  updateSelectionIndicator: () => {
     window.requestAnimationFrame(() => {
-      if (tabsRef.current && wunderbarRef.current) {
+      if (tabsRef.current && selectionIndicatorRef.current) {
         const activeEl = tabsRef.current.querySelector('button[role="tab"][aria-selected="true"]');
         if (activeEl) {
           const parentLeft = tabsRef.current.getBoundingClientRect().left;
           const { left, width } = activeEl.getBoundingClientRect();
-          wunderbarRef.current.style.left = `${left - parentLeft}px`;
-          wunderbarRef.current.style.width = `${width}px`;
+          selectionIndicatorRef.current.style.left = `${left - parentLeft}px`;
+          selectionIndicatorRef.current.style.width = `${width}px`;
         }
       }
     });
@@ -33,15 +33,15 @@ const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, 
 export const Tabs = (props: TabsProps) => {
   const isBrowser = Boolean(typeof document === 'object' && document?.createElement);
   const tabsRef: RefObject<HTMLDivElement> = useRef(null);
-  const wunderbarRef = useRef(null);
+  const selectionIndicatorRef = useRef(null);
   const { children, onChange } = props;
-  const { nav, div, wunderbar, attrs, updateWunderbar } = setup(props, tabsRef, wunderbarRef);
+  const { nav, div, selectionIndicator, attrs, updateSelectionIndicator } = setup(props, tabsRef, selectionIndicatorRef);
 
   useEffect(() => {
     // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
     isBrowser && updatePanels();
-    updateWunderbar();
-    const updateDebounced = debounce(updateWunderbar, 100);
+    updateSelectionIndicator();
+    const updateDebounced = debounce(updateSelectionIndicator, 100);
     window.addEventListener('resize', updateDebounced);
     return () => window.removeEventListener('resize', updateDebounced);
   });
@@ -80,7 +80,7 @@ export const Tabs = (props: TabsProps) => {
 
   const change = (name) => {
     setActive(name);
-    updateWunderbar();
+    updateSelectionIndicator();
     onChange && onChange(name);
   };
 
@@ -124,7 +124,7 @@ export const Tabs = (props: TabsProps) => {
               isActive: child?.props?.name === active,
             }),
         )}
-        {<span className={wunderbar} ref={wunderbarRef} />}
+        {<span className={selectionIndicator} ref={selectionIndicatorRef} />}
       </div>
     </div>
   );

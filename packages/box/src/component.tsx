@@ -14,7 +14,7 @@ export function Box(props: BoxProps) {
       ...(rest as Omit<BoxProps, 'children'> as {}),
       role: role ?? 'region',
       className: classNames(
-        ccBox.box,
+        ccBox.base,
         {
           [ccBox.bleed]: bleed,
           [ccBox.info]: info,

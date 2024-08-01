@@ -19,7 +19,7 @@ function Title({ id, title, optional }) {
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   return (
-    <legend id={`${id}__title`} className={ccLabel.label}>
+    <legend id={`${id}__title`} className={ccLabel.base}>
       {title}
       {optional && (
         <span className={ccLabel.optional}>
@@ -41,9 +41,9 @@ function HelpText({ isInvalid, helpId, helpText }: any) {
     <div
       id={helpId}
       className={classNames({
-        [ccHelpText.helpText]: true,
-        [ccHelpText.helpTextColor]: !isInvalid,
-        [ccHelpText.helpTextColorInvalid]: isInvalid,
+        [ccHelpText.base]: true,
+        [ccHelpText.color]: !isInvalid,
+        [ccHelpText.colorInvalid]: isInvalid,
       })}>
       {helpText}
     </div>
