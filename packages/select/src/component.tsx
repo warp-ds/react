@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
-import { helpText as ccHelpText, label as ccLabel, select as ccSelect } from '@warp-ds/css/component-classes';
+import { label as ccLabel, select as ccSelect } from '@warp-ds/css/component-classes';
 import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
 
+import { HelpText } from '../../_helpers/helpText.js';
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
@@ -39,36 +40,23 @@ const setup = (props: SelectProps) => {
         id,
       },
       optional,
-      help:
-        always || invalid
-          ? {
-              children: hint,
-              id: helpId,
-            }
-          : null,
+      help: always || invalid ? { helpText: hint, helpId, isInvalid: invalid } : null,
     },
-    wrapperClasses: classNames(ccSelect.wrapper, className),
-
-    selectClasses: classNames(ccSelect.base, {
-      [ccSelect.default]: !invalid && !disabled && !readOnly,
-      [ccSelect.invalid]: invalid,
-      [ccSelect.disabled]: disabled,
-      [ccSelect.readOnly]: readOnly,
-    }),
-
-    helpTextClasses: classNames(ccHelpText.base, {
-      [ccHelpText.color]: !invalid,
-      [ccHelpText.colorInvalid]: invalid,
-    }),
-    chevronClasses: classNames(ccSelect.chevron, {
-      [ccSelect.chevronDisabled]: disabled,
-    }),
+    wrapperClasses: classNames(className, ccSelect.wrapper),
+    selectClasses: classNames([
+      ccSelect.base,
+      !invalid && !disabled && !readOnly && ccSelect.default,
+      invalid && ccSelect.invalid,
+      disabled && ccSelect.disabled,
+      readOnly && ccSelect.readOnly,
+    ]),
+    chevronClasses: classNames([ccSelect.chevron, disabled && ccSelect.chevronDisabled]),
   };
 };
 
 function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const id = useId(props.id);
-  const { attrs, wrapperClasses, selectClasses, helpTextClasses, chevronClasses } = setup({ ...props, id });
+  const { attrs, wrapperClasses, selectClasses, chevronClasses } = setup({ ...props, id });
   const { div, label, select, help, optional } = attrs;
 
   const handleKeyDown = (event) => {
@@ -84,24 +72,22 @@ function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
           {label.children}
           {optional && (
             <span className={ccLabel.optional}>
-              {i18n._(
-                /*i18n*/ {
-                  id: 'select.label.optional',
-                  message: '(optional)',
-                  comment: 'Shown behind label when marked as optional',
-                },
-              )}
+              {i18n._({
+                id: 'select.label.optional',
+                message: '(optional)',
+                comment: 'Shown behind label when marked as optional',
+              })}
             </span>
           )}
         </label>
       )}
       <div className={ccSelect.selectWrapper}>
         <select ref={ref} {...select} className={selectClasses} onKeyDown={handleKeyDown} />
-        <div className={classNames(chevronClasses)}>
+        <div className={chevronClasses}>
           <IconChevronDown16 />
         </div>
       </div>
-      {help && <div className={helpTextClasses} {...help} />}
+      {help && <HelpText helpId={help.helpId} helpText={help.helpText} isInvalid={help.isInvalid} />}
     </div>
   );
 }

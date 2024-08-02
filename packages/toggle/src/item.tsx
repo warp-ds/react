@@ -23,6 +23,7 @@ interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   inputClassName?: string;
   groupClassName?: string;
   multiple?: boolean;
+  disabled?: boolean;
   onChange: (data: ToggleEntry | boolean) => void;
 }
 
@@ -42,6 +43,7 @@ export function Item({
   inputClassName,
   groupClassName,
   multiple,
+  disabled,
   ...props
 }: ItemProps) {
   const id = useId();
@@ -68,6 +70,7 @@ export function Item({
         aria-errormessage={invalid ? helpId : undefined}
         value={label ? undefined : value ?? undefined}
         className={inputClassName}
+        disabled={disabled}
         {...props}
         onChange={(e) => props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)}
       />

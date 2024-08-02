@@ -18,7 +18,7 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import type { ModalProps } from './props.js';
 
 /**
- * A Modal dialog that renders on top the page
+ * A Modal dialog that renders on top of the page
  */
 export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, ...props }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -26,6 +26,12 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+
+  const getDirectionalTitleClasses = (direction: string) =>
+    classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal[`titleButton${direction}`]]);
+
+  const getCenteredTitleClasses = (hasLeft: Boolean) =>
+    classNames([ccModal.transitionTitle, hasLeft ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan]);
 
   useEffect(
     () =>
@@ -60,9 +66,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
           role="dialog"
           aria-modal="true"
           id={id}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+          onClick={(e) => e.stopPropagation()}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy ?? (props.title && !ariaLabel ? `${id}__title` : undefined)}
           onKeyDown={(event) => {
@@ -77,27 +81,20 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
             {typeof props.left === 'boolean' && props.left ? (
               <button
                 type="button"
-                aria-label={i18n._(
-                  /*i18n*/ {
-                    id: 'modal.aria.back',
-                    message: 'Back',
-                    comment: 'Aria label for the back button in modal',
-                  },
-                )}
-                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft)}
+                aria-label={i18n._({
+                  id: 'modal.aria.back',
+                  message: 'Back',
+                  comment: 'Aria label for the back button in modal',
+                })}
+                className={getDirectionalTitleClasses('Left')}
                 onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}>
-                <IconArrowLeft16 className={classNames(ccModal.titleButtonIcon)} />
+                <IconArrowLeft16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (
               props.left
             )}
 
-            <div
-              id={`${id}__title`}
-              className={classNames(
-                ccModal.transitionTitle,
-                !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
-              )}>
+            <div id={`${id}__title`} className={getCenteredTitleClasses(!!props.left)}>
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
 
@@ -105,15 +102,13 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               <button
                 ref={closeButtonRef}
                 type="button"
-                aria-label={i18n._(
-                  /*i18n*/ {
-                    id: 'modal.aria.close',
-                    message: 'Close',
-                    comment: 'Aria label for the close button in modal',
-                  },
-                )}
+                aria-label={i18n._({
+                  id: 'modal.aria.close',
+                  message: 'Close',
+                  comment: 'Aria label for the close button in modal',
+                })}
                 onClick={props.onDismiss}
-                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight)}>
+                className={getDirectionalTitleClasses('Right')}>
                 <IconClose16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (

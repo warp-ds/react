@@ -14,27 +14,21 @@ import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 
 const availableAriaLabels = {
-  completed: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.completed',
-      message: 'Step indicator completed circle',
-      comment: 'Completed circle',
-    },
-  ),
-  active: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.active',
-      message: 'Step indicator active circle',
-      comment: 'Active circle',
-    },
-  ),
-  default: i18n._(
-    /*i18n*/ {
-      id: 'steps.aria.emptyCircle',
-      message: 'Empty circle',
-      comment: 'Empty circle',
-    },
-  ),
+  completed: i18n._({
+    id: 'steps.aria.completed',
+    message: 'Step indicator completed circle',
+    comment: 'Completed circle',
+  }),
+  active: i18n._({
+    id: 'steps.aria.active',
+    message: 'Step indicator active circle',
+    comment: 'Active circle',
+  }),
+  default: i18n._({
+    id: 'steps.aria.emptyCircle',
+    message: 'Empty circle',
+    comment: 'Empty circle',
+  }),
 };
 
 const getAriaLabel = (props: StepProps) => {
@@ -68,34 +62,34 @@ export function Step(props: StepProps) {
   const vertical = !StepsProps.horizontal;
   const left = !StepsProps.right;
 
-  const stepClasses = classNames(
+  const stepClasses = classNames([
     ccStep.container,
     vertical ? ccStep.vertical : ccStep.horizontal,
     vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : '',
-  );
+  ]);
 
-  const lineHorizontalClasses = classNames(
+  const lineHorizontalClasses = classNames([
     ccStep.line,
     ccStep.lineHorizontal,
     ccStep.lineHorizontalAlignLeft,
     active || completed ? ccStep.lineComplete : ccStep.lineIncomplete,
-  );
+  ]);
 
-  const dotClasses = classNames(
+  const dotClasses = classNames([
     ccStep.dot,
     vertical ? (!left ? ccStep.dotAlignRight : '') : ccStep.dotHorizontal,
     active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
-  );
+  ]);
 
-  const lineClasses = classNames(
+  const lineClasses = classNames([
     ccStep.line,
     ccStep.lineHorizontalAlignRight,
     vertical ? ccStep.lineVertical : ccStep.lineHorizontal,
     vertical && !left ? ccStep.lineAlignRight : '',
     completed ? ccStep.lineComplete : ccStep.lineIncomplete,
-  );
+  ]);
 
-  const contentClasses = classNames(ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal);
+  const contentClasses = classNames([ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal]);
 
   return (
     <li className={stepClasses}>

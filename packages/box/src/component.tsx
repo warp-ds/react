@@ -8,21 +8,20 @@ import { BoxProps } from './props.js';
 export function Box(props: BoxProps) {
   const { children, as = 'div', bleed, neutral, bordered, info, role, ...rest } = props;
 
+  const wrapperClasses = classNames(props.className, [
+    ccBox.base,
+    bleed && ccBox.bleed,
+    info && ccBox.info,
+    neutral && ccBox.neutral,
+    bordered && ccBox.bordered,
+  ]);
+
   return React.createElement(
     as,
     {
       ...(rest as Omit<BoxProps, 'children'> as {}),
       role: role ?? 'region',
-      className: classNames(
-        ccBox.base,
-        {
-          [ccBox.bleed]: bleed,
-          [ccBox.info]: info,
-          [ccBox.neutral]: neutral,
-          [ccBox.bordered]: bordered,
-        },
-        props.className,
-      ),
+      className: wrapperClasses,
     },
     children,
   );

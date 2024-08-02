@@ -8,22 +8,21 @@ import { BadgeProps } from './props.js';
 export function Badge(props: BadgeProps) {
   const { children, as = 'div', variant = 'neutral', position, ...rest } = props;
 
+  const wrapperClasses = classNames(props.className, [
+    ccBadge.base,
+    ccBadge[variant],
+    !!position && ccBadge.positionBase,
+    position === 'top-left' && ccBadge.positionTL,
+    position === 'top-right' && ccBadge.positionTR,
+    position === 'bottom-right' && ccBadge.positionBR,
+    position === 'bottom-left' && ccBadge.positionBL,
+  ]);
+
   return React.createElement(
     as,
     {
       ...(rest as Omit<BadgeProps, 'children'> as {}),
-      className: classNames(
-        ccBadge.base,
-        ccBadge[variant],
-        {
-          [ccBadge.positionBase]: !!position,
-          [ccBadge.positionTL]: position === 'top-left',
-          [ccBadge.positionTR]: position === 'top-right',
-          [ccBadge.positionBR]: position === 'bottom-right',
-          [ccBadge.positionBL]: position === 'bottom-left',
-        },
-        props.className,
-      ),
+      className: wrapperClasses,
     },
     children,
   );

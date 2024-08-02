@@ -57,7 +57,7 @@ const NextPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>,
           {...props}
           ref={ref as Ref<HTMLAnchorElement>}
           rel={`next${noFollow ? ' nofollow' : ''}`}
-          className={classNames(className, ccPagination.link, ccPagination.icon)}>
+          className={classNames(className, [ccPagination.link, ccPagination.icon])}>
           <span className={ccPagination.a11y}>{ariaLabel},</span>
           <IconChevronRight16 />
           <span className={ccPagination.a11y}>{iconSuffix}</span>

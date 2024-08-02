@@ -6,14 +6,13 @@ import { tabs as ccTabs, gridLayout } from '@warp-ds/css/component-classes';
 import type { TabsProps } from './props.js';
 import { debounce } from './utils.js';
 
-const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, selectionIndicatorRef) => ({
-  nav: classNames(ccTabs.wrapper, {
-    [className]: !!className,
-  }),
-  div: classNames(ccTabs.container, {
-    [gridLayout[`cols${children.filter((node) => node).length}`]]: true,
-  }),
-  selectionIndicator: classNames(ccTabs.selectionIndicator),
+const setup = (
+  { className, children, onClick, active, ...rest }: any,
+  tabsRef: RefObject<HTMLDivElement>,
+  selectionIndicatorRef: RefObject<HTMLDivElement>,
+) => ({
+  nav: classNames([!!className && className, ccTabs.wrapper]),
+  div: classNames([ccTabs.container, gridLayout[`cols${children.filter((node) => node).length}`]]),
   attrs: rest,
   updateSelectionIndicator: () => {
     window.requestAnimationFrame(() => {
@@ -33,9 +32,9 @@ const setup = ({ className, children, onClick, active, ...rest }: any, tabsRef, 
 export const Tabs = (props: TabsProps) => {
   const isBrowser = Boolean(typeof document === 'object' && document?.createElement);
   const tabsRef: RefObject<HTMLDivElement> = useRef(null);
-  const selectionIndicatorRef = useRef(null);
+  const selectionIndicatorRef: RefObject<HTMLDivElement> = useRef(null);
   const { children, onChange } = props;
-  const { nav, div, selectionIndicator, attrs, updateSelectionIndicator } = setup(props, tabsRef, selectionIndicatorRef);
+  const { nav, div, attrs, updateSelectionIndicator } = setup(props, tabsRef, selectionIndicatorRef);
 
   useEffect(() => {
     // Server-side rendering must handle TabPanel state manually (outside the Tabs component).
@@ -124,7 +123,7 @@ export const Tabs = (props: TabsProps) => {
               isActive: child?.props?.name === active,
             }),
         )}
-        {<span className={selectionIndicator} ref={selectionIndicatorRef} />}
+        {<span className={ccTabs.selectionIndicator} ref={selectionIndicatorRef} />}
       </div>
     </div>
   );
