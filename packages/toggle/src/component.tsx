@@ -4,7 +4,7 @@ import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { label as ccLabel, toggle as ccToggle } from '@warp-ds/css/component-classes';
 
-import { HelpText } from '../../_helpers/helpText.js';
+import { HelpText } from '../../_helpers/help-text.js';
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
