@@ -124,7 +124,7 @@ export const Tabs = (props: TabsProps) => {
               isActive: child?.props?.name === active,
             }),
         )}
-        {<span className={wunderbar} ref={wunderbarRef} />}
+        {<span data-testid="wunderbar" className={wunderbar} ref={wunderbarRef} />}
       </div>
     </div>
   );
