@@ -92,7 +92,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               id={`${id}__title`}
               className={classNames([
                 ccModal.transitionTitle,
-                props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
+                !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
               ])}>
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
