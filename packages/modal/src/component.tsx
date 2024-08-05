@@ -27,12 +27,6 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
 
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
-  const getDirectionalTitleClasses = (direction: string) =>
-    classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal[`titleButton${direction}`]]);
-
-  const getCenteredTitleClasses = (hasLeft: Boolean) =>
-    classNames([ccModal.transitionTitle, hasLeft ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan]);
-
   useEffect(
     () =>
       // Cleanup scroll lock if component unmounts before it receives an updated
@@ -86,7 +80,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   message: 'Back',
                   comment: 'Aria label for the back button in modal',
                 })}
-                className={getDirectionalTitleClasses('Left')}
+                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft])}
                 onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}>
                 <IconArrowLeft16 className={ccModal.titleButtonIcon} />
               </button>
@@ -94,7 +88,12 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               props.left
             )}
 
-            <div id={`${id}__title`} className={getCenteredTitleClasses(!!props.left)}>
+            <div
+              id={`${id}__title`}
+              className={classNames([
+                ccModal.transitionTitle,
+                props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
+              ])}>
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
 
@@ -108,7 +107,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   comment: 'Aria label for the close button in modal',
                 })}
                 onClick={props.onDismiss}
-                className={getDirectionalTitleClasses('Right')}>
+                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight])}>
                 <IconClose16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (
