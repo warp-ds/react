@@ -17,6 +17,12 @@ export const DefaultEnabled = () => {
   return <Switch aria-label="Toggle me" onClick={() => setValue(!value)} value={value} />;
 };
 
+export const Disabled = () => {
+  const [value, setValue] = useState(true);
+
+  return <Switch disabled onClick={() => setValue(!value)} value={value} />;
+};
+
 export const CustomClickHandler = () => {
   const [value, setValue] = useState(false);
 
