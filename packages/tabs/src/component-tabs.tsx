@@ -123,7 +123,7 @@ export const Tabs = (props: TabsProps) => {
               isActive: child?.props?.name === active,
             }),
         )}
-        {<span className={ccTabs.selectionIndicator} ref={selectionIndicatorRef} />}
+        {<span data-testid="selection-indicator" className={ccTabs.selectionIndicator} ref={selectionIndicatorRef} />}
       </div>
     </div>
   );
