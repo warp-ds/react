@@ -16,7 +16,7 @@ export function TabPanel(props: TabPanelProps) {
       id={`warp-tabpanel-${name}`}
       hidden={
         hidden === undefined && typeof document === 'object'
-          ? !document?.getElementById(`warp-tab-${name}`)?.classList?.contains(ccTab.tabActive)
+          ? !document?.getElementById(`warp-tab-${name}`)?.classList?.contains(ccTab.active)
           : hidden
       }>
       {children}

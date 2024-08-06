@@ -42,7 +42,7 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!state);
   };
 
-  const wrapperClasses = classNames([ccExpandable.expandable, box && ccExpandable.expandableBox, bleed && ccExpandable.expandableBleed]);
+  const wrapperClasses = classNames([ccExpandable.wrapper, box && ccExpandable.box, bleed && ccExpandable.bleed]);
 
   const buttonClasses = classNames(buttonClass, [ccExpandable.button, box && ccExpandable.buttonBox]);
 
@@ -55,7 +55,7 @@ export function Expandable(props: ExpandableProps) {
     return showChevronUp ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
 
-  const contentClasses = classNames(contentClass, [box && ccBox.box, box && title && ccExpandable.contentWithTitle]);
+  const contentClasses = classNames(contentClass, [box && ccBox.base, box && title && ccExpandable.contentWithTitle]);
 
   return (
     <div {...rest} className={wrapperClasses}>

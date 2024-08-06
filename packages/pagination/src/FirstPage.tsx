@@ -48,7 +48,7 @@ const FirstPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>
   });
 
   return (
-    <a ref={ref as Ref<HTMLAnchorElement>} {...props} className={classNames(className, ccPagination.link, ccPagination.icon)} rel="start">
+    <a ref={ref as Ref<HTMLAnchorElement>} {...props} className={classNames(className, [ccPagination.link, ccPagination.icon])} rel="start">
       <span className={ccPagination.a11y}>{ariaLabel},</span>
       <IconChevronDoubleLeft16 />
       <span className={ccPagination.a11y}>{iconSuffix}</span>

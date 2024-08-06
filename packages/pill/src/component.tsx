@@ -15,49 +15,44 @@ import type { PillProps } from './props.js';
 
 export function Pill(props: PillProps) {
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+
+  const buttonClasses = classNames(!props.canClose && props.className, [
+    ccPill.button,
+    ccPill.label,
+    props.suggestion ? ccPill.suggestion : ccPill.filter,
+    props.canClose ? ccPill.labelWithClose : ccPill.labelWithoutClose,
+  ]);
+
+  const closeButtonClasses = classNames(props.className, [
+    ccPill.button,
+    ccPill.close,
+    props.suggestion ? ccPill.suggestion : ccPill.filter,
+  ]);
+
   return (
-    <div className={ccPill.pill}>
-      <button
-        type="button"
-        onClick={props.onClick}
-        className={classNames(!props.canClose ? props.className : '', {
-          [ccPill.button]: true,
-          [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
-          [ccPill.label]: true,
-          [props.canClose ? ccPill.labelWithClose : ccPill.labelWithoutClose]: true,
-        })}>
+    <div className={ccPill.wrapper}>
+      <button type="button" onClick={props.onClick} className={buttonClasses}>
         <span className={ccPill.a11y}>
           {props.openSRLabel ||
-            i18n._(
-              /*i18n*/ {
-                id: 'pill.aria.openFilter',
-                message: 'Open filter',
-                comment: 'Fallback screenreader message for open filter',
-                values: { label: props.label },
-              },
-            )}
+            i18n._({
+              id: 'pill.aria.openFilter',
+              message: 'Open filter',
+              comment: 'Fallback screenreader message for open filter',
+              values: { label: props.label },
+            })}
         </span>
         {props.icon || <span>{props.label}</span>}
       </button>
       {props.canClose && (
-        <button
-          type="button"
-          className={classNames(props.className, {
-            [ccPill.button]: true,
-            [props.suggestion ? ccPill.suggestion : ccPill.filter]: true,
-            [ccPill.close]: true,
-          })}
-          onClick={props.onClose}>
+        <button type="button" className={closeButtonClasses} onClick={props.onClose}>
           <span className={ccPill.a11y}>
             {props.closeSRLabel ||
-              i18n._(
-                /*i18n*/ {
-                  id: 'pill.aria.removeFilter',
-                  message: 'Remove filter {label}',
-                  comment: 'Fallback screenreader message for removal of the filter',
-                  values: { label: props.label },
-                },
-              )}
+              i18n._({
+                id: 'pill.aria.removeFilter',
+                message: 'Remove filter {label}',
+                comment: 'Fallback screenreader message for removal of the filter',
+                values: { label: props.label },
+              })}
           </span>
           <IconClose16 />
         </button>
