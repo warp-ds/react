@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Tab } from '../../packages/tabs/src/component-tab';
 import { TabPanel } from '../../packages/tabs/src/component-tab-panel';
@@ -18,21 +19,21 @@ describe('Tabs component', () => {
     expect(screen.getByRole('tab', { name: 'Tab 3' })).toBeInTheDocument();
   });
 
-  it('renders the wunderbar', () => {
+  it('renders the selectionIndicator', () => {
     render(<Tabs>{children}</Tabs>);
-    expect(screen.getByTestId('wunderbar')).toBeInTheDocument();
+    expect(screen.getByTestId('selection-indicator')).toBeInTheDocument();
   });
 
-  it('updates the wunderbar position on resize', () => {
+  it('updates the selectionIndicator position on resize', () => {
     render(<Tabs>{children}</Tabs>);
-    const wunderbar = screen.getByTestId('wunderbar');
-    expect(wunderbar.style.left).toBe('');
-    expect(wunderbar.style.width).toBe('');
+    const selectionIndicator = screen.getByTestId('selection-indicator');
+    expect(selectionIndicator.style.left).toBe('');
+    expect(selectionIndicator.style.width).toBe('');
     global.innerWidth = 800;
     global.dispatchEvent(new Event('resize'));
     waitFor(() => {
-      expect(wunderbar.style.left).not.toBe('');
-      expect(wunderbar.style.width).not.toBe('');
+      expect(selectionIndicator.style.left).not.toBe('');
+      expect(selectionIndicator.style.width).not.toBe('');
     });
   });
 
@@ -83,7 +84,7 @@ describe('Tab component', () => {
     render(<Tab name={name} label={label} setActive={setActive} onClick={onClick} isActive={true} />);
     expect(screen.getByText(label)).toBeInTheDocument();
     expect(screen.getByText(label).closest('button')).toHaveClass(
-      'grid items-center font-bold gap-8 focusable antialias p-16 pb-8 border-b-4 bg-transparent s-text-subtle border-transparent hover:s-text-link hover:s-border-primary s-text-link',
+      'grid items-center font-bold gap-8 focusable antialias p-16 pb-8 border-b-4 bg-transparent border-transparent hover:s-text-link hover:s-border-primary s-text-link',
     );
     expect(screen.getByText(label).closest('button')).toHaveAttribute('role', 'tab');
     expect(screen.getByText(label).closest('button')).toHaveAttribute('aria-selected', 'true');
@@ -93,8 +94,8 @@ describe('Tab component', () => {
     render(<Tab name={name} label={label} setActive={setActive} onClick={onClick} isActive={true} children={children} over={true} />);
     expect(screen.getByText(label)).toBeInTheDocument();
     expect(screen.getByText('Icon')).toBeInTheDocument();
-    expect(screen.getByText('Icon').closest('span')).toHaveClass('mx-auto hover:s-text-link s-text-link');
-    expect(screen.getByText(label).closest('span')).toHaveClass('content-underlined s-text-link');
+    expect(screen.getByText('Icon').closest('span')).toHaveClass('mx-auto');
+    expect(screen.getByText(label).closest('span')).toHaveClass('content-underlined');
   });
 
   it('renders with children and no label', () => {

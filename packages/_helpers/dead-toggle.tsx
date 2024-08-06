@@ -50,10 +50,10 @@ export function DeadToggle(props: DeadToggleProps) {
       <Item
         type={type}
         inputClassName={ccDeadToggle.input}
-        labelClassName={classNames(props.labelClassName, {
-          [ccDeadToggle.labelRadio]: props.radio,
-          [ccDeadToggle.labelCheckbox]: props.checkbox,
-        })}
+        labelClassName={classNames(props.labelClassName, [
+          props.radio && ccDeadToggle.labelRadio,
+          props.checkbox && ccDeadToggle.labelCheckbox,
+        ])}
         name={props.name ? `${props.name}:dead-toggle` : 'dead-toggle'}
         controlled={true}
         onChange={() => undefined}

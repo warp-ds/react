@@ -50,7 +50,7 @@ const Page = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>, Pag
         ref={ref as Ref<HTMLAnchorElement>}
         rel={`${noFollow ? 'nofollow' : ''}`}
         aria-current={isCurrentPage ? 'page' : undefined}
-        className={classNames(className, ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive])}>
+        className={classNames(className, [ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive]])}>
         {page}
       </a>
     );

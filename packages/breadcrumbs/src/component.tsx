@@ -19,13 +19,11 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
 
   const ariaLabel =
     props['aria-label'] ||
-    i18n._(
-      /*i18n*/ {
-        id: 'breadcrumbs.ariaLabel',
-        message: 'You are here',
-        comment: 'Default screenreader message for the breadcrumb component',
-      },
-    );
+    i18n._({
+      id: 'breadcrumbs.ariaLabel',
+      message: 'You are here',
+      comment: 'Default screenreader message for the breadcrumb component',
+    });
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);

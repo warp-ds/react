@@ -37,11 +37,7 @@ export function Affix(props: AffixProps) {
       'aria-label': !props.label ? props['aria-label'] : undefined,
       type: props.search ? 'submit' : props.clear ? 'reset' : undefined,
       onClick: props.onClick,
-      className: classNames({
-        [classBase.wrapper]: true,
-        [classBase.wrapperWithLabel]: props.label,
-        [classBase.wrapperWithIcon]: !props.label,
-      }),
+      className: classNames([classBase.wrapper, props.label ? classBase.wrapperWithLabel : classBase.wrapperWithIcon]),
     },
     <>
       {props.clear && <IconClose16 />}
