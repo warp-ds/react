@@ -19,7 +19,7 @@ export function Switch({
   const trackClasses = classNames([
     ccSwitch.track,
     disabled && ccSwitch.trackDisabled,
-    value && !disabled ? ccSwitch.trackActive : ccSwitch.trackInactive,
+    !disabled && (value ? ccSwitch.trackActive : ccSwitch.trackInactive),
   ]);
 
   const handleClasses = classNames([
@@ -27,12 +27,6 @@ export function Switch({
     value && ccSwitch.handleSelected,
     disabled ? ccSwitch.handleDisabled : ccSwitch.handleNotDisabled,
   ]);
-
-  const handleClick = (e) => {
-    if (!disabled && onClick) {
-      onClick(e);
-    }
-  };
 
   return (
     <div>
@@ -43,9 +37,8 @@ export function Switch({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         aria-checked={value}
-        onClick={handleClick}
+        onClick={onClick}
         className={baseClasses}
-        tabIndex={disabled ? -1 : 0}
         aria-disabled={disabled}
         disabled={disabled}
         {...attrs}>

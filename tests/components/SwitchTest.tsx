@@ -85,9 +85,4 @@ describe('Switch component', () => {
     render(<Switch disabled />);
     expect(screen.getByRole('switch')).toBeDisabled();
   });
-
-  it('sets tabIndex to -1 when disabled', () => {
-    render(<Switch disabled />);
-    expect(screen.getByRole('switch')).toHaveAttribute('tabIndex', '-1');
-  });
 });
