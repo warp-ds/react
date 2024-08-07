@@ -12,6 +12,11 @@ export interface SwitchProps {
   value: boolean;
 
   /**
+   * Whether the switch is disabled
+   */
+  disabled?: boolean;
+
+  /**
    * Handler for when the Switch is clicked
    */
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
