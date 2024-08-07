@@ -15,60 +15,61 @@ import type { ButtonProps } from './props.js';
 const buttonVariants = ['primary', 'secondary', 'negative', 'utility', 'pill', 'link'] as const;
 
 export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAnchorElement>, ButtonProps>((props, ref) => {
-  const { primary, secondary, negative, utility, quiet, small, link, pill, loading, disabled, fullWidth, ...rest } = props;
+  const { primary, secondary, negative, utility, quiet, small, link, href, pill, loading, disabled, fullWidth, ...rest } = props;
 
   const defaultVariant = secondary || !buttonVariants.find((b) => !!props[b]);
 
   const primaryClasses = [
-    primary && !small && !quiet && !loading && (disabled ? ccButton.primaryDisabled : ccButton.primary),
-    primary && small && !quiet && !loading && (disabled ? ccButton.primarySmallDisabled : ccButton.primarySmall),
-    primary && small && quiet && !loading && (disabled ? ccButton.primarySmallQuietDisabled : ccButton.primarySmallQuiet),
-    primary && small && loading && (quiet ? ccButton.primarySmallQuietLoading : ccButton.primarySmallLoading),
-    primary && !small && quiet && !loading && (disabled ? ccButton.primaryQuietDisabled : ccButton.primaryQuiet),
-    primary && !small && loading && (quiet ? ccButton.primaryQuietLoading : ccButton.primaryLoading),
+    !small && !quiet && !loading && (disabled ? ccButton.primaryDisabled : ccButton.primary),
+    small && !quiet && !loading && (disabled ? ccButton.primarySmallDisabled : ccButton.primarySmall),
+    small && quiet && !loading && (disabled ? ccButton.primarySmallQuietDisabled : ccButton.primarySmallQuiet),
+    small && loading && (quiet ? ccButton.primarySmallQuietLoading : ccButton.primarySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.primaryQuietDisabled : ccButton.primaryQuiet),
+    !small && loading && (quiet ? ccButton.primaryQuietLoading : ccButton.primaryLoading),
   ];
 
   const secondaryClasses = [
-    defaultVariant && !small && !quiet && !loading && (disabled ? ccButton.secondaryDisabled : ccButton.secondary),
-    defaultVariant && small && !quiet && !loading && (disabled ? ccButton.secondarySmallDisabled : ccButton.secondarySmall),
-    defaultVariant && small && quiet && !loading && (disabled ? ccButton.secondarySmallQuietDisabled : ccButton.secondarySmallQuiet),
-    defaultVariant && small && loading && (quiet ? ccButton.secondarySmallQuietLoading : ccButton.secondarySmallLoading),
-    defaultVariant && !small && quiet && !loading && (disabled ? ccButton.secondaryQuietDisabled : ccButton.secondaryQuiet),
-    defaultVariant && !small && loading && (quiet ? ccButton.secondaryQuietLoading : ccButton.secondaryLoading),
+    !small && !quiet && !loading && (disabled ? ccButton.secondaryDisabled : ccButton.secondary),
+    small && !quiet && !loading && (disabled ? ccButton.secondarySmallDisabled : ccButton.secondarySmall),
+    small && quiet && !loading && (disabled ? ccButton.secondarySmallQuietDisabled : ccButton.secondarySmallQuiet),
+    small && loading && (quiet ? ccButton.secondarySmallQuietLoading : ccButton.secondarySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.secondaryQuietDisabled : ccButton.secondaryQuiet),
+    !small && loading && (quiet ? ccButton.secondaryQuietLoading : ccButton.secondaryLoading),
   ];
 
   const utilityClasses = [
-    utility && !small && !quiet && !loading && (disabled ? ccButton.utilityDisabled : ccButton.utility),
-    utility && small && !quiet && !loading && (disabled ? ccButton.utilitySmallDisabled : ccButton.utilitySmall),
-    utility && small && quiet && !loading && (disabled ? ccButton.utilitySmallQuietDisabled : ccButton.utilitySmallQuiet),
-    utility && small && loading && (quiet ? ccButton.utilitySmallQuietLoading : ccButton.utilitySmallLoading),
-    utility && !small && quiet && !loading && (disabled ? ccButton.utilityQuietDisabled : ccButton.utilityQuiet),
-    utility && !small && loading && (quiet ? ccButton.utilityQuietLoading : ccButton.utilityLoading),
+    !small && !quiet && !loading && (disabled ? ccButton.utilityDisabled : ccButton.utility),
+    small && !quiet && !loading && (disabled ? ccButton.utilitySmallDisabled : ccButton.utilitySmall),
+    small && quiet && !loading && (disabled ? ccButton.utilitySmallQuietDisabled : ccButton.utilitySmallQuiet),
+    small && loading && (quiet ? ccButton.utilitySmallQuietLoading : ccButton.utilitySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.utilityQuietDisabled : ccButton.utilityQuiet),
+    !small && loading && (quiet ? ccButton.utilityQuietLoading : ccButton.utilityLoading),
   ];
 
   const negativeClasses = [
-    negative && !small && !quiet && !loading && (disabled ? ccButton.negativeDisabled : ccButton.negative),
-    negative && small && !quiet && !loading && (disabled ? ccButton.negativeSmallDisabled : ccButton.negativeSmall),
-    negative && small && quiet && !loading && (disabled ? ccButton.negativeSmallQuietDisabled : ccButton.negativeSmallQuiet),
-    negative && small && loading && (quiet ? ccButton.negativeSmallQuietLoading : ccButton.negativeSmallLoading),
-    negative && !small && quiet && !loading && (disabled ? ccButton.negativeQuietDisabled : ccButton.negativeQuiet),
-    negative && !small && loading && (quiet ? ccButton.negativeQuietLoading : ccButton.negativeLoading),
+    !small && !quiet && !loading && (disabled ? ccButton.negativeDisabled : ccButton.negative),
+    small && !quiet && !loading && (disabled ? ccButton.negativeSmallDisabled : ccButton.negativeSmall),
+    small && quiet && !loading && (disabled ? ccButton.negativeSmallQuietDisabled : ccButton.negativeSmallQuiet),
+    small && loading && (quiet ? ccButton.negativeSmallQuietLoading : ccButton.negativeSmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.negativeQuietDisabled : ccButton.negativeQuiet),
+    !small && loading && (quiet ? ccButton.negativeQuietLoading : ccButton.negativeLoading),
   ];
 
   const pillClasses = [
-    pill && !loading && (!small ? ccButton.pill : ccButton.pillSmall),
-    pill && loading && (!small ? ccButton.pillLoading : ccButton.pillSmallLoading),
+    !loading && (!small ? ccButton.pill : ccButton.pillSmall),
+    loading && (!small ? ccButton.pillLoading : ccButton.pillSmallLoading),
   ];
 
-  const linkClasses = [link && (small ? ccButton.linkSmall : ccButton.link), !!props.href && ccButton.linkAsButton];
+  const linkClasses = [small ? ccButton.linkSmall : ccButton.link];
 
   const classes = classNames(props.className, [
-    ...primaryClasses,
-    ...secondaryClasses,
-    ...utilityClasses,
-    ...negativeClasses,
-    ...pillClasses,
-    ...linkClasses,
+    primary && primaryClasses,
+    defaultVariant && secondaryClasses,
+    utility && utilityClasses,
+    negative && negativeClasses,
+    pill && pillClasses,
+    link && linkClasses,
+    href && ccButton.linkAsButton,
     fullWidth ? ccButton.fullWidth : ccButton.contentWidth,
   ]);
 
@@ -88,11 +89,11 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
 
   return (
     <>
-      {props.href ? (
+      {href ? (
         <a
           onClick={handleClick}
           aria-current={props['aria-current']}
-          href={disabled ? undefined : props.href}
+          href={disabled ? undefined : href}
           target={props.target}
           rel={props.target === '_blank' ? props.rel || 'noopener' : undefined}
           ref={ref as Ref<HTMLAnchorElement>}
