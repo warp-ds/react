@@ -16,7 +16,7 @@ export const StepsContext = createContext<{
 export function Steps({ horizontal, right, children }: StepsProps) {
   return (
     <StepsContext.Provider value={{ horizontal, right }}>
-      <ul className={classNames([ccSteps.container, horizontal && ccSteps.horizontal])}>{children}</ul>
+      <ul className={classNames([ccSteps.wrapper, horizontal && ccSteps.horizontal])}>{children}</ul>
     </StepsContext.Provider>
   );
 }

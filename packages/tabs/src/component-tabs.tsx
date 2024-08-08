@@ -12,7 +12,7 @@ const setup = (
   selectionIndicatorRef: RefObject<HTMLDivElement>,
 ) => ({
   nav: classNames(className, ccTabs.wrapper),
-  div: classNames([ccTabs.container, gridLayout[`cols${children.filter((node) => node).length}`]]),
+  div: classNames([ccTabs.base, gridLayout[`cols${children.filter((node) => node).length}`]]),
   attrs: rest,
   updateSelectionIndicator: () => {
     window.requestAnimationFrame(() => {

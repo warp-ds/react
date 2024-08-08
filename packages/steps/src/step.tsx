@@ -63,7 +63,7 @@ export function Step(props: StepProps) {
   const left = !StepsProps.right;
 
   const stepClasses = classNames([
-    ccStep.container,
+    ccStep.base,
     vertical ? ccStep.vertical : ccStep.horizontal,
     vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : '',
   ]);
