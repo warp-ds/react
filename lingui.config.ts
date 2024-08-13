@@ -51,6 +51,10 @@ const config: LinguiConfig = {
       path: 'packages/attention/src/locales/{locale}/messages',
     },
     {
+      include: ['packages/_helpers/attention.tsx'],
+      path: 'packages/attention/src/locales/{locale}/messages',
+    },
+    {
       include: ['packages/pagination/src/**/*.{ts,tsx}'],
       path: 'packages/pagination/src/locales/{locale}/messages',
     },
