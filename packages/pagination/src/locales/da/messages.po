@@ -15,10 +15,11 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File-ID: 15506\n"
+"PO-Revision-Date: \n"
 
 #. Default screenreader message for first page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/FirstPage.tsx:37
+#: packages/pagination/src/FirstPage.tsx:38
 msgid "pagination.aria.first-page"
 msgstr "Første side"
 
@@ -26,21 +27,21 @@ msgstr "Første side"
 #. Suffix added at the end of icon titles when img semantics are lost on an html element
 #. Suffix added at the end of icon titles when img semantics are lost on an html element
 #. js-lingui-explicit-id
-#: packages/pagination/src/FirstPage.tsx:45
-#: packages/pagination/src/NextPage.tsx:45
-#: packages/pagination/src/PrevPage.tsx:47
+#: packages/pagination/src/FirstPage.tsx:44
+#: packages/pagination/src/NextPage.tsx:48
+#: packages/pagination/src/PrevPage.tsx:48
 msgid "pagination.aria.icon-suffix"
 msgstr "ikon"
 
 #. Default screenreader message for next page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/NextPage.tsx:37
+#: packages/pagination/src/NextPage.tsx:42
 msgid "pagination.aria.next-page"
 msgstr "Næste side"
 
 #. Default message for current page label in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/CurrentPage.tsx:24
+#: packages/pagination/src/CurrentPage.tsx:21
 msgid "pagination.label.current-page"
 msgstr "Side {currentPage}"
 
@@ -52,13 +53,12 @@ msgstr "Side {currentPage}"
 
 #. Default screenreader message for pagination container in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/PaginationContainer.tsx:69
+#: packages/pagination/src/PaginationContainer.tsx:55
 msgid "pagination.aria.pagination"
 msgstr "Sider"
 
 #. Default screenreader message for previous page link in the pagination component
 #. js-lingui-explicit-id
-#: packages/pagination/src/PrevPage.tsx:39
+#: packages/pagination/src/PrevPage.tsx:42
 msgid "pagination.aria.prev-page"
 msgstr "Forrige side"
-

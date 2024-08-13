@@ -16,7 +16,6 @@ msgstr ""
 
 #. Shown behind label when marked as optional
 #. js-lingui-explicit-id
-#: packages/textarea/src/component.tsx:64
+#: packages/textarea/src/component.tsx:70
 msgid "textarea.label.optional"
 msgstr "(optional)"
-
