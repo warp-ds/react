@@ -1,3 +1,15 @@
+# [2.0.0-next.4](https://github.com/warp-ds/react/compare/v2.0.0-next.3...v2.0.0-next.4) (2024-08-13)
+
+
+### Bug Fixes
+
+* **cc:** no classes styling the same CSS properties are set on one element ([#274](https://github.com/warp-ds/react/issues/274)) ([694c156](https://github.com/warp-ds/react/commit/694c156e7cc36deaeacda2c7c26d0d22abc829ce))
+
+
+### BREAKING CHANGES
+
+* **cc:** Expandable info prop has been removed
+
 # [2.0.0-next.3](https://github.com/warp-ds/react/compare/v2.0.0-next.2...v2.0.0-next.3) (2024-07-11)
 
 
