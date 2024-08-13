@@ -108,7 +108,8 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
           type={props.type || 'button'}
           ref={ref as Ref<HTMLButtonElement>}
           className={classes}
-          role={props.link ? 'link' : 'button'}>
+          role={props.link ? 'link' : 'button'}
+          disabled={disabled}>
           {props.children}
         </button>
       )}
