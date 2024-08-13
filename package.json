@@ -54,7 +54,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@warp-ds/css": "2.0.0-next.4",
+    "@warp-ds/css": "2.0.0",
     "react": "18.x"
   },
   "scripts": {
@@ -137,7 +137,7 @@
     "@chbphone55/classnames": "2.0.0",
     "@lingui/core": "4.11.2",
     "@warp-ds/core": "1.1.5",
-    "@warp-ds/css": "2.0.0-next.4",
+    "@warp-ds/css": "2.0.0",
     "@warp-ds/icons": "2.0.2",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",

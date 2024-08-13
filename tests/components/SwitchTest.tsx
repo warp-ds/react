@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Switch } from '../../packages/switch/src/component';
 
@@ -65,5 +66,23 @@ describe('Switch component', () => {
   it('passes through additional props to the button element', () => {
     render(<Switch data-test="my-test" />);
     expect(screen.getByRole('switch')).toHaveAttribute('data-test', 'my-test');
+  });
+
+  it('does not call the onClick function when the button is disabled and clicked', () => {
+    const onClickSpy = vi.fn();
+    render(<Switch onClick={onClickSpy} disabled />);
+    const button = screen.getByRole('switch');
+    fireEvent.click(button);
+    expect(onClickSpy).not.toHaveBeenCalled();
+  });
+
+  it('sets the aria-disabled attribute when disabled', () => {
+    render(<Switch disabled />);
+    expect(screen.getByRole('switch')).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('sets the disabled attribute on the button when disabled', () => {
+    render(<Switch disabled />);
+    expect(screen.getByRole('switch')).toBeDisabled();
   });
 });

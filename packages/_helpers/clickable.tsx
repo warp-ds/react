@@ -65,7 +65,7 @@ export function Clickable({ children, radio, checkbox, value, ...props }: Clicka
       props.href ? 'a' : 'button',
       {
         ...props,
-        className: classNames(ccClickable.buttonOrLink, props.className),
+        className: classNames(props.className, ccClickable.buttonOrLink),
         type: props.href ? undefined : props.type || 'button',
       },
       <>

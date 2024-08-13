@@ -55,7 +55,7 @@ const PrevPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>,
       <a
         {...props}
         ref={ref as Ref<HTMLAnchorElement>}
-        className={classNames(className, ccPagination.link, ccPagination.icon)}
+        className={classNames(className, [ccPagination.link, ccPagination.icon])}
         rel={`prev${noFollow ? ' nofollow' : ''}`}>
         <span className={ccPagination.a11y}>{ariaLabel},</span>
         <IconChevronLeft16 />

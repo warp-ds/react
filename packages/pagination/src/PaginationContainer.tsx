@@ -59,7 +59,7 @@ const PaginationContainer = React.forwardRef<HTMLElement, PaginationContainerPro
       });
 
     return (
-      <nav {...props} className={classNames(ccPagination.containerNav, className)} aria-labelledby={ariaLabelledBy} ref={ref}>
+      <nav {...props} className={classNames(className, ccPagination.containerNav)} aria-labelledby={ariaLabelledBy} ref={ref}>
         <h1 className={ccPagination.a11y} id={ariaLabelledBy}>
           {ariaLabel}
         </h1>

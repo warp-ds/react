@@ -16,6 +16,12 @@ export type SelectProps = {
   /**  Renders the field in an invalid state. Often paired together with `hint` to provide feedback about the error. */
   invalid?: boolean;
 
+  /**  Renders the field in a disabled state.*/
+  disabled?: boolean;
+
+  /**  Renders the field in a readonly state.*/
+  readOnly?: boolean;
+
   /** The content to display as the help text. */
   hint?: React.ReactNode;
 

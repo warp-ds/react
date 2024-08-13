@@ -15,73 +15,63 @@ import type { ButtonProps } from './props.js';
 const buttonVariants = ['primary', 'secondary', 'negative', 'utility', 'pill', 'link'] as const;
 
 export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAnchorElement>, ButtonProps>((props, ref) => {
-  const { primary, secondary, negative, utility, quiet, small, link, pill, loading, fullWidth, ...rest } = props;
+  const { primary, secondary, negative, utility, quiet, small, link, href, pill, loading, disabled, fullWidth, ...rest } = props;
 
   const defaultVariant = secondary || !buttonVariants.find((b) => !!props[b]);
 
-  const classes = classNames(props.className, {
-    [ccButton.secondary]: defaultVariant && !small && !quiet && !loading && !props.disabled,
-    [ccButton.secondaryDisabled]: defaultVariant && !small && !quiet && !loading && props.disabled,
-    [ccButton.secondarySmall]: defaultVariant && small && !quiet && !loading && !props.disabled,
-    [ccButton.secondarySmallDisabled]: defaultVariant && small && !quiet && !loading && props.disabled,
-    [ccButton.secondarySmallLoading]: defaultVariant && small && !quiet && loading,
-    [ccButton.secondarySmallQuiet]: defaultVariant && small && quiet && !loading && !props.disabled,
-    [ccButton.secondarySmallQuietDisabled]: defaultVariant && small && quiet && !loading && props.disabled,
-    [ccButton.secondarySmallQuietLoading]: defaultVariant && small && quiet && loading,
-    [ccButton.secondaryQuiet]: defaultVariant && !small && quiet && !loading && !props.disabled,
-    [ccButton.secondaryQuietDisabled]: defaultVariant && !small && quiet && !loading && props.disabled,
-    [ccButton.secondaryQuietLoading]: defaultVariant && !small && quiet && loading,
-    [ccButton.secondaryLoading]: defaultVariant && !small && !quiet && loading,
+  const primaryClasses = [
+    !small && !quiet && !loading && (disabled ? ccButton.primaryDisabled : ccButton.primary),
+    small && !quiet && !loading && (disabled ? ccButton.primarySmallDisabled : ccButton.primarySmall),
+    small && quiet && !loading && (disabled ? ccButton.primarySmallQuietDisabled : ccButton.primarySmallQuiet),
+    small && loading && (quiet ? ccButton.primarySmallQuietLoading : ccButton.primarySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.primaryQuietDisabled : ccButton.primaryQuiet),
+    !small && loading && (quiet ? ccButton.primaryQuietLoading : ccButton.primaryLoading),
+  ];
 
-    [ccButton.primary]: primary && !small && !quiet && !loading && !props.disabled,
-    [ccButton.primaryDisabled]: primary && !small && !quiet && !loading && props.disabled,
-    [ccButton.primarySmall]: primary && small && !quiet && !loading && !props.disabled,
-    [ccButton.primarySmallDisabled]: primary && small && !quiet && !loading && props.disabled,
-    [ccButton.primarySmallQuiet]: primary && small && quiet && !loading && !props.disabled,
-    [ccButton.primarySmallQuietDisabled]: primary && small && quiet && !loading && props.disabled,
-    [ccButton.primarySmallLoading]: primary && small && !quiet && loading,
-    [ccButton.primarySmallQuietLoading]: primary && small && quiet && loading,
-    [ccButton.primaryQuiet]: primary && !small && quiet && !loading && !props.disabled,
-    [ccButton.primaryQuietDisabled]: primary && !small && quiet && !loading && props.disabled,
-    [ccButton.primaryQuietLoading]: primary && !small && quiet && loading,
-    [ccButton.primaryLoading]: primary && !small && !quiet && loading,
+  const secondaryClasses = [
+    !small && !quiet && !loading && (disabled ? ccButton.secondaryDisabled : ccButton.secondary),
+    small && !quiet && !loading && (disabled ? ccButton.secondarySmallDisabled : ccButton.secondarySmall),
+    small && quiet && !loading && (disabled ? ccButton.secondarySmallQuietDisabled : ccButton.secondarySmallQuiet),
+    small && loading && (quiet ? ccButton.secondarySmallQuietLoading : ccButton.secondarySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.secondaryQuietDisabled : ccButton.secondaryQuiet),
+    !small && loading && (quiet ? ccButton.secondaryQuietLoading : ccButton.secondaryLoading),
+  ];
 
-    [ccButton.utility]: utility && !small && !quiet && !loading && !props.disabled,
-    [ccButton.utilityDisabled]: utility && !small && !quiet && !loading && props.disabled,
-    [ccButton.utilitySmall]: utility && small && !quiet && !loading && !props.disabled,
-    [ccButton.utilitySmallDisabled]: utility && small && !quiet && !loading && props.disabled,
-    [ccButton.utilitySmallQuiet]: utility && small && quiet && !loading && !props.disabled,
-    [ccButton.utilitySmallQuietDisabled]: utility && small && quiet && !loading && props.disabled,
-    [ccButton.utilitySmallLoading]: utility && small && !quiet && loading,
-    [ccButton.utilitySmallQuietLoading]: utility && small && quiet && loading,
-    [ccButton.utilityQuiet]: utility && !small && quiet && !loading && !props.disabled,
-    [ccButton.utilityQuietDisabled]: utility && !small && quiet && !loading && props.disabled,
-    [ccButton.utilityQuietLoading]: utility && !small && quiet && loading,
-    [ccButton.utilityLoading]: utility && !small && !quiet && loading,
+  const utilityClasses = [
+    !small && !quiet && !loading && (disabled ? ccButton.utilityDisabled : ccButton.utility),
+    small && !quiet && !loading && (disabled ? ccButton.utilitySmallDisabled : ccButton.utilitySmall),
+    small && quiet && !loading && (disabled ? ccButton.utilitySmallQuietDisabled : ccButton.utilitySmallQuiet),
+    small && loading && (quiet ? ccButton.utilitySmallQuietLoading : ccButton.utilitySmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.utilityQuietDisabled : ccButton.utilityQuiet),
+    !small && loading && (quiet ? ccButton.utilityQuietLoading : ccButton.utilityLoading),
+  ];
 
-    [ccButton.negative]: negative && !small && !quiet && !loading && !props.disabled,
-    [ccButton.negativeDisabled]: negative && !small && !quiet && !loading && props.disabled,
-    [ccButton.negativeSmall]: negative && small && !quiet && !loading && !props.disabled,
-    [ccButton.negativeSmallDisabled]: negative && small && !quiet && !loading && props.disabled,
-    [ccButton.negativeSmallQuiet]: negative && small && quiet && !loading && !props.disabled,
-    [ccButton.negativeSmallQuietDisabled]: negative && small && quiet && !loading && props.disabled,
-    [ccButton.negativeSmallLoading]: negative && small && !quiet && loading,
-    [ccButton.negativeSmallQuietLoading]: negative && small && quiet && loading,
-    [ccButton.negativeQuiet]: negative && !small && quiet && !loading && !props.disabled,
-    [ccButton.negativeQuietDisabled]: negative && !small && quiet && !loading && props.disabled,
-    [ccButton.negativeQuietLoading]: negative && !small && quiet && loading,
-    [ccButton.negativeLoading]: negative && !small && !quiet && loading,
+  const negativeClasses = [
+    !small && !quiet && !loading && (disabled ? ccButton.negativeDisabled : ccButton.negative),
+    small && !quiet && !loading && (disabled ? ccButton.negativeSmallDisabled : ccButton.negativeSmall),
+    small && quiet && !loading && (disabled ? ccButton.negativeSmallQuietDisabled : ccButton.negativeSmallQuiet),
+    small && loading && (quiet ? ccButton.negativeSmallQuietLoading : ccButton.negativeSmallLoading),
+    !small && quiet && !loading && (disabled ? ccButton.negativeQuietDisabled : ccButton.negativeQuiet),
+    !small && loading && (quiet ? ccButton.negativeQuietLoading : ccButton.negativeLoading),
+  ];
 
-    [ccButton.pill]: pill && !small && !loading,
-    [ccButton.pillSmall]: pill && small && !loading,
-    [ccButton.pillLoading]: pill && !small && loading,
-    [ccButton.pillSmallLoading]: pill && small && loading,
-    [ccButton.link]: link && !small,
-    [ccButton.linkSmall]: link && small,
-    [ccButton.linkAsButton]: !!props.href,
-    [ccButton.fullWidth]: fullWidth,
-    [ccButton.contentWidth]: !fullWidth,
-  });
+  const pillClasses = [
+    !loading && (!small ? ccButton.pill : ccButton.pillSmall),
+    loading && (!small ? ccButton.pillLoading : ccButton.pillSmallLoading),
+  ];
+
+  const linkClasses = [small ? ccButton.linkSmall : ccButton.link];
+
+  const classes = classNames(props.className, [
+    primary && primaryClasses,
+    defaultVariant && secondaryClasses,
+    utility && utilityClasses,
+    negative && negativeClasses,
+    pill && pillClasses,
+    link && linkClasses,
+    href && ccButton.linkAsButton,
+    fullWidth ? ccButton.fullWidth : ccButton.contentWidth,
+  ]);
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (props.onClick) {
@@ -91,27 +81,25 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
 
   activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
-  const ariaValueTextLoading = i18n._(
-    /*i18n*/ {
-      id: 'button.aria.loading',
-      message: 'Loading...',
-      comment: 'Screenreader message for buttons that are loading',
-    },
-  );
+  const ariaValueTextLoading = i18n._({
+    id: 'button.aria.loading',
+    message: 'Loading...',
+    comment: 'Screenreader message for buttons that are loading',
+  });
 
   return (
     <>
-      {props.href ? (
+      {href ? (
         <a
           onClick={handleClick}
           aria-current={props['aria-current']}
-          href={props.disabled ? undefined : props.href}
+          href={disabled ? undefined : href}
           target={props.target}
           rel={props.target === '_blank' ? props.rel || 'noopener' : undefined}
           ref={ref as Ref<HTMLAnchorElement>}
           className={classes}
           role="button"
-          aria-disabled={props.disabled}>
+          aria-disabled={disabled}>
           {props.children}
         </a>
       ) : (
@@ -120,7 +108,8 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
           type={props.type || 'button'}
           ref={ref as Ref<HTMLButtonElement>}
           className={classes}
-          role={props.link ? 'link' : 'button'}>
+          role={props.link ? 'link' : 'button'}
+          disabled={disabled}>
           {props.children}
         </button>
       )}

@@ -20,7 +20,7 @@ const Pages = React.forwardRef<HTMLDivElement, PagesProps>(({ children, numPages
   const pages = Array.from(Array(to - from).keys()).map((_, i) => from + i + 1);
 
   return (
-    <div {...props} className={classNames(ccPagination.pages, className)} ref={ref}>
+    <div {...props} className={classNames(className, ccPagination.pages)} ref={ref}>
       {pages.map((page) =>
         React.cloneElement(children(page), {
           key: page,

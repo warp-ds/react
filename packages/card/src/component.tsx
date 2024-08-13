@@ -6,24 +6,21 @@ import { card as ccCard } from '@warp-ds/css/component-classes';
 import { CardProps } from './props.js';
 
 export function Card(props: CardProps) {
-  const { as = 'div', children, flat, ...rest } = props;
+  const { as = 'div', children, flat, selected, ...rest } = props;
 
   return React.createElement(
     as,
     {
       ...rest,
-      className: classNames(props.className, {
-        [ccCard.card]: true,
-        [ccCard.cardShadow]: !props.flat,
-        [ccCard.cardSelected]: !props.flat && props.selected,
-        [ccCard.cardFlat]: props.flat,
-        [props.selected ? ccCard.cardFlatSelected : ccCard.cardFlatUnselected]: props.flat,
-      }),
+      className: classNames(props.className, [
+        ccCard.base,
+        flat ? ccCard.flat : ccCard.shadow,
+        selected && !flat && ccCard.selected,
+        selected && flat ? ccCard.flatSelected : ccCard.flatUnselected,
+      ]),
     },
     <>
-      {!props.flat && (
-        <div className={classNames([ccCard.cardOutline, props.selected ? ccCard.cardOutlineSelected : ccCard.cardOutlineUnselected])} />
-      )}
+      {!props.flat && <div className={classNames([ccCard.outline, props.selected ? ccCard.outlineSelected : ccCard.outlineUnselected])} />}
 
       {children}
     </>,

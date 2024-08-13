@@ -26,7 +26,7 @@ const CurrentPage = React.forwardRef<HTMLDivElement, CurrentPageProps>(({ childr
     });
 
   return (
-    <span {...props} className={classNames(ccPagination.currentPage, className)} ref={ref}>
+    <span {...props} className={classNames(className, ccPagination.currentPage)} ref={ref}>
       {label}
     </span>
   );
