@@ -6,6 +6,7 @@ import { breadcrumbs as ccBreadcrumbs } from '@warp-ds/css/component-classes';
 
 import { activateI18n } from '../../i18n.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -14,17 +15,15 @@ import type { BreadcrumbsProps } from './props.js';
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   const ariaLabel =
     props['aria-label'] ||
-    i18n._(
-      /*i18n*/ {
-        id: 'breadcrumbs.ariaLabel',
-        message: 'You are here',
-        comment: 'Default screenreader message for the breadcrumb component',
-      },
-    );
+    i18n._({
+      id: 'breadcrumbs.ariaLabel',
+      message: 'You are here',
+      comment: 'Default screenreader message for the breadcrumb component',
+    });
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);

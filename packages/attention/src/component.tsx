@@ -9,6 +9,7 @@ import IconClose16 from '@warp-ds/icons/react/close-16';
 import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
 import { activateI18n } from '../../i18n.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -53,9 +54,7 @@ export function Attention(props: AttentionProps) {
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages);
-
-  const wrapperClasses = classNames(ccAttention.base, variantClasses[getVariant(rest, variantClasses)].wrapper);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   const [actualDirection, setActualDirection] = useState(placement);
   // Don't show attention element before its position is computed on first render
@@ -133,6 +132,16 @@ export function Attention(props: AttentionProps) {
 
   const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
 
+  const containerClasses = classNames(className, [
+    !props.callout && ccAttention.notCallout,
+    {
+      invisible: !isVisible && !props.callout,
+      hidden: !isVisible && !props.tooltip,
+    },
+  ]);
+
+  const wrapperClasses = classNames([ccAttention.base, variantClasses[getVariant(rest, variantClasses)].wrapper]);
+
   useEffect(() => {
     // targetEl can be undefined if props.callout is true.
     // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
@@ -163,17 +172,7 @@ export function Attention(props: AttentionProps) {
   useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
 
   return !props.callout && initialTargetEl === undefined ? null : (
-    <div
-      data-testid="attention-el"
-      className={classNames(
-        {
-          [ccAttention.notCallout]: !props.callout,
-          invisible: !isVisible && !props.callout,
-          hidden: !isVisible && !props.tooltip,
-        },
-        className,
-      )}
-      ref={attentionEl}>
+    <div data-testid="attention-el" className={containerClasses} ref={attentionEl}>
       <div
         role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
         aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
@@ -184,13 +183,11 @@ export function Attention(props: AttentionProps) {
         {canClose && (
           <button
             type="button"
-            aria-label={i18n._(
-              /*i18n*/ {
-                id: 'attention.aria.close',
-                message: 'Close',
-                comment: 'Aria label for the close button in attention',
-              },
-            )}
+            aria-label={i18n._({
+              id: 'attention.aria.close',
+              message: 'Close',
+              comment: 'Aria label for the close button in attention',
+            })}
             onClick={onDismiss}
             onKeyDown={(event) => {
               if (!props.onDismiss) return;
@@ -209,11 +206,11 @@ export function Attention(props: AttentionProps) {
 
 const Arrow = forwardRef<HTMLDivElement, ArrowProps>(({ direction, ...rest }, ref) => {
   const arrowDirection = opposites[direction];
-  const arrowClasses = classNames(
+  const arrowClasses = classNames([
     ccAttention.arrowBase,
     ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
     variantClasses[getVariant(rest, variantClasses)].arrow,
-  );
+  ]);
 
   return <div data-testid="attention-arrow-el" ref={ref} className={arrowClasses} />;
 });

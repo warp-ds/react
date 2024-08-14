@@ -31,8 +31,8 @@ describe('Pagination component', () => {
   });
 
   it('calls on change function on click of next page', () => {
-    expect(screen.getByRole('link', { name: 'Next page, icon' })).toHaveTextContent('Rightward arrow');
-    fireEvent.click(screen.getByRole('link', { name: 'Next page, icon' }));
+    expect(screen.getByRole('link', { name: 'Next page, Rightward arrow icon' })).toHaveTextContent('Rightward arrow');
+    fireEvent.click(screen.getByRole('link', { name: 'Next page, Rightward arrow icon' }));
 
     expect(onChangeFunction).toHaveBeenCalledTimes(1);
     expect(onChangeFunction).toHaveBeenCalledWith(1);
@@ -42,8 +42,8 @@ describe('Pagination component', () => {
 it('calls on change function on click of previous page', () => {
   render(<Pagination currentPage={13} numPages={13} lastPage={13} createHref={(page) => `?page=${page}`} onChange={onChangeFunction} />);
 
-  expect(screen.getByRole('link', { name: 'Previous page, icon' })).toHaveTextContent('Leftward arrow');
-  fireEvent.click(screen.getByRole('link', { name: 'Previous page, icon' }));
+  expect(screen.getByRole('link', { name: 'Previous page, Leftward arrow icon' })).toHaveTextContent('Leftward arrow');
+  fireEvent.click(screen.getByRole('link', { name: 'Previous page, Leftward arrow icon' }));
 
   expect(onChangeFunction).toHaveBeenCalledTimes(1);
   expect(onChangeFunction).toHaveBeenCalledWith(12);

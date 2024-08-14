@@ -79,8 +79,8 @@ it('renders checkbox with invalid', () => {
       helpText="This is an error message"
     />,
   );
-  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
-  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
+  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.base);
+  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.colorInvalid);
 });
 
 it('renders checkbox with disabled', () => {
@@ -189,8 +189,8 @@ it('renders radio with invalid', () => {
       helpText="This is an error message"
     />,
   );
-  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.label);
-  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.helpTextColorInvalid);
+  expect(screen.getByText('Favorite color')).toHaveClass(ccLabel.base);
+  expect(screen.getByText('This is an error message')).toHaveClass(ccHelpText.colorInvalid);
 });
 
 it('renders radio with no visible label', () => {

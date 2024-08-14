@@ -16,7 +16,7 @@ msgstr ""
 
 #. Empty circle
 #. js-lingui-explicit-id
-#: packages/steps/src/step.tsx:29
+#: packages/steps/src/step.tsx:27
 msgid "steps.aria.emptyCircle"
 msgstr "Empty circle"
 
@@ -28,7 +28,6 @@ msgstr "Step indicator active circle"
 
 #. Completed circle
 #. js-lingui-explicit-id
-#: packages/steps/src/step.tsx:15
+#: packages/steps/src/step.tsx:17
 msgid "steps.aria.completed"
 msgstr "Step indicator completed circle"
-

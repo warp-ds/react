@@ -18,6 +18,7 @@ import { activateI18n } from '../../i18n.js';
 import { TextField } from '../../textfield/src/index.js';
 import { useId } from '../../utils/src/index.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
@@ -34,7 +35,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   // Options list open boolean
   const [isOpen, setOpen] = useState(false);
@@ -71,6 +72,13 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
   const navigationValueOrInputValue = navigationOption?.value || value;
 
+  const optionClasses = (option: OptionWithIdAndMatch) =>
+    classNames(
+      ccCombobox.option,
+      OPTION_CLASS_NAME,
+      navigationOption?.id === option?.id ? ccCombobox.optionSelected : ccCombobox.optionUnselected,
+    );
+
   // Set and filter available options based on user input
   useEffect(() => {
     setCurrentOptions(
@@ -80,7 +88,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     );
 
     // eslint-disable-next-line
-    }, [options, disableStaticFiltering]);
+  }, [options, disableStaticFiltering, value]);
 
   useEffect(() => {
     if (disableStaticFiltering && currentOptions.length && currentOptions.length === 1 && !currentOptions.some((o) => o.value === value)) {
@@ -238,7 +246,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
       <div
         hidden={!isOpen || !currentOptions.length}
-        className={classNames(listClassName, ccCombobox.combobox)}
+        className={classNames(listClassName, ccCombobox.base)}
         style={{
           zIndex: 3, // Force popover above misc. page content (mobile safari issue)
         }}>
@@ -285,10 +293,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
                     handleSelect(option);
                   });
                 }}
-                className={classNames({
-                  [`${ccCombobox.option} ${OPTION_CLASS_NAME}`]: true,
-                  [ccCombobox.optionSelected]: navigationOption?.id === option.id,
-                })}>
+                className={optionClasses(option)}>
                 {matchTextSegments || highlightValueMatch ? match : display}
               </li>
             );

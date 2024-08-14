@@ -40,6 +40,7 @@ export default function config(env) {
           'storybook-static/**',
           'tests/',
           'tests/components/__snapshots__/**',
+          'dist/**',
         ],
       },
     },

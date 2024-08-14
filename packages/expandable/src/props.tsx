@@ -22,12 +22,6 @@ export type ExpandableProps = {
   bleed?: boolean;
 
   /**
-   * Styles the box with light blue color
-   * @default false
-   */
-  info?: boolean;
-
-  /**
    * The state of the component, either true for expanded or false for closed.
    * @default false
    */

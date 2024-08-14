@@ -6,22 +6,13 @@ import { tab as ccTab } from '@warp-ds/css/component-classes';
 import type { TabProps } from './props.js';
 
 const setup = ({ className, isActive, setActive, ...rest }: any) => ({
-  tab: classNames(ccTab.tab, {
-    [className]: !!className,
-    [ccTab.tabActive]: isActive,
-  }),
-  icon: classNames(ccTab.icon, {
-    [ccTab.iconUnderlinedActive]: isActive,
-  }),
-  content: classNames(ccTab.contentUnderlined, {
-    [ccTab.contentUnderlinedActive]: isActive,
-  }),
+  tab: classNames(className, [ccTab.base, isActive ? ccTab.active : ccTab.inactive]),
   attrs: { ...rest },
 });
 
 export function Tab(props: TabProps) {
   const { children, label, setActive = () => {}, name, onClick, isActive } = props;
-  const { tab, icon, content, attrs } = setup(props);
+  const { tab, attrs } = setup(props);
   const { over, ...rest } = attrs;
 
   const handleClick = (e) => {
@@ -40,12 +31,12 @@ export function Tab(props: TabProps) {
       tabIndex={isActive ? 0 : -1}
       className={tab}
       onClick={handleClick}>
-      {!children && <span className={content}>{label}</span>}
+      {!children && <span className={ccTab.contentUnderlined}>{label}</span>}
 
       {children && over && (
         <>
-          <span className={icon}>{children}</span>
-          <span className={content}>{label}</span>
+          <span className={ccTab.icon}>{children}</span>
+          <span className={ccTab.contentUnderlined}>{label}</span>
         </>
       )}
 

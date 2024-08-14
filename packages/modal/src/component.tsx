@@ -11,20 +11,21 @@ import { setup, teardown } from 'scroll-doctor';
 import { activateI18n } from '../../i18n.js';
 import { useId } from '../../utils/src/index.js';
 
+import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 import type { ModalProps } from './props.js';
 
 /**
- * A Modal dialog that renders on top the page
+ * A Modal dialog that renders on top of the page
  */
 export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, ...props }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const id = useId(props.id);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  activateI18n(enMessages, nbMessages, fiMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
 
   useEffect(
     () =>
@@ -59,9 +60,7 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
           role="dialog"
           aria-modal="true"
           id={id}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+          onClick={(e) => e.stopPropagation()}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy ?? (props.title && !ariaLabel ? `${id}__title` : undefined)}
           onKeyDown={(event) => {
@@ -70,22 +69,20 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               props.onDismiss();
             }
           }}
-          className={ccModal.modal}
+          className={ccModal.base}
           tabIndex={-1}>
           <div className={ccModal.title}>
             {typeof props.left === 'boolean' && props.left ? (
               <button
                 type="button"
-                aria-label={i18n._(
-                  /*i18n*/ {
-                    id: 'modal.aria.back',
-                    message: 'Back',
-                    comment: 'Aria label for the back button in modal',
-                  },
-                )}
-                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft)}
+                aria-label={i18n._({
+                  id: 'modal.aria.back',
+                  message: 'Back',
+                  comment: 'Aria label for the back button in modal',
+                })}
+                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft])}
                 onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}>
-                <IconArrowLeft16 className={classNames(ccModal.titleButtonIcon)} />
+                <IconArrowLeft16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (
               props.left
@@ -93,10 +90,10 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
 
             <div
               id={`${id}__title`}
-              className={classNames(
+              className={classNames([
                 ccModal.transitionTitle,
                 !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
-              )}>
+              ])}>
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
 
@@ -104,15 +101,13 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               <button
                 ref={closeButtonRef}
                 type="button"
-                aria-label={i18n._(
-                  /*i18n*/ {
-                    id: 'modal.aria.close',
-                    message: 'Close',
-                    comment: 'Aria label for the close button in modal',
-                  },
-                )}
+                aria-label={i18n._({
+                  id: 'modal.aria.close',
+                  message: 'Close',
+                  comment: 'Aria label for the close button in modal',
+                })}
                 onClick={props.onDismiss}
-                className={classNames(ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight)}>
+                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight])}>
                 <IconClose16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (

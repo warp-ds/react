@@ -1,3 +1,77 @@
+# [2.0.0-next.4](https://github.com/warp-ds/react/compare/v2.0.0-next.3...v2.0.0-next.4) (2024-08-13)
+
+
+### Bug Fixes
+
+* **cc:** no classes styling the same CSS properties are set on one element ([#274](https://github.com/warp-ds/react/issues/274)) ([694c156](https://github.com/warp-ds/react/commit/694c156e7cc36deaeacda2c7c26d0d22abc829ce))
+
+
+### BREAKING CHANGES
+
+* **cc:** Expandable info prop has been removed
+
+# [2.0.0-next.3](https://github.com/warp-ds/react/compare/v2.0.0-next.2...v2.0.0-next.3) (2024-07-11)
+
+
+### Bug Fixes
+
+* update dependencies ([#259](https://github.com/warp-ds/react/issues/259)) ([d1a546d](https://github.com/warp-ds/react/commit/d1a546dc4510bef010df331b6c0ba83dd967edab))
+
+# [2.0.0-next.2](https://github.com/warp-ds/react/compare/v2.0.0-next.1...v2.0.0-next.2) (2024-07-04)
+
+
+### Bug Fixes
+
+* support danish locale ([#256](https://github.com/warp-ds/react/issues/256)) ([e0e9124](https://github.com/warp-ds/react/commit/e0e912439a5c4141796a49902dcdfc68afe86b1d))
+
+# [2.0.0-next.1](https://github.com/warp-ds/react/compare/v1.6.0...v2.0.0-next.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* remove deprecated classes ([#252](https://github.com/warp-ds/react/issues/252)) ([d4ffe4c](https://github.com/warp-ds/react/commit/d4ffe4ce97a3d7b3484a583b795ff1e6d80b8c87))
+
+
+### BREAKING CHANGES
+
+* Clickable prop, ccBox.infoClickable, ccBox.neutralClickable and
+ccBox.borderedClickable classes have been removed from the box component.
+
+* fix(switch): remove deprecated switch class
+
+switch class has been deprecated and removed from @warp-ds/css, and should also be removed from the
+switch component.
+* switch class has been removed from the switch component.
+
+* fix: update @warp-ds/css to latest next-version
+
+we have recently made a major prerelease of the @warp-ds/css and have removed deprecated tokens and
+classes, that needs to also be updated in the react-repo
+
+* fix: make @warp-ds/css also as a peerDependency and bump to latest next-version
+
+* fix(textarea): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid prop instead
+* error prop has been removed and replaced by invalid prop
+
+* fix(textfield): remove deprecated error prop
+
+error prop has been deprecated for a while. Use invalid instead.
+* error prop has been removed and replaced by invalid prop
+
+* fix(card): remove deprecated onClick prop
+
+onClick prop has been deprecated for a while. Use instead Clickable component to handle click events
+in Cards
+* onClick prop has been removed and its tests
+
+* fix(card): fix linting issues and remove commented out tests for onClick prop
+
+* fix: update pnpm/action-setup@v2 to v4
+
+* fix: bump stylesheet to v2
+
 # [1.6.0](https://github.com/warp-ds/react/compare/v1.5.0...v1.6.0) (2024-07-03)
 
 
