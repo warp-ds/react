@@ -1,3 +1,10 @@
+## [2.0.1-next.1](https://github.com/warp-ds/react/compare/v2.0.0...v2.0.1-next.1) (2024-08-15)
+
+
+### Bug Fixes
+
+* **badge:** remove deprecated 'notification' example ([#276](https://github.com/warp-ds/react/issues/276)) ([2842810](https://github.com/warp-ds/react/commit/284281070f60c9f603e4dd8d440596da57df8470))
+
 # [2.0.0](https://github.com/warp-ds/react/compare/v1.6.0...v2.0.0) (2024-08-14)
 
 
