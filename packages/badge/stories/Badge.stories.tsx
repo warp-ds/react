@@ -27,9 +27,6 @@ export const Variants = () => (
     <Badge as="li" variant="disabled">
       disabled badge
     </Badge>
-    <Badge as="li" variant="notification">
-      notification badge
-    </Badge>
     <Badge as="li" variant="price">
       price badge
     </Badge>
