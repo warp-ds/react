@@ -47,11 +47,7 @@ const config: LinguiConfig = {
       path: 'packages/steps/src/locales/{locale}/messages',
     },
     {
-      include: ['packages/attention/src/**/*.{ts,tsx}'],
-      path: 'packages/attention/src/locales/{locale}/messages',
-    },
-    {
-      include: ['packages/_helpers/attention.tsx'],
+      include: ['packages/attention/src/**/*.{ts,tsx}', 'packages/_helpers/attention.tsx'],
       path: 'packages/attention/src/locales/{locale}/messages',
     },
     {

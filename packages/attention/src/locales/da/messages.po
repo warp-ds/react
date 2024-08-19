@@ -17,17 +17,17 @@ msgstr ""
 "X-Crowdin-File-ID: 12398\n"
 "PO-Revision-Date: \n"
 
-#. Aria label for the close button in attention
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:186
-#~ msgid "attention.aria.close"
-#~ msgstr "Luk"
-
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:66
 msgid "attention.aria.callout"
 msgstr "En grøn taleboble der introducerer noget nyt"
+
+#. Aria label for the close button in attention
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:186
+msgid "attention.aria.close"
+msgstr "Luk"
 
 #. Default screenreader message for highlighted speech bubble in the attention component
 #. js-lingui-explicit-id
