@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/warp-ds/react/compare/v2.0.0...v2.0.1) (2024-08-20)
+
+
+### Bug Fixes
+
+* **badge:** remove deprecated 'notification' example ([#276](https://github.com/warp-ds/react/issues/276)) ([2842810](https://github.com/warp-ds/react/commit/284281070f60c9f603e4dd8d440596da57df8470))
+* lingui config for attention component ([#280](https://github.com/warp-ds/react/issues/280)) ([ac3903a](https://github.com/warp-ds/react/commit/ac3903a20708d8603cd8f74da02d7dd81343d8a7))
+
 ## [2.0.1-next.2](https://github.com/warp-ds/react/compare/v2.0.1-next.1...v2.0.1-next.2) (2024-08-19)
 
 
