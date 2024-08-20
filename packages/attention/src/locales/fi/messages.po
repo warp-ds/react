@@ -15,19 +15,18 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File-ID: 12398\n"
-"PO-Revision-Date: \n"
-
-#. Aria label for the close button in attention
-#. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:186
-#~ msgid "attention.aria.close"
-#~ msgstr "Sulje"
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:66
 msgid "attention.aria.callout"
 msgstr "Vihreä puhekupla, joka esittelee jotain uutta"
+
+#. Aria label for the close button in attention
+#. js-lingui-explicit-id
+#: packages/attention/src/component.tsx:186
+msgid "attention.aria.close"
+msgstr "Sulje"
 
 #. Default screenreader message for highlighted speech bubble in the attention component
 #. js-lingui-explicit-id
@@ -70,3 +69,4 @@ msgstr "Valkoinen puhekupla, joka tarjoaa lisätietoa"
 #: packages/_helpers/attention.tsx:60
 msgid "attention.aria.tooltip"
 msgstr "Musta puhekupla, joka tarjoaa täydentävää tietoa"
+

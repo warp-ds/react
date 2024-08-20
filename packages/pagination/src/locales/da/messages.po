@@ -15,7 +15,6 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File-ID: 15506\n"
-"PO-Revision-Date: \n"
 
 #. Default screenreader message for first page link in the pagination component
 #. js-lingui-explicit-id
@@ -62,3 +61,4 @@ msgstr "Sider"
 #: packages/pagination/src/PrevPage.tsx:42
 msgid "pagination.aria.prev-page"
 msgstr "Forrige side"
+
