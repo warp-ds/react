@@ -6,9 +6,9 @@
   "license": "Apache-2.0",
   "exports": {
     ".": {
-      "default": "./dist/npm/index.js",
       "import": "./dist/npm/index.js",
-      "require": "./dist/npm/index.cjs"
+      "require": "./dist/npm/index.cjs",
+      "default": "./dist/npm/index.js"
     },
     "./cjs": "./dist/npm/index.cjs",
     "./components/alert": "./dist/npm/packages/alert/index.js",
