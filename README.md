@@ -29,7 +29,7 @@ pnpm add @warp-ds/react
 
 #### Using a direct link to Eik
 ```html
-<script src="https://assets.finn.no/pkg/@warp-ds/react/v1"></script>
+<script src="https://assets.finn.no/pkg/@warp-ds/react/v2"></script>
 ```
 ### Testing
 
