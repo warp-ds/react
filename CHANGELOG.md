@@ -1,3 +1,10 @@
+## [2.0.2-next.1](https://github.com/warp-ds/react/compare/v2.0.1...v2.0.2-next.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* Release fix for nextjs export ordering ([c41ea3b](https://github.com/warp-ds/react/commit/c41ea3b088627d22e881a5ded8d5d545d370117d))
+
 ## [2.0.1](https://github.com/warp-ds/react/compare/v2.0.0...v2.0.1) (2024-08-20)
 
 
