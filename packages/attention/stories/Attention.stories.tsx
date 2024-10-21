@@ -15,7 +15,7 @@ export function Callout() {
       <Box info>
         <h1 aria-details="callout-bubbletext">I am a box full of info</h1>
       </Box>
-      <Attention callout placement="right" isShowing={true} className="ml-8">
+      <Attention callout placement="right" isShowing={true}>
         <p id="callout-bubbletext" style={{ width: 200 }}>
           I'm a callout because that box over there is new or something
         </p>
@@ -29,7 +29,7 @@ export function CalloutResettingRoleAndAriaLabel() {
       <Box info>
         <h1 aria-details="callout-reset-bubbletext">I am a box full of info</h1>
       </Box>
-      <Attention callout role="" aria-label="" placement="right" isShowing={true} className="ml-8">
+      <Attention callout role="" aria-label="" placement="right" isShowing={true}>
         <p id="callout-reset-bubbletext" role="img" style={{ width: 200 }}>
           I'm a callout speech bubble with resetted role and aria-label attributes pointing left.
         </p>
@@ -213,7 +213,7 @@ export function PopoverIconAsTargetEl() {
           popover
           placement="bottom-end"
           distance={0}
-          skidding={2}
+          skidding={10}
           targetEl={targetEl}
           isShowing={show}
           id="popover-icon-target-el-attention-example">
