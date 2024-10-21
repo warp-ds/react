@@ -1,3 +1,10 @@
+## [2.0.2-next.2](https://github.com/warp-ds/react/compare/v2.0.2-next.1...v2.0.2-next.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* **attention:** bump to latest version of @warp-ds/core dependency ([#287](https://github.com/warp-ds/react/issues/287)) ([99ee9a9](https://github.com/warp-ds/react/commit/99ee9a9155b9789eaa058bf9ef7ef94a8c26ad33))
+
 ## [2.0.2-next.1](https://github.com/warp-ds/react/compare/v2.0.1...v2.0.2-next.1) (2024-10-18)
 
 
