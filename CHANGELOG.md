@@ -1,3 +1,10 @@
+## [2.0.2-next.3](https://github.com/warp-ds/react/compare/v2.0.2-next.2...v2.0.2-next.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* Minify eik assets ([3e7d09c](https://github.com/warp-ds/react/commit/3e7d09c714675ddd22824c55d4d6fb6c37463a3b))
+
 ## [2.0.2-next.2](https://github.com/warp-ds/react/compare/v2.0.2-next.1...v2.0.2-next.2) (2024-10-21)
 
 
