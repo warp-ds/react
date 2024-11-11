@@ -1,3 +1,10 @@
+## [2.0.2-next.4](https://github.com/warp-ds/react/compare/v2.0.2-next.3...v2.0.2-next.4) (2024-11-11)
+
+
+### Bug Fixes
+
+* **tab:** set border on selected tab to fix SSR ([#290](https://github.com/warp-ds/react/issues/290)) ([ee904e9](https://github.com/warp-ds/react/commit/ee904e90d08809f4a43c04c4162b0d5588a22244))
+
 ## [2.0.2-next.3](https://github.com/warp-ds/react/compare/v2.0.2-next.2...v2.0.2-next.3) (2024-10-28)
 
 
