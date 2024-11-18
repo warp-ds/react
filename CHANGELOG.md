@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/warp-ds/react/compare/v2.0.2...v2.0.3) (2024-11-18)
+
+
+### Bug Fixes
+
+* **packages:** set @warp-ds/css peer-dependency to 2.0.1 ([#292](https://github.com/warp-ds/react/issues/292)) ([329418a](https://github.com/warp-ds/react/commit/329418a8e3181460d3c76c1ba87b60acd0521b02))
+
 ## [2.0.3-next.1](https://github.com/warp-ds/react/compare/v2.0.2...v2.0.3-next.1) (2024-11-18)
 
 
