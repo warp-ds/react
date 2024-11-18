@@ -1,14 +1,14 @@
 {
   "name": "@warp-ds/react",
-  "version": "2.0.1",
+  "version": "2.0.2-next.4",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
   "exports": {
     ".": {
-      "default": "./dist/npm/index.js",
       "import": "./dist/npm/index.js",
-      "require": "./dist/npm/index.cjs"
+      "require": "./dist/npm/index.cjs",
+      "default": "./dist/npm/index.js"
     },
     "./cjs": "./dist/npm/index.cjs",
     "./components/alert": "./dist/npm/packages/alert/index.js",
@@ -136,8 +136,8 @@
   "dependencies": {
     "@chbphone55/classnames": "2.0.0",
     "@lingui/core": "4.11.2",
-    "@warp-ds/core": "1.1.5",
-    "@warp-ds/css": "2.0.0",
+    "@warp-ds/core": "1.1.7",
+    "@warp-ds/css": "2.0.1",
     "@warp-ds/icons": "2.1.0",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",

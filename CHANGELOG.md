@@ -1,3 +1,31 @@
+## [2.0.2-next.4](https://github.com/warp-ds/react/compare/v2.0.2-next.3...v2.0.2-next.4) (2024-11-11)
+
+
+### Bug Fixes
+
+* **tab:** set border on selected tab to fix SSR ([#290](https://github.com/warp-ds/react/issues/290)) ([ee904e9](https://github.com/warp-ds/react/commit/ee904e90d08809f4a43c04c4162b0d5588a22244))
+
+## [2.0.2-next.3](https://github.com/warp-ds/react/compare/v2.0.2-next.2...v2.0.2-next.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* Minify eik assets ([3e7d09c](https://github.com/warp-ds/react/commit/3e7d09c714675ddd22824c55d4d6fb6c37463a3b))
+
+## [2.0.2-next.2](https://github.com/warp-ds/react/compare/v2.0.2-next.1...v2.0.2-next.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* **attention:** bump to latest version of @warp-ds/core dependency ([#287](https://github.com/warp-ds/react/issues/287)) ([99ee9a9](https://github.com/warp-ds/react/commit/99ee9a9155b9789eaa058bf9ef7ef94a8c26ad33))
+
+## [2.0.2-next.1](https://github.com/warp-ds/react/compare/v2.0.1...v2.0.2-next.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* Release fix for nextjs export ordering ([c41ea3b](https://github.com/warp-ds/react/commit/c41ea3b088627d22e881a5ded8d5d545d370117d))
+
 ## [2.0.1](https://github.com/warp-ds/react/compare/v2.0.0...v2.0.1) (2024-08-20)
 
 
