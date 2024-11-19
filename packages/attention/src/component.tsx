@@ -173,12 +173,12 @@ export function Attention(props: AttentionProps) {
 
   return !props.callout && initialTargetEl === undefined ? null : (
     <div data-testid="attention-el" className={containerClasses} ref={attentionEl}>
-      <div
-        role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
-        aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
-        className={wrapperClasses}
-        id={props.id}>
-        {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
+      <div className={wrapperClasses} id={props.id}>
+        <div
+          role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
+          aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}>
+          {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
+        </div>
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
           <button
