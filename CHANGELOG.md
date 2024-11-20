@@ -1,3 +1,10 @@
+## [2.0.4-next.1](https://github.com/warp-ds/react/compare/v2.0.3...v2.0.4-next.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* **attention:** move role and aria-label to attention-arrow wrapper ([#294](https://github.com/warp-ds/react/issues/294)) ([2934712](https://github.com/warp-ds/react/commit/2934712bf570d0f7421b0e2074d887bdc10e7927))
+
 ## [2.0.3](https://github.com/warp-ds/react/compare/v2.0.2...v2.0.3) (2024-11-18)
 
 
