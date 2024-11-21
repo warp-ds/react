@@ -14,11 +14,11 @@ export const SingleCard = () => (
         <p>Standard card (with box-shadow):</p>
         <Card>
           <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+          <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
           <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
+            <p className="text-xs s-text-subtle">DNB Eiendom</p>
             <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+            <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
             <p className="font-bold my-8">
               52 m
               <span
@@ -31,7 +31,7 @@ export const SingleCard = () => (
               </span>
               Totalpris: 4 869 039 kr
             </p>
-            <p className="text-14 text-gray-400 mb-0">
+            <p className="text-s text-gray-400 mb-0">
               Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
               <span className="text-gray-200">•</span> 2 soverom
             </p>
@@ -42,11 +42,11 @@ export const SingleCard = () => (
         <p>Flat card (without box-shadow):</p>
         <Card flat>
           <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+          <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
           <div className="p-16">
-            <p className="text-12 text-gray-300">Flat Card</p>
+            <p className="text-xs s-text-subtle">Flat Card</p>
             <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+            <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
             <p className="font-bold my-8">
               52 m
               <span
@@ -59,7 +59,7 @@ export const SingleCard = () => (
               </span>
               Totalpris: 4 869 039 kr
             </p>
-            <p className="text-14 text-gray-400 mb-0">
+            <p className="text-s text-gray-400 mb-0">
               Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
               <span className="text-gray-200">•</span> 2 soverom
             </p>
@@ -82,15 +82,15 @@ export const SelectableCard = () => {
           <p>Standard card (with box-shadow):</p>
           <Card selected={selected}>
             <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-            <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+            <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
             <div className="p-16">
-              <p className="text-12 text-gray-300">DNB Eiendom</p>
+              <p className="text-xs s-text-subtle">DNB Eiendom</p>
               <p>
                 <Clickable checkbox onClick={() => setSelected(!selected)}>
                   Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
                 </Clickable>
               </p>
-              <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+              <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
               <p className="font-bold my-8">
                 52 m
                 <span
@@ -103,7 +103,7 @@ export const SelectableCard = () => {
                 </span>
                 Totalpris: 4 869 039 kr
               </p>
-              <p className="text-14 text-gray-400 mb-0">
+              <p className="text-s text-gray-400 mb-0">
                 Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
                 <span className="text-gray-200">•</span> 2 soverom
               </p>
@@ -114,15 +114,15 @@ export const SelectableCard = () => {
           <p>Flat card (without box-shadow):</p>
           <Card flat selected={flatSelected}>
             <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-            <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+            <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
             <div className="p-16">
-              <p className="text-12 text-gray-300">DNB Eiendom</p>
+              <p className="text-xs s-text-subtle">DNB Eiendom</p>
               <p>
                 <Clickable checkbox onClick={() => setFlatSelected(!flatSelected)}>
                   Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
                 </Clickable>
               </p>
-              <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+              <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
               <p className="font-bold my-8">
                 52 m
                 <span
@@ -135,7 +135,7 @@ export const SelectableCard = () => {
                 </span>
                 Totalpris: 4 869 039 kr
               </p>
-              <p className="text-14 text-gray-400 mb-0">
+              <p className="text-s text-gray-400 mb-0">
                 Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
                 <span className="text-gray-200">•</span> 2 soverom
               </p>
@@ -154,11 +154,11 @@ export const GridCards = () => (
     <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 mb-20">
       <Card>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-        <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+        <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -171,7 +171,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -180,9 +180,9 @@ export const GridCards = () => (
       <Card>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/402x402" alt="Description" />
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -195,7 +195,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -204,9 +204,9 @@ export const GridCards = () => (
       <Card>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/404x404" alt="Description" />
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -219,7 +219,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -230,11 +230,11 @@ export const GridCards = () => (
     <div className="space-y-32 md:space-y-0 md:grid grid-cols-3 gap-32 mb-20">
       <Card flat>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-        <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+        <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -247,7 +247,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -256,9 +256,9 @@ export const GridCards = () => (
       <Card flat>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/402x402" alt="Description" />
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -271,7 +271,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -280,9 +280,9 @@ export const GridCards = () => (
       <Card flat>
         <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/404x404" alt="Description" />
         <div className="p-16">
-          <p className="text-12 text-gray-300">DNB Eiendom</p>
+          <p className="text-xs s-text-subtle">DNB Eiendom</p>
           <p>Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.</p>
-          <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+          <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
           <p className="font-bold my-8">
             52 m
             <span
@@ -295,7 +295,7 @@ export const GridCards = () => (
             </span>
             Totalpris: 4 869 039 kr
           </p>
-          <p className="text-14 text-gray-400 mb-0">
+          <p className="text-s text-gray-400 mb-0">
             Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
             <span className="text-gray-200">•</span> 2 soverom
           </p>
@@ -314,9 +314,9 @@ export const AnchorCard = () => (
         <Card>
           <div aria-owns="title_id"></div>
           <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+          <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
           <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
+            <p className="text-xs s-text-subtle">DNB Eiendom</p>
             <h3 className="text-16 font-normal text-gray-800" id="title_id">
               <Clickable
                 href="//finn.no"
@@ -326,7 +326,7 @@ export const AnchorCard = () => (
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+            <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
             <p className="font-bold my-8">
               52 m
               <span
@@ -339,7 +339,7 @@ export const AnchorCard = () => (
               </span>
               Totalpris: 4 869 039 kr
             </p>
-            <p className="text-14 text-gray-400 mb-0">
+            <p className="text-s text-gray-400 mb-0">
               Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
               <span className="text-gray-200">•</span> 2 soverom
             </p>
@@ -351,9 +351,9 @@ export const AnchorCard = () => (
         <Card flat>
           <div aria-owns="title_id"></div>
           <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
-          <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
+          <p className="absolute top-12 left-12 s-bg-info-subtle-active text-aqua-900 p-4 rounded-4 text-xs">Ukens bolig</p>
           <div className="p-16">
-            <p className="text-12 text-gray-300">DNB Eiendom</p>
+            <p className="text-xs s-text-subtle">DNB Eiendom</p>
             <h3 className="text-16 font-normal text-gray-800" id="title_id">
               <Clickable
                 href="//finn.no"
@@ -363,7 +363,7 @@ export const AnchorCard = () => (
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
-            <p className="text-14 text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
+            <p className="text-s text-gray-400 mb-4">Bøgata 25C, 0655 Oslo</p>
             <p className="font-bold my-8">
               52 m
               <span
@@ -376,7 +376,7 @@ export const AnchorCard = () => (
               </span>
               Totalpris: 4 869 039 kr
             </p>
-            <p className="text-14 text-gray-400 mb-0">
+            <p className="text-s text-gray-400 mb-0">
               Eier (Selveier) <span className="text-gray-200">•</span> Leilighet
               <span className="text-gray-200">•</span> 2 soverom
             </p>
@@ -452,7 +452,7 @@ export const DeadToggleInCard = () => {
                 Purchase foo
               </Clickable>
             </h4>
-            <p className="mb-0 text-14">520 kr/mnd</p>
+            <p className="mb-0 text-s">520 kr/mnd</p>
           </div>
         </Card>
         <Card className="py-12 px-16 w-max flex items-center" selected={selected === 'b'}>
@@ -463,7 +463,7 @@ export const DeadToggleInCard = () => {
                 Purchase bar
               </Clickable>
             </h4>
-            <p className="mb-0 text-14">124 kr/mnd</p>
+            <p className="mb-0 text-s">124 kr/mnd</p>
           </div>
         </Card>
       </div>
@@ -475,7 +475,7 @@ export const DeadToggleInCard = () => {
               Standard card checkbox
             </Clickable>
           </h4>
-          <p className="mb-0 text-14">124 kr/mnd</p>
+          <p className="mb-0 text-s">124 kr/mnd</p>
         </div>
       </Card>
       <p className="mt-32">Flat cards (without box-shadow):</p>
@@ -488,7 +488,7 @@ export const DeadToggleInCard = () => {
                 Purchase foo
               </Clickable>
             </h4>
-            <p className="mb-0 text-14">520 kr/mnd</p>
+            <p className="mb-0 text-s">520 kr/mnd</p>
           </div>
         </Card>
         <Card flat className="py-12 px-16 w-max flex items-center" selected={flatSelected === 'b'}>
@@ -499,7 +499,7 @@ export const DeadToggleInCard = () => {
                 Purchase bar
               </Clickable>
             </h4>
-            <p className="mb-0 text-14">124 kr/mnd</p>
+            <p className="mb-0 text-s">124 kr/mnd</p>
           </div>
         </Card>
       </div>
@@ -511,7 +511,7 @@ export const DeadToggleInCard = () => {
               Flat card checkbox
             </Clickable>
           </h4>
-          <p className="mb-0 text-14">124 kr/mnd</p>
+          <p className="mb-0 text-s">124 kr/mnd</p>
         </div>
       </Card>
     </div>

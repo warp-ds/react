@@ -169,7 +169,7 @@ export function Popover() {
           Open menu
         </Button>
         <Attention popover placement="bottom" targetEl={targetEl} isShowing={show} id="popover-attention-example">
-          <ul className="bg-white w-full text-center">
+          <ul className="s-bg w-full text-center">
             <li className="p-2 px-40">Hello</li>
             <li className="p-2 px-40">World</li>
           </ul>
@@ -217,7 +217,7 @@ export function PopoverIconAsTargetEl() {
           targetEl={targetEl}
           isShowing={show}
           id="popover-icon-target-el-attention-example">
-          <ul className="bg-white w-full text-center">
+          <ul className="s-bg w-full text-center">
             <li className="p-2 px-40">Hello</li>
             <li className="p-2 px-40">World</li>
           </ul>
