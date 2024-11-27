@@ -1,3 +1,10 @@
+# [2.1.0-next.1](https://github.com/warp-ds/react/compare/v2.0.4-next.2...v2.1.0-next.1) (2024-11-27)
+
+
+### Features
+
+* **lingui:** add support for Swedish ('sv') translations ([#296](https://github.com/warp-ds/react/issues/296)) ([eb393af](https://github.com/warp-ds/react/commit/eb393af6d6247f8498ae7fef8fbbcfb4b2633095))
+
 ## [2.0.4-next.2](https://github.com/warp-ds/react/compare/v2.0.4-next.1...v2.0.4-next.2) (2024-11-26)
 
 
