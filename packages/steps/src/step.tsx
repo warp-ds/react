@@ -12,6 +12,7 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 
 const availableAriaLabels = {
   completed: i18n._({
@@ -55,7 +56,7 @@ export interface StepProps {
 }
 
 export function Step(props: StepProps) {
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const { active, completed, children } = props;
   const StepsProps = useContext(StepsContext);
