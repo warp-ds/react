@@ -12,6 +12,7 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 import { TextFieldProps } from './props.js';
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
@@ -30,7 +31,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const id = useId(providedId);
   const helpId = helpText ? `${id}__hint` : undefined;

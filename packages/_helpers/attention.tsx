@@ -8,10 +8,11 @@ import { messages as daMessages } from '../attention/src/locales/da/messages.mjs
 import { messages as enMessages } from '../attention/src/locales/en/messages.mjs';
 import { messages as fiMessages } from '../attention/src/locales/fi/messages.mjs';
 import { messages as nbMessages } from '../attention/src/locales/nb/messages.mjs';
+import { messages as svMessages } from '../attention/src/locales/sv/messages.mjs';
 import type { AttentionProps, AttentionVariants, ReferenceElement } from '../attention/src/props.js';
 import { activateI18n } from '../i18n.js';
 
-activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
 export const getVariant = (variantProps: AttentionVariants, variantClasses: any) =>
   Object.keys(variantClasses).find((b) => !!variantProps[b]) || '';
