@@ -5,68 +5,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: nb_NO\n"
+"Language: sv\n"
 "Project-Id-Version: 2853b3c41d7b7a59e7cd64c0153b540a\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
-"Language-Team: Norwegian Bokmal\n"
+"Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 2853b3c41d7b7a59e7cd64c0153b540a\n"
 "X-Crowdin-Project-ID: 141\n"
-"X-Crowdin-Language: nb\n"
+"X-Crowdin-Language: sv\n"
 "X-Crowdin-File-ID: 12398\n"
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:66
 msgid "attention.aria.callout"
-msgstr "Grønn taleboble som introduserer noe nytt"
+msgstr "En grön pratbubbla som introducerar något nytt"
 
 #. Aria label for the close button in attention
 #. js-lingui-explicit-id
 #: packages/attention/src/component.tsx:186
 msgid "attention.aria.close"
-msgstr "Lukk"
+msgstr "Stäng"
 
 #. Default screenreader message for highlighted speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:78
 msgid "attention.aria.highlight"
-msgstr "En uthevet taleboble med viktig informasjon"
+msgstr "En pratbubbla med viktig information"
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:39
 msgid "attention.aria.pointingDown"
-msgstr "peker ned"
+msgstr "pekar ned"
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:47
 msgid "attention.aria.pointingLeft"
-msgstr "peker til venstre"
+msgstr "pekar vänster"
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:31
 msgid "attention.aria.pointingRight"
-msgstr "peker til høyre"
+msgstr "pekar höger"
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:23
 msgid "attention.aria.pointingUp"
-msgstr "peker opp"
+msgstr "pekar upp"
 
 #. Default screenreader message for popover speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:72
 msgid "attention.aria.popover"
-msgstr "En hvit taleboble som gir tilleggsinformasjon"
+msgstr "En vit pratbubbla som ger ytterligare information"
 
 #. Default screenreader message for tooltip in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:60
 msgid "attention.aria.tooltip"
-msgstr "En svart taleboble som forklarer konteksten"
+msgstr "En svart pratbubbla som ger kompletterande information"
 
