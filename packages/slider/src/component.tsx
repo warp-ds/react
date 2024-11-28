@@ -140,15 +140,7 @@ import { SliderProps } from "./props.js";
 }
 */
 
-export const Slider = ({
-  min = 0,
-  max = 100,
-  step = 1,
-  value,
-  disabled,
-  onChange,
-  onChangeAfter,
-}: SliderProps) => {
+export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange, onChangeAfter }: SliderProps) => {
   const rangerStyle = {
     background: `linear-gradient(90deg, var( - primary-600) 0, var( - orange-500) ${50}%`,
   };
@@ -163,18 +155,68 @@ export const Slider = ({
     // set value to render correct new value.
     setCurrentValue(value);
   }
+  /* const trackClasses = classNames([ccSlider.track, disabled && ccSlider.trackDisabled]);
+
+  const activeTrackClasses = classNames([ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled]);
+
+  const thumbClasses = classNames([ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled]); */
+
+  const style = `
+    input[type="range"] {
+        appearance: none;
+        width: 500px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background-color: blue;
+        border-radius: 0%;
+        cursor: pointer;
+        transform: translateY(-11px);
+        border-radius: 5px
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        height: 4px;
+        border: 0px solid #b2b2b2;
+        border-radius: 0.5em;
+        background: #efefef;
+        box-shadow: none;
+    }
+    .active-track{
+      background-color: blue;
+      height: 5px;
+      transform: translateY(17px);
+      width: 50%;
+    }
+    input[type=range]::-webkit-slider-thumb:active {
+        background: #2f98f9;
+    }
+    input[type=range]::-webkit-progress-bar {
+        height: 3px;
+        border: 0px solid #b2b2b2;
+        border-radius: 0.5em;
+        background: #949494;
+        box-shadow: none;
+    }
+  `;
 
   return (
-    <input
-      style={rangerStyle}
-      type="range"
-      value={currentValue}
-      min={min}
-      max={max}
-      onChange={(e) => {
-        setCurrentValue(+e.target.value);
-        if (onChange) onChange(+e.target.value);
-      }}
-    />
+    <>
+      <style>{style}</style>
+      <div className={ccSlider.wrapper} style={{ width: "max-content" }}>
+        <div className="active-track" style={{ width: 100 * (currentValue / max) + "%" }}></div>
+        <input
+          type="range"
+          value={currentValue}
+          min={min}
+          max={max}
+          onChange={(e) => {
+            setCurrentValue(+e.target.value);
+            if (onChange) onChange(+e.target.value);
+          }}
+        />
+      </div>
+    </>
   );
 };
