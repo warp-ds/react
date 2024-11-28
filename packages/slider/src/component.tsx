@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { classNames } from '@chbphone55/classnames';
-import { createHandlers, useDimensions } from '@warp-ds/core/slider';
-import { slider as ccSlider } from '@warp-ds/css/component-classes';
+import { classNames } from "@chbphone55/classnames";
+import { createHandlers, useDimensions } from "@warp-ds/core/slider";
+import { slider as ccSlider } from "@warp-ds/css/component-classes";
 
-import { SliderProps } from './props.js';
+import { SliderProps } from "./props.js";
 
-export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disabled, onChange, onChangeAfter, ...rest }: SliderProps) {
+/*export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disabled, onChange, onChangeAfter, ...rest }: SliderProps) {
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
 
@@ -138,3 +138,43 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
     </div>
   );
 }
+*/
+
+export const Slider = ({
+  min = 0,
+  max = 100,
+  step = 1,
+  value,
+  disabled,
+  onChange,
+  onChangeAfter,
+}: SliderProps) => {
+  const rangerStyle = {
+    background: `linear-gradient(90deg, var( - primary-600) 0, var( - orange-500) ${50}%`,
+  };
+
+  const [currentValue, setCurrentValue] = useState(value);
+  const [lastPropValue, setLastPropValue] = useState(value);
+
+  if (value !== lastPropValue) {
+    // update the last prop value
+    setLastPropValue(value);
+
+    // set value to render correct new value.
+    setCurrentValue(value);
+  }
+
+  return (
+    <input
+      style={rangerStyle}
+      type="range"
+      value={currentValue}
+      min={min}
+      max={max}
+      onChange={(e) => {
+        setCurrentValue(+e.target.value);
+        if (onChange) onChange(+e.target.value);
+      }}
+    />
+  );
+};

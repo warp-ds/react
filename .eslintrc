@@ -1,12 +1,3 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "react-hooks"
-  ],
-  "extends": [
-    "@warp-ds",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
-  ]
+
 }
