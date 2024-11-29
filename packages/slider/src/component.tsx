@@ -6,6 +6,9 @@ import { slider as ccSlider } from "@warp-ds/css/component-classes";
 
 import { SliderProps } from "./props.js";
 
+/* const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "End", "Home", "PageUp", "PageDown"]  as const;
+type Key = typeof keys[number]; */
+
 /*export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disabled, onChange, onChangeAfter, ...rest }: SliderProps) {
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
@@ -141,10 +144,6 @@ import { SliderProps } from "./props.js";
 */
 
 export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange, onChangeAfter }: SliderProps) => {
-  const rangerStyle = {
-    background: `linear-gradient(90deg, var( - primary-600) 0, var( - orange-500) ${50}%`,
-  };
-
   const [currentValue, setCurrentValue] = useState(value);
   const [lastPropValue, setLastPropValue] = useState(value);
 
@@ -155,11 +154,6 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
     // set value to render correct new value.
     setCurrentValue(value);
   }
-  /* const trackClasses = classNames([ccSlider.track, disabled && ccSlider.trackDisabled]);
-
-  const activeTrackClasses = classNames([ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled]);
-
-  const thumbClasses = classNames([ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled]); */
 
   const style = `
     input[type="range"] {
@@ -168,13 +162,16 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
     }
     input[type=range]::-webkit-slider-thumb {
         appearance: none;
-        width: 25px;
-        height: 25px;
-        background-color: blue;
+        width: 24px;
+        height: 24px;
+        background-color: var(--w-s-color-background-primary);
         border-radius: 0%;
         cursor: pointer;
         transform: translateY(-11px);
         border-radius: 5px
+    }
+    input[type=range]::-webkit-slider-thumb:active{
+        box-shadow: var(--w-shadow-slider-handle-active)
     }
     input[type=range]::-webkit-slider-runnable-track {
         height: 4px;
@@ -184,7 +181,7 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
         box-shadow: none;
     }
     .active-track{
-      background-color: blue;
+      background-color: var(--w-s-color-background-primary);
       height: 5px;
       transform: translateY(17px);
       width: 50%;
@@ -211,8 +208,17 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
           value={currentValue}
           min={min}
           max={max}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") {
+              setCurrentValue(currentValue - max * 0.04);
+            }
+            if (e.key === "ArrowRight") {
+              setCurrentValue(currentValue + max * 0.04);
+            }
+          }}
           onChange={(e) => {
             setCurrentValue(+e.target.value);
+
             if (onChange) onChange(+e.target.value);
           }}
         />
