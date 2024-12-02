@@ -1,3 +1,10 @@
+# [2.1.0-next.2](https://github.com/warp-ds/react/compare/v2.1.0-next.1...v2.1.0-next.2) (2024-12-02)
+
+
+### Bug Fixes
+
+* **lingui:** remove committed messages.mjs files ([#299](https://github.com/warp-ds/react/issues/299)) ([92d4859](https://github.com/warp-ds/react/commit/92d48592c8ad3590a8c3a19286db32d6eb2e033a))
+
 # [2.1.0-next.1](https://github.com/warp-ds/react/compare/v2.0.4-next.2...v2.1.0-next.1) (2024-11-27)
 
 
