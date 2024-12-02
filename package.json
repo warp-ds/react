@@ -70,6 +70,7 @@
     "lint": "eslint . --fix --ext ts,tsx,js,jsx,cjs,mjs --ignore-path .gitignore",
     "messages:compile": "lingui compile",
     "messages:extract": "lingui extract",
+    "postinstall": "lingui compile",
     "semantic-release": "semantic-release",
     "test-storybook": "test-storybook --url http://localhost:9003",
     "test:storybook": "concurrently -k -s first \"pnpm run dev\" \"wait-on http://localhost:9003 && pnpm run test-storybook\"",
@@ -138,7 +139,7 @@
     "@lingui/core": "4.11.2",
     "@warp-ds/core": "1.1.8",
     "@warp-ds/css": "2.0.1",
-    "@warp-ds/icons": "2.3.0",
+    "@warp-ds/icons": "2.4.0",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",
     "scroll-doctor": "2.0.2"

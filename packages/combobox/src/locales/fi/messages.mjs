@@ -1,1 +1,0 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"combobox.aria.pluralResults\":[[\"numResults\",\"plural\",{\"one\":[\"#\",\" tulos\"],\"other\":[\"#\",\" tulosta\"]}]],\"combobox.aria.noResults\":\"Ei tuloksia\"}");
