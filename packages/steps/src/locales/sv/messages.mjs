@@ -1,1 +1,0 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Tom cirkel\",\"steps.aria.active\":\"Stegindikator aktiv cirkel\",\"steps.aria.completed\":\"Stegindikator fulländad cirkel\"}");

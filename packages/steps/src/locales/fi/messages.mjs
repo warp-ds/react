@@ -1,1 +1,0 @@
-/*eslint-disable*/export const messages=JSON.parse("{\"steps.aria.emptyCircle\":\"Tyhjä ympyrä\",\"steps.aria.active\":\"Vaiheilmaisin aktiivinen ympyrä\",\"steps.aria.completed\":\"Vaiheilmaisin valmis ympyrä\"}");
