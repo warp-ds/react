@@ -70,6 +70,7 @@
     "lint": "eslint . --fix --ext ts,tsx,js,jsx,cjs,mjs --ignore-path .gitignore",
     "messages:compile": "lingui compile",
     "messages:extract": "lingui extract",
+    "postinstall": "lingui compile",
     "semantic-release": "semantic-release",
     "test-storybook": "test-storybook --url http://localhost:9003",
     "test:storybook": "concurrently -k -s first \"pnpm run dev\" \"wait-on http://localhost:9003 && pnpm run test-storybook\"",
