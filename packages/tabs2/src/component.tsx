@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { ReactElement, KeyboardEvent } from "react";
+import React, { useRef, useState, ReactElement, KeyboardEvent } from 'react';
 
 type TabsProps = {
   fadeout?: boolean;
@@ -60,7 +59,7 @@ export const Tabs = (props: TabsProps) => {
         key={`tab-${i}`}
         onClick={() => setActiveTab(i)}
         className="tab"
-        style={i === activeTab ? { backgroundColor: "rgb(230,230,230)" } : {}}
+        style={i === activeTab ? { backgroundColor: 'rgb(230,230,230)' } : {}}
         {...getTabData(i, activeTab)}
       >
         {c}
@@ -71,7 +70,7 @@ export const Tabs = (props: TabsProps) => {
       <div
         key={`panel-${i}`}
         className="tab-panel"
-        style={i === activeTab ? {} : { display: "none" }}
+        style={i === activeTab ? {} : { display: 'none' }}
         {...getPanelData(i, activeTab)}
       >
         {c}
@@ -79,13 +78,10 @@ export const Tabs = (props: TabsProps) => {
     ));
 
     function keyDown(e: KeyboardEvent<HTMLDivElement>): void {
-      if (e.key === "Tab" || e.key.includes("Arrow")) {
+      if (e.key === 'Tab' || e.key.includes('Arrow')) {
         e.preventDefault();
 
-        let newValue =
-          e.key === "ArrowLeft" || e.key === "ArrowUp"
-            ? activeTab - 1
-            : activeTab + 1;
+        let newValue = e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? activeTab - 1 : activeTab + 1;
 
         if (newValue > chl / 2 - 1) {
           newValue = 0;
@@ -121,16 +117,16 @@ export const Tabs = (props: TabsProps) => {
  */
 const getTabData = (i: number, activeTab: number) => ({
   id: `tab-${i}`,
-  role: "tab",
+  role: 'tab',
   tabIndex: i === activeTab ? 0 : -1,
-  "aria-selected": i === activeTab ? true : false,
-  "aria-controls": `panel-${i}`,
+  'aria-selected': i === activeTab ? true : false,
+  'aria-controls': `panel-${i}`,
 });
 
 const getPanelData = (i: number, activeTab: number) => ({
   id: `panel-${i}`,
-  role: "tabpanel",
+  role: 'tabpanel',
   tabIndex: i === activeTab ? 0 : -1,
-  "aria-labelledby": `tab-${i}`,
+  'aria-labelledby': `tab-${i}`,
   hidden: i !== activeTab,
 });

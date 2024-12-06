@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Tab, TabPanel, Tabs } from "../src/component";
+import { Tab, TabPanel, Tabs } from '../src/component';
 
-const metadata = { title: "Navigation/Tabs2" };
+const metadata = { title: 'Navigation/Tabs2' };
 export default metadata;
 
 // Order between tabs and tab panels should match.
