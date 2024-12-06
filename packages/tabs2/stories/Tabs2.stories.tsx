@@ -11,8 +11,12 @@ export const Default = () => (
     <Tab>Title</Tab>
     <Tab>Title 2</Tab>
     <Tab>Title 3</Tab>
-    <TabPanel>Item One</TabPanel>
-    <TabPanel>Item Two</TabPanel>
-    <TabPanel>Item Three</TabPanel>
+    <TabPanel>{panel1}</TabPanel>
+    <TabPanel>{panel2}</TabPanel>
+    <TabPanel>{panel3}</TabPanel>
   </Tabs>
 );
+
+const panel1 = <div>Content 1</div>;
+const panel2 = <div>Content 2</div>;
+const panel3 = <div>Content 3</div>;

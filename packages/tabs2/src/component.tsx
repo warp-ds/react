@@ -59,13 +59,18 @@ export const Tabs = (props: TabsProps) => {
         onClick={() => setActiveTab(i)}
         className="tab"
         style={i === activeTab ? { backgroundColor: "rgb(230,230,230)" } : {}}
+        {...getTabData(i, activeTab)}
       >
         {c}
       </div>
     ));
 
     const tabPanels = ch.slice(chl / 2, chl).map((c, i) => (
-      <div className="tab" style={i === activeTab ? {} : { display: "none" }}>
+      <div
+        className="tab-panel"
+        style={i === activeTab ? {} : { display: "none" }}
+        {...getPanelData(i, activeTab)}
+      >
         {c}
       </div>
     ));
@@ -73,11 +78,32 @@ export const Tabs = (props: TabsProps) => {
     return (
       <div className="tabs-component">
         <style>{style}</style>
-        <div className="tabs">{tabs}</div>
-        <div className="tab-panel">{tabPanels}</div>
+        <div className="tabs" role="tablist">
+          {tabs}
+        </div>
+        <div className="tab-panels">{tabPanels}</div>
       </div>
     );
   } else {
     return;
   }
 };
+
+/**
+ * Aria data. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role#example.
+ */
+const getTabData = (i: number, activeTab: number) => ({
+  id: `tab-${i}`,
+  role: "tab",
+  tabIndex: i === activeTab ? 0 : -1,
+  "aria-selected": i === activeTab ? true : false,
+  "aria-controls": `panel-${i}`,
+});
+
+const getPanelData = (i: number, activeTab: number) => ({
+  id: `panel-${i}`,
+  role: "tabpanel",
+  tabIndex: i === activeTab ? 0 : -1,
+  "aria-labelledby": `tab-${i}`,
+  hidden: i !== activeTab,
+});
