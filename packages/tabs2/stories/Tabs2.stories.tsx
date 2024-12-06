@@ -5,7 +5,7 @@ import { Tab, TabPanel, Tabs } from "../src/component";
 const metadata = { title: "Navigation/Tabs2" };
 export default metadata;
 
-// Order between tab list and tab panels should match.
+// Order between tabs and tab panels should match.
 export const Default = () => (
   <Tabs>
     <Tab>Title</Tab>
