@@ -159,11 +159,9 @@ export const Slider = ({
   const [currentValue, setCurrentValue] = useState(value);
   const [lastPropValue, setLastPropValue] = useState(value);
 
-  console.log(step);
   // Update values. This is used so that if a new value is passed in (for example, to reset the slider),
   // the component updates correctly.
   if (value !== lastPropValue) {
-    console.log(value);
     // update the last prop value
     setLastPropValue(value);
 
@@ -201,6 +199,7 @@ export const Slider = ({
       height: 5px;
       transform: translateY(17px);
       width: 50%;
+      pointer-events: none;
     }
     input[type=range]::-webkit-slider-thumb:active {
         background: #2f98f9;
@@ -258,9 +257,11 @@ export const Slider = ({
   };
 
   const onInputComplete = (e) => {
-    const value = getAdjustedValue(+e.target.value);
+    if (onChangeAfter) {
+      const value = getAdjustedValue(+e.target.value);
 
-    if (onChangeAfter) onChangeAfter(value);
+      onChangeAfter(value);
+    }
   };
 
   return (
