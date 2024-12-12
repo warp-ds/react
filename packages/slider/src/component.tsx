@@ -172,6 +172,7 @@ export const Slider = ({
   const style = `
     input[type="range"] {
         appearance: none;
+        height:20px;
         width: 500px;
     }
     input[type=range]::-webkit-slider-thumb {
@@ -197,7 +198,7 @@ export const Slider = ({
     .active-track{
       background-color: var(--w-s-color-background-primary);
       height: 5px;
-      transform: translateY(17px);
+      transform: translateY(12.5px);
       width: 50%;
       pointer-events: none;
     }
@@ -271,6 +272,9 @@ export const Slider = ({
         className={ccSlider.wrapper}
         style={{ width: "max-content" }}
         {...getSliderData(currentValue, min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
+        onContextMenu={(e) => {
+          e.preventDefault();
+        }}
       >
         <div className="active-track" style={{ width: 100 * (currentValue / max) + "%" }}></div>
         <input

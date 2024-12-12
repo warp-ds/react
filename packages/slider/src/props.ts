@@ -3,16 +3,16 @@ export type SliderProps = {
    * The greatest value in the range of permitted values
    * @default 100
    */
-  max: number;
+  max?: number;
 
   /**
    * The lowest value in the range of permitted values
    * @default 0
    */
-  min: number;
+  min?: number;
 
   /** Specifies the value granularity */
-  step: number;
+  step?: number;
 
   /** The current value */
   value: number;
