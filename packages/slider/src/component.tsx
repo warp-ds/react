@@ -143,11 +143,15 @@ type Key = typeof keys[number]; */
 }
 */
 
-export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange, onChangeAfter }: SliderProps) => {
+export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange, onChangeAfter, keyboardStepFactor = 0.04 }: SliderProps) => {
   const [currentValue, setCurrentValue] = useState(value);
   const [lastPropValue, setLastPropValue] = useState(value);
 
+  console.log(step);
+  // Update values. This is used so that if a new value is passed in (for example, to reset the slider),
+  // the component updates correctly.
   if (value !== lastPropValue) {
+    console.log(value);
     // update the last prop value
     setLastPropValue(value);
 
@@ -198,30 +202,55 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
     }
   `;
 
+  // Get value adjusted with step amount.
+  const getAdjustedValue = (value) => {
+    if (step > 1) {
+      return Math.round(value / step) * step;
+    } else {
+      return value;
+    }
+  };
+
+  const clamp = (val) => Math.min(Math.max(val, min), max);
+
+  function move(direction: "left" | "right") {
+    const multiplier = {
+      left: -1,
+      right: 1,
+    };
+
+    const d = max * keyboardStepFactor;
+
+    const value = clamp(currentValue + multiplier[direction] * d);
+
+    setCurrentValue(value);
+
+    if (onChange) onChange(value);
+  }
+
+  const onKeyDown = (e) => {
+    if (e.key === "ArrowLeft") {
+      move("left");
+    }
+    if (e.key === "ArrowRight") {
+      move("right");
+    }
+  };
+
+  const onInputChange = (e) => {
+    const value = getAdjustedValue(+e.target.value);
+
+    setCurrentValue(value);
+
+    if (onChange) onChange(value);
+  };
+
   return (
     <>
       <style>{style}</style>
       <div className={ccSlider.wrapper} style={{ width: "max-content" }}>
         <div className="active-track" style={{ width: 100 * (currentValue / max) + "%" }}></div>
-        <input
-          type="range"
-          value={currentValue}
-          min={min}
-          max={max}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowLeft") {
-              setCurrentValue(currentValue - max * 0.04);
-            }
-            if (e.key === "ArrowRight") {
-              setCurrentValue(currentValue + max * 0.04);
-            }
-          }}
-          onChange={(e) => {
-            setCurrentValue(+e.target.value);
-
-            if (onChange) onChange(+e.target.value);
-          }}
-        />
+        <input type="range" value={currentValue} min={min} max={max} onKeyDown={onKeyDown} onChange={onInputChange} />
       </div>
     </>
   );
