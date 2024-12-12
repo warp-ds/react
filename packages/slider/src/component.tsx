@@ -143,7 +143,19 @@ type Key = typeof keys[number]; */
 }
 */
 
-export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange, onChangeAfter, keyboardStepFactor = 0.04 }: SliderProps) => {
+export const Slider = ({
+  min = 0,
+  max = 100,
+  step = 1,
+  value,
+  disabled,
+  onChange,
+  onChangeAfter,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-valuetext": ariaValueText,
+  keyboardStepFactor = 0.04,
+}: SliderProps) => {
   const [currentValue, setCurrentValue] = useState(value);
   const [lastPropValue, setLastPropValue] = useState(value);
 
@@ -245,13 +257,46 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, disabled, onChange
     if (onChange) onChange(value);
   };
 
+  const onInputComplete = (e) => {
+    const value = getAdjustedValue(+e.target.value);
+
+    if (onChangeAfter) onChangeAfter(value);
+  };
+
   return (
     <>
       <style>{style}</style>
-      <div className={ccSlider.wrapper} style={{ width: "max-content" }}>
+      <div
+        className={ccSlider.wrapper}
+        style={{ width: "max-content" }}
+        {...getSliderData(currentValue, min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
+      >
         <div className="active-track" style={{ width: 100 * (currentValue / max) + "%" }}></div>
-        <input type="range" value={currentValue} min={min} max={max} onKeyDown={onKeyDown} onChange={onInputChange} />
+        <input
+          type="range"
+          value={currentValue}
+          min={min}
+          max={max}
+          onKeyDown={onKeyDown}
+          onChange={onInputChange}
+          onKeyUp={onInputComplete}
+          onMouseUp={onInputComplete}
+        />
       </div>
     </>
   );
 };
+
+// Aria label data for the slider.
+// https://www.digitala11y.com/slider-role/.
+function getSliderData(value: number, min: number, max: number, { ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>) {
+  return {
+    role: "slider",
+    "aria-valuenow": value,
+    "aria-valuemin": min,
+    "aria-valuemax": max,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-valuetext": ariaValueText,
+  };
+}
