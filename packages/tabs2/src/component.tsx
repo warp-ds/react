@@ -5,6 +5,8 @@ type TabsProps = {
   showArrows?: boolean;
   children?: ReactElement[];
   startTab?: number; // default 0
+  visibleScrollbar?: boolean;
+  verticalOrientation?: boolean;
 };
 
 type TabProps = {
@@ -43,10 +45,16 @@ export const Tabs = (props: TabsProps) => {
    .tabs{
       display:grid;
       grid-auto-flow: column;
+      overflow: auto;
+      min-height: 35px;
+      padding: 3px 0;
     }
     .tab{
       display:grid;
       grid-auto-flow: row;
+      min-width: 200px;
+      align-items: center;
+      padding: 3px;
     }
   `;
 
