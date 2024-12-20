@@ -6,23 +6,25 @@ const metadata = { title: "Forms/Slider" };
 export default metadata;
 
 export const Regular = () => {
-  /* const [value, setValue] = React.useState(10000);
-  const [resetValue, setResetValue] = React.useState(10000);
+  const [value, setValue] = React.useState(10000);
 
   return (
     <div>
       <output style={{ display: "inline-block", width: "60px" }}>{value}</output>
-      <Slider onChange={(value) => (setResetValue(value), setValue(value))} value={resetValue} min={1000} max={60000} step={10} />
-      <button onClick={() => (setResetValue(6000), setValue(6000))}>Reset</button>
+      <Slider onChange={(value) => setValue(value)} value={value} min={1000} max={60000} step={10} />
+      <button onClick={() => setValue(6000)}>Reset</button>
     </div>
-  ); */
-  const [value, setValue] = React.useState(2_500_000);
+  );
+};
+
+export const Range = () => {
+  const [values, setValues] = React.useState([1000, 5008970]);
 
   return (
     <div>
-      <output style={{ display: "inline-block", width: "1000px" }}>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1000} max={10_000_000} step={1000} />
-      <button onClick={() => setValue(2_500_000)}>Reset</button>
+      <output style={{ display: "inline-block", width: "1000px" }}>{values[0]} - {values[1]}</output>
+      <Slider values={values} onChange={nums => setValues(nums)} min={1000} max={10_000_000} step={1000} />
+      <button onClick={() => setValues([2, 5008970])}>Reset</button>
     </div>
   );
 };

@@ -143,11 +143,15 @@ type Key = typeof keys[number]; */
 }
 */
 
-export const Slider = ({
+export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
+export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number) => void } & SliderProps);
+
+export function Slider({
   min = 0,
   max = 100,
   step = 1,
   value,
+  values,
   disabled,
   onChange,
   onChangeAfter,
@@ -155,26 +159,37 @@ export const Slider = ({
   "aria-labelledby": ariaLabelledBy,
   "aria-valuetext": ariaValueText,
   keyboardStepFactor = 0.04,
-}: SliderProps) => {
-  const [currentValue, setCurrentValue] = useState(value);
-  const [lastPropValue, setLastPropValue] = useState(value);
+}: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
+  const type = values ? "range" : "standard";
+  const isRange = type === "range";
 
-  // Update values. This is used so that if a new value is passed in (for example, to reset the slider),
-  // the component updates correctly.
-  if (value !== lastPropValue) {
-    // update the last prop value
-    setLastPropValue(value);
+  const vals = values ? ([...values] as number[]) : ([0, value] as number[]);
 
-    // set value to render correct new value.
-    setCurrentValue(value);
-  }
+  const [currentValue, setCurrentValue] = useState<number[]>([...vals]);
+  const track = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const vals = values ? ([...values] as number[]) : ([0, value] as number[]);
+
+    setCurrentValue(vals);
+  }, [values, value]);
 
   const style = `
     input[type="range"] {
         appearance: none;
         height:20px;
         width: 500px;
+        grid-row: 1;
+        grid-column: 1;
+        pointer-events: none;
     }
+
+    .input-wrapper{
+      grid-row: 1;
+      grid-column: 1;
+      display: grid;
+    }
+       
     input[type=range]::-webkit-slider-thumb {
         appearance: none;
         width: 24px;
@@ -183,10 +198,16 @@ export const Slider = ({
         border-radius: 0%;
         cursor: pointer;
         transform: translateY(-11px);
-        border-radius: 5px
+        border-radius: 5px;
+        z-index: 200;
+        pointer-events: all !important;
+    }
+    input[type=range]:nth-child(2)::-webkit-slider-thumb {
+      z-index: 100;
     }
     input[type=range]::-webkit-slider-thumb:active{
-        box-shadow: var(--w-shadow-slider-handle-active)
+        box-shadow: var(--w-shadow-slider-handle-active);
+        z-index: 1000;
     }
     input[type=range]::-webkit-slider-runnable-track {
         height: 4px;
@@ -194,16 +215,23 @@ export const Slider = ({
         border-radius: 0.5em;
         background: #efefef;
         box-shadow: none;
+        pointer-events: none;
     }
+    
     .active-track{
       background-color: var(--w-s-color-background-primary);
       height: 5px;
-      transform: translateY(12.5px);
       width: 50%;
+      pointer-events: none;
+      transform: translateY(7.5px);
+      grid-row: 1;
+      grid-column: 1;
+      z-index: 0;
       pointer-events: none;
     }
     input[type=range]::-webkit-slider-thumb:active {
         background: #2f98f9;
+        z-index: 10000 !important;
     }
     input[type=range]::-webkit-progress-bar {
         height: 3px;
@@ -211,6 +239,10 @@ export const Slider = ({
         border-radius: 0.5em;
         background: #949494;
         box-shadow: none;
+        pointer-events: none;
+    }
+    .wrapper{
+      display: grid;
     }
   `;
 
@@ -225,7 +257,7 @@ export const Slider = ({
 
   const clamp = (val) => Math.min(Math.max(val, min), max);
 
-  function move(direction: "left" | "right") {
+  function move(direction: "left" | "right", i: number) {
     const multiplier = {
       left: -1,
       right: 1,
@@ -233,28 +265,57 @@ export const Slider = ({
 
     const d = max * keyboardStepFactor;
 
-    const value = clamp(currentValue + multiplier[direction] * d);
+    const value = clamp(currentValue[i] + multiplier[direction] * d);
 
-    setCurrentValue(value);
-
-    if (onChange) onChange(value);
+    const values = getValues(value, i);
+    setNewValue(values, i);
   }
 
-  const onKeyDown = (e) => {
+  const onKeyDown = (e, i) => {
     if (e.key === "ArrowLeft") {
-      move("left");
+      move("left", i);
     }
     if (e.key === "ArrowRight") {
-      move("right");
+      move("right", i);
     }
   };
 
-  const onInputChange = (e) => {
+  // Get value as array, by combining it with current value.
+  const getValues = (value: number, index = 0) => {
+    let values: number[];
+
+    if (type === "range") {
+      if (index === 1) {
+        values = [currentValue[0], value];
+      } else {
+        values = [value, currentValue[1]];
+      }
+    } else {
+      values = [0, value];
+    }
+    return values;
+  };
+
+  const setNewValue = (values, i) => {
+    if (!(values[0] < values[1])) {
+      if (i == 0) {
+        values[0] = values[1];
+      } else {
+        values[1] = values[0];
+      }
+    }
+
+    setCurrentValue(values);
+
+    if (onChange) onChange(isRange ? values : values[1]);
+  };
+
+  const onInputChange = (e: any, index: number) => {
     const value = getAdjustedValue(+e.target.value);
 
-    setCurrentValue(value);
+    const values = getValues(value, index);
 
-    if (onChange) onChange(value);
+    setNewValue(values, index);
   };
 
   const onInputComplete = (e) => {
@@ -265,32 +326,91 @@ export const Slider = ({
     }
   };
 
+  const trackStyle = () => {
+    let w = currentValue[1] / max - currentValue[0] / max;
+
+    const wi = 500 * (currentValue[0] / max);
+
+    return {
+      width: w * 100 + "%",
+      marginLeft: wi + "px",
+    };
+  };
+
+  const cleanupNrs = (values) => {
+    return [clamp(values[0]), clamp(values[1])];
+  };
+
+  const getX = (event) => {
+    let e = event.target.getBoundingClientRect();
+    let xCoordinate = event.touches[0].clientX - e.left;
+    //let yCoordinate = event.touches[0].clientY - e.top;
+
+    return Math.round(xCoordinate);
+  };
+
+  const wrapperCl = (e) => {
+    let x = e.touches ? getX(e) : e.nativeEvent.offsetX;
+
+    let v = (x / 500) * max;
+
+    const midPoint = (currentValue[0] + currentValue[1]) / 2;
+
+    if (v > midPoint) {
+      v = v * 1.02;
+      let values = cleanupNrs(getValues(v, 1));
+
+      setNewValue(values, 1);
+    } else {
+      //v = v - (5 / 500) * max * ((0.04 * max) / v) - (2 / 500) * max;
+
+      let values = cleanupNrs(getValues(v, 0));
+
+      setNewValue(values, 0);
+    }
+  };
+
   return (
     <>
       <style>{style}</style>
       <div
-        className={ccSlider.wrapper}
+        className={"ccSlider.wrapper" + " wrapper"}
         style={{ width: "max-content" }}
-        {...getSliderData(currentValue, min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
+        {...getSliderData(currentValue[1], min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
         onContextMenu={(e) => {
           e.preventDefault();
         }}
       >
-        <div className="active-track" style={{ width: 100 * (currentValue / max) + "%" }}></div>
-        <input
-          type="range"
-          value={currentValue}
-          min={min}
-          max={max}
-          onKeyDown={onKeyDown}
-          onChange={onInputChange}
-          onKeyUp={onInputComplete}
-          onMouseUp={onInputComplete}
-        />
+        <div className="active-track" ref={track} style={trackStyle()}></div>
+
+        <div className="input-wrapper" onMouseDown={(e) => wrapperCl(e)} onTouchStart={(e) => wrapperCl(e)}>
+          <input
+            type="range"
+            value={currentValue[1]}
+            min={min}
+            max={max}
+            onKeyDown={(e) => onKeyDown(e, 1)}
+            onChange={(e) => onInputChange(e, 1)}
+            onKeyUp={onInputComplete}
+            onMouseUp={onInputComplete}
+          />
+          {isRange ? (
+            <input
+              type="range"
+              value={currentValue[0]}
+              min={min}
+              max={max}
+              onKeyDown={(e) => onKeyDown(e, 0)}
+              onChange={(e) => onInputChange(e, 0)}
+              onKeyUp={onInputComplete}
+              onMouseUp={onInputComplete}
+            />
+          ) : undefined}
+        </div>
       </div>
     </>
   );
-};
+}
 
 // Aria label data for the slider.
 // https://www.digitala11y.com/slider-role/.
