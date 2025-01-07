@@ -176,16 +176,16 @@ export function Slider({
   // Get values in array form, using either the value or values prop.
   const getValueArray = () => (values ? ([...values] as number[]) : ([0, value] as number[]));
 
-  const [currentValue, setCurrentValue] = useState<number[]>([...getValueArray()]);
+  const [currentValues, setCurrentValues] = useState<number[]>([...getValueArray()]);
 
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
 
   // Update current value on prop change.
   useEffect(() => {
-    const vals = getValueArray();
+    const values = getValueArray();
 
-    setCurrentValue(vals);
+    setCurrentValues(values);
   }, [values, value]);
 
   const style = `
@@ -279,10 +279,10 @@ export function Slider({
 
     const d = max * keyboardStepFactor;
 
-    const value = clamp(currentValue[i] + multiplier[direction] * d);
+    const value = clamp(currentValues[i] + multiplier[direction] * d);
 
     const values = getValues(value, i);
-    setNewValue(values, i);
+    setNewValues(values, i);
   }
 
   const onKeyDown = (e, i) => {
@@ -294,15 +294,15 @@ export function Slider({
     }
   };
 
-  // Get value as array, by combining it with current value.
+  // Use the given value to get full value array.
   const getValues = (value: number, index = 0) => {
     let values: number[];
 
     if (isRange) {
       if (index === 1) {
-        values = [currentValue[0], value];
+        values = [currentValues[0], value];
       } else {
-        values = [value, currentValue[1]];
+        values = [value, currentValues[1]];
       }
     } else {
       values = [0, value];
@@ -310,7 +310,8 @@ export function Slider({
     return values;
   };
 
-  const setNewValue = (values, i) => {
+  // Set slider values.
+  const setNewValues = (values, i) => {
     if (!(values[0] < values[1])) {
       if (i == 0) {
         values[0] = values[1];
@@ -319,7 +320,7 @@ export function Slider({
       }
     }
 
-    setCurrentValue(values);
+    setCurrentValues(values);
 
     if (onChange) onChange(isRange ? values : values[1]);
   };
@@ -329,7 +330,7 @@ export function Slider({
 
     const values = getValues(value, index);
 
-    setNewValue(values, index);
+    setNewValues(values, index);
   };
 
   const onInputComplete = (e) => {
@@ -341,8 +342,8 @@ export function Slider({
   };
 
   const getTrackStyle = () => {
-    const widthFraction = currentValue[1] / max - currentValue[0] / max;
-    const left = 500 * (currentValue[0] / max);
+    const widthFraction = currentValues[1] / max - currentValues[0] / max;
+    const left = 500 * (currentValues[0] / max);
 
     return {
       width: widthFraction * 100 + "%",
@@ -355,30 +356,28 @@ export function Slider({
   };
 
   const getX = (event) => {
-    let e = event.target.getBoundingClientRect();
-    let xCoordinate = event.touches[0].clientX - e.left;
+    const e = event.target.getBoundingClientRect();
+    const xCoordinate = event.touches[0].clientX - e.left;
 
     return Math.round(xCoordinate);
   };
 
   const onWrapperClick = (e) => {
     if (!disabled) {
-      let x = e.touches ? getX(e) : e.nativeEvent.offsetX;
+      const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
-      let v = (x / 500) * max;
+      const v = (x / 500) * max;
 
-      const midPoint = (currentValue[0] + currentValue[1]) / 2;
+      const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
       if (v > midPoint) {
-        // Adjust slightly to offset slider thumb (wip).
-        v = v * 1.02;
         const values = clampValues(getValues(v, 1));
 
-        setNewValue(values, 1);
+        setNewValues(values, 1);
       } else {
         const values = clampValues(getValues(v, 0));
 
-        setNewValue(values, 0);
+        setNewValues(values, 0);
       }
     }
   };
@@ -388,7 +387,7 @@ export function Slider({
       return (
         <input
           type="range"
-          value={currentValue[index]}
+          value={currentValues[index]}
           min={min}
           max={max}
           onKeyDown={(e) => onKeyDown(e, index)}
@@ -408,7 +407,7 @@ export function Slider({
       <div
         className={"ccSlider.wrapper" + " wrapper"}
         style={{ width: "max-content" }}
-        {...getSliderData(currentValue[1], min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
+        {...getSliderData(currentValues[1], min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
         onContextMenu={(e) => {
           e.preventDefault();
         }}
