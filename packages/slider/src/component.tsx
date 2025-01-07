@@ -153,7 +153,7 @@ overlay elements to render the progress bar.
 In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
 */
 export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
-export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number) => void } & SliderProps);
+export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps);
 
 export function Slider({
   min = 0,
@@ -174,9 +174,9 @@ export function Slider({
   const isRange = type === "range";
 
   // Get values in array form, using either the value or values prop.
-  const getValueArray = () => (values ? ([...values] as number[]) : ([0, value] as number[]));
+  const getValueArray = () => (values ? [...values] : [0, value as number]);
 
-  const [currentValues, setCurrentValues] = useState<number[]>([...getValueArray()]);
+  const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
 
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
@@ -262,7 +262,7 @@ export function Slider({
     }
   `;
 
-  const clamp = (val) => Math.min(Math.max(val, min), max);
+  const clamp = (val: number) => Math.min(Math.max(val, min), max);
 
   function move(direction: "left" | "right", i: number) {
     const multiplier = {
@@ -278,7 +278,7 @@ export function Slider({
     setNewValues(values, i);
   }
 
-  const onKeyDown = (e, i) => {
+  const onKeyDown = (e: any, i: number) => {
     if (e.key === "ArrowLeft") {
       move("left", i);
     }
@@ -306,7 +306,8 @@ export function Slider({
   };
 
   // Set slider values.
-  const setNewValues = (values, i) => {
+  const setNewValues = (values: number[], i: number) => {
+    // Stop slider values from overlapping.
     if (!(values[0] < values[1])) {
       if (i == 0) {
         values[0] = values[1];
@@ -317,7 +318,9 @@ export function Slider({
 
     setCurrentValues(values);
 
-    if (onChange) onChange(isRange ? values : values[1]);
+    if (onChange) {
+      onChange(isRange ? values : values[1]);
+    }
   };
 
   const onInputChange = (e: any, index: number) => {
@@ -326,9 +329,11 @@ export function Slider({
     setNewValues(values, index);
   };
 
-  const onInputComplete = (e) => {
+  const onInputComplete = (e: any, index: number) => {
     if (onChangeAfter) {
-      onChangeAfter(+e.target.value);
+      const value = +e.target.value;
+
+      onChangeAfter(isRange ? getValues(value, index) : value);
     }
   };
 
@@ -345,11 +350,11 @@ export function Slider({
     };
   };
 
-  const clampValues = (values) => {
+  const clampValues = (values: number[]) => {
     return [clamp(values[0]), clamp(values[1])];
   };
 
-  const getX = (event) => {
+  const getX = (event: any) => {
     const e = event.target.getBoundingClientRect();
     const xCoordinate = event.touches[0].clientX - e.left;
 
@@ -358,7 +363,7 @@ export function Slider({
 
   // Handle range click.
   // Ensures the range endpoints are moved according to where in the range the user clicked.
-  const onWrapperClick = (e) => {
+  const onWrapperClick = (e: any) => {
     // Clicking on the input thumb triggers the event for the input element.
     // Here, only handle click for clicking on the range, outside the thumb slider.
     if (!disabled && e.target.nodeName !== "INPUT") {
@@ -370,18 +375,16 @@ export function Slider({
 
       const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
-      if (v > midPoint) {
-        const values = clampValues(getValues(v, 1));
+      // Update values.
+      const index = v > midPoint ? 1 : 0;
 
-        setNewValues(values, 1);
-      } else {
-        const values = clampValues(getValues(v, 0));
+      const values = clampValues(getValues(v, index));
 
-        setNewValues(values, 0);
-      }
+      setNewValues(values, index);
     }
   };
 
+  // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
   const inputElement = (index: number) => {
     if (!disabled) {
       return (
@@ -393,9 +396,9 @@ export function Slider({
           max={max}
           onKeyDown={(e) => onKeyDown(e, index)}
           onChange={(e) => onInputChange(e, index)}
-          onKeyUp={onInputComplete}
-          onMouseUp={onInputComplete}
-          onTouchEnd={onInputComplete}
+          onKeyUp={(e) => onInputComplete(e, index)}
+          onMouseUp={(e) => onInputComplete(e, index)}
+          onTouchEnd={(e) => onInputComplete(e, index)}
         />
       );
     } else {
@@ -410,13 +413,11 @@ export function Slider({
         className={"ccSlider.wrapper" + " wrapper"}
         style={{ width: "max-content" }}
         {...getSliderData(currentValues[1], min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
-        onContextMenu={(e) => {
-          e.preventDefault();
-        }}
+        onContextMenu={(e) => e.preventDefault()}
       >
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
-        <div className="input-wrapper" onMouseDown={(e) => onWrapperClick(e)} onTouchStart={(e) => onWrapperClick(e)} ref={wrapperRef}>
+        <div className="input-wrapper" onMouseDown={onWrapperClick} onTouchStart={onWrapperClick} ref={wrapperRef}>
           {inputElement(1)}
           {isRange ? inputElement(0) : undefined}
         </div>
