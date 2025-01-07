@@ -181,6 +181,8 @@ export function Slider({
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   // Update current values on prop change.
   useEffect(() => {
     const values = getValueArray();
@@ -211,7 +213,7 @@ export function Slider({
         background-color: var(--w-s-color-background-primary);
         border-radius: 0%;
         cursor: pointer;
-        transform: translateY(-11px);
+        transform: translateY(-10px);
         border-radius: 5px;
         z-index: 200;
         pointer-events: all !important;
@@ -330,7 +332,10 @@ export function Slider({
 
   const getTrackStyle = () => {
     const widthFraction = currentValues[1] / max - currentValues[0] / max;
-    const left = 500 * (currentValues[0] / max);
+
+    const width = wrapperRef.current?.clientWidth || 500;
+
+    const left = width * (currentValues[0] / max);
 
     return {
       width: widthFraction * 100 + "%",
@@ -357,7 +362,9 @@ export function Slider({
     if (!disabled && e.target.nodeName !== "INPUT") {
       const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
-      const v = (x / 500) * max;
+      const width = (wrapperRef.current as HTMLDivElement).clientWidth;
+
+      const v = (x / width) * max;
 
       const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
@@ -406,7 +413,7 @@ export function Slider({
       >
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
-        <div className="input-wrapper" onMouseDown={(e) => onWrapperClick(e)} onTouchStart={(e) => onWrapperClick(e)}>
+        <div className="input-wrapper" onMouseDown={(e) => onWrapperClick(e)} onTouchStart={(e) => onWrapperClick(e)} ref={wrapperRef}>
           {inputElement(1)}
           {isRange ? inputElement(0) : undefined}
         </div>
