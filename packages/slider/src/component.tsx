@@ -291,6 +291,8 @@ export function Slider({
   const getValues = (value: number, index = 0) => {
     let values: number[];
 
+    value = Math.round(value);
+
     if (isRange) {
       if (index === 1) {
         values = [currentValues[0], value];
