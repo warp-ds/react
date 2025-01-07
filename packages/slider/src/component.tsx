@@ -149,6 +149,8 @@ Uses function overloading to provide two interfaces (for one or two values).
 
 The slider component uses the native input type="range" feature to render the slider, as well as additional
 overlay elements to render the progress bar.
+
+In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
 */
 export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
 export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number) => void } & SliderProps);
@@ -360,22 +362,43 @@ export function Slider({
   };
 
   const onWrapperClick = (e) => {
-    let x = e.touches ? getX(e) : e.nativeEvent.offsetX;
+    if (!disabled) {
+      let x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
-    let v = (x / 500) * max;
+      let v = (x / 500) * max;
 
-    const midPoint = (currentValue[0] + currentValue[1]) / 2;
+      const midPoint = (currentValue[0] + currentValue[1]) / 2;
 
-    if (v > midPoint) {
-      // Adjust slightly to offset slider thumb (wip).
-      v = v * 1.02;
-      const values = clampValues(getValues(v, 1));
+      if (v > midPoint) {
+        // Adjust slightly to offset slider thumb (wip).
+        v = v * 1.02;
+        const values = clampValues(getValues(v, 1));
 
-      setNewValue(values, 1);
+        setNewValue(values, 1);
+      } else {
+        const values = clampValues(getValues(v, 0));
+
+        setNewValue(values, 0);
+      }
+    }
+  };
+
+  const inputElement = (index: number) => {
+    if (!disabled) {
+      return (
+        <input
+          type="range"
+          value={currentValue[index]}
+          min={min}
+          max={max}
+          onKeyDown={(e) => onKeyDown(e, index)}
+          onChange={(e) => onInputChange(e, index)}
+          onKeyUp={onInputComplete}
+          onMouseUp={onInputComplete}
+        />
+      );
     } else {
-      const values = clampValues(getValues(v, 0));
-
-      setNewValue(values, 0);
+      return <input type="range" disabled={true} value={value} min={min} max={max} />;
     }
   };
 
@@ -393,28 +416,8 @@ export function Slider({
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
         <div className="input-wrapper" onMouseDown={(e) => onWrapperClick(e)} onTouchStart={(e) => onWrapperClick(e)}>
-          <input
-            type="range"
-            value={currentValue[1]}
-            min={min}
-            max={max}
-            onKeyDown={(e) => onKeyDown(e, 1)}
-            onChange={(e) => onInputChange(e, 1)}
-            onKeyUp={onInputComplete}
-            onMouseUp={onInputComplete}
-          />
-          {isRange ? (
-            <input
-              type="range"
-              value={currentValue[0]}
-              min={min}
-              max={max}
-              onKeyDown={(e) => onKeyDown(e, 0)}
-              onChange={(e) => onInputChange(e, 0)}
-              onKeyUp={onInputComplete}
-              onMouseUp={onInputComplete}
-            />
-          ) : undefined}
+          {inputElement(1)}
+          {isRange ? inputElement(0) : undefined}
         </div>
       </div>
     </>
