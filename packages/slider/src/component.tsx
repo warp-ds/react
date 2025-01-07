@@ -143,6 +143,13 @@ type Key = typeof keys[number]; */
 }
 */
 
+/* 
+New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
+Uses function overloading to provide two interfaces (for one or two values).
+
+The slider component uses the native input type="range" feature to render the slider, as well as additional
+overlay elements to render the progress bar.
+*/
 export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
 export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number) => void } & SliderProps);
 
@@ -160,16 +167,21 @@ export function Slider({
   "aria-valuetext": ariaValueText,
   keyboardStepFactor = 0.04,
 }: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
+  // Determine type.
   const type = values ? "range" : "standard";
   const isRange = type === "range";
 
-  const vals = values ? ([...values] as number[]) : ([0, value] as number[]);
+  // Get values in array form, using either the value or values prop.
+  const getValueArray = () => (values ? ([...values] as number[]) : ([0, value] as number[]));
 
-  const [currentValue, setCurrentValue] = useState<number[]>([...vals]);
-  const track = useRef<HTMLDivElement>(null);
+  const [currentValue, setCurrentValue] = useState<number[]>([...getValueArray()]);
 
+  // 'Track' (progress bar) overlay ref.
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Update current value on prop change.
   useEffect(() => {
-    const vals = values ? ([...values] as number[]) : ([0, value] as number[]);
+    const vals = getValueArray();
 
     setCurrentValue(vals);
   }, [values, value]);
@@ -284,7 +296,7 @@ export function Slider({
   const getValues = (value: number, index = 0) => {
     let values: number[];
 
-    if (type === "range") {
+    if (isRange) {
       if (index === 1) {
         values = [currentValue[0], value];
       } else {
@@ -326,30 +338,28 @@ export function Slider({
     }
   };
 
-  const trackStyle = () => {
-    let w = currentValue[1] / max - currentValue[0] / max;
-
-    const wi = 500 * (currentValue[0] / max);
+  const getTrackStyle = () => {
+    const widthFraction = currentValue[1] / max - currentValue[0] / max;
+    const left = 500 * (currentValue[0] / max);
 
     return {
-      width: w * 100 + "%",
-      marginLeft: wi + "px",
+      width: widthFraction * 100 + "%",
+      marginLeft: left + "px",
     };
   };
 
-  const cleanupNrs = (values) => {
+  const clampValues = (values) => {
     return [clamp(values[0]), clamp(values[1])];
   };
 
   const getX = (event) => {
     let e = event.target.getBoundingClientRect();
     let xCoordinate = event.touches[0].clientX - e.left;
-    //let yCoordinate = event.touches[0].clientY - e.top;
 
     return Math.round(xCoordinate);
   };
 
-  const wrapperCl = (e) => {
+  const onWrapperClick = (e) => {
     let x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
     let v = (x / 500) * max;
@@ -357,14 +367,13 @@ export function Slider({
     const midPoint = (currentValue[0] + currentValue[1]) / 2;
 
     if (v > midPoint) {
+      // Adjust slightly to offset slider thumb (wip).
       v = v * 1.02;
-      let values = cleanupNrs(getValues(v, 1));
+      const values = clampValues(getValues(v, 1));
 
       setNewValue(values, 1);
     } else {
-      //v = v - (5 / 500) * max * ((0.04 * max) / v) - (2 / 500) * max;
-
-      let values = cleanupNrs(getValues(v, 0));
+      const values = clampValues(getValues(v, 0));
 
       setNewValue(values, 0);
     }
@@ -381,9 +390,9 @@ export function Slider({
           e.preventDefault();
         }}
       >
-        <div className="active-track" ref={track} style={trackStyle()}></div>
+        <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
-        <div className="input-wrapper" onMouseDown={(e) => wrapperCl(e)} onTouchStart={(e) => wrapperCl(e)}>
+        <div className="input-wrapper" onMouseDown={(e) => onWrapperClick(e)} onTouchStart={(e) => onWrapperClick(e)}>
           <input
             type="range"
             value={currentValue[1]}
