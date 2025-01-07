@@ -181,7 +181,7 @@ export function Slider({
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Update current value on prop change.
+  // Update current values on prop change.
   useEffect(() => {
     const values = getValueArray();
 
@@ -260,15 +260,6 @@ export function Slider({
     }
   `;
 
-  // Get value adjusted with step amount.
-  const getAdjustedValue = (value) => {
-    if (step > 1) {
-      return Math.round(value / step) * step;
-    } else {
-      return value;
-    }
-  };
-
   const clamp = (val) => Math.min(Math.max(val, min), max);
 
   function move(direction: "left" | "right", i: number) {
@@ -326,18 +317,14 @@ export function Slider({
   };
 
   const onInputChange = (e: any, index: number) => {
-    const value = getAdjustedValue(+e.target.value);
-
-    const values = getValues(value, index);
+    const values = getValues(+e.target.value, index);
 
     setNewValues(values, index);
   };
 
   const onInputComplete = (e) => {
     if (onChangeAfter) {
-      const value = getAdjustedValue(+e.target.value);
-
-      onChangeAfter(value);
+      onChangeAfter(+e.target.value);
     }
   };
 
@@ -362,8 +349,12 @@ export function Slider({
     return Math.round(xCoordinate);
   };
 
+  // Handle range click.
+  // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = (e) => {
-    if (!disabled) {
+    // Clicking on the input thumb triggers the event for the input element.
+    // Here, only handle click for clicking on the range, outside the thumb slider.
+    if (!disabled && e.target.nodeName !== "INPUT") {
       const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
       const v = (x / 500) * max;
@@ -387,6 +378,7 @@ export function Slider({
       return (
         <input
           type="range"
+          step={step}
           value={currentValues[index]}
           min={min}
           max={max}
