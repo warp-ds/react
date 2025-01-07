@@ -329,11 +329,9 @@ export function Slider({
     setNewValues(values, index);
   };
 
-  const onInputComplete = (e: any, index: number) => {
+  const onInputComplete = () => {
     if (onChangeAfter) {
-      const value = +e.target.value;
-
-      onChangeAfter(isRange ? getValues(value, index) : value);
+      onChangeAfter(isRange ? currentValues : currentValues[1]);
     }
   };
 
@@ -396,9 +394,6 @@ export function Slider({
           max={max}
           onKeyDown={(e) => onKeyDown(e, index)}
           onChange={(e) => onInputChange(e, index)}
-          onKeyUp={(e) => onInputComplete(e, index)}
-          onMouseUp={(e) => onInputComplete(e, index)}
-          onTouchEnd={(e) => onInputComplete(e, index)}
         />
       );
     } else {
@@ -417,7 +412,16 @@ export function Slider({
       >
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
-        <div className="input-wrapper" onMouseDown={onWrapperClick} onTouchStart={onWrapperClick} ref={wrapperRef}>
+        <div
+          className="input-wrapper"
+          ref={wrapperRef}
+          onMouseDown={onWrapperClick}
+          onTouchStart={onWrapperClick}
+          onKeyUp={onInputComplete}
+          onMouseUp={onInputComplete}
+          onTouchEnd={onInputComplete}
+          onMouseOut={onInputComplete}
+        >
           {inputElement(1)}
           {isRange ? inputElement(0) : undefined}
         </div>
