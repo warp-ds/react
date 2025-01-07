@@ -397,7 +397,7 @@ export function Slider({
         />
       );
     } else {
-      return <input type="range" disabled={true} value={value} min={min} max={max} />;
+      return <input type="range" disabled={true} value={currentValues[index]} min={min} max={max} />;
     }
   };
 
