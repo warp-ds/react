@@ -193,7 +193,7 @@ export function Slider({
   const style = `
     input[type="range"] {
         appearance: none;
-        height:20px;
+        height: 40px;
         width: 500px;
         grid-row: 1;
         grid-column: 1;
@@ -239,7 +239,7 @@ export function Slider({
       height: 5px;
       width: 50%;
       pointer-events: none;
-      transform: translateY(7.5px);
+      transform: translateY(17px);
       grid-row: 1;
       grid-column: 1;
       z-index: 0;
@@ -395,6 +395,7 @@ export function Slider({
           onChange={(e) => onInputChange(e, index)}
           onKeyUp={onInputComplete}
           onMouseUp={onInputComplete}
+          onTouchEnd={onInputComplete}
         />
       );
     } else {

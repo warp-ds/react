@@ -22,7 +22,7 @@ export const Range = () => {
 
   return (
     <div>
-      <output style={{ display: "inline-block", width: "1000px" }}>{values[0]} - {values[1]}</output>
+      <output style={{ display: "inline-block" }}>{values[0]} - {values[1]}</output>
       <Slider values={values} onChange={nums => setValues(nums)} min={1000} max={10_000_000} step={1000} />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
