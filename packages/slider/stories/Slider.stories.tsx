@@ -10,7 +10,7 @@ export const Regular = () => {
 
   return (
     <div>
-      <output style={{ display: "inline-block", width: "60px" }}>{value}</output>
+      <output>{value}</output>
       <Slider onChange={(value) => setValue(value)} value={value} min={1000} max={60000} step={10} />
       <button onClick={() => setValue(6000)}>Reset</button>
     </div>
@@ -22,8 +22,10 @@ export const Range = () => {
 
   return (
     <div>
-      <output style={{ display: "inline-block" }}>{values[0]} - {values[1]}</output>
-      <Slider values={values} onChange={nums => setValues(nums)} min={1000} max={10_000_000} step={1000} />
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
   );

@@ -61,13 +61,11 @@ export function Slider({
         grid-column: 1;
         pointer-events: none;
     }
-
-    .input-wrapper{
+    .input-wrapper {
       grid-row: 1;
       grid-column: 1;
       display: grid;
     }
-       
     input[type=range]::-webkit-slider-thumb {
         appearance: none;
         width: 24px;
@@ -83,7 +81,7 @@ export function Slider({
     input[type=range]:nth-child(2)::-webkit-slider-thumb {
       z-index: 100;
     }
-    input[type=range]::-webkit-slider-thumb:active{
+    input[type=range]::-webkit-slider-thumb:active {
         box-shadow: var(--w-shadow-slider-handle-active);
         z-index: 1000;
     }
@@ -95,8 +93,7 @@ export function Slider({
         box-shadow: none;
         pointer-events: none;
     }
-    
-    .active-track{
+    .active-track {
       background-color: var(--w-s-color-background-primary);
       height: 5px;
       width: 50%;
@@ -119,7 +116,7 @@ export function Slider({
         box-shadow: none;
         pointer-events: none;
     }
-    .wrapper{
+    .wrapper {
       display: grid;
     }
   `;
