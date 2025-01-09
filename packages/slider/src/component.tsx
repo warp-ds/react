@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Ref, useEffect, useRef, useState } from "react";
 
 import { classNames } from "@chbphone55/classnames";
 import { slider as ccSlider } from "@warp-ds/css/component-classes";
@@ -15,7 +15,9 @@ overlay elements to render the progress bar.
 In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
 */
 export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
-export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps);
+export function Slider(
+  v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps,
+);
 
 export function Slider({
   min = 0,
@@ -39,18 +41,46 @@ export function Slider({
   const getValueArray = () => (values ? [...values] : [0, value as number]);
 
   const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
+  const [moving, setMoving] = useState(false);
 
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const ref0 = useRef<any>(null);
+  const ref1 = useRef<any>(null);
+  const timeoutId = useRef<any>(0);
 
   // Update current values on prop change.
   useEffect(() => {
-    const values = getValueArray();
+    if (!moving) {
+      const values = getValueArray();
 
-    setCurrentValues(values);
+      setCurrentValues(values);
+
+      updateInputValues({ values, value });
+    }
   }, [values, value]);
+
+  // init values.
+  useEffect(() => {
+    updateInputValues({ values, value });
+  }, [ref0.current, ref1.current]);
+
+  function updateInputValues({ value, values }: { value?: number; values?: number[] }) {
+    if (isRange) {
+      if (ref0.current) {
+        ref0.current.value = (values as number[])[0];
+      }
+      if (ref1.current) {
+        ref1.current.value = (values as number[])[1];
+      }
+    } else {
+      if (ref1.current) {
+        ref1.current.value = value;
+      }
+    }
+  }
 
   const style = `
     input[type="range"] {
@@ -123,7 +153,7 @@ export function Slider({
 
   const clamp = (val: number) => Math.min(Math.max(val, min), max);
 
-  function move(direction: "left" | "right", i: number) {
+  function moveSlider(direction: "left" | "right", i: number) {
     const multiplier = {
       left: -1,
       right: 1,
@@ -133,21 +163,25 @@ export function Slider({
 
     const value = clamp(currentValues[i] + multiplier[direction] * d);
 
-    const values = getValues(value, i);
+    const values = getAsValueArray(value, i);
+
+    updateInputValues({ values, value });
+
     setNewValues(values, i);
   }
 
   const onKeyDown = (e: any, i: number) => {
+    setMoving(true);
     if (e.key === "ArrowLeft") {
-      move("left", i);
+      moveSlider("left", i);
     }
     if (e.key === "ArrowRight") {
-      move("right", i);
+      moveSlider("right", i);
     }
   };
 
   // Use the given value to get full value array.
-  const getValues = (value: number, index = 1) => {
+  const getAsValueArray = (value: number, index = 1) => {
     let values: number[];
 
     value = Math.round(value);
@@ -166,24 +200,30 @@ export function Slider({
 
   // Set slider values.
   const setNewValues = (values: number[], i: number) => {
-    // Stop slider values from overlapping.
-    if (!(values[0] < values[1])) {
-      if (i == 0) {
-        values[0] = values[1];
-      } else {
-        values[1] = values[0];
+    // clear any previous timeout.
+    clearTimeout(timeoutId.current);
+
+    // run update and onchange async.
+    timeoutId.current = setTimeout(() => {
+      // Stop slider values from overlapping.
+      if (!(values[0] < values[1])) {
+        if (i == 0) {
+          values[0] = values[1];
+        } else {
+          values[1] = values[0];
+        }
       }
-    }
 
-    setCurrentValues(values);
+      setCurrentValues(values);
 
-    if (onChange) {
-      onChange(isRange ? values : values[1]);
-    }
+      if (onChange) {
+        onChange(isRange ? values : values[1]);
+      }
+    }, 0);
   };
 
   const onInputChange = (e: any, index: number) => {
-    const values = getValues(+e.target.value, index);
+    const values = getAsValueArray(+e.target.value, index);
 
     setNewValues(values, index);
   };
@@ -192,6 +232,7 @@ export function Slider({
     if (onChangeAfter) {
       onChangeAfter(isRange ? currentValues : currentValues[1]);
     }
+    setMovingFalse();
   };
 
   const getTrackStyle = () => {
@@ -221,6 +262,7 @@ export function Slider({
   // Handle range click.
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = (e: any) => {
+    setMoving(true);
     // Clicking on the input thumb triggers the event for the input element.
     // Here, only handle click for clicking on the range, outside the thumb slider.
     if (!disabled && e.target.nodeName !== "INPUT") {
@@ -235,23 +277,32 @@ export function Slider({
       // Update values.
       const index = v > midPoint ? 1 : 0;
 
-      const values = clampValues(getValues(v, index));
+      const values = clampValues(getAsValueArray(v, index));
 
       setNewValues(values, index);
+
+      updateInputValues({ values, value: values[1] });
     }
   };
 
+  function setMovingFalse() {
+    setTimeout(() => {
+      setMoving(false);
+    }, 0);
+  }
+
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
-  const inputElement = (index: number) => {
+  const inputElement = (index: number, ref: Ref<any>) => {
     if (!disabled) {
       return (
         <input
+          ref={ref}
           type="range"
           step={step}
-          value={currentValues[index]}
           min={min}
           max={max}
           onKeyDown={(e) => onKeyDown(e, index)}
+          onKeyUp={setMovingFalse}
           onChange={(e) => onInputChange(e, index)}
         />
       );
@@ -281,8 +332,8 @@ export function Slider({
           onTouchEnd={onInputComplete}
           onMouseOut={onInputComplete}
         >
-          {inputElement(1)}
-          {isRange && inputElement(0)}
+          {inputElement(1, ref1)}
+          {isRange && inputElement(0, ref0)}
         </div>
       </div>
     </>
@@ -291,7 +342,12 @@ export function Slider({
 
 // Aria label data for the slider.
 // https://www.digitala11y.com/slider-role/.
-function getSliderData(value: number, min: number, max: number, { ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>) {
+function getSliderData(
+  value: number,
+  min: number,
+  max: number,
+  { ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>,
+) {
   return {
     role: "slider",
     "aria-valuenow": value,
