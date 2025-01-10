@@ -67,6 +67,7 @@ export function Slider({
     updateInputValues({ values, value });
   }, [ref0.current, ref1.current]);
 
+  // Set the value for the input elements.
   function updateInputValues({ value, values }: { value?: number; values?: number[] }) {
     if (isRange) {
       if (ref0.current) {
@@ -214,7 +215,7 @@ export function Slider({
       } else {
         values[1] = values[0];
       }
-      updateInputValues({values, value: values[1]})
+      updateInputValues({ values, value: values[1] });
     }
 
     // run update and onchange async.
@@ -291,9 +292,7 @@ export function Slider({
   };
 
   function setMovingFalse() {
-    setTimeout(() => {
-      setMoving(false);
-    }, 0);
+    setMoving(false);
   }
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
