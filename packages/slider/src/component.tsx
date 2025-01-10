@@ -91,6 +91,10 @@ export function Slider({
         grid-column: 1;
         pointer-events: none;
     }
+    input[type="range"]:focus {
+      outline: none;
+    }
+
     .input-wrapper {
       grid-row: 1;
       grid-column: 1;
@@ -203,17 +207,18 @@ export function Slider({
     // clear any previous timeout.
     clearTimeout(timeoutId.current);
 
+    // Stop slider values from overlapping.
+    if (values[0] > values[1]) {
+      if (i == 0) {
+        values[0] = values[1];
+      } else {
+        values[1] = values[0];
+      }
+      updateInputValues({values, value: values[1]})
+    }
+
     // run update and onchange async.
     timeoutId.current = setTimeout(() => {
-      // Stop slider values from overlapping.
-      if (!(values[0] < values[1])) {
-        if (i == 0) {
-          values[0] = values[1];
-        } else {
-          values[1] = values[0];
-        }
-      }
-
       setCurrentValues(values);
 
       if (onChange) {
