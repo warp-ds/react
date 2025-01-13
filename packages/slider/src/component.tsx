@@ -41,19 +41,22 @@ export function Slider({
   const getValueArray = () => (values ? [...values] : [0, value as number]);
 
   const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
-  const [moving, setMoving] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
 
   // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // Input refs.
   const ref0 = useRef<any>(null);
   const ref1 = useRef<any>(null);
+
   const timeoutId = useRef<any>(0);
 
   // Update current values on prop change.
   useEffect(() => {
-    if (!moving) {
+    if (!isMoving) {
       const values = getValueArray();
 
       setCurrentValues(values);
@@ -66,6 +69,12 @@ export function Slider({
   useEffect(() => {
     updateInputValues({ values, value });
   }, [ref0.current, ref1.current]);
+
+  useEffect(() => {
+    if (!isMoving && onChangeAfter) {
+      onChangeAfter(isRange ? currentValues : currentValues[1]);
+    }
+  }, [isMoving, currentValues]);
 
   // Set the value for the input elements.
   function updateInputValues({ value, values }: { value?: number; values?: number[] }) {
@@ -176,7 +185,7 @@ export function Slider({
   }
 
   const onKeyDown = (e: any, i: number) => {
-    setMoving(true);
+    setIsMoving(true);
     if (e.key === "ArrowLeft") {
       moveSlider("left", i);
     }
@@ -235,9 +244,6 @@ export function Slider({
   };
 
   const onInputComplete = () => {
-    if (onChangeAfter) {
-      onChangeAfter(isRange ? currentValues : currentValues[1]);
-    }
     setMovingFalse();
   };
 
@@ -268,7 +274,7 @@ export function Slider({
   // Handle range click.
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = (e: any) => {
-    setMoving(true);
+    setIsMoving(true);
     // Clicking on the input thumb triggers the event for the input element.
     // Here, only handle click for clicking on the range, outside the thumb slider.
     if (!disabled && e.target.nodeName !== "INPUT") {
@@ -292,7 +298,7 @@ export function Slider({
   };
 
   function setMovingFalse() {
-    setMoving(false);
+    setIsMoving(false);
   }
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
