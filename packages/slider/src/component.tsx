@@ -15,9 +15,7 @@ overlay elements to render the progress bar.
 In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
 */
 export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
-export function Slider(
-  v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps,
-);
+export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps);
 
 export function Slider({
   min = 0,
@@ -314,6 +312,7 @@ export function Slider({
           onKeyDown={(e) => onKeyDown(e, index)}
           onKeyUp={setMovingFalse}
           onChange={(e) => onInputChange(e, index)}
+          {...ariaData({ ariaLabel, ariaLabelledBy, ariaValueText })}
         />
       );
     } else {
@@ -324,12 +323,7 @@ export function Slider({
   return (
     <>
       <style>{style}</style>
-      <div
-        className={"ccSlider.wrapper" + " wrapper"}
-        style={{ width: "max-content" }}
-        {...getSliderData(currentValues[1], min, max, { ariaLabel, ariaLabelledBy, ariaValueText })}
-        onContextMenu={(e) => e.preventDefault()}
-      >
+      <div className={"ccSlider.wrapper" + " wrapper"} style={{ width: "max-content" }} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
 
         <div
@@ -352,17 +346,9 @@ export function Slider({
 
 // Aria label data for the slider.
 // https://www.digitala11y.com/slider-role/.
-function getSliderData(
-  value: number,
-  min: number,
-  max: number,
-  { ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>,
-) {
+// https://www.w3.org/WAI/ARIA/apg/practices/range-related-properties/.
+function ariaData({ ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>) {
   return {
-    role: "slider",
-    "aria-valuenow": value,
-    "aria-valuemin": min,
-    "aria-valuemax": max,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-valuetext": ariaValueText,
