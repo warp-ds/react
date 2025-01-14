@@ -5,6 +5,80 @@ import { slider as ccSlider } from "@warp-ds/css/component-classes";
 
 import { SliderProps } from "./props.js";
 
+const style = `
+  input[type="range"] {
+      appearance: none;
+      height: 40px;
+      width: 500px;
+      grid-row: 1;
+      grid-column: 1;
+      pointer-events: none;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+
+  .input-wrapper {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+  }
+  input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      background-color: var(--w-s-color-background-primary);
+      border-radius: 0%;
+      cursor: pointer;
+      transform: translateY(-10px);
+      border-radius: 5px;
+      z-index: 200;
+      pointer-events: all !important;
+  }
+  input[type=range]:nth-child(2)::-webkit-slider-thumb {
+    z-index: 100;
+  }
+  input[type=range]::-webkit-slider-thumb:active {
+      box-shadow: var(--w-shadow-slider-handle-active);
+      z-index: 1000;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+      height: 4px;
+      border: 0px solid #b2b2b2;
+      border-radius: 0.5em;
+      background: #efefef;
+      box-shadow: none;
+      pointer-events: none;
+  }
+  .active-track {
+    background-color: var(--w-s-color-background-primary);
+    height: 5px;
+    width: 50%;
+    pointer-events: none;
+    transform: translateY(17px);
+    grid-row: 1;
+    grid-column: 1;
+    z-index: 0;
+    pointer-events: none;
+  }
+  input[type=range]::-webkit-slider-thumb:active {
+      background: #2f98f9;
+      z-index: 10000 !important;
+  }
+  input[type=range]::-webkit-progress-bar {
+      height: 3px;
+      border: 0px solid #b2b2b2;
+      border-radius: 0.5em;
+      background: #949494;
+      box-shadow: none;
+      pointer-events: none;
+  }
+  .wrapper {
+    display: grid;
+    width: max-content;
+  }
+`;
+
 /* 
 New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
 Uses function overloading to provide two interfaces (for one or two values).
@@ -41,9 +115,7 @@ export function Slider({
   const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
   const [isMoving, setIsMoving] = useState(false);
 
-  // 'Track' (progress bar) overlay ref.
   const trackRef = useRef<HTMLDivElement>(null);
-
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Input refs.
@@ -63,11 +135,12 @@ export function Slider({
     }
   }, [values, value]);
 
-  // init values.
+  // Init values.
   useEffect(() => {
     updateInputValues({ values, value });
   }, [ref0.current, ref1.current]);
 
+  // Call onchangeafter.
   useEffect(() => {
     if (!isMoving && onChangeAfter) {
       onChangeAfter(isRange ? currentValues : currentValues[1]);
@@ -89,79 +162,6 @@ export function Slider({
       }
     }
   }
-
-  const style = `
-    input[type="range"] {
-        appearance: none;
-        height: 40px;
-        width: 500px;
-        grid-row: 1;
-        grid-column: 1;
-        pointer-events: none;
-    }
-    input[type="range"]:focus {
-      outline: none;
-    }
-
-    .input-wrapper {
-      grid-row: 1;
-      grid-column: 1;
-      display: grid;
-    }
-    input[type=range]::-webkit-slider-thumb {
-        appearance: none;
-        width: 24px;
-        height: 24px;
-        background-color: var(--w-s-color-background-primary);
-        border-radius: 0%;
-        cursor: pointer;
-        transform: translateY(-10px);
-        border-radius: 5px;
-        z-index: 200;
-        pointer-events: all !important;
-    }
-    input[type=range]:nth-child(2)::-webkit-slider-thumb {
-      z-index: 100;
-    }
-    input[type=range]::-webkit-slider-thumb:active {
-        box-shadow: var(--w-shadow-slider-handle-active);
-        z-index: 1000;
-    }
-    input[type=range]::-webkit-slider-runnable-track {
-        height: 4px;
-        border: 0px solid #b2b2b2;
-        border-radius: 0.5em;
-        background: #efefef;
-        box-shadow: none;
-        pointer-events: none;
-    }
-    .active-track {
-      background-color: var(--w-s-color-background-primary);
-      height: 5px;
-      width: 50%;
-      pointer-events: none;
-      transform: translateY(17px);
-      grid-row: 1;
-      grid-column: 1;
-      z-index: 0;
-      pointer-events: none;
-    }
-    input[type=range]::-webkit-slider-thumb:active {
-        background: #2f98f9;
-        z-index: 10000 !important;
-    }
-    input[type=range]::-webkit-progress-bar {
-        height: 3px;
-        border: 0px solid #b2b2b2;
-        border-radius: 0.5em;
-        background: #949494;
-        box-shadow: none;
-        pointer-events: none;
-    }
-    .wrapper {
-      display: grid;
-    }
-  `;
 
   const clamp = (val: number) => Math.min(Math.max(val, min), max);
 
@@ -211,6 +211,7 @@ export function Slider({
   };
 
   // Set slider values.
+  // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
   const setNewValues = (values: number[], i: number) => {
     // clear any previous timeout.
     clearTimeout(timeoutId.current);
@@ -225,7 +226,7 @@ export function Slider({
       updateInputValues({ values, value: values[1] });
     }
 
-    // run update and onchange async.
+    // Run update and onchange async.
     timeoutId.current = setTimeout(() => {
       setCurrentValues(values);
 
@@ -323,9 +324,8 @@ export function Slider({
   return (
     <>
       <style>{style}</style>
-      <div className={"ccSlider.wrapper" + " wrapper"} style={{ width: "max-content" }} onContextMenu={(e) => e.preventDefault()}>
+      <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
-
         <div
           className="input-wrapper"
           ref={wrapperRef}
