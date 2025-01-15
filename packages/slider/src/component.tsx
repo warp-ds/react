@@ -115,7 +115,7 @@ export function Slider({
       const values = getValueArray();
 
       setCurrentValues(values);
-      if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
+      setStyle(trackRef, values, wrapperRef, isRange, max);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
     }
@@ -132,6 +132,12 @@ export function Slider({
       onChangeAfter(isRange ? currentValues : currentValues[1]);
     }
   }, [isMoving, currentValues]);
+
+  // Set value attributes.
+  useEffect(() => {
+    if (ref0.current) ref0.current.setAttribute("value", currentValues[0]);
+    if (ref1.current) ref1.current.setAttribute("value", currentValues[1]);
+  }, [currentValues]);
 
   const moveSlider = (direction: "left" | "right", i: number) => {
     const multiplier = {
@@ -190,7 +196,7 @@ export function Slider({
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
   const setNewValues = (values: number[], i: number) => {
-    // clear any previous timeout.
+    // Clear any previous timeout.
     clearTimeout(timeoutId.current);
 
     // Stop slider values from overlapping.
@@ -210,9 +216,9 @@ export function Slider({
       if (onChange) {
         onChange(isRange ? values : values[1]);
       }
-    }, 0);
+    }, 1);
 
-    if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
+    setStyle(trackRef, values, wrapperRef, isRange, max);
   };
 
   const onInputChange = (e: any, index: number) => {
@@ -332,6 +338,10 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max) => {
   return `
     width: ${widthFraction * 100 + "%"};
     margin-left: ${left + "px"};`;
+};
+
+const setStyle = (ref, values, wrapperRef, isRange, max) => {
+  if (ref.current) ref.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
 };
 
 const clampValues = (values: number[], min, max) => {
