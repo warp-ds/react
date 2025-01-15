@@ -6,6 +6,15 @@ import { slider as ccSlider } from "@warp-ds/css/component-classes";
 import { SliderProps } from "./props.js";
 
 const style = `
+  .wrapper {
+      display: grid;
+      width: max-content;
+  }
+  .input-wrapper {
+      grid-row: 1;
+      grid-column: 1;
+      display: grid;
+  }
   input[type="range"] {
       appearance: none;
       height: 40px;
@@ -15,13 +24,7 @@ const style = `
       pointer-events: none;
   }
   input[type="range"]:focus {
-    outline: none;
-  }
-
-  .input-wrapper {
-    grid-row: 1;
-    grid-column: 1;
-    display: grid;
+      outline: none;
   }
   input[type=range]::-webkit-slider-thumb {
       appearance: none;
@@ -32,50 +35,32 @@ const style = `
       cursor: pointer;
       transform: translateY(-10px);
       border-radius: 5px;
-      z-index: 200;
       pointer-events: all !important;
   }
-  input[type=range]:nth-child(2)::-webkit-slider-thumb {
-    z-index: 100;
+  input[type="range"]:focus::-webkit-slider-thumb {
+      box-shadow: var(--w-shadow-slider-handle-active);
   }
   input[type=range]::-webkit-slider-thumb:active {
+      background: #2f98f9;
       box-shadow: var(--w-shadow-slider-handle-active);
-      z-index: 1000;
   }
   input[type=range]::-webkit-slider-runnable-track {
       height: 4px;
       border: 0px solid #b2b2b2;
-      border-radius: 0.5em;
       background: #efefef;
       box-shadow: none;
       pointer-events: none;
   }
   .active-track {
-    background-color: var(--w-s-color-background-primary);
-    height: 5px;
-    width: 50%;
-    pointer-events: none;
-    transform: translateY(17px);
-    grid-row: 1;
-    grid-column: 1;
-    z-index: 0;
-    pointer-events: none;
-  }
-  input[type=range]::-webkit-slider-thumb:active {
-      background: #2f98f9;
-      z-index: 10000 !important;
-  }
-  input[type=range]::-webkit-progress-bar {
-      height: 3px;
-      border: 0px solid #b2b2b2;
-      border-radius: 0.5em;
-      background: #949494;
-      box-shadow: none;
+      background-color: var(--w-s-color-background-primary);
+      height: 5px;
+      width: 50%;
       pointer-events: none;
-  }
-  .wrapper {
-    display: grid;
-    width: max-content;
+      transform: translateY(17px);
+      grid-row: 1;
+      grid-column: 1;
+      z-index: 0;
+      pointer-events: none;
   }
 `;
 
