@@ -111,7 +111,7 @@ export function Slider({
 
   // Update current values on prop change.
   useEffect(() => {
-    if (!isMoving) {
+    if (!(document.activeElement === ref0.current || document.activeElement === ref1.current)) {
       const values = getValueArray();
 
       setCurrentValues(values);
