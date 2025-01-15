@@ -115,14 +115,15 @@ export function Slider({
       const values = getValueArray();
 
       setCurrentValues(values);
+      if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
 
-      updateInputValues({ values, value });
+      updateInputValues({ values, value }, isRange, ref0, ref1);
     }
   }, [values, value]);
 
   // Init values.
   useEffect(() => {
-    updateInputValues({ values, value });
+    updateInputValues({ values, value }, isRange, ref0, ref1);
   }, [ref0.current, ref1.current]);
 
   // Call onchangeafter.
@@ -132,25 +133,7 @@ export function Slider({
     }
   }, [isMoving, currentValues]);
 
-  // Set the value for the input elements.
-  function updateInputValues({ value, values }: { value?: number; values?: number[] }) {
-    if (isRange) {
-      if (ref0.current) {
-        ref0.current.value = (values as number[])[0];
-      }
-      if (ref1.current) {
-        ref1.current.value = (values as number[])[1];
-      }
-    } else {
-      if (ref1.current) {
-        ref1.current.value = value;
-      }
-    }
-  }
-
-  const clamp = (val: number) => Math.min(Math.max(val, min), max);
-
-  function moveSlider(direction: "left" | "right", i: number) {
+  const moveSlider = (direction: "left" | "right", i: number) => {
     const multiplier = {
       left: -1,
       right: 1,
@@ -158,14 +141,14 @@ export function Slider({
 
     const d = max * keyboardStepFactor;
 
-    const value = clamp(currentValues[i] + multiplier[direction] * d);
+    const value = clamp(currentValues[i] + multiplier[direction] * d, min, max);
 
-    const values = getAsValueArray(value, i);
+    const values = getAsValueArray(value, i, isRange, currentValues);
 
-    updateInputValues({ values, value });
+    updateInputValues({ values, value }, isRange, ref0, ref1);
 
     setNewValues(values, i);
-  }
+  };
 
   const onKeyDown = (e: any, i: number) => {
     setIsMoving(true);
@@ -177,22 +160,31 @@ export function Slider({
     }
   };
 
-  // Use the given value to get full value array.
-  const getAsValueArray = (value: number, index = 1) => {
-    let values: number[];
+  // Handle range click.
+  // Ensures the range endpoints are moved according to where in the range the user clicked.
+  const onWrapperClick = (e: any) => {
+    setIsMoving(true);
 
-    value = Math.round(value);
+    // Clicking on the input thumb triggers the event for the input element.
+    // Here, only handle click for clicking on the range, outside the thumb slider.
+    if (!disabled && e.target.nodeName !== "INPUT") {
+      const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
-    if (isRange) {
-      if (index === 1) {
-        values = [currentValues[0], value];
-      } else {
-        values = [value, currentValues[1]];
-      }
-    } else {
-      values = [0, value];
+      const width = (wrapperRef.current as HTMLDivElement).clientWidth;
+
+      const v = (x / width) * max;
+
+      const midPoint = (currentValues[0] + currentValues[1]) / 2;
+
+      // Update values.
+      const index = v > midPoint ? 1 : 0;
+
+      const values = clampValues(getAsValueArray(v, index, isRange, currentValues), min, max);
+
+      setNewValues(values, index);
+
+      updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
     }
-    return values;
   };
 
   // Set slider values.
@@ -208,7 +200,7 @@ export function Slider({
       } else {
         values[1] = values[0];
       }
-      updateInputValues({ values, value: values[1] });
+      updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
     }
 
     // Run update and onchange async.
@@ -219,66 +211,18 @@ export function Slider({
         onChange(isRange ? values : values[1]);
       }
     }, 0);
+
+    if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
   };
 
   const onInputChange = (e: any, index: number) => {
-    const values = getAsValueArray(+e.target.value, index);
+    const values = getAsValueArray(+e.target.value, index, isRange, currentValues);
 
     setNewValues(values, index);
   };
 
   const onInputComplete = () => {
     setMovingFalse();
-  };
-
-  const getTrackStyle = () => {
-    const widthFraction = currentValues[1] / max - currentValues[0] / max;
-
-    const width = wrapperRef.current?.clientWidth || 500;
-
-    const left = isRange ? width * (currentValues[0] / max) : 0;
-
-    return {
-      width: widthFraction * 100 + "%",
-      marginLeft: left + "px",
-    };
-  };
-
-  const clampValues = (values: number[]) => {
-    return [clamp(values[0]), clamp(values[1])];
-  };
-
-  const getX = (event: any) => {
-    const e = event.target.getBoundingClientRect();
-    const xCoordinate = event.touches[0].clientX - e.left;
-
-    return Math.round(xCoordinate);
-  };
-
-  // Handle range click.
-  // Ensures the range endpoints are moved according to where in the range the user clicked.
-  const onWrapperClick = (e: any) => {
-    setIsMoving(true);
-    // Clicking on the input thumb triggers the event for the input element.
-    // Here, only handle click for clicking on the range, outside the thumb slider.
-    if (!disabled && e.target.nodeName !== "INPUT") {
-      const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
-
-      const width = (wrapperRef.current as HTMLDivElement).clientWidth;
-
-      const v = (x / width) * max;
-
-      const midPoint = (currentValues[0] + currentValues[1]) / 2;
-
-      // Update values.
-      const index = v > midPoint ? 1 : 0;
-
-      const values = clampValues(getAsValueArray(v, index));
-
-      setNewValues(values, index);
-
-      updateInputValues({ values, value: values[1] });
-    }
   };
 
   function setMovingFalse() {
@@ -310,7 +254,7 @@ export function Slider({
     <>
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
-        <div className="active-track" ref={trackRef} style={getTrackStyle()}></div>
+        <div className="active-track" ref={trackRef}></div>
         <div
           className="input-wrapper"
           ref={wrapperRef}
@@ -339,3 +283,64 @@ function ariaData({ ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, s
     "aria-valuetext": ariaValueText,
   };
 }
+
+function clamp(val: number, min: number, max: number) {
+  return Math.min(Math.max(val, min), max);
+}
+
+// Set the value for the input elements.
+function updateInputValues({ value, values }: { value?: number; values?: number[] }, isRange, ref0, ref1) {
+  if (isRange) {
+    if (ref0.current) {
+      ref0.current.value = (values as number[])[0];
+    }
+    if (ref1.current) {
+      ref1.current.value = (values as number[])[1];
+    }
+  } else {
+    if (ref1.current) {
+      ref1.current.value = value;
+    }
+  }
+}
+
+// Use the given value to get full value array.
+const getAsValueArray = (value: number, index = 1, isRange, currentValues) => {
+  let values: number[];
+
+  value = Math.round(value);
+
+  if (isRange) {
+    if (index === 1) {
+      values = [currentValues[0], value];
+    } else {
+      values = [value, currentValues[1]];
+    }
+  } else {
+    values = [0, value];
+  }
+  return values;
+};
+
+const getTrackStyle = (currentValues, wrapperRef, isRange, max) => {
+  const widthFraction = currentValues[1] / max - currentValues[0] / max;
+
+  const width = wrapperRef.current?.clientWidth || 500;
+
+  const left = isRange ? width * (currentValues[0] / max) : 0;
+
+  return `
+    width: ${widthFraction * 100 + "%"};
+    margin-left: ${left + "px"};`;
+};
+
+const clampValues = (values: number[], min, max) => {
+  return [clamp(values[0], min, max), clamp(values[1], min, max)];
+};
+
+const getX = (event: any) => {
+  const e = event.target.getBoundingClientRect();
+  const xCoordinate = event.touches[0].clientX - e.left;
+
+  return Math.round(xCoordinate);
+};
