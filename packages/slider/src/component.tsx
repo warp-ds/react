@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef, useState } from "react";
+import React, { Ref, useEffect, useMemo, useRef, useState } from "react";
 
 import { classNames } from "@chbphone55/classnames";
 import { slider as ccSlider } from "@warp-ds/css/component-classes";
@@ -67,14 +67,15 @@ const style = `
         grid-column: 1;
         transform: translateY(-39px);
         color: grey;
+        width: 0px;
       }
       span:nth-child(1) {
         justify-self: start;
-        margin-left: -30px;
+
       }
       span:nth-child(2) {
         justify-self: end;
-        margin-right: -30px;
+
       }
   }
   .steps {
@@ -144,7 +145,7 @@ export function Slider({
       const values = getValueArray();
 
       setCurrentValues(values);
-      setStyle(trackRef, values, wrapperRef, isRange, max);
+      setStyle(trackRef, values, wrapperRef, isRange, max, min);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
     }
@@ -207,7 +208,7 @@ export function Slider({
 
       const width = (wrapperRef.current as HTMLDivElement).clientWidth;
 
-      const v = (x / width) * max;
+      const v = (x / width) * (max - min) + min;
 
       const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
@@ -247,7 +248,7 @@ export function Slider({
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min);
   };
 
   const onInputChange = (e: any, index: number) => {
@@ -285,15 +286,17 @@ export function Slider({
     }
   };
 
+  const margin = useMemo(() => (max - min).toString().length * 5, [min, max]);
+
   return (
     <>
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          {showTooltip && isMoving && (
+          {showTooltip && (
             <>
-              <span>{currentValues[0]}</span>
-              <span>{currentValues[1]}</span>
+              <span style={{ marginLeft: -margin + "px" }}>{currentValues[0]}</span>
+              <span style={{ marginRight: margin + "px" }}>{currentValues[1]}</span>
             </>
           )}
         </div>
@@ -309,7 +312,7 @@ export function Slider({
         >
           {inputElement(1, ref1)}
           {isRange && inputElement(0, ref0)}
-          <div className="steps">{markers && Array.from(Array(markerCount).keys()).map((v) => <div>|</div>)}</div>
+          <div className="steps">{markers && Array.from(Array(markerCount).keys()).map((v, i) => <div key={i}>|</div>)}</div>
         </div>
       </div>
     </>
@@ -365,20 +368,20 @@ const getAsValueArray = (value: number, index = 1, isRange, currentValues) => {
   return values;
 };
 
-const getTrackStyle = (currentValues, wrapperRef, isRange, max) => {
-  const widthFraction = currentValues[1] / max - currentValues[0] / max;
+const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
+  const widthFraction = currentValues[1] / (max - min) - currentValues[0] / (max - min);
 
   const width = wrapperRef.current?.clientWidth || 500;
 
-  const left = isRange ? width * (currentValues[0] / max) : 0;
+  const left = isRange ? ((currentValues[0] - min) / (max - min)) * width : 0;
 
   return `
     width: ${widthFraction * 100 + "%"};
     margin-left: ${left + "px"};`;
 };
 
-const setStyle = (ref, values, wrapperRef, isRange, max) => {
-  if (ref.current) ref.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max);
+const setStyle = (ref, values, wrapperRef, isRange, max, min) => {
+  if (ref.current) ref.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
 };
 
 const clampValues = (values: number[], min, max) => {
