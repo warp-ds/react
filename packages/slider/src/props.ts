@@ -37,4 +37,10 @@ export type SliderProps = {
   "aria-valuetext"?: string;
 
   keyboardStepFactor?: number;
+
+  markers?: boolean;
+
+  markerCount?: number;
+
+  showTooltip?: boolean;
 };

@@ -61,6 +61,32 @@ const style = `
       grid-column: 1;
       z-index: 0;
       pointer-events: none;
+      display: grid;
+      span {
+        grid-row: 1;
+        grid-column: 1;
+        transform: translateY(-39px);
+        color: grey;
+      }
+      span:nth-child(1) {
+        justify-self: start;
+        margin-left: -30px;
+      }
+      span:nth-child(2) {
+        justify-self: end;
+        margin-right: -30px;
+      }
+  }
+  .steps {
+      display: grid;
+      height: 11px;
+      overflow: hidden;
+      transform: translateY(-11px);
+      grid-auto-flow: column;
+      grid-template-columns: max-content;
+      justify-items: end;
+      color: #b8b8b8;
+      pointer-events: none;
   }
 `;
 
@@ -89,6 +115,9 @@ export function Slider({
   "aria-labelledby": ariaLabelledBy,
   "aria-valuetext": ariaValueText,
   keyboardStepFactor = 0.04,
+  showTooltip = false,
+  markers = false,
+  markerCount = 10,
 }: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
   // Determine type.
   const type = values ? "range" : "standard";
@@ -260,7 +289,14 @@ export function Slider({
     <>
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
-        <div className="active-track" ref={trackRef}></div>
+        <div className="active-track" ref={trackRef}>
+          {showTooltip && isMoving && (
+            <>
+              <span>{currentValues[0]}</span>
+              <span>{currentValues[1]}</span>
+            </>
+          )}
+        </div>
         <div
           className="input-wrapper"
           ref={wrapperRef}
@@ -273,6 +309,7 @@ export function Slider({
         >
           {inputElement(1, ref1)}
           {isRange && inputElement(0, ref0)}
+          <div className="steps">{markers && Array.from(Array(markerCount).keys()).map((v) => <div>|</div>)}</div>
         </div>
       </div>
     </>
