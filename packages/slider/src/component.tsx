@@ -285,7 +285,7 @@ export function Slider({
     }
   };
 
-  const margin = useMemo(() => (max - min).toString().length * 5, [min, max]);
+  const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
 
   return (
     <>
@@ -294,8 +294,8 @@ export function Slider({
         <div className="active-track" ref={trackRef}>
           {showTooltip && (
             <>
-              <span style={{ transform: `translateX(${-margin + "px"}) translateY(-39px)` }}>{currentValues[0]}</span>
-              <span style={{ transform: `translateX(${-margin + "px"}) translateY(-39px)` }}>{currentValues[1]}</span>
+              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{currentValues[0]}</span>
+              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{currentValues[1]}</span>
             </>
           )}
         </div>
