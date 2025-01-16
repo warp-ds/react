@@ -65,7 +65,6 @@ const style = `
       span {
         grid-row: 1;
         grid-column: 1;
-        transform: translateY(-39px);
         color: grey;
         width: 0px;
       }
@@ -125,7 +124,7 @@ export function Slider({
   const isRange = type === "range";
 
   // Get values in array form, using either the value or values prop.
-  const getValueArray = () => (values ? [...values] : [0, value as number]);
+  const getValueArray = () => (values ? [...values] : [min, value as number]);
 
   const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
   const [isMoving, setIsMoving] = useState(false);
@@ -295,8 +294,8 @@ export function Slider({
         <div className="active-track" ref={trackRef}>
           {showTooltip && (
             <>
-              <span style={{ marginLeft: -margin + "px" }}>{currentValues[0]}</span>
-              <span style={{ marginRight: margin + "px" }}>{currentValues[1]}</span>
+              <span style={{ transform: `translateX(${-margin + "px"}) translateY(-39px)` }}>{currentValues[0]}</span>
+              <span style={{ transform: `translateX(${-margin + "px"}) translateY(-39px)` }}>{currentValues[1]}</span>
             </>
           )}
         </div>
@@ -369,7 +368,7 @@ const getAsValueArray = (value: number, index = 1, isRange, currentValues) => {
 };
 
 const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
-  const widthFraction = currentValues[1] / (max - min) - currentValues[0] / (max - min);
+  const widthFraction = (currentValues[1] - currentValues[0]) / max;
 
   const width = wrapperRef.current?.clientWidth || 500;
 
