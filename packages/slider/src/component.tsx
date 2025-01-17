@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useMemo, useRef, useState } from "react";
+import React, { Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { classNames } from "@chbphone55/classnames";
 import { slider as ccSlider } from "@warp-ds/css/component-classes";
@@ -168,63 +168,74 @@ export function Slider({
     if (ref1.current) ref1.current.setAttribute("value", currentValues[1]);
   }, [currentValues]);
 
-  const moveSlider = (direction: "left" | "right", i: number) => {
-    const multiplier = {
-      left: -1,
-      right: 1,
-    };
+  const moveSlider = useCallback(
+    (direction: "left" | "right", i: number) => {
+      const multiplier = {
+        left: -1,
+        right: 1,
+      };
 
-    const d = max * keyboardStepFactor;
+      const d = max * keyboardStepFactor;
 
-    const value = clamp(currentValues[i] + multiplier[direction] * d, min, max);
+      const value = clamp(currentValues[i] + multiplier[direction] * d, min, max);
 
-    const values = getAsValueArray(value, i, isRange, currentValues);
+      const values = getAsValueArray(value, i, isRange, currentValues);
 
-    updateInputValues({ values, value }, isRange, ref0, ref1);
+      updateInputValues({ values, value }, isRange, ref0, ref1);
 
-    setNewValues(values, i);
-  };
+      setNewValues(values, i);
+    },
+    [currentValues],
+  );
 
-  const onKeyDown = (e: any, i: number) => {
-    setIsMoving(true);
-    if (e.key === "ArrowLeft") {
-      moveSlider("left", i);
-    }
-    if (e.key === "ArrowRight") {
-      moveSlider("right", i);
-    }
-  };
+  const onKeyDown = useCallback(
+    (e: any, i: number) => {
+      if (e.key === "ArrowUp" || e.key === "ArrowDown") e.preventDefault();
+
+      setIsMoving(true);
+      if (e.key === "ArrowLeft") {
+        moveSlider("left", i);
+      }
+      if (e.key === "ArrowRight") {
+        moveSlider("right", i);
+      }
+    },
+    [moveSlider],
+  );
 
   // Handle range click.
   // Ensures the range endpoints are moved according to where in the range the user clicked.
-  const onWrapperClick = (e: any) => {
-    setIsMoving(true);
+  const onWrapperClick = useCallback(
+    (e: any) => {
+      setIsMoving(true);
 
-    // Clicking on the input thumb triggers the event for the input element.
-    // Here, only handle click for clicking on the range, outside the thumb slider.
-    if (!disabled && e.target.nodeName !== "INPUT") {
-      const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
+      // Clicking on the input thumb triggers the event for the input element.
+      // Here, only handle click for clicking on the range, outside the thumb slider.
+      if (!disabled && e.target.nodeName !== "INPUT") {
+        const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
-      const width = (wrapperRef.current as HTMLDivElement).clientWidth;
+        const width = (wrapperRef.current as HTMLDivElement).clientWidth;
 
-      const v = (x / width) * (max - min) + min;
+        const v = (x / width) * (max - min) + min;
 
-      const midPoint = (currentValues[0] + currentValues[1]) / 2;
+        const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
-      // Update values.
-      const index = v > midPoint ? 1 : 0;
+        // Update values.
+        const index = v > midPoint ? 1 : 0;
 
-      const values = clampValues(getAsValueArray(v, index, isRange, currentValues), min, max);
+        const values = clampValues(getAsValueArray(v, index, isRange, currentValues), min, max);
 
-      setNewValues(values, index);
+        setNewValues(values, index);
 
-      updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
-    }
-  };
+        updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
+      }
+    },
+    [values, value, currentValues],
+  );
 
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
-  const setNewValues = (values: number[], i: number) => {
+  const setNewValues = useCallback((values: number[], i: number) => {
     // Clear any previous timeout.
     clearTimeout(timeoutId.current);
 
@@ -248,7 +259,7 @@ export function Slider({
     }, 1);
 
     setStyle(trackRef, values, wrapperRef, isRange, max, min);
-  };
+  }, []);
 
   const onInputChange = (e: any, index: number) => {
     const values = getAsValueArray(+e.target.value, index, isRange, currentValues);
@@ -265,7 +276,7 @@ export function Slider({
   }
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
-  const inputElement = (index: number, ref: Ref<any>) => {
+  const inputElement = useCallback((index: number, ref: Ref<any>) => {
     if (!disabled) {
       return (
         <input
@@ -283,7 +294,7 @@ export function Slider({
     } else {
       return <input type="range" disabled={true} value={currentValues[index]} min={min} max={max} />;
     }
-  };
+  }, [currentValues]);
 
   const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
 
