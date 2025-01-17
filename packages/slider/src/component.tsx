@@ -222,7 +222,9 @@ export function Slider({
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = useCallback(
     (e: any) => {
-      setIsMoving(true);
+      setTimeout(() => {
+        setIsMoving(true);
+      }, 1);
 
       // Clicking on the input thumb triggers the event for the input element.
       // Here, only handle click for clicking on the range, outside the thumb slider.
