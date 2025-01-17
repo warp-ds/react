@@ -10,6 +10,7 @@ const style = `
       display: grid;
       width: 500px;
       max-width: 100%;
+      margin: 8px 0px;
   }
   .input-wrapper {
       grid-row: 1;
@@ -64,30 +65,37 @@ const style = `
       display: grid;
       width: 0px;
       span {
-        grid-row: 1;
-        grid-column: 1;
-        color: grey;
-        width: 0px;
+          grid-row: 1;
+          grid-column: 1;
+          color: grey;
+          width: 0px;
+          width: 100px;
+          position: fixed;
+          margin: auto auto;
+          text-align: center;
       }
       span:nth-child(1) {
-        justify-self: start;
-
+          left: 0;
+          transform: translateY(-39px) translateX(-50%);
       }
       span:nth-child(2) {
-        justify-self: end;
-
+          right: 0;
+          transform: translateY(-39px) translateX(50%);
       }
   }
   .steps {
       display: grid;
       height: 11px;
       overflow: hidden;
-      transform: translateY(-11px);
       grid-auto-flow: column;
       grid-template-columns: max-content;
       justify-items: end;
-      color: #b8b8b8;
+      color: #d4d4d4;
       pointer-events: none;
+      grid-row: 1;
+      grid-column: 1;
+      align-self: end;
+      margin: 0px -2px;
   }
 `;
 
@@ -311,8 +319,6 @@ export function Slider({
     [currentValues],
   );
 
-  const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
-
   const markerNrs = useMemo(() => {
     if (markerCount === "auto" && typeof stepValue == "number") {
       return (max - min) / stepValue + 1;
@@ -327,10 +333,10 @@ export function Slider({
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          {showTooltip && (
+          {showTooltip && isMoving && (
             <>
-              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{isRange && currentValues[0]}</span>
-              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{currentValues[1]}</span>
+              <span>{isRange && currentValues[0]}</span>
+              <span>{currentValues[1]}</span>
             </>
           )}
         </div>
