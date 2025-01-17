@@ -62,6 +62,7 @@ const style = `
       z-index: 0;
       pointer-events: none;
       display: grid;
+      width: 0px;
       span {
         grid-row: 1;
         grid-column: 1;
@@ -123,10 +124,12 @@ export function Slider({
   const type = values ? "range" : "standard";
   const isRange = type === "range";
 
-  // Get values in array form, using either the value or values prop.
-  const getValueArray = () => (values ? [...values] : [min, value as number]);
+  const stepValue = useMemo(() => getStepValue(step, markers, markerCount, max, min), []);
 
-  const [currentValues, setCurrentValues] = useState<number[]>(getValueArray());
+  // Get values in array form, using either the value or values prop.
+  const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
+
+  const [currentValues, setCurrentValues] = useState<number[]>(() => getValueArray());
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -148,7 +151,7 @@ export function Slider({
 
       setCurrentValues(values);
 
-      setStyle(trackRef, values, wrapperRef, isRange, max, min, step);
+      setStyle(trackRef, values, wrapperRef, isRange, max, min, stepValue);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
     }
@@ -181,9 +184,9 @@ export function Slider({
 
       const d = max * keyboardStepFactor;
 
-      const value = clamp(currentValues[i] + multiplier[direction] * d, min, max);
+      const value = currentValues[i] + multiplier[direction] * d;
 
-      const values = getAsValueArray(value, i, isRange, currentValues, min);
+      const values = getAsValueArray(value, i, isRange, currentValues, min, max, stepValue, true);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
 
@@ -220,14 +223,14 @@ export function Slider({
 
         const width = (wrapperRef.current as HTMLDivElement).clientWidth;
 
-        const v = getAdjustedValue((x / width) * (max - min) + min, step);
+        const v = getAdjustedValue((x / width) * (max - min) + min, stepValue);
 
         const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
         // Update values.
-        const index = v > midPoint ? 1 : 0;
+        const index = v > getAdjustedValue(midPoint, stepValue) ? 1 : 0;
 
-        const values = clampValues(getAsValueArray(v, index, isRange, currentValues, min), min, max);
+        const values = getAsValueArray(v, index, isRange, currentValues, min, max, stepValue);
 
         setNewValues(values, index);
 
@@ -255,6 +258,8 @@ export function Slider({
 
     // Run update and onchange async.
     timeoutId.current = setTimeout(() => {
+      values = clampValues(values, min, max);
+
       setCurrentValues(values);
 
       if (onChange) {
@@ -262,11 +267,11 @@ export function Slider({
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max, min, step);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min, stepValue);
   }, []);
 
   const onInputChange = (e: any, index: number) => {
-    const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min);
+    const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, stepValue);
 
     setNewValues(values, index);
   };
@@ -283,14 +288,6 @@ export function Slider({
   const inputElement = useCallback(
     (index: number, ref: Ref<any>) => {
       if (!disabled) {
-        let stepValue = step;
-
-        if (markers) {
-          const count = markerCount as number;
-          // Set auto step value.
-          stepValue = typeof step === "number" ? step : Math.round((max - min) / (count - 1));
-        }
-
         return (
           <input
             ref={ref}
@@ -314,8 +311,8 @@ export function Slider({
   const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
 
   const markerNr = useMemo(() => {
-    if (markerCount === "auto" && typeof step == "number") {
-      return (max - min) / step + 1;
+    if (markerCount === "auto" && typeof stepValue == "number") {
+      return (max - min) / stepValue + 1;
     }
     return markerCount as number;
   }, []);
@@ -394,7 +391,7 @@ function updateInputValues({ value, values }: { value?: number; values?: number[
 }
 
 // Use the given value to get full value array.
-const getAsValueArray = (value: number, index = 1, isRange, currentValues, min) => {
+const getAsValueArray = (value: number, index = 1, isRange, currentValues, min, max, stepValue, clamp = false) => {
   let values: number[];
 
   value = Math.round(value);
@@ -408,11 +405,16 @@ const getAsValueArray = (value: number, index = 1, isRange, currentValues, min) 
   } else {
     values = [min, value];
   }
-  return values;
+
+  if (clamp) {
+    return clampValues(getAdjustedValueArray(values, stepValue), min, max);
+  } else {
+    return getAdjustedValueArray(values, stepValue);
+  }
 };
 
-const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, step) => {
-  let widthFraction = (getAdjustedValue(currentValues[1], step) - currentValues[0] )/ (max - min);
+const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, stepValue) => {
+  let widthFraction = getAdjustedValue(currentValues[1] - currentValues[0], stepValue) / (max - min);
 
   const width = wrapperRef.current?.clientWidth || 500;
 
@@ -429,8 +431,8 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, step) => {
     margin-left: ${left + "px"};`;
 };
 
-const setStyle = (trackRef, values, wrapperRef, isRange, max, min, step) => {
-  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min, step);
+const setStyle = (trackRef, values, wrapperRef, isRange, max, min, stepValue) => {
+  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min, stepValue);
 };
 
 const clampValues = (values: number[], min, max) => {
@@ -445,10 +447,26 @@ const getX = (event: any) => {
 };
 
 // Get value adjusted with step amount.
-const getAdjustedValue = (value, step) => {
+const getAdjustedValue = (value: number, step: number) => {
   if (step > 1) {
     return Math.round(value / step) * step;
   } else {
     return value;
   }
+};
+
+const getAdjustedValueArray = (values: number[], step: number) => {
+  return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
+};
+
+const getStepValue = (step, markers, markerCount, max, min) => {
+  let stepValue = step;
+
+  if (markers) {
+    const count = markerCount as number;
+    // Set auto step value.
+    stepValue = typeof step === "number" ? step : Math.round((max - min) / (count - 1));
+  }
+
+  return stepValue;
 };
