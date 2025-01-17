@@ -6,13 +6,37 @@ const metadata = { title: "Forms/Slider" };
 export default metadata;
 
 export const Regular = () => {
-  const [value, setValue] = React.useState(10000);
+  const [value, setValue] = React.useState(20000);
 
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1000} max={60000} step={10} />
-      <button onClick={() => setValue(6000)}>Reset</button>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular2 = () => {
+  const [value, setValue] = React.useState(20000);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers markerCount={30} step="auto" />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular3 = () => {
+  const [value, setValue] = React.useState(20000);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers markerCount="auto" step={2000} />
+      <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
 };

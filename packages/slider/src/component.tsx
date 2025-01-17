@@ -8,7 +8,8 @@ import { SliderProps } from "./props.js";
 const style = `
   .wrapper {
       display: grid;
-      width: max-content;
+      width: 500px;
+      max-width: 100%;
   }
   .input-wrapper {
       grid-row: 1;
@@ -18,7 +19,6 @@ const style = `
   input[type="range"] {
       appearance: none;
       height: 40px;
-      width: 500px;
       grid-row: 1;
       grid-column: 1;
       pointer-events: none;
@@ -140,11 +140,15 @@ export function Slider({
 
   // Update current values on prop change.
   useEffect(() => {
+    // Validation.
+    validate(value, values, min, max);
+
     if (!(document.activeElement === ref0.current || document.activeElement === ref1.current)) {
       const values = getValueArray();
 
       setCurrentValues(values);
-      setStyle(trackRef, values, wrapperRef, isRange, max, min);
+
+      setStyle(trackRef, values, wrapperRef, isRange, max, min, step);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
     }
@@ -179,7 +183,7 @@ export function Slider({
 
       const value = clamp(currentValues[i] + multiplier[direction] * d, min, max);
 
-      const values = getAsValueArray(value, i, isRange, currentValues);
+      const values = getAsValueArray(value, i, isRange, currentValues, min);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
 
@@ -216,14 +220,14 @@ export function Slider({
 
         const width = (wrapperRef.current as HTMLDivElement).clientWidth;
 
-        const v = (x / width) * (max - min) + min;
+        const v = getAdjustedValue((x / width) * (max - min) + min, step);
 
         const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
         // Update values.
         const index = v > midPoint ? 1 : 0;
 
-        const values = clampValues(getAsValueArray(v, index, isRange, currentValues), min, max);
+        const values = clampValues(getAsValueArray(v, index, isRange, currentValues, min), min, max);
 
         setNewValues(values, index);
 
@@ -258,11 +262,11 @@ export function Slider({
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max, min);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min, step);
   }, []);
 
   const onInputChange = (e: any, index: number) => {
-    const values = getAsValueArray(+e.target.value, index, isRange, currentValues);
+    const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min);
 
     setNewValues(values, index);
   };
@@ -276,27 +280,47 @@ export function Slider({
   }
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
-  const inputElement = useCallback((index: number, ref: Ref<any>) => {
-    if (!disabled) {
-      return (
-        <input
-          ref={ref}
-          type="range"
-          step={step}
-          min={min}
-          max={max}
-          onKeyDown={(e) => onKeyDown(e, index)}
-          onKeyUp={setMovingFalse}
-          onChange={(e) => onInputChange(e, index)}
-          {...ariaData({ ariaLabel, ariaLabelledBy, ariaValueText })}
-        />
-      );
-    } else {
-      return <input type="range" disabled={true} value={currentValues[index]} min={min} max={max} />;
-    }
-  }, [currentValues]);
+  const inputElement = useCallback(
+    (index: number, ref: Ref<any>) => {
+      if (!disabled) {
+        let stepValue = step;
+
+        if (markers) {
+          const count = markerCount as number;
+          // Set auto step value.
+          stepValue = typeof step === "number" ? step : Math.round((max - min) / (count - 1));
+        }
+
+        return (
+          <input
+            ref={ref}
+            type="range"
+            step={stepValue}
+            min={min}
+            max={max}
+            onKeyDown={(e) => onKeyDown(e, index)}
+            onKeyUp={setMovingFalse}
+            onChange={(e) => onInputChange(e, index)}
+            {...ariaData({ ariaLabel, ariaLabelledBy, ariaValueText })}
+          />
+        );
+      } else {
+        return <input type="range" disabled={true} value={currentValues[index]} min={min} max={max} />;
+      }
+    },
+    [currentValues],
+  );
 
   const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
+
+  const markerNr = useMemo(() => {
+    if (markerCount === "auto" && typeof step == "number") {
+      return (max - min) / step + 1;
+    }
+    return markerCount as number;
+  }, []);
+
+  const getMarkers = useCallback(() => Array.from(Array(markerNr).keys()).map((_, i) => <div key={i}>|</div>), []);
 
   return (
     <>
@@ -305,7 +329,7 @@ export function Slider({
         <div className="active-track" ref={trackRef}>
           {showTooltip && (
             <>
-              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{currentValues[0]}</span>
+              <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{isRange && currentValues[0]}</span>
               <span style={{ transform: `translateX(${-offsetX + "px"}) translateY(-39px)` }}>{currentValues[1]}</span>
             </>
           )}
@@ -322,7 +346,7 @@ export function Slider({
         >
           {inputElement(1, ref1)}
           {isRange && inputElement(0, ref0)}
-          <div className="steps">{markers && Array.from(Array(markerCount).keys()).map((v, i) => <div key={i}>|</div>)}</div>
+          <div className="steps">{markers && getMarkers()}</div>
         </div>
       </div>
     </>
@@ -344,6 +368,15 @@ function clamp(val: number, min: number, max: number) {
   return Math.min(Math.max(val, min), max);
 }
 
+function validate(value, values, min, max) {
+  if ((value && value < min) || (values && values[0] < min)) {
+    console.warn("Value too low.");
+  }
+  if ((value && value > max) || (values && values[1] > max)) {
+    console.warn("Value too high.");
+  }
+}
+
 // Set the value for the input elements.
 function updateInputValues({ value, values }: { value?: number; values?: number[] }, isRange, ref0, ref1) {
   if (isRange) {
@@ -361,7 +394,7 @@ function updateInputValues({ value, values }: { value?: number; values?: number[
 }
 
 // Use the given value to get full value array.
-const getAsValueArray = (value: number, index = 1, isRange, currentValues) => {
+const getAsValueArray = (value: number, index = 1, isRange, currentValues, min) => {
   let values: number[];
 
   value = Math.round(value);
@@ -373,15 +406,21 @@ const getAsValueArray = (value: number, index = 1, isRange, currentValues) => {
       values = [value, currentValues[1]];
     }
   } else {
-    values = [0, value];
+    values = [min, value];
   }
   return values;
 };
 
-const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
-  const widthFraction = (currentValues[1] - currentValues[0]) / max;
+const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, step) => {
+  let widthFraction = (getAdjustedValue(currentValues[1], step) - currentValues[0] )/ (max - min);
 
   const width = wrapperRef.current?.clientWidth || 500;
+
+  // Warn if values are incorrect.
+  if (widthFraction < 0 || widthFraction > 1) {
+    console.warn("Values outside of range.");
+    widthFraction = clamp(widthFraction, 0, 1);
+  }
 
   const left = isRange ? ((currentValues[0] - min) / (max - min)) * width : 0;
 
@@ -390,8 +429,8 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
     margin-left: ${left + "px"};`;
 };
 
-const setStyle = (ref, values, wrapperRef, isRange, max, min) => {
-  if (ref.current) ref.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
+const setStyle = (trackRef, values, wrapperRef, isRange, max, min, step) => {
+  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min, step);
 };
 
 const clampValues = (values: number[], min, max) => {
@@ -403,4 +442,13 @@ const getX = (event: any) => {
   const xCoordinate = event.touches[0].clientX - e.left;
 
   return Math.round(xCoordinate);
+};
+
+// Get value adjusted with step amount.
+const getAdjustedValue = (value, step) => {
+  if (step > 1) {
+    return Math.round(value / step) * step;
+  } else {
+    return value;
+  }
 };

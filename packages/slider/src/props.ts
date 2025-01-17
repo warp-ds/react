@@ -12,7 +12,7 @@ export type SliderProps = {
   min?: number;
 
   /** Specifies the value granularity */
-  step?: number;
+  step?: number | 'auto';
 
   /** The current value */
   //value: number;
@@ -40,7 +40,7 @@ export type SliderProps = {
 
   markers?: boolean;
 
-  markerCount?: number;
+  markerCount?: number | 'auto';
 
   showTooltip?: boolean;
 };
