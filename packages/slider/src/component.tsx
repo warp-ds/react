@@ -270,11 +270,14 @@ export function Slider({
     setStyle(trackRef, values, wrapperRef, isRange, max, min, stepValue);
   }, []);
 
-  const onInputChange = (e: any, index: number) => {
-    const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, stepValue);
+  const onInputChange = useCallback(
+    (e: any, index: number) => {
+      const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, stepValue);
 
-    setNewValues(values, index);
-  };
+      setNewValues(values, index);
+    },
+    [currentValues],
+  );
 
   const onInputComplete = () => {
     setMovingFalse();
