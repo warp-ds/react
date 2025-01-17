@@ -310,14 +310,14 @@ export function Slider({
 
   const offsetX = useMemo(() => (max - min).toString().length * 5, [min, max]);
 
-  const markerNr = useMemo(() => {
+  const markerNrs = useMemo(() => {
     if (markerCount === "auto" && typeof stepValue == "number") {
       return (max - min) / stepValue + 1;
     }
     return markerCount as number;
   }, []);
 
-  const getMarkers = useCallback(() => Array.from(Array(markerNr).keys()).map((_, i) => <div key={i}>|</div>), []);
+  const getMarkers = useCallback(() => Array.from(Array(markerNrs).keys()).map((k) => <div key={k}>|</div>), []);
 
   return (
     <>
