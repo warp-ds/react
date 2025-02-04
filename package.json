@@ -55,7 +55,8 @@
   },
   "peerDependencies": {
     "@warp-ds/css": "2.0.1",
-    "react": "18.x"
+    "@lingui/core": "5.x",
+    "react": "18.x || 19.x"
   },
   "scripts": {
     "build-storybook": "storybook build && touch ./storybook-static/.nojekyll",
@@ -63,14 +64,13 @@
     "build:eik": "node esbuild.js 17 && node esbuild.js 18",
     "build:npm": "node build.js",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@warp-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
-    "build": "pnpm run build:clean && pnpm run build:npm && pnpm run build:eik && pnpm run build:types",
+    "build": "pnpm run build:clean && lingui compile && pnpm run build:npm && pnpm run build:eik && pnpm run build:types",
     "commit": "cz",
     "dev": "storybook dev -p 9003 --ci",
     "lint:check": "eslint . --ext ts,tsx,js,jsx,cjs,mjs --ignore-path .gitignore",
     "lint": "eslint . --fix --ext ts,tsx,js,jsx,cjs,mjs --ignore-path .gitignore",
     "messages:compile": "lingui compile",
     "messages:extract": "lingui extract",
-    "postinstall": "lingui compile",
     "semantic-release": "semantic-release",
     "test-storybook": "test-storybook --url http://localhost:9003",
     "test:storybook": "concurrently -k -s first \"pnpm run dev\" \"wait-on http://localhost:9003 && pnpm run test-storybook\"",
@@ -139,7 +139,7 @@
     "@lingui/core": "5.1.2",
     "@warp-ds/core": "1.1.8",
     "@warp-ds/css": "2.0.1",
-    "@warp-ds/icons": "2.4.0",
+    "@warp-ds/icons": "2.5.0-next.1",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",
     "scroll-doctor": "2.0.2"
