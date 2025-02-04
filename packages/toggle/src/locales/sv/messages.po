@@ -15,10 +15,10 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: sv\n"
 "X-Crowdin-File-ID: 2588\n"
+"PO-Revision-Date: \n"
 
 #. Shown behind label when marked as optional
 #. js-lingui-explicit-id
-#: packages/toggle/src/component.tsx:27
+#: packages/toggle/src/component.tsx:28
 msgid "toggle.label.optional"
 msgstr "(valfritt)"
-
