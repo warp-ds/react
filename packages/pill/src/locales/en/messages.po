@@ -16,12 +16,12 @@ msgstr ""
 
 #. Fallback screenreader message for open filter
 #. js-lingui-explicit-id
-#: packages/pill/src/component.tsx:37
+#: packages/pill/src/component.tsx:38
 msgid "pill.aria.openFilter"
 msgstr "Open filter"
 
 #. Fallback screenreader message for removal of the filter
 #. js-lingui-explicit-id
-#: packages/pill/src/component.tsx:50
+#: packages/pill/src/component.tsx:51
 msgid "pill.aria.removeFilter"
 msgstr "Remove filter {label}"

@@ -15,6 +15,7 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: nb\n"
 "X-Crowdin-File-ID: 2540\n"
+"PO-Revision-Date: \n"
 
 #. Aria text for combobox when one or more results
 #. js-lingui-explicit-id
@@ -27,4 +28,3 @@ msgstr "{numResults, plural, one {# resultat} other {# resultater}}"
 #: packages/combobox/src/utils.ts:28
 msgid "combobox.aria.noResults"
 msgstr "Ingen resultater"
-

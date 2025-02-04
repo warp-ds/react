@@ -15,22 +15,22 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: sv\n"
 "X-Crowdin-File-ID: 12468\n"
+"PO-Revision-Date: \n"
 
 #. Empty circle
 #. js-lingui-explicit-id
-#: packages/steps/src/step.tsx:27
+#: packages/steps/src/step.tsx:28
 msgid "steps.aria.emptyCircle"
 msgstr "Tom cirkel"
 
 #. Active circle
 #. js-lingui-explicit-id
-#: packages/steps/src/step.tsx:22
+#: packages/steps/src/step.tsx:23
 msgid "steps.aria.active"
 msgstr "Stegindikator aktiv cirkel"
 
 #. Completed circle
 #. js-lingui-explicit-id
-#: packages/steps/src/step.tsx:17
+#: packages/steps/src/step.tsx:18
 msgid "steps.aria.completed"
 msgstr "Stegindikator fulländad cirkel"
-
