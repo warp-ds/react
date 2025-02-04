@@ -1,3 +1,10 @@
+# [2.1.0-next.3](https://github.com/warp-ds/react/compare/v2.1.0-next.2...v2.1.0-next.3) (2025-02-04)
+
+
+### Features
+
+* **deps:** bump lingui v4 -> v5 ([#302](https://github.com/warp-ds/react/issues/302)) ([6007ef8](https://github.com/warp-ds/react/commit/6007ef82d0352c9744de2127e496331e8e86a758))
+
 # [2.1.0-next.2](https://github.com/warp-ds/react/compare/v2.1.0-next.1...v2.1.0-next.2) (2024-12-02)
 
 
