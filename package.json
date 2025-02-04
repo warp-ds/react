@@ -59,7 +59,7 @@
     "react": "18.x || 19.x"
   },
   "scripts": {
-    "build-storybook": "storybook build && touch ./storybook-static/.nojekyll",
+    "build-storybook": "lingui compile && storybook build && touch ./storybook-static/.nojekyll",
     "build:clean": "rm -rf dist",
     "build:eik": "node esbuild.js 17 && node esbuild.js 18",
     "build:npm": "node build.js",
