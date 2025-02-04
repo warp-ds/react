@@ -72,7 +72,7 @@ export const DatePickerDay = ({ month, day, navigationDate }: DatePickerDayProps
       className={classNames('relative text-center focus:no-underline w-40 h-40 outline-none cursor-pointer', {
         's-bg-primary-subtle-active s-text! rounded-0': dayInRange && !isDisabled,
         'z-10 hover:s-bg-selected': !dayInRange,
-        'pointer-events-none s-text-subtle': isDisabled || isFullBooked,
+        'pointer-events-none s-text-disabled': isDisabled || isFullBooked,
         's-text-subtle': !isDisabled,
         'rounded-full': !bookedDates && !dayInRange,
         'overflow-hidden': bookedDates,
@@ -119,7 +119,7 @@ export const DatePickerDay = ({ month, day, navigationDate }: DatePickerDayProps
 
       <div
         className={classNames({
-          'relative inset-0 flex z-10 items-center justify-center h-full w-full': isSelected,
+          'absolute inset-0 flex z-10 items-center justify-center h-full w-full': isSelected,
           'rounded-full s-bg-primary s-text-inverted hover:s-bg-primary': isSelected && !bookedDates,
           'z-20 s-text-inverted': isSelected && bookedDates,
         })}>

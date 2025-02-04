@@ -56,7 +56,7 @@ export const DatePickerPopover = forwardRefWithAs<DatePickerPopoverProps, 'div'>
     return (
       <Popover
         {...props}
-        className={classNames(className, 'rounded-8 shadow-s outline-none mt-6 s-text-inverted border s-border s-bg')}
+        className={classNames(className, 'rounded-8 shadow-l outline-none mt-6 s-text-inverted s-bg')}
         id={datepickerId}
         onBlur={wrapEvent(onBlur, handleBlur)}
         onKeyDown={wrapEvent(onKeyDown, handleKeyDown as any)}

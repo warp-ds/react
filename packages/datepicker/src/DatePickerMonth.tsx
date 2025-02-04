@@ -36,12 +36,12 @@ export const DatePickerMonth = ({ month, navigationDate }: DatePickerMonthProps)
 
   return (
     <div className="text-center inline-block p-16 select-none">
-      <div className="t4 text-center mb-4">{format(month, monthFormat, { locale })}</div>
-      <table className="table border-collapse text-s mt-8" style={{ minWidth: 40 * 7, borderSpacing: 0 }} role="grid">
+      <div className="t4 text-center s-text mb-4">{format(month, monthFormat, { locale })}</div>
+      <table className="table border-collapse font-bold text-s mt-8" style={{ minWidth: 40 * 7, borderSpacing: 0 }} role="grid">
         <thead className="mb-4" aria-hidden>
           <tr>
             {weeks[0].map((day, i) => (
-              <td className="text-center s-text-subtle text-xs" key={i}>
+              <td className="text-center s-text text-xs" key={i}>
                 {format(day, weekDayFormat, {
                   locale,
                 })}
