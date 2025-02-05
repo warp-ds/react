@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, MouseEvent, useContext, useEffect, useState } from 'react';
 
-import { classNames } from '@chbphone55/classnames';
+import './styles/w-datepicker-day.css';
 import { format, getDate, isSameDay, isSameMonth, isToday, isWithinInterval } from 'date-fns';
 
 import { DatePickerContext } from './DatePickerContext.js';
@@ -69,62 +69,22 @@ export const DatePickerDay = ({ month, day, navigationDate }: DatePickerDayProps
       aria-disabled={isDisabled || isFullBooked || isStartAndEndBooked}
       aria-label={ariaLabel}
       aria-selected={isSelected}
-      className={classNames('relative text-center focus:no-underline w-40 h-40 outline-none cursor-pointer', {
-        's-bg-primary-subtle-active s-text! rounded-0': dayInRange && !isDisabled,
-        'z-10 hover:s-bg-selected': !dayInRange,
-        'pointer-events-none s-text-disabled': isDisabled || isFullBooked,
-        's-text-subtle': !isDisabled,
-        'rounded-full': !bookedDates && !dayInRange,
-        'overflow-hidden': bookedDates,
-        's-bg-negative-subtle-active': isFullBooked && !isDisabled,
-      })}
+      className={`w-datepicker__day
+        ${dayInRange ? 'w-datepicker__day--in-range' : ''}
+        ${isSelected ? 'w-datepicker__day--selected' : ''}
+        ${isDisabled ? 'w-datepicker__day--disabled' : ''}
+        ${isToday(day) ? 'w-datepicker__day--today' : ''}
+        ${isFullBooked ? 'w-datepicker__day--booked' : ''}
+        ${isNavigationDate ? 'w-datepicker__day--navigation' : ''}
+        ${isStartBooked && isStartAndEndBooked && !isEndBooked ? 'w-datepicker__day--start' : ''}
+        ${isEndBooked && isStartAndEndBooked && !isStartBooked ? 'w-datepicker__day--end' : ''}
+      `}
       onClick={handleSelect}
       onKeyDown={handleSelect}
       ref={isNavigationDate ? navigationDayRef : undefined}
       tabIndex={isNavigationDate ? 0 : -1}>
-      {startDate && endDate && isSameDay(day, startDate) && !isSameDay(startDate, endDate) && (
-        <div
-          className={classNames({
-            'absolute z-10 top-0 h-full right-0': true,
-            's-bg-primary-subtle-active w-20': isSelected && !bookedDates,
-            's-bg-primary-subtle-active w-full': isSelected && bookedDates,
-          })}></div>
-      )}
 
-      {startDate && endDate && isSameDay(day, endDate) && !isSameDay(startDate, endDate) && (
-        <div
-          className={classNames({
-            'absolute z-10 top-0 h-full left-0': true,
-            's-bg-primary-subtle-active w-20': isSelected && !bookedDates,
-            's-bg-primary-subtle-active w-full': isSelected && bookedDates,
-          })}></div>
-      )}
-
-      {(isStartBooked || isStartAndEndBooked) && (
-        <div style={{ zIndex: -10 }} className="ml-16 absolute -top-20 -left-20 h-96 w-20 s-bg-negative-subtle-active"></div>
-      )}
-
-      {(isEndBooked || isStartAndEndBooked) && (
-        <div style={{ zIndex: -10 }} className="ml-6 absolute -bottom-20 -right-6 h-96 w-20 s-bg-negative-subtle-active"></div>
-      )}
-
-      {/* Active states for booked ranges */}
-      {isSelected && bookedDates && day?.toDateString() === startDate?.toDateString() && (
-        <div className="ml-8 absolute z-20 -bottom-20 -right-10 h-96 w-96 s-bg-primary"></div>
-      )}
-
-      {isSelected && bookedDates && day?.toDateString() === endDate?.toDateString() && (
-        <div className="ml-8 absolute z-20 -top-20 -left-20 h-96 w-96 s-bg-primary"></div>
-      )}
-
-      <div
-        className={classNames({
-          'absolute inset-0 flex z-10 items-center justify-center h-full w-full': isSelected,
-          'rounded-full s-bg-primary s-text-inverted hover:s-bg-primary': isSelected && !bookedDates,
-          'z-20 s-text-inverted': isSelected && bookedDates,
-        })}>
-        {getDate(day)}
-      </div>
+      <div>{getDate(day)}</div>
     </td>
   );
 };
@@ -267,3 +227,4 @@ export function isDayBooked(day: Date, bookedDates: BookedDate[]) {
 
   return false;
 }
+

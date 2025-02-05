@@ -1,0 +1,19 @@
+/* === Month View === */
+.w-datepicker__month {
+  text-align: center;
+  padding: 12px;
+}
+
+.w-datepicker__weekdays {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--w-text-subtle, #777);
+  padding-bottom: 8px;
+}
+
+/* === Calendar Table === */
+.w-datepicker__table {
+  width: 100%;
+  border-collapse: collapse;
+}

@@ -1,0 +1,35 @@
+/* === Navigation Controls === */
+.w-datepicker__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+/* === Buttons (Prev/Next Month) === */
+.w-datepicker__button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--w-primary, #007bff);
+  color: var(--w-text-inverted, #fff);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.w-datepicker__button:hover {
+  background: var(--w-primary-hover, #0056b3);
+}
+
+/* === Previous and Next Buttons === */
+.w-datepicker__button--prev {
+  left: 16px;
+}
+
+.w-datepicker__button--next {
+  right: 16px;
+}
