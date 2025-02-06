@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-
+import './styles/w-datepicker-month.css';
 import {
   differenceInCalendarDays,
   eachDayOfInterval,
@@ -35,6 +35,7 @@ export const DatePickerMonth = ({ month, navigationDate }: DatePickerMonthProps)
   }
 
   return (
+    /*
     <div className="text-center inline-block p-16 select-none">
       <div className="t4 text-center s-text mb-4">{format(month, monthFormat, { locale })}</div>
       <table className="table border-collapse font-bold text-s mt-8" style={{ minWidth: 40 * 7, borderSpacing: 0 }} role="grid">
@@ -54,6 +55,37 @@ export const DatePickerMonth = ({ month, navigationDate }: DatePickerMonthProps)
             <tr key={i}>
               {week.map((day, i) => (
                 <DatePickerDay day={day} key={i} month={month} navigationDate={navigationDate} />
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+*/
+    <div className="w-datepicker__month">
+      <div className="w-datepicker__month__nav">
+        {/* move prev month button here and give it .w-datepicker__month__nav__button as a class*/}
+        <div className="w-datepicker__month__nav__header">
+          {format(month, monthFormat, { locale })}
+        </div>
+        {/* move next month button here and give it .w-datepicker__month__nav__button as a class*/}
+      </div>
+
+      <table className="w-datepicker__table" role="grid">
+        <thead className="w-datepicker__weekdays" aria-hidden="true">
+          <tr>
+            {weeks[0].map((day, i) => (
+              <th className="w-datepicker__weekday" key={i}>
+                {format(day, weekDayFormat, { locale })}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {weeks.map((week, i) => (
+            <tr key={i}>
+              {week.map((day, i) => (
+                <DatePickerDay key={i} day={day} month={month} navigationDate={navigationDate} />
               ))}
             </tr>
           ))}
