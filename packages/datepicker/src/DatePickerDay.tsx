@@ -77,7 +77,7 @@ export const DatePickerDay = ({ month, day, navigationDate }: DatePickerDayProps
         ${isFullBooked ? 'w-datepicker__day--booked' : ''}
         ${isNavigationDate ? 'w-datepicker__day--navigation' : ''}
         ${isDateRange && day?.toDateString() === startDate?.toDateString() && endDate ? 'w-datepicker__day--start' : ''}
-        ${isDateRange && day?.toDateString() === endDate?.toDateString() ? 'w-datepicker__day--end' : ''}
+        ${isDateRange && day?.toDateString() === endDate?.toDateString() && startDate ? 'w-datepicker__day--end' : ''}
       `}
       onClick={handleSelect}
       onKeyDown={handleSelect}
