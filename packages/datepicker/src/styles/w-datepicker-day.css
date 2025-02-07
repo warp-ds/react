@@ -26,7 +26,6 @@
 }
 
 .w-datepicker__day:hover{
-  zz-index: 10; /* ? */
   --day-background: var(--w-s-color-background-selected);
   --day-border-radius: 50%;
 }

@@ -1,5 +1,6 @@
 import React, { Dispatch, KeyboardEvent, RefObject, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
 
+import './styles/w-datepicker-calendar.css';
 import { classNames } from '@chbphone55/classnames';
 import {
   addDays,
@@ -48,7 +49,7 @@ export const DatePickerCalendar = ({ className, numberOfMonths = 1, ...props }: 
   return (
     <div
       className={classNames(
-        'relative z-30 s-text-subtle',
+        'w-datepicker__calendar relative z-30 s-text-subtle',
         {
           'inline-block border-2 rounded': isInlineCalendar || bookedDates,
         },
