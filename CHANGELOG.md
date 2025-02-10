@@ -1,3 +1,10 @@
+# [2.1.0-next.4](https://github.com/warp-ds/react/compare/v2.1.0-next.3...v2.1.0-next.4) (2025-02-10)
+
+
+### Bug Fixes
+
+* Update css version ([#304](https://github.com/warp-ds/react/issues/304)) ([d5ccd7c](https://github.com/warp-ds/react/commit/d5ccd7cd9723e41306c5e67db4b63773b30a4d39))
+
 # [2.1.0-next.3](https://github.com/warp-ds/react/compare/v2.1.0-next.2...v2.1.0-next.3) (2025-02-04)
 
 
