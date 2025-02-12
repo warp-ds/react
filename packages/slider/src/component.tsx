@@ -254,11 +254,17 @@ export function Slider({
     clearTimeout(timeoutId.current);
 
     // Stop slider values from overlapping.
-    if (values[0] > values[1]) {
+    let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+
+    // width in pxs
+    const width = widthFraction * (wrapperRef.current?.clientWidth || 500);
+    const valPerPx = (max - min) / (wrapperRef.current?.clientWidth || 500);
+
+    if (width < 24) {
       if (i == 0) {
-        values[0] = values[1];
+        values[0] = values[1] - valPerPx * 24;
       } else {
-        values[1] = values[0];
+        values[1] = values[0] + valPerPx * 24;
       }
       updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
     }
