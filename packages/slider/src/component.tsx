@@ -67,12 +67,11 @@ const style = `
       .tooltip {
           grid-row: 1;
           grid-column: 1;
-          color: grey;
-          width: 0px;
-          width: 100px;
+          color: white;
+          padding: 5px 12px;
           position: fixed;
-          margin: auto auto;
           text-align: center;
+          background-color: grey;
       }
       .tooltip:nth-child(1) {
           left: 0;
@@ -342,10 +341,12 @@ export function Slider({
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          <div style={{ visibility: renderToolTip ? "visible" : "hidden" }}>
-            <ToolTip transform={`translateY(-39px) translateX(calc(-50% + ${offset1}px))`}>{isRange && currentValues[0]}</ToolTip>
-            <ToolTip transform={`translateY(-39px) translateX(calc(50% + ${offset2}px))`}>{currentValues[1]}</ToolTip>
-          </div>
+          <ToolTip display={renderToolTip && isRange} transform={`translateY(-50px) translateX(calc(-50% + ${offset1}px))`}>
+            {currentValues[0]}
+          </ToolTip>
+          <ToolTip display={renderToolTip} transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}>
+            {currentValues[1]}
+          </ToolTip>
         </div>
         <div
           className="input-wrapper"
@@ -496,7 +497,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 
 const ToolTip = (props) => {
   return (
-    <div className="tooltip" style={{ transform: props.transform }}>
+    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? "visible" : "hidden" }}>
       {props.children}
     </div>
   );
