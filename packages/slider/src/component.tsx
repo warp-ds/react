@@ -330,7 +330,8 @@ export function Slider({
 
   const renderToolTip = showTooltip && isMoving;
 
-  let offset1, offset2;
+  let offset1 = 0;
+  let offset2 = 0;
 
   if (renderToolTip) {
     [offset1, offset2] = getToolTipOffsets(getValueArray(), max, min);
@@ -341,12 +342,10 @@ export function Slider({
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          {renderToolTip && (
-            <>
-              <ToolTip transform={`translateY(-39px) translateX(calc(-50% + ${offset1}px))`}>{isRange && currentValues[0]}</ToolTip>
-              <ToolTip transform={`translateY(-39px) translateX(calc(50% + ${offset2}px))`}>{currentValues[1]}</ToolTip>
-            </>
-          )}
+          <div style={{ visibility: renderToolTip ? "visible" : "hidden" }}>
+            <ToolTip transform={`translateY(-39px) translateX(calc(-50% + ${offset1}px))`}>{isRange && currentValues[0]}</ToolTip>
+            <ToolTip transform={`translateY(-39px) translateX(calc(50% + ${offset2}px))`}>{currentValues[1]}</ToolTip>
+          </div>
         </div>
         <div
           className="input-wrapper"
