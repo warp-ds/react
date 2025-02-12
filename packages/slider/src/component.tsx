@@ -35,7 +35,7 @@ const style = `
       border-radius: 0%;
       cursor: pointer;
       transform: translateY(-10px);
-      border-radius: 5px;
+      border-radius: 12px;
       pointer-events: all !important;
   }
   input[type="range"]:focus::-webkit-slider-thumb {
@@ -64,7 +64,7 @@ const style = `
       pointer-events: none;
       display: grid;
       width: 0px;
-      span {
+      .tooltip {
           grid-row: 1;
           grid-column: 1;
           color: grey;
@@ -74,13 +74,11 @@ const style = `
           margin: auto auto;
           text-align: center;
       }
-      span:nth-child(1) {
+      .tooltip:nth-child(1) {
           left: 0;
-          transform: translateY(-39px) translateX(-50%);
       }
-      span:nth-child(2) {
+      .tooltip:nth-child(2) {
           right: 0;
-          transform: translateY(-39px) translateX(50%);
       }
   }
   .steps {
@@ -330,15 +328,23 @@ export function Slider({
 
   const getMarkers = useCallback(() => Array.from(Array(markerNrs).keys()).map((k) => <div key={k}>|</div>), []);
 
+  const renderToolTip = showTooltip && isMoving;
+
+  let offset1, offset2;
+
+  if (renderToolTip) {
+    [offset1, offset2] = getToolTipOffsets(getValueArray(), max, min);
+  }
+
   return (
     <>
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          {showTooltip && isMoving && (
+          {renderToolTip && (
             <>
-              <span>{isRange && currentValues[0]}</span>
-              <span>{currentValues[1]}</span>
+              <ToolTip transform={`translateY(-39px) translateX(calc(-50% + ${offset1}px))`}>{isRange && currentValues[0]}</ToolTip>
+              <ToolTip transform={`translateY(-39px) translateX(calc(50% + ${offset2}px))`}>{currentValues[1]}</ToolTip>
             </>
           )}
         </div>
@@ -360,6 +366,13 @@ export function Slider({
     </>
   );
 }
+
+const getToolTipOffsets = (values: number[], max: number, min: number) => {
+  const tooltipOffset1 = -((values[0] - min) / (max - min) - 0.5) * 24;
+  const tooltipOffset2 = -((values[1] - min) / (max - min) - 0.5) * 24;
+
+  return [tooltipOffset1, tooltipOffset2];
+};
 
 // Aria label data for the slider.
 // https://www.digitala11y.com/slider-role/.
@@ -480,4 +493,12 @@ const getStepValue = (step, markers, markerCount, max, min) => {
   }
 
   return stepValue;
+};
+
+const ToolTip = (props) => {
+  return (
+    <div className="tooltip" style={{ transform: props.transform }}>
+      {props.children}
+    </div>
+  );
 };

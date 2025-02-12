@@ -41,6 +41,18 @@ export const Regular3 = () => {
   );
 };
 
+export const Regular4 = () => {
+  const [value, setValue] = React.useState(3);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" />
+      <button onClick={() => setValue(3)}>Reset</button>
+    </div>
+  );
+};
+
 export const Range = () => {
   const [values, setValues] = React.useState([1000, 5008970]);
 
