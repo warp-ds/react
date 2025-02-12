@@ -347,10 +347,14 @@ export function Slider({
       <style>{style}</style>
       <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
-          <ToolTip display={renderToolTip && isRange} transform={`translateY(-50px) translateX(calc(-50% + ${offset1}px))`}>
+          <ToolTip
+            display={renderToolTip && isRange}
+            top={document.activeElement === ref0.current}
+            transform={`translateY(-50px) translateX(calc(-50% + ${offset1}px))`}
+          >
             {currentValues[0]}
           </ToolTip>
-          <ToolTip display={renderToolTip} transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}>
+          <ToolTip display={renderToolTip} top={document.activeElement === ref1.current} transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}>
             {currentValues[1]}
           </ToolTip>
         </div>
@@ -503,7 +507,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 
 const ToolTip = (props) => {
   return (
-    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? "visible" : "hidden" }}>
+    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? "visible" : "hidden", zIndex: props.top ? 10 : 1 }}>
       {props.children}
     </div>
   );
