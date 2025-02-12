@@ -82,17 +82,33 @@ const style = `
   }
   .steps {
       display: grid;
-      height: 11px;
-      overflow: hidden;
+      transform: translateY(-6px);
       grid-auto-flow: column;
       grid-template-columns: max-content;
       justify-items: end;
-      color: #d4d4d4;
+      color:rgb(173, 173, 173);
       pointer-events: none;
-      grid-row: 1;
       grid-column: 1;
       align-self: end;
       margin: 0px -2px;
+      grid-auto-columns: minmax(0, 1fr);
+
+      .marker {
+          display: grid;
+          justify-items: center;
+          grid-row-gap: 3.5px;
+
+          > div:nth-child(1) {
+              height: 11px;
+              overflow: hidden;
+          }
+          > div:nth-child(2){
+              width: 0;
+              overflow: visible;
+              display: grid;
+              justify-content: center;
+          }
+      }
   }
 `;
 
@@ -254,19 +270,21 @@ export function Slider({
     clearTimeout(timeoutId.current);
 
     // Stop slider values from overlapping.
-    let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+    if (isRange) {
+      let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
 
-    // width in pxs
-    const width = widthFraction * (wrapperRef.current?.clientWidth || 500);
-    const valPerPx = (max - min) / (wrapperRef.current?.clientWidth || 500);
+      // width in pxs
+      const width = widthFraction * (wrapperRef.current?.clientWidth || 500);
+      const valPerPx = (max - min) / (wrapperRef.current?.clientWidth || 500);
 
-    if (width < 24) {
-      if (i == 0) {
-        values[0] = values[1] - valPerPx * 24;
-      } else {
-        values[1] = values[0] + valPerPx * 24;
+      if (width < 24) {
+        if (i == 0) {
+          values[0] = values[1] - valPerPx * 24;
+        } else {
+          values[1] = values[0] + valPerPx * 24;
+        }
+        updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
       }
-      updateInputValues({ values, value: values[1] }, isRange, ref0, ref1);
     }
 
     // Run update and onchange async.
@@ -276,7 +294,7 @@ export function Slider({
       setCurrentValues(values);
 
       if (onChange) {
-        onChange(isRange ? values : values[1]);
+        onChange(isRange ? [Math.round(values[0]), Math.round(values[1])] : Math.round(values[1]));
       }
     }, 1);
 
@@ -331,7 +349,16 @@ export function Slider({
     return markerCount as number;
   }, []);
 
-  const getMarkers = useCallback(() => Array.from(Array(markerNrs).keys()).map((k) => <div key={k}>|</div>), []);
+  const getMarkers = useCallback(
+    () =>
+      Array.from(Array(markerNrs).keys()).map((k) => (
+        <div key={k} className="marker">
+          <div>|</div>
+          <div>{k}</div>
+        </div>
+      )),
+    [],
+  );
 
   const renderToolTip = showTooltip && isMoving;
 
@@ -508,7 +535,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 const ToolTip = (props) => {
   return (
     <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? "visible" : "hidden", zIndex: props.top ? 10 : 1 }}>
-      {props.children}
+      {Math.round(props.children)}
     </div>
   );
 };
