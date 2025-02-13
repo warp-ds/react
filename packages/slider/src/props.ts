@@ -43,4 +43,6 @@ export type SliderProps = {
   markerCount?: number | 'auto';
 
   showTooltip?: boolean;
+
+  input?: boolean;
 };

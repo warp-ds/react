@@ -4,6 +4,7 @@ import { classNames } from '@chbphone55/classnames';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
 import { SliderProps } from './props.js';
+import { TextField } from '../../index.js';
 
 const style = `
   .wrapper {
@@ -110,6 +111,13 @@ const style = `
           }
       }
   }
+  .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
+  .inputs.dual {
+      grid-gap: 2rem;
+  }
 `;
 
 /* 
@@ -140,6 +148,7 @@ export function Slider({
   showTooltip = false,
   markers = false,
   markerCount = 10,
+  input = false,
 }: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
   // Determine type.
   const type = values ? 'range' : 'standard';
@@ -151,6 +160,8 @@ export function Slider({
   const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
 
   const [currentValues, setCurrentValues] = useState<number[]>(() => getValueArray());
+  const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
+
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -168,11 +179,17 @@ export function Slider({
     validate(value, values, min, max);
 
     if (!(document.activeElement === ref0.current || document.activeElement === ref1.current)) {
-      const values = getValueArray();
+      const valueArray = getValueArray();
 
-      setCurrentValues(values);
+      setCurrentValues(valueArray);
 
-      setStyle(trackRef, values, wrapperRef, isRange, max, min, stepValue);
+      if (values) {
+        setTextInputValues(values);
+      } else if (value) {
+        setTextInputValues([0, value]);
+      }
+
+      setStyle(trackRef, valueArray, wrapperRef, isRange, max, min, stepValue);
 
       updateInputValues({ values, value }, isRange, ref0, ref1);
     }
@@ -269,7 +286,8 @@ export function Slider({
 
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
-  const setNewValues = useCallback((values: number[], i: number) => {
+  const setNewValues = useCallback((values: number[], i: number, preserve = false) => {
+    const originalValues = [values[0], values[1]];
     // Clear any previous timeout.
     clearTimeout(timeoutId.current);
 
@@ -297,6 +315,11 @@ export function Slider({
 
       setCurrentValues(values);
 
+      // Update text input fields.
+      if (input) {
+        setTextInputValues(preserve ? originalValues : values);
+      }
+
       if (onChange) {
         onChange(isRange ? [Math.round(values[0]), Math.round(values[1])] : Math.round(values[1]));
       }
@@ -320,6 +343,20 @@ export function Slider({
 
   const setMovingFalse = () => {
     setIsMoving(false);
+  };
+
+  const onTextInputChange = (e: any, i: number) => {
+    const values = i == 1 ? [currentValues[0], +e.target.value] : [+e.target.value, currentValues[1]];
+
+    if (values[0] >= min && values[1] <= max && !(values[1] < values[0])) {
+      // Update the slider values, if the text input values are within the range.
+      setNewValues(values, i, true);
+    } else {
+      // Otherwise, warn (and show error?).
+      console.warn('Input outside range.');
+
+      setTextInputValues(values);
+    }
   };
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
@@ -403,6 +440,12 @@ export function Slider({
           {inputElement(1, ref1)}
           <div className="steps">{markers && getMarkers()}</div>
         </div>
+        {input && (
+          <div className={`inputs ${isRange ? 'dual' : ''}`}>
+            {isRange && <TextField value={textInputValues[0].toString()} onChange={(e) => onTextInputChange(e, 0)} />}
+            <TextField value={textInputValues[1].toString()} onChange={(e) => onTextInputChange(e, 1)} />
+          </div>
+        )}
       </div>
     </>
   );

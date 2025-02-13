@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Slider } from "../src";
+import { Slider } from '../src';
 
-const metadata = { title: "Forms/Slider" };
+const metadata = { title: 'Forms/Slider' };
 export default metadata;
 
 export const Regular = () => {
@@ -11,7 +11,7 @@ export const Regular = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} input />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -47,7 +47,7 @@ export const Regular4 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" />
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" input />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -61,7 +61,7 @@ export const Range = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers input />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
   );
