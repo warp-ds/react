@@ -54,8 +54,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@warp-ds/css": "2.0.1",
     "@lingui/core": "5.x",
+    "@warp-ds/css": "2.1.1",
     "react": "18.x || 19.x"
   },
   "scripts": {
@@ -85,8 +85,8 @@
     "@babel/preset-typescript": "7.24.7",
     "@eik/cli": "2.0.38",
     "@eik/esbuild-plugin": "1.1.47",
-    "@lingui/cli": "5.1.2",
-    "@lingui/conf": "5.1.2",
+    "@lingui/cli": "5.2.0",
+    "@lingui/conf": "5.2.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@storybook/addon-actions": "8.2.1",
@@ -107,11 +107,12 @@
     "@vitejs/plugin-react": "4.3.1",
     "@vitest/coverage-v8": "2.0.2",
     "@warp-ds/eslint-config": "1.0.5",
-    "@warp-ds/uno": "2.x",
+    "@warp-ds/uno": "2.1.0",
     "concurrently": "8.2.2",
     "cz-conventional-changelog": "3.3.0",
     "element-collapse": "1.1.0",
     "esbuild": "0.23.0",
+    "eslint": "8.57.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-jsx-a11y": "6.9.0",
@@ -136,10 +137,10 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "2.0.0",
-    "@lingui/core": "5.1.2",
+    "@lingui/core": "5.2.0",
     "@warp-ds/core": "1.1.8",
-    "@warp-ds/css": "2.1.0",
-    "@warp-ds/icons": "2.5.0-next.1",
+    "@warp-ds/css": "2.1.1",
+    "@warp-ds/icons": "2.5.0",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",
     "scroll-doctor": "2.0.2"
