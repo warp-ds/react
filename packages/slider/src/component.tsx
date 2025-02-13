@@ -392,12 +392,29 @@ export function Slider({
 
   const getMarkers = useCallback(
     () =>
-      Array.from(Array(markerNrs).keys()).map((k) => (
-        <div key={k} className="marker">
-          <div>|</div>
-          <div>{k}</div>
-        </div>
-      )),
+      Array.from(Array(markerNrs).keys()).map((k) => {
+        let displayValue: string | number = '';
+
+        if (markerNrs < 15) {
+          if (max < 100) {
+            displayValue = ((max - min) / (markerNrs - 1)) * k + min;
+          } else {
+            displayValue = ((max - min) / (markerNrs - 1)) * k + min;
+
+            const len = max.toString().length - 1;
+
+            const val = round(displayValue / max, 1);
+            displayValue = val > 0 ? val + 'e' + len : 0;
+          }
+        }
+
+        return (
+          <div key={k} className="marker">
+            <div>|</div>
+            <div>{displayValue}</div>
+          </div>
+        );
+      }),
     [],
   );
 
@@ -578,6 +595,11 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 
   return stepValue;
 };
+
+function round(value, precision) {
+  const multiplier = 10 ** (precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
 
 const ToolTip = (props) => {
   return (
