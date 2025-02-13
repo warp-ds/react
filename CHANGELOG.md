@@ -1,3 +1,45 @@
+# [2.1.0-next.4](https://github.com/warp-ds/react/compare/v2.1.0-next.3...v2.1.0-next.4) (2025-02-10)
+
+
+### Bug Fixes
+
+* Update css version ([#304](https://github.com/warp-ds/react/issues/304)) ([d5ccd7c](https://github.com/warp-ds/react/commit/d5ccd7cd9723e41306c5e67db4b63773b30a4d39))
+
+# [2.1.0-next.3](https://github.com/warp-ds/react/compare/v2.1.0-next.2...v2.1.0-next.3) (2025-02-04)
+
+
+### Features
+
+* **deps:** bump lingui v4 -> v5 ([#302](https://github.com/warp-ds/react/issues/302)) ([6007ef8](https://github.com/warp-ds/react/commit/6007ef82d0352c9744de2127e496331e8e86a758))
+
+# [2.1.0-next.2](https://github.com/warp-ds/react/compare/v2.1.0-next.1...v2.1.0-next.2) (2024-12-02)
+
+
+### Bug Fixes
+
+* **lingui:** remove committed messages.mjs files ([#299](https://github.com/warp-ds/react/issues/299)) ([92d4859](https://github.com/warp-ds/react/commit/92d48592c8ad3590a8c3a19286db32d6eb2e033a))
+
+# [2.1.0-next.1](https://github.com/warp-ds/react/compare/v2.0.4-next.2...v2.1.0-next.1) (2024-11-27)
+
+
+### Features
+
+* **lingui:** add support for Swedish ('sv') translations ([#296](https://github.com/warp-ds/react/issues/296)) ([eb393af](https://github.com/warp-ds/react/commit/eb393af6d6247f8498ae7fef8fbbcfb4b2633095))
+
+## [2.0.4-next.2](https://github.com/warp-ds/react/compare/v2.0.4-next.1...v2.0.4-next.2) (2024-11-26)
+
+
+### Bug Fixes
+
+* **attention:** update to latest version of @warp-ds/core dependency ([#295](https://github.com/warp-ds/react/issues/295)) ([360d8d2](https://github.com/warp-ds/react/commit/360d8d289f2a065c4aa2770f2776e0b922cf0915))
+
+## [2.0.4-next.1](https://github.com/warp-ds/react/compare/v2.0.3...v2.0.4-next.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* **attention:** move role and aria-label to attention-arrow wrapper ([#294](https://github.com/warp-ds/react/issues/294)) ([2934712](https://github.com/warp-ds/react/commit/2934712bf570d0f7421b0e2074d887bdc10e7927))
+
 ## [2.0.3](https://github.com/warp-ds/react/compare/v2.0.2...v2.0.3) (2024-11-18)
 
 

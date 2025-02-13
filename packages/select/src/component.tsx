@@ -13,12 +13,13 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { SelectProps } from './props.js';
 
 const setup = (props: SelectProps) => {
   const { className, invalid, id, hint, always, label, style, optional, readOnly, disabled, ...rest } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const helpId = hint ? `${id}__hint` : undefined;
 

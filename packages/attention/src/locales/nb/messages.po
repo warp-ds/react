@@ -19,54 +19,54 @@ msgstr ""
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:66
+#: packages/_helpers/attention.tsx:67
 msgid "attention.aria.callout"
 msgstr "Grønn taleboble som introduserer noe nytt"
 
 #. Aria label for the close button in attention
 #. js-lingui-explicit-id
-#: packages/attention/src/component.tsx:186
+#: packages/attention/src/component.tsx:187
 msgid "attention.aria.close"
 msgstr "Lukk"
 
 #. Default screenreader message for highlighted speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:78
+#: packages/_helpers/attention.tsx:79
 msgid "attention.aria.highlight"
 msgstr "En uthevet taleboble med viktig informasjon"
 
 #. Default screenreader message for bottom direction in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:39
+#: packages/_helpers/attention.tsx:40
 msgid "attention.aria.pointingDown"
 msgstr "peker ned"
 
 #. Default screenreader message for left direction in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:47
+#: packages/_helpers/attention.tsx:48
 msgid "attention.aria.pointingLeft"
 msgstr "peker til venstre"
 
 #. Default screenreader message for right direction in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:31
+#: packages/_helpers/attention.tsx:32
 msgid "attention.aria.pointingRight"
 msgstr "peker til høyre"
 
 #. Default screenreader message for top direction in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:23
+#: packages/_helpers/attention.tsx:24
 msgid "attention.aria.pointingUp"
 msgstr "peker opp"
 
 #. Default screenreader message for popover speech bubble in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:72
+#: packages/_helpers/attention.tsx:73
 msgid "attention.aria.popover"
 msgstr "En hvit taleboble som gir tilleggsinformasjon"
 
 #. Default screenreader message for tooltip in the attention component
 #. js-lingui-explicit-id
-#: packages/_helpers/attention.tsx:60
+#: packages/_helpers/attention.tsx:61
 msgid "attention.aria.tooltip"
 msgstr "En svart taleboble som forklarer konteksten"

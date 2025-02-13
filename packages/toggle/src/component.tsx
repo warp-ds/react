@@ -13,11 +13,12 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 import { ToggleProps } from './props.js';
 import type { ToggleEntry } from './props.js';
 
 function Title({ id, title, optional }) {
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   return (
     <legend id={`${id}__title`} className={ccLabel.base}>

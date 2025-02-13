@@ -13,6 +13,7 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { ArrowProps, AttentionProps, ReferenceElement } from './props.js';
 
 const variantClasses = {
@@ -54,7 +55,7 @@ export function Attention(props: AttentionProps) {
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const [actualDirection, setActualDirection] = useState(placement);
   // Don't show attention element before its position is computed on first render
@@ -173,12 +174,12 @@ export function Attention(props: AttentionProps) {
 
   return !props.callout && initialTargetEl === undefined ? null : (
     <div data-testid="attention-el" className={containerClasses} ref={attentionEl}>
-      <div
-        role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
-        aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}
-        className={wrapperClasses}
-        id={props.id}>
-        {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
+      <div className={wrapperClasses} id={props.id}>
+        <div
+          role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
+          aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}>
+          {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
+        </div>
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
           <button

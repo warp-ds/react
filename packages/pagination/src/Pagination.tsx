@@ -8,6 +8,7 @@ import { messages as daMessages } from './locales/da/messages.mjs';
 import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
+import { messages as svMessages } from './locales/sv/messages.mjs';
 import NextPage from './NextPage.js';
 import Page from './Page.js';
 import Pages from './Pages.js';
@@ -42,7 +43,7 @@ export type PaginationProps = {
 
 export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   ({ currentPage, numPages, lastPage, createHref, className, onChange, noFollow, ...props }, ref) => {
-    activateI18n(enMessages, nbMessages, fiMessages, daMessages);
+    activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
     if (!createHref) {
       throw new TypeError('createHref is undefined');

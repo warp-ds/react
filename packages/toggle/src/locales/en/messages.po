@@ -16,6 +16,6 @@ msgstr ""
 
 #. Shown behind label when marked as optional
 #. js-lingui-explicit-id
-#: packages/toggle/src/component.tsx:27
+#: packages/toggle/src/component.tsx:28
 msgid "toggle.label.optional"
 msgstr "(optional)"

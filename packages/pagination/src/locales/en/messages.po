@@ -24,9 +24,9 @@ msgstr "First page"
 #. Suffix added at the end of icon titles when img semantics are lost on an html element
 #. Suffix added at the end of icon titles when img semantics are lost on an html element
 #. js-lingui-explicit-id
-#: packages/pagination/src/FirstPage.tsx:44
-#: packages/pagination/src/NextPage.tsx:48
 #: packages/pagination/src/PrevPage.tsx:48
+#: packages/pagination/src/NextPage.tsx:48
+#: packages/pagination/src/FirstPage.tsx:44
 msgid "pagination.aria.icon-suffix"
 msgstr "icon"
 
@@ -36,16 +36,16 @@ msgstr "icon"
 msgid "pagination.aria.next-page"
 msgstr "Next page"
 
-#. Default message for current page label in the pagination component
-#. js-lingui-explicit-id
-#: packages/pagination/src/CurrentPage.tsx:21
-msgid "pagination.label.current-page"
-msgstr "Page {currentPage}"
-
 #. Default screenreader message for page link in the pagination component
 #. js-lingui-explicit-id
 #: packages/pagination/src/Page.tsx:39
 msgid "pagination.aria.page"
+msgstr "Page {currentPage}"
+
+#. Default message for current page label in the pagination component
+#. js-lingui-explicit-id
+#: packages/pagination/src/CurrentPage.tsx:21
+msgid "pagination.label.current-page"
 msgstr "Page {currentPage}"
 
 #. Default screenreader message for pagination container in the pagination component
