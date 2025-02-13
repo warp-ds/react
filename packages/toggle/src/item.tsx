@@ -71,6 +71,7 @@ export function Item({
         value={label ? undefined : value ?? undefined}
         className={inputClassName}
         disabled={disabled}
+        data-testid={option?.value}
         {...props}
         onChange={(e) => props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)}
       />
