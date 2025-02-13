@@ -399,8 +399,8 @@ export function Slider({
           onTouchEnd={onInputComplete}
           onMouseOut={onInputComplete}
         >
-          {inputElement(1, ref1)}
           {isRange && inputElement(0, ref0)}
+          {inputElement(1, ref1)}
           <div className="steps">{markers && getMarkers()}</div>
         </div>
       </div>
