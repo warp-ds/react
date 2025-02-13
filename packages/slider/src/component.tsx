@@ -218,14 +218,18 @@ export function Slider({
 
   const onKeyDown = useCallback(
     (e: any, i: number) => {
-      if (e.key === "ArrowUp" || e.key === "ArrowDown") e.preventDefault();
-
-      setIsMoving(true);
-      if (e.key === "ArrowLeft") {
-        moveSlider("left", i);
+      if (["ArrowUp", "ArrowDown"].includes(e.key)) {
+        e.preventDefault();
       }
-      if (e.key === "ArrowRight") {
-        moveSlider("right", i);
+
+      if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+        setIsMoving(true);
+        if (e.key === "ArrowLeft") {
+          moveSlider("left", i);
+        }
+        if (e.key === "ArrowRight") {
+          moveSlider("right", i);
+        }
       }
     },
     [moveSlider],
