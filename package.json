@@ -5,7 +5,8 @@
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
   "prettier": {
-    "printWidth": 160
+    "printWidth": 160,
+    "singleQuote": true
   },
   "exports": {
     ".": {

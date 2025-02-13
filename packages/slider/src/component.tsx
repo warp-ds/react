@@ -1,9 +1,9 @@
-import React, { Ref, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { Ref, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { classNames } from "@chbphone55/classnames";
-import { slider as ccSlider } from "@warp-ds/css/component-classes";
+import { classNames } from '@chbphone55/classnames';
+import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
-import { SliderProps } from "./props.js";
+import { SliderProps } from './props.js';
 
 const style = `
   .wrapper {
@@ -102,7 +102,7 @@ const style = `
               height: 11px;
               overflow: hidden;
           }
-          > div:nth-child(2){
+          > div:nth-child(2) {
               width: 0;
               overflow: visible;
               display: grid;
@@ -133,17 +133,17 @@ export function Slider({
   disabled,
   onChange,
   onChangeAfter,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  "aria-valuetext": ariaValueText,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+  'aria-valuetext': ariaValueText,
   keyboardStepFactor = 0.04,
   showTooltip = false,
   markers = false,
   markerCount = 10,
 }: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
   // Determine type.
-  const type = values ? "range" : "standard";
-  const isRange = type === "range";
+  const type = values ? 'range' : 'standard';
+  const isRange = type === 'range';
 
   const stepValue = useMemo(() => getStepValue(step, markers, markerCount, max, min), []);
 
@@ -192,12 +192,12 @@ export function Slider({
 
   // Set value attributes.
   useEffect(() => {
-    if (ref0.current) ref0.current.setAttribute("value", currentValues[0]);
-    if (ref1.current) ref1.current.setAttribute("value", currentValues[1]);
+    if (ref0.current) ref0.current.setAttribute('value', currentValues[0]);
+    if (ref1.current) ref1.current.setAttribute('value', currentValues[1]);
   }, [currentValues]);
 
   const moveSlider = useCallback(
-    (direction: "left" | "right", i: number) => {
+    (direction: 'left' | 'right', i: number) => {
       const multiplier = {
         left: -1,
         right: 1,
@@ -218,17 +218,17 @@ export function Slider({
 
   const onKeyDown = useCallback(
     (e: any, i: number) => {
-      if (["ArrowUp", "ArrowDown"].includes(e.key)) {
+      if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
         e.preventDefault();
       }
 
-      if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+      if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
         setIsMoving(true);
-        if (e.key === "ArrowLeft") {
-          moveSlider("left", i);
+        if (e.key === 'ArrowLeft') {
+          moveSlider('left', i);
         }
-        if (e.key === "ArrowRight") {
-          moveSlider("right", i);
+        if (e.key === 'ArrowRight') {
+          moveSlider('right', i);
         }
       }
     },
@@ -245,7 +245,7 @@ export function Slider({
 
       // Clicking on the input thumb triggers the event for the input element.
       // Here, only handle click for clicking on the range, outside the thumb slider.
-      if (!disabled && e.target.nodeName !== "INPUT") {
+      if (!disabled && e.target.nodeName !== 'INPUT') {
         const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
         const width = (wrapperRef.current as HTMLDivElement).clientWidth;
@@ -318,9 +318,9 @@ export function Slider({
     setMovingFalse();
   };
 
-  function setMovingFalse() {
+  const setMovingFalse = () => {
     setIsMoving(false);
-  }
+  };
 
   // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
   const inputElement = useCallback(
@@ -347,7 +347,7 @@ export function Slider({
   );
 
   const markerNrs = useMemo(() => {
-    if (markerCount === "auto" && typeof stepValue == "number") {
+    if (markerCount === 'auto' && typeof stepValue == 'number') {
       return (max - min) / stepValue + 1;
     }
     return markerCount as number;
@@ -376,7 +376,7 @@ export function Slider({
   return (
     <>
       <style>{style}</style>
-      <div className={"ccSlider.wrapper" + " wrapper"} onContextMenu={(e) => e.preventDefault()}>
+      <div className={'ccSlider.wrapper' + ' wrapper'} onContextMenu={(e) => e.preventDefault()}>
         <div className="active-track" ref={trackRef}>
           <ToolTip
             display={renderToolTip && isRange}
@@ -420,9 +420,9 @@ const getToolTipOffsets = (values: number[], max: number, min: number) => {
 // https://www.w3.org/WAI/ARIA/apg/practices/range-related-properties/.
 function ariaData({ ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, string | undefined>) {
   return {
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-valuetext": ariaValueText,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-valuetext': ariaValueText,
   };
 }
 
@@ -432,10 +432,10 @@ function clamp(val: number, min: number, max: number) {
 
 function validate(value, values, min, max) {
   if ((value && value < min) || (values && values[0] < min)) {
-    console.warn("Value too low.");
+    console.warn('Value too low.');
   }
   if ((value && value > max) || (values && values[1] > max)) {
-    console.warn("Value too high.");
+    console.warn('Value too high.');
   }
 }
 
@@ -485,15 +485,15 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, stepValue) 
 
   // Warn if values are incorrect.
   if (widthFraction < 0 || widthFraction > 1) {
-    console.warn("Values outside of range.");
+    console.warn('Values outside of range.');
     widthFraction = clamp(widthFraction, 0, 1);
   }
 
   const left = isRange ? ((currentValues[0] - min) / (max - min)) * width : 0;
 
   return `
-    width: ${widthFraction * 100 + "%"};
-    margin-left: ${left + "px"};`;
+    width: ${widthFraction * 100 + '%'};
+    margin-left: ${left + 'px'};`;
 };
 
 const setStyle = (trackRef, values, wrapperRef, isRange, max, min, stepValue) => {
@@ -530,7 +530,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
   if (markers) {
     const count = markerCount as number;
     // Set auto step value.
-    stepValue = typeof step === "number" ? step : Math.round((max - min) / (count - 1));
+    stepValue = typeof step === 'number' ? step : Math.round((max - min) / (count - 1));
   }
 
   return stepValue;
@@ -538,7 +538,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 
 const ToolTip = (props) => {
   return (
-    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? "visible" : "hidden", zIndex: props.top ? 10 : 1 }}>
+    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? 'visible' : 'hidden', zIndex: props.top ? 10 : 1 }}>
       {Math.round(props.children)}
     </div>
   );
