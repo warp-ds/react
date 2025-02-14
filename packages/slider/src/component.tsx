@@ -470,6 +470,7 @@ export function Slider({
   );
 }
 
+// Get tooltip offsets, needed to center the tooltip over the thumb (which doesn't follow the active track exactly; see default input type="range" behavior.)
 const getToolTipOffsets = (values: number[], max: number, min: number) => {
   const tooltipOffset1 = -((values[0] - min) / (max - min) - 0.5) * 24;
   const tooltipOffset2 = -((values[1] - min) / (max - min) - 0.5) * 24;
@@ -518,6 +519,7 @@ function updateInputValues({ value, values }: { value?: number; values?: number[
 }
 
 // Use the given value to get full value array.
+// Returns the value as an adjusted value (rounded, etc.).
 const getAsValueArray = (value: number, index = 1, isRange, currentValues, min, max, stepValue, clamp = false) => {
   let values: number[];
 
@@ -566,6 +568,7 @@ const clampValues = (values: number[], min, max) => {
   return [clamp(values[0], min, max), clamp(values[1], min, max)];
 };
 
+// Get the x coordinate for the event target (using getBoundingClientRect).
 const getX = (event: any) => {
   const e = event.target.getBoundingClientRect();
   const xCoordinate = event.touches[0].clientX - e.left;
@@ -586,6 +589,7 @@ const getAdjustedValueArray = (values: number[], step: number) => {
   return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
 };
 
+// Get step value, including an automatic value if step == 'auto'.
 const getStepValue = (step, markers, markerCount, max, min) => {
   let stepValue = step;
 
@@ -598,11 +602,7 @@ const getStepValue = (step, markers, markerCount, max, min) => {
   return stepValue;
 };
 
-function round(value, precision) {
-  const multiplier = 10 ** (precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
-
+// Toolip component that shows a given value above the slider thumb.
 const ToolTip = (props) => {
   return (
     <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? 'visible' : 'hidden', zIndex: props.top ? 10 : 1 }}>
@@ -611,7 +611,7 @@ const ToolTip = (props) => {
   );
 };
 
-// Get the state for the text input fields.
+// Get the state (error or OK) for the text input fields.
 function getInputValidState([val0, val1]: number[], min, max) {
   let state0 = true;
   let state1 = true;
@@ -625,4 +625,9 @@ function getInputValidState([val0, val1]: number[], min, max) {
   }
 
   return [state0, state1];
+}
+
+function round(value, precision) {
+  const multiplier = 10 ** (precision || 0);
+  return Math.round(value * multiplier) / multiplier;
 }
