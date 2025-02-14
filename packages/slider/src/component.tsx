@@ -396,11 +396,10 @@ export function Slider({
         let displayValue: string | number = '';
 
         if (markerNrs < 15) {
-          if (max < 100) {
-            displayValue = ((max - min) / (markerNrs - 1)) * k + min;
-          } else {
-            displayValue = ((max - min) / (markerNrs - 1)) * k + min;
+          displayValue = ((max - min) / (markerNrs - 1)) * k + min;
 
+          // Display in scientific notation.
+          if (max > 100) {
             const len = max.toString().length - 1;
 
             const val = round(displayValue / max, 1);
