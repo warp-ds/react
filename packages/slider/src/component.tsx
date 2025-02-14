@@ -148,7 +148,7 @@ export function Slider({
   showTooltip = false,
   markers = false,
   markerCount = 10,
-  input = false,
+  showInputs = false,
 }: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
   // Determine type.
   const type = values ? 'range' : 'standard';
@@ -316,7 +316,7 @@ export function Slider({
       setCurrentValues(values);
 
       // Update text input fields.
-      if (input) {
+      if (showInputs) {
         setTextInputValues(preserve ? originalValues : values);
       }
 
@@ -426,6 +426,9 @@ export function Slider({
     [offset1, offset2] = getToolTipOffsets(getValueArray(), max, min);
   }
 
+  // Get the state of the input fields, to display an error state if a value is outside the range.
+  const inputValidState = showInputs ? getInputValidState(textInputValues, min, max) : [true, true];
+
   return (
     <>
       <style>{style}</style>
@@ -456,10 +459,10 @@ export function Slider({
           {inputElement(1, ref1)}
           <div className="steps">{markers && getMarkers()}</div>
         </div>
-        {input && (
+        {showInputs && (
           <div className={`inputs ${isRange ? 'dual' : ''}`}>
-            {isRange && <TextField value={textInputValues[0].toString()} onChange={(e) => onTextInputChange(e, 0)} />}
-            <TextField value={textInputValues[1].toString()} onChange={(e) => onTextInputChange(e, 1)} />
+            {isRange && <TextField value={textInputValues[0].toString()} invalid={!inputValidState[0]} onChange={(e) => onTextInputChange(e, 0)} />}
+            <TextField value={textInputValues[1].toString()} invalid={!inputValidState[1]} onChange={(e) => onTextInputChange(e, 1)} />
           </div>
         )}
       </div>
@@ -607,3 +610,19 @@ const ToolTip = (props) => {
     </div>
   );
 };
+
+// Get the state for the text input fields.
+function getInputValidState([val0, val1]: number[], min, max) {
+  let state0 = true;
+  let state1 = true;
+
+  if (val0 < min || val0 > max) {
+    state0 = false;
+  }
+
+  if (val1 > max || val1 < min) {
+    state1 = false;
+  }
+
+  return [state0, state1];
+}

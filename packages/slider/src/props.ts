@@ -44,5 +44,5 @@ export type SliderProps = {
 
   showTooltip?: boolean;
 
-  input?: boolean;
+  showInputs?: boolean;
 };

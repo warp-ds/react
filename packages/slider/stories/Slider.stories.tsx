@@ -11,7 +11,7 @@ export const Regular = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} input />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} showInputs />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -47,7 +47,7 @@ export const Regular4 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" input />
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" showInputs />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -59,7 +59,7 @@ export const Regular5 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers markerCount="auto" input />
+      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers markerCount="auto" showInputs />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -73,7 +73,7 @@ export const Range = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers input />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers showInputs />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
   );
