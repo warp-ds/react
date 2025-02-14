@@ -6,13 +6,75 @@ const metadata = { title: 'Forms/Slider' };
 export default metadata;
 
 export const Regular = () => {
-  const [value, setValue] = React.useState(2_500_000);
+  const [value, setValue] = React.useState(20000);
 
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1000} max={10_000_000} step={1000} />
-      <button onClick={() => setValue(2_500_000)}>Reset</button>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} showInputs />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular2 = () => {
+  const [value, setValue] = React.useState(20000);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers markerCount={30} step="auto" />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular3 = () => {
+  const [value, setValue] = React.useState(20000);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers markerCount="auto" step={2000} />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular4 = () => {
+  const [value, setValue] = React.useState(3);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" showInputs />
+      <button onClick={() => setValue(3)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular5 = () => {
+  const [value, setValue] = React.useState(3);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers markerCount="auto" showInputs />
+      <button onClick={() => setValue(3)}>Reset</button>
+    </div>
+  );
+};
+
+export const Range = () => {
+  const [values, setValues] = React.useState([1000, 5008970]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers showInputs />
+      <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
   );
 };
@@ -34,14 +96,7 @@ export const ChangeAfter = () => {
   return (
     <div>
       <output>{valueAfter}</output>
-      <Slider
-        onChange={(val) => setValue(val)}
-        onChangeAfter={(val) => setValueAfter(val)}
-        value={value}
-        min={1000}
-        max={10_000_000}
-        step={1000}
-      />
+      <Slider onChange={(val) => setValue(val)} onChangeAfter={(val) => setValueAfter(val)} value={value} min={1000} max={10_000_000} step={1000} />
     </div>
   );
 };

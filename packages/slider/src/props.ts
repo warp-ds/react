@@ -3,36 +3,46 @@ export type SliderProps = {
    * The greatest value in the range of permitted values
    * @default 100
    */
-  max: number;
+  max?: number;
 
   /**
    * The lowest value in the range of permitted values
    * @default 0
    */
-  min: number;
+  min?: number;
 
   /** Specifies the value granularity */
-  step: number;
+  step?: number | 'auto';
 
   /** The current value */
-  value: number;
+  //value: number;
 
   /** Whether the slider is disabled */
   disabled?: boolean;
 
   /** Handler that is called when the value of the slider changes */
-  onChange?: (value: number) => void;
+  //onChange?: (value: number) => void;
 
   /** Handler that is called after moving the slider has ended. Will only be
    * called if the action resulted in a change. */
-  onChangeAfter?: (value: number) => void;
+  //onChangeAfter?: (value: number) => void;
 
   /** String value that labels the slider */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /** Identifies the element that labels the slider */
-  'aria-labelledby'?: string;
+  "aria-labelledby"?: string;
 
   /**  Human readable text alternative for the value */
-  'aria-valuetext'?: string;
+  "aria-valuetext"?: string;
+
+  keyboardStepFactor?: number;
+
+  markers?: boolean;
+
+  markerCount?: number | 'auto';
+
+  showTooltip?: boolean;
+
+  showInputs?: boolean;
 };
