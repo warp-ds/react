@@ -1,5 +1,6 @@
 .w-datepicker__month {
   /* Sets default used in the day fragment */
+  --month-padding: 16px;
   --day-width: 40px;
 
   --_month-color: var(--month-color, var(--w-s-color-text));

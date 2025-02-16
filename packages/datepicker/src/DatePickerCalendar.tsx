@@ -1,4 +1,13 @@
-import React, { Dispatch, KeyboardEvent, RefObject, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  Dispatch,
+  KeyboardEvent,
+  RefObject,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import './styles/w-datepicker-calendar.css';
 import { classNames } from '@chbphone55/classnames';
@@ -28,10 +37,21 @@ import { DatePickerNavigation } from './DatePickerNavigation.js';
  * DatePickerCalendar
  * Can be used standalone, or as part of a <DatePicker /> and an input field.
  */
-export const DatePickerCalendar = ({ className, numberOfMonths = 1, ...props }: DatePickerCalendarProps) => {
+export const DatePickerCalendar = ({
+  className,
+  numberOfMonths = 1,
+  ...props
+}: DatePickerCalendarProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { locale, startDate, bookedDates, state: datepickerState, navigationDayRef, phrases } = useContext(DatePickerContext);
+  const {
+    locale,
+    startDate,
+    bookedDates,
+    state: datepickerState,
+    navigationDayRef,
+    phrases,
+  } = useContext(DatePickerContext);
 
   const { navigationDate, setNavigationDate } = useNavigationDate({
     initialDate: startDate,
@@ -49,23 +69,31 @@ export const DatePickerCalendar = ({ className, numberOfMonths = 1, ...props }: 
   return (
     <div
       className={classNames(
-        'w-datepicker__calendar relative z-30 s-text-subtle',
+        'w-datepicker__calendar',
         {
-          'inline-block border-2 rounded': isInlineCalendar || bookedDates,
+          'w-datepicker__calendar--booked':
+            isInlineCalendar || bookedDates,
         },
-        className,
+        className
       )}
       aria-roledescription={phrases.roleDescription}
       role={isInlineCalendar ? 'region' : 'dialog'}
       ref={ref}
-      {...props}>
+      {...props}
+    >
       <DatePickerNavigation
         phrases={phrases}
-        nextMonth={() => setNavigationDate(addMonths(months[months.length - 1], 1))}
+        nextMonth={() =>
+          setNavigationDate(addMonths(months[months.length - 1], 1))
+        }
         prevMonth={() => setNavigationDate(subMonths(months[0], 1))}
       />
       {months.map((month, i) => (
-        <DatePickerMonth key={i} month={month} navigationDate={navigationDate} />
+        <DatePickerMonth
+          key={i}
+          month={month}
+          navigationDate={navigationDate}
+        />
       ))}
     </div>
   );
@@ -85,14 +113,19 @@ type useNavigationDateProps = {
   locale: Locale;
 };
 
-function useNavigationDate({ initialDate, calendarRef, navigationDayRef, locale }: useNavigationDateProps): {
+function useNavigationDate({
+  initialDate,
+  calendarRef,
+  navigationDayRef,
+  locale,
+}: useNavigationDateProps): {
   navigationDate: Date;
   setNavigationDate: Dispatch<SetStateAction<Date>>;
 } {
   const [navigationDate, setNavigationDate] = useState(
     // Must use startOfToday() instead of just new Date() here,
     // otherwise todays date will be the only date in the calendar that doesn' start at 00:00:00
-    initialDate ?? startOfToday(),
+    initialDate ?? startOfToday()
   );
 
   const shouldFocusNavigationDate = useRef(false);
@@ -139,7 +172,8 @@ function useNavigationDate({ initialDate, calendarRef, navigationDayRef, locale 
 
     calendarEl.addEventListener('keydown', keyHandler);
 
-    return () => calendarEl.removeEventListener('keydown', keyHandler);
+    return () =>
+      calendarEl.removeEventListener('keydown', keyHandler);
   }, [calendarRef, locale, navigationDate]);
 
   // Focus the navigation date whenever we changed it with our keyboard shortcuts
@@ -154,7 +188,10 @@ function useNavigationDate({ initialDate, calendarRef, navigationDayRef, locale 
 }
 
 //  TODO: Memoize? Recalculate on numberOfMonths change
-function useWindowingMonths(navigationDate: Date, numberOfMonths: number): Date[] {
+function useWindowingMonths(
+  navigationDate: Date,
+  numberOfMonths: number
+): Date[] {
   const intervalRef = useRef({
     start: startOfMonth(navigationDate),
     end: addMonths(navigationDate, numberOfMonths - 1),
@@ -168,13 +205,21 @@ function useWindowingMonths(navigationDate: Date, numberOfMonths: number): Date[
 
   let differenceInMonths = 0;
   if (isBefore(navigationDate, interval.start)) {
-    differenceInMonths = differenceInCalendarMonths(interval.start, navigationDate);
+    differenceInMonths = differenceInCalendarMonths(
+      interval.start,
+      navigationDate
+    );
   } else {
-    differenceInMonths = differenceInCalendarMonths(interval.end, navigationDate);
+    differenceInMonths = differenceInCalendarMonths(
+      interval.end,
+      navigationDate
+    );
   }
 
   intervalRef.current = {
-    start: startOfMonth(subMonths(interval.start, differenceInMonths)),
+    start: startOfMonth(
+      subMonths(interval.start, differenceInMonths)
+    ),
     end: endOfMonth(subMonths(interval.end, differenceInMonths)),
   };
 
