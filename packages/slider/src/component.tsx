@@ -214,7 +214,7 @@ export function Slider({
         setTextInputValues([0, value]);
       }
 
-      setStyle(trackRef, valueArray, wrapperRef, isRange, max, min, stepValue);
+      setStyle(trackRef, valueArray, wrapperRef, isRange, max, min);
 
       updateInputValues({ values, value }, isRange, input0, input1);
     }
@@ -345,7 +345,7 @@ export function Slider({
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max, min, stepValue);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min);
   }, []);
 
   const onInputChange = useCallback(
@@ -584,8 +584,8 @@ const getAsValueArray = (value: number, index = 1, isRange, currentValues, min, 
   }
 };
 
-const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, stepValue) => {
-  let widthFraction = getAdjustedValue(currentValues[1] - currentValues[0], stepValue) / (max - min);
+const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
+  let widthFraction = (currentValues[1] - currentValues[0]) / (max - min);
 
   const width = wrapperRef.current?.clientWidth || 500;
 
@@ -602,8 +602,8 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min, stepValue) 
     margin-left: ${left + 'px'};`;
 };
 
-const setStyle = (trackRef, values, wrapperRef, isRange, max, min, stepValue) => {
-  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min, stepValue);
+const setStyle = (trackRef, values, wrapperRef, isRange, max, min) => {
+  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
 };
 
 const clampValues = (values: number[], min, max) => {
