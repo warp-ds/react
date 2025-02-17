@@ -159,6 +159,24 @@ export function Slider({
   // Get values in array form, using either the value or values prop.
   const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
 
+  // Get value offset due to thumb width.
+  const getValueOffset = useCallback((values: number[]) => {
+    let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+
+    const wrapperWidth = wrapperRef.current?.clientWidth || 500;
+
+    // width in pxs
+    const width = widthFraction * wrapperWidth;
+
+    if (width < 24) {
+      const valPerPx = (max - min) / wrapperWidth;
+
+      return valPerPx * 24;
+    } else {
+      return 0;
+    }
+  }, []);
+
   const [currentValues, setCurrentValues] = useState<number[]>(() => getValueArray());
   const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
 
@@ -291,8 +309,8 @@ export function Slider({
 
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
-  // Use 'preserve' to keep text field input values unchanged.
-  const setNewValues = useCallback((values: number[], i: number, preserve = false) => {
+  // Use 'preserveTextInputs' to keep text field input values unchanged.
+  const setNewValues = useCallback((values: number[], i: number, preserveTextInputs = false) => {
     const originalValues = [values[0], values[1]];
 
     // Clear any previous timeout.
@@ -300,20 +318,17 @@ export function Slider({
 
     // Stop slider values from overlapping.
     if (isRange) {
-      let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+      const offset = getValueOffset(values);
 
-      // width in pxs
-      const width = widthFraction * (wrapperRef.current?.clientWidth || 500);
-      const valPerPx = (max - min) / (wrapperRef.current?.clientWidth || 500);
-
-      if (width < 24) {
+      if (offset > 0) {
         if (i == 0) {
-          values[0] = values[1] - valPerPx * 24;
+          values[0] = values[1] - offset;
         } else {
-          values[1] = values[0] + valPerPx * 24;
+          values[1] = values[0] + offset;
         }
-        updateInputValues({ values, value: values[1] }, isRange, input0, input1);
       }
+
+      updateInputValues({ values, value: values[1] }, isRange, input0, input1);
     }
 
     // Run update and onchange async.
@@ -324,7 +339,7 @@ export function Slider({
 
       // Update text input fields.
       if (showInputs) {
-        setTextInputValues(preserve ? originalValues : values);
+        setTextInputValues(preserveTextInputs ? originalValues : values);
       }
 
       if (onChange) {
@@ -414,7 +429,7 @@ export function Slider({
   const [offset1, offset2] = renderToolTip ? getToolTipOffsets(getValueArray(), max, min) : [0, 0];
 
   // Get the state of the input fields, to display an error state if a value is outside the range.
-  const inputValidState = showInputs ? getInputValidState(textInputValues, min, max, [textField0, textField1]) : [true, true];
+  const inputValidState = showInputs ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset) : [true, true];
 
   return (
     <>
@@ -453,14 +468,14 @@ export function Slider({
                 value={textInputValues[0].toString()}
                 ref={textField0}
                 invalid={!inputValidState[0]}
-                onChange={(e) => onTextInputChange(e, 0, currentValues, setNewValues, setTextInputValues, min, max)}
+                onChange={(e) => onTextInputChange(e, 0, currentValues, setNewValues, setTextInputValues, min, max, getValueOffset)}
               />
             )}
             <TextField
               value={textInputValues[1].toString()}
               ref={textField1}
               invalid={!inputValidState[1]}
-              onChange={(e) => onTextInputChange(e, 1, currentValues, setNewValues, setTextInputValues, min, max)}
+              onChange={(e) => onTextInputChange(e, 1, currentValues, setNewValues, setTextInputValues, min, max, getValueOffset)}
             />
           </div>
         )}
@@ -611,7 +626,7 @@ const ToolTip = (props) => {
 };
 
 // Get the state (error or OK) for the text input fields.
-function getInputValidState([val0, val1]: number[], min, max, [textField0, textField1]) {
+function getInputValidState([val0, val1]: number[], min, max, [textField0, textField1], getValueOffset) {
   let state0 = true;
   let state1 = true;
 
@@ -624,13 +639,17 @@ function getInputValidState([val0, val1]: number[], min, max, [textField0, textF
   }
 
   if (document.activeElement === textField0.current) {
-    if (val0 > val1) {
+    const offset = getValueOffset([val0, val1]);
+
+    if (val0 + offset > val1) {
       state0 = false;
     }
   }
 
   if (document.activeElement === textField1.current) {
-    if (val1 < val0) {
+    const offset = getValueOffset([val0, val1]);
+
+    if (val1 < val0 + offset) {
       state1 = false;
     }
   }
@@ -642,13 +661,25 @@ function round(value, precision) {
   return Math.round(value * multiplier) / multiplier;
 }
 
-const onTextInputChange = (e: any, i: number, currentValues: number[], setNewValues: any, setTextInputValues: any, min: number, max: number) => {
+const onTextInputChange = (
+  e: any,
+  i: number,
+  currentValues: number[],
+  setNewValues: any,
+  setTextInputValues: any,
+  min: number,
+  max: number,
+  getValueOffset,
+) => {
   const value = +e.target.value;
 
   const values = i == 1 ? [currentValues[0], value] : [value, currentValues[1]];
 
+  const offset = getValueOffset(values);
+
   // Update the slider values, if the text input values are within the range.
-  if (values[0] >= min && values[1] <= max && values[1] >= values[0]) {
+  // Takes into account thumb width.
+  if (values[0] >= min && values[1] <= max && values[1] >= values[0] + offset) {
     setNewValues(values, i, true);
   }
   // Otherwise, warn (and show error?).
