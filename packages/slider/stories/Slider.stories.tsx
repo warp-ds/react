@@ -79,6 +79,49 @@ export const Range = () => {
   );
 };
 
+export const Range2 = () => {
+  const [values, setValues] = React.useState([100, 1500]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={100} max={1500} step={10} showTooltip markers showInputs />
+      <button onClick={() => setValues([100, 1500])}>Reset</button>
+    </div>
+  );
+};
+
+// wip.
+/* export const Range3 = () => {
+  const [values, setValues] = React.useState([-100, 100]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={-80} max={80} step={1} showTooltip markers showInputs />
+      <button onClick={() => setValues([-100, 100])}>Reset</button>
+    </div>
+  );
+}; */
+
+export const Range4 = () => {
+  const [values, setValues] = React.useState([1000, 9000]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} step={100} showTooltip markers showInputs />
+      <button onClick={() => setValues([1000, 9000])}>Reset</button>
+    </div>
+  );
+};
+
 export const Disabled = () => {
   const [value, setValue] = React.useState(625_000);
   return (

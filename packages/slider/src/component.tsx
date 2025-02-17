@@ -310,9 +310,7 @@ export function Slider({
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
   // Use 'preserveTextInputs' to keep text field input values unchanged.
-  const setNewValues = useCallback((values: number[], i: number, preserveTextInputs = false) => {
-    const originalValues = [values[0], values[1]];
-
+  const setNewValues = useCallback((values: number[], i: number, updateTextInputs = true) => {
     // Clear any previous timeout.
     clearTimeout(timeoutId.current);
 
@@ -338,8 +336,8 @@ export function Slider({
       setCurrentValues(values);
 
       // Update text input fields.
-      if (showInputs) {
-        setTextInputValues(preserveTextInputs ? originalValues : values);
+      if (showInputs && updateTextInputs) {
+        setTextInputValues(values);
       }
 
       if (onChange) {
@@ -391,6 +389,41 @@ export function Slider({
     [currentValues],
   );
 
+  // On change for a text input field (text box) under the slider.
+  // Handles multiple scenarios to allow users to edit values (that may be outside the range) and keep editing until values are valid.
+  // This involves keeping separate state between the input fields and the slider (adding quite a bit of complexity).
+  // It does however lead to quite usable UX (so maybe worth it..!).
+  const onTextInputChange = (e: any, i: number) => {
+    // Get current input values.
+    const value = +e.target.value;
+    const currentInputValues = i == 0 ? [value, textInputValues[1]] : [textInputValues[0], value];
+
+    // Update the values.
+    setTextInputValues(currentInputValues);
+
+    // Update slider input values.
+    // Only update the value if the value is in the slider range.
+
+    const offset = getValueOffset(currentInputValues);
+
+    // Update first slider.
+    if (i == 0) {
+      const sliderValues = [value, currentValues[1]];
+
+      if (value >= min && value <= currentValues[1] - offset) {
+        setNewValues(sliderValues, i, false);
+      }
+    }
+    // Update second slider.
+    else if (i == 1) {
+      const sliderValues = [currentValues[0], value];
+
+      if (value <= max && value >= currentValues[0] + offset) {
+        setNewValues(sliderValues, i, false);
+      }
+    }
+  };
+
   const markerNrs = useMemo(() => {
     if (markerCount === 'auto' && typeof stepValue == 'number') {
       return (max - min) / stepValue + 1;
@@ -410,7 +443,7 @@ export function Slider({
           if (max > 100) {
             const len = max.toString().length - 1;
 
-            const val = round(displayValue / max, 1);
+            const val = round(displayValue / 10 ** len, 1);
             displayValue = val > 0 ? val + 'e' + len : 0;
           }
         }
@@ -431,6 +464,9 @@ export function Slider({
   // Get the state of the input fields, to display an error state if a value is outside the range.
   const inputValidState = showInputs ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset) : [true, true];
 
+  // Render the range input, text fields and tool tips.
+  // For a range slider, render two sets of elements: one for the lower and one for the upper value.
+  // For a standard (non-range) slider, only render the second (top) value elements.
   return (
     <>
       <style>{style}</style>
@@ -464,19 +500,9 @@ export function Slider({
         {showInputs && (
           <div className={`inputs ${isRange ? 'dual' : ''}`}>
             {isRange && (
-              <TextField
-                value={textInputValues[0].toString()}
-                ref={textField0}
-                invalid={!inputValidState[0]}
-                onChange={(e) => onTextInputChange(e, 0, currentValues, setNewValues, setTextInputValues, min, max, getValueOffset)}
-              />
+              <TextField value={textInputValues[0].toString()} ref={textField0} invalid={!inputValidState[0]} onChange={(e) => onTextInputChange(e, 0)} />
             )}
-            <TextField
-              value={textInputValues[1].toString()}
-              ref={textField1}
-              invalid={!inputValidState[1]}
-              onChange={(e) => onTextInputChange(e, 1, currentValues, setNewValues, setTextInputValues, min, max, getValueOffset)}
-            />
+            <TextField value={textInputValues[1].toString()} ref={textField1} invalid={!inputValidState[1]} onChange={(e) => onTextInputChange(e, 1)} />
           </div>
         )}
       </div>
@@ -660,32 +686,3 @@ function round(value, precision) {
   const multiplier = 10 ** (precision || 0);
   return Math.round(value * multiplier) / multiplier;
 }
-
-const onTextInputChange = (
-  e: any,
-  i: number,
-  currentValues: number[],
-  setNewValues: any,
-  setTextInputValues: any,
-  min: number,
-  max: number,
-  getValueOffset,
-) => {
-  const value = +e.target.value;
-
-  const values = i == 1 ? [currentValues[0], value] : [value, currentValues[1]];
-
-  const offset = getValueOffset(values);
-
-  // Update the slider values, if the text input values are within the range.
-  // Takes into account thumb width.
-  if (values[0] >= min && values[1] <= max && values[1] >= values[0] + offset) {
-    setNewValues(values, i, true);
-  }
-  // Otherwise, warn (and show error?).
-  else {
-    console.warn('Input outside range.');
-
-    setTextInputValues(values);
-  }
-};
