@@ -418,7 +418,9 @@ export function Slider({
     else if (i == 1) {
       const sliderValues = [currentValues[0], value];
 
-      if (value <= max && value >= currentValues[0] + offset) {
+      const inSpecifiedRange = isRange ? value <= max && value >= currentValues[0] + offset : value <= max;
+
+      if (inSpecifiedRange) {
         setNewValues(sliderValues, i, false);
       }
     }
