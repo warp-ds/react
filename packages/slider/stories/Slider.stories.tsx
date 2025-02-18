@@ -122,6 +122,34 @@ export const Range4 = () => {
   );
 };
 
+export const Range5 = () => {
+  const [values, setValues] = React.useState([10, 1000]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={4000} showTooltip markers showInputs markerCount={9} />
+      <button onClick={() => setValues([10, 1000])}>Reset</button>
+    </div>
+  );
+};
+
+export const Range6 = () => {
+  const [values, setValues] = React.useState([0, 10000]);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} showTooltip markers showInputs markerCount={21} step={100} />
+      <button onClick={() => setValues([0, 10000])}>Reset</button>
+    </div>
+  );
+};
+
 export const Disabled = () => {
   const [value, setValue] = React.useState(625_000);
   return (
