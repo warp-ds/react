@@ -1,10 +1,20 @@
 import React, { useContext } from 'react';
 
+import './styles/w-datepicker-popover.css';
 import { classNames } from '@chbphone55/classnames';
 import { Popover } from '@reach/popover';
-import { forwardRefWithAs, useForkedRef, wrapEvent } from '@reach/utils';
+import {
+  forwardRefWithAs,
+  useForkedRef,
+  wrapEvent,
+} from '@reach/utils';
 
-import { DatePickerContext, IDLE, INTERACTING_END_DATE, INTERACTING_START_DATE } from './DatePickerContext.js';
+import {
+  DatePickerContext,
+  IDLE,
+  INTERACTING_END_DATE,
+  INTERACTING_START_DATE,
+} from './DatePickerContext.js';
 import { DatePickerPopoverProps } from './DatePickerPopoverProps.js';
 import { useBlur } from './utils/useBlur.js';
 
@@ -20,8 +30,20 @@ const FOCUSED_DATE = 'focusedDate';
  * calendar. For example, you may want show some information about availability.
  *
  */
-export const DatePickerPopover = forwardRefWithAs<DatePickerPopoverProps, 'div'>(
-  ({ attachTo = 'startDate', className, onBlur, onKeyDown, ...props }, forwardedRef) => {
+export const DatePickerPopover = forwardRefWithAs<
+  DatePickerPopoverProps,
+  'div'
+>(
+  (
+    {
+      attachTo = 'startDate',
+      className,
+      onBlur,
+      onKeyDown,
+      ...props
+    },
+    forwardedRef
+  ) => {
     const {
       datepickerId,
       startInputRef,
@@ -56,7 +78,7 @@ export const DatePickerPopover = forwardRefWithAs<DatePickerPopoverProps, 'div'>
     return (
       <Popover
         {...props}
-        className={classNames(className, 'rounded-8 shadow-l outline-none mt-6 s-text-inverted s-bg')}
+        className={classNames(className, 'w-datepicker__popover')}
         id={datepickerId}
         onBlur={wrapEvent(onBlur, handleBlur)}
         onKeyDown={wrapEvent(onKeyDown, handleKeyDown as any)}
@@ -65,18 +87,32 @@ export const DatePickerPopover = forwardRefWithAs<DatePickerPopoverProps, 'div'>
         ref={ref}
       />
     );
-  },
+  }
 );
 
-function getTargetRef({ startInputRef, endInputRef, datepickerState, isDateRangePicker, attachTo }) {
+function getTargetRef({
+  startInputRef,
+  endInputRef,
+  datepickerState,
+  isDateRangePicker,
+  attachTo,
+}) {
   // Bail out if this is a single date picker
   if (!isDateRangePicker) {
     return startInputRef;
   }
 
-  if (attachTo === START_DATE || (attachTo === FOCUSED_DATE && datepickerState === INTERACTING_START_DATE)) {
+  if (
+    attachTo === START_DATE ||
+    (attachTo === FOCUSED_DATE &&
+      datepickerState === INTERACTING_START_DATE)
+  ) {
     return startInputRef;
-  } else if (attachTo === END_DATE || (attachTo === FOCUSED_DATE && datepickerState === INTERACTING_END_DATE)) {
+  } else if (
+    attachTo === END_DATE ||
+    (attachTo === FOCUSED_DATE &&
+      datepickerState === INTERACTING_END_DATE)
+  ) {
     return endInputRef;
   }
 
