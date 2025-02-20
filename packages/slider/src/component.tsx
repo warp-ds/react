@@ -667,13 +667,10 @@ const getStepValue = (step: number | string, markers: boolean, markerCount: numb
 };
 
 // Toolip component that shows a given value above the slider thumb.
-const ToolTip = (props) => {
+const ToolTip = ({ transform, display, top, children }) => {
   return (
-    <div
-      className="tooltip"
-      style={{ transform: props.transform, visibility: props.display ? 'visible' : 'hidden', zIndex: props.top ? 10 : 1 }}
-    >
-      {round(props.children)}
+    <div className="tooltip" style={{ transform, visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}>
+      {children}
     </div>
   );
 };
