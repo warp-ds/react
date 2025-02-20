@@ -1,10 +1,13 @@
-import React, { Ref, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
 import { SliderProps } from './props.js';
 import { TextField } from '../../index.js';
+import { clamp, clampValues, round } from './math.js';
+
+const thumbWidth = 28;
 
 const style = `
   .wrapper {
@@ -30,13 +33,13 @@ const style = `
   }
   input[type=range]::-webkit-slider-thumb {
       appearance: none;
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       background-color: var(--w-s-color-background-primary);
       border-radius: 0%;
       cursor: pointer;
-      transform: translateY(-10px);
-      border-radius: 12px;
+      transform: translateY(-12.5px);
+      border-radius: 14px;
       pointer-events: all !important;
   }
   input[type="range"]:focus::-webkit-slider-thumb {
@@ -83,7 +86,7 @@ const style = `
   }
   .steps {
       display: grid;
-      transform: translateY(-6px);
+      transform: translateY(-4px);
       grid-auto-flow: column;
       grid-template-columns: max-content;
       justify-items: end;
@@ -129,8 +132,10 @@ overlay elements to render the progress bar.
 
 In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
 */
-export function Slider(v: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
-export function Slider(v: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps);
+export function Slider(props: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
+export function Slider(
+  props: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps,
+);
 
 export function Slider({
   min = 0,
@@ -159,24 +164,6 @@ export function Slider({
   // Get values in array form, using either the value or values prop.
   const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
 
-  // Get value offset due to thumb width.
-  const getValueOffset = useCallback((values: number[]) => {
-    let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
-
-    const wrapperWidth = wrapperRef.current?.clientWidth || 500;
-
-    // width in pxs
-    const width = widthFraction * wrapperWidth;
-
-    if (width < 24) {
-      const valPerPx = (max - min) / wrapperWidth;
-
-      return valPerPx * 24;
-    } else {
-      return 0;
-    }
-  }, []);
-
   const [currentValues, setCurrentValues] = useState<number[]>(() => getValueArray());
   const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
 
@@ -186,8 +173,8 @@ export function Slider({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Input refs.
-  const input0 = useRef<any>(null);
-  const input1 = useRef<any>(null);
+  const input0 = useRef<HTMLElement>(null);
+  const input1 = useRef<HTMLElement>(null);
 
   // Text field refs.
   const textField0 = useRef<any>(null);
@@ -196,6 +183,27 @@ export function Slider({
   const timeoutId = useRef<any>(0);
 
   const renderToolTip = showTooltip && isMoving;
+
+  // Get value offset due to thumb width.
+  const getValueOffset = useCallback(
+    (values: number[]) => {
+      const wrapperWidth = wrapperRef.current?.clientWidth || 500;
+
+      let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+
+      // Width in pxs.
+      const width = widthFraction * wrapperWidth;
+
+      if (width < thumbWidth) {
+        const valPerPx = (max - min) / wrapperWidth;
+
+        return getAdjustedValue(valPerPx * thumbWidth, step);
+      } else {
+        return 0;
+      }
+    },
+    [wrapperRef.current],
+  );
 
   // Update current values on prop change.
   useEffect(() => {
@@ -234,8 +242,8 @@ export function Slider({
 
   // Set value attributes.
   useEffect(() => {
-    if (input0.current) input0.current.setAttribute('value', currentValues[0]);
-    if (input1.current) input1.current.setAttribute('value', currentValues[1]);
+    if (input0.current) input0.current.setAttribute('value', currentValues[0].toString());
+    if (input1.current) input1.current.setAttribute('value', currentValues[1].toString());
   }, [currentValues]);
 
   const moveSlider = useCallback(
@@ -341,7 +349,7 @@ export function Slider({
       }
 
       if (onChange) {
-        onChange(isRange ? [Math.round(values[0]), Math.round(values[1])] : Math.round(values[1]));
+        onChange(isRange ? [round(values[0]), round(values[1])] : Math.round(values[1]));
       }
     }, 1);
 
@@ -357,17 +365,11 @@ export function Slider({
     [currentValues],
   );
 
-  const onInputComplete = () => {
-    setMovingFalse();
-  };
+  const onInputComplete = () => setIsMoving(false);
 
-  const setMovingFalse = () => {
-    setIsMoving(false);
-  };
-
-  // Get input element. Index corresponds to slider thumb index (0 for first one, 1 for second one).
+  // Get input element. Index corresponds to the slider thumb index (0 for the 1st one, 1 for the 2nd one).
   const inputElement = useCallback(
-    (index: number, ref: Ref<any>) => {
+    (index: number, ref: RefObject<any>) => {
       if (!disabled) {
         return (
           <input
@@ -377,7 +379,7 @@ export function Slider({
             min={min}
             max={max}
             onKeyDown={(e) => onKeyDown(e, index)}
-            onKeyUp={setMovingFalse}
+            onKeyUp={() => setIsMoving(false)}
             onChange={(e) => onInputChange(e, index)}
             {...ariaData({ ariaLabel, ariaLabelledBy, ariaValueText })}
           />
@@ -393,7 +395,7 @@ export function Slider({
   // Handles multiple scenarios to allow users to edit values (that may be outside the range) and keep editing until values are valid.
   // This involves keeping separate state between the input fields and the slider (adding quite a bit of complexity).
   // It does however lead to quite usable UX (so maybe worth it..!).
-  const onTextInputChange = (e: any, i: number) => {
+  const onTextInputChange = useCallback((e: any, i: number, currentValues: number[], textInputValues: number[]) => {
     // Get current input values.
     const value = +e.target.value;
     const currentInputValues = i == 0 ? [value, textInputValues[1]] : [textInputValues[0], value];
@@ -403,7 +405,6 @@ export function Slider({
 
     // Update slider input values.
     // Only update the value if the value is in the slider range.
-
     const offset = getValueOffset(currentInputValues);
 
     // Update first slider.
@@ -424,8 +425,9 @@ export function Slider({
         setNewValues(sliderValues, i, false);
       }
     }
-  };
+  }, []);
 
+  // Calculate marker nrs (if auto marker count is used).
   const markerNrs = useMemo(() => {
     if (markerCount === 'auto' && typeof stepValue == 'number') {
       return (max - min) / stepValue + 1;
@@ -433,6 +435,7 @@ export function Slider({
     return markerCount as number;
   }, []);
 
+  // Get slider markers (steps), showing step values below the slider.
   const getMarkers = useCallback(
     () =>
       Array.from(Array(markerNrs).keys()).map((k) => {
@@ -464,7 +467,9 @@ export function Slider({
   const [offset1, offset2] = renderToolTip ? getToolTipOffsets(getValueArray(), max, min) : [0, 0];
 
   // Get the state of the input fields, to display an error state if a value is outside the range.
-  const inputValidState = showInputs ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset) : [true, true];
+  const inputValidState = showInputs
+    ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset)
+    : [true, true];
 
   // Render the range input, text fields and tool tips.
   // For a range slider, render two sets of elements: one for the lower and one for the upper value.
@@ -481,7 +486,11 @@ export function Slider({
           >
             {currentValues[0]}
           </ToolTip>
-          <ToolTip display={renderToolTip} top={document.activeElement === input1.current} transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}>
+          <ToolTip
+            display={renderToolTip}
+            top={document.activeElement === input1.current}
+            transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}
+          >
             {currentValues[1]}
           </ToolTip>
         </div>
@@ -502,9 +511,19 @@ export function Slider({
         {showInputs && (
           <div className={`inputs ${isRange ? 'dual' : ''}`}>
             {isRange && (
-              <TextField value={textInputValues[0].toString()} ref={textField0} invalid={!inputValidState[0]} onChange={(e) => onTextInputChange(e, 0)} />
+              <TextField
+                value={textInputValues[0].toString()}
+                ref={textField0}
+                invalid={!inputValidState[0]}
+                onChange={(e) => onTextInputChange(e, 0, currentValues, textInputValues)}
+              />
             )}
-            <TextField value={textInputValues[1].toString()} ref={textField1} invalid={!inputValidState[1]} onChange={(e) => onTextInputChange(e, 1)} />
+            <TextField
+              value={textInputValues[1].toString()}
+              ref={textField1}
+              invalid={!inputValidState[1]}
+              onChange={(e) => onTextInputChange(e, 1, currentValues, textInputValues)}
+            />
           </div>
         )}
       </div>
@@ -514,8 +533,8 @@ export function Slider({
 
 // Get tooltip offsets, needed to center the tooltip over the thumb (which doesn't follow the active track exactly; see default input type="range" behavior.)
 const getToolTipOffsets = (values: number[], max: number, min: number) => {
-  const tooltipOffset1 = -((values[0] - min) / (max - min) - 0.5) * 24;
-  const tooltipOffset2 = -((values[1] - min) / (max - min) - 0.5) * 24;
+  const tooltipOffset1 = -((values[0] - min) / (max - min) - 0.5) * thumbWidth;
+  const tooltipOffset2 = -((values[1] - min) / (max - min) - 0.5) * thumbWidth;
 
   return [tooltipOffset1, tooltipOffset2];
 };
@@ -531,11 +550,8 @@ function ariaData({ ariaLabel, ariaLabelledBy, ariaValueText }: Record<string, s
   };
 }
 
-function clamp(val: number, min: number, max: number) {
-  return Math.min(Math.max(val, min), max);
-}
-
-function validate(value, values, min, max) {
+// Validate the inputs.
+function validate(value: number | undefined, values: number[] | undefined, min: number, max: number) {
   if ((value && value < min) || (values && values[0] < min)) {
     console.warn('Value too low.');
   }
@@ -545,7 +561,7 @@ function validate(value, values, min, max) {
 }
 
 // Set the value for the input elements.
-function updateInputValues({ value, values }: { value?: number; values?: number[] }, isRange, ref0, ref1) {
+function updateInputValues({ value, values }: { value?: number; values?: number[] }, isRange: boolean, ref0: any, ref1: any) {
   if (isRange) {
     if (ref0.current) {
       ref0.current.value = (values as number[])[0];
@@ -562,7 +578,16 @@ function updateInputValues({ value, values }: { value?: number; values?: number[
 
 // Use the given value to get full value array.
 // Returns the value as an adjusted value (rounded, etc.).
-const getAsValueArray = (value: number, index = 1, isRange, currentValues, min, max, stepValue, clamp = false) => {
+const getAsValueArray = (
+  value: number,
+  index = 1,
+  isRange: boolean,
+  currentValues: number[],
+  min: number,
+  max: number,
+  stepValue: number | string,
+  clamp = false,
+) => {
   let values: number[];
 
   value = Math.round(value);
@@ -606,39 +631,36 @@ const setStyle = (trackRef, values, wrapperRef, isRange, max, min) => {
   if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
 };
 
-const clampValues = (values: number[], min, max) => {
-  return [clamp(values[0], min, max), clamp(values[1], min, max)];
-};
-
 // Get the x coordinate for the event target (using getBoundingClientRect).
 const getX = (event: any) => {
   const e = event.target.getBoundingClientRect();
   const xCoordinate = event.touches[0].clientX - e.left;
 
-  return Math.round(xCoordinate);
+  return round(xCoordinate);
 };
 
 // Get value adjusted with step amount.
-const getAdjustedValue = (value: number, step: number) => {
-  if (step > 1) {
-    return Math.round(value / step) * step;
+const getAdjustedValue = (value: number, step: number | string) => {
+  if (!(typeof step === 'string') && step > 1) {
+    return round(value / step) * step;
   } else {
     return value;
   }
 };
 
-const getAdjustedValueArray = (values: number[], step: number) => {
+// Adjust array values.
+const getAdjustedValueArray = (values: number[], step: number | string) => {
   return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
 };
 
 // Get step value, including an automatic value if step == 'auto'.
-const getStepValue = (step, markers, markerCount, max, min) => {
+const getStepValue = (step: number | string, markers: boolean, markerCount: number | string, max: number, min: number) => {
   let stepValue = step;
 
   if (markers) {
     const count = markerCount as number;
-    // Set auto step value.
-    stepValue = typeof step === 'number' ? step : Math.round((max - min) / (count - 1));
+    // Set auto step value (if step == 'auto), otherwise use step.
+    stepValue = typeof step === 'number' ? step : round((max - min) / (count - 1));
   }
 
   return stepValue;
@@ -647,14 +669,23 @@ const getStepValue = (step, markers, markerCount, max, min) => {
 // Toolip component that shows a given value above the slider thumb.
 const ToolTip = (props) => {
   return (
-    <div className="tooltip" style={{ transform: props.transform, visibility: props.display ? 'visible' : 'hidden', zIndex: props.top ? 10 : 1 }}>
-      {Math.round(props.children)}
+    <div
+      className="tooltip"
+      style={{ transform: props.transform, visibility: props.display ? 'visible' : 'hidden', zIndex: props.top ? 10 : 1 }}
+    >
+      {round(props.children)}
     </div>
   );
 };
 
 // Get the state (error or OK) for the text input fields.
-function getInputValidState([val0, val1]: number[], min, max, [textField0, textField1], getValueOffset) {
+function getInputValidState(
+  [val0, val1]: number[],
+  min: number,
+  max: number,
+  [textField0, textField1]: RefObject<HTMLElement>[],
+  getValueOffset: any,
+) {
   let state0 = true;
   let state1 = true;
 
@@ -682,9 +713,4 @@ function getInputValidState([val0, val1]: number[], min, max, [textField0, textF
     }
   }
   return [state0, state1];
-}
-
-function round(value, precision) {
-  const multiplier = 10 ** (precision || 0);
-  return Math.round(value * multiplier) / multiplier;
 }
