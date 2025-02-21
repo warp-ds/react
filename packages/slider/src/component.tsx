@@ -189,7 +189,7 @@ export function Slider({
     (values: number[]) => {
       const wrapperWidth = wrapperRef.current?.clientWidth || 500;
 
-      let widthFraction = getAdjustedValue(values[1] - values[0], stepValue) / (max - min);
+      const widthFraction = (values[1] - values[0]) / (max - min);
 
       // Width in pxs.
       const width = widthFraction * wrapperWidth;
@@ -197,7 +197,7 @@ export function Slider({
       if (width < thumbWidth) {
         const valPerPx = (max - min) / wrapperWidth;
 
-        return getAdjustedValue(valPerPx * thumbWidth, step);
+        return valPerPx * thumbWidth;
       } else {
         return 0;
       }
@@ -328,9 +328,9 @@ export function Slider({
 
       if (offset > 0) {
         if (i == 0) {
-          values[0] = values[1] - offset;
+          values[0] = getAdjustedValue(values[1] - offset, step);
         } else {
-          values[1] = values[0] + offset;
+          values[1] = getAdjustedValue(values[0] + offset, step);
         }
       }
 
@@ -644,7 +644,7 @@ const getAdjustedValue = (value: number, step: number | string) => {
   if (!(typeof step === 'string') && step > 1) {
     return round(value / step) * step;
   } else {
-    return value;
+    return round(value);
   }
 };
 
