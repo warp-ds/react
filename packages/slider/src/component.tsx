@@ -9,6 +9,9 @@ import { clamp, clampValues, round } from './math.js';
 
 const thumbWidth = 28;
 
+type Value = number | any;
+type Values = number[] | any[];
+
 const style = `
   .wrapper {
       display: grid;
@@ -131,15 +134,44 @@ The slider component uses the native input type="range" feature to render the sl
 overlay elements to render the progress bar.
 
 In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
+
+For rangeValues:
+The internal values represent the numerical index of each value in the array.
+Where the value is displayed in the UI, the full value is looked up (in the array) and used.
+Values that are passed in (as props) are converted to the array index (using a find), and used that way.
 */
-export function Slider(props: { value: number; onChange?: (value: number) => void; onChangeAfter?: (value: number) => void } & SliderProps);
+// Default slider.
 export function Slider(
-  props: { values: number[]; onChange?: (values: number[]) => void; onChangeAfter?: (value: number[]) => void } & SliderProps,
+  props: {
+    max?: number;
+    min?: number;
+    value: number;
+    onChange?: (value: number) => void;
+    onChangeAfter?: (value: number) => void;
+  } & SliderProps,
+);
+export function Slider(
+  props: { rangeValues: any[]; value: any; onChange?: (value: any) => void; onChangeAfter?: (value: any) => void } & SliderProps,
+);
+
+// Range slider.
+export function Slider(
+  props: {
+    max?: number;
+    min?: number;
+    values: number[];
+    onChange?: (values: number[]) => void;
+    onChangeAfter?: (value: number[]) => void;
+  } & SliderProps,
+);
+export function Slider(
+  props: { rangeValues: any[]; values: any[]; onChange?: (values: any[]) => void; onChangeAfter?: (value: any[]) => void } & SliderProps,
 );
 
 export function Slider({
   min = 0,
   max = 100,
+  rangeValues,
   step = 1,
   value,
   values,
@@ -154,19 +186,59 @@ export function Slider({
   markers = false,
   markerCount = 10,
   showInputs = false,
-}: { value?: number; values?: number[]; onChange?: any; onChangeAfter?: any } & SliderProps) {
+}: {
+  max?: number;
+  min?: number;
+  rangeValues?: any[];
+  value?: number | any;
+  values?: number[] | any[];
+  onChange?: any;
+  onChangeAfter?: any;
+} & SliderProps) {
   // Determine type.
   const type = values ? 'range' : 'standard';
   const isRange = type === 'range';
 
   const stepValue = useMemo(() => getStepValue(step, markers, markerCount, max, min), []);
 
+  if (rangeValues) {
+    min = 0;
+    max = rangeValues.length - 1;
+  }
+
+  // For a given range value (that appears in the rangevalue array), get the index.
+  const getRangeValueIndex = (value) => {
+    if (rangeValues) {
+      return rangeValues?.findIndex((v) => v === value);
+    } else {
+      return 0;
+    }
+  };
+
+  // Get initial values. Like getValueArray, but converts range values to index values as well.
+  const getInitialValues = () => {
+    let initialValues: any;
+    if (rangeValues) {
+      if (isRange && values) {
+        initialValues = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
+      } else {
+        initialValues = [min, getRangeValueIndex(value)];
+      }
+    } else {
+      initialValues = isRange && values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)];
+    }
+    return initialValues;
+  };
+
   // Get values in array form, using either the value or values prop.
   const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
 
-  const [currentValues, setCurrentValues] = useState<number[]>(() => getValueArray());
+  // Current slider values.
+  // In the rangeValues case, this represents the index (or indices) of the current values.
+  const [currentValues, setCurrentValues] = useState<number[]>(() => getInitialValues());
   const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
 
+  //console.log(currentValues);
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -212,6 +284,15 @@ export function Slider({
 
     // Update values if the slider isn't currently selected.
     if (!(document.activeElement === input0.current || document.activeElement === input1.current)) {
+      // If range values, lookup value index.
+      if (rangeValues) {
+        if (isRange && values) {
+          values = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
+        } else {
+          value = getRangeValueIndex(value);
+        }
+      }
+
       const valueArray = getValueArray();
 
       setCurrentValues(valueArray);
@@ -230,7 +311,16 @@ export function Slider({
 
   // Init values.
   useEffect(() => {
-    updateInputValues({ values, value }, isRange, input0, input1);
+    let val = value;
+    let vals = values;
+    if (rangeValues) {
+      if (isRange && values) {
+        vals = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
+      } else {
+        val = getRangeValueIndex(value);
+      }
+    }
+    updateInputValues({ values: vals, value: val }, isRange, input0, input1);
   }, [input0.current, input1.current]);
 
   // Call onchangeafter.
@@ -349,7 +439,15 @@ export function Slider({
       }
 
       if (onChange) {
-        onChange(isRange ? [round(values[0]), round(values[1])] : Math.round(values[1]));
+        let returnValue: any;
+
+        if (!rangeValues) {
+          returnValue = isRange ? [round(values[0]), round(values[1])] : Math.round(values[1]);
+        } else {
+          returnValue = isRange ? [rangeValues[values[0]], rangeValues[values[1]]] : rangeValues[values[1]];
+        }
+
+        onChange(returnValue);
       }
     }, 1);
 
@@ -471,6 +569,19 @@ export function Slider({
     ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset)
     : [true, true];
 
+  const getFullValue = (index: number) => {
+    // Default case: use numerical value
+    if (!rangeValues) {
+      return currentValues[index];
+    }
+    // Range values: lookup value.
+    else {
+      const i = currentValues[index];
+
+      return rangeValues[i];
+    }
+  };
+
   // Render the range input, text fields and tool tips.
   // For a range slider, render two sets of elements: one for the lower and one for the upper value.
   // For a standard (non-range) slider, only render the second (top) value elements.
@@ -484,14 +595,14 @@ export function Slider({
             top={document.activeElement === input0.current}
             transform={`translateY(-50px) translateX(calc(-50% + ${offset1}px))`}
           >
-            {currentValues[0]}
+            {getFullValue(0)}
           </ToolTip>
           <ToolTip
             display={renderToolTip}
             top={document.activeElement === input1.current}
             transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}
           >
-            {currentValues[1]}
+            {getFullValue(1)}
           </ToolTip>
         </div>
         <div

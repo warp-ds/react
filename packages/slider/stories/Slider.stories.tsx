@@ -212,6 +212,40 @@ export const Range7 = () => {
   );
 };
 
+export const RegularRangeValues = () => {
+  const [value, setValue] = React.useState('yes');
+
+  //const range = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  //const range = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 110];
+  const range = ['hi', 'haha', 'yes', 'nr', 'ok', '1', '2'];
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} rangeValues={range} showTooltip />
+      <button onClick={() => setValue('yes')}>Reset</button>
+    </div>
+  );
+};
+
+export const DualRangeValues = () => {
+  const [values, setValues] = React.useState(['yes', '1']);
+
+  //const range = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  //const range = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 110];
+  const range = ['hi', 'haha', 'yes', 'nr', 'ok', '1', '2'];
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip />
+      <button onClick={() => setValues(['yes', '1'])}>Reset</button>
+    </div>
+  );
+};
+
 export const Disabled = () => {
   const [value, setValue] = React.useState(625_000);
   return (
