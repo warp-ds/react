@@ -23,7 +23,7 @@ export const Regular2 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers step={100} />
+      <Slider onChange={(value) => setValue(value)} markAlignment='justified' value={value} min={10000} max={60000} showTooltip markers step={100} />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -73,7 +73,17 @@ export const Range = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={1000} max={10_000_000} step={1000} showTooltip markers showInputs />
+      <Slider
+        values={values}
+        onChange={(nums) => setValues(nums)}
+        min={1000}
+        max={10_000_000}
+        step={1000}
+        markAlignment="justified"
+        showTooltip
+        markers
+        showInputs
+      />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
   );

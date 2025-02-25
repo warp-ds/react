@@ -10,117 +10,138 @@ import { clamp, clampValues, round } from './math.js';
 const thumbWidth = 28;
 
 const style = `
-  .wrapper {
-      display: grid;
-      width: 500px;
-      max-width: 100%;
-      margin: 8px 0px;
+.wrapper {
+  display: grid;
+  width: 500px;
+  max-width: 100%;
+  margin: 8px 0px;
+}
+.input-wrapper {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+}
+input[type='range'] {
+  appearance: none;
+  height: 44px;
+  grid-row: 1;
+  grid-column: 1;
+  pointer-events: none;
+}
+input[type='range']:focus {
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background-color: var(--w-s-color-background-primary);
+  border-radius: 0%;
+  cursor: pointer;
+  transform: translateY(-12.5px);
+  border-radius: 14px;
+  pointer-events: all !important;
+}
+input[type='range']:focus::-webkit-slider-thumb {
+  box-shadow: var(--w-shadow-slider-handle-active);
+}
+input[type='range']::-webkit-slider-thumb:active {
+  background: #2f98f9;
+  box-shadow: var(--w-shadow-slider-handle-active);
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border: 0px solid #b2b2b2;
+  background: #efefef;
+  box-shadow: none;
+  pointer-events: none;
+  border-radius: 2px;
+}
+.active-track {
+  background-color: var(--w-s-color-background-primary);
+  height: 6px;
+  border-radius: 3px;
+  width: 50%;
+  pointer-events: none;
+  transform: translateY(19px);
+  grid-row: 1;
+  grid-column: 1;
+  z-index: 0;
+  pointer-events: none;
+  display: grid;
+  width: 0px;
+  .tooltip {
+    grid-row: 1;
+    grid-column: 1;
+    color: white;
+    padding: 5px 12px;
+    position: fixed;
+    text-align: center;
+    background-color: grey;
   }
-  .input-wrapper {
-      grid-row: 1;
-      grid-column: 1;
-      display: grid;
+  .tooltip:nth-child(1) {
+    left: 0;
   }
-  input[type="range"] {
-      appearance: none;
-      height: 40px;
-      grid-row: 1;
-      grid-column: 1;
-      pointer-events: none;
+  .tooltip:nth-child(2) {
+    right: 0;
   }
-  input[type="range"]:focus {
-      outline: none;
-  }
-  input[type=range]::-webkit-slider-thumb {
-      appearance: none;
-      width: 28px;
-      height: 28px;
-      background-color: var(--w-s-color-background-primary);
-      border-radius: 0%;
-      cursor: pointer;
-      transform: translateY(-12.5px);
-      border-radius: 14px;
-      pointer-events: all !important;
-  }
-  input[type="range"]:focus::-webkit-slider-thumb {
-      box-shadow: var(--w-shadow-slider-handle-active);
-  }
-  input[type=range]::-webkit-slider-thumb:active {
-      background: #2f98f9;
-      box-shadow: var(--w-shadow-slider-handle-active);
-  }
-  input[type=range]::-webkit-slider-runnable-track {
-      height: 4px;
-      border: 0px solid #b2b2b2;
-      background: #efefef;
-      box-shadow: none;
-      pointer-events: none;
-  }
-  .active-track {
-      background-color: var(--w-s-color-background-primary);
-      height: 5px;
-      width: 50%;
-      pointer-events: none;
-      transform: translateY(17px);
-      grid-row: 1;
-      grid-column: 1;
-      z-index: 0;
-      pointer-events: none;
-      display: grid;
-      width: 0px;
-      .tooltip {
-          grid-row: 1;
-          grid-column: 1;
-          color: white;
-          padding: 5px 12px;
-          position: fixed;
-          text-align: center;
-          background-color: grey;
-      }
-      .tooltip:nth-child(1) {
-          left: 0;
-      }
-      .tooltip:nth-child(2) {
-          right: 0;
-      }
-  }
-  .steps {
-      display: grid;
-      transform: translateY(-4px);
-      grid-auto-flow: column;
-      grid-template-columns: max-content;
-      justify-items: end;
-      color:rgb(173, 173, 173);
-      pointer-events: none;
-      grid-column: 1;
-      align-self: end;
-      margin: 0px -2px;
-      grid-auto-columns: minmax(0, 1fr);
+}
+.steps {
+  display: grid;
+  transform: translateY(-4px);
+  grid-auto-flow: column;
+  grid-template-columns: max-content;
+  justify-items: end;
+  color: rgb(138, 138, 138);
+  pointer-events: none;
+  grid-column: 1;
+  align-self: end;
+  margin: 0px 11.5px;
+  grid-auto-columns: minmax(0, 1fr);
 
-      .marker {
-          display: grid;
-          justify-items: center;
-          grid-row-gap: 3.5px;
+  .marker {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 3.5px;
 
-          > div:nth-child(1) {
-              height: 11px;
-              overflow: hidden;
-          }
-          > div:nth-child(2) {
-              width: 0;
-              overflow: visible;
-              display: grid;
-              justify-content: center;
-          }
-      }
-  }
-  .inputs {
+    > div:nth-child(1) {
+      overflow: hidden;
+    }
+    > div:nth-child(2) {
+      width: 0;
+      overflow: visible;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+    }
   }
-  .inputs.dual {
-      grid-gap: 2rem;
+}
+.marker-line {
+  display: block;
+  overflow: hidden;
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: rgb(224, 224, 224);
+}
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.inputs.dual {
+  grid-gap: 2rem;
+}
+.markervalues {
+  display: grid;
+  color: rgb(138, 138, 138);
+  grid-template-columns: auto auto;
+  margin-bottom: 3.5px;
+  > div:nth-child(1) {
+    justify-self: start;
   }
+  > div:nth-child(2) {
+    justify-self: end;
+  }
+}
 `;
 
 /* 
@@ -182,6 +203,7 @@ export function Slider({
   showTooltip = false,
   markers = false,
   showInputs = false,
+  markAlignment = 'center',
 }: {
   max?: number;
   min?: number;
@@ -520,6 +542,36 @@ export function Slider({
     }
   }, []);
 
+  const getMarkerDiv = () => {
+    if (markAlignment === 'center') {
+      return <div className="steps">{getMarkers()}</div>;
+    } else {
+      return (
+        <div className="steps2">
+          <div className="steps">{getMarkerLines()}</div>
+          <div className="markervalues">{getMarkerValues()}</div>
+        </div>
+      );
+    }
+  };
+  const getMarkerLines = () =>
+    Array.from(Array(2).keys()).map((k) => {
+      let displayValue: string | number = '';
+
+      displayValue = (max - min) * k + min;
+
+      return <div className="marker-line"></div>;
+    });
+
+  const getMarkerValues = () =>
+    Array.from(Array(2).keys()).map((k) => {
+      let displayValue: string | number = '';
+
+      displayValue = (max - min) * k + min;
+
+      return <div>{displayValue}</div>;
+    });
+
   // Get slider markers (steps), showing step values below the slider.
   const getMarkers = useCallback(
     () =>
@@ -530,7 +582,7 @@ export function Slider({
 
         return (
           <div key={k} className="marker">
-            <div>|</div>
+            <div className="marker-line"></div>
             <div>{displayValue}</div>
           </div>
         );
@@ -594,7 +646,7 @@ export function Slider({
         >
           {isRange && inputElement(0, input0)}
           {inputElement(1, input1)}
-          <div className="steps">{markers && getMarkers()}</div>
+          {markers && getMarkerDiv()}
         </div>
         {showInputs && (
           <div className={`inputs ${isRange ? 'dual' : ''}`}>
