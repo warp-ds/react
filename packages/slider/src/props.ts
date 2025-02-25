@@ -1,6 +1,6 @@
 export type SliderProps = {
   /** Specifies the value granularity */
-  step?: number | 'auto';
+  step?: number;
 
   /** The current value */
   //value: number;
@@ -16,19 +16,17 @@ export type SliderProps = {
   //onChangeAfter?: (value: number) => void;
 
   /** String value that labels the slider */
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   /** Identifies the element that labels the slider */
-  "aria-labelledby"?: string;
+  'aria-labelledby'?: string;
 
   /**  Human readable text alternative for the value */
-  "aria-valuetext"?: string;
+  'aria-valuetext'?: string;
 
   keyboardStepFactor?: number;
 
   markers?: boolean;
-
-  markerCount?: number | 'auto';
 
   showTooltip?: boolean;
 

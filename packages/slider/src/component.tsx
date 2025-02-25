@@ -9,9 +9,6 @@ import { clamp, clampValues, round } from './math.js';
 
 const thumbWidth = 28;
 
-type Value = number | any;
-type Values = number[] | any[];
-
 const style = `
   .wrapper {
       display: grid;
@@ -184,7 +181,6 @@ export function Slider({
   keyboardStepFactor = 0.04,
   showTooltip = false,
   markers = false,
-  markerCount = 10,
   showInputs = false,
 }: {
   max?: number;
@@ -199,7 +195,7 @@ export function Slider({
   const type = values ? 'range' : 'standard';
   const isRange = type === 'range';
 
-  const stepValue = useMemo(() => getStepValue(step, markers, markerCount, max, min), []);
+  const stepValue = step;
 
   if (rangeValues) {
     min = 0;
@@ -238,7 +234,6 @@ export function Slider({
   const [currentValues, setCurrentValues] = useState<number[]>(() => getInitialValues());
   const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
 
-  //console.log(currentValues);
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -525,31 +520,13 @@ export function Slider({
     }
   }, []);
 
-  // Calculate marker nrs (if auto marker count is used).
-  const markerNrs = useMemo(() => {
-    if (markerCount === 'auto' && typeof stepValue == 'number') {
-      return (max - min) / stepValue + 1;
-    }
-    return markerCount as number;
-  }, []);
-
   // Get slider markers (steps), showing step values below the slider.
   const getMarkers = useCallback(
     () =>
-      Array.from(Array(markerNrs).keys()).map((k) => {
+      Array.from(Array(2).keys()).map((k) => {
         let displayValue: string | number = '';
 
-        if (markerNrs < 15) {
-          displayValue = ((max - min) / (markerNrs - 1)) * k + min;
-
-          // Display in scientific notation.
-          if (max > 100) {
-            const len = max.toString().length - 1;
-
-            const val = round(displayValue / 10 ** len, 1);
-            displayValue = val > 0 ? val + 'e' + len : 0;
-          }
-        }
+        displayValue = (max - min) * k + min;
 
         return (
           <div key={k} className="marker">
@@ -764,19 +741,6 @@ const getAdjustedValueArray = (values: number[], step: number | string) => {
   return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
 };
 
-// Get step value, including an automatic value if step == 'auto'.
-const getStepValue = (step: number | string, markers: boolean, markerCount: number | string, max: number, min: number) => {
-  let stepValue = step;
-
-  if (markers) {
-    const count = markerCount as number;
-    // Set auto step value (if step == 'auto), otherwise use step.
-    stepValue = typeof step === 'number' ? step : round((max - min) / (count - 1));
-  }
-
-  return stepValue;
-};
-
 // Toolip component that shows a given value above the slider thumb.
 const ToolTip = ({ transform, display, top, children }) => {
   return (
@@ -820,5 +784,6 @@ function getInputValidState(
       state1 = false;
     }
   }
+
   return [state0, state1];
 }

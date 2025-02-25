@@ -23,16 +23,7 @@ export const Regular2 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider
-        onChange={(value) => setValue(value)}
-        value={value}
-        min={10000}
-        max={60000}
-        showTooltip
-        markers
-        markerCount={30}
-        step="auto"
-      />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers step={100} />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -44,16 +35,7 @@ export const Regular3 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider
-        onChange={(value) => setValue(value)}
-        value={value}
-        min={10000}
-        max={60000}
-        showTooltip
-        markers
-        markerCount="auto"
-        step={2000}
-      />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} showTooltip markers step={2000} />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -65,7 +47,7 @@ export const Regular4 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers markerCount="auto" showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers showInputs />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -77,7 +59,7 @@ export const Regular5 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers markerCount="auto" showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers showInputs />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -134,17 +116,7 @@ export const Range4 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider
-        values={values}
-        onChange={(nums) => setValues(nums)}
-        min={0}
-        max={10000}
-        step={100}
-        markerCount={3}
-        showTooltip
-        markers
-        showInputs
-      />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} step={100} showTooltip markers showInputs />
       <button onClick={() => setValues([1000, 9000])}>Reset</button>
     </div>
   );
@@ -158,7 +130,7 @@ export const Range5 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={4000} showTooltip markers showInputs markerCount={3} />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={4000} showTooltip markers showInputs />
       <button onClick={() => setValues([10, 1000])}>Reset</button>
     </div>
   );
@@ -172,17 +144,7 @@ export const Range6 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider
-        values={values}
-        onChange={(nums) => setValues(nums)}
-        min={0}
-        max={10000}
-        showTooltip
-        markers
-        showInputs
-        markerCount={21}
-        step={100}
-      />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} showTooltip markers showInputs step={100} />
       <button onClick={() => setValues([0, 10000])}>Reset</button>
     </div>
   );
@@ -196,17 +158,7 @@ export const Range7 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider
-        values={values}
-        onChange={(nums) => setValues(nums)}
-        min={0}
-        max={20}
-        step={1}
-        markerCount={5}
-        showTooltip
-        markers
-        showInputs
-      />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={20} step={1} showTooltip markers showInputs />
       <button onClick={() => setValues([1, 15])}>Reset</button>
     </div>
   );
