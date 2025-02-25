@@ -18,7 +18,6 @@ activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
 
-
   const ariaLabel =
     props['aria-label'] ||
     i18n._({

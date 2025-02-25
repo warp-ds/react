@@ -28,7 +28,6 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
   const id = useId(props.id);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-
   useEffect(
     () =>
       // Cleanup scroll lock if component unmounts before it receives an updated

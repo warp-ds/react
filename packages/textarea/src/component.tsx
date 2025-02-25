@@ -39,7 +39,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
     ...rest
   } = props;
 
-
   const id = useId(providedId);
   const ref = useRef<HTMLTextAreaElement | null>(null);
 

@@ -45,7 +45,6 @@ activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
 export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   ({ currentPage, numPages, lastPage, createHref, className, onChange, noFollow, ...props }, ref) => {
-
     if (!createHref) {
       throw new TypeError('createHref is undefined');
     }

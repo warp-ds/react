@@ -57,7 +57,6 @@ export function Attention(props: AttentionProps) {
     ...rest
   } = props;
 
-
   const [actualDirection, setActualDirection] = useState(placement);
   // Don't show attention element before its position is computed on first render
   const [isVisible, setIsVisible] = useState<boolean | undefined>(false);

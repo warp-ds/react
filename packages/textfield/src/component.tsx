@@ -33,7 +33,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
     ...rest
   } = props;
 
-
   const id = useId(providedId);
   const helpId = helpText ? `${id}__hint` : undefined;
   const isInvalid = invalid;

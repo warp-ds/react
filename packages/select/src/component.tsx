@@ -21,7 +21,6 @@ activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 const setup = (props: SelectProps) => {
   const { className, invalid, id, hint, always, label, style, optional, readOnly, disabled, ...rest } = props;
 
-
   const helpId = hint ? `${id}__hint` : undefined;
 
   return {

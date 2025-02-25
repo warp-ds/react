@@ -17,7 +17,6 @@ import type { PillProps } from './props.js';
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
 export function Pill(props: PillProps) {
-
   const buttonClasses = classNames(!props.canClose && props.className, [
     ccPill.button,
     ccPill.label,

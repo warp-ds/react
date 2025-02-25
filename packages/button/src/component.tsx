@@ -82,7 +82,6 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
     }
   };
 
-
   const ariaValueTextLoading = i18n._({
     id: 'button.aria.loading',
     message: 'Loading...',

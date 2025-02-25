@@ -38,7 +38,6 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-
   // Options list open boolean
   const [isOpen, setOpen] = useState(false);
 

@@ -20,7 +20,6 @@ import type { ToggleEntry } from './props.js';
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
 function Title({ id, title, optional }) {
-
   return (
     <legend id={`${id}__title`} className={ccLabel.base}>
       {title}
