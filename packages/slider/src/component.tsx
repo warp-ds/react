@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 import { classNames } from '@chbphone55/classnames';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
@@ -554,14 +554,9 @@ export function Slider({
       );
     }
   };
-  const getMarkerLines = () =>
-    Array.from(Array(2).keys()).map((k) => {
-      let displayValue: string | number = '';
 
-      displayValue = (max - min) * k + min;
-
-      return <div className="marker-line"></div>;
-    });
+  // Markers + values used for justified values.
+  const getMarkerLines = () => Array.from(Array(2).keys()).map(() => <div className="marker-line"></div>);
 
   const getMarkerValues = () =>
     Array.from(Array(2).keys()).map((k) => {
@@ -573,6 +568,7 @@ export function Slider({
     });
 
   // Get slider markers (steps), showing step values below the slider.
+  // Used for center-aligned display values.
   const getMarkers = useCallback(
     () =>
       Array.from(Array(2).keys()).map((k) => {
