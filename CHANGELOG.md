@@ -1,3 +1,10 @@
+## [2.1.1-next.1](https://github.com/warp-ds/react/compare/v2.1.0...v2.1.1-next.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* **lingui:** Move activateI18n outside of components ([#309](https://github.com/warp-ds/react/issues/309)) ([5907961](https://github.com/warp-ds/react/commit/59079617738ea903a70d8564130da0ba484f85b3))
+
 # [2.1.0](https://github.com/warp-ds/react/compare/v2.0.3...v2.1.0) (2025-02-13)
 
 
