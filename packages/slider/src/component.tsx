@@ -127,6 +127,8 @@ const style = `
 `;
 
 /* 
+Full version of range slider (with more features, like auto marks etc.)
+
 New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
 Uses function overloading to provide two interfaces (for one or two values).
 
