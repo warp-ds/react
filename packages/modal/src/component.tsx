@@ -18,6 +18,8 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { ModalProps } from './props.js';
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 /**
  * A Modal dialog that renders on top of the page
  */
@@ -25,8 +27,6 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
   const contentRef = useRef<HTMLDivElement>(null);
   const id = useId(props.id);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   useEffect(
     () =>

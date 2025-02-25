@@ -13,10 +13,10 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { BreadcrumbsProps } from './props.js';
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
-
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const ariaLabel =
     props['aria-label'] ||

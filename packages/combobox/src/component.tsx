@@ -29,14 +29,14 @@ import { createOptionsWithIdAndMatch, getAriaText } from './utils.js';
 const OPTION_CLASS_NAME = 'w-react-combobox-option';
 const MATCH_SEGMENTS_CLASS_NAME = 'w-react-combobox-match';
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, ...props }, forwardRef) => {
   const id = useId(pid);
   const listboxId = `${id}-listbox`;
   const inputRef = useRef<HTMLInputElement | null>(null);
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   // Options list open boolean
   const [isOpen, setOpen] = useState(false);

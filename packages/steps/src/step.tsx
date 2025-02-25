@@ -55,9 +55,9 @@ export interface StepProps {
   children: JSX.Element | JSX.Element[];
 }
 
-export function Step(props: StepProps) {
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
+export function Step(props: StepProps) {
   const { active, completed, children } = props;
   const StepsProps = useContext(StepsContext);
   const vertical = !StepsProps.horizontal;

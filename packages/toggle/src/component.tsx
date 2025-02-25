@@ -17,9 +17,9 @@ import { messages as svMessages } from './locales/sv/messages.mjs';
 import { ToggleProps } from './props.js';
 import type { ToggleEntry } from './props.js';
 
-function Title({ id, title, optional }) {
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
+function Title({ id, title, optional }) {
   return (
     <legend id={`${id}__title`} className={ccLabel.base}>
       {title}
