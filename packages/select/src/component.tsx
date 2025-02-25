@@ -16,10 +16,11 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { SelectProps } from './props.js';
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 const setup = (props: SelectProps) => {
   const { className, invalid, id, hint, always, label, style, optional, readOnly, disabled, ...rest } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const helpId = hint ? `${id}__hint` : undefined;
 

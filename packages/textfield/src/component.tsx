@@ -15,6 +15,8 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import { TextFieldProps } from './props.js';
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
   const {
     className,
@@ -31,7 +33,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, re
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const id = useId(providedId);
   const helpId = helpText ? `${id}__hint` : undefined;

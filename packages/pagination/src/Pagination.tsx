@@ -41,9 +41,10 @@ export type PaginationProps = {
   style?: React.CSSProperties;
 } & Omit<React.PropsWithoutRef<JSX.IntrinsicElements['nav']>, 'children' | 'onChange'>;
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   ({ currentPage, numPages, lastPage, createHref, className, onChange, noFollow, ...props }, ref) => {
-    activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
     if (!createHref) {
       throw new TypeError('createHref is undefined');

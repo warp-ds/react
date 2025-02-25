@@ -15,6 +15,8 @@ import type { ButtonProps } from './props.js';
 
 const buttonVariants = ['primary', 'secondary', 'negative', 'utility', 'pill', 'link'] as const;
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAnchorElement>, ButtonProps>((props, ref) => {
   const { primary, secondary, negative, utility, quiet, small, link, href, pill, loading, disabled, fullWidth, ...rest } = props;
 
@@ -80,7 +82,6 @@ export const Button = forwardRef<HTMLButtonElement | AnchorHTMLAttributes<HTMLAn
     }
   };
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const ariaValueTextLoading = i18n._({
     id: 'button.aria.loading',

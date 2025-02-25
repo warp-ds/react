@@ -15,6 +15,9 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import { TextAreaProps } from './props.js';
 import useTextAreaHeight from './useTextAreaHeight.js';
+
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 /**
  * A textarea component that automatically resizes as content changes.
  */
@@ -36,7 +39,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, f
     ...rest
   } = props;
 
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const id = useId(providedId);
   const ref = useRef<HTMLTextAreaElement | null>(null);
