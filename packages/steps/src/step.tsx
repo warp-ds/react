@@ -70,28 +70,27 @@ export function Step(props: StepProps) {
 
   const contentClasses = classNames([ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal]);
 
-
   const ariaLabel = useMemo(() => {
-    if(active) {
+    if (active) {
       return i18n._({
         id: 'steps.aria.active',
         message: 'Step indicator active circle',
         comment: 'Active circle',
-      })
+      });
     }
-    if(completed) {
+    if (completed) {
       return i18n._({
         id: 'steps.aria.completed',
         message: 'Step indicator completed circle',
         comment: 'Completed circle',
-      })
+      });
     }
     return i18n._({
       id: 'steps.aria.emptyCircle',
       message: 'Empty circle',
       comment: 'Empty circle',
     });
-  }, [active, completed, i18n]);
+  }, [active, completed]);
 
   return (
     <li className={stepClasses}>
