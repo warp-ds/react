@@ -1,40 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { classNames } from '@chbphone55/classnames';
-import { i18n } from '@lingui/core';
-import { step as ccStep } from '@warp-ds/css/component-classes';
-import IconCheck16 from '@warp-ds/icons/react/check-16';
+import { classNames } from "@chbphone55/classnames";
+import { step as ccStep } from "@warp-ds/css/component-classes";
+import IconCheck16 from "@warp-ds/icons/react/check-16";
 
-import { activateI18n } from '../../i18n.js';
+import { activateI18n, i18n } from "../../i18n.js";
 
-import { StepsContext } from './component.js';
-import { messages as daMessages } from './locales/da/messages.mjs';
-import { messages as enMessages } from './locales/en/messages.mjs';
-import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
-import { messages as svMessages } from './locales/sv/messages.mjs';
+import { StepsContext } from "./component.js";
+import { messages as daMessages } from "./locales/da/messages.mjs";
+import { messages as enMessages } from "./locales/en/messages.mjs";
+import { messages as fiMessages } from "./locales/fi/messages.mjs";
+import { messages as nbMessages } from "./locales/nb/messages.mjs";
+import { messages as svMessages } from "./locales/sv/messages.mjs";
 
 const availableAriaLabels = {
   completed: i18n._({
-    id: 'steps.aria.completed',
-    message: 'Step indicator completed circle',
-    comment: 'Completed circle',
+    id: "steps.aria.completed",
+    message: "Step indicator completed circle",
+    comment: "Completed circle",
   }),
   active: i18n._({
-    id: 'steps.aria.active',
-    message: 'Step indicator active circle',
-    comment: 'Active circle',
+    id: "steps.aria.active",
+    message: "Step indicator active circle",
+    comment: "Active circle",
   }),
   default: i18n._({
-    id: 'steps.aria.emptyCircle',
-    message: 'Empty circle',
-    comment: 'Empty circle',
+    id: "steps.aria.emptyCircle",
+    message: "Empty circle",
+    comment: "Empty circle",
   }),
 };
 
 const getAriaLabel = (props: StepProps) => {
   const ariaLabel = Object.keys(availableAriaLabels).find((a) => props[a]);
-  return ariaLabel ? availableAriaLabels[ariaLabel] : availableAriaLabels.default;
+  return ariaLabel
+    ? availableAriaLabels[ariaLabel]
+    : availableAriaLabels.default;
 };
 export interface StepProps {
   /**
@@ -66,7 +67,7 @@ export function Step(props: StepProps) {
   const stepClasses = classNames([
     ccStep.base,
     vertical ? ccStep.vertical : ccStep.horizontal,
-    vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : '',
+    vertical ? (left ? ccStep.alignLeft : ccStep.alignRight) : "",
   ]);
 
   const lineHorizontalClasses = classNames([
@@ -78,7 +79,7 @@ export function Step(props: StepProps) {
 
   const dotClasses = classNames([
     ccStep.dot,
-    vertical ? (!left ? ccStep.dotAlignRight : '') : ccStep.dotHorizontal,
+    vertical ? (!left ? ccStep.dotAlignRight : "") : ccStep.dotHorizontal,
     active || completed ? ccStep.dotActive : ccStep.dotIncomplete,
   ]);
 
@@ -86,16 +87,24 @@ export function Step(props: StepProps) {
     ccStep.line,
     ccStep.lineHorizontalAlignRight,
     vertical ? ccStep.lineVertical : ccStep.lineHorizontal,
-    vertical && !left ? ccStep.lineAlignRight : '',
+    vertical && !left ? ccStep.lineAlignRight : "",
     completed ? ccStep.lineComplete : ccStep.lineIncomplete,
   ]);
 
-  const contentClasses = classNames([ccStep.content, vertical ? ccStep.contentVertical : ccStep.contentHorizontal]);
+  const contentClasses = classNames([
+    ccStep.content,
+    vertical ? ccStep.contentVertical : ccStep.contentHorizontal,
+  ]);
 
   return (
     <li className={stepClasses}>
       {!vertical && <div className={lineHorizontalClasses} />}
-      <div className={dotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
+      <div
+        className={dotClasses}
+        role="img"
+        aria-label={getAriaLabel(props)}
+        {...(active && { "aria-current": "step" })}
+      >
         {completed && <IconCheck16 data-testid="completed-icon" />}
       </div>
       <div className={lineClasses} />

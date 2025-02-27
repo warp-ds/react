@@ -1,4 +1,6 @@
-import { i18n, Messages } from '@lingui/core';
+import { I18n, Messages } from '@lingui/core';
+
+export const i18n = new I18n({});
 
 export const supportedLocales = ['en', 'nb', 'fi', 'da', 'sv'] as const;
 type SupportedLocale = (typeof supportedLocales)[number];

@@ -1,17 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { i18n } from '@lingui/core';
-import { interleave } from '@warp-ds/core/breadcrumbs';
-import { breadcrumbs as ccBreadcrumbs } from '@warp-ds/css/component-classes';
+import { interleave } from "@warp-ds/core/breadcrumbs";
+import { breadcrumbs as ccBreadcrumbs } from "@warp-ds/css/component-classes";
 
-import { activateI18n } from '../../i18n.js';
+import { activateI18n, i18n } from "../../i18n.js";
 
-import { messages as daMessages } from './locales/da/messages.mjs';
-import { messages as enMessages } from './locales/en/messages.mjs';
-import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
-import { messages as svMessages } from './locales/sv/messages.mjs';
-import type { BreadcrumbsProps } from './props.js';
+import { messages as daMessages } from "./locales/da/messages.mjs";
+import { messages as enMessages } from "./locales/en/messages.mjs";
+import { messages as fiMessages } from "./locales/fi/messages.mjs";
+import { messages as nbMessages } from "./locales/nb/messages.mjs";
+import { messages as svMessages } from "./locales/sv/messages.mjs";
+import type { BreadcrumbsProps } from "./props.js";
 
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
@@ -19,29 +18,37 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { children, className, ...rest } = props;
 
   const ariaLabel =
-    props['aria-label'] ||
+    props["aria-label"] ||
     i18n._({
-      id: 'breadcrumbs.ariaLabel',
-      message: 'You are here',
-      comment: 'Default screenreader message for the breadcrumb component',
+      id: "breadcrumbs.ariaLabel",
+      message: "You are here",
+      comment: "Default screenreader message for the breadcrumb component",
     });
 
   // Handles arrays of nodes passed as children
   const flattenedChildren = children.flat(Infinity);
   const styledChildren = flattenedChildren.map((child, index) => {
     if (React.isValidElement(child)) {
-      const ccClasses = child.type === 'a' ? ccBreadcrumbs.link : ccBreadcrumbs.text;
-      const newClasses = child.props.className ? `${child.props.className} ${ccClasses}` : ccClasses;
+      const ccClasses =
+        child.type === "a" ? ccBreadcrumbs.link : ccBreadcrumbs.text;
+      const newClasses = child.props.className
+        ? `${child.props.className} ${ccClasses}`
+        : ccClasses;
 
       // To update a prop on React child element, we need to clone that Element first
-      const styledChild = React.cloneElement(child as React.ReactElement, { className: newClasses });
+      const styledChild = React.cloneElement(child as React.ReactElement, {
+        className: newClasses,
+      });
       return styledChild;
     }
 
     const isLastEl = index === flattenedChildren.length - 1;
 
     return (
-      <span className={ccBreadcrumbs.text} aria-current={isLastEl ? 'page' : undefined}>
+      <span
+        className={ccBreadcrumbs.text}
+        aria-current={isLastEl ? "page" : undefined}
+      >
         {child}
       </span>
     );
@@ -53,7 +60,10 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
         {ariaLabel}
       </h2>
       <div className={ccBreadcrumbs.wrapper}>
-        {interleave(styledChildren, <span className={ccBreadcrumbs.separator}>/</span>).map((element, index) => (
+        {interleave(
+          styledChildren,
+          <span className={ccBreadcrumbs.separator}>/</span>
+        ).map((element, index) => (
           <React.Fragment key={index}>{element}</React.Fragment>
         ))}
       </div>

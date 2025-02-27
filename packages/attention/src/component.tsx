@@ -1,20 +1,28 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 
-import { classNames } from '@chbphone55/classnames';
-import { i18n } from '@lingui/core';
-import { arrowDirectionClassname, opposites, useRecompute as recompute } from '@warp-ds/core/attention';
-import { attention as ccAttention } from '@warp-ds/css/component-classes';
-import IconClose16 from '@warp-ds/icons/react/close-16';
+import { classNames } from "@chbphone55/classnames";
+import {
+  arrowDirectionClassname,
+  opposites,
+  useRecompute as recompute,
+} from "@warp-ds/core/attention";
+import { attention as ccAttention } from "@warp-ds/css/component-classes";
+import IconClose16 from "@warp-ds/icons/react/close-16";
 
-import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
-import { activateI18n } from '../../i18n.js';
+import {
+  activeAttentionType,
+  getVariant,
+  pointingAtDirection,
+  useAutoUpdatePosition,
+} from "../../_helpers/attention.js";
+import { activateI18n, i18n } from "../../i18n.js";
 
-import { messages as daMessages } from './locales/da/messages.mjs';
-import { messages as enMessages } from './locales/en/messages.mjs';
-import { messages as fiMessages } from './locales/fi/messages.mjs';
-import { messages as nbMessages } from './locales/nb/messages.mjs';
-import { messages as svMessages } from './locales/sv/messages.mjs';
-import type { ArrowProps, AttentionProps, ReferenceElement } from './props.js';
+import { messages as daMessages } from "./locales/da/messages.mjs";
+import { messages as enMessages } from "./locales/en/messages.mjs";
+import { messages as fiMessages } from "./locales/fi/messages.mjs";
+import { messages as nbMessages } from "./locales/nb/messages.mjs";
+import { messages as svMessages } from "./locales/sv/messages.mjs";
+import type { ArrowProps, AttentionProps, ReferenceElement } from "./props.js";
 
 const variantClasses = {
   callout: {
@@ -43,8 +51,8 @@ export function Attention(props: AttentionProps) {
     isShowing,
     children,
     role,
-    'aria-label': ariaLabel,
-    placement = 'bottom',
+    "aria-label": ariaLabel,
+    placement = "bottom",
     targetEl: initialTargetEl,
     className,
     canClose,
@@ -64,7 +72,9 @@ export function Attention(props: AttentionProps) {
   const isMounted = useRef(true);
   const attentionEl = useRef<HTMLDivElement | null>(null);
   const arrowEl = useRef<HTMLDivElement | null>(null);
-  const targetElRef = useRef<ReferenceElement | null>(initialTargetEl?.current || null);
+  const targetElRef = useRef<ReferenceElement | null>(
+    initialTargetEl?.current || null
+  );
 
   const attentionState = useMemo(
     () => ({
@@ -128,10 +138,11 @@ export function Attention(props: AttentionProps) {
       flip,
       crossAxis,
       fallbackPlacements,
-    ],
+    ]
   );
 
-  const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
+  const defaultAriaLabel = () =>
+    `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ""}`;
 
   const containerClasses = classNames(className, [
     !props.callout && ccAttention.notCallout,
@@ -141,14 +152,17 @@ export function Attention(props: AttentionProps) {
     },
   ]);
 
-  const wrapperClasses = classNames([ccAttention.base, variantClasses[getVariant(rest, variantClasses)].wrapper]);
+  const wrapperClasses = classNames([
+    ccAttention.base,
+    variantClasses[getVariant(rest, variantClasses)].wrapper,
+  ]);
 
   useEffect(() => {
     // targetEl can be undefined if props.callout is true.
     // However, useAutoUpdatePosition hook is using @warp-ds/core, which uses Floating-ui's computePosition(). Floating-ui's computePosition() requires a defined targetEl to be able to compute the attentionEl's position and the attentionEl's arrow position.
     // When props.callout is true, we only need computePosition() to calculate the callout's arrow position. So, we create a default targetEl for callout that we can pass to the useAutoUpdatePosition hook, in order to avoid Floating-ui from throwing an error.
     if (props.callout && initialTargetEl === undefined) {
-      targetElRef.current = document?.createElement('div');
+      targetElRef.current = document?.createElement("div");
     } else {
       targetElRef.current = initialTargetEl?.current || null;
     }
@@ -173,30 +187,42 @@ export function Attention(props: AttentionProps) {
   useAutoUpdatePosition(targetElRef, isShowing, attentionEl, attentionState);
 
   return !props.callout && initialTargetEl === undefined ? null : (
-    <div data-testid="attention-el" className={containerClasses} ref={attentionEl}>
+    <div
+      data-testid="attention-el"
+      className={containerClasses}
+      ref={attentionEl}
+    >
       <div className={wrapperClasses} id={props.id}>
         <div
-          role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
-          aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}>
-          {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
+          role={
+            props.role === "" ? undefined : props.tooltip ? "tooltip" : "img"
+          }
+          aria-label={
+            ariaLabel === "" ? undefined : ariaLabel ?? defaultAriaLabel()
+          }
+        >
+          {!props.noArrow && (
+            <Arrow {...props} ref={arrowEl} direction={actualDirection} />
+          )}
         </div>
         <div className={ccAttention.content}>{props.children}</div>
         {canClose && (
           <button
             type="button"
             aria-label={i18n._({
-              id: 'attention.aria.close',
-              message: 'Close',
-              comment: 'Aria label for the close button in attention',
+              id: "attention.aria.close",
+              message: "Close",
+              comment: "Aria label for the close button in attention",
             })}
             onClick={onDismiss}
             onKeyDown={(event) => {
               if (!props.onDismiss) return;
-              if (event.key === 'Escape') {
+              if (event.key === "Escape") {
                 props.onDismiss();
               }
             }}
-            className={ccAttention.closeBtn}>
+            className={ccAttention.closeBtn}
+          >
             <IconClose16 />
           </button>
         )}
@@ -205,13 +231,21 @@ export function Attention(props: AttentionProps) {
   );
 }
 
-const Arrow = forwardRef<HTMLDivElement, ArrowProps>(({ direction, ...rest }, ref) => {
-  const arrowDirection = opposites[direction];
-  const arrowClasses = classNames([
-    ccAttention.arrowBase,
-    ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
-    variantClasses[getVariant(rest, variantClasses)].arrow,
-  ]);
+const Arrow = forwardRef<HTMLDivElement, ArrowProps>(
+  ({ direction, ...rest }, ref) => {
+    const arrowDirection = opposites[direction];
+    const arrowClasses = classNames([
+      ccAttention.arrowBase,
+      ccAttention[`arrowDirection${arrowDirectionClassname(arrowDirection)}`],
+      variantClasses[getVariant(rest, variantClasses)].arrow,
+    ]);
 
-  return <div data-testid="attention-arrow-el" ref={ref} className={arrowClasses} />;
-});
+    return (
+      <div
+        data-testid="attention-arrow-el"
+        ref={ref}
+        className={arrowClasses}
+      />
+    );
+  }
+);

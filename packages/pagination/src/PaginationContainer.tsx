@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { classNames } from '@chbphone55/classnames';
-import { i18n } from '@lingui/core';
-import { pagination as ccPagination } from '@warp-ds/css/component-classes';
+import { classNames } from "@chbphone55/classnames";
+import { pagination as ccPagination } from "@warp-ds/css/component-classes";
+import { i18n } from "../../i18n.js";
 
 const PaginationContext = React.createContext({
   currentPage: 0,
@@ -16,7 +16,7 @@ export type PaginationContainerProps = {
    *
    * @default Pages
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   children: React.ReactNode;
 
@@ -31,12 +31,27 @@ export type PaginationContainerProps = {
 
   /** Additional CSS styles for the container. */
   style?: React.CSSProperties;
-} & React.PropsWithoutRef<JSX.IntrinsicElements['nav']>;
+} & React.PropsWithoutRef<JSX.IntrinsicElements["nav"]>;
 
-const PaginationContainer = React.forwardRef<HTMLElement, PaginationContainerProps>(
-  ({ children, className, currentPage, lastPage, 'aria-labelledby': ariaLabelledBy = 'pagination-heading', ...props }, ref) => {
+const PaginationContainer = React.forwardRef<
+  HTMLElement,
+  PaginationContainerProps
+>(
+  (
+    {
+      children,
+      className,
+      currentPage,
+      lastPage,
+      "aria-labelledby": ariaLabelledBy = "pagination-heading",
+      ...props
+    },
+    ref
+  ) => {
     if (!Number.isInteger(currentPage)) {
-      throw new TypeError(`Invalid currentPage: ${JSON.stringify(currentPage)}`);
+      throw new TypeError(
+        `Invalid currentPage: ${JSON.stringify(currentPage)}`
+      );
     }
     if (!Number.isInteger(lastPage)) {
       throw new TypeError(`Invalid lastPage: ${JSON.stringify(lastPage)}`);
@@ -47,26 +62,34 @@ const PaginationContainer = React.forwardRef<HTMLElement, PaginationContainerPro
         currentPage: Math.max(1, Math.min(currentPage, lastPage)),
         lastPage: Math.max(1, lastPage),
       }),
-      [currentPage, lastPage],
+      [currentPage, lastPage]
     );
 
     const ariaLabel =
-      props['aria-label'] ??
+      props["aria-label"] ??
       i18n._({
-        id: 'pagination.aria.pagination',
-        message: 'Pages',
-        comment: 'Default screenreader message for pagination container in the pagination component',
+        id: "pagination.aria.pagination",
+        message: "Pages",
+        comment:
+          "Default screenreader message for pagination container in the pagination component",
       });
 
     return (
-      <nav {...props} className={classNames(className, ccPagination.containerNav)} aria-labelledby={ariaLabelledBy} ref={ref}>
+      <nav
+        {...props}
+        className={classNames(className, ccPagination.containerNav)}
+        aria-labelledby={ariaLabelledBy}
+        ref={ref}
+      >
         <h1 className={ccPagination.a11y} id={ariaLabelledBy}>
           {ariaLabel}
         </h1>
-        <PaginationContext.Provider value={context}>{children}</PaginationContext.Provider>
+        <PaginationContext.Provider value={context}>
+          {children}
+        </PaginationContext.Provider>
       </nav>
     );
-  },
+  }
 );
 
 export default PaginationContainer;
