@@ -85,6 +85,21 @@ input[type='range']::-webkit-slider-runnable-track {
   .tooltip:nth-child(2) {
     right: 0;
   }
+
+
+  svg{
+    grid-row: 1;
+    grid-column: 1;
+    position: fixed;
+    z-index: 557;
+  }
+  :nth-child(3) {
+    left: 0;
+  }
+  :nth-child(4) {
+    right: 0;
+  }
+
 }
 .steps {
   display: grid;
@@ -271,7 +286,7 @@ export function Slider({
 
   const timeoutId = useRef<any>(0);
 
-  const renderToolTip = showTooltip && isMoving;
+  const renderToolTip = true; //showTooltip && isMoving;
 
   // Get value offset due to thumb width.
   const getValueOffset = useCallback(
@@ -618,17 +633,28 @@ export function Slider({
           <ToolTip
             display={renderToolTip && isRange}
             top={document.activeElement === input0.current}
-            transform={`translateY(-50px) translateX(calc(-50% + ${offset1}px))`}
+            transform={`translateY(-54px) translateX(calc(-50% + ${offset1}px))`}
           >
             {getFullValue(0)}
           </ToolTip>
           <ToolTip
             display={renderToolTip}
             top={document.activeElement === input1.current}
-            transform={`translateY(-50px) translateX(calc(50% + ${offset2}px))`}
+            transform={`translateY(-54px) translateX(calc(50% + ${offset2}px))`}
           >
             {getFullValue(1)}
           </ToolTip>
+          <ToolTipArrow
+            transform={`translateY(-22.5px) translateX(calc(-50% + ${offset1}px))`}
+            display={isRange && renderToolTip}
+            top={document.activeElement === input0.current}
+          />
+
+          <ToolTipArrow
+            transform={`translateY(-22.5px) translateX(calc(50% + ${offset2}px))`}
+            display={renderToolTip}
+            top={document.activeElement === input0.current}
+          />
         </div>
         <div
           className="input-wrapper"
@@ -765,6 +791,24 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
 
 const setStyle = (trackRef, values, wrapperRef, isRange, max, min) => {
   if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
+};
+
+const ToolTipArrow = ({ transform, display, top }) => {
+  return (
+    <svg
+      style={{ transform, visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}
+      width="24"
+      height="8"
+      viewBox="0 0 24 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10.5858 6.58579L6.34315 2.34315C4.84285 0.842855 2.80802 0 0.686291 0H23.3137C21.192 0 19.1571 0.842852 17.6569 2.34314L13.4142 6.58579C12.6332 7.36684 11.3668 7.36684 10.5858 6.58579Z"
+        fill="#1B1B1F"
+      />
+    </svg>
+  );
 };
 
 // Get the x coordinate for the event target (using getBoundingClientRect).
