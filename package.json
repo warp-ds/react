@@ -59,7 +59,7 @@
   },
   "peerDependencies": {
     "@warp-ds/css": "2.0.1",
-    "react": "18.x"
+    "react": "19.x"
   },
   "scripts": {
     "build-storybook": "storybook build && touch ./storybook-static/.nojekyll",
@@ -103,8 +103,8 @@
     "@testing-library/jest-dom": "6.4.6",
     "@testing-library/react": "16.0.0",
     "@types/node": "20.14.10",
-    "@types/react-dom": "18.3.0",
-    "@types/react": "18.3.3",
+    "@types/react-dom": "19.0.0",
+    "@types/react": "19.0.0",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
     "@vitejs/plugin-react": "4.3.1",
@@ -126,8 +126,8 @@
     "jest": "29.7.0",
     "playwright": "1.45.1",
     "prettier": "3.3.2",
-    "react-dom": "18.x",
-    "react": "18.x",
+    "react-dom": "19.x",
+    "react": "19.x",
     "semantic-release": "24.0.0",
     "semantic-release-slack-bot": "4.0.2",
     "storybook": "8.2.1",

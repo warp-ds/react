@@ -57,6 +57,37 @@ input[type='range']::-webkit-slider-runnable-track {
   pointer-events: none;
   border-radius: 2px;
 }
+
+.tooltips {
+  width: 100%;
+  pointer-events: none;
+  grid-row: 1;
+  grid-column: 1;
+  pointer-events: none;
+  display: grid;
+  height: 0;
+
+  .tooltip {
+    grid-row: 1;
+    grid-column: 1;
+    color: white;
+    padding: 5px 12px;
+    position: fixed;
+    text-align: center;
+    background-color: grey;
+    transform: translateY(-39px);
+    z-index: 20;
+  }
+
+  svg{
+    grid-row: 1;
+    grid-column: 1;
+    position: fixed;
+    transform: translateY(-7px);
+    z-index: 20;
+  }
+}
+
 .active-track {
   background-color: var(--w-s-color-background-primary);
   height: 6px;
@@ -70,37 +101,8 @@ input[type='range']::-webkit-slider-runnable-track {
   pointer-events: none;
   display: grid;
   width: 0px;
-  .tooltip {
-    grid-row: 1;
-    grid-column: 1;
-    color: white;
-    padding: 5px 12px;
-    position: fixed;
-    text-align: center;
-    background-color: grey;
-  }
-  .tooltip:nth-child(1) {
-    left: 0;
-  }
-  .tooltip:nth-child(2) {
-    right: 0;
-  }
-
-
-  svg{
-    grid-row: 1;
-    grid-column: 1;
-    position: fixed;
-    z-index: 557;
-  }
-  :nth-child(3) {
-    left: 0;
-  }
-  :nth-child(4) {
-    right: 0;
-  }
-
 }
+
 .steps {
   display: grid;
   transform: translateY(-4px);
@@ -156,6 +158,13 @@ input[type='range']::-webkit-slider-runnable-track {
   > div:nth-child(2) {
     justify-self: end;
   }
+}
+.width-check{
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+  width: max-content;
+  height: 0px;
 }
 `;
 
@@ -279,6 +288,14 @@ export function Slider({
   // Input refs.
   const input0 = useRef<HTMLElement>(null);
   const input1 = useRef<HTMLElement>(null);
+
+  // Tooltip refs.
+  const tooltip0 = useRef<HTMLElement>(null);
+  const tooltip1 = useRef<HTMLElement>(null);
+  const tooltipArrow0 = useRef<HTMLElement>(null);
+  const tooltipArrow1 = useRef<HTMLElement>(null);
+
+  const widthRef = useRef<any>(null);
 
   // Text field refs.
   const textField0 = useRef<any>(null);
@@ -483,7 +500,7 @@ export function Slider({
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max, min);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min, i);
   }, []);
 
   const onInputChange = useCallback(
@@ -601,9 +618,6 @@ export function Slider({
     [],
   );
 
-  // Get tooltip offsets.
-  const [offset1, offset2] = renderToolTip ? getToolTipOffsets(getValueArray(), max, min) : [0, 0];
-
   // Get the state of the input fields, to display an error state if a value is outside the range.
   const inputValidState = showInputs
     ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset)
@@ -622,6 +636,121 @@ export function Slider({
     }
   };
 
+  const getEsimatedWidth = (val) => {
+    const r = widthRef.current;
+
+    if (r) {
+      r.innerText = val;
+
+      return r.clientWidth;
+    }
+  };
+
+  const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i) => {
+    const width = wrapperRef.current?.clientWidth || 500;
+
+    const left0 = ((currentValues[0] - min) / (max - min)) * width;
+    const left1 = ((currentValues[1] - min) / (max - min)) * width;
+    const [offset0, offset1] = getToolTipOffsets(currentValues, max, min);
+
+    let l0 = left0 + offset0 + 0.33 * thumbWidth;
+    let l1 = left1 + offset1 + 0.33 * thumbWidth;
+
+    let r0: boolean = false;
+    let r1: boolean = false;
+
+    const lt0 = l0;
+    const lt1 = l1;
+
+    const w = getEsimatedWidth(currentValues[i]);
+
+    let hw = w * 0.5;
+
+    let tx0 = 'translateX(-50%)';
+    let tx1 = 'translateX(-50%)';
+
+    const ttx0 = tx0;
+    const ttx1 = tx1;
+
+    const th = thumbWidth * 0.5;
+
+    if (isRange) {
+      if (l0 + hw + th > 510) {
+        r0 = true;
+        tx0 = '';
+      }
+
+      if (l0 - hw - th < 10) {
+        l0 = 10;
+        tx0 = '';
+      }
+    }
+
+    if (l1 + hw + th > 510) {
+      tx1 = '';
+      r1 = true;
+    }
+
+    if (l1 - hw - th < 10) {
+      l1 = 10;
+      tx1 = '';
+    }
+
+    return [
+      `${r0 ? `justify-self: end` : `left: ${l0 + 'px'}`};
+      transform: translateY(-39px) ${tx0};
+      `,
+      `${r1 ? `justify-self: end` : `left: ${l1 + 'px'}`};
+      transform: translateY(-39px) ${tx1};
+      `,
+      `left: ${lt0 + 'px'};
+      transform: translateY(-8px) ${ttx0};
+      `,
+      `left: ${lt1 + 'px'};
+      transform: translateY(-8px) ${ttx1};
+      `,
+    ];
+  };
+
+  const setStyle = (trackRef, values, wrapperRef, isRange, max, min, i = -1) => {
+    if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
+
+    const t0 = tooltip0.current;
+    const t1 = tooltip1.current;
+    const a0 = tooltipArrow0.current;
+    const a1 = tooltipArrow1.current;
+
+    // initial.
+    if (i == -1) {
+      // wip
+      if (t0 && t1 && a0 && a1 && i) {
+        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, 0);
+
+        t0.style.cssText = l0;
+        t1.style.cssText = l1;
+        a0.style.cssText = la0;
+        a1.style.cssText = la1;
+      }
+      if (t0 && t1 && a0 && a1 && i) {
+        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, 1);
+
+        t0.style.cssText = l0;
+        t1.style.cssText = l1;
+        a0.style.cssText = la0;
+        a1.style.cssText = la1;
+      }
+    } else {
+      if (t0 && t1 && a0 && a1) {
+        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i);
+
+        t0.style.cssText = l0;
+        t1.style.cssText = l1;
+        a0.style.cssText = la0;
+        a1.style.cssText = la1;
+      }
+    }
+  };
+
   // Render the range input, text fields and tool tips.
   // For a range slider, render two sets of elements: one for the lower and one for the upper value.
   // For a standard (non-range) slider, only render the second (top) value elements.
@@ -629,33 +758,18 @@ export function Slider({
     <>
       <style>{style}</style>
       <div className={'ccSlider.wrapper' + ' wrapper'} onContextMenu={(e) => e.preventDefault()}>
-        <div className="active-track" ref={trackRef}>
-          <ToolTip
-            display={renderToolTip && isRange}
-            top={document.activeElement === input0.current}
-            transform={`translateY(-54px) translateX(calc(-50% + ${offset1}px))`}
-          >
+        <div className="tooltips">
+          <ToolTip display={renderToolTip && isRange} top={document.activeElement === input0.current} ref={tooltip0}>
             {getFullValue(0)}
           </ToolTip>
-          <ToolTip
-            display={renderToolTip}
-            top={document.activeElement === input1.current}
-            transform={`translateY(-54px) translateX(calc(50% + ${offset2}px))`}
-          >
+          <ToolTip display={renderToolTip} top={document.activeElement === input1.current} ref={tooltip1}>
             {getFullValue(1)}
           </ToolTip>
-          <ToolTipArrow
-            transform={`translateY(-22.5px) translateX(calc(-50% + ${offset1}px))`}
-            display={isRange && renderToolTip}
-            top={document.activeElement === input0.current}
-          />
+          <ToolTipArrow display={isRange && renderToolTip} top={document.activeElement === input0.current} ref={tooltipArrow0} />
 
-          <ToolTipArrow
-            transform={`translateY(-22.5px) translateX(calc(50% + ${offset2}px))`}
-            display={renderToolTip}
-            top={document.activeElement === input0.current}
-          />
+          <ToolTipArrow display={renderToolTip} top={document.activeElement === input0.current} ref={tooltipArrow1} />
         </div>
+        <div className="active-track" ref={trackRef}></div>
         <div
           className="input-wrapper"
           ref={wrapperRef}
@@ -689,6 +803,7 @@ export function Slider({
           </div>
         )}
       </div>
+      <div className="width-check" ref={widthRef}></div>
     </>
   );
 }
@@ -789,19 +904,16 @@ const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
     margin-left: ${left + 'px'};`;
 };
 
-const setStyle = (trackRef, values, wrapperRef, isRange, max, min) => {
-  if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
-};
-
-const ToolTipArrow = ({ transform, display, top }) => {
+const ToolTipArrow = ({ display, top, ref }) => {
   return (
     <svg
-      style={{ transform, visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}
+      style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}
       width="24"
       height="8"
       viewBox="0 0 24 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      ref={ref}
     >
       <path
         d="M10.5858 6.58579L6.34315 2.34315C4.84285 0.842855 2.80802 0 0.686291 0H23.3137C21.192 0 19.1571 0.842852 17.6569 2.34314L13.4142 6.58579C12.6332 7.36684 11.3668 7.36684 10.5858 6.58579Z"
@@ -834,9 +946,9 @@ const getAdjustedValueArray = (values: number[], step: number | string) => {
 };
 
 // Toolip component that shows a given value above the slider thumb.
-const ToolTip = ({ transform, display, top, children }) => {
+const ToolTip = ({ display, top, children, ref }) => {
   return (
-    <div className="tooltip" style={{ transform, visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}>
+    <div className="tooltip" style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }} ref={ref}>
       {children}
     </div>
   );

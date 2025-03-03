@@ -17,6 +17,18 @@ export const Regular = () => {
   );
 };
 
+export const Regular1 = () => {
+  const [value, setValue] = React.useState(10000);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} showInputs />
+      <button onClick={() => setValue(15000)}>Reset</button>
+    </div>
+  );
+};
+
 export const Regular2 = () => {
   const [value, setValue] = React.useState(20000);
 
