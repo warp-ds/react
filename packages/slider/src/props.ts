@@ -20,7 +20,5 @@ export type SliderProps = {
 
   showTooltip?: boolean;
 
-  showInputs?: boolean;
-
   markAlignment?: 'center' | 'justified';
 };

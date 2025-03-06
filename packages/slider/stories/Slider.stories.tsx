@@ -11,7 +11,7 @@ export const Regular = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -23,7 +23,7 @@ export const Regular1 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={10000} max={60000} step={10} />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -35,7 +35,16 @@ export const Regular2 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} markAlignment='justified' value={value} min={10000} max={60000} showTooltip markers step={100} />
+      <Slider
+        onChange={(value) => setValue(value)}
+        markAlignment="justified"
+        value={value}
+        min={10000}
+        max={60000}
+        showTooltip
+        markers
+        step={100}
+      />
       <button onClick={() => setValue(15000)}>Reset</button>
     </div>
   );
@@ -59,7 +68,7 @@ export const Regular4 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={0} max={6} showTooltip markers />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -71,7 +80,7 @@ export const Regular5 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers showInputs />
+      <Slider onChange={(value) => setValue(value)} value={value} min={1} max={8} showTooltip markers />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -94,7 +103,6 @@ export const Range = () => {
         markAlignment="justified"
         showTooltip
         markers
-        showInputs
       />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>
@@ -109,7 +117,7 @@ export const Range2 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={100} max={1500} step={10} showTooltip markers showInputs />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={100} max={1500} step={10} showTooltip markers />
       <button onClick={() => setValues([100, 1500])}>Reset</button>
     </div>
   );
@@ -124,7 +132,7 @@ export const Range2 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={-80} max={80} step={1} showTooltip markers showInputs />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={-80} max={80} step={1} showTooltip markers  />
       <button onClick={() => setValues([-100, 100])}>Reset</button>
     </div>
   );
@@ -138,7 +146,7 @@ export const Range4 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} step={100} showTooltip markers showInputs />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} step={100} showTooltip markers />
       <button onClick={() => setValues([1000, 9000])}>Reset</button>
     </div>
   );
@@ -152,7 +160,7 @@ export const Range5 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={4000} showTooltip markers showInputs />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={4000} showTooltip markers />
       <button onClick={() => setValues([10, 1000])}>Reset</button>
     </div>
   );
@@ -166,7 +174,7 @@ export const Range6 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} showTooltip markers showInputs step={100} />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={10000} showTooltip markers step={100} />
       <button onClick={() => setValues([0, 10000])}>Reset</button>
     </div>
   );
@@ -180,7 +188,7 @@ export const Range7 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={20} step={1} showTooltip markers showInputs />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={0} max={20} step={1} showTooltip markers />
       <button onClick={() => setValues([1, 15])}>Reset</button>
     </div>
   );

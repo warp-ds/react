@@ -4,7 +4,6 @@ import { classNames } from '@chbphone55/classnames';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
 import { SliderProps } from './props.js';
-import { TextField } from '../../index.js';
 import { clamp, clampValues, round } from './math.js';
 
 const thumbWidth = 28;
@@ -227,7 +226,6 @@ export function Slider({
   keyboardStepFactor = 0.04,
   showTooltip = false,
   markers = false,
-  showInputs = false,
   markAlignment = 'center',
 }: {
   max?: number;
@@ -279,8 +277,6 @@ export function Slider({
   // Current slider values.
   // In the rangeValues case, this represents the index (or indices) of the current values.
   const [currentValues, setCurrentValues] = useState<number[]>(() => getInitialValues());
-  const [textInputValues, setTextInputValues] = useState<number[]>(() => getValueArray());
-
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -297,10 +293,6 @@ export function Slider({
   const tooltipArrow1 = useRef<HTMLElement>(null);
 
   const widthRef = useRef<any>(null);
-
-  // Text field refs.
-  const textField0 = useRef<any>(null);
-  const textField1 = useRef<any>(null);
 
   const timeoutId = useRef<any>(0);
 
@@ -381,12 +373,6 @@ export function Slider({
       const valueArray = getValueArray();
 
       setCurrentValues(valueArray);
-
-      if (values) {
-        setTextInputValues(values);
-      } else if (value) {
-        setTextInputValues([0, value]);
-      }
 
       setStyle(trackRef, valueArray, wrapperRef, isRange, max, min);
 
@@ -521,11 +507,6 @@ export function Slider({
 
       setCurrentValues(values);
 
-      // Update text input fields.
-      if (showInputs && updateTextInputs) {
-        setTextInputValues(values);
-      }
-
       if (onChange) {
         let returnValue: any;
 
@@ -577,42 +558,6 @@ export function Slider({
     [currentValues],
   );
 
-  // On change for a text input field (text box) under the slider.
-  // Handles multiple scenarios to allow users to edit values (that may be outside the range) and keep editing until values are valid.
-  // This involves keeping separate state between the input fields and the slider (adding quite a bit of complexity).
-  // It does however lead to quite usable UX (so maybe worth it..!).
-  const onTextInputChange = useCallback((e: any, i: number, currentValues: number[], textInputValues: number[]) => {
-    // Get current input values.
-    const value = +e.target.value;
-    const currentInputValues = i == 0 ? [value, textInputValues[1]] : [textInputValues[0], value];
-
-    // Update the values.
-    setTextInputValues(currentInputValues);
-
-    // Update slider input values.
-    // Only update the value if the value is in the slider range.
-    const offset = getValueOffset(currentInputValues);
-
-    // Update first slider.
-    if (i == 0) {
-      const sliderValues = [value, currentValues[1]];
-
-      if (value >= min && value <= currentValues[1] - offset) {
-        setNewValues(sliderValues, i, false);
-      }
-    }
-    // Update second slider.
-    else if (i == 1) {
-      const sliderValues = [currentValues[0], value];
-
-      const inSpecifiedRange = isRange ? value <= max && value >= currentValues[0] + offset : value <= max;
-
-      if (inSpecifiedRange) {
-        setNewValues(sliderValues, i, false);
-      }
-    }
-  }, []);
-
   const getMarkerDiv = () => {
     if (markAlignment === 'center') {
       return <div className="steps">{getMarkers()}</div>;
@@ -656,11 +601,6 @@ export function Slider({
       }),
     [],
   );
-
-  // Get the state of the input fields, to display an error state if a value is outside the range.
-  const inputValidState = showInputs
-    ? getInputValidState(textInputValues, min, max, [textField0, textField1], getValueOffset)
-    : [true, true];
 
   const getFullValue = (index: number) => {
     // Default case: use numerical value
@@ -820,24 +760,6 @@ export function Slider({
           {inputElement(1, input1)}
           {markers && getMarkerDiv()}
         </div>
-        {showInputs && (
-          <div className={`inputs ${isRange ? 'dual' : ''}`}>
-            {isRange && (
-              <TextField
-                value={textInputValues[0].toString()}
-                ref={textField0}
-                invalid={!inputValidState[0]}
-                onChange={(e) => onTextInputChange(e, 0, currentValues, textInputValues)}
-              />
-            )}
-            <TextField
-              value={textInputValues[1].toString()}
-              ref={textField1}
-              invalid={!inputValidState[1]}
-              onChange={(e) => onTextInputChange(e, 1, currentValues, textInputValues)}
-            />
-          </div>
-        )}
       </div>
       <div className="width-check" ref={widthRef}></div>
     </>
@@ -989,41 +911,3 @@ const ToolTip = ({ display, top, children, ref }) => {
     </div>
   );
 };
-
-// Get the state (error or OK) for the text input fields.
-function getInputValidState(
-  [val0, val1]: number[],
-  min: number,
-  max: number,
-  [textField0, textField1]: RefObject<HTMLElement>[],
-  getValueOffset: any,
-) {
-  let state0 = true;
-  let state1 = true;
-
-  if (val0 < min || val0 > max) {
-    state0 = false;
-  }
-
-  if (val1 > max || val1 < min) {
-    state1 = false;
-  }
-
-  if (document.activeElement === textField0.current) {
-    const offset = getValueOffset([val0, val1]);
-
-    if (val0 + offset > val1) {
-      state0 = false;
-    }
-  }
-
-  if (document.activeElement === textField1.current) {
-    const offset = getValueOffset([val0, val1]);
-
-    if (val1 < val0 + offset) {
-      state1 = false;
-    }
-  }
-
-  return [state0, state1];
-}
