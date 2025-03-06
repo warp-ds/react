@@ -74,16 +74,17 @@ input[type='range']::-webkit-slider-runnable-track {
     padding: 5px 12px;
     position: fixed;
     text-align: center;
-    background-color: grey;
+    background-color: #1B1B1F;
     transform: translateY(-39px);
     z-index: 20;
+    justify-self: end;
+    border-radius: 4px;
   }
 
   svg{
     grid-row: 1;
     grid-column: 1;
     position: fixed;
-    transform: translateY(-7px);
     z-index: 20;
   }
 }
@@ -303,7 +304,7 @@ export function Slider({
 
   const timeoutId = useRef<any>(0);
 
-  const renderToolTip = true; //showTooltip && isMoving;
+  const renderToolTip = showTooltip && isMoving;
 
   // Get value offset due to thumb width.
   const getValueOffset = useCallback(
@@ -636,7 +637,7 @@ export function Slider({
     }
   };
 
-  const getEsimatedWidth = (val) => {
+  const getEstimatedWidth = (val) => {
     const r = widthRef.current;
 
     if (r) {
@@ -653,8 +654,8 @@ export function Slider({
     const left1 = ((currentValues[1] - min) / (max - min)) * width;
     const [offset0, offset1] = getToolTipOffsets(currentValues, max, min);
 
-    let l0 = left0 + offset0 + 0.33 * thumbWidth;
-    let l1 = left1 + offset1 + 0.33 * thumbWidth;
+    let l0 = left0 + offset0 + 0.37 * thumbWidth;
+    let l1 = left1 + offset1 + 0.37 * thumbWidth;
 
     let r0: boolean = false;
     let r1: boolean = false;
@@ -662,7 +663,7 @@ export function Slider({
     const lt0 = l0;
     const lt1 = l1;
 
-    const w = getEsimatedWidth(currentValues[i]);
+    const w = getEstimatedWidth(currentValues[i]);
 
     let hw = w * 0.5;
 
@@ -697,18 +698,22 @@ export function Slider({
     }
 
     return [
-      `${r0 ? `justify-self: end` : `left: ${l0 + 'px'}`};
-      transform: translateY(-39px) ${tx0};
-      `,
-      `${r1 ? `justify-self: end` : `left: ${l1 + 'px'}`};
-      transform: translateY(-39px) ${tx1};
-      `,
-      `left: ${lt0 + 'px'};
-      transform: translateY(-8px) ${ttx0};
-      `,
-      `left: ${lt1 + 'px'};
-      transform: translateY(-8px) ${ttx1};
-      `,
+      {
+        left: r0 ? '' : l0 + 'px',
+        transform: `translateY(-39px) ${tx0}`,
+      },
+      {
+        left: r1 ? '' : l1 + 'px',
+        transform: `translateY(-39px) ${tx1}`,
+      },
+      {
+        left: lt0 + 'px',
+        transform: `translateY(-7px) ${ttx0}`,
+      },
+      {
+        left: lt1 + 'px',
+        transform: `translateY(-7px) ${ttx1}`,
+      },
     ];
   };
 
@@ -722,31 +727,24 @@ export function Slider({
 
     // initial.
     if (i == -1) {
-      // wip
-      if (t0 && t1 && a0 && a1 && i) {
-        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, 0);
+      if (t0 && t1 && a0 && a1) {
+        for (let n of [0, 1]) {
+          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n);
 
-        t0.style.cssText = l0;
-        t1.style.cssText = l1;
-        a0.style.cssText = la0;
-        a1.style.cssText = la1;
-      }
-      if (t0 && t1 && a0 && a1 && i) {
-        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, 1);
-
-        t0.style.cssText = l0;
-        t1.style.cssText = l1;
-        a0.style.cssText = la0;
-        a1.style.cssText = la1;
+          Object.assign(t0.style, l0);
+          Object.assign(t1.style, l1);
+          Object.assign(a0.style, la0);
+          Object.assign(a1.style, la1);
+        }
       }
     } else {
       if (t0 && t1 && a0 && a1) {
         const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i);
 
-        t0.style.cssText = l0;
-        t1.style.cssText = l1;
-        a0.style.cssText = la0;
-        a1.style.cssText = la1;
+        Object.assign(t0.style, l0);
+        Object.assign(t1.style, l1);
+        Object.assign(a0.style, la0);
+        Object.assign(a1.style, la1);
       }
     }
   };
