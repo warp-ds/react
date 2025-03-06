@@ -352,10 +352,12 @@ export function Slider({
     };
 
     document.addEventListener('mousedown', click);
+    document.addEventListener('touchstart', click);
     document.addEventListener('keydown', keydown);
 
     return () => {
       removeEventListener('mousedown', click);
+      removeEventListener('touchstart', click);
       removeEventListener('keydown', keydown);
     };
   }, []);
@@ -462,8 +464,6 @@ export function Slider({
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = useCallback(
     (e: any) => {
-      setIsMoving(true);
-
       // Clicking on the input thumb triggers the event for the input element.
       // Here, only handle click for clicking on the range, outside the thumb slider.
       if (!disabled && e.target.nodeName !== 'INPUT') {
@@ -497,9 +497,14 @@ export function Slider({
 
     // Stop slider values from overlapping.
     if (isRange) {
-      const offset = getValueOffset(values);
+      let offset = getValueOffset(values);
 
       if (offset > 0) {
+        // Use offset 1 for range values.
+        if (rangeValues && offset < 1) {
+          offset = 1;
+        }
+
         if (i == 0) {
           values[0] = getAdjustedValue(values[1] - offset, step);
         } else {
@@ -868,7 +873,7 @@ function validate(value: number | undefined, values: number[] | undefined, min: 
   }
 }
 
-// Set the value for the input elements.
+// Set the values for the input elements.
 function updateInputValues({ value, values }: { value?: number; values?: number[] }, isRange: boolean, ref0: any, ref1: any) {
   if (isRange) {
     if (ref0.current) {
