@@ -137,7 +137,6 @@ input[type='range']::-webkit-slider-runnable-track {
   overflow: visible;
   display: grid;
   justify-content: center;
-  transform: translateY(0.5px);
 }
 
 .inputs {
@@ -375,6 +374,7 @@ export function Slider({
       setCurrentValues(valueArray);
 
       setStyle(trackRef, valueArray, wrapperRef, isRange, max, min);
+      setStyleTooltips(valueArray, wrapperRef, isRange, max, min);
 
       updateInputValues({ values, value }, isRange, input0, input1);
     }
@@ -476,8 +476,7 @@ export function Slider({
 
   // Set slider values.
   // Runs onchange/setvalues asynchronously, with a cancelling timeout, to optimize performance.
-  // Use 'preserveTextInputs' to keep text field input values unchanged.
-  const setNewValues = useCallback((values: number[], i: number, updateTextInputs = true) => {
+  const setNewValues = useCallback((values: number[], i: number) => {
     // Clear any previous timeout.
     clearTimeout(timeoutId.current);
 
@@ -517,10 +516,11 @@ export function Slider({
         }
 
         onChange(returnValue);
+        setStyleTooltips(values, wrapperRef, isRange, max, min, i);
       }
     }, 1);
 
-    setStyle(trackRef, values, wrapperRef, isRange, max, min, i);
+    setStyle(trackRef, values, wrapperRef, isRange, max, min);
   }, []);
 
   const onInputChange = useCallback(
@@ -560,7 +560,18 @@ export function Slider({
 
   // Get div containing vertical lines (markers) and marker values.
   // Displays values either centered below the line, or justified to fit in the component.
-  const getMarkerDiv = () => {
+  const getMarkerDiv = useCallback(() => {
+    const getMarkerLines = () => Array.from(Array(2).keys()).map(() => <div className="marker-line"></div>);
+
+    const getMarkerValues = () =>
+      Array.from(Array(2).keys()).map((k) => {
+        let displayValue: string | number = '';
+
+        displayValue = (max - min) * k + min;
+
+        return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
+      });
+
     if (markAlignment === 'center') {
       return <div className="steps">{getMarkers()}</div>;
     } else {
@@ -571,19 +582,7 @@ export function Slider({
         </div>
       );
     }
-  };
-
-  // Markers + values used for justified values.
-  const getMarkerLines = () => Array.from(Array(2).keys()).map(() => <div className="marker-line"></div>);
-
-  const getMarkerValues = () =>
-    Array.from(Array(2).keys()).map((k) => {
-      let displayValue: string | number = '';
-
-      displayValue = (max - min) * k + min;
-
-      return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
-    });
+  }, []);
 
   // Get slider markers (steps), showing step values below the slider.
   // Used for center-aligned display values.
@@ -604,102 +603,27 @@ export function Slider({
     [],
   );
 
-  const getFullValue = (index: number) => {
-    // Default case: use numerical value
-    if (!rangeValues) {
-      return currentValues[index];
-    }
-    // Range values: lookup value.
-    else {
-      const i = currentValues[index];
-
-      return rangeValues[i];
-    }
-  };
-
-  const getEstimatedWidth = (val) => {
-    const r = widthRef.current;
-
-    if (r) {
-      r.innerText = val;
-
-      return r.clientWidth;
-    }
-  };
-
-  const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i) => {
-    const width = wrapperRef.current?.clientWidth || 500;
-
-    const left0 = ((currentValues[0] - min) / (max - min)) * width;
-    const left1 = ((currentValues[1] - min) / (max - min)) * width;
-    const [offset0, offset1] = getToolTipOffsets(currentValues, max, min);
-
-    let l0 = left0 + offset0 + 0.37 * thumbWidth;
-    let l1 = left1 + offset1 + 0.37 * thumbWidth;
-
-    let r0: boolean = false;
-    let r1: boolean = false;
-
-    const lt0 = l0;
-    const lt1 = l1;
-
-    const w = getEstimatedWidth(currentValues[i]);
-
-    let hw = w * 0.5;
-
-    let tx0 = 'translateX(-50%)';
-    let tx1 = 'translateX(-50%)';
-
-    const ttx0 = tx0;
-    const ttx1 = tx1;
-
-    const th = thumbWidth * 0.5;
-
-    if (isRange) {
-      if (l0 + hw + th > 510) {
-        r0 = true;
-        tx0 = '';
+  const getFullValue = useCallback(
+    (index: number) => {
+      // Default case: use numerical value
+      if (!rangeValues) {
+        return currentValues[index];
       }
+      // Range values: lookup value.
+      else {
+        const i = currentValues[index];
 
-      if (l0 - hw - th < 10) {
-        l0 = 10;
-        tx0 = '';
+        return rangeValues[i];
       }
-    }
+    },
+    [currentValues],
+  );
 
-    if (l1 + hw + th > 510) {
-      tx1 = '';
-      r1 = true;
-    }
-
-    if (l1 - hw - th < 10) {
-      l1 = 10;
-      tx1 = '';
-    }
-
-    return [
-      {
-        left: r0 ? '' : l0 + 'px',
-        transform: `translateY(-39px) ${tx0}`,
-      },
-      {
-        left: r1 ? '' : l1 + 'px',
-        transform: `translateY(-39px) ${tx1}`,
-      },
-      {
-        left: lt0 + 'px',
-        transform: `translateY(-7.2px) ${ttx0}`,
-      },
-      {
-        left: lt1 + 'px',
-        transform: `translateY(-7.2px) ${ttx1}`,
-      },
-    ];
-  };
-
-  const setStyle = (trackRef, values, wrapperRef, isRange, max, min, i = -1) => {
+  const setStyle = useCallback((trackRef, values, wrapperRef, isRange, max, min) => {
     if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
+  }, []);
 
+  const setStyleTooltips = useCallback((values, wrapperRef, isRange, max, min, i = -1) => {
     const t0 = tooltip0.current;
     const t1 = tooltip1.current;
     const a0 = tooltipArrow0.current;
@@ -709,7 +633,7 @@ export function Slider({
     if (i == -1) {
       if (t0 && t1 && a0 && a1) {
         for (let n of [0, 1]) {
-          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n);
+          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef);
 
           Object.assign(t0.style, l0);
           Object.assign(t1.style, l1);
@@ -719,7 +643,7 @@ export function Slider({
       }
     } else {
       if (t0 && t1 && a0 && a1) {
-        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i);
+        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef);
 
         Object.assign(t0.style, l0);
         Object.assign(t1.style, l1);
@@ -727,9 +651,9 @@ export function Slider({
         Object.assign(a1.style, la1);
       }
     }
-  };
+  }, []);
 
-  // Render the range input, text fields and tool tips.
+  // Render the range input and tool tips.
   // For a range slider, render two sets of elements: one for the lower and one for the upper value.
   // For a standard (non-range) slider, only render the second (top) value elements.
   return (
@@ -767,6 +691,86 @@ export function Slider({
     </>
   );
 }
+
+const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref) => {
+  const width = wrapperRef.current?.clientWidth || 500;
+
+  const left0 = ((currentValues[0] - min) / (max - min)) * width;
+  const left1 = ((currentValues[1] - min) / (max - min)) * width;
+  const [offset0, offset1] = getToolTipOffsets(currentValues, max, min);
+
+  let l0 = left0 + offset0 + 0.37 * thumbWidth;
+  let l1 = left1 + offset1 + 0.37 * thumbWidth;
+
+  let r0: boolean = false;
+  let r1: boolean = false;
+
+  const lt0 = l0;
+  const lt1 = l1;
+
+  const w = getEstimatedWidth(currentValues[i], widthref);
+
+  let hw = w * 0.5;
+
+  let tx0 = 'translateX(-50%)';
+  let tx1 = 'translateX(-50%)';
+
+  const ttx0 = tx0;
+  const ttx1 = tx1;
+
+  const th = thumbWidth * 0.5;
+
+  if (isRange) {
+    if (l0 + hw + th > 510) {
+      r0 = true;
+      tx0 = '';
+    }
+
+    if (l0 - hw - th < 10) {
+      l0 = 10;
+      tx0 = '';
+    }
+  }
+
+  if (l1 + hw + th > 510) {
+    tx1 = '';
+    r1 = true;
+  }
+
+  if (l1 - hw - th < 10) {
+    l1 = 10;
+    tx1 = '';
+  }
+
+  return [
+    {
+      left: r0 ? '' : l0 + 'px',
+      transform: `translateY(-39px) ${tx0}`,
+    },
+    {
+      left: r1 ? '' : l1 + 'px',
+      transform: `translateY(-39px) ${tx1}`,
+    },
+    {
+      left: lt0 + 'px',
+      transform: `translateY(-7.2px) ${ttx0}`,
+    },
+    {
+      left: lt1 + 'px',
+      transform: `translateY(-7.2px) ${ttx1}`,
+    },
+  ];
+};
+
+const getEstimatedWidth = (val: any, widthRef: RefObject<HTMLElement>): any => {
+  const r = widthRef.current;
+
+  if (r) {
+    r.innerText = val;
+
+    return r.clientWidth;
+  }
+};
 
 // Get tooltip offsets, needed to center the tooltip over the thumb (which doesn't follow the active track exactly; see default input type="range" behavior.)
 const getToolTipOffsets = (values: number[], max: number, min: number) => {
