@@ -169,7 +169,9 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 `;
 
-/* 
+/*
+Range slider with input fields.
+
 New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
 Uses function overloading to provide two interfaces (for one or two values).
 
