@@ -239,24 +239,22 @@ export function Slider({
   const type = values ? 'range' : 'standard';
   const isRange = type === 'range';
 
-  const stepValue = step;
-
   if (rangeValues) {
     min = 0;
     max = rangeValues.length - 1;
   }
 
   // For a given range value (that appears in the rangevalue array), get the index.
-  const getRangeValueIndex = (value) => {
+  const getRangeValueIndex = useCallback((value) => {
     if (rangeValues) {
       return rangeValues?.findIndex((v) => v === value);
     } else {
       return 0;
     }
-  };
+  }, []);
 
   // Get initial values. Like getValueArray, but converts range values to index values as well.
-  const getInitialValues = () => {
+  const getInitialValues = useCallback(() => {
     let initialValues: any;
     if (rangeValues) {
       if (isRange && values) {
@@ -265,13 +263,13 @@ export function Slider({
         initialValues = [min, getRangeValueIndex(value)];
       }
     } else {
-      initialValues = isRange && values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)];
+      initialValues = isRange && values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)];
     }
     return initialValues;
-  };
+  }, []);
 
   // Get values in array form, using either the value or values prop.
-  const getValueArray = () => (values ? getAdjustedValueArray(values, stepValue) : [min, getAdjustedValue(value as number, stepValue)]);
+  const getValueArray = () => (values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)]);
 
   // Current slider values.
   // In the rangeValues case, this represents the index (or indices) of the current values.
@@ -296,8 +294,8 @@ export function Slider({
   const timeoutId = useRef<any>(0);
 
   // Active state of the input elements.
-  const [input0Active, setInput0Active] = useState(false); //document.activeElement === input0.current;
-  const [input1Active, setInput1Active] = useState(false); //document.activeElement === input1.current;
+  const [input0Active, setInput0Active] = useState(false);
+  const [input1Active, setInput1Active] = useState(false);
 
   const renderToolTip0 = showTooltip && (isMoving || input0Active) && !input1Active;
   const renderToolTip1 = showTooltip && (isMoving || input1Active) && !input0Active;
@@ -418,7 +416,7 @@ export function Slider({
 
       const value = currentValues[i] + multiplier[direction] * d;
 
-      const values = getAsValueArray(value, i, isRange, currentValues, min, max, stepValue, true);
+      const values = getAsValueArray(value, i, isRange, currentValues, min, max, step, true);
 
       updateInputValues({ values, value }, isRange, input0, input1);
 
@@ -457,14 +455,14 @@ export function Slider({
 
         const width = (wrapperRef.current as HTMLDivElement).clientWidth;
 
-        const v = getAdjustedValue((x / width) * (max - min) + min, stepValue);
+        const v = getAdjustedValue((x / width) * (max - min) + min, step);
 
         const midPoint = (currentValues[0] + currentValues[1]) / 2;
 
         // Update values.
-        const index = v > getAdjustedValue(midPoint, stepValue) ? 1 : 0;
+        const index = v > getAdjustedValue(midPoint, step) ? 1 : 0;
 
-        const values = getAsValueArray(v, index, isRange, currentValues, min, max, stepValue);
+        const values = getAsValueArray(v, index, isRange, currentValues, min, max, step);
 
         setNewValues(values, index);
 
@@ -525,7 +523,7 @@ export function Slider({
 
   const onInputChange = useCallback(
     (e: any, index: number) => {
-      const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, stepValue);
+      const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, step);
 
       setNewValues(values, index);
     },
@@ -542,7 +540,7 @@ export function Slider({
           <input
             ref={ref}
             type="range"
-            step={stepValue}
+            step={step}
             min={min}
             max={max}
             onKeyDown={(e) => onKeyDown(e, index)}
@@ -826,7 +824,7 @@ const getAsValueArray = (
   currentValues: number[],
   min: number,
   max: number,
-  stepValue: number | string,
+  step: number,
   clamp = false,
 ) => {
   let values: number[];
@@ -844,9 +842,9 @@ const getAsValueArray = (
   }
 
   if (clamp) {
-    return clampValues(getAdjustedValueArray(values, stepValue), min, max);
+    return clampValues(getAdjustedValueArray(values, step), min, max);
   } else {
-    return getAdjustedValueArray(values, stepValue);
+    return getAdjustedValueArray(values, step);
   }
 };
 
@@ -896,7 +894,7 @@ const getX = (event: any) => {
 };
 
 // Get value adjusted with step amount.
-const getAdjustedValue = (value: number, step: number | string) => {
+const getAdjustedValue = (value: number, step: number) => {
   if (!(typeof step === 'string') && step > 1) {
     return round(value / step) * step;
   } else {
@@ -905,7 +903,7 @@ const getAdjustedValue = (value: number, step: number | string) => {
 };
 
 // Adjust array values.
-const getAdjustedValueArray = (values: number[], step: number | string) => {
+const getAdjustedValueArray = (values: number[], step: number) => {
   return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
 };
 
