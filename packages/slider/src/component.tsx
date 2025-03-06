@@ -582,7 +582,7 @@ export function Slider({
 
       displayValue = (max - min) * k + min;
 
-      return <div>{displayValue}</div>;
+      return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
     });
 
   // Get slider markers (steps), showing step values below the slider.
@@ -597,7 +597,7 @@ export function Slider({
         return (
           <div key={k} className="marker">
             <div className="marker-line"></div>
-            <div className="marker-value">{displayValue}</div>
+            <div className="marker-value">{rangeValues ? rangeValues[displayValue] : displayValue}</div>
           </div>
         );
       }),
