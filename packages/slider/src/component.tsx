@@ -46,7 +46,7 @@ input[type='range']:focus::-webkit-slider-thumb {
   box-shadow: var(--w-shadow-slider-handle-active);
 }
 input[type='range']::-webkit-slider-thumb:active {
-  background: #2f98f9;
+  background: var(--w-s-color-background-primary-active);
   box-shadow: var(--w-shadow-slider-handle-active);
 }
 input[type='range']::-webkit-slider-runnable-track {
@@ -110,7 +110,7 @@ input[type='range']::-webkit-slider-runnable-track {
   grid-auto-flow: column;
   grid-template-columns: max-content;
   justify-items: end;
-  color: rgb(138, 138, 138);
+  color: var(--w-s-color-text-subtle);
   pointer-events: none;
   grid-column: 1;
   align-self: end;
@@ -304,7 +304,12 @@ export function Slider({
 
   const timeoutId = useRef<any>(0);
 
-  const renderToolTip = showTooltip && isMoving;
+  // Active state of the input elements.
+  const [input0Active, setInput0Active] = useState(false); //document.activeElement === input0.current;
+  const [input1Active, setInput1Active] = useState(false); //document.activeElement === input1.current;
+
+  const renderToolTip0 = showTooltip && (isMoving || input0Active) && !input1Active;
+  const renderToolTip1 = showTooltip && (isMoving || input1Active) && !input0Active;
 
   // Get value offset due to thumb width.
   const getValueOffset = useCallback(
@@ -327,13 +332,41 @@ export function Slider({
     [wrapperRef.current],
   );
 
+  // Set input active state.
+  // This is done so that correct input active state can be set on focus out (like on click or keyboard nav outside the inputs).
+  useEffect(() => {
+    const click = () => {
+      setTimeout(() => {
+        setInput0Active(document.activeElement === input0.current);
+
+        setInput1Active(document.activeElement === input1.current);
+      }, 1);
+    };
+
+    const keydown = () => {
+      setTimeout(() => {
+        setInput0Active(document.activeElement === input0.current);
+
+        setInput1Active(document.activeElement === input1.current);
+      }, 1);
+    };
+
+    document.addEventListener('mousedown', click);
+    document.addEventListener('keydown', keydown);
+
+    return () => {
+      removeEventListener('mousedown', click);
+      removeEventListener('keydown', keydown);
+    };
+  }, []);
+
   // Update current values on prop change.
   useEffect(() => {
     // Validation.
     validate(value, values, min, max);
 
     // Update values if the slider isn't currently selected.
-    if (!(document.activeElement === input0.current || document.activeElement === input1.current)) {
+    if (!(input0Active || input1Active)) {
       // If range values, lookup value index.
       if (rangeValues) {
         if (isRange && values) {
@@ -757,15 +790,15 @@ export function Slider({
       <style>{style}</style>
       <div className={'ccSlider.wrapper' + ' wrapper'} onContextMenu={(e) => e.preventDefault()}>
         <div className="tooltips">
-          <ToolTip display={renderToolTip && isRange} top={document.activeElement === input0.current} ref={tooltip0}>
+          <ToolTip display={renderToolTip0 && isRange} top={input0Active} ref={tooltip0}>
             {getFullValue(0)}
           </ToolTip>
-          <ToolTip display={renderToolTip} top={document.activeElement === input1.current} ref={tooltip1}>
+          <ToolTip display={renderToolTip1} top={input1Active} ref={tooltip1}>
             {getFullValue(1)}
           </ToolTip>
-          <ToolTipArrow display={isRange && renderToolTip} top={document.activeElement === input0.current} ref={tooltipArrow0} />
+          <ToolTipArrow display={isRange && renderToolTip0 && isRange} top={input0Active} ref={tooltipArrow0} />
 
-          <ToolTipArrow display={renderToolTip} top={document.activeElement === input0.current} ref={tooltipArrow1} />
+          <ToolTipArrow display={renderToolTip1} top={input0Active} ref={tooltipArrow1} />
         </div>
         <div className="active-track" ref={trackRef}></div>
         <div
