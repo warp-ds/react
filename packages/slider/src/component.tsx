@@ -113,25 +113,16 @@ input[type='range']::-webkit-slider-runnable-track {
   pointer-events: none;
   grid-column: 1;
   align-self: end;
-  margin: 0px 11.5px;
+  margin: 0px 11.7px;
   grid-auto-columns: minmax(0, 1fr);
 
   .marker {
     display: grid;
     justify-items: center;
     grid-row-gap: 3.5px;
-
-    > div:nth-child(1) {
-      overflow: hidden;
-    }
-    > div:nth-child(2) {
-      width: 0;
-      overflow: visible;
-      display: grid;
-      justify-content: center;
-    }
   }
 }
+
 .marker-line {
   display: block;
   overflow: hidden;
@@ -140,6 +131,15 @@ input[type='range']::-webkit-slider-runnable-track {
   border-radius: 2px;
   background-color: rgb(224, 224, 224);
 }
+
+.marker-value {
+  width: 0;
+  overflow: visible;
+  display: grid;
+  justify-content: center;
+  transform: translateY(0.5px);
+}
+
 .inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -149,9 +149,9 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 .markervalues {
   display: grid;
-  color: rgb(138, 138, 138);
+  color: var(--w-s-color-text-subtle);
   grid-template-columns: auto auto;
-  margin-bottom: 3.5px;
+  height: 25.5px;
   > div:nth-child(1) {
     justify-self: start;
   }
@@ -558,12 +558,14 @@ export function Slider({
     [currentValues],
   );
 
+  // Get div containing vertical lines (markers) and marker values.
+  // Displays values either centered below the line, or justified to fit in the component.
   const getMarkerDiv = () => {
     if (markAlignment === 'center') {
       return <div className="steps">{getMarkers()}</div>;
     } else {
       return (
-        <div className="steps2">
+        <div>
           <div className="steps">{getMarkerLines()}</div>
           <div className="markervalues">{getMarkerValues()}</div>
         </div>
@@ -595,7 +597,7 @@ export function Slider({
         return (
           <div key={k} className="marker">
             <div className="marker-line"></div>
-            <div>{displayValue}</div>
+            <div className="marker-value">{displayValue}</div>
           </div>
         );
       }),
@@ -686,11 +688,11 @@ export function Slider({
       },
       {
         left: lt0 + 'px',
-        transform: `translateY(-7px) ${ttx0}`,
+        transform: `translateY(-7.2px) ${ttx0}`,
       },
       {
         left: lt1 + 'px',
-        transform: `translateY(-7px) ${ttx1}`,
+        transform: `translateY(-7.2px) ${ttx1}`,
       },
     ];
   };
