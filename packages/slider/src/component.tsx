@@ -226,6 +226,7 @@ export function Slider({
   showTooltip = false,
   markers = false,
   markAlignment = 'center',
+  containTooltips = false,
 }: {
   max?: number;
   min?: number;
@@ -619,7 +620,7 @@ export function Slider({
     if (i == -1) {
       if (t0 && t1 && a0 && a1) {
         for (let n of [0, 1]) {
-          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef);
+          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef, containTooltips);
 
           Object.assign(t0.style, l0);
           Object.assign(t1.style, l1);
@@ -629,7 +630,7 @@ export function Slider({
       }
     } else {
       if (t0 && t1 && a0 && a1) {
-        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef);
+        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef, containTooltips);
 
         Object.assign(t0.style, l0);
         Object.assign(t1.style, l1);
@@ -678,7 +679,7 @@ export function Slider({
   );
 }
 
-const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref) => {
+const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref, containTooltips) => {
   const width = wrapperRef.current?.clientWidth || 500;
 
   const left0 = ((currentValues[0] - min) / (max - min)) * width;
@@ -694,58 +695,80 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
   const lt0 = l0;
   const lt1 = l1;
 
-  const w = getEstimatedWidth(currentValues[i], widthref);
-
-  let hw = w * 0.5;
-
   let tx0 = 'translateX(-50%)';
   let tx1 = 'translateX(-50%)';
 
   const ttx0 = tx0;
   const ttx1 = tx1;
 
-  const th = thumbWidth * 0.5;
+  if(containTooltips){
+    const w = getEstimatedWidth(currentValues[i], widthref);
 
-  if (isRange) {
-    if (l0 + hw + th > 510) {
-      r0 = true;
-      tx0 = '';
+    let hw = w * 0.5;
+  
+    const th = thumbWidth * 0.5;
+  
+    if (isRange) {
+      if (l0 + hw + th > 510) {
+        r0 = true;
+        tx0 = '';
+      }
+  
+      if (l0 - hw - th < 10) {
+        l0 = 10;
+        tx0 = '';
+      }
     }
-
-    if (l0 - hw - th < 10) {
-      l0 = 10;
-      tx0 = '';
+  
+    if (l1 + hw + th > 510) {
+      tx1 = '';
+      r1 = true;
     }
+  
+    if (l1 - hw - th < 10) {
+      l1 = 10;
+      tx1 = '';
+    }
+  
+    return [
+      {
+        left: r0 ? '' : l0 + 'px',
+        transform: `translateY(-39px) ${tx0}`,
+      },
+      {
+        left: r1 ? '' : l1 + 'px',
+        transform: `translateY(-39px) ${tx1}`,
+      },
+      {
+        left: lt0 + 'px',
+        transform: `translateY(-7.2px) ${ttx0}`,
+      },
+      {
+        left: lt1 + 'px',
+        transform: `translateY(-7.2px) ${ttx1}`,
+      },
+    ];
+  } else {
+    return [
+      {
+        left: l0 + 'px',
+        transform: `translateY(-39px) ${tx0}`,
+      },
+      {
+        left: l1 + 'px',
+        transform: `translateY(-39px) ${tx1}`,
+      },
+      {
+        left: lt0 + 'px',
+        transform: `translateY(-7.2px) ${ttx0}`,
+      },
+      {
+        left: lt1 + 'px',
+        transform: `translateY(-7.2px) ${ttx1}`,
+      },
+    ];
   }
-
-  if (l1 + hw + th > 510) {
-    tx1 = '';
-    r1 = true;
-  }
-
-  if (l1 - hw - th < 10) {
-    l1 = 10;
-    tx1 = '';
-  }
-
-  return [
-    {
-      left: r0 ? '' : l0 + 'px',
-      transform: `translateY(-39px) ${tx0}`,
-    },
-    {
-      left: r1 ? '' : l1 + 'px',
-      transform: `translateY(-39px) ${tx1}`,
-    },
-    {
-      left: lt0 + 'px',
-      transform: `translateY(-7.2px) ${ttx0}`,
-    },
-    {
-      left: lt1 + 'px',
-      transform: `translateY(-7.2px) ${ttx1}`,
-    },
-  ];
+  
 };
 
 const getEstimatedWidth = (val: any, widthRef: RefObject<HTMLElement>): any => {

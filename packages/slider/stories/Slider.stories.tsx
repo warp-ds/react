@@ -103,6 +103,7 @@ export const Range = () => {
         markAlignment="justified"
         showTooltip
         markers
+        containTooltips
       />
       <button onClick={() => setValues([1000, 5008970])}>Reset</button>
     </div>

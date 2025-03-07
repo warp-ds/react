@@ -21,4 +21,7 @@ export type SliderProps = {
   showTooltip?: boolean;
 
   markAlignment?: 'center' | 'justified';
+
+  // Choose whether to contain tooltips to within bounds.
+  containTooltips?: boolean;
 };
