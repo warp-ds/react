@@ -337,27 +337,6 @@ export function Slider({
   const renderToolTip0 = showTooltip && (isMoving || input0Active) && !input1Active;
   const renderToolTip1 = showTooltip && (isMoving || input1Active) && !input0Active;
 
-  // Get value offset due to thumb width.
-  const getValueOffset = useCallback(
-    (values: number[]) => {
-      const wrapperWidth = wrapperRef.current?.clientWidth || 500;
-
-      const widthFraction = (values[1] - values[0]) / (max - min);
-
-      // Width in pxs.
-      const width = widthFraction * wrapperWidth;
-
-      if (width < thumbWidth) {
-        const valPerPx = (max - min) / wrapperWidth;
-
-        return valPerPx * thumbWidth;
-      } else {
-        return 0;
-      }
-    },
-    [wrapperRef.current],
-  );
-
   // Set active input element state (by checking focus state using the focusin/focusout events).
   useEffect(() => {
     const focusChange = () => {
@@ -557,18 +536,36 @@ export function Slider({
 
     // Stop slider values from overlapping.
     if (isRange) {
-      let offset = getValueOffset(values);
+      // Get distance between the two points in pxs.
+      const getDistance = (values) => {
+        let val0 = values[0];
+        let val1 = values[1];
 
-      if (offset > 0) {
-        // Use offset 1 for range values.
-        if (rangeValues && offset < 1) {
-          offset = 1;
-        }
+        let d = val1 - val0;
 
-        if (i == 0) {
-          values[0] = getAdjustedValue(values[1] - offset, step);
-        } else {
-          values[1] = getAdjustedValue(values[0] + offset, step);
+        const width = wrapperRef.current?.clientWidth || 500;
+
+        let pxPerVal = width / (max - min);
+
+        let pxDistance = d * pxPerVal;
+
+        return pxDistance;
+      };
+
+      // If distance is less than thumbwidth, reset to next closest step.
+      if (getDistance(values) < thumbWidth) {
+        let collide = true;
+
+        while (collide) {
+          if (i == 0) {
+            values[0] = values[0] - step;
+          } else {
+            values[1] = values[1] + step;
+          }
+
+          if (getDistance(values) >= thumbWidth) {
+            collide = false;
+          }
         }
       }
 
