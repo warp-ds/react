@@ -321,33 +321,20 @@ export function Slider({
     [wrapperRef.current],
   );
 
-  // Set input active state.
-  // This is done so that correct input active state can be set on focus out (like on click or keyboard nav outside the inputs).
+  // Set active input element state (by checking focus state using the focusin/focusout events).
   useEffect(() => {
-    const click = () => {
-      setTimeout(() => {
-        setInput0Active(document.activeElement === input0.current);
+    const focusChange = () => {
+      setInput0Active(document.activeElement === input0.current);
 
-        setInput1Active(document.activeElement === input1.current);
-      }, 1);
+      setInput1Active(document.activeElement === input1.current);
     };
 
-    const keydown = () => {
-      setTimeout(() => {
-        setInput0Active(document.activeElement === input0.current);
-
-        setInput1Active(document.activeElement === input1.current);
-      }, 1);
-    };
-
-    document.addEventListener('mousedown', click);
-    document.addEventListener('touchstart', click);
-    document.addEventListener('keydown', keydown);
+    document.addEventListener('focusin', focusChange);
+    document.addEventListener('focusout', focusChange);
 
     return () => {
-      removeEventListener('mousedown', click);
-      removeEventListener('touchstart', click);
-      removeEventListener('keydown', keydown);
+      document.removeEventListener('focusin', focusChange);
+      document.removeEventListener('focusout', focusChange);
     };
   }, []);
 
@@ -448,8 +435,9 @@ export function Slider({
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = useCallback(
     (e: any) => {
+      setIsMoving(true);
       // Clicking on the input thumb triggers the event for the input element.
-      // Here, only handle click for clicking on the range, outside the thumb slider.
+      // Here, only handle click for clicking on the range, outside the thumb.
       if (!disabled && e.target.nodeName !== 'INPUT') {
         const x = e.touches ? getX(e) : e.nativeEvent.offsetX;
 
