@@ -7,6 +7,14 @@ export function round(value: number, precision?: number) {
   return Math.round(value * multiplier) / multiplier;
 }
 
+export function roundIfNumber(val: string | number){
+  if(typeof val === 'number'){
+    return round(val)
+  } else {
+    return val;
+  }
+}
+
 export function clamp(val: number, min: number, max: number) {
   return Math.min(Math.max(val, min), max);
 }

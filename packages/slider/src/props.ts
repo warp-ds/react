@@ -24,4 +24,7 @@ export type SliderProps = {
 
   // Choose whether to contain tooltips to within bounds.
   containTooltips?: boolean;
+
+  // Optional start/end values to use in additional to the given range.
+  //startEndValues?: string[];
 };

@@ -4,7 +4,7 @@ import { classNames } from '@chbphone55/classnames';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
 
 import { SliderProps } from './props.js';
-import { clamp, clampValues, round } from './math.js';
+import { clamp, clampValues, round, roundIfNumber } from './math.js';
 
 const thumbWidth = 28;
 
@@ -181,6 +181,7 @@ The internal values represent the numerical index of each value in the array.
 Where the value is displayed in the UI, the full value is looked up (in the array) and used.
 Values that are passed in (as props) are converted to the array index (using a find), and used that way.
 */
+
 // Default slider.
 export function Slider(
   props: {
@@ -191,6 +192,19 @@ export function Slider(
     onChangeAfter?: (value: number) => void;
   } & SliderProps,
 );
+// With custom start/end values.
+export function Slider(
+  props: {
+    max?: number;
+    min?: number;
+    value: number | string;
+    onChange?: (value: number | string) => void;
+    onChangeAfter?: (value: number | string) => void;
+    startEndValues?: string[];
+  } & SliderProps,
+);
+
+// Range values (list of specific values instead of min/max range).
 export function Slider(
   props: { rangeValues: any[]; value: any; onChange?: (value: any) => void; onChangeAfter?: (value: any) => void } & SliderProps,
 );
@@ -205,6 +219,18 @@ export function Slider(
     onChangeAfter?: (value: number[]) => void;
   } & SliderProps,
 );
+// With custom start/end values.
+export function Slider(
+  props: {
+    max?: number;
+    min?: number;
+    values: (number | string)[];
+    onChange?: (values: (number | string)[]) => void;
+    onChangeAfter?: (value: (number | string)[]) => void;
+    startEndValues?: string[];
+  } & SliderProps,
+);
+// With specific range values.
 export function Slider(
   props: { rangeValues: any[]; values: any[]; onChange?: (values: any[]) => void; onChangeAfter?: (value: any[]) => void } & SliderProps,
 );
@@ -227,6 +253,7 @@ export function Slider({
   markers = false,
   markAlignment = 'center',
   containTooltips = false,
+  startEndValues,
 }: {
   max?: number;
   min?: number;
@@ -235,6 +262,7 @@ export function Slider({
   values?: number[] | any[];
   onChange?: any;
   onChangeAfter?: any;
+  startEndValues?: string[];
 } & SliderProps) {
   // Determine type.
   const type = values ? 'range' : 'standard';
@@ -243,6 +271,14 @@ export function Slider({
   if (rangeValues) {
     min = 0;
     max = rangeValues.length - 1;
+  }
+
+  const originalMin = min;
+  const originalMax = max;
+
+  if (startEndValues) {
+    min = min - step;
+    max = max + step;
   }
 
   // For a given range value (that appears in the rangevalue array), get the index.
@@ -339,10 +375,47 @@ export function Slider({
     };
   }, []);
 
+  // Get the value/values as full values including a potential startEndValue.
+  const getAsFullVal = (value, values) => {
+    if (value && startEndValues) {
+      const i = startEndValues.findIndex((v) => v == value);
+
+      value = i == 0 ? min : max;
+    } else if (values && startEndValues) {
+      let value0 = values[0];
+      let value1 = values[1];
+
+      const i0 = startEndValues.findIndex((v) => v == values[0]);
+      const i1 = startEndValues.findIndex((v) => v == values[1]);
+
+      if (i0 !== -1) {
+        value0 = i0 == 0 ? min : max;
+      }
+
+      if (i1 !== -1) {
+        value1 = i1 == 0 ? min : max;
+      }
+
+      values = [value0, value1];
+
+      console.log(values);
+    }
+
+    return { value, values };
+  };
+
   // Update current values on prop change.
   useEffect(() => {
     // Validation.
     validate(value, values, min, max);
+
+    // If start/end values, convert to numerical value.
+    if (startEndValues) {
+      let vals = getAsFullVal(value, values);
+
+      value = vals.value;
+      values = vals.values;
+    }
 
     // Update values if the slider isn't currently selected.
     if (!(input0Active || input1Active)) {
@@ -377,13 +450,31 @@ export function Slider({
         val = getRangeValueIndex(value);
       }
     }
+
+    if (startEndValues) {
+      let fullVals = getAsFullVal(value, values);
+
+      val = fullVals.value;
+      vals = fullVals.values;
+    }
+
     updateInputValues({ values: vals, value: val }, isRange, input0, input1);
   }, [input0.current, input1.current]);
 
   // Call onchangeafter.
   useEffect(() => {
     if (!isMoving && onChangeAfter) {
-      onChangeAfter(isRange ? currentValues : currentValues[1]);
+      let finalValues: (number | string)[] = [...currentValues];
+
+      // When using a numerical range (not range values), use startEndValues in the return as well.
+      if (startEndValues?.[0] && currentValues[0] < originalMin) {
+        finalValues[0] = startEndValues[0];
+      }
+      if (startEndValues?.[1] && currentValues[1] > originalMax) {
+        finalValues[1] = startEndValues[1];
+      }
+
+      onChangeAfter(isRange ? finalValues : finalValues[1]);
     }
   }, [isMoving, currentValues]);
 
@@ -437,6 +528,7 @@ export function Slider({
   const onWrapperClick = useCallback(
     (e: any) => {
       setIsMoving(true);
+
       // Clicking on the input thumb triggers the event for the input element.
       // Here, only handle click for clicking on the range, outside the thumb.
       if (!disabled && e.target.nodeName !== 'INPUT') {
@@ -451,9 +543,17 @@ export function Slider({
         // Update values.
         const index = v > getAdjustedValue(midPoint, step) ? 1 : 0;
 
-        const values = getAsValueArray(v, index, isRange, currentValues, min, max, step);
+        let values = getAsValueArray(v, index, isRange, currentValues, min, max, step);
 
+        console.log(values, value);
         setNewValues(values, index);
+
+        /*         if (startEndValues) {
+          let fullVals = getAsFullVal(value, values);
+
+          value = fullVals.value;
+          values = fullVals.values;
+        } */
 
         updateInputValues({ values, value: values[1] }, isRange, input0, input1);
       }
@@ -496,10 +596,20 @@ export function Slider({
       if (onChange) {
         let returnValue: any;
 
+        let finalValues: (number | string)[] = [...values];
+
         if (!rangeValues) {
-          returnValue = isRange ? [round(values[0]), round(values[1])] : Math.round(values[1]);
+          // When using a numerical range (not range values), use startEndValues in the return as well.
+          if (startEndValues?.[0] && values[0] < originalMin) {
+            finalValues[0] = startEndValues[0];
+          }
+          if (startEndValues?.[1] && values[1] > originalMax) {
+            finalValues[1] = startEndValues[1];
+          }
+
+          returnValue = isRange ? [roundIfNumber(finalValues[0]), roundIfNumber(finalValues[1])] : roundIfNumber(finalValues[1]);
         } else {
-          returnValue = isRange ? [rangeValues[values[0]], rangeValues[values[1]]] : rangeValues[values[1]];
+          returnValue = isRange ? [rangeValues[finalValues[0]], rangeValues[finalValues[1]]] : rangeValues[finalValues[1]];
         }
 
         onChange(returnValue);
@@ -551,10 +661,10 @@ export function Slider({
     const getMarkerLines = () => Array.from(Array(2).keys()).map(() => <div className="marker-line"></div>);
 
     const getMarkerValues = () =>
-      Array.from(Array(2).keys()).map((k) => {
+      Array.from(Array(2).keys()).map((k, i) => {
         let displayValue: string | number = '';
 
-        displayValue = (max - min) * k + min;
+        displayValue = startEndValues ? startEndValues[i] : (max - min) * k + min;
 
         return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
       });
@@ -575,10 +685,10 @@ export function Slider({
   // Used for center-aligned display values.
   const getMarkers = useCallback(
     () =>
-      Array.from(Array(2).keys()).map((k) => {
+      Array.from(Array(2).keys()).map((k, i) => {
         let displayValue: string | number = '';
 
-        displayValue = (max - min) * k + min;
+        displayValue = startEndValues ? startEndValues[i] : (max - min) * k + min;
 
         return (
           <div key={k} className="marker">
@@ -594,7 +704,18 @@ export function Slider({
     (index: number) => {
       // Default case: use numerical value
       if (!rangeValues) {
-        return currentValues[index];
+        let finalValues: (number | string)[] = [...currentValues];
+        if (startEndValues) {
+          // When using a numerical range (not range values), use startEndValues in the return as well.
+          if (startEndValues?.[0] && currentValues[0] < originalMin) {
+            finalValues[0] = startEndValues[0];
+          }
+          if (startEndValues?.[1] && currentValues[1] > originalMax) {
+            finalValues[1] = startEndValues[1];
+          }
+        }
+
+        return finalValues[index];
       }
       // Range values: lookup value.
       else {
@@ -701,35 +822,35 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
   const ttx0 = tx0;
   const ttx1 = tx1;
 
-  if(containTooltips){
+  if (containTooltips) {
     const w = getEstimatedWidth(currentValues[i], widthref);
 
     let hw = w * 0.5;
-  
+
     const th = thumbWidth * 0.5;
-  
+
     if (isRange) {
       if (l0 + hw + th > 510) {
         r0 = true;
         tx0 = '';
       }
-  
+
       if (l0 - hw - th < 10) {
         l0 = 10;
         tx0 = '';
       }
     }
-  
+
     if (l1 + hw + th > 510) {
       tx1 = '';
       r1 = true;
     }
-  
+
     if (l1 - hw - th < 10) {
       l1 = 10;
       tx1 = '';
     }
-  
+
     return [
       {
         left: r0 ? '' : l0 + 'px',
@@ -768,7 +889,6 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
       },
     ];
   }
-  
 };
 
 const getEstimatedWidth = (val: any, widthRef: RefObject<HTMLElement>): any => {
