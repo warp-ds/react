@@ -397,8 +397,6 @@ export function Slider({
       }
 
       values = [value0, value1];
-
-      console.log(values);
     }
 
     return { value, values };
@@ -545,15 +543,7 @@ export function Slider({
 
         let values = getAsValueArray(v, index, isRange, currentValues, min, max, step);
 
-        console.log(values, value);
         setNewValues(values, index);
-
-        /*         if (startEndValues) {
-          let fullVals = getAsFullVal(value, values);
-
-          value = fullVals.value;
-          values = fullVals.values;
-        } */
 
         updateInputValues({ values, value: values[1] }, isRange, input0, input1);
       }
