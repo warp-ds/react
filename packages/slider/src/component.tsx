@@ -525,8 +525,6 @@ export function Slider({
   // Ensures the range endpoints are moved according to where in the range the user clicked.
   const onWrapperClick = useCallback(
     (e: any) => {
-      setIsMoving(true);
-
       // Clicking on the input thumb triggers the event for the input element.
       // Here, only handle click for clicking on the range, outside the thumb.
       if (!disabled && e.target.nodeName !== 'INPUT') {
@@ -612,6 +610,8 @@ export function Slider({
 
   const onInputChange = useCallback(
     (e: any, index: number) => {
+      setIsMoving(true);
+
       const values = getAsValueArray(+e.target.value, index, isRange, currentValues, min, max, step);
 
       setNewValues(values, index);
