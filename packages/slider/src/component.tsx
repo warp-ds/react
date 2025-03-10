@@ -617,28 +617,32 @@ export function Slider({
 
   // Get full, adjusted onChange value (including startEndValues, etc.)
   const getOnChangeReturnValue = (values: number[]) => {
-    let returnValue: (number | string)[] | number | string = [...values];
+    let returnValue: (number | RangeValue)[] | number | RangeValue;
 
-    let finalValues: (number | string)[] = [...values];
-
-    // When using a numerical range (not range values), use startEndValues in the return as well.
+    // When using a numerical range, use startEndValues in the return as well.
     if (!rangeValues) {
+      // Convert the input values to full values (including start/end values).
+      let fullValues: (number | string)[] = [...values];
+
+      // Get start/end values.
       if (startEndValues?.[0] && values[0] < originalMin) {
-        finalValues[0] = startEndValues[0];
+        fullValues[0] = startEndValues[0];
       }
       if (startEndValues?.[0] && values[1] < originalMin) {
-        finalValues[1] = startEndValues[0];
+        fullValues[1] = startEndValues[0];
       }
       if (startEndValues?.[1] && values[1] > originalMax) {
-        finalValues[1] = startEndValues[1];
+        fullValues[1] = startEndValues[1];
       }
       if (startEndValues?.[1] && values[0] > originalMax) {
-        finalValues[0] = startEndValues[1];
+        fullValues[0] = startEndValues[1];
       }
 
-      returnValue = isRange ? [roundIfNumber(finalValues[0]), roundIfNumber(finalValues[1])] : roundIfNumber(finalValues[1]);
-    } else {
-      returnValue = isRange ? [rangeValues[finalValues[0]], rangeValues[finalValues[1]]] : rangeValues[finalValues[1]];
+      returnValue = isRange ? [roundIfNumber(fullValues[0]), roundIfNumber(fullValues[1])] : roundIfNumber(fullValues[1]);
+    }
+    // For range values, do a lookup to get the range value items.
+    else {
+      returnValue = isRange ? [rangeValues[values[0]], rangeValues[values[1]]] : rangeValues[values[1]];
     }
 
     return returnValue;
