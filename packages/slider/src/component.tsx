@@ -45,8 +45,8 @@ input[type='range']:focus::-webkit-slider-thumb {
   box-shadow: var(--w-shadow-slider-handle-active);
 }
 input[type='range']::-webkit-slider-thumb:active {
-  background: var(--w-s-color-background-primary-active);
-  box-shadow: var(--w-shadow-slider-handle-active);
+  outline: 2px solid #06BEFB;
+  outline-offset: 1px;
 }
 input[type='range']::-webkit-slider-runnable-track {
   height: 4px;

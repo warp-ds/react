@@ -112,15 +112,7 @@ export const Regular7 = () => {
   return (
     <div>
       <output>{value}</output>
-      <Slider
-        onChange={(value) => setValue(value)}
-        value={value}
-        min={2}
-        max={10}
-        showTooltip
-        markers
-        startEndValues={[null, 'gt 10']}
-      />
+      <Slider onChange={(value) => setValue(value)} value={value} min={2} max={10} showTooltip markers startEndValues={[null, 'gt 10']} />
       <button onClick={() => setValue(3)}>Reset</button>
     </div>
   );
@@ -309,6 +301,22 @@ export const DualRangeValues = () => {
       </output>
       <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip markers />
       <button onClick={() => setValues(['yes', '1'])}>Reset</button>
+    </div>
+  );
+};
+
+export const DualRangeValues2 = () => {
+  const [values, setValues] = React.useState(['06:30', '08:30']);
+
+  const range = ['06:00', '06:30', '07:00', '07:30', '08:00', '08:30', '09:00'];
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip markers />
+      <button onClick={() => setValues(['06:30', '08:30'])}>Reset</button>
     </div>
   );
 };
