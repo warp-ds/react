@@ -275,6 +275,36 @@ export const Range9 = () => {
   );
 };
 
+export const Range10changeafter = () => {
+  const [values, setValues] = React.useState<(number | string)[]>(['Less than 1000', 'Over 5000']);
+  const [values2, setValues2] = React.useState<(number | string)[]>(['Less than 1000', 'Over 5000']);
+
+  return (
+    <div>
+      <output>
+        {values[0]} - {values[1]}
+      </output>
+      <br/>
+      <output>
+        {values2[0]} - {values2[1]}
+      </output>
+      <Slider
+        values={values}
+        onChange={(nums) => setValues(nums)}
+        onChangeAfter={(nums) => setValues2(nums)}
+        min={1000}
+        max={5000}
+        startEndValues={['Less than 1000', 'Over 5000']}
+        step={100}
+        showTooltip
+        markers
+        containTooltips
+      />
+      <button onClick={() => setValues(['Less than 1000', 'Over 5000'])}>Reset</button>
+    </div>
+  );
+};
+
 export const RegularRangeValues = () => {
   const [value, setValue] = React.useState('yes');
 

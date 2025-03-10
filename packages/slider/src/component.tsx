@@ -447,17 +447,9 @@ export function Slider({
   // Call onchangeafter.
   useEffect(() => {
     if (!isMoving && onChangeAfter) {
-      let finalValues: (number | string)[] = [...currentValues];
+      const returnValue = getOnChangeReturnValue(currentValues);
 
-      // When using a numerical range (not range values), use startEndValues in the return as well.
-      if (startEndValues?.[0] && currentValues[0] < originalMin) {
-        finalValues[0] = startEndValues[0];
-      }
-      if (startEndValues?.[1] && currentValues[1] > originalMax) {
-        finalValues[1] = startEndValues[1];
-      }
-
-      onChangeAfter(isRange ? finalValues : finalValues[1]);
+      onChangeAfter(returnValue);
     }
   }, [isMoving, currentValues]);
 
@@ -584,38 +576,46 @@ export function Slider({
 
       setCurrentValues(values);
 
+      setStyleTooltips(values, wrapperRef, isRange, max, min, i);
+
       if (onChange) {
-        let returnValue: any;
-
-        let finalValues: (number | string)[] = [...values];
-
-        if (!rangeValues) {
-          // When using a numerical range (not range values), use startEndValues in the return as well.
-          if (startEndValues?.[0] && values[0] < originalMin) {
-            finalValues[0] = startEndValues[0];
-          }
-          if (startEndValues?.[0] && values[1] < originalMin) {
-            finalValues[1] = startEndValues[0];
-          }
-          if (startEndValues?.[1] && values[1] > originalMax) {
-            finalValues[1] = startEndValues[1];
-          }
-          if (startEndValues?.[1] && values[0] > originalMax) {
-            finalValues[0] = startEndValues[1];
-          }
-
-          returnValue = isRange ? [roundIfNumber(finalValues[0]), roundIfNumber(finalValues[1])] : roundIfNumber(finalValues[1]);
-        } else {
-          returnValue = isRange ? [rangeValues[finalValues[0]], rangeValues[finalValues[1]]] : rangeValues[finalValues[1]];
-        }
+        const returnValue = getOnChangeReturnValue(values);
 
         onChange(returnValue);
-        setStyleTooltips(values, wrapperRef, isRange, max, min, i);
       }
     }, 1);
 
     setStyle(trackRef, values, wrapperRef, isRange, max, min);
   }, []);
+
+  // Get full, adjusted onChange value (including startEndValues, etc.)
+  const getOnChangeReturnValue = (values) => {
+    let returnValue: (number | string)[] | number | string;
+
+    let finalValues: (number | string)[] = [...values];
+
+    if (!rangeValues) {
+      // When using a numerical range (not range values), use startEndValues in the return as well.
+      if (startEndValues?.[0] && values[0] < originalMin) {
+        finalValues[0] = startEndValues[0];
+      }
+      if (startEndValues?.[0] && values[1] < originalMin) {
+        finalValues[1] = startEndValues[0];
+      }
+      if (startEndValues?.[1] && values[1] > originalMax) {
+        finalValues[1] = startEndValues[1];
+      }
+      if (startEndValues?.[1] && values[0] > originalMax) {
+        finalValues[0] = startEndValues[1];
+      }
+
+      returnValue = isRange ? [roundIfNumber(finalValues[0]), roundIfNumber(finalValues[1])] : roundIfNumber(finalValues[1]);
+    } else {
+      returnValue = isRange ? [rangeValues[finalValues[0]], rangeValues[finalValues[1]]] : rangeValues[finalValues[1]];
+    }
+
+    return returnValue;
+  };
 
   const onInputChange = useCallback(
     (e: any, index: number) => {
@@ -706,19 +706,19 @@ export function Slider({
         let returnValues: (number | string | null)[] = [...currentValues];
 
         if (startEndValues) {
-          if (startEndValues?.[0] && currentValues[0] < originalMin) {
+          if (startEndValues[0] && currentValues[0] < originalMin) {
             returnValues[0] = startEndValues[0];
           }
 
-          if (startEndValues?.[0] && currentValues[0] > originalMax) {
+          if (startEndValues[0] && currentValues[0] > originalMax) {
             returnValues[0] = startEndValues[1];
           }
 
-          if (startEndValues?.[1] && currentValues[1] > originalMax) {
+          if (startEndValues[1] && currentValues[1] > originalMax) {
             returnValues[1] = startEndValues[1];
           }
 
-          if (startEndValues?.[1] && currentValues[1] < originalMin) {
+          if (startEndValues[1] && currentValues[1] < originalMin) {
             returnValues[1] = startEndValues[0];
           }
         }
@@ -842,7 +842,7 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
 
     const left = boundingRect.left;
     const right = boundingRect.right;
-    
+
     const w = getEstimatedWidth(currentValues[i], widthref);
 
     let hw = w * 0.5;
