@@ -1,3 +1,10 @@
+## [2.1.1-next.2](https://github.com/warp-ds/react/compare/v2.1.1-next.1...v2.1.1-next.2) (2025-03-10)
+
+
+### Bug Fixes
+
+* Move call to activateI18n for the Steps component ([#312](https://github.com/warp-ds/react/issues/312)) ([aa5eabb](https://github.com/warp-ds/react/commit/aa5eabbb8f9c481f417c39daed69e5ce20898069))
+
 ## [2.1.1-next.1](https://github.com/warp-ds/react/compare/v2.1.0...v2.1.1-next.1) (2025-02-25)
 
 
