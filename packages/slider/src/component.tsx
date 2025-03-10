@@ -267,10 +267,10 @@ export function Slider({
   'aria-labelledby': ariaLabelledBy,
   'aria-valuetext': ariaValueText,
   keyboardStepFactor = 0.04,
-  showTooltip = false,
+  showTooltips = false,
+  containTooltips = false,
   markers = false,
   markAlignment = 'center',
-  containTooltips = false,
   startEndValues,
 }: {
   max?: number;
@@ -364,8 +364,8 @@ export function Slider({
   const [input0Active, setInput0Active] = useState(false);
   const [input1Active, setInput1Active] = useState(false);
 
-  const renderToolTip0 = showTooltip && (isMoving || input0Active) && !input1Active;
-  const renderToolTip1 = showTooltip && (isMoving || input1Active) && !input0Active;
+  const renderToolTip0 = showTooltips && (isMoving || input0Active) && !input1Active;
+  const renderToolTip1 = showTooltips && (isMoving || input1Active) && !input0Active;
 
   // Set active input element state (by checking focus state using the focusin/focusout events).
   useEffect(() => {
@@ -442,7 +442,10 @@ export function Slider({
       setCurrentValues(valueArray);
 
       setStyle(trackRef, valueArray, wrapperRef, isRange, max, min);
-      setStyleTooltips(valueArray, wrapperRef, isRange, max, min);
+
+      if (showTooltips) {
+        setStyleTooltips(valueArray, wrapperRef, isRange, max, min);
+      }
 
       updateInputValues({ values, value }, isRange, input0, input1);
     }
@@ -603,14 +606,16 @@ export function Slider({
 
       setCurrentValues(values);
 
-      setStyleTooltips(values, wrapperRef, isRange, max, min, i);
+      if (showTooltips) {
+        setStyleTooltips(values, wrapperRef, isRange, max, min, i);
+      }
 
       if (onChange) {
         const returnValue = getOnChangeReturnValue(values);
 
         onChange(returnValue);
       }
-    }, 1);
+    }, 0.01);
 
     setStyle(trackRef, values, wrapperRef, isRange, max, min);
   }, []);
@@ -864,7 +869,7 @@ export function Slider({
 }
 
 /**
- * Get full tooltiop CSS, to set its position in along the slider track.
+ * Get full tooltip CSS, to set its position along the slider track.
  */
 const getTooltipCSS = (
   currentValues: number[],

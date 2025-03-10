@@ -21,7 +21,7 @@ export type SliderProps = {
   markers?: boolean;
 
   // Show tooltips on dragging.
-  showTooltip?: boolean;
+  showTooltips?: boolean;
 
   // Align mark values in center or contained within the bounds of the component (justified).
   markAlignment?: 'center' | 'justified';
