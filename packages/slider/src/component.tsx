@@ -317,7 +317,7 @@ export function Slider({
 
   // Get initial values. Like getValueArray, but converts range values to index values as well.
   const getInitialValues = useCallback(() => {
-    let initialValues: any;
+    let initialValues: number[];
     if (rangeValues) {
       if (isRange && values) {
         initialValues = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
@@ -325,7 +325,11 @@ export function Slider({
         initialValues = [min, getRangeValueIndex(value)];
       }
     } else {
-      initialValues = isRange && values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)];
+      initialValues = values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)];
+
+      if (values && !initialValues.every((v) => !isNaN(v))) {
+        return [min, max];
+      }
     }
     return initialValues;
   }, []);
@@ -336,6 +340,7 @@ export function Slider({
   // Current slider values.
   // In the rangeValues case, this represents the index (or indices) of the current values.
   const [currentValues, setCurrentValues] = useState<number[]>(() => getInitialValues());
+
   const [isMoving, setIsMoving] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -473,7 +478,7 @@ export function Slider({
 
       onChangeAfter(returnValue);
     }
-  }, [isMoving, currentValues]);
+  }, [isMoving]);
 
   // Set value attributes.
   useEffect(() => {
@@ -612,7 +617,7 @@ export function Slider({
 
   // Get full, adjusted onChange value (including startEndValues, etc.)
   const getOnChangeReturnValue = (values: number[]) => {
-    let returnValue: (number | string)[] | number | string;
+    let returnValue: (number | string)[] | number | string = [...values];
 
     let finalValues: (number | string)[] = [...values];
 

@@ -300,7 +300,7 @@ export const Range10changeafter = () => {
         markers
         containTooltips
       />
-      <button onClick={() => setValues(['Less than 1000', 'Over 5000'])}>Reset</button>
+      <button onClick={() => (setValues(['Less than 1000', 'Over 5000']), setValues2(['Less than 1000', 'Over 5000']))}>Reset</button>
     </div>
   );
 };
