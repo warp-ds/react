@@ -41,8 +41,11 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 14px;
   pointer-events: all !important;
 }
+input[type='range']:hover::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px #00000014
+}
 input[type='range']:focus::-webkit-slider-thumb {
-  box-shadow: var(--w-shadow-slider-handle-active);
+  box-shadow: 0 0 0 8px #00000014
 }
 input[type='range']:focus-visible::-webkit-slider-thumb {
   outline: 2px solid #06BEFB;
@@ -676,7 +679,7 @@ export function Slider({
   // Get div containing vertical lines (markers) and marker values.
   // Displays values either centered below the line, or justified to fit in the component.
   const getMarkerDiv = useCallback(() => {
-    const getMarkerLines = () => Array.from(Array(2).keys()).map(() => <div className="marker-line"></div>);
+    const getMarkerLines = () => Array.from(Array(2).keys()).map((_, i) => <div key={i} className="marker-line"></div>);
 
     const getMarkerValues = () =>
       Array.from(Array(2).keys()).map((k, i) => {
@@ -684,7 +687,7 @@ export function Slider({
 
         displayValue = startEndValues && startEndValues[i] ? startEndValues[i] : (max - min) * k + min;
 
-        return <div>{rangeValues ? getRangeValueItem(displayValue as number) : displayValue}</div>;
+        return <div key={i}>{rangeValues ? getRangeValueItem(displayValue as number) : displayValue}</div>;
       });
 
     if (markAlignment === 'center') {
