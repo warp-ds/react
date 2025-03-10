@@ -44,7 +44,7 @@ input[type='range']::-webkit-slider-thumb {
 input[type='range']:focus::-webkit-slider-thumb {
   box-shadow: var(--w-shadow-slider-handle-active);
 }
-input[type='range']::-webkit-slider-thumb:active {
+input[type='range']:focus-visible::-webkit-slider-thumb {
   outline: 2px solid #06BEFB;
   outline-offset: 1px;
 }
@@ -56,7 +56,6 @@ input[type='range']::-webkit-slider-runnable-track {
   pointer-events: none;
   border-radius: 2px;
 }
-
 .tooltips {
   width: 100%;
   pointer-events: none;
