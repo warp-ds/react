@@ -200,7 +200,7 @@ export function Slider(
     value: number | string;
     onChange?: (value: number | string) => void;
     onChangeAfter?: (value: number | string) => void;
-    startEndValues?: string[];
+    startEndValues?: (string | null)[];
   } & SliderProps,
 );
 
@@ -227,7 +227,7 @@ export function Slider(
     values: (number | string)[];
     onChange?: (values: (number | string)[]) => void;
     onChangeAfter?: (value: (number | string)[]) => void;
-    startEndValues?: string[];
+    startEndValues?: (string | null)[];
   } & SliderProps,
 );
 // With specific range values.
@@ -262,7 +262,7 @@ export function Slider({
   values?: number[] | any[];
   onChange?: any;
   onChangeAfter?: any;
-  startEndValues?: string[];
+  startEndValues?: (string | null)[];
 } & SliderProps) {
   // Determine type.
   const type = values ? 'range' : 'standard';
@@ -276,8 +276,11 @@ export function Slider({
   const originalMin = min;
   const originalMax = max;
 
-  if (startEndValues) {
+  if (startEndValues?.[0]) {
     min = min - step;
+  }
+
+  if (startEndValues?.[1]) {
     max = max + step;
   }
 
@@ -354,12 +357,14 @@ export function Slider({
     };
   }, []);
 
-  // Get the value/values as full values including a potential startEndValue.
-  const getAsFullVal = (value, values) => {
+  // Get the numerical value/values. Converts input values that are either numerical or startEndValues to numerical values.
+  const getAsFullValue = useCallback((value, values) => {
     if (value && startEndValues) {
       const i = startEndValues.findIndex((v) => v == value);
 
-      value = i == 0 ? min : max;
+      if (i !== -1) {
+        value = i == 0 ? min : max;
+      }
     } else if (values && startEndValues) {
       let value0 = values[0];
       let value1 = values[1];
@@ -379,7 +384,7 @@ export function Slider({
     }
 
     return { value, values };
-  };
+  }, []);
 
   // Update current values on prop change.
   useEffect(() => {
@@ -388,7 +393,7 @@ export function Slider({
 
     // If start/end values, convert to numerical value.
     if (startEndValues) {
-      let vals = getAsFullVal(value, values);
+      let vals = getAsFullValue(value, values);
 
       value = vals.value;
       values = vals.values;
@@ -420,6 +425,7 @@ export function Slider({
   useEffect(() => {
     let val = value;
     let vals = values;
+
     if (rangeValues) {
       if (isRange && values) {
         vals = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
@@ -429,10 +435,10 @@ export function Slider({
     }
 
     if (startEndValues) {
-      let fullVals = getAsFullVal(value, values);
+      let fullValues = getAsFullValue(value, values);
 
-      val = fullVals.value;
-      vals = fullVals.values;
+      val = fullValues.value;
+      vals = fullValues.values;
     }
 
     updateInputValues({ values: vals, value: val }, isRange, input0, input1);
@@ -588,8 +594,14 @@ export function Slider({
           if (startEndValues?.[0] && values[0] < originalMin) {
             finalValues[0] = startEndValues[0];
           }
+          if (startEndValues?.[0] && values[1] < originalMin) {
+            finalValues[1] = startEndValues[0];
+          }
           if (startEndValues?.[1] && values[1] > originalMax) {
             finalValues[1] = startEndValues[1];
+          }
+          if (startEndValues?.[1] && values[0] > originalMax) {
+            finalValues[0] = startEndValues[1];
           }
 
           returnValue = isRange ? [roundIfNumber(finalValues[0]), roundIfNumber(finalValues[1])] : roundIfNumber(finalValues[1]);
@@ -651,11 +663,12 @@ export function Slider({
       Array.from(Array(2).keys()).map((k, i) => {
         let displayValue: string | number = '';
 
-        displayValue = startEndValues ? startEndValues[i] : (max - min) * k + min;
+        displayValue = startEndValues && startEndValues[i] ? startEndValues[i] : (max - min) * k + min;
 
         return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
       });
 
+    // todo: reuse code for getMarkers and getMarkerValues.
     if (markAlignment === 'center') {
       return <div className="steps">{getMarkers()}</div>;
     } else {
@@ -675,7 +688,7 @@ export function Slider({
       Array.from(Array(2).keys()).map((k, i) => {
         let displayValue: string | number = '';
 
-        displayValue = startEndValues ? startEndValues[i] : (max - min) * k + min;
+        displayValue = startEndValues && startEndValues[i] ? startEndValues[i] : (max - min) * k + min;
 
         return (
           <div key={k} className="marker">
@@ -691,18 +704,27 @@ export function Slider({
     (index: number) => {
       // Default case: use numerical value
       if (!rangeValues) {
-        let finalValues: (number | string)[] = [...currentValues];
+        let returnValues: (number | string | null)[] = [...currentValues];
+
         if (startEndValues) {
-          // When using a numerical range (not range values), use startEndValues in the return as well.
           if (startEndValues?.[0] && currentValues[0] < originalMin) {
-            finalValues[0] = startEndValues[0];
+            returnValues[0] = startEndValues[0];
           }
+
+          if (startEndValues?.[0] && currentValues[0] > originalMax) {
+            returnValues[0] = startEndValues[1];
+          }
+
           if (startEndValues?.[1] && currentValues[1] > originalMax) {
-            finalValues[1] = startEndValues[1];
+            returnValues[1] = startEndValues[1];
+          }
+
+          if (startEndValues?.[1] && currentValues[1] < originalMin) {
+            returnValues[1] = startEndValues[0];
           }
         }
 
-        return finalValues[index];
+        return returnValues[index];
       }
       // Range values: lookup value.
       else {

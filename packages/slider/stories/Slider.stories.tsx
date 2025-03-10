@@ -86,6 +86,46 @@ export const Regular5 = () => {
   );
 };
 
+export const Regular6 = () => {
+  const [value, setValue] = React.useState<string | number>(3);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider
+        onChange={(value) => setValue(value)}
+        value={value}
+        min={2}
+        max={10}
+        showTooltip
+        markers
+        startEndValues={['Less than 2', 'gt 10']}
+      />
+      <button onClick={() => setValue(3)}>Reset</button>
+    </div>
+  );
+};
+
+export const Regular7 = () => {
+  const [value, setValue] = React.useState<string | number>(3);
+
+  return (
+    <div>
+      <output>{value}</output>
+      <Slider
+        onChange={(value) => setValue(value)}
+        value={value}
+        min={2}
+        max={10}
+        showTooltip
+        markers
+        startEndValues={[null, 'gt 10']}
+      />
+      <button onClick={() => setValue(3)}>Reset</button>
+    </div>
+  );
+};
+
 export const Range = () => {
   const [values, setValues] = React.useState([1000, 5008970]);
 
