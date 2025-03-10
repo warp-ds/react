@@ -14,17 +14,18 @@ export type SliderProps = {
   /**  Human readable text alternative for the value */
   'aria-valuetext'?: string;
 
+  // Select the amount of movement per keyboard step (fraction from 0 to 1).
   keyboardStepFactor?: number;
 
+  // Show markers and marker values (at min/max values).
   markers?: boolean;
 
+  // Show tooltips on dragging.
   showTooltip?: boolean;
 
+  // Align mark values in center or contained within the bounds of the component (justified).
   markAlignment?: 'center' | 'justified';
 
   // Choose whether to contain tooltips to within bounds.
   containTooltips?: boolean;
-
-  // Optional start/end values to use in additional to the given range.
-  //startEndValues?: string[];
 };

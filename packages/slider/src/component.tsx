@@ -199,11 +199,12 @@ export function Slider(
     value: number | string;
     onChange?: (value: number | string) => void;
     onChangeAfter?: (value: number | string) => void;
+    // Optional start/end values to use in addition to the given range.
     startEndValues?: (string | null)[];
   } & SliderProps,
 );
 
-// Range values (list of specific values instead of min/max range).
+// With specific range values.
 export function Slider(
   props: { rangeValues: any[]; value: any; onChange?: (value: any) => void; onChangeAfter?: (value: any) => void } & SliderProps,
 );
@@ -667,7 +668,6 @@ export function Slider({
         return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
       });
 
-    // todo: reuse code for getMarkers and getMarkerValues.
     if (markAlignment === 'center') {
       return <div className="steps">{getMarkers()}</div>;
     } else {
@@ -740,13 +740,15 @@ export function Slider({
   }, []);
 
   const setStyleTooltips = useCallback((values, wrapperRef, isRange, max, min, i = -1) => {
+    // Get tooltip and arrow refs.
     const t0 = tooltip0.current;
     const t1 = tooltip1.current;
     const a0 = tooltipArrow0.current;
     const a1 = tooltipArrow1.current;
 
-    // initial.
+    // Set the style for the elements.
     if (i == -1) {
+      // Initial style.
       if (t0 && t1 && a0 && a1) {
         for (let n of [0, 1]) {
           const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef, containTooltips);
@@ -758,6 +760,7 @@ export function Slider({
         }
       }
     } else {
+      // On movement.
       if (t0 && t1 && a0 && a1) {
         const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef, containTooltips);
 
@@ -808,6 +811,9 @@ export function Slider({
   );
 }
 
+/**
+ * Get full tooltiop CSS, to set its position in along the slider track.
+ */
 const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref, containTooltips) => {
   const width = wrapperRef.current?.clientWidth || 500;
 
@@ -830,7 +836,13 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
   const ttx0 = tx0;
   const ttx1 = tx1;
 
+  // If containTooltips is true, the tooltip boxes only move up to the start/end limits.
   if (containTooltips) {
+    const boundingRect = (wrapperRef.current as HTMLDivElement).getBoundingClientRect();
+
+    const left = boundingRect.left;
+    const right = boundingRect.right;
+    
     const w = getEstimatedWidth(currentValues[i], widthref);
 
     let hw = w * 0.5;
@@ -838,24 +850,24 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
     const th = thumbWidth * 0.5;
 
     if (isRange) {
-      if (l0 + hw + th > 510) {
+      if (l0 + hw + th > right) {
         r0 = true;
         tx0 = '';
       }
 
-      if (l0 - hw - th < 10) {
-        l0 = 10;
+      if (l0 - hw - th < left) {
+        l0 = left;
         tx0 = '';
       }
     }
 
-    if (l1 + hw + th > 510) {
+    if (l1 + hw + th > right) {
       tx1 = '';
       r1 = true;
     }
 
-    if (l1 - hw - th < 10) {
-      l1 = 10;
+    if (l1 - hw - th < left) {
+      l1 = left;
       tx1 = '';
     }
 
