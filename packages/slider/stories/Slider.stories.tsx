@@ -284,7 +284,7 @@ export const Range10changeafter = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <br/>
+      <br />
       <output>
         {values2[0]} - {values2[1]}
       </output>
@@ -345,8 +345,63 @@ export const DualRangeValues2 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip markers />
+      <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip markers markAlignment="justified" />
       <button onClick={() => setValues(['06:30', '08:30'])}>Reset</button>
+    </div>
+  );
+};
+
+export const DualRangeValues3 = () => {
+  const [values, setValues] = React.useState([
+    {
+      label: '01/01',
+    },
+    {
+      label: '06/01',
+    },
+  ]);
+
+  const range = [
+    {
+      label: '01/01',
+    },
+    {
+      label: '02/01',
+    },
+    {
+      label: '03/01',
+    },
+    {
+      label: '04/01',
+    },
+    {
+      label: '05/01',
+    },
+    {
+      label: '06/01',
+    },
+  ];
+
+  return (
+    <div>
+      <output>
+        {values[0].label} - {values[1].label}
+      </output>
+      <Slider onChange={(values) => setValues(values)} values={values} rangeValues={range} showTooltip markers markAlignment="justified" />
+      <button
+        onClick={() =>
+          setValues([
+            {
+              label: '01/01',
+            },
+            {
+              label: '06/01',
+            },
+          ])
+        }
+      >
+        Reset
+      </button>
     </div>
   );
 };

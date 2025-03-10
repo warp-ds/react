@@ -167,6 +167,10 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 `;
 
+type ObjectRangeValue = { label: string; [key: string]: any };
+
+type RangeValue = string | ObjectRangeValue;
+
 /* 
 New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
 Uses function overloading to provide two interfaces (for one or two values).
@@ -207,7 +211,12 @@ export function Slider(
 
 // With specific range values.
 export function Slider(
-  props: { rangeValues: any[]; value: any; onChange?: (value: any) => void; onChangeAfter?: (value: any) => void } & SliderProps,
+  props: {
+    rangeValues: RangeValue[];
+    value: RangeValue;
+    onChange?: (value: RangeValue) => void;
+    onChangeAfter?: (value: RangeValue) => void;
+  } & SliderProps,
 );
 
 // Range slider.
@@ -233,7 +242,12 @@ export function Slider(
 );
 // With specific range values.
 export function Slider(
-  props: { rangeValues: any[]; values: any[]; onChange?: (values: any[]) => void; onChangeAfter?: (value: any[]) => void } & SliderProps,
+  props: {
+    rangeValues: RangeValue[];
+    values: RangeValue[];
+    onChange?: (values: RangeValue[]) => void;
+    onChangeAfter?: (value: RangeValue[]) => void;
+  } & SliderProps,
 );
 
 export function Slider({
@@ -258,7 +272,7 @@ export function Slider({
 }: {
   max?: number;
   min?: number;
-  rangeValues?: any[];
+  rangeValues?: RangeValue[];
   value?: number | any;
   values?: number[] | any[];
   onChange?: any;
@@ -286,9 +300,13 @@ export function Slider({
   }
 
   // For a given range value (that appears in the rangevalue array), get the index.
-  const getRangeValueIndex = useCallback((value) => {
+  const getRangeValueIndex = useCallback((value: number | RangeValue) => {
     if (rangeValues) {
-      return rangeValues?.findIndex((v) => v === value);
+      if (typeof value === 'string') {
+        return rangeValues?.findIndex((v) => v === value);
+      } else {
+        return rangeValues?.findIndex((v) => (v as ObjectRangeValue).label === (value as ObjectRangeValue).label);
+      }
     } else {
       return 0;
     }
@@ -590,13 +608,13 @@ export function Slider({
   }, []);
 
   // Get full, adjusted onChange value (including startEndValues, etc.)
-  const getOnChangeReturnValue = (values) => {
+  const getOnChangeReturnValue = (values: number[]) => {
     let returnValue: (number | string)[] | number | string;
 
     let finalValues: (number | string)[] = [...values];
 
+    // When using a numerical range (not range values), use startEndValues in the return as well.
     if (!rangeValues) {
-      // When using a numerical range (not range values), use startEndValues in the return as well.
       if (startEndValues?.[0] && values[0] < originalMin) {
         finalValues[0] = startEndValues[0];
       }
@@ -666,7 +684,7 @@ export function Slider({
 
         displayValue = startEndValues && startEndValues[i] ? startEndValues[i] : (max - min) * k + min;
 
-        return <div>{rangeValues ? rangeValues[displayValue] : displayValue}</div>;
+        return <div>{rangeValues ? getRangeValueItem(displayValue as number) : displayValue}</div>;
       });
 
     if (markAlignment === 'center') {
@@ -681,6 +699,21 @@ export function Slider({
     }
   }, []);
 
+  // Get the range value item text at the given index.
+  const getRangeValueItem = (index: number) => {
+    if (rangeValues) {
+      const element = rangeValues[index];
+
+      if (typeof element === 'string') {
+        return element;
+      } else {
+        return element.label;
+      }
+    } else {
+      return '';
+    }
+  };
+
   // Get slider markers (steps), showing step values below the slider.
   // Used for center-aligned display values.
   const getMarkers = useCallback(
@@ -693,7 +726,7 @@ export function Slider({
         return (
           <div key={k} className="marker">
             <div className="marker-line"></div>
-            <div className="marker-value">{rangeValues ? rangeValues[displayValue] : displayValue}</div>
+            <div className="marker-value">{rangeValues ? getRangeValueItem(displayValue as number) : displayValue}</div>
           </div>
         );
       }),
@@ -730,7 +763,7 @@ export function Slider({
       else {
         const i = currentValues[index];
 
-        return rangeValues[i];
+        return typeof rangeValues[i] == 'string' ? rangeValues[i] : rangeValues[i]?.label;
       }
     },
     [currentValues],
