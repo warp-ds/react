@@ -47,6 +47,7 @@ input[type='range']:focus::-webkit-slider-thumb {
 input[type='range']:focus-visible::-webkit-slider-thumb {
   outline: 2px solid #06BEFB;
   outline-offset: 1px;
+  box-shadow: none;
 }
 input[type='range']::-webkit-slider-runnable-track {
   height: 4px;
@@ -735,23 +736,38 @@ export function Slider({
     [currentValues],
   );
 
-  const setStyle = useCallback((trackRef, values, wrapperRef, isRange, max, min) => {
-    if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
-  }, []);
+  const setStyle = useCallback(
+    (trackRef: RefObject<any>, values: number[], wrapperRef: RefObject<any>, isRange: boolean, max: number, min: number) => {
+      if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
+    },
+    [],
+  );
 
-  const setStyleTooltips = useCallback((values, wrapperRef, isRange, max, min, i = -1) => {
-    // Get tooltip and arrow refs.
-    const t0 = tooltip0.current;
-    const t1 = tooltip1.current;
-    const a0 = tooltipArrow0.current;
-    const a1 = tooltipArrow1.current;
+  const setStyleTooltips = useCallback(
+    (values: number[], wrapperRef: RefObject<any>, isRange: boolean, max: number, min: number, i = -1) => {
+      // Get tooltip and arrow refs.
+      const t0 = tooltip0.current;
+      const t1 = tooltip1.current;
+      const a0 = tooltipArrow0.current;
+      const a1 = tooltipArrow1.current;
 
-    // Set the style for the elements.
-    if (i == -1) {
-      // Initial style.
-      if (t0 && t1 && a0 && a1) {
-        for (let n of [0, 1]) {
-          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef, containTooltips);
+      // Set the style for the elements.
+      if (i == -1) {
+        // Initial style.
+        if (t0 && t1 && a0 && a1) {
+          for (let n of [0, 1]) {
+            const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, n, widthRef, containTooltips);
+
+            Object.assign(t0.style, l0);
+            Object.assign(t1.style, l1);
+            Object.assign(a0.style, la0);
+            Object.assign(a1.style, la1);
+          }
+        }
+      } else {
+        // On movement.
+        if (t0 && t1 && a0 && a1) {
+          const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef, containTooltips);
 
           Object.assign(t0.style, l0);
           Object.assign(t1.style, l1);
@@ -759,18 +775,9 @@ export function Slider({
           Object.assign(a1.style, la1);
         }
       }
-    } else {
-      // On movement.
-      if (t0 && t1 && a0 && a1) {
-        const [l0, l1, la0, la1] = getTooltipCSS(values, wrapperRef, isRange, max, min, i, widthRef, containTooltips);
-
-        Object.assign(t0.style, l0);
-        Object.assign(t1.style, l1);
-        Object.assign(a0.style, la0);
-        Object.assign(a1.style, la1);
-      }
-    }
-  }, []);
+    },
+    [],
+  );
 
   // Render the range input and tool tips.
   // For a range slider, render two sets of elements: one for the lower and one for the upper value.
@@ -814,7 +821,16 @@ export function Slider({
 /**
  * Get full tooltiop CSS, to set its position in along the slider track.
  */
-const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref, containTooltips) => {
+const getTooltipCSS = (
+  currentValues: number[],
+  wrapperRef: RefObject<HTMLElement>,
+  isRange: boolean,
+  max: number,
+  min: number,
+  i: number,
+  widthref: RefObject<HTMLElement>,
+  containTooltips: boolean,
+) => {
   const width = wrapperRef.current?.clientWidth || 500;
 
   const left0 = ((currentValues[0] - min) / (max - min)) * width;
@@ -824,8 +840,8 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
   let l0 = left0 + offset0 + 0.37 * thumbWidth;
   let l1 = left1 + offset1 + 0.37 * thumbWidth;
 
-  let r0: boolean = false;
-  let r1: boolean = false;
+  let r0 = false;
+  let r1 = false;
 
   const lt0 = l0;
   const lt1 = l1;
@@ -912,11 +928,11 @@ const getTooltipCSS = (currentValues, wrapperRef, isRange, max, min, i, widthref
 };
 
 // Determine (estimate) the width of the tooltip box with the given value, using the width-check element.
-const getEstimatedWidth = (val: any, widthRef: RefObject<HTMLElement>): any => {
+const getEstimatedWidth = (val: number, widthRef: RefObject<HTMLElement>): any => {
   const r = widthRef.current;
 
   if (r) {
-    r.innerText = val;
+    r.innerText = val.toString();
 
     return r.clientWidth;
   }
@@ -1000,7 +1016,7 @@ const getAsValueArray = (
   }
 };
 
-const getTrackStyle = (currentValues, wrapperRef, isRange, max, min) => {
+const getTrackStyle = (currentValues: number[], wrapperRef: RefObject<HTMLElement>, isRange: boolean, max: number, min: number) => {
   let widthFraction = (currentValues[1] - currentValues[0]) / (max - min);
 
   const width = wrapperRef.current?.clientWidth || 500;
