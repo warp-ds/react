@@ -936,6 +936,14 @@ const getTooltipCSS = (
     const left = boundingRect.left;
     const right = boundingRect.right;
 
+    // The following code is needed in order to estiamte (calculate) the width of the tooltip box, with
+    // the given value, before it's rendered.
+    //
+    // This is needed so that an exact position can be determined, without first rendering and then adjusting the tooltip, which could cause some
+    // flickering/stuttering.
+    //
+    // To do this, the value is rendered in the hidden width-check div, the width is then measured, and that value is used to calculate
+    // tooltip size and alignment.
     const w = getEstimatedWidth(currentValues[i], widthref);
 
     let hw = w * 0.5;
