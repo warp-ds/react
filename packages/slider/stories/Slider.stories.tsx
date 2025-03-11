@@ -156,8 +156,7 @@ export const Range2 = () => {
   );
 };
 
-// wip.
-/* export const Range3 = () => {
+export const Range3 = () => {
   const [values, setValues] = React.useState([-100, 100]);
 
   return (
@@ -165,11 +164,11 @@ export const Range2 = () => {
       <output>
         {values[0]} - {values[1]}
       </output>
-      <Slider values={values} onChange={(nums) => setValues(nums)} min={-80} max={80} step={1} showTooltips markers  />
+      <Slider values={values} onChange={(nums) => setValues(nums)} min={-150} max={150} step={1} showTooltips markers  />
       <button onClick={() => setValues([-100, 100])}>Reset</button>
     </div>
   );
-}; */
+};
 
 export const Range4 = () => {
   const [values, setValues] = React.useState([1000, 9000]);

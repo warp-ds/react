@@ -229,7 +229,7 @@ export function Slider(
     min?: number;
     values: number[];
     onChange?: (values: number[]) => void;
-    onChangeAfter?: (value: number[]) => void;
+    onChangeAfter?: (values: number[]) => void;
   } & SliderProps,
 );
 // With custom start/end values.
@@ -239,7 +239,7 @@ export function Slider(
     min?: number;
     values: (number | string)[];
     onChange?: (values: (number | string)[]) => void;
-    onChangeAfter?: (value: (number | string)[]) => void;
+    onChangeAfter?: (values: (number | string)[]) => void;
     startEndValues?: (string | null)[];
   } & SliderProps,
 );
@@ -249,7 +249,7 @@ export function Slider(
     rangeValues: RangeValue[];
     values: RangeValue[];
     onChange?: (values: RangeValue[]) => void;
-    onChangeAfter?: (value: RangeValue[]) => void;
+    onChangeAfter?: (values: RangeValue[]) => void;
   } & SliderProps,
 );
 
@@ -276,8 +276,8 @@ export function Slider({
   max?: number;
   min?: number;
   rangeValues?: RangeValue[];
-  value?: number | any;
-  values?: number[] | any[];
+  value?: number | RangeValue;
+  values?: (number | string)[] | RangeValue[];
   onChange?: any;
   onChangeAfter?: any;
   startEndValues?: (string | null)[];
@@ -317,15 +317,15 @@ export function Slider({
 
   // Get initial values. Like getValueArray, but converts range values to index values as well.
   const getInitialValues = useCallback(() => {
-    let initialValues: number[];
+    let initialValues: number[] = [];
     if (rangeValues) {
       if (isRange && values) {
         initialValues = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
-      } else {
+      } else if (value) {
         initialValues = [min, getRangeValueIndex(value)];
       }
     } else {
-      initialValues = values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)];
+      initialValues = values ? getAdjustedValueArray(values as number[], step) : [min, getAdjustedValue(value as number, step)];
 
       if (values && !initialValues.every((v) => !isNaN(v))) {
         return [min, max];
@@ -335,7 +335,7 @@ export function Slider({
   }, []);
 
   // Get values in array form, using either the value or values prop.
-  const getValueArray = () => (values ? getAdjustedValueArray(values, step) : [min, getAdjustedValue(value as number, step)]);
+  const getValueArray = () => (values ? getAdjustedValueArray(values as number[], step) : [min, getAdjustedValue(value as number, step)]);
 
   // Current slider values.
   // In the rangeValues case, this represents the index (or indices) of the current values.
@@ -385,7 +385,7 @@ export function Slider({
   }, []);
 
   // Get the numerical value/values. Converts input values that are either numerical or startEndValues to numerical values.
-  const getAsFullValue = useCallback((value, values) => {
+  const getAsFullValue = useCallback((value: any, values: any) => {
     if (value && startEndValues) {
       const i = startEndValues.findIndex((v) => v == value);
 
@@ -416,10 +416,12 @@ export function Slider({
   // Update current values on prop change.
   useEffect(() => {
     // Validation.
-    validate(value, values, min, max);
+    if ((value && typeof value === 'number') || (values && typeof values[0] === 'number')) {
+      validate(value as number, values as number[], min, max);
+    }
 
     // If start/end values, convert to numerical value.
-    if (startEndValues) {
+    if (!rangeValues && startEndValues) {
       let vals = getAsFullValue(value, values);
 
       value = vals.value;
@@ -433,7 +435,7 @@ export function Slider({
         if (isRange && values) {
           values = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
         } else {
-          value = getRangeValueIndex(value);
+          value = getRangeValueIndex(value as number);
         }
       }
 
@@ -447,7 +449,7 @@ export function Slider({
         setStyleTooltips(valueArray, wrapperRef, isRange, max, min);
       }
 
-      updateInputValues({ values, value }, isRange, input0, input1);
+      updateInputValues({ values: values as number[], value: value as number }, isRange, input0, input1);
     }
   }, [values, value]);
 
@@ -460,7 +462,7 @@ export function Slider({
       if (isRange && values) {
         vals = [getRangeValueIndex(values[0]), getRangeValueIndex(values[1])];
       } else {
-        val = getRangeValueIndex(value);
+        val = getRangeValueIndex(value as number);
       }
     }
 
@@ -471,15 +473,13 @@ export function Slider({
       vals = fullValues.values;
     }
 
-    updateInputValues({ values: vals, value: val }, isRange, input0, input1);
+    updateInputValues({ values: vals as number[], value: val as number }, isRange, input0, input1);
   }, [input0.current, input1.current]);
 
   // Call onchangeafter.
   useEffect(() => {
-    if (!isMoving && onChangeAfter) {
-      const returnValue = getOnChangeReturnValue(currentValues);
-
-      onChangeAfter(returnValue);
+    if (onChangeAfter && !isMoving) {
+      onChangeAfter(getOnChangeReturnValue(currentValues));
     }
   }, [isMoving]);
 
@@ -750,6 +750,7 @@ export function Slider({
     [],
   );
 
+  // Get full value as a display value.
   const getFullValue = useCallback(
     (index: number) => {
       // Default case: use numerical value
@@ -786,6 +787,7 @@ export function Slider({
     [currentValues],
   );
 
+  // Set track ref width.
   const setStyle = useCallback(
     (trackRef: RefObject<any>, values: number[], wrapperRef: RefObject<any>, isRange: boolean, max: number, min: number) => {
       if (trackRef.current) trackRef.current.style.cssText = getTrackStyle(values, wrapperRef, isRange, max, min);
@@ -793,6 +795,7 @@ export function Slider({
     [],
   );
 
+  // Set tooltip positions.
   const setStyleTooltips = useCallback(
     (values: number[], wrapperRef: RefObject<any>, isRange: boolean, max: number, min: number, i = -1) => {
       // Get tooltip and arrow refs.
@@ -1126,7 +1129,7 @@ const getAdjustedValueArray = (values: number[], step: number) => {
 };
 
 // Toolip component that shows a given value above the slider thumb.
-const ToolTip = ({ display, top, children, ref }) => {
+const ToolTip = ({ display, top, children, ref }: { display: boolean; top: boolean; children: any; ref: RefObject<any> }) => {
   return (
     <div className="tooltip" style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }} ref={ref}>
       {children}
