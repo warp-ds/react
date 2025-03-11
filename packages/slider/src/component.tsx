@@ -182,19 +182,36 @@ type ObjectRangeValue = { label: string; [key: string]: any };
 
 type RangeValue = string | ObjectRangeValue;
 
-/* 
-New slider component, capable of being used as either a standard slider (one value) or a range slider (using an array of two values).
-Uses function overloading to provide two interfaces (for one or two values).
+/*
+Slider / range slider component.
 
-The slider component uses the native input type="range" feature to render the slider, as well as additional
-overlay elements to render the progress bar.
+This is a slider component that allows for either one or two thumbs (in the second case, known as a Range Slider),
+with support for multiple input formats and a number of options.
 
-In the case of two values, two input elements are rendered, allowing setting a range using two draggable points.
+The inputs can either be a min/max, or an array of specific values that define the range (here known as RangeValues).
 
-For rangeValues:
-The internal values represent the numerical index of each value in the array.
-Where the value is displayed in the UI, the full value is looked up (in the array) and used.
-Values that are passed in (as props) are converted to the array index (using a find), and used that way.
+## Implementation
+The component is implemented using native input type="range" elements. These are used to render the sliders, and additional elements
+are used for the active track, tooltips and markers / marker values.
+
+For a single (non-range) slider, only one of the input elements is accessible. The internal data representation is the same, but only the second (upper)
+value in the array is used.
+
+## Performance
+Since this component features draggable interactive elements, using a library like React, special attention has been paid to performance.
+
+Many of the technical design / architecture choices of the component are focused on providing optimal rendering performance, leading to some unusual code.
+In a lot of places, refs are used and style/properties/attributes are set directly, instead of setting them declaratively.
+
+A cancelling timeout is used on value change, to provide smoother updates (and not overload rendering).
+
+In short: any time you wonder: "why is this code written like this?" the answer is likely for performance.
+
+During testing, 20x cpu slowdown has typically been used to gauge interaction performance.
+
+## Interfaces / function overloading
+Currently, function overloading is used to provide a range of specific interfaces, where onChange return types (and other props)
+always match the given input format used, while also limiting the specific combinations of inputs that are allowed.
 */
 
 // Default slider.
@@ -219,7 +236,6 @@ export function Slider(
     startEndValues?: (string | null)[];
   } & SliderProps,
 );
-
 // With specific range values.
 export function Slider(
   props: {
