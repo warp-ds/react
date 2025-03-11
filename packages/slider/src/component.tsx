@@ -168,6 +168,17 @@ input[type='range']::-webkit-slider-runnable-track {
   width: max-content;
   height: 0px;
 }
+.wrapper-disabled {
+  .active-track {
+    background-color: var(--w-s-color-background-disabled);
+  }
+  input[type='range']::-webkit-slider-thumb {
+    background-color: var(--w-s-color-background-disabled);
+  }
+  input[type='range']:hover::-webkit-slider-thumb {
+    box-shadow: none;
+  }
+}
 `;
 
 type ObjectRangeValue = { label: string; [key: string]: any };
@@ -838,7 +849,7 @@ export function Slider({
   return (
     <>
       <style>{style}</style>
-      <div className={'ccSlider.wrapper' + ' wrapper'} onContextMenu={(e) => e.preventDefault()}>
+      <div className={`wrapper ${disabled ? 'wrapper-disabled' : ''}`} onContextMenu={(e) => e.preventDefault()}>
         <div className="tooltips">
           <ToolTip display={renderToolTip0 && isRange} top={input0Active} ref={tooltip0}>
             {getFullValue(0)}
