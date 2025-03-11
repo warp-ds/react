@@ -1,8 +1,5 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
-import { classNames } from '@chbphone55/classnames';
-import { slider as ccSlider } from '@warp-ds/css/component-classes';
-
 import { SliderProps } from './props.js';
 import { clamp, clampValues, round, roundIfNumber } from './math.js';
 
@@ -1098,7 +1095,17 @@ const getTrackStyle = (currentValues: number[], wrapperRef: RefObject<HTMLElemen
     margin-left: ${left + 'px'};`;
 };
 
-const ToolTipArrow = ({ display, top, ref }) => {
+// Toolip component that shows a given value above the slider thumb.
+const ToolTip = ({ display, top, children, ref }: { display: boolean; top: boolean; children: any; ref: RefObject<any> }) => {
+  return (
+    <div className="tooltip" style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }} ref={ref}>
+      {children}
+    </div>
+  );
+};
+
+// Tooltip arrow, with settable visibility and order (z-index).
+const ToolTipArrow = ({ display, top, ref }: { display: boolean; top: boolean; ref: RefObject<any> }) => {
   return (
     <svg
       style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }}
@@ -1137,13 +1144,4 @@ const getAdjustedValue = (value: number, step: number) => {
 // Adjust array values.
 const getAdjustedValueArray = (values: number[], step: number) => {
   return [getAdjustedValue(values[0], step), getAdjustedValue(values[1], step)];
-};
-
-// Toolip component that shows a given value above the slider thumb.
-const ToolTip = ({ display, top, children, ref }: { display: boolean; top: boolean; children: any; ref: RefObject<any> }) => {
-  return (
-    <div className="tooltip" style={{ visibility: display ? 'visible' : 'hidden', zIndex: top ? 10 : 1 }} ref={ref}>
-      {children}
-    </div>
-  );
 };
