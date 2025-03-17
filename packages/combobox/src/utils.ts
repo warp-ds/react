@@ -9,6 +9,7 @@ export function createOptionsWithIdAndMatch(options: ComboboxOption[], currentIn
   return options.map((option) => ({
     ...option,
     id: generateId(),
+    key: option.key || option.value,
     currentInputValue,
   }));
 }

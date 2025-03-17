@@ -1,10 +1,12 @@
 export type ComboboxOption = {
   value: string;
   label?: string;
+  key?: string;
 };
 
 export type OptionWithIdAndMatch = ComboboxOption & {
   id: string;
+  key: string;
   currentInputValue: string;
 };
 

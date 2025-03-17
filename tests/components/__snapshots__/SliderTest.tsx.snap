@@ -9,7 +9,7 @@ exports[`Slider > renders correctly 1`] = `
       class="absolute s-bg-disabled-subtle h-4 top-20 rounded-4 w-full "
     />
     <div
-      class="absolute h-6 top-[19px] rounded-4 s-bg-primary"
+      class="absolute h-6 top-[1.92rem] rounded-4 s-bg-primary"
       style="left: 0px;"
     />
     <div
