@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { beforeEach, vi } from 'vitest';
