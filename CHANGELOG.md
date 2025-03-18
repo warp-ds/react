@@ -1,3 +1,10 @@
+## [2.1.1-next.3](https://github.com/warp-ds/react/compare/v2.1.1-next.2...v2.1.1-next.3) (2025-03-18)
+
+
+### Bug Fixes
+
+* Combobox filtering when too many options are in the dom ([#313](https://github.com/warp-ds/react/issues/313)) ([866d82f](https://github.com/warp-ds/react/commit/866d82f7a6b6923dfabc6ed85d4fe21bf1c91183))
+
 ## [2.1.1-next.2](https://github.com/warp-ds/react/compare/v2.1.1-next.1...v2.1.1-next.2) (2025-03-10)
 
 
