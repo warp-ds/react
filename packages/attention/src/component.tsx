@@ -35,6 +35,8 @@ const variantClasses = {
   },
 };
 
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+
 export function Attention(props: AttentionProps) {
   let {
     noArrow,
@@ -54,8 +56,6 @@ export function Attention(props: AttentionProps) {
     fallbackPlacements,
     ...rest
   } = props;
-
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
   const [actualDirection, setActualDirection] = useState(placement);
   // Don't show attention element before its position is computed on first render

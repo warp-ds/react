@@ -66,6 +66,52 @@ describe('Combobox', () => {
     expect(option2).toBeNull();
   });
 
+  it('filters options based on user input, with many options', () => {
+    const MAX_NUMBER = 300;
+    const props: ComboboxProps = {
+      id: 'combobox',
+      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({ value: 'Option ' + v, key: 'key' + v })),
+      value: '',
+      label: 'Test Combobox',
+      onChange: vi.fn(),
+      onSelect: vi.fn(),
+    };
+
+    render(<ComboboxWrapper {...props} />);
+    const input = screen.getByRole('combobox');
+    fireEvent.change(input, { target: { value: 'Option ' + MAX_NUMBER } });
+
+    for (let num = 0; num < MAX_NUMBER; ++num) {
+      const option = screen.queryByText('Option ' + num);
+      expect(option).not.toBeInTheDocument();
+    }
+    const option300 = screen.queryByText('Option ' + MAX_NUMBER);
+    expect(option300).toBeInTheDocument();
+  });
+
+  it('filters options based on user input, with many options, using value as a fallback key', () => {
+    const MAX_NUMBER = 300;
+    const props: ComboboxProps = {
+      id: 'combobox',
+      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({ value: 'Option ' + v })),
+      value: '',
+      label: 'Test Combobox',
+      onChange: vi.fn(),
+      onSelect: vi.fn(),
+    };
+
+    render(<ComboboxWrapper {...props} />);
+    const input = screen.getByRole('combobox');
+    fireEvent.change(input, { target: { value: 'Option ' + MAX_NUMBER } });
+
+    for (let num = 0; num < MAX_NUMBER; ++num) {
+      const option = screen.queryByText('Option ' + num);
+      expect(option).not.toBeInTheDocument();
+    }
+    const option300 = screen.queryByText('Option ' + MAX_NUMBER);
+    expect(option300).toBeInTheDocument();
+  });
+
   it('selects an option on click', async () => {
     render(<ComboboxWrapper />);
     const input = screen.getByRole('combobox');

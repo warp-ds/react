@@ -14,9 +14,9 @@ import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { PillProps } from './props.js';
 
-export function Pill(props: PillProps) {
-  activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
+activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
+export function Pill(props: PillProps) {
   const buttonClasses = classNames(!props.canClose && props.className, [
     ccPill.button,
     ccPill.label,

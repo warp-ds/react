@@ -1,3 +1,24 @@
+## [2.1.1-next.3](https://github.com/warp-ds/react/compare/v2.1.1-next.2...v2.1.1-next.3) (2025-03-18)
+
+
+### Bug Fixes
+
+* Combobox filtering when too many options are in the dom ([#313](https://github.com/warp-ds/react/issues/313)) ([866d82f](https://github.com/warp-ds/react/commit/866d82f7a6b6923dfabc6ed85d4fe21bf1c91183))
+
+## [2.1.1-next.2](https://github.com/warp-ds/react/compare/v2.1.1-next.1...v2.1.1-next.2) (2025-03-10)
+
+
+### Bug Fixes
+
+* Move call to activateI18n for the Steps component ([#312](https://github.com/warp-ds/react/issues/312)) ([aa5eabb](https://github.com/warp-ds/react/commit/aa5eabbb8f9c481f417c39daed69e5ce20898069))
+
+## [2.1.1-next.1](https://github.com/warp-ds/react/compare/v2.1.0...v2.1.1-next.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* **lingui:** Move activateI18n outside of components ([#309](https://github.com/warp-ds/react/issues/309)) ([5907961](https://github.com/warp-ds/react/commit/59079617738ea903a70d8564130da0ba484f85b3))
+
 # [2.1.0](https://github.com/warp-ds/react/compare/v2.0.3...v2.1.0) (2025-02-13)
 
 
