@@ -1,17 +1,17 @@
-import React, { Ref } from 'react';
+import React, { Ref } from "react";
 
-import { classNames } from '@chbphone55/classnames';
-import { i18n } from '@lingui/core';
-import { pagination as ccPagination } from '@warp-ds/css/component-classes';
-import IconChevronLeft16 from '@warp-ds/icons/react/chevron-left-16';
+import { classNames } from "@chbphone55/classnames";
+import { pagination as ccPagination } from "@warp-ds/css/component-classes";
+import IconChevronLeft16 from "@warp-ds/icons/react/chevron-left-16";
 
-import { usePagination } from './PaginationContainer.js';
+import { usePagination } from "./PaginationContainer.js";
+import { i18n } from "../../i18n.js";
 
 type PrevPageProps = {
   /**
    * @default Previous page
    */
-  'aria-label'?: string;
+  "aria-label"?: string;
 
   /** Additional CSS class for the element. */
   className?: string;
@@ -29,40 +29,44 @@ type PrevPageProps = {
   onClick: (event: React.UIEvent<HTMLElement>) => void;
 };
 
-const PrevPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>, PrevPageProps>(
-  ({ className, noFollow, ...props }, ref) => {
-    const { currentPage } = usePagination();
+const PrevPage = React.forwardRef<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  PrevPageProps
+>(({ className, noFollow, ...props }, ref) => {
+  const { currentPage } = usePagination();
 
-    if (currentPage === 1) {
-      return null;
-    }
+  if (currentPage === 1) {
+    return null;
+  }
 
-    const ariaLabel =
-      props['aria-label'] ??
-      i18n._({
-        id: 'pagination.aria.prev-page',
-        message: 'Previous page',
-        comment: 'Default screenreader message for previous page link in the pagination component',
-      });
-
-    const iconSuffix = i18n._({
-      id: 'pagination.aria.icon-suffix',
-      message: 'icon',
-      comment: 'Suffix added at the end of icon titles when img semantics are lost on an html element',
+  const ariaLabel =
+    props["aria-label"] ??
+    i18n._({
+      id: "pagination.aria.prev-page",
+      message: "Previous page",
+      comment:
+        "Default screenreader message for previous page link in the pagination component",
     });
 
-    return (
-      <a
-        {...props}
-        ref={ref as Ref<HTMLAnchorElement>}
-        className={classNames(className, [ccPagination.link, ccPagination.icon])}
-        rel={`prev${noFollow ? ' nofollow' : ''}`}>
-        <span className={ccPagination.a11y}>{ariaLabel},</span>
-        <IconChevronLeft16 />
-        <span className={ccPagination.a11y}>{iconSuffix}</span>
-      </a>
-    );
-  },
-);
+  const iconSuffix = i18n._({
+    id: "pagination.aria.icon-suffix",
+    message: "icon",
+    comment:
+      "Suffix added at the end of icon titles when img semantics are lost on an html element",
+  });
+
+  return (
+    <a
+      {...props}
+      ref={ref as Ref<HTMLAnchorElement>}
+      className={classNames(className, [ccPagination.link, ccPagination.icon])}
+      rel={`prev${noFollow ? " nofollow" : ""}`}
+    >
+      <span className={ccPagination.a11y}>{ariaLabel},</span>
+      <IconChevronLeft16 />
+      <span className={ccPagination.a11y}>{iconSuffix}</span>
+    </a>
+  );
+});
 
 export default PrevPage;

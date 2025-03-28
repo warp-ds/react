@@ -6,6 +6,7 @@ settings.json
 .vscode
 site/
 coverage/
+.DS_Store
 
 # # i18n related files
 packages/*/src/locales/*/*.mjs
