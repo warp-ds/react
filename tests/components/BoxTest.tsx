@@ -14,6 +14,16 @@ describe('Box', () => {
     expect(screen.getByRole('region')).toBeInTheDocument();
     expect(screen.getByRole('region')).toHaveTextContent('Test Box');
   });
+  test('renders Box component with nullable children', () => {
+    const conditionalVariable = false;
+    render(
+      <Box bleed={true} info={true}>
+        Test Box
+        {conditionalVariable && <div>abc123</div>}
+      </Box>,
+    );
+    expect(screen.getByText('abc123')).toBeInTheDocument();
+  });
 
   test('renders Box component with correct classes when bleed is true', () => {
     const { container } = render(<Box bleed={true}>Test Box</Box>);

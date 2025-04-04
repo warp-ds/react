@@ -4,7 +4,7 @@ export interface BoxProps {
   /**
    * Expand element children
    */
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 
   /**
    * Additional classes to include
