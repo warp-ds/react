@@ -5,7 +5,7 @@ import { i18n } from '@lingui/core';
 import { modal as ccModal } from '@warp-ds/css/component-classes';
 import IconArrowLeft16 from '@warp-ds/icons/react/arrow-left-16';
 import IconClose16 from '@warp-ds/icons/react/close-16';
-import FocusLock from 'react-focus-lock/dist/es2015';
+import FocusLock from 'react-focus-lock/dist/es2015/Lock.js';
 import { setup, teardown } from 'scroll-doctor';
 
 import { activateI18n } from '../../i18n.js';
