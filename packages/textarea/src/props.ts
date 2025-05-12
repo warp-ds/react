@@ -21,7 +21,7 @@ export type TextAreaProps = {
   id?: string;
 
   /** The content to display as the label. */
-  label?: string;
+  label?: React.ReactNode;
 
   /** Handler that is called when the element loses focus. */
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;

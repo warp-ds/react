@@ -30,7 +30,13 @@
     "./components/tabs": "./dist/npm/packages/tabs/index.js",
     "./components/textarea": "./dist/npm/packages/textarea/index.js",
     "./components/textfield": "./dist/npm/packages/textfield/index.js",
-    "./components/toggle": "./dist/npm/packages/toggle/index.js"
+    "./components/toggle": "./dist/npm/packages/toggle/index.js",
+    "./components/affix": "./dist/npm/packages/affix/index.js",
+    "./components/clickable": "./dist/npm/packages/clickable/index.js",
+    "./components/dead-toggle": "./dist/npm/packages/dead-toggle/index.js",
+    "./components/expand-transition": "./dist/npm/packages/expand-transition/index.js",
+    "./components/help-text": "./dist/npm/packages/help-text/index.js",
+    "./components/unstyled-heading": "./dist/npm/packages/unstyled-heading/index.js"
   },
   "module": "dist/npm/index.js",
   "main": "dist/npm/index.js",

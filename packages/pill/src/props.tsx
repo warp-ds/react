@@ -2,7 +2,7 @@ export type PillProps = {
   /**
    * Render text inside of Pill
    */
-  label?: string;
+  label?: React.ReactNode;
 
   /**
    * Label read by screen readers when targetting a pill

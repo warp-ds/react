@@ -1,6 +1,6 @@
 export type ComboboxOption = {
   value: string;
-  label?: string;
+  label?: React.ReactNode;
   key?: string;
 };
 
@@ -24,7 +24,7 @@ export type ComboboxProps = {
   /**
    * Label above input
    */
-  label?: string;
+  label?: React.ReactNode;
 
   /**
    * Input placeholder

@@ -22,7 +22,7 @@ interface AffixProps {
   search?: boolean;
 
   /** Displays a string */
-  label?: string;
+  label?: React.ReactNode;
 
   /** Click handler paired with clear or search */
   onClick?: () => void;
