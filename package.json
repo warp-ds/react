@@ -67,7 +67,7 @@
   "scripts": {
     "build-storybook": "lingui compile && storybook build && touch ./storybook-static/.nojekyll",
     "build:clean": "rm -rf dist",
-    "build:eik": "node esbuild.js 17 && node esbuild.js 18",
+    "build:eik": "node esbuild.js 17 && node esbuild.js 18 && node esbuild.js 19",
     "build:npm": "node build.js",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@warp-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
     "build": "pnpm run build:clean && lingui compile && pnpm run build:npm && pnpm run build:eik && pnpm run build:types",
