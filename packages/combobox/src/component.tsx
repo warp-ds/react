@@ -1,11 +1,11 @@
 import React, {
-  ChangeEvent,
-  Dispatch,
-  FocusEvent,
+  type ChangeEvent,
+  type Dispatch,
+  type FocusEvent,
   forwardRef,
-  MutableRefObject,
-  ReactNode,
-  SetStateAction,
+  type MutableRefObject,
+  type ReactNode,
+  type SetStateAction,
   useEffect,
   useRef,
   useState,
@@ -89,7 +89,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     );
 
     // eslint-disable-next-line
-  }, [options, disableStaticFiltering, value]);
+		}, [options, disableStaticFiltering, value]);
 
   useEffect(() => {
     if (disableStaticFiltering && currentOptions.length && currentOptions.length === 1 && !currentOptions.some((o) => o.value === value)) {
@@ -259,9 +259,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
           })}>
           {currentOptions.map((option) => {
             const display = option.label || option.value;
+            // only highlight text segments if the display is a string
+            const isDisplayString = typeof display === 'string';
             let match: ReactNode = [];
 
-            if (matchTextSegments && !highlightValueMatch) {
+            if (isDisplayString && matchTextSegments && !highlightValueMatch) {
               const startIdx = display.toLowerCase().indexOf(option.currentInputValue.toLowerCase());
 
               if (startIdx !== -1) {
@@ -278,7 +280,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
               } else {
                 match = <span>{display}</span>;
               }
-            } else if (highlightValueMatch) {
+            } else if (isDisplayString && highlightValueMatch) {
               match = highlightValueMatch(display, value);
             }
 
