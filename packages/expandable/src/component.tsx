@@ -42,7 +42,7 @@ export function Expandable(props: ExpandableProps) {
     if (onChange) onChange(!state);
   };
 
-  const wrapperClasses = classNames([ccExpandable.wrapper, box && ccExpandable.box, bleed && ccExpandable.bleed]);
+  const wrapperClasses = classNames(className, [ccExpandable.wrapper, box && ccExpandable.box, bleed && ccExpandable.bleed]);
 
   const buttonClasses = classNames(buttonClass, [ccExpandable.button, box && ccExpandable.buttonBox]);
 
