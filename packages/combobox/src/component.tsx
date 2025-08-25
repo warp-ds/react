@@ -84,7 +84,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   useEffect(() => {
     setCurrentOptions(
       createOptionsWithIdAndMatch(options, value).filter((option) =>
-        !disableStaticFiltering ? option.value.toLocaleLowerCase().includes(value.toLowerCase()) : true,
+        !disableStaticFiltering ? option.value.toLocaleLowerCase().includes(String(value).toLowerCase()) : true,
       ),
     );
 
