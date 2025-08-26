@@ -1,3 +1,23 @@
+# [2.2.0](https://github.com/warp-ds/react/compare/v2.1.1...v2.2.0) (2025-08-26)
+
+
+### Bug Fixes
+
+* build Eik asset for React 19 users ([#321](https://github.com/warp-ds/react/issues/321)) ([aa08f95](https://github.com/warp-ds/react/commit/aa08f9513c8e1dbcbeba54fc015634f3e295c6f8))
+* **toggle:** export all types in toggle props ([#320](https://github.com/warp-ds/react/issues/320)) ([e6e9234](https://github.com/warp-ds/react/commit/e6e923425f71efbdaed7b4484ce12a467ec35f8e))
+* update FocusLock import path to include Lock.js ([#317](https://github.com/warp-ds/react/issues/317)) ([f21d742](https://github.com/warp-ds/react/commit/f21d74253a2807ec646677f4ee1864a4faade956))
+* update label prop types to accept React nodes in multiple components and add helper build function ([#316](https://github.com/warp-ds/react/issues/316)) ([28c718c](https://github.com/warp-ds/react/commit/28c718cab771ffe208143fdf497863db13d37400))
+
+
+### Features
+
+* **combobox:** update type imports and improve display string checks in Combobox highlighting ([#323](https://github.com/warp-ds/react/issues/323)) ([b859ec1](https://github.com/warp-ds/react/commit/b859ec1ee396ca63d7a704cb81d8d3df4bb92fc0))
+
+
+### Reverts
+
+* undo PR [#318](https://github.com/warp-ds/react/issues/318) ([#319](https://github.com/warp-ds/react/issues/319)) ([cf9c7e4](https://github.com/warp-ds/react/commit/cf9c7e447f1caa16d272df09dfd72e41f005f122))
+
 # [2.2.0-next.1](https://github.com/warp-ds/react/compare/v2.1.1...v2.2.0-next.1) (2025-07-29)
 
 
