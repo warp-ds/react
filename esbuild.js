@@ -8,6 +8,7 @@ import esbuild from 'esbuild';
 const versions = new Map([
   ['17', 'v2'],
   ['18', 'v3'],
+  ['19', 'v19'],
 ]);
 
 const version = process.argv[2];

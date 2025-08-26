@@ -1,6 +1,6 @@
 {
   "name": "@warp-ds/react",
-  "version": "2.1.1",
+  "version": "2.2.0-next.1",
   "type": "module",
   "repository": "git@github.com:warp-ds/react.git",
   "license": "Apache-2.0",
@@ -30,7 +30,13 @@
     "./components/tabs": "./dist/npm/packages/tabs/index.js",
     "./components/textarea": "./dist/npm/packages/textarea/index.js",
     "./components/textfield": "./dist/npm/packages/textfield/index.js",
-    "./components/toggle": "./dist/npm/packages/toggle/index.js"
+    "./components/toggle": "./dist/npm/packages/toggle/index.js",
+    "./components/affix": "./dist/npm/packages/affix/index.js",
+    "./components/clickable": "./dist/npm/packages/clickable/index.js",
+    "./components/dead-toggle": "./dist/npm/packages/dead-toggle/index.js",
+    "./components/expand-transition": "./dist/npm/packages/expand-transition/index.js",
+    "./components/help-text": "./dist/npm/packages/help-text/index.js",
+    "./components/unstyled-heading": "./dist/npm/packages/unstyled-heading/index.js"
   },
   "module": "dist/npm/index.js",
   "main": "dist/npm/index.js",
@@ -61,7 +67,7 @@
   "scripts": {
     "build-storybook": "lingui compile && storybook build && touch ./storybook-static/.nojekyll",
     "build:clean": "rm -rf dist",
-    "build:eik": "node esbuild.js 17 && node esbuild.js 18",
+    "build:eik": "node esbuild.js 17 && node esbuild.js 18 && node esbuild.js 19",
     "build:npm": "node build.js",
     "build:types": "tsc && sed 's+declare module \"index\"+declare module \"@warp-ds/react\"+g' ./dist/npm/index.d.ts > ./dist/npm/updated.d.ts && mv ./dist/npm/updated.d.ts ./dist/npm/index.d.ts",
     "build": "pnpm run build:clean && lingui compile && pnpm run build:npm && pnpm run build:eik && pnpm run build:types",
