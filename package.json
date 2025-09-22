@@ -89,7 +89,7 @@
     "@babel/eslint-parser": "7.24.7",
     "@babel/preset-env": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
-    "@eik/cli": "2.0.38",
+    "@eik/cli": "3.1.23",
     "@eik/esbuild-plugin": "1.1.47",
     "@lingui/cli": "5.2.0",
     "@lingui/conf": "5.2.0",
