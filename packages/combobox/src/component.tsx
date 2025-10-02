@@ -24,7 +24,7 @@ import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
 import type { ComboboxProps, OptionWithIdAndMatch } from './props.js';
-import { createOptionsWithIdAndMatch, getAriaText } from './utils.js';
+import { createOptionsWithIdAndMatch, getAriaText, getSelectedOptionText } from './utils.js';
 
 const OPTION_CLASS_NAME = 'w-react-combobox-option';
 const MATCH_SEGMENTS_CLASS_NAME = 'w-react-combobox-match';
@@ -71,7 +71,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     ...rest
   } = props;
 
-  const navigationValueOrInputValue = navigationOption?.value || value;
+  const navigationValueOrInputValue = getSelectedOptionText(navigationOption) || value;
 
   const optionClasses = (option: OptionWithIdAndMatch) =>
     classNames(

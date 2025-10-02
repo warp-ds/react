@@ -34,3 +34,15 @@ export function getAriaText(options: OptionWithIdAndMatch[], value: string) {
 
   return filteredOptionsByInputValue.length ? pluralResults : noResults;
 }
+
+export function getSelectedOptionText(navigationOption: OptionWithIdAndMatch | null) {
+  if (!navigationOption) {
+    return '';
+  }
+
+  if (typeof navigationOption.label === 'string' || typeof navigationOption.label === 'number') {
+    return navigationOption.label.toString();
+  }
+
+  return navigationOption.value;
+}
