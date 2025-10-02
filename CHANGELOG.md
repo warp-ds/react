@@ -1,3 +1,11 @@
+## [2.2.1](https://github.com/warp-ds/react/compare/v2.2.0...v2.2.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* use label for input field preview if available ([#327](https://github.com/warp-ds/react/issues/327)) ([3c01f75](https://github.com/warp-ds/react/commit/3c01f75044541a133685dfe10fe808611ab14ff8))
+* warp-1091 bump css to use border-strong ([#328](https://github.com/warp-ds/react/issues/328)) ([75f3706](https://github.com/warp-ds/react/commit/75f37066e12f4ab8014f9dba0008e80bd52f185d))
+
 ## [2.2.1-next.2](https://github.com/warp-ds/react/compare/v2.2.1-next.1...v2.2.1-next.2) (2025-10-02)
 
 
