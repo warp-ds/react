@@ -1,3 +1,10 @@
+## [2.2.1-next.1](https://github.com/warp-ds/react/compare/v2.2.0...v2.2.1-next.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* warp-1091 bump css to use border-strong ([#328](https://github.com/warp-ds/react/issues/328)) ([75f3706](https://github.com/warp-ds/react/commit/75f37066e12f4ab8014f9dba0008e80bd52f185d))
+
 # [2.2.0](https://github.com/warp-ds/react/compare/v2.1.1...v2.2.0) (2025-08-26)
 
 
