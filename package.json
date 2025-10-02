@@ -61,7 +61,7 @@
   },
   "peerDependencies": {
     "@lingui/core": "5.x",
-    "@warp-ds/css": "2.1.1",
+    "@warp-ds/css": "2.3.0",
     "react": "18.x || 19.x"
   },
   "scripts": {
@@ -145,7 +145,7 @@
     "@chbphone55/classnames": "2.0.0",
     "@lingui/core": "5.2.0",
     "@warp-ds/core": "1.1.8",
-    "@warp-ds/css": "2.1.1",
+    "@warp-ds/css": "2.3.0",
     "@warp-ds/icons": "2.5.0",
     "react-focus-lock": "2.12.1",
     "resize-observer-polyfill": "1.5.1",
