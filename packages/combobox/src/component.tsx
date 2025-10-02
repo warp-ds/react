@@ -71,7 +71,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     ...rest
   } = props;
 
-  const navigationValueOrInputValue = navigationOption?.label || navigationOption?.value || value;
+  const navigationValueOrInputValue = navigationOption?.value || value;
 
   const optionClasses = (option: OptionWithIdAndMatch) =>
     classNames(
