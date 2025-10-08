@@ -159,6 +159,9 @@ importers:
       happy-dom:
         specifier: 14.12.3
         version: 14.12.3
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@20.14.10)(babel-plugin-macros@3.1.0)
@@ -4587,6 +4590,11 @@ packages:
   human-signals@7.0.0:
     resolution: {integrity: sha512-74kytxOUSvNbjrT9KisAbaTZ/eJwD/LrbM/kh5j0IhPuJzwuA19dWvniFGwBzN9rVjg+O/e+F310PjObDXS+9Q==}
     engines: {node: '>=18.18.0'}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -13102,6 +13110,8 @@ snapshots:
   human-signals@5.0.0: {}
 
   human-signals@7.0.0: {}
+
+  husky@9.1.7: {}
 
   iconv-lite@0.4.24:
     dependencies:
