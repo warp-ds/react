@@ -1,9 +1,8 @@
-import React, { createContext } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { steps as ccSteps } from '@warp-ds/css/component-classes';
+import React, { createContext } from 'react';
 
-import { StepsProps } from './props.js';
+import type { StepsProps } from './props.js';
 
 export const StepsContext = createContext<{
   horizontal?: boolean;

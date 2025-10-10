@@ -1,6 +1,5 @@
-import React from 'react';
-
 import IconInfo16 from '@warp-ds/icons/react/info-16';
+import React from 'react';
 
 import { Box } from '../../box/src';
 import { Button } from '../../button/src';
@@ -50,13 +49,17 @@ export function Highlight() {
         aria-controls="highlight-attention-example"
         utility
         onClick={() => setShow(!show)}
-        className="w-max mb-0">
+        className="w-max mb-0"
+      >
         Show an onboarding hint
       </Button>
       <div>
         <div ref={targetEl} className="w-1/3">
           <Box info>
-            <h1>I am a box full with lots of info to show you how the attention element is positioned on the right-top corner.</h1>
+            <h1>
+              I am a box full with lots of info to show you how the attention element is positioned on the right-top
+              corner.
+            </h1>
           </Box>
         </div>
         <Attention
@@ -65,7 +68,8 @@ export function Highlight() {
           isShowing={show}
           targetEl={targetEl}
           id="highlight-attention-example"
-          className="max-w-[359px]">
+          className="max-w-[359px]"
+        >
           <p>I'm a highlight because that box over there is new or something and I need to have a lot of text!</p>
         </Attention>
       </div>
@@ -85,7 +89,8 @@ export function DismissibleHighlight() {
         aria-controls="highlight-attention-example"
         utility
         onClick={() => setShow(!show)}
-        className="w-max mb-0">
+        className="w-max mb-0"
+      >
         Show an onboarding hint
       </Button>
       <div>
@@ -104,7 +109,8 @@ export function DismissibleHighlight() {
           flip={true}
           crossAxis={true}
           fallbackPlacements={['right', 'top']}
-          id="highlight-attention-example">
+          id="highlight-attention-example"
+        >
           <p>I'm a highlight that can dismiss itself</p>
         </Attention>
       </div>
@@ -127,7 +133,8 @@ export function Tooltip() {
           onMouseEnter={() => setShow(true)}
           onMouseLeave={() => setShow(false)}
           onFocus={() => setShow(true)}
-          onBlur={() => setShow(false)}>
+          onBlur={() => setShow(false)}
+        >
           hover this for useless info
         </Button>
       </h1>
@@ -165,7 +172,8 @@ export function Popover() {
           utility
           onClick={() => setShow(!show)}
           className="w-max mb-0"
-          ref={targetEl}>
+          ref={targetEl}
+        >
           Open menu
         </Button>
         <Attention popover placement="bottom" targetEl={targetEl} isShowing={show} id="popover-attention-example">
@@ -206,7 +214,8 @@ export function PopoverIconAsTargetEl() {
           quiet
           onClick={() => setShow(!show)}
           className="w-max mb-0"
-          ref={targetEl}>
+          ref={targetEl}
+        >
           <IconInfo16 />
         </Button>
         <Attention
@@ -216,7 +225,8 @@ export function PopoverIconAsTargetEl() {
           skidding={10}
           targetEl={targetEl}
           isShowing={show}
-          id="popover-icon-target-el-attention-example">
+          id="popover-icon-target-el-attention-example"
+        >
           <ul className="bg-white w-full text-center">
             <li className="p-2 px-40">Hello</li>
             <li className="p-2 px-40">World</li>

@@ -1,8 +1,10 @@
-import { MutableRefObject } from 'react';
-
 import type { Directions } from '@warp-ds/core/attention';
+import type { MutableRefObject } from 'react';
 
-export type VirtualElement = { getBoundingClientRect: () => ClientRect | DOMRect; contextElement?: Element };
+export type VirtualElement = {
+  getBoundingClientRect: () => ClientRect | DOMRect;
+  contextElement?: Element;
+};
 
 export type ReferenceElement = Element | VirtualElement;
 
@@ -44,7 +46,7 @@ export type AttentionProps = {
   /**
    * Render Attention element without arrow
    */
-  noArrow?: Boolean;
+  noArrow?: boolean;
 
   /**
    * Whether Attention element is shown

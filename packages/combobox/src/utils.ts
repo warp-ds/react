@@ -5,7 +5,10 @@ import { generateId } from '../../utils/src/useId.js';
 import type { ComboboxOption, OptionWithIdAndMatch } from './props.js';
 
 // Add id and match to the object
-export function createOptionsWithIdAndMatch(options: ComboboxOption[], currentInputValue: string): OptionWithIdAndMatch[] {
+export function createOptionsWithIdAndMatch(
+  options: ComboboxOption[],
+  currentInputValue: string,
+): OptionWithIdAndMatch[] {
   return options.map((option) => ({
     ...option,
     id: generateId(),
@@ -17,7 +20,9 @@ export function createOptionsWithIdAndMatch(options: ComboboxOption[], currentIn
 export function getAriaText(options: OptionWithIdAndMatch[], value: string) {
   if (!options) return;
 
-  const filteredOptionsByInputValue = options.filter((option) => option.value.toLowerCase().includes(value.toLowerCase()));
+  const filteredOptionsByInputValue = options.filter((option) =>
+    option.value.toLowerCase().includes(value.toLowerCase()),
+  );
 
   const pluralResults = i18n._({
     id: 'combobox.aria.pluralResults',

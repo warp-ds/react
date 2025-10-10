@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import { usePagination } from './PaginationContainer.js';
 

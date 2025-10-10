@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { prefix, suffix } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
 import IconSearch16 from '@warp-ds/icons/react/search-16';
+import React from 'react';
 
 interface AffixProps {
   /** Defines a string value that labels the affix element. */

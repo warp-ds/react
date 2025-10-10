@@ -1,8 +1,7 @@
-import * as React from 'react';
-
 import { i18n } from '@lingui/core';
 import { interleave } from '@warp-ds/core/breadcrumbs';
 import { breadcrumbs as ccBreadcrumbs } from '@warp-ds/css/component-classes';
+import * as React from 'react';
 
 import { activateI18n } from '../../i18n.js';
 
@@ -27,14 +26,16 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
     });
 
   // Handles arrays of nodes passed as children
-  const flattenedChildren = children.flat(Infinity);
+  const flattenedChildren = children.flat(Number.POSITIVE_INFINITY);
   const styledChildren = flattenedChildren.map((child, index) => {
     if (React.isValidElement(child)) {
       const ccClasses = child.type === 'a' ? ccBreadcrumbs.link : ccBreadcrumbs.text;
       const newClasses = child.props.className ? `${child.props.className} ${ccClasses}` : ccClasses;
 
       // To update a prop on React child element, we need to clone that Element first
-      const styledChild = React.cloneElement(child as React.ReactElement, { className: newClasses });
+      const styledChild = React.cloneElement(child as React.ReactElement, {
+        className: newClasses,
+      });
       return styledChild;
     }
 

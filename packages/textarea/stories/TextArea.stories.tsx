@@ -11,7 +11,15 @@ export const valueUncontrolled = () => <TextArea label="Description" defaultValu
 
 export const ValueControlled = () => {
   const [value, setValue] = React.useState('Test');
-  return <TextArea label="Description" value={value} onChange={(e) => setValue(e.target.value)} minimumRows={4} maximumRows={6} />;
+  return (
+    <TextArea
+      label="Description"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      minimumRows={4}
+      maximumRows={6}
+    />
+  );
 };
 
 export const TextFieldWithRef = () => {

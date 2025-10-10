@@ -1,6 +1,5 @@
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React, { useState } from 'react';
-
-import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import { beforeEach, vi } from 'vitest';
 
 import { Affix } from '../../packages/_helpers';
@@ -70,7 +69,10 @@ describe('Combobox', () => {
     const MAX_NUMBER = 300;
     const props: ComboboxProps = {
       id: 'combobox',
-      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({ value: 'Option ' + v, key: 'key' + v })),
+      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({
+        value: 'Option ' + v,
+        key: 'key' + v,
+      })),
       value: '',
       label: 'Test Combobox',
       onChange: vi.fn(),
@@ -93,7 +95,9 @@ describe('Combobox', () => {
     const MAX_NUMBER = 300;
     const props: ComboboxProps = {
       id: 'combobox',
-      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({ value: 'Option ' + v })),
+      options: [...Array(MAX_NUMBER + 1).keys()].map((v) => ({
+        value: 'Option ' + v,
+      })),
       value: '',
       label: 'Test Combobox',
       onChange: vi.fn(),
@@ -126,11 +130,17 @@ describe('Combobox', () => {
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    expect(screen.getByText('Option 1')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
+    expect(screen.getByText('Option 1')).toHaveClass(
+      'block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option',
+    );
     fireEvent.keyDown(input, { key: 'ArrowDown' });
-    expect(screen.getByText('Option 2')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
+    expect(screen.getByText('Option 2')).toHaveClass(
+      'block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option',
+    );
     fireEvent.keyDown(input, { key: 'ArrowUp' });
-    expect(screen.getByText('Option 1')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
+    expect(screen.getByText('Option 1')).toHaveClass(
+      'block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option',
+    );
   });
 
   it('closes the options list on escape key press', () => {
@@ -277,6 +287,8 @@ describe('Combobox', () => {
     const input = screen.getByRole('combobox');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'PageDown' });
-    expect(screen.getByText('Option 2')).toHaveClass('block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option');
+    expect(screen.getByText('Option 2')).toHaveClass(
+      'block cursor-pointer p-8 hover:s-bg-hover w-react-combobox-option',
+    );
   });
 });

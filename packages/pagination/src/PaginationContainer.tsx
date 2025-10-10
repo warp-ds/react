@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 const PaginationContext = React.createContext({
   currentPage: 0,
@@ -34,7 +33,10 @@ export type PaginationContainerProps = {
 } & React.PropsWithoutRef<JSX.IntrinsicElements['nav']>;
 
 const PaginationContainer = React.forwardRef<HTMLElement, PaginationContainerProps>(
-  ({ children, className, currentPage, lastPage, 'aria-labelledby': ariaLabelledBy = 'pagination-heading', ...props }, ref) => {
+  (
+    { children, className, currentPage, lastPage, 'aria-labelledby': ariaLabelledBy = 'pagination-heading', ...props },
+    ref,
+  ) => {
     if (!Number.isInteger(currentPage)) {
       throw new TypeError(`Invalid currentPage: ${JSON.stringify(currentPage)}`);
     }
@@ -59,7 +61,12 @@ const PaginationContainer = React.forwardRef<HTMLElement, PaginationContainerPro
       });
 
     return (
-      <nav {...props} className={classNames(className, ccPagination.containerNav)} aria-labelledby={ariaLabelledBy} ref={ref}>
+      <nav
+        {...props}
+        className={classNames(className, ccPagination.containerNav)}
+        aria-labelledby={ariaLabelledBy}
+        ref={ref}
+      >
         <h1 className={ccPagination.a11y} id={ariaLabelledBy}>
           {ariaLabel}
         </h1>

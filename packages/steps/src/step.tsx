@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { step as ccStep } from '@warp-ds/css/component-classes';
 import IconCheck16 from '@warp-ds/icons/react/check-16';
+import React, { useContext } from 'react';
 
 import { activateI18n } from '../../i18n.js';
 
@@ -95,7 +94,12 @@ export function Step(props: StepProps) {
   return (
     <li className={stepClasses}>
       {!vertical && <div className={lineHorizontalClasses} />}
-      <div className={dotClasses} role="img" aria-label={getAriaLabel(props)} {...(active && { 'aria-current': 'step' })}>
+      <div
+        className={dotClasses}
+        role="img"
+        aria-label={getAriaLabel(props)}
+        {...(active && { 'aria-current': 'step' })}
+      >
         {completed && <IconCheck16 data-testid="completed-icon" />}
       </div>
       <div className={lineClasses} />

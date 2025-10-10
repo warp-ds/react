@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 export type SelectProps = {
   /** Whether the element should receive focus on render. */
@@ -57,4 +57,7 @@ export type SelectProps = {
 
   /** Whether to show optional text */
   optional?: boolean;
-} & Omit<React.PropsWithoutRef<JSX.IntrinsicElements['select']>, 'onBlur' | 'onChange' | 'onFocus' | 'value' | 'defaultValue'>;
+} & Omit<
+  React.PropsWithoutRef<JSX.IntrinsicElements['select']>,
+  'onBlur' | 'onChange' | 'onFocus' | 'value' | 'defaultValue'
+>;

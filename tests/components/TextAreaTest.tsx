@@ -1,6 +1,5 @@
+import { fireEvent, render, screen } from '@testing-library/react';
 import React, { createRef } from 'react';
-
-import { render, fireEvent, screen } from '@testing-library/react';
 
 import { TextArea } from '../../packages/textarea/src/component';
 import * as useTextAreaHeight from '../../packages/textarea/src/useTextAreaHeight.ts';
@@ -73,7 +72,7 @@ describe('TextArea component', () => {
   it('renders input field with correct class names', () => {
     render(<TextArea {...defaultProps} />);
     expect(screen.getByRole('textbox')).toHaveClass(
-      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current',
+      'block text-m leading-m mb-0 px-8 py-12 rounded-4 w-full focusable focus:[--w-outline-offset:-2px] caret-current min-h-[42] sm:min-h-[45] border-1 s-text s-bg s-border-strong hover:s-border-strong-hover active:s-border-selected',
     );
   });
 

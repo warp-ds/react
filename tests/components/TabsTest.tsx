@@ -1,6 +1,5 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Tab } from '../../packages/tabs/src/component-tab';
@@ -9,7 +8,11 @@ import { Tabs } from '../../packages/tabs/src/component-tabs';
 import { debounce } from '../../packages/tabs/src/utils';
 
 describe('Tabs component', () => {
-  const children = [<Tab label="Tab 1" name="one" isActive />, <Tab label="Tab 2" name="two" />, <Tab label="Tab 3" name="three" />];
+  const children = [
+    <Tab label="Tab 1" name="one" isActive />,
+    <Tab label="Tab 2" name="two" />,
+    <Tab label="Tab 3" name="three" />,
+  ];
 
   it('renders the tabs', () => {
     render(<Tabs>{children}</Tabs>);
@@ -91,7 +94,17 @@ describe('Tab component', () => {
   });
 
   it('renders with icon and label', () => {
-    render(<Tab name={name} label={label} setActive={setActive} onClick={onClick} isActive={true} children={children} over={true} />);
+    render(
+      <Tab
+        name={name}
+        label={label}
+        setActive={setActive}
+        onClick={onClick}
+        isActive={true}
+        children={children}
+        over={true}
+      />,
+    );
     expect(screen.getByText(label)).toBeInTheDocument();
     expect(screen.getByText('Icon')).toBeInTheDocument();
     expect(screen.getByText('Icon').closest('span')).toHaveClass('mx-auto');
@@ -99,7 +112,9 @@ describe('Tab component', () => {
   });
 
   it('renders with children and no label', () => {
-    render(<Tab name={name} setActive={setActive} onClick={onClick} isActive={true} children={children} over={false} />);
+    render(
+      <Tab name={name} setActive={setActive} onClick={onClick} isActive={true} children={children} over={false} />,
+    );
     expect(screen.getByText('Icon')).toBeInTheDocument();
     expect(screen.getByText('Icon').closest('div')).toHaveClass('dummy-warp-class');
   });

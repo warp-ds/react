@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 
 import esbuild from 'esbuild';
 import { glob } from 'glob';
@@ -17,7 +17,7 @@ const esbuildDefaults = {
 };
 
 function generateTypeDefinitions(inputFilePath, packageName, outDir, outfile = null) {
-  let listOfTsFiles = [];
+  const listOfTsFiles = [];
   const options = {
     module: ts.ModuleKind.NodeNext,
     lib: ['DOM', 'ES2020'],
@@ -53,10 +53,12 @@ function generateTypeDefinitions(inputFilePath, packageName, outDir, outfile = n
   // Write the generated type definitions to the output file
   listOfTsFiles.forEach((file) => {
     // Doing this hack since typescript sometimes doesn't output the correct path
-    let packageTypePath = file.fileName.replace(outDir, '').replace('src/', '').replace(`${packageName}/`, '');
+    const packageTypePath = file.fileName.replace(outDir, '').replace('src/', '').replace(`${packageName}/`, '');
     const updatedFilename = outDir + packageTypePath;
 
-    fs.mkdirSync(updatedFilename.split('/').slice(0, -1).join('/'), { recursive: true });
+    fs.mkdirSync(updatedFilename.split('/').slice(0, -1).join('/'), {
+      recursive: true,
+    });
     fs.writeFileSync(updatedFilename, file.contents);
   });
 }
@@ -93,7 +95,7 @@ function buildHelpers(outDir, extraBuildOptions = {}) {
     'packages/_helpers/unstyled-heading.tsx',
   ];
   helpers.forEach(async (item) => {
-    const regex = /^packages\/_helpers\/([^\/]+)\.tsx$/;
+    const regex = /^packages\/_helpers\/([^/]+)\.tsx$/;
     const match = item.match(regex);
 
     console.log(`react: building helper ${match[1]}.js`);

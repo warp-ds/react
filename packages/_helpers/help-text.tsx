@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { helpText as ccHelpText } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 interface HelpTextProps {
   /** Id for helpText */

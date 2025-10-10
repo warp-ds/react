@@ -1,9 +1,8 @@
-import * as React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { label as ccLabel, select as ccSelect } from '@warp-ds/css/component-classes';
 import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
+import * as React from 'react';
 
 import { HelpText } from '../../_helpers/help-text.js';
 import { activateI18n } from '../../i18n.js';
@@ -57,7 +56,10 @@ const setup = (props: SelectProps) => {
 
 function Select(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const id = useId(props.id);
-  const { attrs, wrapperClasses, selectClasses, chevronClasses } = setup({ ...props, id });
+  const { attrs, wrapperClasses, selectClasses, chevronClasses } = setup({
+    ...props,
+    id,
+  });
   const { div, label, select, help, optional } = attrs;
 
   const handleKeyDown = (event) => {

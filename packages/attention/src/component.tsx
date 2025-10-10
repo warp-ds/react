@@ -1,12 +1,16 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { arrowDirectionClassname, opposites, useRecompute as recompute } from '@warp-ds/core/attention';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 
-import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../_helpers/attention.js';
+import {
+  activeAttentionType,
+  getVariant,
+  pointingAtDirection,
+  useAutoUpdatePosition,
+} from '../../_helpers/attention.js';
 import { activateI18n } from '../../i18n.js';
 
 import { messages as daMessages } from './locales/da/messages.mjs';
@@ -38,7 +42,7 @@ const variantClasses = {
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
 export function Attention(props: AttentionProps) {
-  let {
+  const {
     noArrow,
     isShowing,
     children,
@@ -131,7 +135,8 @@ export function Attention(props: AttentionProps) {
     ],
   );
 
-  const defaultAriaLabel = () => `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
+  const defaultAriaLabel = () =>
+    `${activeAttentionType(props)} ${!props.noArrow ? pointingAtDirection(actualDirection) : ''}`;
 
   const containerClasses = classNames(className, [
     !props.callout && ccAttention.notCallout,
@@ -177,7 +182,8 @@ export function Attention(props: AttentionProps) {
       <div className={wrapperClasses} id={props.id}>
         <div
           role={props.role === '' ? undefined : props.tooltip ? 'tooltip' : 'img'}
-          aria-label={ariaLabel === '' ? undefined : ariaLabel ?? defaultAriaLabel()}>
+          aria-label={ariaLabel === '' ? undefined : (ariaLabel ?? defaultAriaLabel())}
+        >
           {!props.noArrow && <Arrow {...props} ref={arrowEl} direction={actualDirection} />}
         </div>
         <div className={ccAttention.content}>{props.children}</div>
@@ -196,7 +202,8 @@ export function Attention(props: AttentionProps) {
                 props.onDismiss();
               }
             }}
-            className={ccAttention.closeBtn}>
+            className={ccAttention.closeBtn}
+          >
             <IconClose16 />
           </button>
         )}

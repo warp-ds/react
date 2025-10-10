@@ -28,7 +28,7 @@ export const ExampleWithArray = () => {
           {collection.name}
         </a>
       ))}
-      <span aria-current="page">{breadcrumbs.at(-1)!.name}</span>
+      <span aria-current="page">{breadcrumbs.at(-1)?.name}</span>
     </Breadcrumbs>
   );
 };

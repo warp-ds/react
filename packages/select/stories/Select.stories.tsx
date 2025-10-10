@@ -1,6 +1,5 @@
-import * as React from 'react';
-
 import { action } from '@storybook/addon-actions';
+import * as React from 'react';
 
 import { Select as WarpSelect } from '../src';
 
@@ -40,7 +39,8 @@ export const Invalid = () => {
         onChange={handleOnChange}
         onFocus={action('focus')}
         onBlur={action('blur')}
-        aria-label="You're selection is berry nice!">
+        aria-label="You're selection is berry nice!"
+      >
         <option value={'Strawberries'}>Strawberries</option>
         <option value={'Raspberries'}>Raspberries</option>
         <option value={'Cloudberries'}>Cloudberries</option>
@@ -63,7 +63,12 @@ export const ReadOnly = () => (
 
 export const NoLabel = () => (
   <div className="flex flex-col space-y-32">
-    <WarpSelect onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} aria-label="You're selection is berry nice!">
+    <WarpSelect
+      onChange={action('change')}
+      onFocus={action('focus')}
+      onBlur={action('blur')}
+      aria-label="You're selection is berry nice!"
+    >
       <option>Strawberries</option>
       <option>Raspberries</option>
       <option>Cloudberries</option>
@@ -77,7 +82,8 @@ export const NoLabel = () => (
       onChange={action('change')}
       onFocus={action('focus')}
       onBlur={action('blur')}
-      aria-labelledby="select-label">
+      aria-labelledby="select-label"
+    >
       <option>Strawberries</option>
       <option>Raspberries</option>
       <option>Cloudberries</option>

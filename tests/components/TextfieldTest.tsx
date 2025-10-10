@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Affix } from '../../packages/_helpers/affix.tsx';
@@ -20,7 +19,7 @@ describe('TextField component', () => {
   it('renders input field with correct class names', () => {
     render(<TextField {...defaultProps} />);
     expect(screen.getByRole('textbox')).toHaveClass(
-      'block text-m mb-0 leading-m s-text s-bg s-border hover:s-border-hover active:s-border-selected rounded-4 py-12 px-8 block border-1 w-full focusable focus:[--w-outline-offset:-2px] caret-current',
+      'block text-m leading-m mb-0 px-8 py-12 rounded-4 w-full focusable focus:[--w-outline-offset:-2px] caret-current border-1 s-text s-bg s-border-strong hover:s-border-strong-hover active:s-border-selected',
     );
   });
 

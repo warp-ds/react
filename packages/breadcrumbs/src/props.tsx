@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 export type BreadcrumbsProps = {
   // prop table doc seems unable to pull out default value with the rename in the function definition

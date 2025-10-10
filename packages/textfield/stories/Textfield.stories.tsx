@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { action } from '@storybook/addon-actions';
+import React from 'react';
 
 import { Affix } from '../../_helpers';
 import { TextField as WarpTextField } from '../src';
@@ -8,7 +7,13 @@ import { TextField as WarpTextField } from '../src';
 export default { title: 'Forms/TextField', component: WarpTextField };
 
 const Template = (args) => (
-  <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />
+  <WarpTextField
+    label="Address"
+    onChange={action('change')}
+    onFocus={action('focus')}
+    onBlur={action('blur')}
+    {...args}
+  />
 );
 export const Default = Template.bind({});
 Default.args = {
@@ -16,7 +21,13 @@ Default.args = {
 };
 
 const TextField = (args) => (
-  <WarpTextField label="Address" onChange={action('change')} onFocus={action('focus')} onBlur={action('blur')} {...args} />
+  <WarpTextField
+    label="Address"
+    onChange={action('change')}
+    onFocus={action('focus')}
+    onBlur={action('blur')}
+    {...args}
+  />
 );
 
 export const standard = () => <TextField />;

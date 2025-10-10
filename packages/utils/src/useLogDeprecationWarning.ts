@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useLogDeprecationWarning = ({ condition, message }: { condition: Boolean; message: string }) => {
+export const useLogDeprecationWarning = ({ condition, message }: { condition: boolean; message: string }) => {
   const loggedOnce = useRef(false);
 
   useEffect(() => {

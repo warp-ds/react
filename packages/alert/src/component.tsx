@@ -1,11 +1,10 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { alert as ccAlert } from '@warp-ds/css/component-classes';
 import IconError16 from '@warp-ds/icons/react/error-16';
 import IconInfo16 from '@warp-ds/icons/react/info-16';
 import IconSuccess16 from '@warp-ds/icons/react/success-16';
 import IconWarning16 from '@warp-ds/icons/react/warning-16';
+import React, { type PropsWithChildren, type ReactElement } from 'react';
 
 import { ExpandTransition } from '../../_helpers/index.js';
 

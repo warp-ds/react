@@ -1,12 +1,12 @@
+import { dirname } from 'node:path';
 import { mergeConfig } from 'vite';
-import { dirname } from 'path';
 
 export default {
   stories: ['../packages/**/*.stories.[tj]sx'],
   addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',
-    options: {}
+    options: {},
   },
   features: {
     interactionsDebugger: true,
@@ -19,6 +19,6 @@ export default {
   },
   docs: {
     // set to 'true' when we have autodocs content generated from our stories properly
-    autodocs: false
-  }
+    autodocs: false,
+  },
 };

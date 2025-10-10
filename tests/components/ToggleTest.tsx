@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import { helpText as ccHelpText, label as ccLabel, toggle as ccToggle } from '@warp-ds/css/component-classes';
+import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Toggle } from '../../packages/toggle/src/index.js';
@@ -46,12 +45,27 @@ describe('Toggle checkbox component', () => {
 });
 
 it('renders checkbox with title', () => {
-  render(<Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />);
+  render(
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Favorite color')).toBeInTheDocument();
 });
 
 it('renders checkbox with optional', () => {
-  render(<Toggle optional type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />);
+  render(
+    <Toggle
+      optional
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Favorite color')).toHaveTextContent('Favorite color(optional)');
 });
 
@@ -84,13 +98,21 @@ it('renders checkbox with invalid', () => {
 });
 
 it('renders checkbox with disabled', () => {
-  render(<Toggle type="checkbox" label="Favorite color" onChange={(selected) => onChangeFunction(selected)} disabled />);
+  render(
+    <Toggle type="checkbox" label="Favorite color" onChange={(selected) => onChangeFunction(selected)} disabled />,
+  );
   expect(screen.getByRole('checkbox')).toBeDisabled();
 });
 
 it('renders checkbox with indeterminate', () => {
   render(
-    <Toggle type="checkbox" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} indeterminate label="Toggle X" />,
+    <Toggle
+      type="checkbox"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      indeterminate
+      label="Toggle X"
+    />,
   );
   expect(screen.getByText('Toggle X')).toHaveClass(ccToggle.indeterminate);
 });
@@ -124,7 +146,14 @@ it('renders checkbox with indeterminate disabled', () => {
 });
 
 it('renders checkbox with no visible label', () => {
-  render(<Toggle type="checkbox" label="Favorite color" onChange={(selected) => onChangeFunction(selected)} noVisibleLabel />);
+  render(
+    <Toggle
+      type="checkbox"
+      label="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      noVisibleLabel
+    />,
+  );
   expect(screen.getByText('Favorite color')).toHaveClass(ccToggle.a11y);
 });
 
@@ -156,12 +185,22 @@ describe('Toggle radio component', () => {
 });
 
 it('renders radio with title', () => {
-  render(<Toggle type="radio" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />);
+  render(
+    <Toggle type="radio" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />,
+  );
   expect(screen.getByText('Favorite color')).toBeInTheDocument();
 });
 
 it('renders radio with optional', () => {
-  render(<Toggle optional type="radio" title="Favorite color" onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />);
+  render(
+    <Toggle
+      optional
+      type="radio"
+      title="Favorite color"
+      onChange={(selected) => onChangeFunction(selected)}
+      label="Toggle X"
+    />,
+  );
   expect(screen.getByText('Favorite color')).toHaveTextContent('Favorite color(optional)');
 });
 
@@ -194,7 +233,9 @@ it('renders radio with invalid', () => {
 });
 
 it('renders radio with no visible label', () => {
-  render(<Toggle type="radio" label="Favorite color" onChange={(selected) => onChangeFunction(selected)} noVisibleLabel />);
+  render(
+    <Toggle type="radio" label="Favorite color" onChange={(selected) => onChangeFunction(selected)} noVisibleLabel />,
+  );
   expect(screen.getByText('Favorite color')).toHaveClass(ccToggle.a11y);
 });
 
@@ -212,7 +253,14 @@ const options = [
 // Radio button
 describe('Toggle radio button component', () => {
   beforeEach(() => {
-    render(<Toggle type="radio-button" options={options} onChange={(selected) => onChangeFunction(selected)} label="Toggle X" />);
+    render(
+      <Toggle
+        type="radio-button"
+        options={options}
+        onChange={(selected) => onChangeFunction(selected)}
+        label="Toggle X"
+      />,
+    );
   });
 
   afterEach(() => {
@@ -251,20 +299,35 @@ it('renders radio button with equal width', () => {
 });
 
 it('renders radio button with small size', () => {
-  const { container } = render(<Toggle type="radio-button" small options={options} onChange={(selected) => onChangeFunction(selected)} />);
+  const { container } = render(
+    <Toggle type="radio-button" small options={options} onChange={(selected) => onChangeFunction(selected)} />,
+  );
   const smallRadioButtonClasses = classesToSelectors(ccToggle.radioButtonsSmall);
 
   expect(container.querySelector(smallRadioButtonClasses)).toBeInTheDocument();
 });
 
 it('renders radio button with title', () => {
-  render(<Toggle type="radio-button" title="Favorite color" options={options} onChange={(selected) => onChangeFunction(selected)} />);
+  render(
+    <Toggle
+      type="radio-button"
+      title="Favorite color"
+      options={options}
+      onChange={(selected) => onChangeFunction(selected)}
+    />,
+  );
   expect(screen.getByText('Favorite color')).toBeInTheDocument();
 });
 
 it('renders radio button with optional', () => {
   render(
-    <Toggle optional type="radio-button" title="Favorite color" options={options} onChange={(selected) => onChangeFunction(selected)} />,
+    <Toggle
+      optional
+      type="radio-button"
+      title="Favorite color"
+      options={options}
+      onChange={(selected) => onChangeFunction(selected)}
+    />,
   );
   expect(screen.getByText('Favorite color')).toHaveTextContent('Favorite color(optional)');
 });

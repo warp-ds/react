@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { clickable as ccClickable } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import { Item as ToggleItem } from '../toggle/src/item.js';
 import { useId } from '../utils/src/useId.js';
@@ -57,7 +56,8 @@ export function Clickable({ children, radio, checkbox, value, ...props }: Clicka
       controlled={false}
       onChange={props.onClick ? props.onClick : () => undefined}
       value={value}
-      name={`${props.name || id}:toggle`}>
+      name={`${props.name || id}:toggle`}
+    >
       {children}
     </ToggleItem>
   ) : (
@@ -69,7 +69,7 @@ export function Clickable({ children, radio, checkbox, value, ...props }: Clicka
         type: props.href ? undefined : props.type || 'button',
       },
       <>
-        <span className={ccClickable.buttonOrLinkStretch} aria-hidden="true"></span>
+        <span className={ccClickable.buttonOrLinkStretch} aria-hidden="true" />
         {children}
       </>,
     )

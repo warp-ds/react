@@ -1,6 +1,5 @@
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-
-import { render, fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Switch } from '../../packages/switch/src/component';
@@ -36,7 +35,9 @@ describe('Switch component', () => {
 
   it('renders the correct class names for switch', () => {
     render(<Switch />);
-    expect(screen.getByRole('switch')).toHaveClass('block relative h-24 w-44 cursor-pointer group focusable rounded-full');
+    expect(screen.getByRole('switch')).toHaveClass(
+      'block relative h-24 w-44 cursor-pointer group focusable rounded-full',
+    );
   });
 
   it('renders the correct track and handle elements', () => {
@@ -56,7 +57,8 @@ describe('Switch component', () => {
   });
 
   it('updates the handle element class name based on the value prop', () => {
-    const handleSelected = 'absolute transform-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform s-bg shadow-s translate-x-20';
+    const handleSelected =
+      'absolute transform-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform s-bg shadow-s translate-x-20';
     const { rerender } = render(<Switch value={false} />);
     expect(screen.getByTestId('handle')).not.toHaveClass(handleSelected);
     rerender(<Switch value />);

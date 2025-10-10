@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 
 import { Select } from '../../packages/select/src/component';
 
@@ -79,7 +78,7 @@ describe('Select', () => {
   });
 
   it('forwards ref to the select element', () => {
-    let ref = React.createRef<HTMLSelectElement>();
+    const ref = React.createRef<HTMLSelectElement>();
 
     render(<Select aria-label="label" ref={ref} />);
 

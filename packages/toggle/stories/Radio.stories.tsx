@@ -11,14 +11,22 @@ const options = [
   { label: 'Green', value: 'green' },
 ];
 
-export const MultipleOptions = () => <Toggle type="radio" options={options} onChange={(selected) => console.log(selected)} />;
+export const MultipleOptions = () => (
+  <Toggle type="radio" options={options} onChange={(selected) => console.log(selected)} />
+);
 
 export const WithTitle = () => (
   <Toggle type="radio" title="Favorite color" options={options} onChange={(selected) => console.log(selected)} />
 );
 
 export const Optional = () => (
-  <Toggle optional type="radio" title="Favorite color" options={options} onChange={(selected) => console.log(selected)} />
+  <Toggle
+    optional
+    type="radio"
+    title="Favorite color"
+    options={options}
+    onChange={(selected) => console.log(selected)}
+  />
 );
 
 export const HelpText = () => (

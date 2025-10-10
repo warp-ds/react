@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { card as ccCard } from '@warp-ds/css/component-classes';
+import React from 'react';
 
-import { CardProps } from './props.js';
+import type { CardProps } from './props.js';
 
 export function Card(props: CardProps) {
   const { as = 'div', children, flat, selected, ...rest } = props;
@@ -20,7 +19,11 @@ export function Card(props: CardProps) {
       ]),
     },
     <>
-      {!props.flat && <div className={classNames([ccCard.outline, props.selected ? ccCard.outlineSelected : ccCard.outlineUnselected])} />}
+      {!props.flat && (
+        <div
+          className={classNames([ccCard.outline, props.selected ? ccCard.outlineSelected : ccCard.outlineUnselected])}
+        />
+      )}
 
       {children}
     </>,

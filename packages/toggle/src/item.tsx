@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { toggle as ccToggle } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import { useId } from '../../utils/src/index.js';
 
-import { ToggleEntry } from './props.js';
+import type { ToggleEntry } from './props.js';
 
 interface ItemProps extends Pick<HTMLInputElement, 'type' | 'name'> {
   controlled: boolean;
@@ -68,11 +67,13 @@ export function Item({
         defaultChecked={defaultChecked}
         aria-invalid={invalid}
         aria-errormessage={invalid ? helpId : undefined}
-        value={label ? undefined : value ?? undefined}
+        value={label ? undefined : (value ?? undefined)}
         className={inputClassName}
         disabled={disabled}
         {...props}
-        onChange={(e) => props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)}
+        onChange={(e) =>
+          props.onChange(label ? e.target.checked : option ? { label: option?.label, value: option?.value } : false)
+        }
       />
 
       <label htmlFor={id} className={labelClassName}>
