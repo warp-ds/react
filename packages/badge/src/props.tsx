@@ -26,7 +26,7 @@ export interface BadgeProps {
    * Type of badge
    @default neutral
    */
-  variant?: 'neutral' | 'info' | 'positive' | 'warning' | 'negative' | 'disabled' | 'price';
+  variant?: 'neutral' | 'info' | 'positive' | 'warning' | 'negative' | 'disabled' | 'price' | 'sponsored';
 
   /**
    * Position of badge
