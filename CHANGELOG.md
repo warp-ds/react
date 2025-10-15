@@ -1,3 +1,10 @@
+# [2.3.0-next.2](https://github.com/warp-ds/react/compare/v2.3.0-next.1...v2.3.0-next.2) (2025-10-15)
+
+
+### Features
+
+* **combobox:** fix z-index ([22e8de4](https://github.com/warp-ds/react/commit/22e8de4ffe2700807671b8b3733e0515ec10c7fc))
+
 # [2.3.0-next.1](https://github.com/warp-ds/react/compare/v2.2.1...v2.3.0-next.1) (2025-10-15)
 
 
