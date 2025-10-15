@@ -1,3 +1,10 @@
+# [2.3.0-next.1](https://github.com/warp-ds/react/compare/v2.2.1...v2.3.0-next.1) (2025-10-15)
+
+
+### Features
+
+* **badge:** add sposored variant to ts and storybook ([c49c88f](https://github.com/warp-ds/react/commit/c49c88ff36628e18468e0d413afd4a4faceeb181))
+
 ## [2.2.1](https://github.com/warp-ds/react/compare/v2.2.0...v2.2.1) (2025-10-02)
 
 
