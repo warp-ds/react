@@ -258,7 +258,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
         hidden={!isOpen || !currentOptions.length}
         className={classNames(listClassName, ccCombobox.base)}
         style={{
-          zIndex: 3, // Force popover above misc. page content (mobile safari issue)
+          zIndex: 10, // Force popover above misc. page content (mobile safari issue)
         }}
       >
         <ul
