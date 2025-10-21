@@ -1,8 +1,7 @@
-import { MutableRefObject, useCallback, useEffect } from 'react';
-
 import { i18n } from '@lingui/core';
-import { autoUpdatePosition, opposites } from '@warp-ds/core/attention';
 import type { AttentionState, Directions } from '@warp-ds/core/attention';
+import { autoUpdatePosition, opposites } from '@warp-ds/core/attention';
+import { type MutableRefObject, useCallback, useEffect } from 'react';
 
 import { messages as daMessages } from '../attention/src/locales/da/messages.mjs';
 import { messages as enMessages } from '../attention/src/locales/en/messages.mjs';

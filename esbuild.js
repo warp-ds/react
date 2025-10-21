@@ -13,7 +13,10 @@ const versions = new Map([
 
 const version = process.argv[2];
 const reactVersions = Array.from(versions.keys());
-ok(reactVersions.includes(version), `Version argument is required. Must be one of: ${reactVersions.join(',')}. Eg. 'node esbuild.mjs 18'`);
+ok(
+  reactVersions.includes(version),
+  `Version argument is required. Must be one of: ${reactVersions.join(',')}. Eg. 'node esbuild.mjs 18'`,
+);
 
 await eik.load({
   urls: [`https://assets.finn.no/map/react/${versions.get(version)}`],
@@ -25,7 +28,7 @@ if (version === '17') {
     plugins: [eik.plugin()],
     entryPoints: ['packages/index.ts'],
     bundle: true,
-    outfile: `dist/eik/index.js`,
+    outfile: 'dist/eik/index.js',
     format: 'esm',
     sourcemap: true,
     target: 'es2017',

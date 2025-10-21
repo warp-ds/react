@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { box as ccBox, expandable as ccExpandable } from '@warp-ds/css/component-classes';
 import IconChevronDown16 from '@warp-ds/icons/react/chevron-down-16';
 import IconChevronUp16 from '@warp-ds/icons/react/chevron-up-16';
+import React from 'react';
 
 import { ExpandTransition, UnstyledHeading } from '../../_helpers/index.js';
 
@@ -49,8 +48,14 @@ export function Expandable(props: ExpandableProps) {
   const chevronClasses = classNames([ccExpandable.chevron, !box && ccExpandable.chevronNonBox]);
 
   const chevronIcon = () => {
-    const upClasses = classNames([ccExpandable.chevronTransform, !stateExpanded && showChevronUp && ccExpandable.chevronCollapse]);
-    const downClasses = classNames([ccExpandable.chevronTransform, stateExpanded && !showChevronUp && ccExpandable.chevronExpand]);
+    const upClasses = classNames([
+      ccExpandable.chevronTransform,
+      !stateExpanded && showChevronUp && ccExpandable.chevronCollapse,
+    ]);
+    const downClasses = classNames([
+      ccExpandable.chevronTransform,
+      stateExpanded && !showChevronUp && ccExpandable.chevronExpand,
+    ]);
 
     return showChevronUp ? <IconChevronUp16 className={upClasses} /> : <IconChevronDown16 className={downClasses} />;
   };
@@ -60,7 +65,12 @@ export function Expandable(props: ExpandableProps) {
   return (
     <div {...rest} className={wrapperClasses}>
       <UnstyledHeading level={headingLevel}>
-        <button type="button" aria-expanded={stateExpanded} className={buttonClasses} onClick={() => toggleExpandable(stateExpanded)}>
+        <button
+          type="button"
+          aria-expanded={stateExpanded}
+          className={buttonClasses}
+          onClick={() => toggleExpandable(stateExpanded)}
+        >
           <div className={ccExpandable.title}>
             {typeof title === 'string' ? <span className={ccExpandable.titleType}>{title}</span> : title}
             {chevron && <div className={chevronClasses}>{chevronIcon()}</div>}

@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import type React from 'react';
+import { useCallback, useState } from 'react';
 
 import ResizeObserver from 'resize-observer-polyfill';
 
@@ -13,7 +14,7 @@ export default function useElementSizeObserver(ref: React.RefObject<Element>): {
   width: number;
   height: number;
 } {
-  let [size, setSize] = useState({ width: 0, height: 0 });
+  const [size, setSize] = useState({ width: 0, height: 0 });
 
   const handleResize = useCallback((entries: ResizeObserverEntry[]) => {
     setSize({

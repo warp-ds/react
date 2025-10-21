@@ -28,7 +28,13 @@ export const SingleOptionCheckedUncontrolledDefault = () => (
   <Toggle type="checkbox" label="Apple" defaultChecked onChange={(checked) => console.log(checked)} />
 );
 
-export const IndeterminateState = ({ isInvalid = false, isDisabled = false }: { isInvalid?: boolean; isDisabled?: boolean }) => {
+export const IndeterminateState = ({
+  isInvalid = false,
+  isDisabled = false,
+}: {
+  isInvalid?: boolean;
+  isDisabled?: boolean;
+}) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([options[0]]);
 
@@ -88,7 +94,9 @@ export const SingleOptionHelpText = () => (
   <Toggle type="checkbox" label="Apple" helpText="This is helper text" onChange={(selected) => console.log(selected)} />
 );
 
-export const MultipleOptions = () => <Toggle type="checkbox" options={options} onChange={(selected) => console.log(selected)} />;
+export const MultipleOptions = () => (
+  <Toggle type="checkbox" options={options} onChange={(selected) => console.log(selected)} />
+);
 
 export const WithTitle = () => (
   <Toggle type="checkbox" title="Companies" options={options} onChange={(selected) => console.log(selected)} />

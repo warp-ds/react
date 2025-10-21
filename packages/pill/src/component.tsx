@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pill as ccPill } from '@warp-ds/css/component-classes';
 import IconClose16 from '@warp-ds/icons/react/close-16';
+import React from 'react';
 
 import { activateI18n } from '../../i18n.js';
 

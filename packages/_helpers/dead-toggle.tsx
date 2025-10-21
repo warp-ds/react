@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { deadToggle as ccDeadToggle } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import { Item } from '../toggle/src/item.js';
 

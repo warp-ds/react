@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import type React from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useLayoutEffect } from '../../utils/src/index.js';
 
@@ -12,8 +13,8 @@ type Params = {
 };
 
 export default function useTextAreaHeight({ ref, value, minimumRows, maximumRows }: Params): void {
-  const minHeight = useRef(-Infinity);
-  const maxHeight = useRef(Infinity);
+  const minHeight = useRef(Number.NEGATIVE_INFINITY);
+  const maxHeight = useRef(Number.POSITIVE_INFINITY);
 
   const isControlled = value !== undefined;
 
@@ -32,11 +33,11 @@ export default function useTextAreaHeight({ ref, value, minimumRows, maximumRows
     if (ref.current && (minimumRows || maximumRows)) {
       const style = getComputedStyle(ref.current);
 
-      const lineHeight = parseFloat(style.getPropertyValue('line-height'));
+      const lineHeight = Number.parseFloat(style.getPropertyValue('line-height'));
 
-      const topPadding = parseFloat(style.getPropertyValue('padding-top'));
-      const bottomPadding = parseFloat(style.getPropertyValue('padding-bottom'));
-      const bottomBorder = parseFloat(style.getPropertyValue('border-bottom-width'));
+      const topPadding = Number.parseFloat(style.getPropertyValue('padding-top'));
+      const bottomPadding = Number.parseFloat(style.getPropertyValue('padding-bottom'));
+      const bottomBorder = Number.parseFloat(style.getPropertyValue('border-bottom-width'));
       const offset = topPadding + bottomPadding + bottomBorder;
 
       if (minimumRows) {

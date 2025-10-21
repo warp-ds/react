@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { tab as ccTab } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import type { TabProps } from './props.js';
 
@@ -30,7 +29,8 @@ export function Tab(props: TabProps) {
       id={`warp-tab-${name}`}
       tabIndex={isActive ? 0 : -1}
       className={tab}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       {!children && <span className={ccTab.contentUnderlined}>{label}</span>}
 
       {children && over && (

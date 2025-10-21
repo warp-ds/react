@@ -13,7 +13,11 @@ export const SingleCard = () => (
       <div>
         <p>Standard card (with box-shadow):</p>
         <Card>
-          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+          <img
+            className="h-128 w-full object-cover"
+            src="https://source.unsplash.com/random/400x400"
+            alt="Description"
+          />
           <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
@@ -26,7 +30,8 @@ export const SingleCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}>
+                }}
+              >
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -41,7 +46,11 @@ export const SingleCard = () => (
       <div>
         <p>Flat card (without box-shadow):</p>
         <Card flat>
-          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+          <img
+            className="h-128 w-full object-cover"
+            src="https://source.unsplash.com/random/400x400"
+            alt="Description"
+          />
           <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
           <div className="p-16">
             <p className="text-12 text-gray-300">Flat Card</p>
@@ -54,7 +63,8 @@ export const SingleCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}>
+                }}
+              >
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -81,7 +91,11 @@ export const SelectableCard = () => {
         <div>
           <p>Standard card (with box-shadow):</p>
           <Card selected={selected}>
-            <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+            <img
+              className="h-128 w-full object-cover"
+              src="https://source.unsplash.com/random/400x400"
+              alt="Description"
+            />
             <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
             <div className="p-16">
               <p className="text-12 text-gray-300">DNB Eiendom</p>
@@ -98,7 +112,8 @@ export const SelectableCard = () => {
                     fontSize: 10,
                     verticalAlign: 'super',
                     marginRight: 5,
-                  }}>
+                  }}
+                >
                   2
                 </span>
                 Totalpris: 4 869 039 kr
@@ -113,7 +128,11 @@ export const SelectableCard = () => {
         <div>
           <p>Flat card (without box-shadow):</p>
           <Card flat selected={flatSelected}>
-            <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+            <img
+              className="h-128 w-full object-cover"
+              src="https://source.unsplash.com/random/400x400"
+              alt="Description"
+            />
             <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
             <div className="p-16">
               <p className="text-12 text-gray-300">DNB Eiendom</p>
@@ -130,7 +149,8 @@ export const SelectableCard = () => {
                     fontSize: 10,
                     verticalAlign: 'super',
                     marginRight: 5,
-                  }}>
+                  }}
+                >
                   2
                 </span>
                 Totalpris: 4 869 039 kr
@@ -166,7 +186,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -190,7 +211,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -214,7 +236,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -242,7 +265,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -266,7 +290,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -290,7 +315,8 @@ export const GridCards = () => (
                 fontSize: 10,
                 verticalAlign: 'super',
                 marginRight: 5,
-              }}>
+              }}
+            >
               2
             </span>
             Totalpris: 4 869 039 kr
@@ -312,8 +338,12 @@ export const AnchorCard = () => (
       <div>
         <p>Standard card (with box-shadow):</p>
         <Card>
-          <div aria-owns="title_id"></div>
-          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+          <div aria-owns="title_id" />
+          <img
+            className="h-128 w-full object-cover"
+            src="https://source.unsplash.com/random/400x400"
+            alt="Description"
+          />
           <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
@@ -322,7 +352,8 @@ export const AnchorCard = () => (
                 href="//finn.no"
                 target="_blank"
                 title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring."
-                className="text-current hover:no-underline focus:no-underline">
+                className="text-current hover:no-underline focus:no-underline"
+              >
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
@@ -334,7 +365,8 @@ export const AnchorCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}>
+                }}
+              >
                 2
               </span>
               Totalpris: 4 869 039 kr
@@ -349,8 +381,12 @@ export const AnchorCard = () => (
       <div>
         <p>Flat card (without box-shadow):</p>
         <Card flat>
-          <div aria-owns="title_id"></div>
-          <img className="h-128 w-full object-cover" src="https://source.unsplash.com/random/400x400" alt="Description" />
+          <div aria-owns="title_id" />
+          <img
+            className="h-128 w-full object-cover"
+            src="https://source.unsplash.com/random/400x400"
+            alt="Description"
+          />
           <p className="absolute top-12 left-12 bg-aqua-200 text-aqua-900 p-4 rounded-4 text-12">Ukens bolig</p>
           <div className="p-16">
             <p className="text-12 text-gray-300">DNB Eiendom</p>
@@ -359,7 +395,8 @@ export const AnchorCard = () => (
                 href="//finn.no"
                 target="_blank"
                 title="Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring."
-                className="text-current hover:no-underline focus:no-underline">
+                className="text-current hover:no-underline focus:no-underline"
+              >
                 Stilfull og gjennomgående 3-roms m/balkong. Oppusset i 2019. Inkl. bl.a. vv/fyring.
               </Clickable>
             </h3>
@@ -371,7 +408,8 @@ export const AnchorCard = () => (
                   fontSize: 10,
                   verticalAlign: 'super',
                   marginRight: 5,
-                }}>
+                }}
+              >
                 2
               </span>
               Totalpris: 4 869 039 kr

@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { label as ccLabel, toggle as ccToggle } from '@warp-ds/css/component-classes';
+import React from 'react';
 
 import { HelpText } from '../../_helpers/help-text.js';
 import { activateI18n } from '../../i18n.js';
@@ -14,8 +13,7 @@ import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
-import { ToggleProps } from './props.js';
-import type { ToggleEntry } from './props.js';
+import type { ToggleEntry, ToggleProps } from './props.js';
 
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);
 
@@ -78,7 +76,8 @@ export function Toggle(props: ToggleProps) {
       aria-invalid={isRadioGroup ? isInvalid : undefined}
       aria-errormessage={isRadioGroup && isInvalid ? helpId : undefined}
       aria-describedby={helpId}
-      className={ccToggle.field}>
+      className={ccToggle.field}
+    >
       {props.title && <Title id={id} title={props.title} optional={props.optional} />}
       <div className={wrapperClasses}>
         {!props.options && props.label ? (

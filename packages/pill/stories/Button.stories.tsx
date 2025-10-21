@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { IconPlus16, IconSearch16 } from '@warp-ds/icons/react';
+import React from 'react';
 
 import { Pill } from '../src';
 
@@ -16,7 +15,13 @@ export const Suggestion = () => <Pill label="Example" suggestion />;
 export const SuggestionCanClose = () => <Pill label="Example" suggestion canClose onClose={() => alert('remove')} />;
 
 export const PillOnClickAndOnClose = () => (
-  <Pill label="Example" onClick={() => alert('pill is clicked')} suggestion canClose onClose={() => alert('close is clicked')} />
+  <Pill
+    label="Example"
+    onClick={() => alert('pill is clicked')}
+    suggestion
+    canClose
+    onClose={() => alert('close is clicked')}
+  />
 );
 
 export const PillsWithIcon = () => (

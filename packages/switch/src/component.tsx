@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { switchToggle as ccSwitch } from '@warp-ds/css/component-classes';
+import React from 'react';
 
-import { SwitchProps } from './props.js';
+import type { SwitchProps } from './props.js';
 
 export function Switch({
   id,
@@ -41,7 +40,8 @@ export function Switch({
         className={baseClasses}
         aria-disabled={disabled}
         disabled={disabled}
-        {...attrs}>
+        {...attrs}
+      >
         <span data-testid="track" className={trackClasses} />
         <span data-testid="handle" className={handleClasses} />
       </button>

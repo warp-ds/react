@@ -11,12 +11,22 @@ const options = [
   { label: 'Green', value: 'green' },
 ];
 
-export const MultipleOptions = () => <Toggle type="radio-button" options={options} onChange={(selected) => console.log(selected)} />;
+export const MultipleOptions = () => (
+  <Toggle type="radio-button" options={options} onChange={(selected) => console.log(selected)} />
+);
 
-export const EqualWidth = () => <Toggle type="radio-button" equalWidth options={options} onChange={(selected) => console.log(selected)} />;
+export const EqualWidth = () => (
+  <Toggle type="radio-button" equalWidth options={options} onChange={(selected) => console.log(selected)} />
+);
 
 export const Small = () => (
-  <Toggle type="radio-button" title="Favorite color" small options={options} onChange={(selected) => console.log(selected)} />
+  <Toggle
+    type="radio-button"
+    title="Favorite color"
+    small
+    options={options}
+    onChange={(selected) => console.log(selected)}
+  />
 );
 
 export const WithTitle = () => (
@@ -24,7 +34,13 @@ export const WithTitle = () => (
 );
 
 export const Optional = () => (
-  <Toggle optional type="radio-button" title="Favorite color" options={options} onChange={(selected) => console.log(selected)} />
+  <Toggle
+    optional
+    type="radio-button"
+    title="Favorite color"
+    options={options}
+    onChange={(selected) => console.log(selected)}
+  />
 );
 
 export const HelpText = () => (

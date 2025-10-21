@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Pill } from '../../packages/pill/src/component';
@@ -28,13 +27,17 @@ describe('Pill component', () => {
 
   it('renders close button when canClose is true', () => {
     render(<Pill {...defaultProps} />);
-    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
+    const closeButton = screen.getByRole('button', {
+      name: 'Remove filter Test Label Cross',
+    });
     expect(closeButton).toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', () => {
     render(<Pill {...defaultProps} />);
-    const closeButton = screen.getByRole('button', { name: 'Remove filter Test Label Cross' });
+    const closeButton = screen.getByRole('button', {
+      name: 'Remove filter Test Label Cross',
+    });
     fireEvent.click(closeButton);
     expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
   });

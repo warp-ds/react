@@ -1,6 +1,5 @@
-import * as React from 'react';
-
 import { IconPlus16 } from '@warp-ds/icons/react';
+import * as React from 'react';
 
 import { Tab, TabPanel, Tabs } from '../src';
 

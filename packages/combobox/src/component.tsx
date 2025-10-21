@@ -1,3 +1,5 @@
+import { classNames } from '@chbphone55/classnames';
+import { combobox as ccCombobox } from '@warp-ds/css/component-classes';
 import React, {
   type ChangeEvent,
   type Dispatch,
@@ -10,9 +12,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
-import { classNames } from '@chbphone55/classnames';
-import { combobox as ccCombobox } from '@warp-ds/css/component-classes';
 
 import { activateI18n } from '../../i18n.js';
 import { TextField } from '../../textfield/src/index.js';
@@ -89,10 +88,15 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     );
 
     // eslint-disable-next-line
-		}, [options, disableStaticFiltering, value]);
+  }, [options, disableStaticFiltering, value]);
 
   useEffect(() => {
-    if (disableStaticFiltering && currentOptions.length && currentOptions.length === 1 && !currentOptions.some((o) => o.value === value)) {
+    if (
+      disableStaticFiltering &&
+      currentOptions.length &&
+      currentOptions.length === 1 &&
+      !currentOptions.some((o) => o.value === value)
+    ) {
       setOpen(true);
     }
   }, [currentOptions, value, disableStaticFiltering]);
@@ -104,7 +108,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
 
     if (isNavigationKey && !isOpen) {
       return setOpen(true);
-    } else if (isNavigationKey && isOpen) {
+    }
+    if (isNavigationKey && isOpen) {
       findAndSetActiveOption(e, {
         setNavigationOption,
         navigationOption,
@@ -197,15 +202,15 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
     'aria-expanded': isOpen && currentOptions.length !== 0,
     'aria-activedescendant': isOpen ? navigationOption?.id : undefined,
     'aria-controls': listboxId,
-    onChange: function (e: ChangeEvent<HTMLInputElement>) {
+    onChange: (e: ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
     },
-    onFocus: function () {
+    onFocus: () => {
       if (!openOnFocus) return;
       onFocus && onFocus();
       setOpen(true);
     },
-    onBlur: function (e: FocusEvent) {
+    onBlur: (e: FocusEvent) => {
       handleInputBlur(containerRef, inputContainerRef, e, setOpen);
 
       // If user has navigated to an option on blur || the input value equals one of the options' value -> select value
@@ -216,7 +221,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
       setNavigationOption(null);
       onBlur && onBlur(navigationValueOrInputValue);
     },
-    ref: function (node: HTMLInputElement) {
+    ref: (node: HTMLInputElement) => {
       inputRef.current = node;
       if (forwardRef) {
         if (typeof forwardRef === 'function') {
@@ -230,13 +235,17 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
   };
 
   return (
-    <div className={classNames(className, ccCombobox.wrapper)} onBlur={(e) => handleContainerBlur(e, setOpen)} ref={containerRef}>
+    <div
+      className={classNames(className, ccCombobox.wrapper)}
+      onBlur={(e) => handleContainerBlur(e, setOpen)}
+      ref={containerRef}
+    >
       <div ref={inputContainerRef}>
         {children ? (
-          // @ts-ignore
+          // @ts-expect-error
           <TextField {...TextFieldProps}>{children}</TextField>
         ) : (
-          // @ts-ignore
+          // @ts-expect-error
           <TextField {...TextFieldProps} />
         )}
       </div>
@@ -249,14 +258,16 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
         hidden={!isOpen || !currentOptions.length}
         className={classNames(listClassName, ccCombobox.base)}
         style={{
-          zIndex: 3, // Force popover above misc. page content (mobile safari issue)
-        }}>
+          zIndex: 10, // Force popover above misc. page content (mobile safari issue)
+        }}
+      >
         <ul
           id={listboxId}
           role="listbox"
           className={classNames(ccCombobox.listbox, {
             [MATCH_SEGMENTS_CLASS_NAME]: matchTextSegments,
-          })}>
+          })}
+        >
           {currentOptions.map((option) => {
             const display = option.label || option.value;
             // only highlight text segments if the display is a string
@@ -296,7 +307,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(({ id: pid, 
                     handleSelect(option);
                   });
                 }}
-                className={optionClasses(option)}>
+                className={optionClasses(option)}
+              >
                 {matchTextSegments || highlightValueMatch ? match : display}
               </li>
             );
@@ -330,14 +342,18 @@ function findAndSetActiveOption(
       setNavigationOption(nextIndex > currentOptions.length ? null : currentOptions[nextIndex]);
       break;
     case 'ArrowUp':
-      setNavigationOption(prevIndex === -2 ? currentOptions[currentOptions.length - 1] : prevIndex < 0 ? null : currentOptions[prevIndex]);
+      setNavigationOption(
+        prevIndex === -2 ? currentOptions[currentOptions.length - 1] : prevIndex < 0 ? null : currentOptions[prevIndex],
+      );
       break;
     case 'PageUp':
       setNavigationOption(currIndex - 10 < 0 ? currentOptions[0] : currentOptions[currIndex - 10]);
       break;
     case 'PageDown':
       setNavigationOption(
-        currIndex + 10 > currentOptions.length ? currentOptions[currentOptions.length - 1] : currentOptions[currIndex + 10],
+        currIndex + 10 > currentOptions.length
+          ? currentOptions[currentOptions.length - 1]
+          : currentOptions[currIndex + 10],
       );
       break;
     case 'Home':
@@ -366,7 +382,8 @@ function handleInputBlur(
 ) {
   if (!containerRef.current) return;
 
-  const isClickOutsideContainer = !containerRef.current?.contains(e.relatedTarget) || inputContainerRef.current?.contains(e.relatedTarget);
+  const isClickOutsideContainer =
+    !containerRef.current?.contains(e.relatedTarget) || inputContainerRef.current?.contains(e.relatedTarget);
 
   if (isClickOutsideContainer) {
     setOpen(false);

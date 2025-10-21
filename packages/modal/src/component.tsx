@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { modal as ccModal } from '@warp-ds/css/component-classes';
 import IconArrowLeft16 from '@warp-ds/icons/react/arrow-left-16';
 import IconClose16 from '@warp-ds/icons/react/close-16';
+import React, { useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/es2015';
 import { setup, teardown } from 'scroll-doctor';
 
@@ -56,7 +55,11 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
 
   return (
     <FocusLock>
-      <div onClick={props.onDismiss} className={classNames(props.className, ccModal.backdrop)} style={{ ...props.style }}>
+      <div
+        onClick={props.onDismiss}
+        className={classNames(props.className, ccModal.backdrop)}
+        style={{ ...props.style }}
+      >
         <div
           role="dialog"
           aria-modal="true"
@@ -71,7 +74,8 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
             }
           }}
           className={ccModal.base}
-          tabIndex={-1}>
+          tabIndex={-1}
+        >
           <div className={ccModal.title}>
             {typeof props.left === 'boolean' && props.left ? (
               <button
@@ -82,7 +86,8 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   comment: 'Aria label for the back button in modal',
                 })}
                 className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonLeft])}
-                onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}>
+                onClick={props.onLeftClick ? props.onLeftClick : props.onDismiss}
+              >
                 <IconArrowLeft16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (
@@ -93,8 +98,9 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
               id={`${id}__title`}
               className={classNames([
                 ccModal.transitionTitle,
-                !!props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
-              ])}>
+                props.left ? ccModal.transitionTitleCenter : ccModal.transitionTitleColSpan,
+              ])}
+            >
               {typeof props.title === 'string' ? <h1 className={ccModal.titleText}>{props.title}</h1> : props.title}
             </div>
 
@@ -108,7 +114,8 @@ export const Modal = ({ 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelled
                   comment: 'Aria label for the close button in modal',
                 })}
                 onClick={props.onDismiss}
-                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight])}>
+                className={classNames([ccModal.transitionTitle, ccModal.titleButton, ccModal.titleButtonRight])}
+              >
                 <IconClose16 className={ccModal.titleButtonIcon} />
               </button>
             ) : (

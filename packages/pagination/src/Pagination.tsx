@@ -61,7 +61,9 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       <PaginationContainer {...props} ref={ref} currentPage={currentPage} lastPage={lastPage} className={className}>
         <FirstPage href={createHref(1)} onClick={handleClick(1)} />
         <PrevPage href={createHref(currentPage - 1)} onClick={handleClick(currentPage - 1)} noFollow={noFollow} />
-        <Pages numPages={numPages}>{(page) => <Page href={createHref(page)} onClick={handleClick(page)} noFollow={noFollow} />}</Pages>
+        <Pages numPages={numPages}>
+          {(page) => <Page href={createHref(page)} onClick={handleClick(page)} noFollow={noFollow} />}
+        </Pages>
         <CurrentPage />
         <NextPage href={createHref(currentPage + 1)} onClick={handleClick(currentPage + 1)} noFollow={noFollow} />
       </PaginationContainer>

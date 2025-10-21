@@ -1,9 +1,5 @@
 {
-  "branches": [
-    { "name": "main" },
-    { "name": "beta", "prerelease": true },
-    { "name": "next", "prerelease": true }
-  ],
+  "branches": [{ "name": "main" }, { "name": "beta", "prerelease": true }, { "name": "next", "prerelease": true }],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
@@ -18,7 +14,7 @@
       "@semantic-release/github",
       {
         "assets": "release/*.tgz",
-        "successComment" : false
+        "successComment": false
       }
     ],
     "@semantic-release/git"

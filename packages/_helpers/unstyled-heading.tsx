@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
-import { HeadingLevel } from './props.js';
+import type { HeadingLevel } from './props.js';
 
 export const UnstyledHeading = ({
   level,
@@ -24,7 +24,8 @@ export const UnstyledHeading = ({
         fontSize: 'unset',
         lineHeight: 'unset',
       }}
-      {...attrs}>
+      {...attrs}
+    >
       {children}
     </Heading>
   );

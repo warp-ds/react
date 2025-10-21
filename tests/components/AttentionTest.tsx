@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import type { Directions } from '@warp-ds/core/attention';
 import { autoUpdatePosition } from '@warp-ds/core/attention';
 import { attention as ccAttention } from '@warp-ds/css/component-classes';
+import React, { useEffect, useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { activeAttentionType, getVariant, pointingAtDirection, useAutoUpdatePosition } from '../../packages/_helpers/attention';
+import {
+  activeAttentionType,
+  getVariant,
+  pointingAtDirection,
+  useAutoUpdatePosition,
+} from '../../packages/_helpers/attention';
 import { Attention } from '../../packages/attention/src/component';
 import { Box } from '../../packages/box/src/component';
 import { Button } from '../../packages/button/src/component';
@@ -35,7 +39,8 @@ describe('Attention component', () => {
           onClick={() => {
             mockIsShowing = !mockIsShowing;
             onClickFunction(mockIsShowing);
-          }}>
+          }}
+        >
           Show an onboarding hint
         </Button>
         <div>
@@ -53,7 +58,8 @@ describe('Attention component', () => {
             }}
             placement={mockPlacement}
             isShowing={mockIsShowing}
-            targetEl={mockTargetEl}>
+            targetEl={mockTargetEl}
+          >
             <p>I'm a highlight that can dismiss itself</p>
           </Attention>
         </div>
@@ -150,12 +156,27 @@ describe('Attention component', () => {
     expect(result.current).toBe('top');
   });
   it('should update placement prop', () => {
-    const { result, rerender } = renderHook((props = { isShowing: true, popover: true, placement: 'top-start' }) => props, {
-      initialProps: { isShowing: true, popover: true, placement: 'bottom-end' },
+    const { result, rerender } = renderHook(
+      (props = { isShowing: true, popover: true, placement: 'top-start' }) => props,
+      {
+        initialProps: {
+          isShowing: true,
+          popover: true,
+          placement: 'bottom-end',
+        },
+      },
+    );
+    expect(result.current).toEqual({
+      isShowing: true,
+      popover: true,
+      placement: 'bottom-end',
     });
-    expect(result.current).toEqual({ isShowing: true, popover: true, placement: 'bottom-end' });
     rerender();
-    expect(result.current).toEqual({ isShowing: true, popover: true, placement: 'top-start' });
+    expect(result.current).toEqual({
+      isShowing: true,
+      popover: true,
+      placement: 'top-start',
+    });
   });
 });
 
@@ -436,7 +457,9 @@ describe('Usage of aria-label attribute', () => {
         <p>I am a popover with default aria-label</p>
       </Attention>,
     );
-    const defaultAriaLabel = screen.getByLabelText('A white speech bubble providing additional information pointing up');
+    const defaultAriaLabel = screen.getByLabelText(
+      'A white speech bubble providing additional information pointing up',
+    );
     expect(defaultAriaLabel).toBeInTheDocument();
   });
 
@@ -446,7 +469,9 @@ describe('Usage of aria-label attribute', () => {
         <p>I am a tooltip with default aria-label</p>
       </Attention>,
     );
-    const defaultAriaLabel = screen.getByLabelText('A black speech bubble providing complementary information pointing up');
+    const defaultAriaLabel = screen.getByLabelText(
+      'A black speech bubble providing complementary information pointing up',
+    );
     expect(defaultAriaLabel).toBeInTheDocument();
   });
 
@@ -476,7 +501,9 @@ describe('Usage of aria-label attribute', () => {
         <p>I am a highlight with default aria-label</p>
       </Attention>,
     );
-    const defaultAriaLabel = screen.getByLabelText('An attention speech bubble with important information pointing right');
+    const defaultAriaLabel = screen.getByLabelText(
+      'An attention speech bubble with important information pointing right',
+    );
     expect(defaultAriaLabel).toBeInTheDocument();
   });
 
@@ -486,7 +513,9 @@ describe('Usage of aria-label attribute', () => {
         <p>I am a popover with resetted aria-label</p>
       </Attention>,
     );
-    const defaultAriaLabel = screen.queryByLabelText('A white speech bubble providing additional information pointing up');
+    const defaultAriaLabel = screen.queryByLabelText(
+      'A white speech bubble providing additional information pointing up',
+    );
     expect(defaultAriaLabel).toBeNull();
   });
 });

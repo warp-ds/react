@@ -2,7 +2,7 @@ export type AlertProps = {
   /**
    * Determines whether the alert should be visible
    */
-  show?: Boolean;
+  show?: boolean;
   /**
    * Type of alert
    */

@@ -1,7 +1,6 @@
-import React, { Children, cloneElement, RefObject, useEffect, useRef, useState } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { tabs as ccTabs, gridLayout } from '@warp-ds/css/component-classes';
+import React, { Children, cloneElement, type RefObject, useEffect, useRef, useState } from 'react';
 
 import type { TabsProps } from './props.js';
 import { debounce } from './utils.js';
@@ -48,14 +47,15 @@ export const Tabs = (props: TabsProps) => {
   const findActive = (): string => {
     if (props.active) {
       return String(props.active);
-    } else if (Children.count(children) > 0) {
+    }
+    if (Children.count(children) > 0) {
       const childrenArray = Children.toArray(children);
       const activeChild =
         childrenArray?.find(
-          // @ts-ignore: semantic error
+          // @ts-expect-error: semantic error
           (child) => child?.props?.isActive,
         ) || childrenArray[0];
-      // @ts-ignore: semantic error
+      // @ts-expect-error: semantic error
       return String(activeChild?.props?.name || '');
     }
     return '';
@@ -66,11 +66,11 @@ export const Tabs = (props: TabsProps) => {
     Children.forEach(children, (child) => {
       if (typeof child === 'object') {
         const panel = document.getElementById(
-          // @ts-ignore: semantic error
+          // @ts-expect-error: semantic error
           `warp-tabpanel-${child?.props?.name}`,
         );
         if (panel) {
-          // @ts-ignore: semantic error
+          // @ts-expect-error: semantic error
           panel.hidden = child?.props?.name !== active;
         }
       }
@@ -84,7 +84,12 @@ export const Tabs = (props: TabsProps) => {
   };
 
   const handleKeyDown = (event) => {
-    if (!event.altKey && !event.ctrlKey && !event.shiftKey && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+    if (
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.shiftKey &&
+      ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+    ) {
       const tabs: HTMLButtonElement[] = Array.from(tabsRef?.current?.querySelectorAll('button[role="tab"]') ?? []);
       const activeTabIndex = tabs.findIndex((tab) => tab.name === active);
       if (activeTabIndex >= 0) {

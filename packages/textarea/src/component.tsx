@@ -1,8 +1,7 @@
-import React, { forwardRef, useRef } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { input as ccInput, label as ccLabel } from '@warp-ds/css/component-classes';
+import React, { forwardRef, useRef } from 'react';
 
 import { HelpText } from '../../_helpers/help-text.js';
 import { activateI18n } from '../../i18n.js';
@@ -13,7 +12,7 @@ import { messages as enMessages } from './locales/en/messages.mjs';
 import { messages as fiMessages } from './locales/fi/messages.mjs';
 import { messages as nbMessages } from './locales/nb/messages.mjs';
 import { messages as svMessages } from './locales/sv/messages.mjs';
-import { TextAreaProps } from './props.js';
+import type { TextAreaProps } from './props.js';
 import useTextAreaHeight from './useTextAreaHeight.js';
 
 activateI18n(enMessages, nbMessages, fiMessages, daMessages, svMessages);

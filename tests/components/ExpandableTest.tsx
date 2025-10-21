@@ -1,6 +1,5 @@
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-
-import { render, fireEvent, screen, act } from '@testing-library/react';
 
 import { Expandable } from '../../packages/expandable/src/component';
 
@@ -18,7 +17,14 @@ describe('Expandable component', () => {
 
   it('renders with custom props', () => {
     render(
-      <Expandable title="Custom Title" box bleed buttonClass="custom-button" contentClass="custom-content" headingLevel={2}>
+      <Expandable
+        title="Custom Title"
+        box
+        bleed
+        buttonClass="custom-button"
+        contentClass="custom-content"
+        headingLevel={2}
+      >
         Custom Content
       </Expandable>,
     );

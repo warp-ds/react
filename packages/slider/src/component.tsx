@@ -1,12 +1,20 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { createHandlers, useDimensions } from '@warp-ds/core/slider';
 import { slider as ccSlider } from '@warp-ds/css/component-classes';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { SliderProps } from './props.js';
+import type { SliderProps } from './props.js';
 
-export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disabled, onChange, onChangeAfter, ...rest }: SliderProps) {
+export function Slider({
+  min = 0,
+  max = 100,
+  step = 1,
+  value: initialValue,
+  disabled,
+  onChange,
+  onChangeAfter,
+  ...rest
+}: SliderProps) {
   const sliderLine = useRef<HTMLDivElement | null>(null);
   const thumbRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,8 +57,16 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
     [position, sliderPressed, value, dimensions, step],
   );
 
-  const { handleKeyDown, handleFocus, handleBlur, handleMouseDown, handleClick, getThumbPosition, getThumbTransform, getShiftedChange } =
-    createHandlers({ props: { min, max, step, ...rest }, sliderState });
+  const {
+    handleKeyDown,
+    handleFocus,
+    handleBlur,
+    handleMouseDown,
+    handleClick,
+    getThumbPosition,
+    getThumbTransform,
+    getShiftedChange,
+  } = createHandlers({ props: { min, max, step, ...rest }, sliderState });
 
   const { mountedHook, unmountedHook } = useDimensions();
 
@@ -109,7 +125,10 @@ export function Slider({ min = 0, max = 100, step = 1, value: initialValue, disa
 
   const trackClasses = classNames([ccSlider.track, disabled && ccSlider.trackDisabled]);
 
-  const activeTrackClasses = classNames([ccSlider.activeTrack, disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled]);
+  const activeTrackClasses = classNames([
+    ccSlider.activeTrack,
+    disabled ? ccSlider.activeTrackDisabled : ccSlider.activeTrackEnabled,
+  ]);
 
   const thumbClasses = classNames([ccSlider.thumb, disabled ? ccSlider.thumbDisabled : ccSlider.thumbEnabled]);
 

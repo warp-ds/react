@@ -1,9 +1,8 @@
-import React, { Ref } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
 import IconChevronLeft16 from '@warp-ds/icons/react/chevron-left-16';
+import React, { type Ref } from 'react';
 
 import { usePagination } from './PaginationContainer.js';
 
@@ -56,7 +55,8 @@ const PrevPage = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>,
         {...props}
         ref={ref as Ref<HTMLAnchorElement>}
         className={classNames(className, [ccPagination.link, ccPagination.icon])}
-        rel={`prev${noFollow ? ' nofollow' : ''}`}>
+        rel={`prev${noFollow ? ' nofollow' : ''}`}
+      >
         <span className={ccPagination.a11y}>{ariaLabel},</span>
         <IconChevronLeft16 />
         <span className={ccPagination.a11y}>{iconSuffix}</span>

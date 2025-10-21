@@ -1,8 +1,7 @@
-import React, { Ref } from 'react';
-
 import { classNames } from '@chbphone55/classnames';
 import { i18n } from '@lingui/core';
 import { pagination as ccPagination } from '@warp-ds/css/component-classes';
+import React, { type Ref } from 'react';
 
 export type PageProps = {
   /**
@@ -50,7 +49,11 @@ const Page = React.forwardRef<React.AnchorHTMLAttributes<HTMLAnchorElement>, Pag
         ref={ref as Ref<HTMLAnchorElement>}
         rel={`${noFollow ? 'nofollow' : ''}`}
         aria-current={isCurrentPage ? 'page' : undefined}
-        className={classNames(className, [ccPagination.link, [isCurrentPage ? ccPagination.active : ccPagination.notActive]])}>
+        className={classNames(className, [
+          ccPagination.link,
+          [isCurrentPage ? ccPagination.active : ccPagination.notActive],
+        ])}
+      >
         {page}
       </a>
     );

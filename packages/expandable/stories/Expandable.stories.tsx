@@ -1,6 +1,5 @@
-import * as React from 'react';
-
 import { IconBag16 } from '@warp-ds/icons/react';
+import * as React from 'react';
 
 import { Expandable } from '../src';
 
@@ -28,7 +27,8 @@ export const BoxWithCustomIcon = () => (
         <IconBag16 />
       </div>
     }
-    box>
+    box
+  >
     <h2>I am expandable</h2>
   </Expandable>
 );
