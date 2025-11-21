@@ -1,3 +1,10 @@
+## [2.3.1-next.1](https://github.com/warp-ds/react/compare/v2.3.0...v2.3.1-next.1) (2025-11-21)
+
+
+### Bug Fixes
+
+* release combobox code ([aa77dc6](https://github.com/warp-ds/react/commit/aa77dc6873282a67c59d784e29ab35fd94c909ca))
+
 # [2.3.0](https://github.com/warp-ds/react/compare/v2.2.1...v2.3.0) (2025-10-21)
 
 
