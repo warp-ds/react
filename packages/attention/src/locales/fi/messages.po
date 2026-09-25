@@ -15,7 +15,6 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File-ID: 12398\n"
-"PO-Revision-Date: \n"
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
@@ -70,3 +69,4 @@ msgstr "Valkoinen puhekupla, joka tarjoaa lisätietoa"
 #: packages/_helpers/attention.tsx:61
 msgid "attention.aria.tooltip"
 msgstr "Musta puhekupla, joka tarjoaa täydentävää tietoa"
+
