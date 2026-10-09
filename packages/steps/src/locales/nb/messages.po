@@ -15,7 +15,6 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: nb\n"
 "X-Crowdin-File-ID: 12468\n"
-"PO-Revision-Date: \n"
 
 #. Empty circle
 #. js-lingui-explicit-id
@@ -34,3 +33,4 @@ msgstr "Stegindikator aktiv sirkel"
 #: packages/steps/src/step.tsx:18
 msgid "steps.aria.completed"
 msgstr "Stegindikator hel sirkel"
+
