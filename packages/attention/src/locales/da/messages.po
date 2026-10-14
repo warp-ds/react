@@ -15,13 +15,12 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File-ID: 12398\n"
-"PO-Revision-Date: \n"
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
 #: packages/_helpers/attention.tsx:67
 msgid "attention.aria.callout"
-msgstr "En grøn taleboble der introducerer noget nyt"
+msgstr "En grøn taleboble, der introducerer noget nyt"
 
 #. Aria label for the close button in attention
 #. js-lingui-explicit-id
@@ -70,3 +69,4 @@ msgstr "En hvid taleboble med mere information"
 #: packages/_helpers/attention.tsx:61
 msgid "attention.aria.tooltip"
 msgstr "En sort taleboble med flere oplysninger"
+

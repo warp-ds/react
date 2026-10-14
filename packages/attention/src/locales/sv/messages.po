@@ -15,7 +15,6 @@ msgstr ""
 "X-Crowdin-Project-ID: 141\n"
 "X-Crowdin-Language: sv\n"
 "X-Crowdin-File-ID: 12398\n"
-"PO-Revision-Date: \n"
 
 #. Default screenreader message for callout speech bubble in the attention component
 #. js-lingui-explicit-id
@@ -70,3 +69,4 @@ msgstr "En vit pratbubbla som ger ytterligare information"
 #: packages/_helpers/attention.tsx:61
 msgid "attention.aria.tooltip"
 msgstr "En svart pratbubbla som ger kompletterande information"
+
