@@ -1,6 +1,6 @@
 # Warp-ds React
 
-This repository is no longer actively maintained. New users should insteady use [@warp-ds/elements](https://github.com/warp-ds/elements) React wrappers.
+This repository is no longer actively maintained. New users should instead use [@warp-ds/elements](https://github.com/warp-ds/elements) React wrappers.
 
 ## How to use
 
