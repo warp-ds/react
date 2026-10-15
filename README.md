@@ -1,15 +1,6 @@
 # Warp-ds React
 
-Welcome to [@warp-ds/react](https://github.com/warp-ds/react),
-a collection of React components for building user interfaces based on the [Warp Design System](https://github.com/warp-ds/).
-This repository is maintained by the [Warp Core Team](https://github.com/orgs/warp-ds/teams/warp-core-team)
-and is home to the [@warp-ds/react](https://www.npmjs.com/package/@warp-ds/react) library.
-
-
-## How to contribute
-
-If you'd like to contribute to `@warp-ds/react`, start by reviewing the [contributing guidelines](https://github.com/warp-ds/react/blob/main/CONTRIBUTING.md).
-
+This repository is no longer actively maintained. New users should insteady use [@warp-ds/elements](https://github.com/warp-ds/elements) React wrappers.
 
 ## How to use
 
